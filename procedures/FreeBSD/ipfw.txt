@@ -1,0 +1,6 @@
+To add syslog functionality to LOG'ged ipfw packets:
+
+vi /etc/syslog.conf
+:$
+!ipfw
+*.* /var/log/ipfw.log

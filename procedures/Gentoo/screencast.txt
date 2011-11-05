@@ -1,0 +1,2 @@
+USE="x11vnc server tk" emerge -av x2x x2vnc x11vnc vnc2swf vnc
+

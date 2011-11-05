@@ -1,0 +1,6 @@
+.if ${.CURDIR:M/usr/ports/www/mozilla*}
+.undef CPUTYPE
+# oder halt ueberschreiben
+CPUTYPE=i386 # oder so.....
+CONFIGURE_ARGS+= --enable-optimize=-Os
+.endif

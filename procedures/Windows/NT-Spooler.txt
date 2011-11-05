@@ -1,0 +1,28 @@
+Subject: Stuck printer
+
+Save this because this will happen again.
+
+On NT,  Start->Run->Command
+
+
+Type:
+
+NET STOP SPOOLER
+CD  \
+CD   %Systemroot%\System32\Spool\Printers
+(if that doesn't work try:)
+CD  %Winroot%\System32\SpoolPrinters
+
+DIR
+(try to identify the .SPL file that is the problem - the date is probably a
+good clue)
+(if you CAN identify it, delete the .SPL and .SHD files
+(otherwise  del all the .spl and .shd files)
+
+DEL *.SPL (or spcific if you can figure out which)
+DEL *.SHD
+
+NET START SPOOLER
+
+
+

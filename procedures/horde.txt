@@ -1,0 +1,9 @@
+We had a very weird horde problem where CSS was severly broken and if
+installed under /horde it would work fine.
+
+Gavin figured out that:
+
+CSS was being served as text/plain. Fixed by updating Apache's mime.types file
+to serve CSS as text/css. Very strange symptoms!
+
+

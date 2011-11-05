@@ -1,0 +1,1 @@
+poll sharemail protocol POP3 user pong password pong_3 mda "cat > /tmp/local_delivery"

@@ -1,0 +1,15 @@
+This file explains how to migrate a 4D database data to a MySQL database.
+
+First off I haven't found a way of exporting the entire 4D database yet so you have to manually select each table and then export it to a TabSeparated values file. Once exported 4D has created tabs for ALL fields in the table, also empty fields.
+Don't tweak any magical switches while exporting it is not needed at all.
+(If you are on a Macintosh set the file format to Windows)
+
+Once you exported the tables create the MySQL table structure as shown in the 4D structure of the table. Be very carefull while creating the tables that the field count is correct and the field types are allright.
+
+now comes the little magic you need to do:
+
+mysqlimport dbclient tblname.txt
+
+mysqlimport will with that command import the contents of the TSV file into the database dbclient and into table tblname.
+
+Now you will gett as much warnings as table entries this is maybe normal, I haven't checked yet.

@@ -1,0 +1,3039 @@
+*Received: (qmail 92147 invoked by uid 89); 3 Sep 2007 05:58:59 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 05:58:59 +0200
+Received: (qmail 15455 invoked by uid 98); 3 Sep 2007 05:42:13 +0200
+Received: from 80.90.47.173 by radium.ion.lu (envelope-from <root@plumbum.ion.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(80.90.47.173):SA:0(0.2/7.0):. 
+ Processed in 15.230127 secs); 03 Sep 2007 03:42:13 -0000
+X-Spam-Status: No, score=0.2 required=7.0
+X-Spam-Level: 
+Received: from unknown (HELO plumbum.ion.lu) (80.90.47.173)
+  by radium.ion.lu with SMTP; 3 Sep 2007 05:41:57 +0200
+Received-SPF: pass (radium.ion.lu: local policy designates 80.90.47.173 as permitted sender)
+Received: (qmail 93435 invoked by alias); 3 Sep 2007 06:39:44 +0200
+Delivered-To: root@plumbum.ion.lu
+Received: (qmail 93432 invoked by uid 0); 3 Sep 2007 06:39:44 +0200
+Date: 3 Sep 2007 06:39:44 +0200
+Message-ID: <20070903043944.93430.qmail@plumbum.ion.lu>
+From: root@plumbum.ion.lu
+To: root@plumbum.ion.lu
+Subject: plumbum.ion.lu daily run output
+
+
+Removing stale files from /var/preserve:
+
+Cleaning out old system announcements:
+
+Removing stale files from /var/rwho:
+
+Backup passwd and group files:
+
+Verifying group file syntax:
+
+Backing up mail aliases:
+
+Disk status:
+Filesystem    1K-blocks      Used     Avail Capacity  Mounted on
+/dev/ad0s1a   111497958  84448514  18129608    82%    /
+devfs                 1         1         0   100%    /dev
+/dev/aacd0s1d 709364648 324373532 328241946    50%    /home/bup
+
+Last dump(s) done (Dump '>' file systems):
+
+Network interface status:
+Name    Mtu Network       Address              Ipkts Ierrs    Opkts Oerrs  Coll
+fxp0   1500 <Link#1>      00:03:47:a6:2a:05 137487234   199 133161947     2     0
+fxp0   1500 80.90.47.160/ plumbum           134572796     - 133149588     -     -
+em0*   1500 <Link#2>      00:0e:0c:06:2e:3b        0     0        0     0     0
+fwe0*  1500 <Link#3>      02:d0:03:b3:cd:02        0     0        0     0     0
+lo0   16384 <Link#4>                          132372     0   132372     0     0
+lo0   16384 your-net      localhost           132260     -   132260     -     -
+
+Local system status:
+ 3:01AM  up 82 days, 18:37, 1 user, load averages: 0.44, 0.13, 0.05
+
+Mail in local queue:
+3 Sep 2007 03:00:48 GMT  #9903046  2801  <anonymous@plumbum.ion.lu> 
+	remote	rootmails@ion.lu
+
+Mail in submit queue:
+3 Sep 2007 03:00:48 GMT  #9903046  2801  <anonymous@plumbum.ion.lu> 
+	remote	rootmails@ion.lu
+
+Security check:
+    (output mailed separately)
+
+Checking for rejected mail hosts:
+
+Checking for denied zone transfers (AXFR and IXFR):
+
+Running /etc/daily.local:
+Removing old files and directories... done.
+Extracting new files:
+/usr/ports/MOVED
+/usr/ports/Mk/bsd.qt.mk
+/usr/ports/accessibility/qt4-accessible/
+/usr/ports/audio/boodler/
+/usr/ports/biology/pymol/
+/usr/ports/chinese/qt4-codecs-cn/
+/usr/ports/chinese/qt4-codecs-tw/
+/usr/ports/databases/qt-ibase-plugin/
+/usr/ports/databases/qt-mysql-plugin/
+/usr/ports/databases/qt-odbc-plugin/
+/usr/ports/databases/qt-pgsql-plugin/
+/usr/ports/databases/qt-sqlite-plugin/
+/usr/ports/databases/qt4-ibase-plugin/
+/usr/ports/databases/qt4-mysql-plugin/
+/usr/ports/databases/qt4-odbc-plugin/
+/usr/ports/databases/qt4-pgsql-plugin/
+/usr/ports/databases/qt4-sql/
+/usr/ports/databases/qt4-sqlite-plugin/
+/usr/ports/databases/qt4-sqlite3-plugin/
+/usr/ports/devel/acpicatools/
+/usr/ports/devel/bouml/
+/usr/ports/devel/dbus-qt4/
+/usr/ports/devel/noweb/
+/usr/ports/devel/pypersrc/
+/usr/ports/devel/qmake4/
+/usr/ports/devel/qt4-assistant/
+/usr/ports/devel/qt4-corelib/
+/usr/ports/devel/qt4-designer/
+/usr/ports/devel/qt4-libqtassistantclient/
+/usr/ports/devel/qt4-linguist/
+/usr/ports/devel/qt4-makeqpf/
+/usr/ports/devel/qt4-moc/
+/usr/ports/devel/qt4-porting/
+/usr/ports/devel/qt4-qdbusviewer/
+/usr/ports/devel/qt4-qt3support/
+/usr/ports/devel/qt4-qtestlib/
+/usr/ports/devel/qt4-qvfb/
+/usr/ports/devel/qt4-rcc/
+/usr/ports/devel/qt4-script/
+/usr/ports/devel/qt4-uic/
+/usr/ports/devel/qt4-uic3/
+/usr/ports/devel/qt4/
+/usr/ports/dns/bind84/
+/usr/ports/editors/Makefile
+/usr/ports/editors/nxml-emacs21/
+/usr/ports/editors/nxml/
+/usr/ports/editors/psgml/
+/usr/ports/finance/quantlib/
+/usr/ports/french/eficas/
+/usr/ports/games/brutalchess/
+/usr/ports/games/ptkei/
+/usr/ports/games/xroach/
+/usr/ports/graphics/ogre312/
+/usr/ports/graphics/qt4-iconengines/
+/usr/ports/graphics/qt4-imageformats/
+/usr/ports/graphics/qt4-pixeltool/
+/usr/ports/graphics/qt4-svg/
+/usr/ports/graphics/xmfract/
+/usr/ports/graphics/xpdf/
+/usr/ports/japanese/ptex/
+/usr/ports/japanese/qt4-codecs-jp/
+/usr/ports/japanese/scim-canna/
+/usr/ports/japanese/scim-uim/
+/usr/ports/japanese/vlgothic/
+/usr/ports/java/jdk14/
+/usr/ports/java/jdk16/
+/usr/ports/korean/qt4-codecs-kr/
+/usr/ports/lang/munger/
+/usr/ports/lang/sml-nj-devel/
+/usr/ports/lang/sml-nj/
+/usr/ports/lang/vala/
+/usr/ports/mail/Makefile
+/usr/ports/mail/ilohamail-devel/
+/usr/ports/mail/ovs/
+/usr/ports/mail/qmail-scanner1/
+/usr/ports/math/asir2000/
+/usr/ports/math/py-numpy/
+/usr/ports/misc/cuecat/
+/usr/ports/misc/qt4-doc/
+/usr/ports/misc/qt4-qtconfig/
+/usr/ports/misc/qt4-qtdemo/
+/usr/ports/net-im/fugu/
+/usr/ports/net-mgmt/aguri/
+/usr/ports/net/forg/
+/usr/ports/net/grsync/
+/usr/ports/net/qt4-network/
+/usr/ports/science/py-scipy/
+/usr/ports/security/gnupg/
+/usr/ports/security/ipsec-tools/
+/usr/ports/security/tor/
+/usr/ports/security/vuxml/
+/usr/ports/sysutils/conky/
+/usr/ports/sysutils/lcdproc/
+/usr/ports/sysutils/tw_cli/
+/usr/ports/textproc/qt4-xml/
+/usr/ports/textproc/xmlroff/
+/usr/ports/www/mod_musicindex/
+/usr/ports/www/p5-Catalyst-Action-RenderView/
+/usr/ports/x11-fonts/p5-type1inst/
+/usr/ports/x11-toolkits/Makefile
+/usr/ports/x11-toolkits/py-Pmw/
+/usr/ports/x11-toolkits/py-tktreectrl/
+/usr/ports/x11-toolkits/qt4-gui/
+/usr/ports/x11/qt4-inputmethods/
+/usr/ports/x11/qt4-opengl/
+Building new INDEX files... done.
+Parsing supfile "/etc/cvsupfile-5_5"
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 04:25:08
+Retrying
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 04:35:09
+Retrying
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 04:55:17
+Retrying
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 05:39:04
+Retrying
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Server software version: SNAP_16_1h
+Negotiating file attribute support
+Exchanging collection information
+Establishing multiplexed-mode data connection
+Running
+Updating collection src-all/cvs
+Shutting down connection to server
+Finished successfully
+>>> WARNING
+>>> Executing updatedb as root.  This WILL reveal all filenames
+>>> on your machine to all login users, which is a security risk.
+[Updating the portsdb <format:bdb_btree> in /usr/ports ... - 17576 port entries found .........1000.........2000.........3000.........4000.........5000.........6000.........7000.........8000.........9000.........10000.........11000.........12000.........13000.........14000.........15000.........16000.........17000..... ..... done]
+cd: can't cd to /usr/ports/devel/imake-6
+cd: can't cd to /usr/ports/www/lynx-ssl
+cd: can't cd to /usr/ports/mail/qmHandle
+cd: can't cd to /usr/ports/x11/xorg-clients
+cd: can't cd to /usr/ports/x11/xorg-documents
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-encodings
+cd: can't cd to /usr/ports/x11-servers/xorg-fontserver
+cd: can't cd to /usr/ports/x11/xorg-manpages
+--->  Fetching the distfile(s) for 'rsync-2.6.9_1' (net/rsync)
+--->  Fetching '/usr/ports/net/rsync'
+===> Fetching and checking checksums for rsync-2.6.9_1 and dependencies
+===>  Found saved configuration for rsync-2.6.8_2
+=> MD5 Checksum OK for rsync-2.6.9.tar.gz.
+=> SHA256 Checksum OK for rsync-2.6.9.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+** Package 'xorg-manpages' has been removed from ports tree.
+** Port directory not found: x11/xorg-manpages
+** Package origin of 'imake' has been changed: 'devel/imake-6' -> 'devel/imake'
+--->  Fetching the distfile(s) for 'imake-1.0.2_4,1' (devel/imake)
+--->  Fetching '/usr/ports/devel/imake'
+===> Fetching and checking checksums for imake-1.0.2_4,1 and dependencies
+=> MD5 Checksum OK for xorg/util/imake-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/util/imake-1.0.2.tar.bz2.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for xorg/util/gccmakedep-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/util/gccmakedep-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/util/makedepend-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/util/makedepend-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/util/xorg-cf-files-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/util/xorg-cf-files-1.0.2.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'portmaster-1.20' (ports-mgmt/portmaster)
+--->  Fetching '/usr/ports/ports-mgmt/portmaster'
+===> Fetching and checking checksums for portmaster-1.20 and dependencies
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+** Package origin of 'xorg-fonts-encodings' has been changed: 'x11-fonts/xorg-fonts-encodings' -> 'x11-fonts/encodings'
+** Detected a package name change: xorg-fonts-encodings (x11-fonts/xorg-fonts-encodings) -> 'encodings' (x11-fonts/encodings)
+--->  Fetching the distfile(s) for 'encodings-1.0.2,1' (x11-fonts/encodings)
+--->  Fetching '/usr/ports/x11-fonts/encodings'
+===> Fetching and checking checksums for encodings-1.0.2,1 and dependencies
+=> MD5 Checksum OK for xorg/font/encodings-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/encodings-1.0.2.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/app/bdftopcf-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/bdftopcf-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-util-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-util-1.0.1.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+** Package origin of 'qmHandle' has been changed: 'mail/qmHandle' -> 'mail/qmhandle'
+** Detected a package name change: qmHandle (mail/qmHandle) -> 'qmhandle' (mail/qmhandle)
+--->  Fetching the distfile(s) for 'qmhandle-1.3.0' (mail/qmhandle)
+--->  Fetching '/usr/ports/mail/qmhandle'
+===> Fetching and checking checksums for qmhandle-1.3.0 and dependencies
+=> MD5 Checksum OK for qmhandle-1.3.0.tar.bz2.
+=> SHA256 Checksum OK for qmhandle-1.3.0.tar.bz2.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+
+You may use the following build options:
+
+WITH_BIG_CONCURRENCY_PATCH_CONCURRENCY_LIMIT=NUMBER
+				(default NUMBER=509)
+				set this to a value reasonable for
+				your system if you use the patch
+
+===>  Found saved configuration for qmail-1.03_4
+=> MD5 Checksum OK for qmail/qmail-1.03.tar.gz.
+=> SHA256 Checksum OK for qmail/qmail-1.03.tar.gz.
+=> MD5 Checksum OK for qmail/qmail-103.patch.
+=> SHA256 Checksum OK for qmail/qmail-103.patch.
+=> MD5 Checksum OK for qmail/sendmail-flagf.patch.
+=> SHA256 Checksum OK for qmail/sendmail-flagf.patch.
+=> MD5 Checksum OK for qmail/patch-qmail-1.03-rfc2821.diff.
+=> SHA256 Checksum OK for qmail/patch-qmail-1.03-rfc2821.diff.
+=> MD5 Checksum OK for qmail/qmail-maildir++.patch.
+=> SHA256 Checksum OK for qmail/qmail-maildir++.patch.
+=> MD5 Checksum OK for qmail/qmail-block-executables.patch.
+=> SHA256 Checksum OK for qmail/qmail-block-executables.patch.
+=> MD5 Checksum OK for qmail/qmail-discard-double-bounces.patch.
+=> SHA256 Checksum OK for qmail/qmail-discard-double-bounces.patch.
+=> MD5 Checksum OK for qmail/qmailqueue-patch.
+=> SHA256 Checksum OK for qmail/qmailqueue-patch.
+=> MD5 Checksum OK for qmail/big-todo.103.patch.
+=> SHA256 Checksum OK for qmail/big-todo.103.patch.
+=> MD5 Checksum OK for qmail/big-concurrency.patch.
+=> SHA256 Checksum OK for qmail/big-concurrency.patch.
+=> MD5 Checksum OK for qmail/qmail-1.03-qmtpc.patch.
+=> SHA256 Checksum OK for qmail/qmail-1.03-qmtpc.patch.
+=> MD5 Checksum OK for qmail/qmail-date-localtime.patch.
+=> SHA256 Checksum OK for qmail/qmail-date-localtime.patch.
+--->  Fetching the distfile(s) for 'ocaml-notk-3.09.3_1' (lang/ocaml-nox11)
+--->  Fetching '/usr/ports/lang/ocaml-nox11'
+===> Fetching and checking checksums for ocaml-notk-3.09.3_1 and dependencies
+===>  Found saved configuration for ocaml-notk-3.09.2_2
+=> MD5 Checksum OK for ocaml-3.09.3.tar.bz2.
+=> SHA256 Checksum OK for ocaml-3.09.3.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+--->  Fetching the distfile(s) for 'libdrm-2.3.0' (graphics/libdrm)
+--->  Fetching '/usr/ports/graphics/libdrm'
+===> Fetching and checking checksums for libdrm-2.3.0 and dependencies
+=> MD5 Checksum OK for libdrm-2.3.0.tar.gz.
+=> SHA256 Checksum OK for libdrm-2.3.0.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+** Package origin of 'xorg-documents' has been changed: 'x11/xorg-documents' -> 'x11/xorg-docs'
+** Detected a package name change: xorg-documents (x11/xorg-documents) -> 'xorg-docs' (x11/xorg-docs)
+--->  Fetching the distfile(s) for 'xorg-docs-1.3,1' (x11/xorg-docs)
+--->  Fetching '/usr/ports/x11/xorg-docs'
+===> Fetching and checking checksums for xorg-docs-1.3,1 and dependencies
+=> MD5 Checksum OK for xorg/doc/xorg-docs-1.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/doc/xorg-docs-1.3.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+--->  Fetching the distfile(s) for 'readline-5.2_1' (devel/readline)
+--->  Fetching '/usr/ports/devel/readline'
+===> Fetching and checking checksums for readline-5.2_1 and dependencies
+=> MD5 Checksum OK for readline-5.2.tar.gz.
+=> SHA256 Checksum OK for readline-5.2.tar.gz.
+=> MD5 Checksum OK for readline52-001.
+=> SHA256 Checksum OK for readline52-001.
+=> MD5 Checksum OK for readline52-002.
+=> SHA256 Checksum OK for readline52-002.
+=> MD5 Checksum OK for readline52-003.
+=> SHA256 Checksum OK for readline52-003.
+=> MD5 Checksum OK for readline52-004.
+=> SHA256 Checksum OK for readline52-004.
+=> MD5 Checksum OK for readline52-005.
+=> SHA256 Checksum OK for readline52-005.
+=> MD5 Checksum OK for readline52-006.
+=> SHA256 Checksum OK for readline52-006.
+=> MD5 Checksum OK for readline52-007.
+=> SHA256 Checksum OK for readline52-007.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+--->  Fetching the distfile(s) for 'png-1.2.18' (graphics/png)
+--->  Fetching '/usr/ports/graphics/png'
+===> Fetching and checking checksums for png-1.2.18 and dependencies
+=> MD5 Checksum OK for libpng-1.2.18.tar.bz2.
+=> SHA256 Checksum OK for libpng-1.2.18.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+--->  Fetching the distfile(s) for 'ruby-1.8.6_2,1' (lang/ruby18)
+--->  Fetching '/usr/ports/lang/ruby18'
+===> Fetching and checking checksums for ruby-1.8.6_2,1 and dependencies
+===>  Found saved configuration for ruby-1.8.5_4,1
+=> MD5 Checksum OK for ruby/ruby-1.8.6.tar.bz2.
+=> SHA256 Checksum OK for ruby/ruby-1.8.6.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+--->  Fetching the distfile(s) for 'ruby18-bdb-0.6.2' (databases/ruby-bdb)
+--->  Fetching '/usr/ports/databases/ruby-bdb'
+===> Fetching and checking checksums for ruby18-bdb-0.6.2 and dependencies
+=> MD5 Checksum OK for ruby/bdb-0.6.2.tar.gz.
+=> SHA256 Checksum OK for ruby/bdb-0.6.2.tar.gz.
+===>  Found saved configuration for ruby-1.8.5_4,1
+=> MD5 Checksum OK for ruby/ruby-1.8.6.tar.bz2.
+=> SHA256 Checksum OK for ruby/ruby-1.8.6.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for bdb/db-4.1.25.tar.gz.
+=> SHA256 Checksum OK for bdb/db-4.1.25.tar.gz.
+=> MD5 Checksum OK for bdb/patch.4.1.25.1.
+=> SHA256 Checksum OK for bdb/patch.4.1.25.1.
+=> MD5 Checksum OK for bdb/patch.4.1.25.2.
+=> SHA256 Checksum OK for bdb/patch.4.1.25.2.
+=> MD5 Checksum OK for bdb/patch.4.1.25.3.
+=> SHA256 Checksum OK for bdb/patch.4.1.25.3.
+--->  Fetching the distfile(s) for 'portupgrade-2.3.1,2' (ports-mgmt/portupgrade)
+--->  Fetching '/usr/ports/ports-mgmt/portupgrade'
+===> Fetching and checking checksums for portupgrade-2.3.1,2 and dependencies
+===>  Found saved configuration for portupgrade-20041226_5
+=> MD5 Checksum OK for pkgtools-2.3.1.tar.bz2.
+=> SHA256 Checksum OK for pkgtools-2.3.1.tar.bz2.
+===>  Found saved configuration for ruby-1.8.5_4,1
+=> MD5 Checksum OK for ruby/ruby-1.8.6.tar.bz2.
+=> SHA256 Checksum OK for ruby/ruby-1.8.6.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for ruby/bdb-0.6.2.tar.gz.
+=> SHA256 Checksum OK for ruby/bdb-0.6.2.tar.gz.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for bdb/db-4.1.25.tar.gz.
+=> SHA256 Checksum OK for bdb/db-4.1.25.tar.gz.
+=> MD5 Checksum OK for bdb/patch.4.1.25.1.
+=> SHA256 Checksum OK for bdb/patch.4.1.25.1.
+=> MD5 Checksum OK for bdb/patch.4.1.25.2.
+=> SHA256 Checksum OK for bdb/patch.4.1.25.2.
+=> MD5 Checksum OK for bdb/patch.4.1.25.3.
+=> SHA256 Checksum OK for bdb/patch.4.1.25.3.
+--->  Fetching the distfile(s) for 'tcl-8.4.15_2,1' (lang/tcl84)
+--->  Fetching '/usr/ports/lang/tcl84'
+===> Fetching and checking checksums for tcl-8.4.15_2,1 and dependencies
+===>  Found saved configuration for tcl-8.4.14_3,1
+=> MD5 Checksum OK for tcl8.4.15-src.tar.gz.
+=> SHA256 Checksum OK for tcl8.4.15-src.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+--->  Fetching the distfile(s) for 'openldap-client-2.3.38' (net/openldap23-client)
+--->  Fetching '/usr/ports/net/openldap23-client'
+===> Fetching and checking checksums for openldap-client-2.3.38 and dependencies
+=> MD5 Checksum OK for openldap-2.3.38.tgz.
+=> SHA256 Checksum OK for openldap-2.3.38.tgz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+--->  Fetching the distfile(s) for 'python24-2.4.4_1' (lang/python24)
+--->  Fetching '/usr/ports/lang/python24'
+===> Fetching and checking checksums for python24-2.4.4_1 and dependencies
+===>  Found saved configuration for python24-2.4.3_3
+=> MD5 Checksum OK for python/Python-2.4.4.tgz.
+=> SHA256 Checksum OK for python/Python-2.4.4.tgz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+--->  Fetching the distfile(s) for 'pcre-7.2' (devel/pcre)
+--->  Fetching '/usr/ports/devel/pcre'
+===> Fetching and checking checksums for pcre-7.2 and dependencies
+=> MD5 Checksum OK for pcre-7.2.tar.bz2.
+=> SHA256 Checksum OK for pcre-7.2.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+--->  Fetching the distfile(s) for 'gettext-0.16.1_3' (devel/gettext)
+--->  Fetching '/usr/ports/devel/gettext'
+===> Fetching and checking checksums for gettext-0.16.1_3 and dependencies
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'bash-3.2.17_2' (shells/bash)
+--->  Fetching '/usr/ports/shells/bash'
+===> Fetching and checking checksums for bash-3.2.17_2 and dependencies
+=> MD5 Checksum OK for bash/bash-3.2.tar.gz.
+=> SHA256 Checksum OK for bash/bash-3.2.tar.gz.
+=> MD5 Checksum OK for bash/bash32-001.
+=> SHA256 Checksum OK for bash/bash32-001.
+=> MD5 Checksum OK for bash/bash32-002.
+=> SHA256 Checksum OK for bash/bash32-002.
+=> MD5 Checksum OK for bash/bash32-003.
+=> SHA256 Checksum OK for bash/bash32-003.
+=> MD5 Checksum OK for bash/bash32-004.
+=> SHA256 Checksum OK for bash/bash32-004.
+=> MD5 Checksum OK for bash/bash32-005.
+=> SHA256 Checksum OK for bash/bash32-005.
+=> MD5 Checksum OK for bash/bash32-006.
+=> SHA256 Checksum OK for bash/bash32-006.
+=> MD5 Checksum OK for bash/bash32-007.
+=> SHA256 Checksum OK for bash/bash32-007.
+=> MD5 Checksum OK for bash/bash32-008.
+=> SHA256 Checksum OK for bash/bash32-008.
+=> MD5 Checksum OK for bash/bash32-009.
+=> SHA256 Checksum OK for bash/bash32-009.
+=> MD5 Checksum OK for bash/bash32-010.
+=> SHA256 Checksum OK for bash/bash32-010.
+=> MD5 Checksum OK for bash/bash32-011.
+=> SHA256 Checksum OK for bash/bash32-011.
+=> MD5 Checksum OK for bash/bash32-012.
+=> SHA256 Checksum OK for bash/bash32-012.
+=> MD5 Checksum OK for bash/bash32-013.
+=> SHA256 Checksum OK for bash/bash32-013.
+=> MD5 Checksum OK for bash/bash32-014.
+=> SHA256 Checksum OK for bash/bash32-014.
+=> MD5 Checksum OK for bash/bash32-015.
+=> SHA256 Checksum OK for bash/bash32-015.
+=> MD5 Checksum OK for bash/bash32-016.
+=> SHA256 Checksum OK for bash/bash32-016.
+=> MD5 Checksum OK for bash/bash32-017.
+=> SHA256 Checksum OK for bash/bash32-017.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'gmake-3.81_2' (devel/gmake)
+--->  Fetching '/usr/ports/devel/gmake'
+===> Fetching and checking checksums for gmake-3.81_2 and dependencies
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'p5-PathTools-3.25' (devel/p5-PathTools)
+--->  Fetching '/usr/ports/devel/p5-PathTools'
+===> Fetching and checking checksums for p5-PathTools-3.25 and dependencies
+=> MD5 Checksum OK for PathTools-3.25.tar.gz.
+=> SHA256 Checksum OK for PathTools-3.25.tar.gz.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for Scalar-List-Utils-1.19.tar.gz.
+=> SHA256 Checksum OK for Scalar-List-Utils-1.19.tar.gz.
+--->  Fetching the distfile(s) for 'libassuan-1.0.3' (security/libassuan)
+--->  Fetching '/usr/ports/security/libassuan'
+===> Fetching and checking checksums for libassuan-1.0.3 and dependencies
+=> MD5 Checksum OK for libassuan-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for libassuan-1.0.3.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+===>  Found saved configuration for pth-2.0.7
+=> MD5 Checksum OK for pth-2.0.7.tar.gz.
+=> SHA256 Checksum OK for pth-2.0.7.tar.gz.
+--->  Fetching the distfile(s) for 'clearsilver-python-0.10.5' (www/clearsilver-python)
+--->  Fetching '/usr/ports/www/clearsilver-python'
+===> Fetching and checking checksums for clearsilver-python-0.10.5 and dependencies
+=> MD5 Checksum OK for clearsilver-0.10.5.tar.gz.
+=> SHA256 Checksum OK for clearsilver-0.10.5.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+===>  Found saved configuration for python24-2.4.3_3
+=> MD5 Checksum OK for python/Python-2.4.4.tgz.
+=> SHA256 Checksum OK for python/Python-2.4.4.tgz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'wget-1.10.2_1' (ftp/wget)
+--->  Fetching '/usr/ports/ftp/wget'
+===> Fetching and checking checksums for wget-1.10.2_1 and dependencies
+=> MD5 Checksum OK for wget-1.10.2.tar.gz.
+=> SHA256 Checksum OK for wget-1.10.2.tar.gz.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'neon-0.26.4' (www/neon)
+--->  Fetching '/usr/ports/www/neon'
+===> Fetching and checking checksums for neon-0.26.4 and dependencies
+=> MD5 Checksum OK for neon-0.26.4.tar.gz.
+=> SHA256 Checksum OK for neon-0.26.4.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for expat-2.0.0.tar.gz.
+=> SHA256 Checksum OK for expat-2.0.0.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'libgpg-error-1.5' (security/libgpg-error)
+--->  Fetching '/usr/ports/security/libgpg-error'
+===> Fetching and checking checksums for libgpg-error-1.5 and dependencies
+=> MD5 Checksum OK for libgpg-error-1.5.tar.bz2.
+=> SHA256 Checksum OK for libgpg-error-1.5.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+--->  Fetching the distfile(s) for 'cvsup-without-gui-16.1h_3' (net/cvsup-without-gui)
+--->  Fetching '/usr/ports/net/cvsup-without-gui'
+===> Fetching and checking checksums for cvsup-without-gui-16.1h_3 and dependencies
+=> MD5 Checksum OK for cvsup-snap-16.1h.tar.gz.
+=> SHA256 Checksum OK for cvsup-snap-16.1h.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for ezm3/ezm3-1.2-src.tar.bz2.
+=> No SHA256 checksum recorded for ezm3/ezm3-1.2-src.tar.bz2.
+=> MD5 Checksum OK for ezm3/ezm3-1.2-FreeBSD4-boot.tar.bz2.
+=> No SHA256 checksum recorded for ezm3/ezm3-1.2-FreeBSD4-boot.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'nmap-4.20_1' (security/nmap)
+--->  Fetching '/usr/ports/security/nmap'
+===> Fetching and checking checksums for nmap-4.20_1 and dependencies
+=> MD5 Checksum OK for nmap-4.20.tar.bz2.
+=> SHA256 Checksum OK for nmap-4.20.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for pcre-7.2.tar.bz2.
+=> SHA256 Checksum OK for pcre-7.2.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'pkg-config-0.22' (devel/pkg-config)
+--->  Fetching '/usr/ports/devel/pkg-config'
+===> Fetching and checking checksums for pkg-config-0.22 and dependencies
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+** Detected a package name change: sqlite (databases/sqlite3) -> 'sqlite3' (databases/sqlite3)
+--->  Fetching the distfile(s) for 'sqlite3-3.4.1' (databases/sqlite3)
+--->  Fetching '/usr/ports/databases/sqlite3'
+===> Fetching and checking checksums for sqlite3-3.4.1 and dependencies
+=> MD5 Checksum OK for sqlite-3.4.1.tar.gz.
+=> SHA256 Checksum OK for sqlite-3.4.1.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+===>  Found saved configuration for tcl-8.4.14_3,1
+=> MD5 Checksum OK for tcl8.4.15-src.tar.gz.
+=> SHA256 Checksum OK for tcl8.4.15-src.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'freetype2-2.2.1_2' (print/freetype2)
+--->  Fetching '/usr/ports/print/freetype2'
+===> Fetching and checking checksums for freetype2-2.2.1_2 and dependencies
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'xorg-fonts-75dpi-7.2' (x11-fonts/xorg-fonts-75dpi)
+--->  Fetching '/usr/ports/x11-fonts/xorg-fonts-75dpi'
+===> Fetching and checking checksums for xorg-fonts-75dpi-7.2 and dependencies
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for xorg/font/font-adobe-75dpi-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-adobe-75dpi-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-adobe-utopia-75dpi-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-adobe-utopia-75dpi-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-bh-75dpi-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-bh-75dpi-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-bh-lucidatypewriter-75dpi-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-bh-lucidatypewriter-75dpi-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-bitstream-75dpi-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-bitstream-75dpi-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/encodings-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/encodings-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/app/bdftopcf-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/bdftopcf-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/app/mkfontdir-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/mkfontdir-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-util-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-util-1.0.1.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'bacula-server-2.2.0_1' (sysutils/bacula-server)
+--->  Fetching '/usr/ports/sysutils/bacula-server'
+===> Fetching and checking checksums for bacula-server-2.2.0_1 and dependencies
+You may use the following build options (or make config):
+
+  WITH_CLIENT_ONLY=yes	if you only want the file daemon.
+  WITH_WXCONSOLE=yes	if you only want a wxGTK based GUI console.
+  WITH_GNOMECONSOLE=yes	if you only want a GNOME based GUI console.
+  WITH_MTX=yes		if you want to use mtx instead of chio for autochanger control.
+  WITH_SQLITE3=yes  	if you want SqLite-3 instead of SqLite-2 as the database.
+  WITH_MYSQL=yes  	if you want MySQL instead of SqLite as the database.
+  WITH_POSTGRESQL=yes	if you want PostgreSQL instead of SqLite as the database.
+
+The default DB is SQLite-2!
+  WITH_OPENSSL=yes  	Enable OpenSSL for encrypted communication.
+
+===> Using sqlite as the bacula database.
+
+===>  Found saved configuration for bacula-server-2.0.1
+=> MD5 Checksum OK for bacula-2.2.0.tar.gz.
+=> SHA256 Checksum OK for bacula-2.2.0.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+===>  Found saved configuration for sqlite-2.8.17_1
+=> MD5 Checksum OK for sqlite-2.8.17.tar.gz.
+=> SHA256 Checksum OK for sqlite-2.8.17.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+===>  Found saved configuration for tcl-8.4.14_3,1
+=> MD5 Checksum OK for tcl8.4.15-src.tar.gz.
+=> SHA256 Checksum OK for tcl8.4.15-src.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'xorg-fonts-100dpi-7.2' (x11-fonts/xorg-fonts-100dpi)
+--->  Fetching '/usr/ports/x11-fonts/xorg-fonts-100dpi'
+===> Fetching and checking checksums for xorg-fonts-100dpi-7.2 and dependencies
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for xorg/font/font-adobe-100dpi-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-adobe-100dpi-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-adobe-utopia-100dpi-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-adobe-utopia-100dpi-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-bh-100dpi-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-bh-100dpi-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-bh-lucidatypewriter-100dpi-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-bh-lucidatypewriter-100dpi-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-bitstream-100dpi-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-bitstream-100dpi-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/encodings-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/encodings-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/app/bdftopcf-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/bdftopcf-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/app/mkfontdir-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/mkfontdir-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-util-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-util-1.0.1.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'xorg-fonts-miscbitmaps-7.2' (x11-fonts/xorg-fonts-miscbitmaps)
+--->  Fetching '/usr/ports/x11-fonts/xorg-fonts-miscbitmaps'
+===> Fetching and checking checksums for xorg-fonts-miscbitmaps-7.2 and dependencies
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for xorg/font/font-arabic-misc-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-arabic-misc-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-cursor-misc-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-cursor-misc-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-daewoo-misc-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-daewoo-misc-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-dec-misc-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-dec-misc-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-isas-misc-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-isas-misc-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-jis-misc-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-jis-misc-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-micro-misc-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-micro-misc-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-misc-misc-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-misc-misc-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-mutt-misc-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-mutt-misc-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-schumacher-misc-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-schumacher-misc-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-sony-misc-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-sony-misc-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-sun-misc-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-sun-misc-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/encodings-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/encodings-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/app/bdftopcf-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/bdftopcf-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/app/mkfontdir-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/mkfontdir-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-util-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-util-1.0.1.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'xorg-fonts-cyrillic-7.2' (x11-fonts/xorg-fonts-cyrillic)
+--->  Fetching '/usr/ports/x11-fonts/xorg-fonts-cyrillic'
+===> Fetching and checking checksums for xorg-fonts-cyrillic-7.2 and dependencies
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for xorg/font/font-cronyx-cyrillic-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-cronyx-cyrillic-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-misc-cyrillic-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-misc-cyrillic-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-screen-cyrillic-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-screen-cyrillic-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-winitzki-cyrillic-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-winitzki-cyrillic-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/encodings-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/encodings-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/app/bdftopcf-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/bdftopcf-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/app/mkfontdir-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/mkfontdir-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-util-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-util-1.0.1.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'fontconfig-2.4.2_2,1' (x11-fonts/fontconfig)
+--->  Fetching '/usr/ports/x11-fonts/fontconfig'
+===> Fetching and checking checksums for fontconfig-2.4.2_2,1 and dependencies
+=> MD5 Checksum OK for fontconfig-2.4.2.tar.gz.
+=> SHA256 Checksum OK for fontconfig-2.4.2.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for expat-2.0.0.tar.gz.
+=> SHA256 Checksum OK for expat-2.0.0.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'libksba-1.0.1_1' (security/libksba)
+--->  Fetching '/usr/ports/security/libksba'
+===> Fetching and checking checksums for libksba-1.0.1_1 and dependencies
+=> MD5 Checksum OK for libksba-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for libksba-1.0.1.tar.bz2.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for libgcrypt-1.2.4.tar.gz.
+=> SHA256 Checksum OK for libgcrypt-1.2.4.tar.gz.
+=> MD5 Checksum OK for libgpg-error-1.5.tar.bz2.
+=> SHA256 Checksum OK for libgpg-error-1.5.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'dirmngr-0.9.7_2' (security/dirmngr)
+--->  Fetching '/usr/ports/security/dirmngr'
+===> Fetching and checking checksums for dirmngr-0.9.7_2 and dependencies
+=> MD5 Checksum OK for dirmngr-0.9.7.tar.bz2.
+=> SHA256 Checksum OK for dirmngr-0.9.7.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for libassuan-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for libassuan-1.0.3.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for libgcrypt-1.2.4.tar.gz.
+=> SHA256 Checksum OK for libgcrypt-1.2.4.tar.gz.
+=> MD5 Checksum OK for libgpg-error-1.5.tar.bz2.
+=> SHA256 Checksum OK for libgpg-error-1.5.tar.bz2.
+=> MD5 Checksum OK for libksba-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for libksba-1.0.1.tar.bz2.
+===>  Found saved configuration for pth-2.0.7
+=> MD5 Checksum OK for pth-2.0.7.tar.gz.
+=> SHA256 Checksum OK for pth-2.0.7.tar.gz.
+=> MD5 Checksum OK for openldap-2.3.38.tgz.
+=> SHA256 Checksum OK for openldap-2.3.38.tgz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+--->  Fetching the distfile(s) for 'bitstream-vera-1.10_4' (x11-fonts/bitstream-vera)
+--->  Fetching '/usr/ports/x11-fonts/bitstream-vera'
+===> Fetching and checking checksums for bitstream-vera-1.10_4 and dependencies
+=> MD5 Checksum OK for gnome2/ttf-bitstream-vera-1.10.tar.bz2.
+=> SHA256 Checksum OK for gnome2/ttf-bitstream-vera-1.10.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for fontconfig-2.4.2.tar.gz.
+=> SHA256 Checksum OK for fontconfig-2.4.2.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for expat-2.0.0.tar.gz.
+=> SHA256 Checksum OK for expat-2.0.0.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'xorg-fonts-truetype-7.2' (x11-fonts/xorg-fonts-truetype)
+--->  Fetching '/usr/ports/x11-fonts/xorg-fonts-truetype'
+===> Fetching and checking checksums for xorg-fonts-truetype-7.2 and dependencies
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for xorg/font/font-bh-ttf-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-bh-ttf-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-misc-meltho-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-misc-meltho-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-misc-ethiopic-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-misc-ethiopic-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/encodings-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/encodings-1.0.2.tar.bz2.
+=> MD5 Checksum OK for gnome2/ttf-bitstream-vera-1.10.tar.bz2.
+=> SHA256 Checksum OK for gnome2/ttf-bitstream-vera-1.10.tar.bz2.
+=> MD5 Checksum OK for fontconfig-2.4.2.tar.gz.
+=> SHA256 Checksum OK for fontconfig-2.4.2.tar.gz.
+=> MD5 Checksum OK for xorg/app/mkfontdir-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/mkfontdir-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for xorg/app/bdftopcf-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/bdftopcf-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-util-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-util-1.0.1.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for expat-2.0.0.tar.gz.
+=> SHA256 Checksum OK for expat-2.0.0.tar.gz.
+=> MD5 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'xorg-fonts-type1-7.2' (x11-fonts/xorg-fonts-type1)
+--->  Fetching '/usr/ports/x11-fonts/xorg-fonts-type1'
+===> Fetching and checking checksums for xorg-fonts-type1-7.2 and dependencies
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for xorg/font/font-adobe-utopia-type1-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-adobe-utopia-type1-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-bh-type1-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-bh-type1-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-bitstream-type1-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-bitstream-type1-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-ibm-type1-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-ibm-type1-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-xfree86-type1-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-xfree86-type1-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/font/encodings-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/encodings-1.0.2.tar.bz2.
+=> MD5 Checksum OK for fontconfig-2.4.2.tar.gz.
+=> SHA256 Checksum OK for fontconfig-2.4.2.tar.gz.
+=> MD5 Checksum OK for xorg/app/mkfontdir-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/mkfontdir-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for xorg/app/bdftopcf-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/bdftopcf-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/font/font-util-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/font/font-util-1.0.1.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for expat-2.0.0.tar.gz.
+=> SHA256 Checksum OK for expat-2.0.0.tar.gz.
+=> MD5 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'glib-2.12.13' (devel/glib20)
+--->  Fetching '/usr/ports/devel/glib20'
+===> Fetching and checking checksums for glib-2.12.13 and dependencies
+===>  Found saved configuration for glib-2.12.4
+=> MD5 Checksum OK for gnome2/glib-2.12.13.tar.bz2.
+=> SHA256 Checksum OK for gnome2/glib-2.12.13.tar.bz2.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'gamin-0.1.9' (devel/gamin)
+--->  Fetching '/usr/ports/devel/gamin'
+===> Fetching and checking checksums for gamin-0.1.9 and dependencies
+===>  Found saved configuration for gamin-0.1.7_2
+=> MD5 Checksum OK for gamin-0.1.9.tar.gz.
+=> SHA256 Checksum OK for gamin-0.1.9.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+===>  Found saved configuration for glib-2.12.4
+=> MD5 Checksum OK for gnome2/glib-2.12.13.tar.bz2.
+=> SHA256 Checksum OK for gnome2/glib-2.12.13.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'gd-2.0.35,1' (graphics/gd)
+--->  Fetching '/usr/ports/graphics/gd'
+===> Fetching and checking checksums for gd-2.0.35,1 and dependencies
+=> MD5 Checksum OK for gd-2.0.35.tar.bz2.
+=> SHA256 Checksum OK for gd-2.0.35.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for jpegsrc.v6b.tar.gz.
+=> SHA256 Checksum OK for jpegsrc.v6b.tar.gz.
+=> MD5 Checksum OK for jpegexiforient.c.
+=> SHA256 Checksum OK for jpegexiforient.c.
+=> MD5 Checksum OK for exifautotran.txt.
+=> SHA256 Checksum OK for exifautotran.txt.
+=> MD5 Checksum OK for libpng-1.2.18.tar.bz2.
+=> SHA256 Checksum OK for libpng-1.2.18.tar.bz2.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'analog-6.0_2,1' (www/analog)
+--->  Fetching '/usr/ports/www/analog'
+===> Fetching and checking checksums for analog-6.0_2,1 and dependencies
+=> MD5 Checksum OK for analog-6.0.tar.gz.
+=> SHA256 Checksum OK for analog-6.0.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for gd-2.0.35.tar.bz2.
+=> SHA256 Checksum OK for gd-2.0.35.tar.bz2.
+=> MD5 Checksum OK for jpegsrc.v6b.tar.gz.
+=> SHA256 Checksum OK for jpegsrc.v6b.tar.gz.
+=> MD5 Checksum OK for jpegexiforient.c.
+=> SHA256 Checksum OK for jpegexiforient.c.
+=> MD5 Checksum OK for exifautotran.txt.
+=> SHA256 Checksum OK for exifautotran.txt.
+=> MD5 Checksum OK for libpng-1.2.18.tar.bz2.
+=> SHA256 Checksum OK for libpng-1.2.18.tar.bz2.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'python-2.4,2' (lang/python)
+--->  Fetching '/usr/ports/lang/python'
+===> Fetching and checking checksums for python-2.4,2 and dependencies
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+===>  Found saved configuration for python24-2.4.3_3
+=> MD5 Checksum OK for python/Python-2.4.4.tgz.
+=> SHA256 Checksum OK for python/Python-2.4.4.tgz.
+--->  Fetching the distfile(s) for 'texinfo-4.8_5' (print/texinfo)
+--->  Fetching '/usr/ports/print/texinfo'
+===> Fetching and checking checksums for texinfo-4.8_5 and dependencies
+=> MD5 Checksum OK for texinfo-4.8.tar.bz2.
+=> SHA256 Checksum OK for texinfo-4.8.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'py24-cherrypy-3.0.1' (www/py-cherrypy)
+--->  Fetching '/usr/ports/www/py-cherrypy'
+===> Fetching and checking checksums for py24-cherrypy-3.0.1 and dependencies
+=> MD5 Checksum OK for CherryPy-3.0.1.tar.gz.
+=> SHA256 Checksum OK for CherryPy-3.0.1.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+===>  Found saved configuration for python24-2.4.3_3
+=> MD5 Checksum OK for python/Python-2.4.4.tgz.
+=> SHA256 Checksum OK for python/Python-2.4.4.tgz.
+--->  Fetching the distfile(s) for 'mrtg-2.15.2,1' (net-mgmt/mrtg)
+--->  Fetching '/usr/ports/net-mgmt/mrtg'
+===> Fetching and checking checksums for mrtg-2.15.2,1 and dependencies
+===>  Found saved configuration for mrtg-2.12.2,1
+=> MD5 Checksum OK for mrtg-2.15.2.tar.gz.
+=> SHA256 Checksum OK for mrtg-2.15.2.tar.gz.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for gd-2.0.35.tar.bz2.
+=> SHA256 Checksum OK for gd-2.0.35.tar.bz2.
+=> MD5 Checksum OK for SNMP_Session-1.08.tar.gz.
+=> SHA256 Checksum OK for SNMP_Session-1.08.tar.gz.
+=> MD5 Checksum OK for Pod-Parser-1.35.tar.gz.
+=> SHA256 Checksum OK for Pod-Parser-1.35.tar.gz.
+=> MD5 Checksum OK for jpegsrc.v6b.tar.gz.
+=> SHA256 Checksum OK for jpegsrc.v6b.tar.gz.
+=> MD5 Checksum OK for jpegexiforient.c.
+=> SHA256 Checksum OK for jpegexiforient.c.
+=> MD5 Checksum OK for exifautotran.txt.
+=> SHA256 Checksum OK for exifautotran.txt.
+=> MD5 Checksum OK for libpng-1.2.18.tar.bz2.
+=> SHA256 Checksum OK for libpng-1.2.18.tar.bz2.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for PathTools-3.25.tar.gz.
+=> SHA256 Checksum OK for PathTools-3.25.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for Scalar-List-Utils-1.19.tar.gz.
+=> SHA256 Checksum OK for Scalar-List-Utils-1.19.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'fwanalog-0.6.9_2' (security/fwanalog)
+--->  Fetching '/usr/ports/security/fwanalog'
+===> Fetching and checking checksums for fwanalog-0.6.9_2 and dependencies
+=> MD5 Checksum OK for fwanalog-0.6.9.tar.gz.
+=> SHA256 Checksum OK for fwanalog-0.6.9.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for analog-6.0.tar.gz.
+=> SHA256 Checksum OK for analog-6.0.tar.gz.
+=> MD5 Checksum OK for gd-2.0.35.tar.bz2.
+=> SHA256 Checksum OK for gd-2.0.35.tar.bz2.
+=> MD5 Checksum OK for jpegsrc.v6b.tar.gz.
+=> SHA256 Checksum OK for jpegsrc.v6b.tar.gz.
+=> MD5 Checksum OK for jpegexiforient.c.
+=> SHA256 Checksum OK for jpegexiforient.c.
+=> MD5 Checksum OK for exifautotran.txt.
+=> SHA256 Checksum OK for exifautotran.txt.
+=> MD5 Checksum OK for libpng-1.2.18.tar.bz2.
+=> SHA256 Checksum OK for libpng-1.2.18.tar.bz2.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'gnutls-1.6.3' (security/gnutls)
+--->  Fetching '/usr/ports/security/gnutls'
+===> Fetching and checking checksums for gnutls-1.6.3 and dependencies
+=> MD5 Checksum OK for gnutls-1.6.3.tar.bz2.
+=> SHA256 Checksum OK for gnutls-1.6.3.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for texinfo-4.8.tar.bz2.
+=> SHA256 Checksum OK for texinfo-4.8.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for libgcrypt-1.2.4.tar.gz.
+=> SHA256 Checksum OK for libgcrypt-1.2.4.tar.gz.
+=> MD5 Checksum OK for libgpg-error-1.5.tar.bz2.
+=> SHA256 Checksum OK for libgpg-error-1.5.tar.bz2.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+--->  Fetching the distfile(s) for 'lftp-3.5.11_1' (ftp/lftp)
+--->  Fetching '/usr/ports/ftp/lftp'
+===> Fetching and checking checksums for lftp-3.5.11_1 and dependencies
+===>  Found saved configuration for lftp-3.4.0_2
+=> MD5 Checksum OK for lftp-3.5.11.tar.bz2.
+=> SHA256 Checksum OK for lftp-3.5.11.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for readline-5.2.tar.gz.
+=> SHA256 Checksum OK for readline-5.2.tar.gz.
+=> MD5 Checksum OK for readline52-001.
+=> SHA256 Checksum OK for readline52-001.
+=> MD5 Checksum OK for readline52-002.
+=> SHA256 Checksum OK for readline52-002.
+=> MD5 Checksum OK for readline52-003.
+=> SHA256 Checksum OK for readline52-003.
+=> MD5 Checksum OK for readline52-004.
+=> SHA256 Checksum OK for readline52-004.
+=> MD5 Checksum OK for readline52-005.
+=> SHA256 Checksum OK for readline52-005.
+=> MD5 Checksum OK for readline52-006.
+=> SHA256 Checksum OK for readline52-006.
+=> MD5 Checksum OK for readline52-007.
+=> SHA256 Checksum OK for readline52-007.
+=> MD5 Checksum OK for expat-2.0.0.tar.gz.
+=> SHA256 Checksum OK for expat-2.0.0.tar.gz.
+=> MD5 Checksum OK for gnutls-1.6.3.tar.bz2.
+=> SHA256 Checksum OK for gnutls-1.6.3.tar.bz2.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for texinfo-4.8.tar.bz2.
+=> SHA256 Checksum OK for texinfo-4.8.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for libgcrypt-1.2.4.tar.gz.
+=> SHA256 Checksum OK for libgcrypt-1.2.4.tar.gz.
+=> MD5 Checksum OK for libgpg-error-1.5.tar.bz2.
+=> SHA256 Checksum OK for libgpg-error-1.5.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+--->  Fetching the distfile(s) for 'm4-1.4.9' (devel/m4)
+--->  Fetching '/usr/ports/devel/m4'
+===> Fetching and checking checksums for m4-1.4.9 and dependencies
+=> MD5 Checksum OK for m4-1.4.9.tar.bz2.
+=> SHA256 Checksum OK for m4-1.4.9.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for texinfo-4.8.tar.bz2.
+=> SHA256 Checksum OK for texinfo-4.8.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'autoconf-2.59_3' (devel/autoconf259)
+--->  Fetching '/usr/ports/devel/autoconf259'
+===> Fetching and checking checksums for autoconf-2.59_3 and dependencies
+=> MD5 Checksum OK for autoconf-2.59.tar.bz2.
+=> SHA256 Checksum OK for autoconf-2.59.tar.bz2.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for m4-1.4.9.tar.bz2.
+=> SHA256 Checksum OK for m4-1.4.9.tar.bz2.
+=> MD5 Checksum OK for help2man-1.36.4.tar.gz.
+=> SHA256 Checksum OK for help2man-1.36.4.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for texinfo-4.8.tar.bz2.
+=> SHA256 Checksum OK for texinfo-4.8.tar.bz2.
+=> MD5 Checksum OK for gettext-1.05.tar.gz.
+=> SHA256 Checksum OK for gettext-1.05.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'automake-1.9.6_2' (devel/automake19)
+--->  Fetching '/usr/ports/devel/automake19'
+===> Fetching and checking checksums for automake-1.9.6_2 and dependencies
+=> MD5 Checksum OK for automake-1.9.6.tar.bz2.
+=> SHA256 Checksum OK for automake-1.9.6.tar.bz2.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for texinfo-4.8.tar.bz2.
+=> SHA256 Checksum OK for texinfo-4.8.tar.bz2.
+=> MD5 Checksum OK for autoconf-2.61.tar.bz2.
+=> SHA256 Checksum OK for autoconf-2.61.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for m4-1.4.9.tar.bz2.
+=> SHA256 Checksum OK for m4-1.4.9.tar.bz2.
+=> MD5 Checksum OK for help2man-1.36.4.tar.gz.
+=> SHA256 Checksum OK for help2man-1.36.4.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+=> MD5 Checksum OK for gettext-1.05.tar.gz.
+=> SHA256 Checksum OK for gettext-1.05.tar.gz.
+--->  Fetching the distfile(s) for 'mutt-1.4.2.3' (mail/mutt)
+--->  Fetching '/usr/ports/mail/mutt'
+===> Fetching and checking checksums for mutt-1.4.2.3 and dependencies
+=> MD5 Checksum OK for mutt/mutt-1.4.2.3.tar.gz.
+=> SHA256 Checksum OK for mutt/mutt-1.4.2.3.tar.gz.
+=> MD5 Checksum OK for mutt/patch-1.4.2.2.rr.compressed.gz.
+=> SHA256 Checksum OK for mutt/patch-1.4.2.2.rr.compressed.gz.
+=> MD5 Checksum OK for mutt/patch-1.4.2.2.vvv.initials.gz.
+=> SHA256 Checksum OK for mutt/patch-1.4.2.2.vvv.initials.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for sgmlformat-1.7.tar.gz.
+=> SHA256 Checksum OK for sgmlformat-1.7.tar.gz.
+=> MD5 Checksum OK for automake-1.9.6.tar.bz2.
+=> SHA256 Checksum OK for automake-1.9.6.tar.bz2.
+=> MD5 Checksum OK for autoconf-2.59.tar.bz2.
+=> SHA256 Checksum OK for autoconf-2.59.tar.bz2.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for mime-support_3.39-1.tar.gz.
+=> SHA256 Checksum OK for mime-support_3.39-1.tar.gz.
+=> MD5 Checksum OK for jade-1.2.1.tar.gz.
+=> SHA256 Checksum OK for jade-1.2.1.tar.gz.
+=> MD5 Checksum OK for jade_1.2.1-35.diff.gz.
+=> SHA256 Checksum OK for jade_1.2.1-35.diff.gz.
+=> MD5 Checksum OK for linuxdoc-1.1.tar.gz.
+=> SHA256 Checksum OK for linuxdoc-1.1.tar.gz.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for texinfo-4.8.tar.bz2.
+=> SHA256 Checksum OK for texinfo-4.8.tar.bz2.
+=> MD5 Checksum OK for autoconf-2.61.tar.bz2.
+=> SHA256 Checksum OK for autoconf-2.61.tar.bz2.
+=> MD5 Checksum OK for m4-1.4.9.tar.bz2.
+=> SHA256 Checksum OK for m4-1.4.9.tar.bz2.
+=> MD5 Checksum OK for help2man-1.36.4.tar.gz.
+=> SHA256 Checksum OK for help2man-1.36.4.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for xmlcatmgr-2.2.tar.gz.
+=> SHA256 Checksum OK for xmlcatmgr-2.2.tar.gz.
+=> MD5 Checksum OK for isoENTS.zip.
+=> SHA256 Checksum OK for isoENTS.zip.
+=> MD5 Checksum OK for docbk241.tar.Z.
+=> SHA256 Checksum OK for docbk241.tar.Z.
+=> MD5 Checksum OK for docbk30.tar.Z.
+=> SHA256 Checksum OK for docbk30.tar.Z.
+=> MD5 Checksum OK for docbk31.zip.
+=> SHA256 Checksum OK for docbk31.zip.
+=> MD5 Checksum OK for docbk40.zip.
+=> SHA256 Checksum OK for docbk40.zip.
+=> MD5 Checksum OK for docbk41.zip.
+=> SHA256 Checksum OK for docbk41.zip.
+=> MD5 Checksum OK for docbook-xml-4.2.zip.
+=> SHA256 Checksum OK for docbook-xml-4.2.zip.
+=> MD5 Checksum OK for gettext-1.05.tar.gz.
+=> SHA256 Checksum OK for gettext-1.05.tar.gz.
+=> MD5 Checksum OK for unzip552.tar.gz.
+=> SHA256 Checksum OK for unzip552.tar.gz.
+--->  Fetching the distfile(s) for 'apr-db42-1.2.8_1' (devel/apr-svn)
+--->  Fetching '/usr/ports/devel/apr-svn'
+===> Fetching and checking checksums for apr-db42-1.2.8_1 and dependencies
+=> MD5 Checksum OK for apr-1.2.8.tar.gz.
+=> SHA256 Checksum OK for apr-1.2.8.tar.gz.
+=> MD5 Checksum OK for apr-util-1.2.8.tar.gz.
+=> SHA256 Checksum OK for apr-util-1.2.8.tar.gz.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+===>  Found saved configuration for python24-2.4.3_3
+=> MD5 Checksum OK for python/Python-2.4.4.tgz.
+=> SHA256 Checksum OK for python/Python-2.4.4.tgz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for automake-1.9.6.tar.bz2.
+=> SHA256 Checksum OK for automake-1.9.6.tar.bz2.
+=> MD5 Checksum OK for autoconf-2.59.tar.bz2.
+=> SHA256 Checksum OK for autoconf-2.59.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for expat-2.0.0.tar.gz.
+=> SHA256 Checksum OK for expat-2.0.0.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+=> MD5 Checksum OK for bdb/db-4.2.52.tar.gz.
+=> SHA256 Checksum OK for bdb/db-4.2.52.tar.gz.
+=> MD5 Checksum OK for bdb/patch.4.2.52.1.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.1.
+=> MD5 Checksum OK for bdb/patch.4.2.52.2.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.2.
+=> MD5 Checksum OK for bdb/patch.4.2.52.3.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.3.
+=> MD5 Checksum OK for bdb/patch.4.2.52.4.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.4.
+=> MD5 Checksum OK for bdb/patch.4.2.52.5.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.5.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for texinfo-4.8.tar.bz2.
+=> SHA256 Checksum OK for texinfo-4.8.tar.bz2.
+=> MD5 Checksum OK for autoconf-2.61.tar.bz2.
+=> SHA256 Checksum OK for autoconf-2.61.tar.bz2.
+=> MD5 Checksum OK for m4-1.4.9.tar.bz2.
+=> SHA256 Checksum OK for m4-1.4.9.tar.bz2.
+=> MD5 Checksum OK for help2man-1.36.4.tar.gz.
+=> SHA256 Checksum OK for help2man-1.36.4.tar.gz.
+=> MD5 Checksum OK for gettext-1.05.tar.gz.
+=> SHA256 Checksum OK for gettext-1.05.tar.gz.
+--->  Fetching the distfile(s) for 'subversion-1.4.4_1' (devel/subversion)
+--->  Fetching '/usr/ports/devel/subversion'
+===> Fetching and checking checksums for subversion-1.4.4_1 and dependencies
+
+WebDAV/Delta-V repository access module enabled.
+To disable it define WITHOUT_NEON
+
+db4 repository backend enabled.
+To disable it define WITHOUT_BDB
+
+You can enable debug build by defining WITH_MAINTAINER_DEBUG.
+
+You can enable perl bindings by defining WITH_PERL
+
+You can enable Python bindings by defining WITH_PYTHON.
+
+You can enable Ruby bindings by defining WITH_RUBY.
+
+You can enable Java bindings by defining WITH_JAVA.
+You should have apr built with threads for Java support!
+
+You can enable the mod_dav_svn module for Apache 2.X
+by defining WITH_MOD_DAV_SVN.  This option implies
+the WITH_APACHE2_APR option.
+
+You can link subversion against the APR built with
+the  port, rather than the devel/apr port,
+by defining WITH_APACHE2_APR.
+
+You can install the svnserve wrapper (sets umask 002)
+by defining WITH_SVNSERVE_WRAPPER.
+
+You can have the repository created for you by defining
+WITH_REPOSITORY_CREATION.
+
+Make sure that:
+* all your svn users are members of a common group
+* this group is the group id of the db/ and locks/
+  subdirectories of your repository
+* the above subdirectories are writable by this group
+
+You can install the Subversion Book by defining WITH_BOOK.
+
+You can install asvn from contrib by defining WITH_ASVN
+
+Many useful scripts will be installed into /usr/local/share/subversion
+=> MD5 Checksum OK for subversion/subversion-1.4.4.tar.bz2.
+=> SHA256 Checksum OK for subversion/subversion-1.4.4.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for expat-2.0.0.tar.gz.
+=> SHA256 Checksum OK for expat-2.0.0.tar.gz.
+=> MD5 Checksum OK for neon-0.26.4.tar.gz.
+=> SHA256 Checksum OK for neon-0.26.4.tar.gz.
+=> MD5 Checksum OK for apr-1.2.8.tar.gz.
+=> SHA256 Checksum OK for apr-1.2.8.tar.gz.
+=> MD5 Checksum OK for apr-util-1.2.8.tar.gz.
+=> SHA256 Checksum OK for apr-util-1.2.8.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+===>  Found saved configuration for python24-2.4.3_3
+=> MD5 Checksum OK for python/Python-2.4.4.tgz.
+=> SHA256 Checksum OK for python/Python-2.4.4.tgz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for automake-1.9.6.tar.bz2.
+=> SHA256 Checksum OK for automake-1.9.6.tar.bz2.
+=> MD5 Checksum OK for autoconf-2.59.tar.bz2.
+=> SHA256 Checksum OK for autoconf-2.59.tar.bz2.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+=> MD5 Checksum OK for bdb/db-4.2.52.tar.gz.
+=> SHA256 Checksum OK for bdb/db-4.2.52.tar.gz.
+=> MD5 Checksum OK for bdb/patch.4.2.52.1.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.1.
+=> MD5 Checksum OK for bdb/patch.4.2.52.2.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.2.
+=> MD5 Checksum OK for bdb/patch.4.2.52.3.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.3.
+=> MD5 Checksum OK for bdb/patch.4.2.52.4.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.4.
+=> MD5 Checksum OK for bdb/patch.4.2.52.5.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.5.
+=> MD5 Checksum OK for texinfo-4.8.tar.bz2.
+=> SHA256 Checksum OK for texinfo-4.8.tar.bz2.
+=> MD5 Checksum OK for autoconf-2.61.tar.bz2.
+=> SHA256 Checksum OK for autoconf-2.61.tar.bz2.
+=> MD5 Checksum OK for m4-1.4.9.tar.bz2.
+=> SHA256 Checksum OK for m4-1.4.9.tar.bz2.
+=> MD5 Checksum OK for help2man-1.36.4.tar.gz.
+=> SHA256 Checksum OK for help2man-1.36.4.tar.gz.
+=> MD5 Checksum OK for gettext-1.05.tar.gz.
+=> SHA256 Checksum OK for gettext-1.05.tar.gz.
+--->  Fetching the distfile(s) for 'subversion-python-1.4.4_1' (devel/subversion-python)
+--->  Fetching '/usr/ports/devel/subversion-python'
+===> Fetching and checking checksums for subversion-python-1.4.4_1 and dependencies
+
+WebDAV/Delta-V repository access module enabled.
+To disable it define WITHOUT_NEON
+
+db4 repository backend enabled.
+To disable it define WITHOUT_BDB
+
+You can enable debug build by defining WITH_MAINTAINER_DEBUG.
+
+You can enable perl bindings by defining WITH_PERL
+
+Build with Python bindings.
+
+You can enable Ruby bindings by defining WITH_RUBY.
+
+You can enable Java bindings by defining WITH_JAVA.
+You should have apr built with threads for Java support!
+
+You can enable the mod_dav_svn module for Apache 2.X
+by defining WITH_MOD_DAV_SVN.  This option implies
+the WITH_APACHE2_APR option.
+
+You can link subversion against the APR built with
+the  port, rather than the devel/apr port,
+by defining WITH_APACHE2_APR.
+
+You can install the svnserve wrapper (sets umask 002)
+by defining WITH_SVNSERVE_WRAPPER.
+
+You can have the repository created for you by defining
+WITH_REPOSITORY_CREATION.
+
+Make sure that:
+* all your svn users are members of a common group
+* this group is the group id of the db/ and locks/
+  subdirectories of your repository
+* the above subdirectories are writable by this group
+
+You can install the Subversion Book by defining WITH_BOOK.
+
+You can install asvn from contrib by defining WITH_ASVN
+
+Many useful scripts will be installed into /usr/local/share/subversion
+=> MD5 Checksum OK for subversion/subversion-1.4.4.tar.bz2.
+=> SHA256 Checksum OK for subversion/subversion-1.4.4.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+===>  Found saved configuration for python24-2.4.3_3
+=> MD5 Checksum OK for python/Python-2.4.4.tgz.
+=> SHA256 Checksum OK for python/Python-2.4.4.tgz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for expat-2.0.0.tar.gz.
+=> SHA256 Checksum OK for expat-2.0.0.tar.gz.
+=> MD5 Checksum OK for neon-0.26.4.tar.gz.
+=> SHA256 Checksum OK for neon-0.26.4.tar.gz.
+=> MD5 Checksum OK for apr-1.2.8.tar.gz.
+=> SHA256 Checksum OK for apr-1.2.8.tar.gz.
+=> MD5 Checksum OK for apr-util-1.2.8.tar.gz.
+=> SHA256 Checksum OK for apr-util-1.2.8.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for automake-1.9.6.tar.bz2.
+=> SHA256 Checksum OK for automake-1.9.6.tar.bz2.
+=> MD5 Checksum OK for autoconf-2.59.tar.bz2.
+=> SHA256 Checksum OK for autoconf-2.59.tar.bz2.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+=> MD5 Checksum OK for bdb/db-4.2.52.tar.gz.
+=> SHA256 Checksum OK for bdb/db-4.2.52.tar.gz.
+=> MD5 Checksum OK for bdb/patch.4.2.52.1.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.1.
+=> MD5 Checksum OK for bdb/patch.4.2.52.2.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.2.
+=> MD5 Checksum OK for bdb/patch.4.2.52.3.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.3.
+=> MD5 Checksum OK for bdb/patch.4.2.52.4.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.4.
+=> MD5 Checksum OK for bdb/patch.4.2.52.5.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.5.
+=> MD5 Checksum OK for texinfo-4.8.tar.bz2.
+=> SHA256 Checksum OK for texinfo-4.8.tar.bz2.
+=> MD5 Checksum OK for autoconf-2.61.tar.bz2.
+=> SHA256 Checksum OK for autoconf-2.61.tar.bz2.
+=> MD5 Checksum OK for m4-1.4.9.tar.bz2.
+=> SHA256 Checksum OK for m4-1.4.9.tar.bz2.
+=> MD5 Checksum OK for help2man-1.36.4.tar.gz.
+=> SHA256 Checksum OK for help2man-1.36.4.tar.gz.
+=> MD5 Checksum OK for gettext-1.05.tar.gz.
+=> SHA256 Checksum OK for gettext-1.05.tar.gz.
+--->  Fetching the distfile(s) for 'trac-0.10.4_1' (www/trac)
+--->  Fetching '/usr/ports/www/trac'
+===> Fetching and checking checksums for trac-0.10.4_1 and dependencies
+===>  Found saved configuration for trac-0.10.3.1
+=> MD5 Checksum OK for trac-0.10.4.tar.gz.
+=> SHA256 Checksum OK for trac-0.10.4.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for clearsilver-0.10.5.tar.gz.
+=> SHA256 Checksum OK for clearsilver-0.10.5.tar.gz.
+===>  Found saved configuration for python24-2.4.3_3
+=> MD5 Checksum OK for python/Python-2.4.4.tgz.
+=> SHA256 Checksum OK for python/Python-2.4.4.tgz.
+=> MD5 Checksum OK for SilverCity-0.9.7.tar.gz.
+=> SHA256 Checksum OK for SilverCity-0.9.7.tar.gz.
+=> MD5 Checksum OK for docutils-0.4.tar.gz.
+=> SHA256 Checksum OK for docutils-0.4.tar.gz.
+=> MD5 Checksum OK for pysqlite-2.3.5.tar.gz.
+=> SHA256 Checksum OK for pysqlite-2.3.5.tar.gz.
+
+WebDAV/Delta-V repository access module enabled.
+To disable it define WITHOUT_NEON
+
+db4 repository backend enabled.
+To disable it define WITHOUT_BDB
+
+You can enable debug build by defining WITH_MAINTAINER_DEBUG.
+
+You can enable perl bindings by defining WITH_PERL
+
+Build with Python bindings.
+
+You can enable Ruby bindings by defining WITH_RUBY.
+
+You can enable Java bindings by defining WITH_JAVA.
+You should have apr built with threads for Java support!
+
+You can enable the mod_dav_svn module for Apache 2.X
+by defining WITH_MOD_DAV_SVN.  This option implies
+the WITH_APACHE2_APR option.
+
+You can link subversion against the APR built with
+the  port, rather than the devel/apr port,
+by defining WITH_APACHE2_APR.
+
+You can install the svnserve wrapper (sets umask 002)
+by defining WITH_SVNSERVE_WRAPPER.
+
+You can have the repository created for you by defining
+WITH_REPOSITORY_CREATION.
+
+Make sure that:
+* all your svn users are members of a common group
+* this group is the group id of the db/ and locks/
+  subdirectories of your repository
+* the above subdirectories are writable by this group
+
+You can install the Subversion Book by defining WITH_BOOK.
+
+You can install asvn from contrib by defining WITH_ASVN
+
+Many useful scripts will be installed into /usr/local/share/subversion
+=> MD5 Checksum OK for subversion/subversion-1.4.4.tar.bz2.
+=> SHA256 Checksum OK for subversion/subversion-1.4.4.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for sqlite-3.4.1.tar.gz.
+=> SHA256 Checksum OK for sqlite-3.4.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for expat-2.0.0.tar.gz.
+=> SHA256 Checksum OK for expat-2.0.0.tar.gz.
+=> MD5 Checksum OK for neon-0.26.4.tar.gz.
+=> SHA256 Checksum OK for neon-0.26.4.tar.gz.
+=> MD5 Checksum OK for apr-1.2.8.tar.gz.
+=> SHA256 Checksum OK for apr-1.2.8.tar.gz.
+=> MD5 Checksum OK for apr-util-1.2.8.tar.gz.
+=> SHA256 Checksum OK for apr-util-1.2.8.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+===>  Found saved configuration for tcl-8.4.14_3,1
+=> MD5 Checksum OK for tcl8.4.15-src.tar.gz.
+=> SHA256 Checksum OK for tcl8.4.15-src.tar.gz.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for automake-1.9.6.tar.bz2.
+=> SHA256 Checksum OK for automake-1.9.6.tar.bz2.
+=> MD5 Checksum OK for autoconf-2.59.tar.bz2.
+=> SHA256 Checksum OK for autoconf-2.59.tar.bz2.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+=> MD5 Checksum OK for bdb/db-4.2.52.tar.gz.
+=> SHA256 Checksum OK for bdb/db-4.2.52.tar.gz.
+=> MD5 Checksum OK for bdb/patch.4.2.52.1.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.1.
+=> MD5 Checksum OK for bdb/patch.4.2.52.2.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.2.
+=> MD5 Checksum OK for bdb/patch.4.2.52.3.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.3.
+=> MD5 Checksum OK for bdb/patch.4.2.52.4.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.4.
+=> MD5 Checksum OK for bdb/patch.4.2.52.5.
+=> SHA256 Checksum OK for bdb/patch.4.2.52.5.
+=> MD5 Checksum OK for texinfo-4.8.tar.bz2.
+=> SHA256 Checksum OK for texinfo-4.8.tar.bz2.
+=> MD5 Checksum OK for autoconf-2.61.tar.bz2.
+=> SHA256 Checksum OK for autoconf-2.61.tar.bz2.
+=> MD5 Checksum OK for m4-1.4.9.tar.bz2.
+=> SHA256 Checksum OK for m4-1.4.9.tar.bz2.
+=> MD5 Checksum OK for help2man-1.36.4.tar.gz.
+=> SHA256 Checksum OK for help2man-1.36.4.tar.gz.
+=> MD5 Checksum OK for gettext-1.05.tar.gz.
+=> SHA256 Checksum OK for gettext-1.05.tar.gz.
+--->  Fetching the distfile(s) for 'libtorrent-0.11.5' (net-p2p/libtorrent)
+--->  Fetching '/usr/ports/net-p2p/libtorrent'
+===> Fetching and checking checksums for libtorrent-0.11.5 and dependencies
+===>  Found saved configuration for libtorrent-0.11.4
+=> MD5 Checksum OK for libtorrent-0.11.5.tar.gz.
+=> SHA256 Checksum OK for libtorrent-0.11.5.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for libsigc++-2.0.17.tar.bz2.
+=> SHA256 Checksum OK for libsigc++-2.0.17.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for m4-1.4.9.tar.bz2.
+=> SHA256 Checksum OK for m4-1.4.9.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for texinfo-4.8.tar.bz2.
+=> SHA256 Checksum OK for texinfo-4.8.tar.bz2.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'curl-7.16.3' (ftp/curl)
+--->  Fetching '/usr/ports/ftp/curl'
+===> Fetching and checking checksums for curl-7.16.3 and dependencies
+===>  Found saved configuration for curl-7.15.4
+=> MD5 Checksum OK for curl-7.16.3.tar.bz2.
+=> SHA256 Checksum OK for curl-7.16.3.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+--->  Fetching the distfile(s) for 'rtorrent-0.7.5' (net-p2p/rtorrent)
+--->  Fetching '/usr/ports/net-p2p/rtorrent'
+===> Fetching and checking checksums for rtorrent-0.7.5 and dependencies
+=> MD5 Checksum OK for rtorrent-0.7.5.tar.gz.
+=> SHA256 Checksum OK for rtorrent-0.7.5.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+===>  Found saved configuration for libtorrent-0.11.4
+=> MD5 Checksum OK for libtorrent-0.11.5.tar.gz.
+=> SHA256 Checksum OK for libtorrent-0.11.5.tar.gz.
+===>  Found saved configuration for curl-7.15.4
+=> MD5 Checksum OK for curl-7.16.3.tar.bz2.
+=> SHA256 Checksum OK for curl-7.16.3.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for libsigc++-2.0.17.tar.bz2.
+=> SHA256 Checksum OK for libsigc++-2.0.17.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for m4-1.4.9.tar.bz2.
+=> SHA256 Checksum OK for m4-1.4.9.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for texinfo-4.8.tar.bz2.
+=> SHA256 Checksum OK for texinfo-4.8.tar.bz2.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+** Package origin of 'lynx-ssl' has been changed: 'www/lynx-ssl' -> 'www/lynx'
+** Detected a package name change: lynx-ssl (www/lynx-ssl) -> 'lynx' (www/lynx)
+--->  Fetching the distfile(s) for 'lynx-2.8.6.5_1,1' (www/lynx)
+--->  Fetching '/usr/ports/www/lynx'
+===> Fetching and checking checksums for lynx-2.8.6.5_1,1 and dependencies
+=> MD5 Checksum OK for lynx2.8.6rel.5.tar.bz2.
+=> SHA256 Checksum OK for lynx2.8.6rel.5.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+--->  Fetching the distfile(s) for 'popt-1.7_4' (devel/popt)
+--->  Fetching '/usr/ports/devel/popt'
+===> Fetching and checking checksums for popt-1.7_4 and dependencies
+=> MD5 Checksum OK for popt-1.7.tar.gz.
+=> SHA256 Checksum OK for popt-1.7.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'samba-3.0.25a_1,1' (net/samba3)
+--->  Fetching '/usr/ports/net/samba3'
+===> Fetching and checking checksums for samba-3.0.25a_1,1 and dependencies
+===>  NOTICE: This version of port has changed location of Samba password
+===>  NOTICE: (smbpasswd) directory. Files in '/usr/local/private'
+===>  NOTICE: have moved to '/usr/local/etc/samba'.
+===>  Found saved configuration for samba-3.0.22,1
+===>  -------------------------------------------
+===>  Run 'make config' to (re)configure the port
+===>  -------------------------------------------
+=> MD5 Checksum OK for samba-3.0.25a.tar.gz.
+=> SHA256 Checksum OK for samba-3.0.25a.tar.gz.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for autoconf-2.59.tar.bz2.
+=> SHA256 Checksum OK for autoconf-2.59.tar.bz2.
+=> MD5 Checksum OK for popt-1.7.tar.gz.
+=> SHA256 Checksum OK for popt-1.7.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for m4-1.4.9.tar.bz2.
+=> SHA256 Checksum OK for m4-1.4.9.tar.bz2.
+=> MD5 Checksum OK for help2man-1.36.4.tar.gz.
+=> SHA256 Checksum OK for help2man-1.36.4.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for texinfo-4.8.tar.bz2.
+=> SHA256 Checksum OK for texinfo-4.8.tar.bz2.
+=> MD5 Checksum OK for gettext-1.05.tar.gz.
+=> SHA256 Checksum OK for gettext-1.05.tar.gz.
+--->  Fetching the distfile(s) for 'libXft-2.1.12' (x11-fonts/libXft)
+--->  Fetching '/usr/ports/x11-fonts/libXft'
+===> Fetching and checking checksums for libXft-2.1.12 and dependencies
+=> MD5 Checksum OK for xorg/lib/libXft-2.1.12.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXft-2.1.12.tar.bz2.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for fontconfig-2.4.2.tar.gz.
+=> SHA256 Checksum OK for fontconfig-2.4.2.tar.gz.
+=> MD5 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXrender-0.9.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXrender-0.9.2.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for expat-2.0.0.tar.gz.
+=> SHA256 Checksum OK for expat-2.0.0.tar.gz.
+=> MD5 Checksum OK for xorg/proto/renderproto-0.9.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/renderproto-0.9.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libX11-1.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libX11-1.1.2.tar.bz2.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> MD5 Checksum OK for xorg/proto/bigreqsproto-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/bigreqsproto-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/xextproto-7.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xextproto-7.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/xcmiscproto-1.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xcmiscproto-1.1.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/kbproto-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/kbproto-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/inputproto-1.3.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/inputproto-1.3.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/xf86bigfontproto-1.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xf86bigfontproto-1.1.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXau-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXau-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXdmcp-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXdmcp-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+--->  Fetching the distfile(s) for 'xorg-libraries-7.2_2' (x11/xorg-libraries)
+--->  Fetching '/usr/ports/x11/xorg-libraries'
+===> Fetching and checking checksums for xorg-libraries-7.2_2 and dependencies
+/usr/X11R6 exists, but it is not a symlink. Installation cannot proceed.
+This looks like an incompletely removed old version of X.  In the current version, /usr/X11R6 must be a symlink if it exists at all.Please read /usr/ports/UPDATING (entry of 20070519) for the procedure to upgrade X.org related ports.*** Error code 1
+
+Stop in /usr/ports/x11/xorg-libraries.
+*** Error code 1
+
+Stop in /usr/ports/x11/xorg-libraries.
+** Command failed [exit code 1]: /usr/bin/script -qa /tmp/portupgrade.38785.19 env UPGRADE_TOOL=portupgrade UPGRADE_PORT=xorg-libraries-6.9.0_1 UPGRADE_PORT_VER=6.9.0_1 make FETCH_BEFORE_ARGS=-q -DBATCH checksum-recursive
+** Fix the problem and try again.
+** Package origin of 'xorg-fontserver' has been changed: 'x11-servers/xorg-fontserver' -> 'x11-fonts/xfs'
+** Package origin of 'xorg-clients' has been changed: 'x11/xorg-clients' -> 'x11/xorg-apps'
+--->  Skipping 'x11-servers/xorg-server' (xorg-server-6.9.0_6) because a requisite package 'xorg-libraries-6.9.0_1' (x11/xorg-libraries) failed (specify -k to force)
+--->  Skipping 'x11-fonts/xfs' (xorg-fontserver-6.9.0_1) because a requisite package 'xorg-libraries-6.9.0_1' (x11/xorg-libraries) failed (specify -k to force)
+--->  Skipping 'x11-servers/xorg-vfbserver' (xorg-vfbserver-6.9.0_2) because a requisite package 'xorg-libraries-6.9.0_1' (x11/xorg-libraries) failed (specify -k to force)
+--->  Skipping 'x11/xterm' (xterm-224) because a requisite package 'xorg-libraries-6.9.0_1' (x11/xorg-libraries) failed (specify -k to force)
+--->  Skipping 'x11/xorg-apps' (xorg-clients-6.9.0_3) because a requisite package 'xterm-224' (x11/xterm) failed (specify -k to force)
+--->  Skipping 'x11-servers/xorg-printserver' (xorg-printserver-6.9.0_2) because a requisite package 'xorg-libraries-6.9.0_1' (x11/xorg-libraries) failed (specify -k to force)
+--->  Skipping 'x11-toolkits/gtk12' (gtk-1.2.10_17) because a requisite package 'xorg-libraries-6.9.0_1' (x11/xorg-libraries) failed (specify -k to force)
+--->  Skipping 'x11-servers/xorg-nestserver' (xorg-nestserver-6.9.0_1) because a requisite package 'xorg-libraries-6.9.0_1' (x11/xorg-libraries) failed (specify -k to force)
+--->  Skipping 'editors/vim' (vim-7.0.214) because a requisite package 'gtk-1.2.10_17' (x11-toolkits/gtk12) failed (specify -k to force)
+--->  Fetching the distfile(s) for 'gnupg-2.0.4' (security/gnupg)
+--->  Fetching '/usr/ports/security/gnupg'
+===> Fetching and checking checksums for gnupg-2.0.4 and dependencies
+===>  Found saved configuration for gnupg-1.4.5
+=> MD5 Checksum OK for gnupg-2.0.4.tar.bz2.
+=> SHA256 Checksum OK for gnupg-2.0.4.tar.bz2.
+=> MD5 Checksum OK for gnupg-2.0.4.tar.bz2.sig.
+=> SHA256 Checksum OK for gnupg-2.0.4.tar.bz2.sig.
+=> MD5 Checksum OK for pkg_install-20060113.tar.gz.
+=> SHA256 Checksum OK for pkg_install-20060113.tar.gz.
+=> MD5 Checksum OK for libassuan-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for libassuan-1.0.3.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for libgcrypt-1.2.4.tar.gz.
+=> SHA256 Checksum OK for libgcrypt-1.2.4.tar.gz.
+=> MD5 Checksum OK for libgpg-error-1.5.tar.bz2.
+=> SHA256 Checksum OK for libgpg-error-1.5.tar.bz2.
+=> MD5 Checksum OK for libksba-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for libksba-1.0.1.tar.bz2.
+===>  Found saved configuration for pth-2.0.7
+=> MD5 Checksum OK for pth-2.0.7.tar.gz.
+=> SHA256 Checksum OK for pth-2.0.7.tar.gz.
+===>  Found saved configuration for curl-7.15.4
+=> MD5 Checksum OK for curl-7.16.3.tar.bz2.
+=> SHA256 Checksum OK for curl-7.16.3.tar.bz2.
+=> MD5 Checksum OK for openldap-2.3.38.tgz.
+=> SHA256 Checksum OK for openldap-2.3.38.tgz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+=> pinentry-0.7.2.tar.gz doesn't seem to exist in /usr/ports/distfiles/.
+=> Attempting to fetch from http://ftp.linux.it/pub/mirrors/gnupg/pinentry/.
+=> MD5 Checksum OK for pinentry-0.7.2.tar.gz.
+=> SHA256 Checksum OK for pinentry-0.7.2.tar.gz.
+=> MD5 Checksum OK for dirmngr-0.9.7.tar.bz2.
+=> SHA256 Checksum OK for dirmngr-0.9.7.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> qt-x11-free-3.3.8.tar.bz2 doesn't seem to exist in /usr/ports/distfiles/KDE.
+=> Attempting to fetch from ftp://ftp.iasi.roedu.net/mirrors/ftp.trolltech.com/qt/source/.
+=> MD5 Checksum OK for KDE/qt-x11-free-3.3.8.tar.bz2.
+=> SHA256 Checksum OK for KDE/qt-x11-free-3.3.8.tar.bz2.
+=> intltool-0.36.1.tar.bz2 doesn't seem to exist in /usr/ports/distfiles/gnome.
+=> Attempting to fetch from ftp://ftp.belnet.be/mirror/ftp.gnome.org/sources/intltool/0.36/.
+=> MD5 Checksum OK for gnome/intltool-0.36.1.tar.bz2.
+=> SHA256 Checksum OK for gnome/intltool-0.36.1.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> glib-1.2.10.tar.gz doesn't seem to exist in /usr/ports/distfiles/.
+=> Attempting to fetch from ftp://ftp.belnet.be/mirror/ftp.gnome.org/sources/glib/1.2/.
+=> MD5 Checksum OK for glib-1.2.10.tar.gz.
+=> SHA256 Checksum OK for glib-1.2.10.tar.gz.
+=> gtk+-1.2.10.tar.gz doesn't seem to exist in /usr/ports/distfiles/.
+=> Attempting to fetch from ftp://ftp.belnet.be/mirror/ftp.gnome.org/sources/gtk+/1.2/.
+=> MD5 Checksum OK for gtk+-1.2.10.tar.gz.
+=> SHA256 Checksum OK for gtk+-1.2.10.tar.gz.
+=> atk-1.18.0.tar.bz2 doesn't seem to exist in /usr/ports/distfiles/gnome2.
+=> Attempting to fetch from ftp://ftp.belnet.be/mirror/ftp.gnome.org/sources/atk/1.18/.
+=> MD5 Checksum OK for gnome2/atk-1.18.0.tar.bz2.
+=> SHA256 Checksum OK for gnome2/atk-1.18.0.tar.bz2.
+===>  Found saved configuration for glib-2.12.4
+=> MD5 Checksum OK for gnome2/glib-2.12.13.tar.bz2.
+=> SHA256 Checksum OK for gnome2/glib-2.12.13.tar.bz2.
+=> gtk+-2.10.14.tar.bz2 doesn't seem to exist in /usr/ports/distfiles/gnome2.
+=> Attempting to fetch from ftp://ftp.belnet.be/mirror/ftp.gnome.org/sources/gtk+/2.10//.
+=> MD5 Checksum OK for gnome2/gtk+-2.10.14.tar.bz2.
+=> SHA256 Checksum OK for gnome2/gtk+-2.10.14.tar.bz2.
+=> pango-1.16.5.tar.bz2 doesn't seem to exist in /usr/ports/distfiles/gnome2.
+=> Attempting to fetch from ftp://ftp.belnet.be/mirror/ftp.gnome.org/sources/pango/1.16/.
+=> MD5 Checksum OK for gnome2/pango-1.16.5.tar.bz2.
+=> SHA256 Checksum OK for gnome2/pango-1.16.5.tar.bz2.
+=> MD5 Checksum OK for KDE/qt-x11-free-3.3.8.tar.bz2.
+=> SHA256 Checksum OK for KDE/qt-x11-free-3.3.8.tar.bz2.
+/usr/X11R6 exists, but it is not a symlink. Installation cannot proceed.
+This looks like an incompletely removed old version of X.  In the current version, /usr/X11R6 must be a symlink if it exists at all.Please read /usr/ports/UPDATING (entry of 20070519) for the procedure to upgrade X.org related ports.*** Error code 1
+
+Stop in /usr/ports/x11/xorg-libraries.
+*** Error code 1
+
+Stop in /usr/ports/security/gnupg.
+** Command failed [exit code 1]: /usr/bin/script -qa /tmp/portupgrade.38785.20 env UPGRADE_TOOL=portupgrade UPGRADE_PORT=gnupg-2.0.3 UPGRADE_PORT_VER=2.0.3 make FETCH_BEFORE_ARGS=-q -DBATCH checksum-recursive
+** Fix the problem and try again.
+** Listing the failed packages (*:skipped / !:failed)
+	!  (xorg-manpages-6.9.0)	(port directory error)
+	! x11/xorg-libraries (xorg-libraries-6.9.0_1)	(unknown build error)
+	* x11-servers/xorg-server (xorg-server-6.9.0_6)
+	* x11-fonts/xfs (xorg-fontserver-6.9.0_1)
+	* x11-servers/xorg-vfbserver (xorg-vfbserver-6.9.0_2)
+	* x11/xterm (xterm-224)
+	* x11/xorg-apps (xorg-clients-6.9.0_3)
+	* x11-servers/xorg-printserver (xorg-printserver-6.9.0_2)
+	* x11-toolkits/gtk12 (gtk-1.2.10_17)
+	* x11-servers/xorg-nestserver (xorg-nestserver-6.9.0_1)
+	* editors/vim (vim-7.0.214)
+	! security/gnupg (gnupg-2.0.3)	(unknown build error)
+--->  Packages processed: 68 done, 68 ignored, 9 skipped and 3 failed
+cd: can't cd to /usr/ports/devel/imake-6
+cd: can't cd to /usr/ports/www/lynx-ssl
+cd: can't cd to /usr/ports/mail/qmHandle
+cd: can't cd to /usr/ports/x11/xorg-clients
+cd: can't cd to /usr/ports/x11/xorg-documents
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-encodings
+cd: can't cd to /usr/ports/x11-servers/xorg-fontserver
+cd: can't cd to /usr/ports/x11/xorg-manpages
+** No need to upgrade 'aaccli-1.0' (>= aaccli-1.0). (specify -f to force)
+** No need to upgrade 'qmail-1.03_5' (>= qmail-1.03_5). (specify -f to force)
+** No need to upgrade 'cmdwatch-0.2.0' (>= cmdwatch-0.2.0). (specify -f to force)
+** No need to upgrade 'ucspi-tcp-0.88_2' (>= ucspi-tcp-0.88_2). (specify -f to force)
+** No need to upgrade 'portaudit-0.5.11' (>= portaudit-0.5.11). (specify -f to force)
+** No need to upgrade 'zip-2.32' (>= zip-2.32). (specify -f to force)
+** No need to upgrade 'freebsd-sha256-20050310' (>= freebsd-sha256-20050310). (specify -f to force)
+** No need to upgrade 'daemontools-0.76_12' (>= daemontools-0.76_12). (specify -f to force)
+** No need to upgrade 'mime-support-3.39.1' (>= mime-support-3.39.1). (specify -f to force)
+** No need to upgrade 'xmlcatmgr-2.2' (>= xmlcatmgr-2.2). (specify -f to force)
+** No need to upgrade 'perl-5.8.8' (>= perl-5.8.8). (specify -f to force)
+** No need to upgrade 'libtool-1.5.22_4' (>= libtool-1.5.22_4). (specify -f to force)
+** Package 'xorg-manpages' has been removed from ports tree.
+** Port directory not found: x11/xorg-manpages
+** No need to upgrade 'lzo2-2.02_1' (>= lzo2-2.02_1). (specify -f to force)
+** Package origin of 'imake' has been changed: 'devel/imake-6' -> 'devel/imake'
+** No need to upgrade 'trafshow-5.2.3,1' (>= trafshow-5.2.3,1). (specify -f to force)
+** Package origin of 'xorg-fonts-encodings' has been changed: 'x11-fonts/xorg-fonts-encodings' -> 'x11-fonts/encodings'
+** Detected a package name change: xorg-fonts-encodings (x11-fonts/xorg-fonts-encodings) -> 'encodings' (x11-fonts/encodings)
+** No need to upgrade 'libiconv-1.9.2_2' (>= libiconv-1.9.2_2). (specify -f to force)
+** No need to upgrade 'py24-docutils-0.4' (>= py24-docutils-0.4). (specify -f to force)
+** No need to upgrade 'expat-2.0.0_1' (>= expat-2.0.0_1). (specify -f to force)
+** No need to upgrade 'bsdiff-4.3' (>= bsdiff-4.3). (specify -f to force)
+** No need to upgrade 'ldconfig_compat-1.0_8' (>= ldconfig_compat-1.0_8). (specify -f to force)
+** Package origin of 'qmHandle' has been changed: 'mail/qmHandle' -> 'mail/qmhandle'
+** Detected a package name change: qmHandle (mail/qmHandle) -> 'qmhandle' (mail/qmhandle)
+** No need to upgrade 'unzip-5.52_3' (>= unzip-5.52_3). (specify -f to force)
+** No need to upgrade 'qmailanalog-0.70_2' (>= qmailanalog-0.70_2). (specify -f to force)
+** No need to upgrade 'db4-4.0.14_1,1' (>= db4-4.0.14_1,1). (specify -f to force)
+** No need to upgrade 'db42-4.2.52_5' (>= db42-4.2.52_5). (specify -f to force)
+** Package origin of 'xorg-documents' has been changed: 'x11/xorg-documents' -> 'x11/xorg-docs'
+** Detected a package name change: xorg-documents (x11/xorg-documents) -> 'xorg-docs' (x11/xorg-docs)
+** No need to upgrade 'db41-4.1.25_4' (>= db41-4.1.25_4). (specify -f to force)
+** No need to upgrade 'pth-2.0.7' (>= pth-2.0.7). (specify -f to force)
+** No need to upgrade 'unix2dos-1.3' (>= unix2dos-1.3). (specify -f to force)
+** No need to upgrade 'jpeg-6b_4' (>= jpeg-6b_4). (specify -f to force)
+** No need to upgrade 'screen-4.0.3' (>= screen-4.0.3). (specify -f to force)
+** No need to upgrade 'openvpn-2.0.6_7' (>= openvpn-2.0.6_7). (specify -f to force)
+** No need to upgrade 'mysql-client-4.0.27' (>= mysql-client-4.0.27). (specify -f to force)
+** No need to upgrade 'mysql-server-4.0.27' (>= mysql-server-4.0.27). (specify -f to force)
+** No need to upgrade 'qlogtools-3.1_1' (>= qlogtools-3.1_1). (specify -f to force)
+** No need to upgrade 'iso8879-1986_2' (>= iso8879-1986_2). (specify -f to force)
+** No need to upgrade 'docbook-241_2' (>= docbook-241_2). (specify -f to force)
+** No need to upgrade 'linuxdoc-1.1_1' (>= linuxdoc-1.1_1). (specify -f to force)
+** No need to upgrade 'p5-SNMP_Session-1.08' (>= p5-SNMP_Session-1.08). (specify -f to force)
+** No need to upgrade 'p5-Scalar-List-Utils-1.19,1' (>= p5-Scalar-List-Utils-1.19,1). (specify -f to force)
+** No need to upgrade 'silvercity-0.9.7' (>= silvercity-0.9.7). (specify -f to force)
+** No need to upgrade 'docbook-xml-4.2_1' (>= docbook-xml-4.2_1). (specify -f to force)
+** No need to upgrade 'docbook-3.0_2' (>= docbook-3.0_2). (specify -f to force)
+** No need to upgrade 'p5-gettext-1.05_1' (>= p5-gettext-1.05_1). (specify -f to force)
+** No need to upgrade 'p5-Time-modules-2006.0814' (>= p5-Time-modules-2006.0814). (specify -f to force)
+** No need to upgrade 'docbook-3.1_2' (>= docbook-3.1_2). (specify -f to force)
+** No need to upgrade 'jade-1.2.1_9' (>= jade-1.2.1_9). (specify -f to force)
+** No need to upgrade 'docbook-4.0_2' (>= docbook-4.0_2). (specify -f to force)
+** No need to upgrade 'portsnap-1.1' (>= portsnap-1.1). (specify -f to force)
+** No need to upgrade 'smartmontools-5.37_1' (>= smartmontools-5.37_1). (specify -f to force)
+** No need to upgrade 'gsed-4.1.5_1' (>= gsed-4.1.5_1). (specify -f to force)
+** No need to upgrade 'isoqlog-2.2.1' (>= isoqlog-2.2.1). (specify -f to force)
+** No need to upgrade 'bash-completion-20060301_2' (>= bash-completion-20060301_2). (specify -f to force)
+** No need to upgrade 'help2man-1.36.4_1' (>= help2man-1.36.4_1). (specify -f to force)
+** No need to upgrade 'p5-Time-Period-1.20' (>= p5-Time-Period-1.20). (specify -f to force)
+** No need to upgrade 'unison-2.13.16_1' (>= unison-2.13.16_1). (specify -f to force)
+** No need to upgrade 'ezm3-1.2_1' (>= ezm3-1.2_1). (specify -f to force)
+** No need to upgrade 'sqlite-2.8.17_1' (>= sqlite-2.8.17_1). (specify -f to force)
+** Detected a package name change: sqlite (databases/sqlite3) -> 'sqlite3' (databases/sqlite3)
+** No need to upgrade 'glib-1.2.10_12' (>= glib-1.2.10_12). (specify -f to force)
+** No need to upgrade 'libgcrypt-1.2.4_1' (>= libgcrypt-1.2.4_1). (specify -f to force)
+** No need to upgrade 'py24-pysqlite-2.0.7_1' (>= py24-pysqlite-2.0.7_1). (specify -f to force)
+** No need to upgrade 'dirvish-1.2.1' (>= dirvish-1.2.1). (specify -f to force)
+** No need to upgrade 'docbook-4.1_2' (>= docbook-4.1_2). (specify -f to force)
+** No need to upgrade 'docbook-1.3' (>= docbook-1.3). (specify -f to force)
+** No need to upgrade 'sgmlformat-1.7_2' (>= sgmlformat-1.7_2). (specify -f to force)
+** No need to upgrade 'p5-Pod-Parser-1.35' (>= p5-Pod-Parser-1.35). (specify -f to force)
+** No need to upgrade 'apache-2.0.59' (>= apache-2.0.59). (specify -f to force)
+** No need to upgrade 'libsigc++-2.0.17_1' (>= libsigc++-2.0.17_1). (specify -f to force)
+** Package origin of 'lynx-ssl' has been changed: 'www/lynx-ssl' -> 'www/lynx'
+** Detected a package name change: lynx-ssl (www/lynx-ssl) -> 'lynx' (www/lynx)
+** No need to upgrade 'pkg_install-20060113' (>= pkg_install-20060113). (specify -f to force)
+** No need to upgrade 'librsync-0.9.7_1' (>= librsync-0.9.7_1). (specify -f to force)
+** No need to upgrade 'rdiff-backup-1.0.5,1' (>= rdiff-backup-1.0.5,1). (specify -f to force)
+** Package origin of 'xorg-fontserver' has been changed: 'x11-servers/xorg-fontserver' -> 'x11-fonts/xfs'
+** Detected a package name change: xorg-fontserver (x11-servers/xorg-fontserver) -> 'xfs' (x11-fonts/xfs)
+** Package origin of 'xorg-clients' has been changed: 'x11/xorg-clients' -> 'x11/xorg-apps'
+** Detected a package name change: xorg-clients (x11/xorg-clients) -> 'xorg-apps' (x11/xorg-apps)
+
+-- End of daily output --

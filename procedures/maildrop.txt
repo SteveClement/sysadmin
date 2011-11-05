@@ -1,0 +1,20 @@
+Main issues:
+
+if used with the native vpopmail maildrop patch, maildrop gets launched simply
+as: maildrop
+
+which means maildrop goes into: ~vpopmail
+
+well no permissions on this directory:
+
+chown vpopmail:vchkpw ~vpomail
+
+ok, great, now you need a maildroprc
+
+copy the one from ~vpopmail/maildrop/maildroprc.v2 /usr/local/etc/maildroprc
+
+edit this file and add:
+
+SHELL=/bin/sh
+
+as the user vpopmail only has /nonexistent as shell

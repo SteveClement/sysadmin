@@ -1,0 +1,27 @@
+### This is the office profile and should only be used for office machines where we need to be able to administer remote stufff.
+
+## Sample Alias for SECURE vncing into 192.168.1.34 over BSD Box client.247.lu.... with passwd file .vnc....
+# After having this "installed" you just type: vnc-jyrom errrr... and youre in...
+
+## ATTENTION THIS CRIES FOR SECURITY
+###### TODO!!!! : all sensitive passwords should be on a crypted disk under UNIX .e.g: .vnc .ssh .gnupg (ANY keys) parts of the mozilla/firefox/thunderbird tree (Password manager) any other sensitive stufff. Crons should kill every night open SSH-AGENTS open CRYPTED Disks carefully kill inactive ssh sessions
+
+
+
+### Not ideal because if other bg jobs it will kill the wrong one....
+
+### If we CAN deploy openVPN we SHOULD!!!!
+
+alias vnc-jyrom='ssh -N -L 5900:192.168.1.34:5900 jyrom.247.lu & sleep 5 ; vncviewer -shared -p .vnc/passwd-jyrom localhost ; kill %1'
+alias vnc-pp='vncviewer -shared -p /home/steve/.vnc/passwd-pp pp.247.lu'
+
+alias vnc-dia='vncviewer -shared -p /home/steve/.vnc/passwd-ion dia'
+alias vnc-phoenix='vncviewer -shared -p /home/steve/.vnc/passwd-ion phoenix'
+alias vnc-multion='vncviewer -shared -p /home/steve/.vnc/passwd-ion multion'
+alias vnc-macium='vncviewer -shared -p /home/steve/.vnc/passwd-ion macium'
+
+
+
+alias vnc-mudam='ssh -N -L 5900:10.0.0.1:5900 mudam.247.lu & sleep 5 ; vncviewer -shared -p ~/.vnc/passwd-mudam localhost ; kill %1'
+alias vnc-elambert-magalie='ssh -N -L 5900:10.0.0.1:5900 elambert.247.lu & sleep 5 ; vncviewer -shared -p ~/.vnc/passwd-mudam localhost ; kill %1'
+alias vnc-ncr-sandra='ssh -N -L 5900:10.0.0.1:5900 ncr.247.lu & sleep 5 ; vncviewer -shared -p ~/.vnc/passwd-mudam localhost ; kill %1'

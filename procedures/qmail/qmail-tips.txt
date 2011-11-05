@@ -1,0 +1,18 @@
+
+Sometimes queue fucks up:
+
+cd /var/qmail/queue
+for a in `find . -perm 600`; do  chmod 644 $a; done
+
+queue-repair doesn't seem to work
+
+for a in `qmHandle  -l |grep ", R" |cut -d" " -f1`; do 
+qmHandle -m$a |less  ; echo "Do you want to delete that message?" ; read answer ; if [ $answer == "y" ]; then qmHandle -d$a ; sleep 1; fi ; done
+
+
+TLS not available: missingRSA key (#4.3.0)
+
+cd /tmp
+/usr/local/bin/openssl req -new -x509 -nodes -out servercert.pem -days 3600 -keyout servercert.pem
+install -o qmaild -g qmail -m 0640 servercert.pem /var/qmail/control/servercert.pem
+rm servercert.pem

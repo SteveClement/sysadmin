@@ -1,0 +1,13 @@
+Start->Run
+jview
+will show the java machine version.
+
+They have all the JVM's on their site:
+
+www.dexia-bil.lu/java/java3810.exe
+www.dexia-bil.lu/java/java3809.exe
+www.dexia-bil.lu/java/java3808.exe
+
+After launching the installer you HAVE TO BE PROMPTED to reboot.
+
+IF NOT, it didn't work.

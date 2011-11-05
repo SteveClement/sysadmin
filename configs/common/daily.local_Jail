@@ -1,0 +1,1 @@
+/usr/local/sbin/portversion -vl "<" > /tmp/portversion.txt

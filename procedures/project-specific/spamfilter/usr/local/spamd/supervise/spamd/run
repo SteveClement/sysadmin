@@ -1,0 +1,75 @@
+#!/bin/sh
+#
+# --------------------------------------------------
+# run
+#
+# Purpose     - Start the spamd daemon/service.
+#
+# Author      - Rick Updegrove
+# Created     - 03/01/04
+# Modified    - 03/01/04
+# --------------------------------------------------
+# This script is designed to be run under DJB's
+# daemontools package.
+#
+#  ChangeLog
+#  ---------
+#
+#  --------------
+#  - Created
+# --------------------------------------------------
+
+lockfile="/tmp/spamd"   # Location of spamd lock file
+path_to_spamd="/usr/local/bin/spamd"
+                        # Location of the spamd binary
+BAD_EXIT_CODE=1         # The exit code we use to announce that something bad has happened
+
+# The following pipeline is designed to return the pid of each
+# spamd process currently running.
+get_clam_pids_pipeline=`ps -ax | grep -E "${path_to_spamd}\$" | grep -v grep | awk '{print $1}'`
+
+
+
+# --------------------------------------------------
+# Generic helper functions
+# --------------------------------------------------
+
+# Basic return code error message function
+die_rcode() {
+        EXIT_CODE=$1
+        ERROR_MSG=$2
+
+        if [ $EXIT_CODE -ne '0' ]; then
+                echo "$ERROR_MSG" 1>&2
+                echo "Exiting!" 1>&2
+                exit "$BAD_EXIT_CODE"
+        fi
+}
+
+
+# --------------------------------------------------
+# Main
+# --------------------------------------------------
+
+ps_spamd=""
+ps_spamd="$get_clam_pids_pipeline"
+
+if [ -n "$ps_spamd" ]; then
+        pid_count="0"
+        for pid in $ps_spamd
+        do
+                pid_count=`expr $pid_count + 1`
+        done
+
+        die_rcode $BAD_EXIT_CODE "Error: $pid_count spamd process(es) already running!"
+
+fi
+
+if [ -e "$lockfile" ]; then
+        rm "$lockfile"
+        exit_code="$?"
+        die_rcode $exit_code "Error: 'rm $lockfile' call failed."
+fi
+
+exec 2>&1
+exec /usr/local/bin/spamd -x -q -u qscand -r /var/run/spamd/spamd.pid --syslog=stderr

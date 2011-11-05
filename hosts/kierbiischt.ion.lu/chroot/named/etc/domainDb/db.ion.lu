@@ -1,0 +1,71 @@
+$TTL  86400 
+@ IN SOA ns4.ion.lu. steve.ion.lu. (52 43200 3600 900000 86400)
+@ IN NS ns4.ion.lu.
+ns4.ion.lu. IN A 80.90.47.163
+@ IN NS ns1.ion.lu.
+ns1.ion.lu. IN A 213.129.72.10
+
+
+localhost IN A 127.0.0.1
+
+@ IN A 80.90.47.162
+www IN A 80.90.47.162
+putty IN CNAME @
+contacts IN A 80.90.47.162
+
+dav IN A 213.129.72.10
+ns2 IN A 213.129.72.11
+ns4 IN A 80.90.47.163
+
+cvs IN A 80.90.47.163
+
+
+iron IN A 213.129.72.10
+
+xenon IN A 80.90.47.162
+alebion IN A 80.90.47.162
+kierbiischt IN A 80.90.47.163
+dubnium IN A 80.90.47.164
+zinc IN A 80.90.47.165
+oberon IN A 80.90.47.166
+belion IN A 80.90.47.167
+mail IN CNAME zinc
+webmail IN CNAME zinc
+webmail2 IN CNAME zinc
+imap IN CNAME zinc
+smtp IN CNAME zinc
+
+dns IN CNAME @
+australien CNAME www
+paulus CNAME www
+meegs CNAME www
+dev CNAME www
+friends CNAME www
+352 CNAME www
+
+
+helium IN A 192.168.0.10
+neon IN A 192.168.0.11
+terbium IN A 192.168.0.12
+headquarter IN A 192.168.0.254
+headquarter-wlan IN A 10.10.0.254
+
+proxy IN A 192.168.0.254
+
+kiss IN A 192.168.1.254
+
+ruthenmium IN A 192.168.0.1
+ruthenium-inet IN CNAME www.somehost.lu
+
+ion03 IN A 192.168.0.100
+
+macium-wlan IN A 10.10.0.101
+macium IN A 192.168.0.101
+
+dellirium IN A 192.168.0.102
+dellirium IN A 192.168.0.102
+dellirium-wlan IN A 10.10.0.102
+macium IN A 192.168.1.253
+jornabsd IN A 192.168.120.16
+
+ion.lu. IN MX 30 mail.ion.lu.

@@ -1,0 +1,203 @@
+#
+# See pf.conf(5) and /usr/share/examples/pf for syntax and examples.
+# Required order: options, normalization, queueing, translation, filtering.
+# Macros and tables may be defined and used anywhere.
+# Note that translation rules are first match while filter rules are last match.
+
+############################################################################
+# Macros: define common values, so they can be referenced and changed easily.
+############################################################################
+
+# Firewall specific variables
+#
+ext_if="bge0"
+int_if="nfe0"
+mng_if="fxp0"
+loop_if="lo0"
+bdg_if="bridge0"
+
+# Environment variables
+#
+fw01_ip="123.123.123.130"
+db01_ip="123.123.123.138"
+lb01_ip="123.123.123.141"
+sw01_ip="123.123.123.142"
+web01_ip="123.123.123.139"
+web02_ip="123.123.123.140"
+
+# Port groups and protocol options
+#
+
+# remote admin ports
+admin_ports="{ ssh, 2222, 8000 }"
+
+# public web services
+public_services="{ http, https, smtp, pop3, imap, ftp, ftp-data, 2222 }"
+
+# TCP Options
+TCP_Options="flags S/SAFRUP modulate state"
+
+# UDP Options
+UDP_Options="keep state"
+
+
+############################################################################
+# Tables:
+############################################################################
+
+table <unrouteable> { 0.0.0.0/8, 10.0.0.0/8, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.168.0.0/16 }
+table <monitoring> { 123.123.123.4, 123.123.123.37 }
+table <sysadmin> { 123.123.123.49, 123.123.123.77, 123.123.123.138 }
+table <public_ips> { 123.123.123.134, 123.123.123.135, 123.123.123.136, 123.123.123.137, 123.123.123.139, 123.123.123.140 }
+
+
+############################################################################
+# Normalization rules:
+############################################################################
+
+scrub in on $ext_if all
+scrub out on $ext_if random-id
+
+
+############################################################################
+# NAT rules: "rdr", "nat", "binat"
+############################################################################
+
+# no NAT or RDR in bridge mode
+
+
+############################################################################
+# Loopback Interface rules
+############################################################################
+
+# Allow all in and out traffic on the loop back interface
+#
+pass quick on $loop_if
+
+
+############################################################################
+# Global rules
+############################################################################
+
+# default policy - block all packets
+#
+block all
+
+# immediately prevent IPv6 traffic from entering or leaving all interfaces
+#
+block quick inet6 all
+
+
+############################################################################
+# Management Interface rules
+############################################################################
+
+# General rules:
+#-------------------------------------------------------------
+
+# default policy - block all packets on management interface
+#
+block on $mng_if
+
+# block unroutable ips
+#
+block in quick on $mng_if from { <unroutable> }
+
+# thwart nmap scans
+#
+block in log quick on $mng_if proto tcp all flags FUP/FUP
+
+# pass out/in certain ICMP queries and keep state (ping)
+# state matching is done on host addresses and ICMP id (not type/code)
+# so replies (like 0/0 for 8/0) will match queries
+# ICMP error messages (which always refer to a TCP/UDP packet) are
+# handled by the TCP/UDP states
+#
+pass out quick on $mng_if inet proto icmp all icmp-type 8 code 0 keep state
+pass in quick on $mng_if inet proto icmp all icmp-type 8 code 0 keep state
+
+# pass out TCP/UDP connections
+#
+pass out on $mng_if inet proto tcp all $TCP_Options
+pass out on $mng_if inet proto udp all $UDP_Options
+
+# Environment specific security rules:
+#-------------------------------------------------------------
+
+# allow FW01-MD management access
+#
+pass in log quick on $mng_if inet proto tcp from <sysadmin> to $mng_if port ssh $TCP_Options
+
+
+############################################################################
+# Bridge Interface rules:
+############################################################################
+
+# General rules:
+#-------------------------------------------------------------
+
+# default policy - block all packets on external interface
+#
+block log on $ext_if
+
+# block unroutable ips
+#
+block in quick on $ext_if from { <unroutable> }
+
+# thwart nmap scans
+#
+block in log quick on $ext_if proto tcp all flags FUP/FUP
+
+# allow all traffic in on internal if - filter at external if
+#
+pass quick on $int_if all
+
+# pass out/in certain ICMP queries and keep state (ping)
+# state matching is done on host addresses and ICMP id (not type/code)
+# so replies (like 0/0 for 8/0) will match queries
+# ICMP error messages (which always refer to a TCP/UDP packet) are
+# handled by the TCP/UDP states
+#
+pass out quick on $ext_if inet proto icmp all icmp-type 8 code 0 keep state
+pass in quick on $ext_if inet proto icmp all icmp-type 8 code 0 keep state
+
+# pass out TCP/UDP connections
+#
+pass out on $ext_if inet proto tcp all $TCP_Options
+pass out on $ext_if inet proto udp all $UDP_Options
+
+
+# Environment specific security rules:
+#-------------------------------------------------------------
+
+# allow FW01 management access
+#
+pass in quick on $ext_if inet proto tcp from <sysadmin> to $fw01_ip port ssh $TCP_Options
+
+# allow DB01 management access
+#
+pass in quick on $ext_if inet proto tcp from <sysadmin> to $db01_ip port ssh $TCP_Options
+
+# allow LB01 management access
+#
+pass in quick on $ext_if inet proto tcp from <sysadmin> to $lb01_ip port { ssh, 8000 } $TCP_Options
+
+# allow Web01 management access
+#
+pass in quick on $ext_if inet proto tcp from <sysadmin> to $web01_ip port ssh $TCP_Options
+
+# allow Web02 management access
+#
+pass in quick on $ext_if inet proto tcp from <sysadmin> to $web02_ip port ssh $TCP_Options
+
+# allow SW01 management access
+#
+pass in quick on $ext_if inet proto tcp from <sysadmin> to $sw01_ip port http $TCP_Options
+
+# allow public services to publicly accessible servers
+#
+pass in on $ext_if inet proto tcp from any to <public_ips> port $public_services $TCP_Options
+
+
+
+############################################################################

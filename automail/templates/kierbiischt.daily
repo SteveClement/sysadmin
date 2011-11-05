@@ -1,0 +1,520 @@
+*Received: (qmail 13095 invoked by uid 98); 18 Jun 2004 01:05:44 -0000
+Received: from root@kierbiischt.ion.lu by zinc.ion.lu by uid 82 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.72. spamassassin: 2.63.  Clear:RC:0(80.90.47.163):SA:0(0.3/5.0):. 
+ Processed in 10.854537 secs); 18 Jun 2004 01:05:44 -0000
+X-Spam-Status: No, hits=0.3 required=5.0
+X-Antivirus-ion.lu-Mail-From: root@kierbiischt.ion.lu via zinc.ion.lu
+X-Antivirus-ion.lu: 1.22-st-qms (Clear:RC:0(80.90.47.163):SA:0(0.3/5.0):. Processed in 10.854537 secs Process 13086)
+Received: from kierbiischt.ion.lu (80.90.47.163)
+  by zinc.ion.lu with SMTP; 18 Jun 2004 01:05:33 -0000
+Received: (qmail 7259 invoked by alias); 18 Jun 2004 01:05:34 -0000
+Delivered-To: root@kierbiischt.ion.lu
+Received: (qmail 7256 invoked by uid 0); 18 Jun 2004 01:05:34 -0000
+Date: 18 Jun 2004 01:05:33 -0000
+Message-ID: <20040618010533.7254.qmail@kierbiischt.ion.lu>
+From: root@kierbiischt.ion.lu
+To: root@kierbiischt.ion.lu
+Subject: kierbiischt.ion.lu daily run output
+
+
+Removing stale files from /var/preserve:
+
+Cleaning out old system announcements:
+
+Removing stale files from /var/rwho:
+
+Backup passwd and group files:
+
+Verifying group file syntax:
+
+Backing up mail aliases:
+
+Disk status:
+Filesystem  1K-blocks    Used    Avail Capacity  Mounted on
+/dev/ad3s1a   7604734 1700138  5296218    75%    /
+/dev/ad0s1c  38477212 1627810 33771226    75%    /home
+/dev/ad1s1c  38477212 2008206 33390830    75%    /bigdisk
+procfs              4       4        0   100%    /proc
+
+Last dump(s) done (Dump '>' file systems):
+
+UUCP status:
+
+Network interface status:
+Name  Mtu   Network       Address            Ipkts Ierrs    Opkts Oerrs  Coll
+fxp0  1500  <Link#1>    00:d0:b7:a6:6e:a5 13587991   204 12274087     0     0
+fxp0  1500  80.90.47.160/ kierbiischt     12136679     - 12261192     -     -
+fxp0  1500  fe80:1::2d0 fe80:1::2d0:b7ff:        0     -        0     -     -
+dc0*  1500  <Link#2>    00:80:c8:b9:50:85        0     0        0     0     0
+dc1*  1500  <Link#3>    00:80:c8:b9:50:86        0     0        0     0     0
+dc2*  1500  <Link#4>    00:80:c8:b9:50:87        0     0        0     0     0
+dc3*  1500  <Link#5>    00:80:c8:b9:50:88        0     0        0     0     0
+lp0*  1500  <Link#6>                             0     0        0     0     0
+lo0   16384 <Link#7>                        188555     0   188555     0     0
+lo0   16384 localhost   ::1                    122     -      122     -     -
+lo0   16384 fe80:7::1   fe80:7::1                0     -        0     -     -
+lo0   16384 your-net      localhost         178187     -   178187     -     -
+ppp0* 1500  <Link#8>                             0     0        0     0     0
+sl0*  552   <Link#9>                             0     0        0     0     0
+faith 1500  <Link#10>                            0     0        0     0     0
+
+Local system status:
+ 3:01AM  up 142 days, 20 mins, 0 users, load averages: 0.00, 0.00, 0.00
+
+Mail in local queue:
+
+Mail in submit queue:
+
+Security check:
+    (output mailed separately)
+
+Checking for rejected mail hosts:
+
+Checking for denied zone transfers (AXFR and IXFR):
+
+Running /etc/daily.local:
+Parsing supfile "/etc/cvsupfile"
+Connecting to cvsup.de.FreeBSD.org
+Connected to cvsup.de.FreeBSD.org
+Server software version: SNAP_16_1h
+Negotiating file attribute support
+Exchanging collection information
+Establishing multiplexed-mode data connection
+Running
+Updating collection ports-all/cvs
+ Edit ports/audio/amarok/Makefile
+  Add delta 1.6 2004.06.17.13.43.10 markus
+ Edit ports/audio/amarok/distinfo
+  Add delta 1.2 2004.06.17.13.43.10 markus
+ Delete ports/audio/amarok/files/patch-loader.cpp
+ Delete ports/audio/amarok/files/patch-playerapp.cpp
+ Delete ports/audio/amarok/files/patch-playlistloader.h
+ Checkout ports/audio/amarok/files/patch-playlistwindow.cpp
+ Edit ports/audio/amarok/pkg-plist
+  Add delta 1.2 2004.06.17.13.43.10 markus
+ Edit ports/audio/sound-juicer/files/patch-src::Makefile.in
+  Add delta 1.4 2004.06.17.11.06.57 bland
+ Edit ports/audio/xmms-arts/Makefile
+  Add delta 1.7 2004.06.16.23.56.20 fjoe
+  Add delta 1.8 2004.06.17.00.46.45 fjoe
+ Edit ports/databases/Makefile
+  Add delta 1.346 2004.06.17.22.13.34 thierry
+ Checkout ports/databases/postgis/Makefile
+ Checkout ports/databases/postgis/distinfo
+ Checkout ports/databases/postgis/pkg-descr
+ Checkout ports/databases/postgis/pkg-plist
+ Edit ports/deskutils/Makefile
+  Add delta 1.152 2004.06.17.18.31.31 pav
+ Checkout ports/deskutils/gtweakui/Makefile
+ Checkout ports/deskutils/gtweakui/distinfo
+ Checkout ports/deskutils/gtweakui/files/patch-Makefile.in
+ Checkout ports/deskutils/gtweakui/pkg-descr
+ Checkout ports/deskutils/gtweakui/pkg-plist
+ Edit ports/devel/arch/pkg-descr
+  Add delta 1.4 2004.06.17.21.00.00 brueffer
+ Edit ports/devel/cedet/Makefile
+  Add delta 1.4 2004.06.17.19.37.56 pav
+ Edit ports/devel/ecb/Makefile
+  Add delta 1.11 2004.06.17.11.31.28 vs
+ Edit ports/devel/ecb/distinfo
+  Add delta 1.9 2004.06.17.11.31.28 vs
+ Edit ports/devel/ecb/pkg-plist
+  Add delta 1.8 2004.06.17.11.31.28 vs
+ Edit ports/devel/subversion/Makefile
+  Add delta 1.65 2004.06.17.06.37.54 lev
+ Edit ports/devel/subversion/distinfo
+  Add delta 1.30 2004.06.17.06.37.54 lev
+ Edit ports/editors/rox-edit/Makefile
+  Add delta 1.8 2004.06.17.15.59.47 olgeni
+  Add delta 1.9 2004.06.17.16.00.55 olgeni
+ Edit ports/editors/rox-edit/distinfo
+  Add delta 1.6 2004.06.17.15.59.47 olgeni
+ Edit ports/editors/rox-edit/pkg-plist
+  Add delta 1.3 2004.06.17.15.59.47 olgeni
+ Edit ports/editors/ted/Makefile
+  Add delta 1.16 2004.06.17.08.18.53 pav
+ Edit ports/emulators/linux-mupen64/Makefile
+  Add delta 1.6 2004.06.17.19.12.57 pav
+ Checkout ports/emulators/linux-mupen64/files/pkg-message.in
+ Delete ports/emulators/linux-mupen64/pkg-message
+ Edit ports/emulators/pearpc/Makefile
+  Add delta 1.6 2004.06.17.05.54.44 mezz
+ Edit ports/emulators/pearpc/distinfo
+  Add delta 1.2 2004.06.17.05.54.44 mezz
+ Delete ports/emulators/pearpc/files/patch-configure
+ Delete ports/emulators/pearpc/files/patch-src::io::3c90x::3c90x.cc
+ Delete ports/emulators/pearpc/files/patch-src::io::3c90x::if_posix.cc
+ Edit ports/ftp/lftp/Makefile
+  Add delta 1.91 2004.06.17.14.23.36 krion
+ Edit ports/ftp/lftp/distinfo
+  Add delta 1.61 2004.06.17.14.23.36 krion
+ Edit ports/games/monopd/Makefile
+  Add delta 1.3 2004.06.17.20.12.00 jhb
+ Edit ports/games/monopd/distinfo
+  Add delta 1.3 2004.06.17.20.12.00 jhb
+ Edit ports/graphics/Makefile
+  Add delta 1.696 2004.06.17.06.36.54 mezz
+ Checkout ports/graphics/cbview/Makefile
+ Checkout ports/graphics/cbview/distinfo
+ Checkout ports/graphics/cbview/pkg-descr
+ Edit ports/graphics/gimp/Makefile
+  Add delta 1.158 2004.06.17.16.04.37 pav
+ Edit ports/graphics/gimp/distinfo
+  Add delta 1.68 2004.06.17.16.04.37 pav
+ Edit ports/graphics/gimp/pkg-plist
+  Add delta 1.89 2004.06.17.16.04.37 pav
+ Edit ports/japanese/zangband/Makefile
+  Add delta 1.9 2004.06.17.19.26.34 pav
+ Edit ports/java/sablevm/Makefile
+  Add delta 1.27 2004.06.17.15.25.28 archie
+  Add delta 1.28 2004.06.17.17.48.24 archie
+ Edit ports/java/sablevm/distinfo
+  Add delta 1.8 2004.06.17.15.25.28 archie
+ Delete ports/java/sablevm/files/extra-patch-aa
+ Delete ports/java/sablevm/files/extra-patch-ab
+ Delete ports/java/sablevm/files/patch-aa
+ Delete ports/java/sablevm/files/patch-ab
+ Delete ports/java/sablevm/files/patch-ac
+ Delete ports/java/sablevm/files/patch-ad
+ Delete ports/java/sablevm/files/patch-ae
+ Delete ports/java/sablevm/files/patch-af
+ Delete ports/java/sablevm/files/patch-ag
+ Delete ports/java/sablevm/files/patch-ah
+ Delete ports/java/sablevm/files/patch-ai
+ Delete ports/java/sablevm/files/patch-aj
+ Delete ports/java/sablevm/files/patch-ak
+ Delete ports/java/sablevm/files/patch-al
+ Delete ports/java/sablevm/files/patch-am
+ Delete ports/java/sablevm/files/patch-an
+ Delete ports/java/sablevm/files/patch-ao
+ Delete ports/java/sablevm/files/patch-ap
+ Delete ports/java/sablevm/files/patch-aq
+ Delete ports/java/sablevm/files/patch-ar
+ Edit ports/java/sablevm/pkg-plist
+  Add delta 1.6 2004.06.17.15.25.28 archie
+ Edit ports/korean/hlatexfonts-ocf/Makefile
+  Add delta 1.4 2004.06.17.08.18.54 pav
+ Edit ports/lang/gcc33/Makefile
+  Add delta 1.183 2004.06.17.21.30.56 gerald
+ Edit ports/lang/gcc33/distinfo
+  Add delta 1.92 2004.06.17.21.30.57 gerald
+ Edit ports/lang/gcc34/Makefile
+  Add delta 1.172 2004.06.17.21.39.17 gerald
+ Edit ports/mail/bogofilter/Makefile
+  Add delta 1.37 2004.06.17.07.10.44 yar
+ Edit ports/mail/courier-imap/Makefile
+  Add delta 1.80 2004.06.17.21.24.54 oliver
+ Edit ports/mail/courier-imap/distinfo
+  Add delta 1.36 2004.06.17.21.24.54 oliver
+ Edit ports/mail/milter-sender/Makefile
+  Add delta 1.35 2004.06.17.08.04.37 yar
+ Edit ports/mail/milter-sender/distinfo
+  Add delta 1.16 2004.06.17.08.04.37 yar
+ Edit ports/mail/milter-sender/files/patch-aa
+  Add delta 1.4 2004.06.17.08.04.38 yar
+ Edit ports/mail/milter-sender/files/patch-ab
+  Add delta 1.9 2004.06.17.08.04.38 yar
+ Edit ports/mail/milter-sender/files/patch-ad
+  Add delta 1.8 2004.06.17.08.04.38 yar
+ Edit ports/mail/milter-sender/files/patch-ae
+  Add delta 1.6 2004.06.17.08.04.38 yar
+ Edit ports/mail/milter-sender/pkg-plist
+  Add delta 1.10 2004.06.17.08.04.37 yar
+ Edit ports/mail/msmtp-devel/Makefile
+  Add delta 1.2 2004.06.17.17.45.55 leeym
+ Edit ports/mail/msmtp-devel/distinfo
+  Add delta 1.2 2004.06.17.17.45.55 leeym
+ Edit ports/mail/sylpheed/Makefile
+  Add delta 1.84 2004.06.17.21.34.13 oliver
+ Edit ports/mail/sylpheed/distinfo
+  Add delta 1.57 2004.06.17.21.34.13 oliver
+ Edit ports/misc/pdmenu/Makefile
+  Add delta 1.19 2004.06.17.06.18.52 mezz
+ Edit ports/misc/pdmenu/distinfo
+  Add delta 1.12 2004.06.17.06.18.52 mezz
+ Edit ports/misc/pdmenu/files/patch-ab
+  Add delta 1.5 2004.06.17.06.18.52 mezz
+ Edit ports/misc/zaptel/Makefile
+  Add delta 1.5 2004.06.17.17.01.33 sobomax
+ Edit ports/misc/zaptel/distinfo
+  Add delta 1.5 2004.06.17.17.01.33 sobomax
+ Edit ports/misc/zaptel/files/patch-Makefile
+  Add delta 1.3 2004.06.17.17.01.34 sobomax
+ Edit ports/misc/zaptel/files/patch-test::Makefile
+  Add delta 1.2 2004.06.17.17.01.34 sobomax
+ Edit ports/misc/zaptel/files/patch-zaptel::Makefile
+  Add delta 1.2 2004.06.17.17.01.34 sobomax
+ Edit ports/misc/zaptel/files/zaptel.sh
+  Add delta 1.2 2004.06.17.17.01.34 sobomax
+ Edit ports/misc/zaptel/pkg-descr
+  Add delta 1.2 2004.06.17.17.01.33 sobomax
+ Edit ports/misc/zaptel/pkg-plist
+  Add delta 1.2 2004.06.17.17.01.33 sobomax
+ Edit ports/multimedia/avifile/Makefile
+  Add delta 1.55 2004.06.17.19.05.53 pav
+ Edit ports/net/cvsup/Makefile
+  Add delta 1.55 2004.06.17.22.59.47 obrien
+ Edit ports/net/ossp-sa/Makefile
+  Add delta 1.14 2004.06.17.06.09.19 mezz
+ Edit ports/net/ossp-sa/distinfo
+  Add delta 1.4 2004.06.17.06.09.19 mezz
+ Edit ports/print/Makefile
+  Add delta 1.307 2004.06.17.20.00.24 pav
+ Checkout ports/print/cups-pdf/Makefile
+ Checkout ports/print/cups-pdf/distinfo
+ Checkout ports/print/cups-pdf/pkg-descr
+ Checkout ports/print/cups-pdf/pkg-plist
+ Edit ports/print/ghostscript-afpl/Makefile
+  Add delta 1.133 2004.06.17.08.18.54 pav
+ Edit ports/print/ghostscript-gnu/Makefile
+  Add delta 1.109 2004.06.17.08.18.55 pav
+ Edit ports/security/f-prot-sig/Makefile
+  Add delta 1.12 2004.06.17.18.53.54 krion
+ Edit ports/security/f-prot-sig/distinfo
+  Add delta 1.8 2004.06.17.18.53.54 krion
+ Edit ports/security/nmap/Makefile
+  Add delta 1.79 2004.06.17.11.56.03 eik
+ Edit ports/security/nmap/distinfo
+  Add delta 1.49 2004.06.17.11.56.03 eik
+ Checkout ports/security/nmap/files/patch-targets.cc
+ Checkout ports/security/nmap/files/patch-tcpip.cc
+ Edit ports/security/nmap/pkg-plist
+  Add delta 1.14 2004.06.17.11.56.03 eik
+ Edit ports/security/portaudit-db/Makefile
+  Add delta 1.5 2004.06.17.07.13.36 eik
+ Edit ports/security/portaudit-db/database/portaudit.txt
+  Add delta 1.8 2004.06.17.06.35.51 eik
+  Add delta 1.9 2004.06.17.07.13.37 eik
+  Add delta 1.10 2004.06.17.08.02.23 eik
+ Edit ports/security/portaudit-db/files/portaudit2vuxml.awk
+  Add delta 1.2 2004.06.17.07.13.37 eik
+ Edit ports/security/stunnel/Makefile
+  Add delta 1.54 2004.06.17.09.35.23 roam
+ Edit ports/security/stunnel/pkg-plist
+  Add delta 1.8 2004.06.17.09.34.50 roam
+ Edit ports/sysutils/Makefile
+  Add delta 1.546 2004.06.17.16.14.12 glewis
+ Edit ports/sysutils/bacula/Makefile
+  Add delta 1.25 2004.06.17.13.19.36 krion
+ Edit ports/sysutils/bacula/distinfo
+  Add delta 1.10 2004.06.17.13.19.36 krion
+ Checkout ports/sysutils/powerman/Makefile
+ Checkout ports/sysutils/powerman/distinfo
+ Checkout ports/sysutils/powerman/files/patch-Makefile
+ Checkout ports/sysutils/powerman/files/patch-man-powerman.1
+ Checkout ports/sysutils/powerman/files/patch-man-powerman.conf.5
+ Checkout ports/sysutils/powerman/files/patch-man-powermand.1
+ Checkout ports/sysutils/powerman/files/patch-scripts-powerman.init
+ Checkout ports/sysutils/powerman/files/patch-src-Makefile
+ Checkout ports/sysutils/powerman/files/patch-src-client.c
+ Checkout ports/sysutils/powerman/files/patch-src-device_pipe.c
+ Checkout ports/sysutils/powerman/files/patch-src-hostlist.c
+ Checkout ports/sysutils/powerman/files/patch-src-parse.lex
+ Checkout ports/sysutils/powerman/files/patch-src-parse.y
+ Checkout ports/sysutils/powerman/files/patch-src-powerman.c
+ Checkout ports/sysutils/powerman/files/patch-src-powerman.h
+ Checkout ports/sysutils/powerman/files/patch-src-powermand.c
+ Checkout ports/sysutils/powerman/files/patch-src-wrappers.c
+ Checkout ports/sysutils/powerman/files/patch-src-wrappers.h
+ Checkout ports/sysutils/powerman/files/patch-test-Makefile
+ Checkout ports/sysutils/powerman/files/patch-test-vpcd.c
+ Checkout ports/sysutils/powerman/pkg-descr
+ Checkout ports/sysutils/powerman/pkg-plist
+ Edit ports/textproc/p5-XML-RAI/Makefile
+  Add delta 1.7 2004.06.17.07.50.41 arved
+ Edit ports/textproc/p5-XML-RAI/distinfo
+  Add delta 1.3 2004.06.17.07.50.41 arved
+ Edit ports/www/openvrml/Makefile
+  Add delta 1.12 2004.06.17.16.02.07 marcus
+ Edit ports/x11/xorg-clients/Makefile
+  Add delta 1.3 2004.06.17.01.53.09 anholt
+ Edit ports/x11/xorg-clients/files/patch-xdm_session.c
+  Add delta 1.2 2004.06.17.01.53.09 anholt
+ Edit ports/x11-wm/ratpoison/Makefile
+  Add delta 1.8 2004.06.17.10.56.42 jkoshy
+  Add delta 1.9 2004.06.17.14.28.27 krion
+ Edit ports/x11-wm/ratpoison/distinfo
+  Add delta 1.7 2004.06.17.10.56.42 jkoshy
+ Edit ports/x11-wm/ratpoison/pkg-plist
+  Add delta 1.5 2004.06.17.10.56.42 jkoshy
+ Edit ports/x11-wm/wmi/Makefile
+  Add delta 1.2 2004.06.17.05.35.19 mezz
+ Edit ports/x11-wm/wmi/distinfo
+  Add delta 1.2 2004.06.17.05.35.19 mezz
+Shutting down connection to server
+Finished successfully
+** No need to upgrade 'automake-1.5,1' (>= automake-1.5,1). (specify -f to force)
+** No need to upgrade 'mkcatalog-1.1' (>= mkcatalog-1.1). (specify -f to force)
+** No need to upgrade 'unix2dos-1.3' (>= unix2dos-1.3). (specify -f to force)
+** No need to upgrade 'libtool-1.3.5_2' (>= libtool-1.3.5_2). (specify -f to force)
+** No need to upgrade 'procmail-3.22_4' (>= procmail-3.22_4). (specify -f to force)
+** No need to upgrade 'expat-1.95.7' (>= expat-1.95.7). (specify -f to force)
+** No need to upgrade 'm4-1.4_1' (>= m4-1.4_1). (specify -f to force)
+** No need to upgrade 'imake-4.3.0_2' (>= imake-4.3.0_2). (specify -f to force)
+** No need to upgrade 'p5-File-Spec-0.86' (>= p5-File-Spec-0.86). (specify -f to force)
+** Package name changed from 'autoconf213' (unknown) to 'autoconf' (devel/autoconf213).
+** No need to upgrade 'autoconf213-2.13.000227_5' (>= autoconf-2.13.000227_5). (specify -f to force)
+** No need to upgrade 'openssl-0.9.7d' (>= openssl-0.9.7d). (specify -f to force)
+** Package name changed from 'ruby-shim-ruby18' (lang/ruby16-shim-ruby18) to 'ruby16-shim-ruby18' (lang/ruby16-shim-ruby18).
+** No need to upgrade 'ruby-shim-ruby18-1.8.1.p3' (>= ruby16-shim-ruby18-1.8.1.p3). (specify -f to force)
+** No need to upgrade 'openssh-3.6.1_5' (>= openssh-3.6.1_5). (specify -f to force)
+** No need to upgrade 'bash-2.05b.007' (>= bash-2.05b.007). (specify -f to force)
+** No need to upgrade 'lynx-ssl-2.8.5' (>= lynx-ssl-2.8.5). (specify -f to force)
+** Package name changed from 'automake14' (devel/automake14) to 'automake' (devel/automake14).
+** No need to upgrade 'ja-nkf-2.04' (>= ja-nkf-2.04). (specify -f to force)
+** No need to upgrade 'p5-Net-Daemon-0.38' (>= p5-Net-Daemon-0.38). (specify -f to force)
+** No need to upgrade 'p5-Net-1.18,1' (>= p5-Net-1.18,1). (specify -f to force)
+** No need to upgrade 'docbook-xml-4.2_1' (>= docbook-xml-4.2_1). (specify -f to force)
+** No need to upgrade 'libmcrypt-2.5.7_1' (>= libmcrypt-2.5.7_1). (specify -f to force)
+** No need to upgrade 'p5-HTML-Tagset-3.03' (>= p5-HTML-Tagset-3.03). (specify -f to force)
+** No need to upgrade 'libgnugetopt-1.2' (>= libgnugetopt-1.2). (specify -f to force)
+** No need to upgrade 'iso8879-1986_2' (>= iso8879-1986_2). (specify -f to force)
+** No need to upgrade 'docbook-241_2' (>= docbook-241_2). (specify -f to force)
+** No need to upgrade 'linuxdoc-1.1_1' (>= linuxdoc-1.1_1). (specify -f to force)
+** No need to upgrade 'docbook-3.0_2' (>= docbook-3.0_2). (specify -f to force)
+** No need to upgrade 'docbook-4.1_2' (>= docbook-4.1_2). (specify -f to force)
+** No need to upgrade 'docbook-3.1_2' (>= docbook-3.1_2). (specify -f to force)
+** No need to upgrade 'qmail-1.03_3' (>= qmail-1.03_3). (specify -f to force)
+** No need to upgrade 'ruby18-bdb1-0.2.2' (>= ruby18-bdb1-0.2.2). (specify -f to force)
+** No need to upgrade 'scanssh-1.60b_1' (>= scanssh-1.60b_1). (specify -f to force)
+** No need to upgrade 'docbook-4.0_2' (>= docbook-4.0_2). (specify -f to force)
+** No need to upgrade 'docbook-1.3' (>= docbook-1.3). (specify -f to force)
+** Package name changed from 'p5-DBI-137' (databases/p5-DBI-137) to 'p5-DBI' (databases/p5-DBI-137).
+** No need to upgrade 'p5-DBI-137-1.37' (>= p5-DBI-1.37). (specify -f to force)
+** No need to upgrade 'p5-Digest-MD5-2.33' (>= p5-Digest-MD5-2.33). (specify -f to force)
+** No need to upgrade 'libtool-1.4.3_3' (>= libtool-1.4.3_3). (specify -f to force)
+** No need to upgrade 'libiconv-1.9.1_3' (>= libiconv-1.9.1_3). (specify -f to force)
+** No need to upgrade 'screen-4.0.2' (>= screen-4.0.2). (specify -f to force)
+** No need to upgrade 'gettext-0.13.1_1' (>= gettext-0.13.1_1). (specify -f to force)
+** No need to upgrade 'bison-1.75_2' (>= bison-1.75_2). (specify -f to force)
+** No need to upgrade 'x86info-1.12b' (>= x86info-1.12b). (specify -f to force)
+** No need to upgrade 'gdbm-1.8.3_1' (>= gdbm-1.8.3_1). (specify -f to force)
+** No need to upgrade 'p5-gettext-1.01_4' (>= p5-gettext-1.01_4). (specify -f to force)
+** No need to upgrade 'help2man-1.33.1' (>= help2man-1.33.1). (specify -f to force)
+** No need to upgrade 'p5-Socket6-0.17' (>= p5-Socket6-0.17). (specify -f to force)
+** No need to upgrade 'pkgconfig-0.15.0_1' (>= pkgconfig-0.15.0_1). (specify -f to force)
+** No need to upgrade 'p5-IO-INET6-2.01' (>= p5-IO-INET6-2.01). (specify -f to force)
+** No need to upgrade 'sgmlformat-1.7_2' (>= sgmlformat-1.7_2). (specify -f to force)
+** No need to upgrade 'mutt-1.4.2.1' (>= mutt-1.4.2.1). (specify -f to force)
+** No need to upgrade 'checkbot-1.74' (>= checkbot-1.74). (specify -f to force)
+** No need to upgrade 'glib-1.2.10_11' (>= glib-1.2.10_11). (specify -f to force)
+** No need to upgrade 'bind9-9.2.3.4' (>= bind9-9.2.3). (specify -f to force)
+** No need to upgrade 'fontconfig-2.2.2,1' (>= fontconfig-2.2.2,1). (specify -f to force)
+** No need to upgrade 'autoconf-2.53_1' (>= autoconf-2.53_1). (specify -f to force)
+** No need to upgrade 'gdchart-0.11.4_1' (>= gdchart-0.11.4_1). (specify -f to force)
+** No need to upgrade 'cvsutils-2003.02.03' (>= cvsutils-2003.02.03). (specify -f to force)
+** No need to upgrade 'gnupg-1.2.4_1' (>= gnupg-1.2.4_1). (specify -f to force)
+** No need to upgrade 'webalizer-2.1.10_4' (>= webalizer-2.1.10_4). (specify -f to force)
+** No need to upgrade 'gtk-1.2.10_12' (>= gtk-1.2.10_12). (specify -f to force)
+** No need to upgrade 'pcre-4.5' (>= pcre-4.5). (specify -f to force)
+** No need to upgrade 'oneko-2.0b_2' (>= oneko-2.0b_2). (specify -f to force)
+** No need to upgrade 'cvsup-16.1h' (>= cvsup-16.1h). (specify -f to force)
+** No need to upgrade 'swftools-0.5.1' (>= swftools-0.5.1). (specify -f to force)
+** No need to upgrade 'p5-Test-Simple-0.47_1' (>= p5-Test-Simple-0.47_1). (specify -f to force)
+** 'databases/p5-DBI' is marked as IGNORE:
+	Please install databases/p5-DBI-137 instead
+** No need to upgrade 'p5-DBD-mysql-2.9003' (>= p5-DBD-mysql-2.9003). (specify -f to force)
+--->  Session started at: Fri, 18 Jun 2004 03:03:58 +0200
+--->  Upgrade of security/p5-Authen-SASL started at: Fri, 18 Jun 2004 03:04:01 +0200
+--->  Upgrade of security/p5-Authen-SASL ended at: Fri, 18 Jun 2004 03:04:01 +0200 (consumed 00:00:00)
+--->  Upgrade of lang/ruby16 started at: Fri, 18 Jun 2004 03:04:02 +0200
+--->  Upgrade of lang/ruby16 ended at: Fri, 18 Jun 2004 03:04:02 +0200 (consumed 00:00:00)
+--->  Upgrade of textproc/xmlcatmgr started at: Fri, 18 Jun 2004 03:04:03 +0200
+--->  Upgrade of textproc/xmlcatmgr ended at: Fri, 18 Jun 2004 03:04:03 +0200 (consumed 00:00:00)
+--->  Upgrade of converters/p5-MIME-Base64 started at: Fri, 18 Jun 2004 03:04:03 +0200
+--->  Upgrade of converters/p5-MIME-Base64 ended at: Fri, 18 Jun 2004 03:04:03 +0200 (consumed 00:00:00)
+--->  Upgrade of databases/mysql40-client started at: Fri, 18 Jun 2004 03:04:04 +0200
+--->  Upgrade of databases/mysql40-client ended at: Fri, 18 Jun 2004 03:04:04 +0200 (consumed 00:00:00)
+--->  Upgrade of sysutils/lsof started at: Fri, 18 Jun 2004 03:04:06 +0200
+--->  Upgrade of sysutils/lsof ended at: Fri, 18 Jun 2004 03:04:06 +0200 (consumed 00:00:00)
+--->  Upgrade of databases/mysql40-server started at: Fri, 18 Jun 2004 03:04:06 +0200
+--->  Upgrade of databases/mysql40-server ended at: Fri, 18 Jun 2004 03:04:06 +0200 (consumed 00:00:00)
+--->  Upgrade of textproc/p5-PodParser started at: Fri, 18 Jun 2004 03:04:06 +0200
+--->  Upgrade of textproc/p5-PodParser ended at: Fri, 18 Jun 2004 03:04:06 +0200 (consumed 00:00:00)
+--->  Upgrade of archivers/unzip started at: Fri, 18 Jun 2004 03:04:07 +0200
+--->  Upgrade of archivers/unzip ended at: Fri, 18 Jun 2004 03:04:07 +0200 (consumed 00:00:00)
+--->  Upgrade of devel/p5-Storable started at: Fri, 18 Jun 2004 03:04:07 +0200
+--->  Upgrade of devel/p5-Storable ended at: Fri, 18 Jun 2004 03:04:07 +0200 (consumed 00:00:00)
+--->  Upgrade of devel/automake14 started at: Fri, 18 Jun 2004 03:04:07 +0200
+--->  Upgrade of devel/automake14 ended at: Fri, 18 Jun 2004 03:04:07 +0200 (consumed 00:00:00)
+--->  Upgrade of graphics/jpeg started at: Fri, 18 Jun 2004 03:04:08 +0200
+--->  Upgrade of graphics/jpeg ended at: Fri, 18 Jun 2004 03:04:08 +0200 (consumed 00:00:00)
+--->  Upgrade of mail/p5-Mail-Tools started at: Fri, 18 Jun 2004 03:04:09 +0200
+--->  Upgrade of mail/p5-Mail-Tools ended at: Fri, 18 Jun 2004 03:04:09 +0200 (consumed 00:00:00)
+--->  Upgrade of graphics/png started at: Fri, 18 Jun 2004 03:04:09 +0200
+--->  Upgrade of graphics/png ended at: Fri, 18 Jun 2004 03:04:09 +0200 (consumed 00:00:00)
+--->  Upgrade of devel/cvsd started at: Fri, 18 Jun 2004 03:04:10 +0200
+--->  Upgrade of devel/cvsd ended at: Fri, 18 Jun 2004 03:04:10 +0200 (consumed 00:00:00)
+--->  Upgrade of www/p5-HTML-Parser started at: Fri, 18 Jun 2004 03:04:10 +0200
+--->  Upgrade of www/p5-HTML-Parser ended at: Fri, 18 Jun 2004 03:04:10 +0200 (consumed 00:00:00)
+--->  Upgrade of lang/ruby18 started at: Fri, 18 Jun 2004 03:04:12 +0200
+--->  Upgrade of lang/ruby18 ended at: Fri, 18 Jun 2004 03:04:12 +0200 (consumed 00:00:00)
+--->  Upgrade of security/p5-Digest started at: Fri, 18 Jun 2004 03:04:13 +0200
+--->  Upgrade of security/p5-Digest ended at: Fri, 18 Jun 2004 03:04:13 +0200 (consumed 00:00:00)
+--->  Upgrade of net/p5-URI started at: Fri, 18 Jun 2004 03:04:13 +0200
+--->  Upgrade of net/p5-URI ended at: Fri, 18 Jun 2004 03:04:13 +0200 (consumed 00:00:00)
+--->  Upgrade of www/p5-libwww started at: Fri, 18 Jun 2004 03:04:14 +0200
+--->  Upgrade of www/p5-libwww ended at: Fri, 18 Jun 2004 03:04:14 +0200 (consumed 00:00:00)
+--->  Upgrade of net-mgmt/p5-SNMP_Session started at: Fri, 18 Jun 2004 03:04:15 +0200
+--->  Upgrade of net-mgmt/p5-SNMP_Session ended at: Fri, 18 Jun 2004 03:04:15 +0200 (consumed 00:00:00)
+--->  Upgrade of textproc/jade started at: Fri, 18 Jun 2004 03:04:16 +0200
+--->  Upgrade of textproc/jade ended at: Fri, 18 Jun 2004 03:04:16 +0200 (consumed 00:00:00)
+--->  Upgrade of sysutils/portupgrade started at: Fri, 18 Jun 2004 03:04:17 +0200
+--->  Upgrade of sysutils/portupgrade ended at: Fri, 18 Jun 2004 03:04:17 +0200 (consumed 00:00:00)
+--->  Upgrade of lang/ezm3 started at: Fri, 18 Jun 2004 03:04:17 +0200
+--->  Upgrade of lang/ezm3 ended at: Fri, 18 Jun 2004 03:04:17 +0200 (consumed 00:00:00)
+--->  Upgrade of print/freetype2 started at: Fri, 18 Jun 2004 03:04:18 +0200
+--->  Upgrade of print/freetype2 ended at: Fri, 18 Jun 2004 03:04:18 +0200 (consumed 00:00:00)
+--->  Upgrade of graphics/gd started at: Fri, 18 Jun 2004 03:04:18 +0200
+--->  Upgrade of graphics/gd ended at: Fri, 18 Jun 2004 03:04:18 +0200 (consumed 00:00:00)
+--->  Upgrade of net-mgmt/mrtg started at: Fri, 18 Jun 2004 03:04:19 +0200
+--->  Upgrade of net-mgmt/mrtg ended at: Fri, 18 Jun 2004 03:04:19 +0200 (consumed 00:00:00)
+--->  Upgrade of x11/XFree86-4-libraries started at: Fri, 18 Jun 2004 03:04:20 +0200
+--->  Upgrade of x11/XFree86-4-libraries ended at: Fri, 18 Jun 2004 03:04:20 +0200 (consumed 00:00:00)
+--->  Upgrade of devel/p5-Test-Harness started at: Fri, 18 Jun 2004 03:04:20 +0200
+--->  Upgrade of devel/p5-Test-Harness ended at: Fri, 18 Jun 2004 03:04:20 +0200 (consumed 00:00:00)
+--->  Upgrade of security/nmap started at: Fri, 18 Jun 2004 03:04:21 +0200
+--->  Upgrade of security/nmap ended at: Fri, 18 Jun 2004 03:04:21 +0200 (consumed 00:00:00)
+--->  Upgrade of editors/vim started at: Fri, 18 Jun 2004 03:04:21 +0200
+--->  Upgrade of editors/vim ended at: Fri, 18 Jun 2004 03:04:21 +0200 (consumed 00:00:00)
+--->  Upgrade of devel/t1lib started at: Fri, 18 Jun 2004 03:04:22 +0200
+--->  Upgrade of devel/t1lib ended at: Fri, 18 Jun 2004 03:04:22 +0200 (consumed 00:00:00)
+--->  Upgrade of net/p5-PlRPC started at: Fri, 18 Jun 2004 03:04:22 +0200
+--->  Upgrade of net/p5-PlRPC ended at: Fri, 18 Jun 2004 03:04:22 +0200 (consumed 00:00:00)
+--->  Listing the results (+:done / -:ignored / *:skipped / !:failed)
+	+ security/p5-Authen-SASL (p5-Authen-SASL-2.06)
+	+ lang/ruby16 (ruby-1.6.8.2003.10.15_1)
+	+ textproc/xmlcatmgr (xmlcatmgr-2.0.b1)
+	+ converters/p5-MIME-Base64 (p5-MIME-Base64-3.00)
+	+ databases/mysql40-client (mysql-client-4.0.18_1)
+	+ sysutils/lsof (lsof-4.71)
+	+ databases/mysql40-server (mysql-server-4.0.18_1)
+	+ textproc/p5-PodParser (p5-PodParser-1.26)
+	+ archivers/unzip (unzip-5.50_2)
+	+ devel/p5-Storable (p5-Storable-2.09)
+	+ devel/automake14 (automake14-1.4.5_9)
+	+ graphics/jpeg (jpeg-6b_2)
+	+ mail/p5-Mail-Tools (p5-Mail-Tools-1.60)
+	+ graphics/png (png-1.2.5_3)
+	+ devel/cvsd (cvsd-1.0.1)
+	+ www/p5-HTML-Parser (p5-HTML-Parser-3.35)
+	+ lang/ruby18 (ruby-1.8.1_2)
+	+ security/p5-Digest (p5-Digest-1.05_1)
+	+ net/p5-URI (p5-URI-1.30)
+	+ www/p5-libwww (p5-libwww-5.76)
+	+ net-mgmt/p5-SNMP_Session (p5-SNMP_Session-1.00)
+	+ textproc/jade (jade-1.2.1_6)
+	+ sysutils/portupgrade (portupgrade-20040325)
+	+ lang/ezm3 (ezm3-1.1_1)
+	+ print/freetype2 (freetype2-2.1.7_2)
+	+ graphics/gd (gd-2.0.22,1)
+	+ net-mgmt/mrtg (mrtg-2.10.13,1)
+	+ x11/XFree86-4-libraries (XFree86-libraries-4.3.0_6)
+	+ devel/p5-Test-Harness (p5-Test-Harness-2.40)
+	+ security/nmap (nmap-3.50)
+	+ editors/vim (vim-6.2.531)
+	+ devel/t1lib (t1lib-5.0.1)
+	+ net/p5-PlRPC (p5-PlRPC-0.2016)
+--->  Session ended at: Fri, 18 Jun 2004 03:04:23 +0200 (consumed 00:00:24)
+
+-- End of daily output --

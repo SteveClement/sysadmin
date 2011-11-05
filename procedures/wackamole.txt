@@ -1,0 +1,68 @@
+Installing wackamole
+--------------------
+
+Wackamole can be found at www.backhand.org.
+
+First install spread.
+
+Allocate a fixed IP address to each machine (for safety), and also a
+variable (i.e. wackamole administered) one. It is easier if the
+variable range is contiguous. If it is not, wackamole currently needs
+a patch (should be in patches) to allow multiple "of" fields.
+
+Then create a /etc/wackamole.conf looking like this (see the one in the
+distribution for more comments):
+
+# this machines "standard" variable address - if the machine is up, it
+# will always have at least this address.
+vip 213.129.65.179
+
+#The "of" field gives a range of virtual addresses which are to be managed by
+#wackamole. Note that each address must be a range even if it is a
+#single address
+of 213.129.65.177-177
+of 213.129.65.179-179
+of 213.129.65.181-181
+
+#The "router" field gived the ip address of the router
+#router router_ip. This is not used under FreeBSD AFAICS.
+router 213.129.64.254
+
+#This field is the broadcast address for the virtual addresses to be
+#managed. Required because ifconfig requires it. Not sure it has any
+#material affect - unless, of course, you use broadcast for something!
+bcast 213.129.95.255
+
+#This field is the network mask for the virtual addresses to be
+#managed. I set it to all 1s coz that's what we normally do for secondaries.
+netmask 255.255.255.255
+
+#This field is the interface on which wackamole ups and downs virtual addresses.
+interface fxp0
+
+#This field is the maximum number of IP addresses that will move from one 
+#wackamole to another during a round of balancing. Leave it as it is.
+balance rate 1
+
+#This field gives the time (in seconds) between rounds of
+#balancing. Leave it as it is.
+balance timer seconds 5
+
+#This is the time between the first wackamole's initialization and the
+#maturity process.  During this interval, IPs are not managed. Leave
+#it as it is.
+maturity timeout seconds 5
+
+#If this is set to 0, balancing takes place as normal.  Otherwise, 
+#there is only one round of balancing per membership event, and all
+#IPs are balanced at once. Leave it as it is.
+Complete Balance 1
+
+Then add:
+
+/usr/local/sbin/wackamole -c /etc/wackamole.conf
+
+to /etc/rc.local.
+
+Note that this will cause ARP whinging on other hosts, as the
+addresses move between machines.

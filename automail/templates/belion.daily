@@ -1,0 +1,897 @@
+*Received: (qmail 67164 invoked by uid 0); 4 Aug 2004 01:31:41 -0000
+Received: from root@belion.ion.lu by linion.ion.lu by uid 89 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.73. spamassassin: 2.63.  Clear:RC:0(80.90.47.167):SA:0(0.0/5.0):. 
+ Processed in 3.917694 secs); 04 Aug 2004 01:31:41 -0000
+X-Spam-Status: No, hits=0.0 required=5.0
+X-Antivirus-ION.LU-Mail-From: root@belion.ion.lu via linion.ion.lu
+X-Antivirus-ION.LU: 1.22-st-qms (Clear:RC:0(80.90.47.167):SA:0(0.0/5.0):. Processed in 3.917694 secs Process 67152)
+Received: from belion.ion.lu (80.90.47.167)
+  by linion.ion.lu with SMTP; 4 Aug 2004 01:31:37 -0000
+Received: from belion.ion.lu (localhost.ion.lu [127.0.0.1])
+	by belion.ion.lu (8.12.8p1/8.12.8) with ESMTP id i741Vb1w077107
+	for <root@belion.ion.lu>; Wed, 4 Aug 2004 03:31:37 +0200 (CEST)
+	(envelope-from root@belion.ion.lu)
+Received: (from root@localhost)
+	by belion.ion.lu (8.12.8p1/8.12.8/Submit) id i741Vb6B077105
+	for root; Wed, 4 Aug 2004 03:31:37 +0200 (CEST)
+Date: Wed, 4 Aug 2004 03:31:37 +0200 (CEST)
+From: Charlie Root <root@belion.ion.lu>
+Message-Id: <200408040131.i741Vb6B077105@belion.ion.lu>
+To: root@belion.ion.lu
+Subject: belion.ion.lu daily run output
+
+
+Removing stale files from /var/preserve:
+
+Cleaning out old system announcements:
+
+Removing stale files from /var/rwho:
+
+Backup passwd and group files:
+belion.ion.lu group diffs:
+24c24
+< www:*:80:
+---
+> www:*:80:steve,jedi
+
+Verifying group file syntax:
+
+Backing up mail aliases:
+
+Disk status:
+Filesystem  1K-blocks     Used    Avail Capacity  Mounted on
+/dev/ad0s1a  76926344 59074326 11697912    83%    /
+/dev/ad1s1d  76910120 69788540   968772    99%    /spare
+procfs              4        4        0   100%    /proc
+
+Last dump(s) done (Dump '>' file systems):
+
+UUCP status:
+
+Network interface status:
+Name  Mtu   Network       Address            Ipkts Ierrs    Opkts Oerrs  Coll
+rl0   1500  <Link#1>    00:50:70:51:74:f2  1673491     0   841752     0     0
+rl0   1500  80.90.47.160/ belion            924687     -   839768     -     -
+ppp0* 1500  <Link#2>                             0     0        0     0     0
+sl0*  552   <Link#3>                             0     0        0     0     0
+lo0   16384 <Link#4>                        570636     0   570636     0     0
+lo0   16384 your-net      localhost         570322     -   570322     -     -
+
+Local system status:
+ 3:01AM  up 44 days, 14:08, 10 users, load averages: 0.00, 0.00, 0.00
+
+Mail in local queue:
+/var/spool/mqueue is empty
+		Total requests: 0
+
+Mail in submit queue:
+/var/spool/clientmqueue is empty
+		Total requests: 0
+
+Security check:
+    (output mailed separately)
+
+Checking for rejected mail hosts:
+
+Checking for denied zone transfers (AXFR and IXFR):
+
+Running /etc/daily.local:
+Parsing supfile "/etc/cvsupfile"
+Connecting to cvsup.fr.FreeBSD.org
+Connected to cvsup.fr.FreeBSD.org
+Server software version: SNAP_16_1h
+Negotiating file attribute support
+Exchanging collection information
+Establishing multiplexed-mode data connection
+Running
+Updating collection ports-all/cvs
+ Edit ports/CHANGES
+  Add delta 1.30 2004.08.03.22.36.48 ade
+ Edit ports/MOVED
+  Add delta 1.488 2004.08.03.22.36.48 ade
+ Edit ports/Mk/bsd.autotools.mk
+  Add delta 1.8 2004.08.03.22.36.48 ade
+ Edit ports/Mk/bsd.port.mk
+  Add delta 1.497 2004.08.03.19.03.58 marcus
+ Edit ports/accessibility/dasher/Makefile
+  Add delta 1.15 2004.08.03.00.50.56 mezz
+ Edit ports/accessibility/dasher/distinfo
+  Add delta 1.8 2004.08.03.00.50.56 mezz
+ Delete ports/accessibility/dasher/files/patch-configure
+ Edit ports/accessibility/dasher/pkg-plist
+  Add delta 1.8 2004.08.03.00.50.56 mezz
+ Edit ports/audio/faac/Makefile
+  Add delta 1.8 2004.08.03.22.36.48 ade
+ Edit ports/audio/mp3stat/Makefile
+  Add delta 1.17 2004.08.03.08.39.32 krion
+ Edit ports/audio/mp3stat/distinfo
+  Add delta 1.6 2004.08.03.08.39.32 krion
+ Edit ports/audio/taglib/Makefile
+  Add delta 1.4 2004.08.03.16.07.44 lofi
+ Edit ports/audio/taglib/distinfo
+  Add delta 1.3 2004.08.03.16.07.44 lofi
+ Edit ports/audio/taglib/pkg-plist
+  Add delta 1.2 2004.08.03.16.07.44 lofi
+ Edit ports/chinese/gcin/Makefile
+  Add delta 1.2 2004.08.03.18.46.42 vanilla
+ Edit ports/chinese/gcin/distinfo
+  Add delta 1.2 2004.08.03.18.46.42 vanilla
+ Delete ports/chinese/gcin/files/patch-IMConn.c
+ Delete ports/chinese/gcin/files/patch-IMdkit::Makefile
+ Delete ports/chinese/gcin/files/patch-IMdkit::lib::Makefile
+ Edit ports/chinese/gcin/files/patch-Makefile
+  Add delta 1.2 2004.08.03.18.46.42 vanilla
+ Edit ports/chinese/gcin/files/patch-configure
+  Add delta 1.2 2004.08.03.18.46.42 vanilla
+ Delete ports/chinese/gcin/files/patch-pho-util.c
+ Delete ports/chinese/gcin/files/patch-tsin-util.c
+ Delete ports/chinese/gcin/files/patch-tsin.c
+ Edit ports/comms/efax-gtk/Makefile
+  Add delta 1.4 2004.08.03.07.22.20 mezz
+ Edit ports/comms/efax-gtk/distinfo
+  Add delta 1.4 2004.08.03.07.22.20 mezz
+ Checkout ports/comms/gammu/files/patch-configure
+ Edit ports/databases/gauche-gdbm/Makefile
+  Add delta 1.24 2004.08.03.07.56.20 mezz
+ Edit ports/databases/p5-Cache-Memcached/Makefile
+  Add delta 1.2 2004.08.03.06.49.57 mezz
+ Edit ports/databases/p5-Cache-Memcached/distinfo
+  Add delta 1.2 2004.08.03.06.49.57 mezz
+ Edit ports/devel/Makefile
+  Add delta 1.1663 2004.08.03.20.01.45 lth
+  Add delta 1.1664 2004.08.03.22.36.48 ade
+ Delete ports/devel/autoconf/Makefile
+ Delete ports/devel/autoconf/distinfo
+ Delete ports/devel/autoconf/files/patch-bin-autoscan.in
+ Delete ports/devel/autoconf/pkg-descr
+ Delete ports/devel/autoconf/pkg-plist
+ Edit ports/devel/autoconf213/Makefile
+  Add delta 1.54 2004.08.03.22.58.09 ade
+ Edit ports/devel/autoconf253/Makefile
+  Add delta 1.49 2004.08.03.22.58.10 ade
+ Edit ports/devel/autoconf259/Makefile
+  Add delta 1.57 2004.08.03.22.58.10 ade
+ Delete ports/devel/automake/Makefile
+ Delete ports/devel/automake/distinfo
+ Delete ports/devel/automake/files/patch-Makefile.in
+ Delete ports/devel/automake/files/patch-aclocal.in
+ Delete ports/devel/automake/files/patch-automake.texi
+ Delete ports/devel/automake/pkg-descr
+ Delete ports/devel/automake/pkg-plist
+ Edit ports/devel/automake14/Makefile
+  Add delta 1.51 2004.08.03.22.58.10 ade
+ Edit ports/devel/automake15/Makefile
+  Add delta 1.40 2004.08.03.22.36.49 ade
+  Add delta 1.41 2004.08.03.22.58.10 ade
+ Edit ports/devel/automake18/Makefile
+  Add delta 1.52 2004.08.03.22.58.10 ade
+ Edit ports/devel/avrdude/Makefile
+  Add delta 1.8 2004.08.03.16.51.00 bsd
+ Edit ports/devel/avrdude/distinfo
+  Add delta 1.6 2004.08.03.16.51.00 bsd
+ Edit ports/devel/fam/Makefile
+  Add delta 1.23 2004.08.03.15.49.35 lofi
+ Edit ports/devel/fam/pkg-plist
+  Add delta 1.7 2004.08.03.15.49.35 lofi
+ Edit ports/devel/libtool13/Makefile
+  Add delta 1.34 2004.08.03.22.58.11 ade
+ Edit ports/devel/libtool15/Makefile
+  Add delta 1.38 2004.08.03.22.58.11 ade
+ Checkout ports/devel/m6811-gcc/files/patch-gcc-Makefile.in
+ Edit ports/devel/msp430-binutils/Makefile
+  Add delta 1.17 2004.08.03.10.52.43 lev
+ Edit ports/devel/msp430-binutils/distinfo
+  Add delta 1.6 2004.08.03.10.52.43 lev
+ Edit ports/devel/msp430-binutils/files/patch-Makefile.in
+  Add delta 1.2 2004.08.03.10.52.44 lev
+ Delete ports/devel/msp430-binutils/files/patch-bfd::archures.c
+ Delete ports/devel/msp430-binutils/files/patch-bfd::bfd-in2.h
+ Delete ports/devel/msp430-binutils/files/patch-bfd::cpu-msp430.c
+ Delete ports/devel/msp430-binutils/files/patch-bfd::elf32-msp430.c
+ Edit ports/devel/msp430-binutils/files/patch-gas::config::tc-msp430.c
+  Add delta 1.5 2004.08.03.10.52.44 lev
+ Delete ports/devel/msp430-binutils/files/patch-gas::doc::as.1
+ Delete ports/devel/msp430-binutils/files/patch-include::elf::msp430.h
+ Edit ports/devel/msp430-binutils/files/patch-ld::Makefile.am
+  Add delta 1.4 2004.08.03.10.52.44 lev
+ Edit ports/devel/msp430-binutils/files/patch-ld::Makefile.in
+  Add delta 1.4 2004.08.03.10.52.44 lev
+ Edit ports/devel/msp430-binutils/files/patch-ld::configure.tgt
+  Add delta 1.4 2004.08.03.10.52.44 lev
+ Checkout ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430all.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x148.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x1610.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x1611.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x1612.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x168.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x415.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x417.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x448.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430xE423.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430xE425.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430xE427.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430xW423.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430xW425.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430xW427.sh
+ Edit ports/devel/msp430-gcc/Makefile
+  Add delta 1.32 2004.08.03.10.55.13 lev
+ Edit ports/devel/msp430-gcc/distinfo
+  Add delta 1.24 2004.08.03.10.55.13 lev
+ Edit ports/devel/msp430-gcc/files/patch-Makefile.in
+  Add delta 1.2 2004.08.03.10.55.14 lev
+ Edit ports/devel/msp430-gcc/files/patch-gcc-Makefile.in
+  Add delta 1.2 2004.08.03.10.55.14 lev
+ Edit ports/devel/msp430-gcc/pkg-plist
+  Add delta 1.7 2004.08.03.10.55.13 lev
+ Edit ports/devel/msp430-gdb/Makefile
+  Add delta 1.11 2004.08.03.11.16.39 lev
+ Edit ports/devel/msp430-gdb/distinfo
+  Add delta 1.7 2004.08.03.11.16.39 lev
+ Edit ports/devel/msp430-libc/Makefile
+  Add delta 1.21 2004.08.03.10.56.19 lev
+ Edit ports/devel/msp430-libc/distinfo
+  Add delta 1.18 2004.08.03.10.56.19 lev
+ Edit ports/devel/msp430-libc/pkg-plist
+  Add delta 1.14 2004.08.03.10.56.19 lev
+ Checkout ports/devel/p5-Class-Accessor-Lvalue/Makefile
+ Checkout ports/devel/p5-Class-Accessor-Lvalue/distinfo
+ Checkout ports/devel/p5-Class-Accessor-Lvalue/pkg-descr
+ Checkout ports/devel/p5-Class-Accessor-Lvalue/pkg-plist
+ Edit ports/dns/nsd/Makefile
+  Add delta 1.17 2004.08.03.07.13.17 mezz
+ Edit ports/dns/nsd/distinfo
+  Add delta 1.10 2004.08.03.07.13.17 mezz
+ Delete ports/dns/nsd/files/patch-aa
+ Edit ports/editors/vim/Makefile
+  Add delta 1.257 2004.08.03.19.15.39 obrien
+  Add delta 1.258 2004.08.03.19.16.14 obrien
+ Edit ports/editors/vim/distinfo
+  Add delta 1.152 2004.08.03.19.15.39 obrien
+ Edit ports/editors/vim/files/patch-01
+  Add delta 1.28 2004.08.03.19.16.15 obrien
+ Checkout ports/emulators/pearpc/files/patch-src-cpu_generic-ppc_cpu.cc
+ Checkout ports/games/scummvm/files/patch-base-main.cpp
+ Checkout ports/games/scummvm/files/patch-scumm-actor.cpp
+ Checkout ports/games/scummvm/files/patch-scumm-debugger.cpp
+ Checkout ports/graphics/divxcalc/files/patch-admin::detect-autoconf.sh
+ Checkout ports/graphics/kdegraphics3/files/patch-ksvg_ecma_ksvg_bridge.h
+ Checkout ports/graphics/kdegraphics3/files/patch-ksvg_ecma_ksvg_lookup.h
+ Checkout ports/graphics/kdegraphics3/files/patch-ksvg_ecma_ksvg_scriptinterpreter.h
+ Checkout ports/graphics/kdegraphics3/files/patch-ksvg_impl_SVGHelperImpl.h
+ Checkout ports/graphics/kdegraphics3/files/patch-ksvg_impl_SVGList.h
+ Edit ports/graphics/png/Makefile
+  Add delta 1.65 2004.08.03.22.57.48 ache
+ Edit ports/japanese/emacs20-dl-canna/pkg-plist
+  Add delta 1.6 2004.08.03.22.36.50 ade
+ Edit ports/japanese/emacs20-dl-wnn6/pkg-plist
+  Add delta 1.5 2004.08.03.22.36.50 ade
+ Edit ports/lang/gauche/Makefile
+  Add delta 1.29 2004.08.03.07.52.54 mezz
+ Edit ports/lang/gauche/distinfo
+  Add delta 1.16 2004.08.03.07.52.54 mezz
+ Edit ports/lang/gauche/pkg-plist
+  Add delta 1.15 2004.08.03.07.52.54 mezz
+ Edit ports/lang/harbour/Makefile
+  Add delta 1.5 2004.08.03.19.23.16 pav
+ Edit ports/lang/harbour/distinfo
+  Add delta 1.3 2004.08.03.19.23.16 pav
+ Edit ports/lang/harbour/pkg-plist
+  Add delta 1.3 2004.08.03.19.23.16 pav
+ Edit ports/lang/php4/files/patch-scripts::phpize.in
+  Add delta 1.2 2004.08.03.22.36.50 ade
+ Edit ports/mail/fetchyahoo/Makefile
+  Add delta 1.7 2004.08.03.14.14.50 leeym
+ Edit ports/mail/fetchyahoo/distinfo
+  Add delta 1.5 2004.08.03.14.14.50 leeym
+ Edit ports/mail/mutt-devel/Makefile
+  Add delta 1.228 2004.08.03.04.51.13 krion
+ Edit ports/mail/mutt-devel/files/extra-patch-maildir-header-cache
+  Add delta 1.3 2004.08.03.04.51.13 krion
+ Edit ports/mail/mutt-devel/files/extra-patch-maildir-mtime
+  Add delta 1.2 2004.08.03.04.51.13 krion
+ Edit ports/mail/mutt-devel/files/extra-patch-maildir-mtime-nntp
+  Add delta 1.2 2004.08.03.04.51.13 krion
+ Checkout ports/mail/mutt-devel/files/extra-patch-nntp.c
+ Edit ports/misc/bidwatcher/Makefile
+  Add delta 1.41 2004.08.03.17.12.30 obrien
+ Checkout ports/misc/bidwatcher/files/patch-Makefile.in
+ Checkout ports/misc/bidwatcher/files/patch-STABLE_1_3
+ Edit ports/net/Makefile
+  Add delta 1.1339 2004.08.03.16.08.12 mat
+ Checkout ports/net/libsocket++/files/patch-autogen
+ Edit ports/net/licq/Makefile
+  Add delta 1.63 2004.08.03.19.58.35 dinoex
+ Edit ports/net/licq/files/patch-socket.cpp
+  Add delta 1.5 2004.08.03.19.58.35 dinoex
+ Checkout ports/net/licq/files/patch-user.cpp
+ Edit ports/net/licq-console/Makefile
+  Add delta 1.14 2004.08.03.22.36.50 ade
+ Edit ports/net/mpd/Makefile
+  Add delta 1.37 2004.08.03.01.41.52 archie
+ Checkout ports/net/p5-Net-Delicious/Makefile
+ Checkout ports/net/p5-Net-Delicious/distinfo
+ Checkout ports/net/p5-Net-Delicious/pkg-descr
+ Checkout ports/net/p5-Net-Delicious/pkg-plist
+ Edit ports/net/tcpdump/Makefile
+  Add delta 1.8 2004.08.03.01.51.23 bms
+ Checkout ports/net/tcpdump/files/extra-patch-tcpmd5-print-tcp.c
+ Checkout ports/net/tcpdump/files/extra-patch-tcpmd5-tcp.h
+ Edit ports/net/tkabber/Makefile
+  Add delta 1.3 2004.08.03.22.07.42 pav
+ Edit ports/net/tkabber/distinfo
+  Add delta 1.4 2004.08.03.22.07.42 pav
+ Delete ports/net/tkabber/files/patch-default.tcl
+ Checkout ports/net/tkabber/files/patch-login.tcl
+ Edit ports/net/tkabber/files/patch-tkabber.tcl
+  Add delta 1.2 2004.08.03.22.07.42 pav
+ Edit ports/net/tkabber/pkg-plist
+  Add delta 1.3 2004.08.03.22.07.42 pav
+ Checkout ports/palm/gnomepilot2/files/patch-capplet_gnome-pilot-capplet.c
+ Checkout ports/palm/gnomepilot2/files/patch-capplet_gnome-pilot-cdialog.c
+ Checkout ports/palm/gnomepilot2/files/patch-capplet_gnome-pilot-druid.c
+ Checkout ports/palm/gnomepilot2/files/patch-capplet_gnome-pilot-pdialog.c
+ Edit ports/print/foomatic-db-engine/Makefile
+  Add delta 1.15 2004.08.03.22.36.51 ade
+ Checkout ports/print/foomatic-db-engine/files/patch-make_configure
+ Edit ports/russian/prawda/distinfo
+  Add delta 1.2 2004.08.03.07.15.06 sem
+ Edit ports/security/gnupg/Makefile
+  Add delta 1.71 2004.08.03.06.30.56 kuriyama
+ Edit ports/security/gnupg/distinfo
+  Add delta 1.28 2004.08.03.06.30.56 kuriyama
+ Edit ports/security/gnupg/pkg-plist
+  Add delta 1.29 2004.08.03.06.30.56 kuriyama
+ Edit ports/sysutils/bacula/Makefile
+  Add delta 1.32 2004.08.03.20.22.02 lkoeller
+ Edit ports/sysutils/bacula/distinfo
+  Add delta 1.12 2004.08.03.20.22.02 lkoeller
+ Edit ports/sysutils/bacula/files/chio-bacula
+  Add delta 1.5 2004.08.03.20.22.02 lkoeller
+ Edit ports/sysutils/bacula/files/patch-autoconf-Make.common.in
+  Add delta 1.5 2004.08.03.20.22.02 lkoeller
+ Edit ports/sysutils/bacula/files/patch-scripts-Makefile.in
+  Add delta 1.5 2004.08.03.20.23.05 lkoeller
+ Delete ports/sysutils/bacula/files/patch-src-dird-sql_cmds.c
+ Edit ports/sysutils/bacula/pkg-plist
+  Add delta 1.10 2004.08.03.20.23.05 lkoeller
+ Edit ports/textproc/Makefile
+  Add delta 1.736 2004.08.03.15.26.34 mat
+  Add delta 1.737 2004.08.03.17.34.24 mat
+ Edit ports/textproc/jade/Makefile
+  Add delta 1.46 2004.08.03.23.25.17 kuriyama
+ Checkout ports/textproc/jade/files/patch-CharsetRegistry.cxx
+ Checkout ports/textproc/jade/files/patch-CharsetRegistry.h
+ Checkout ports/textproc/jade/files/patch-CodingSystemKit.cxx
+ Checkout ports/textproc/jade/files/patch-koi8-r.h
+ Checkout ports/textproc/jade/files/patch-koi8r.dcl
+ Edit ports/textproc/jade/pkg-plist
+  Add delta 1.18 2004.08.03.23.25.17 kuriyama
+ Checkout ports/textproc/opensp/files/patch-RangeMap.h
+ Checkout ports/textproc/p5-Apache-XBEL/Makefile
+ Checkout ports/textproc/p5-Apache-XBEL/distinfo
+ Checkout ports/textproc/p5-Apache-XBEL/pkg-descr
+ Checkout ports/textproc/p5-Apache-XBEL/pkg-plist
+ Checkout ports/textproc/p5-XML-XBEL/Makefile
+ Checkout ports/textproc/p5-XML-XBEL/distinfo
+ Checkout ports/textproc/p5-XML-XBEL/pkg-descr
+ Checkout ports/textproc/p5-XML-XBEL/pkg-plist
+ Edit ports/textproc/wv2/Makefile
+  Add delta 1.11 2004.08.03.13.55.00 lofi
+ Delete ports/textproc/wv2/files/patch-configure
+ Edit ports/textproc/wv2/pkg-plist
+  Add delta 1.4 2004.08.03.13.55.00 lofi
+  Add delta 1.5 2004.08.03.14.06.42 lofi
+ Edit ports/www/flood/Makefile
+  Add delta 1.12 2004.08.03.22.36.51 ade
+ Checkout ports/www/flood/files/patch-configure.in
+ Edit ports/www/mod_webapp/Makefile
+  Add delta 1.8 2004.08.03.22.36.51 ade
+ Edit ports/x11-themes/gnome-industrial-theme/Makefile
+  Add delta 1.11 2004.08.03.00.22.45 marcus
+  Add delta 1.12 2004.08.03.00.24.18 marcus
+ Edit ports/x11-themes/gnome-industrial-theme/distinfo
+  Add delta 1.4 2004.08.03.00.22.45 marcus
+ Edit ports/x11-themes/gtk-industrial-theme/Makefile
+  Add delta 1.12 2004.08.03.00.21.16 marcus
+ Edit ports/x11-themes/gtk-industrial-theme/distinfo
+  Add delta 1.6 2004.08.03.00.21.16 marcus
+ Edit ports/x11-toolkits/pango/Makefile
+  Add delta 1.64 2004.08.03.00.37.44 marcus
+ Edit ports/x11-toolkits/pango/distinfo
+  Add delta 1.23 2004.08.03.00.37.44 marcus
+ Edit ports/x11-toolkits/pango/files/patch-configure
+  Add delta 1.4 2004.08.03.00.37.44 marcus
+ Delete ports/x11-toolkits/pango/files/patch-hangul
+ Delete ports/x11-toolkits/pango/files/patch-ltmain.sh
+ Edit ports/x11-toolkits/php-gtk/Makefile
+  Add delta 1.18 2004.08.03.22.36.51 ade
+ Checkout ports/x11-toolkits/php-gtk/files/patch-build2::build2.mk
+ Edit ports/x11-toolkits/viewkit/Makefile
+  Add delta 1.7 2004.08.03.22.36.52 ade
+Shutting down connection to server
+Finished successfully
+Parsing supfile "/etc/cvsupfile-4_9"
+Connecting to cvsup.fr.FreeBSD.org
+Connected to cvsup.fr.FreeBSD.org
+Server software version: SNAP_16_1h
+Negotiating file attribute support
+Exchanging collection information
+Establishing multiplexed-mode data connection
+Running
+Updating collection src-all/cvs
+Shutting down connection to server
+Finished successfully
+Parsing supfile "/etc/cvsupfile-4_8"
+Connecting to cvsup.fr.FreeBSD.org
+Connected to cvsup.fr.FreeBSD.org
+Server software version: SNAP_16_1h
+Negotiating file attribute support
+Exchanging collection information
+Establishing multiplexed-mode data connection
+Running
+Updating collection src-all/cvs
+Shutting down connection to server
+Finished successfully
+Parsing supfile "/etc/cvsupfile-5_1"
+Connecting to cvsup.fr.FreeBSD.org
+Connected to cvsup.fr.FreeBSD.org
+Server software version: SNAP_16_1h
+Negotiating file attribute support
+Exchanging collection information
+Establishing multiplexed-mode data connection
+Running
+Updating collection src-all/cvs
+Shutting down connection to server
+Finished successfully
+Parsing supfile "/etc/cvsupfile-5_0"
+Connecting to cvsup.de.FreeBSD.org
+Connected to cvsup.de.FreeBSD.org
+Server software version: SNAP_16_1h
+Negotiating file attribute support
+Exchanging collection information
+Establishing multiplexed-mode data connection
+Running
+Updating collection src-all/cvs
+Shutting down connection to server
+Finished successfully
+Parsing supfile "/etc/cvsupfile-CURRENT"
+Connecting to cvsup.fr.FreeBSD.org
+Connected to cvsup.fr.FreeBSD.org
+Server software version: SNAP_16_1h
+Negotiating file attribute support
+Exchanging collection information
+Establishing multiplexed-mode data connection
+Running
+Updating collection src-all/cvs
+ Edit src/UPDATING
+  Add delta 1.336 2004.08.03.19.29.48 markm
+ Edit src/etc/hosts.allow
+  Add delta 1.18 2004.08.03.08.47.35 ume
+  Add delta 1.19 2004.08.03.08.58.34 ume
+ Edit src/etc/rc.firewall6
+  Add delta 1.15 2004.08.03.08.58.34 ume
+ Edit src/gnu/usr.bin/cc/cc_int/Makefile
+  Add delta 1.43 2004.08.03.06.40.04 ru
+ Edit src/lib/libc/gen/Makefile.inc
+  Add delta 1.116 2004.08.03.08.54.01 dfr
+ Checkout src/lib/libc/gen/tls.c
+ Edit src/lib/libpthread/thread/thr_kern.c
+  Add delta 1.108 2004.08.03.02.22.25 davidxu
+ Edit src/lib/libpthread/thread/thr_priority_queue.c
+  Add delta 1.16 2004.08.03.02.22.25 davidxu
+ Edit src/lib/libpthread/thread/thr_private.h
+  Add delta 1.117 2004.08.03.02.22.25 davidxu
+ Edit src/lib/libthread_db/libpthread_db.c
+  Add delta 1.3 2004.08.03.02.23.06 davidxu
+ Edit src/libexec/rtld-elf/alpha/reloc.c
+  Add delta 1.19 2004.08.03.08.50.59 dfr
+ Edit src/libexec/rtld-elf/alpha/rtld_machdep.h
+  Add delta 1.10 2004.08.03.08.50.59 dfr
+ Edit src/libexec/rtld-elf/amd64/reloc.c
+  Add delta 1.15 2004.08.03.08.50.59 dfr
+ Edit src/libexec/rtld-elf/amd64/rtld_machdep.h
+  Add delta 1.12 2004.08.03.08.50.59 dfr
+ Edit src/libexec/rtld-elf/i386/reloc.c
+  Add delta 1.13 2004.08.03.08.50.59 dfr
+ Edit src/libexec/rtld-elf/i386/rtld_machdep.h
+  Add delta 1.10 2004.08.03.08.50.59 dfr
+ Edit src/libexec/rtld-elf/ia64/reloc.c
+  Add delta 1.15 2004.08.03.08.50.59 dfr
+ Edit src/libexec/rtld-elf/ia64/rtld_machdep.h
+  Add delta 1.5 2004.08.03.08.50.59 dfr
+ Edit src/libexec/rtld-elf/map_object.c
+  Add delta 1.15 2004.08.03.08.50.58 dfr
+ Edit src/libexec/rtld-elf/rtld.c
+  Add delta 1.98 2004.08.03.08.50.58 dfr
+ Edit src/libexec/rtld-elf/rtld.h
+  Add delta 1.34 2004.08.03.08.50.58 dfr
+ Checkout src/libexec/rtld-elf/rtld_tls.h
+ Edit src/libexec/rtld-elf/sparc64/reloc.c
+  Add delta 1.9 2004.08.03.08.51.00 dfr
+ Edit src/libexec/rtld-elf/sparc64/rtld_machdep.h
+  Add delta 1.7 2004.08.03.08.51.00 dfr
+ Edit src/release/doc/Makefile
+  Add delta 1.5 2004.08.03.22.12.43 simon
+ Edit src/release/doc/en_US.ISO8859-1/hardware/Makefile.inc
+  Add delta 1.3 2004.08.03.22.12.44 simon
+ Edit src/release/doc/en_US.ISO8859-1/hardware/alpha/Makefile
+  Add delta 1.7 2004.08.03.22.12.44 simon
+ Edit src/release/doc/en_US.ISO8859-1/hardware/alpha/article.sgml
+  Add delta 1.5 2004.08.03.22.12.44 simon
+ Edit src/release/doc/en_US.ISO8859-1/hardware/amd64/Makefile
+  Add delta 1.2 2004.08.03.22.12.44 simon
+ Edit src/release/doc/en_US.ISO8859-1/hardware/amd64/article.sgml
+  Add delta 1.2 2004.08.03.22.12.44 simon
+ Edit src/release/doc/en_US.ISO8859-1/hardware/common/dev.sgml
+  Add delta 1.222 2004.08.03.22.12.44 simon
+ Edit src/release/doc/en_US.ISO8859-1/hardware/i386/Makefile
+  Add delta 1.6 2004.08.03.22.12.44 simon
+ Edit src/release/doc/en_US.ISO8859-1/hardware/i386/article.sgml
+  Add delta 1.5 2004.08.03.22.12.44 simon
+ Edit src/release/doc/en_US.ISO8859-1/hardware/ia64/Makefile
+  Add delta 1.3 2004.08.03.22.12.45 simon
+ Edit src/release/doc/en_US.ISO8859-1/hardware/ia64/article.sgml
+  Add delta 1.4 2004.08.03.22.12.45 simon
+ Edit src/release/doc/en_US.ISO8859-1/hardware/pc98/Makefile
+  Add delta 1.2 2004.08.03.22.12.45 simon
+ Edit src/release/doc/en_US.ISO8859-1/hardware/pc98/article.sgml
+  Add delta 1.2 2004.08.03.22.12.45 simon
+ Edit src/release/doc/en_US.ISO8859-1/hardware/sparc64/Makefile
+  Add delta 1.4 2004.08.03.22.12.45 simon
+ Edit src/release/doc/en_US.ISO8859-1/hardware/sparc64/article.sgml
+  Add delta 1.4 2004.08.03.22.12.45 simon
+ Edit src/release/doc/en_US.ISO8859-1/relnotes/common/new.sgml
+  Add delta 1.757 2004.08.03.12.16.44 den
+ Edit src/release/doc/ru_RU.KOI8-R/early-adopter/article.sgml
+  Add delta 1.3 2004.08.03.13.32.30 den
+ Edit src/release/doc/ru_RU.KOI8-R/hardware/alpha/article.sgml
+  Add delta 1.2 2004.08.03.13.32.32 den
+ Edit src/release/doc/ru_RU.KOI8-R/hardware/amd64/article.sgml
+  Add delta 1.2 2004.08.03.13.32.33 den
+ Edit src/release/doc/ru_RU.KOI8-R/hardware/i386/article.sgml
+  Add delta 1.2 2004.08.03.13.32.33 den
+ Edit src/release/doc/ru_RU.KOI8-R/hardware/ia64/article.sgml
+  Add delta 1.2 2004.08.03.13.32.32 den
+ Edit src/release/doc/ru_RU.KOI8-R/hardware/ia64/proc-ia64.sgml
+  Add delta 1.2 2004.08.03.13.12.10 den
+ Edit src/release/doc/ru_RU.KOI8-R/hardware/pc98/article.sgml
+  Add delta 1.2 2004.08.03.13.32.32 den
+ Edit src/release/doc/ru_RU.KOI8-R/hardware/sparc64/article.sgml
+  Add delta 1.2 2004.08.03.13.32.32 den
+ Edit src/release/doc/ru_RU.KOI8-R/installation/alpha/article.sgml
+  Add delta 1.2 2004.08.03.13.32.30 den
+ Edit src/release/doc/ru_RU.KOI8-R/installation/amd64/article.sgml
+  Add delta 1.2 2004.08.03.13.32.30 den
+ Edit src/release/doc/ru_RU.KOI8-R/installation/common/install.sgml
+  Add delta 1.3 2004.08.03.13.12.10 den
+ Edit src/release/doc/ru_RU.KOI8-R/installation/common/layout.sgml
+  Add delta 1.2 2004.08.03.13.12.10 den
+ Edit src/release/doc/ru_RU.KOI8-R/installation/common/upgrade.sgml
+  Add delta 1.2 2004.08.03.13.12.10 den
+ Edit src/release/doc/ru_RU.KOI8-R/installation/i386/article.sgml
+  Add delta 1.2 2004.08.03.13.32.30 den
+ Edit src/release/doc/ru_RU.KOI8-R/installation/ia64/article.sgml
+  Add delta 1.2 2004.08.03.13.32.31 den
+ Edit src/release/doc/ru_RU.KOI8-R/installation/pc98/article.sgml
+  Add delta 1.2 2004.08.03.13.32.31 den
+ Edit src/release/doc/ru_RU.KOI8-R/installation/sparc64/article.sgml
+  Add delta 1.2 2004.08.03.13.32.31 den
+ Edit src/release/doc/ru_RU.KOI8-R/readme/article.sgml
+  Add delta 1.2 2004.08.03.13.12.10 den
+  Add delta 1.3 2004.08.03.13.32.33 den
+ Edit src/release/doc/ru_RU.KOI8-R/relnotes/alpha/article.sgml
+  Add delta 1.2 2004.08.03.13.12.10 den
+  Add delta 1.3 2004.08.03.13.32.32 den
+ Edit src/release/doc/ru_RU.KOI8-R/relnotes/amd64/article.sgml
+  Add delta 1.2 2004.08.03.13.12.10 den
+  Add delta 1.3 2004.08.03.13.32.31 den
+ Edit src/release/doc/ru_RU.KOI8-R/relnotes/common/new.sgml
+  Add delta 1.5 2004.08.03.13.12.11 den
+ Edit src/release/doc/ru_RU.KOI8-R/relnotes/i386/article.sgml
+  Add delta 1.2 2004.08.03.13.12.11 den
+  Add delta 1.3 2004.08.03.13.32.31 den
+ Edit src/release/doc/ru_RU.KOI8-R/relnotes/ia64/article.sgml
+  Add delta 1.2 2004.08.03.13.12.11 den
+  Add delta 1.3 2004.08.03.13.32.31 den
+ Edit src/release/doc/ru_RU.KOI8-R/relnotes/pc98/article.sgml
+  Add delta 1.2 2004.08.03.13.12.11 den
+  Add delta 1.3 2004.08.03.13.32.31 den
+ Edit src/release/doc/ru_RU.KOI8-R/relnotes/sparc64/article.sgml
+  Add delta 1.2 2004.08.03.13.12.11 den
+  Add delta 1.3 2004.08.03.13.32.32 den
+ Checkout src/release/doc/share/misc/dev.archlist.txt
+ Checkout src/release/doc/share/misc/man2hwnotes.pl
+ Edit src/release/doc/share/mk/doc.relnotes.mk
+  Add delta 1.12 2004.08.03.22.12.45 simon
+ Checkout src/release/doc/share/sgml/Makefile
+ Edit src/share/man/man4/ciss.4
+  Add delta 1.10 2004.08.03.20.52.28 simon
+ Edit src/share/man/man4/isp.4
+  Add delta 1.17 2004.08.03.20.46.23 simon
+ Edit src/share/man/man4/ng_l2tp.4
+  Add delta 1.3 2004.08.03.06.45.38 bz
+  Add delta 1.4 2004.08.03.06.52.55 bz
+ Edit src/share/man/man4/ng_ppp.4
+  Add delta 1.21 2004.08.03.06.31.30 bz
+ Edit src/share/man/man4/rue.4
+  Add delta 1.6 2004.08.03.10.18.33 simon
+ Edit src/share/man/man4/tcp.4
+  Add delta 1.46 2004.08.03.13.54.11 andre
+ Edit src/share/man/man7/tuning.7
+  Add delta 1.66 2004.08.03.14.06.12 andre
+ Edit src/sys/alpha/conf/GENERIC
+  Add delta 1.174 2004.08.03.19.24.52 markm
+ Edit src/sys/alpha/include/cpu.h
+  Add delta 1.40 2004.08.03.18.44.26 mux
+ Edit src/sys/amd64/conf/GENERIC
+  Add delta 1.419 2004.08.03.19.24.52 markm
+ Edit src/sys/amd64/include/cpu.h
+  Add delta 1.74 2004.08.03.18.44.26 mux
+ Edit src/sys/amd64/include/elf.h
+  Add delta 1.18 2004.08.03.08.21.48 dfr
+ Edit src/sys/arm/include/cpu.h
+  Add delta 1.2 2004.08.03.18.44.26 mux
+ Edit src/sys/conf/NOTES
+  Add delta 1.1254 2004.08.03.19.24.53 markm
+ Edit src/sys/conf/files
+  Add delta 1.936 2004.08.03.19.24.53 markm
+ Edit src/sys/dev/acpica/acpi.c
+  Add delta 1.179 2004.08.03.05.13.56 njl
+  Add delta 1.180 2004.08.03.05.15.56 njl
+  Add delta 1.181 2004.08.03.14.14.53 obrien
+  Add delta 1.182 2004.08.03.17.16.30 njl
+ Edit src/sys/dev/eisa/eisaconf.c
+  Add delta 1.67 2004.08.03.00.41.47 njl
+  Add delta 1.68 2004.08.03.06.48.36 njl
+ Edit src/sys/dev/if_ndis/if_ndis.c
+  Add delta 1.69 2004.08.03.17.00.39 wpaul
+ Edit src/sys/geom/mirror/g_mirror.c
+  Add delta 1.8 2004.08.03.15.41.33 pjd
+ Edit src/sys/i386/acpica/acpi_asus.c
+  Add delta 1.8 2004.08.03.21.17.36 njl
+  Add delta 1.9 2004.08.03.22.37.09 philip
+ Edit src/sys/i386/conf/GENERIC
+  Add delta 1.411 2004.08.03.19.24.53 markm
+ Edit src/sys/i386/include/cpu.h
+  Add delta 1.73 2004.08.03.18.44.26 mux
+ Edit src/sys/ia64/conf/GENERIC
+  Add delta 1.66 2004.08.03.19.24.53 markm
+ Edit src/sys/ia64/conf/SKI
+  Add delta 1.19 2004.08.03.19.24.53 markm
+ Edit src/sys/ia64/include/cpu.h
+  Add delta 1.44 2004.08.03.18.44.26 mux
+ Edit src/sys/kern/kern_kse.c
+  Add delta 1.190 2004.08.03.01.43.29 julian
+  Add delta 1.191 2004.08.03.02.21.24 davidxu
+ Edit src/sys/kern/kern_mutex.c
+  Add delta 1.146 2004.08.03.18.44.27 mux
+ Edit src/sys/kern/kern_sig.c
+  Add delta 1.287 2004.08.03.15.39.23 pjd
+ Edit src/sys/kern/sys_pipe.c
+  Add delta 1.175 2004.08.03.02.59.15 silby
+ Edit src/sys/modules/Makefile
+  Add delta 1.391 2004.08.03.19.24.54 markm
+ Edit src/sys/modules/acpi/acpi_asus/Makefile
+  Add delta 1.4 2004.08.03.21.27.42 njl
+ Edit src/sys/modules/acpi/acpi_panasonic/Makefile
+  Add delta 1.2 2004.08.03.21.27.42 njl
+ Edit src/sys/modules/acpi/acpi_toshiba/Makefile
+  Add delta 1.3 2004.08.03.21.27.43 njl
+ Edit src/sys/modules/acpi/acpi_video/Makefile
+  Add delta 1.3 2004.08.03.21.27.43 njl
+ Delete src/sys/modules/null/Makefile
+ Edit src/sys/netgraph/ng_l2tp.c
+  Add delta 1.10 2004.08.03.06.37.46 bz
+  Add delta 1.11 2004.08.03.06.45.38 bz
+  Add delta 1.12 2004.08.03.06.52.55 bz
+ Edit src/sys/netgraph/ng_l2tp.h
+  Add delta 1.3 2004.08.03.06.45.38 bz
+  Add delta 1.4 2004.08.03.06.52.55 bz
+ Edit src/sys/netgraph/ng_ppp.c
+  Add delta 1.51 2004.08.03.06.34.55 bz
+ Edit src/sys/netinet/ip_divert.c
+  Add delta 1.95 2004.08.03.12.31.38 andre
+ Edit src/sys/netinet/ip_input.c
+  Add delta 1.278 2004.08.03.12.31.38 andre
+ Edit src/sys/netinet/ip_mroute.c
+  Add delta 1.104 2004.08.03.02.01.44 hsu
+ Edit src/sys/netinet/ip_output.c
+  Add delta 1.221 2004.08.03.14.13.36 andre
+ Edit src/sys/netinet/tcp_subr.c
+  Add delta 1.196 2004.08.03.13.54.11 andre
+ Edit src/sys/pc98/conf/GENERIC
+  Add delta 1.254 2004.08.03.19.24.54 markm
+ Edit src/sys/powerpc/conf/GENERIC
+  Add delta 1.40 2004.08.03.19.24.54 markm
+ Edit src/sys/powerpc/include/cpu.h
+  Add delta 1.17 2004.08.03.18.44.26 mux
+ Edit src/sys/powerpc/include/critical.h
+  Add delta 1.7 2004.08.03.04.14.55 grehan
+ Edit src/sys/sparc64/conf/GENERIC
+  Add delta 1.77 2004.08.03.19.24.54 markm
+ Edit src/sys/sparc64/include/cpu.h
+  Add delta 1.15 2004.08.03.18.44.27 mux
+ Edit src/sys/sys/kse.h
+  Add delta 1.24 2004.08.03.02.21.23 davidxu
+  Add delta 1.25 2004.08.03.02.39.24 davidxu
+ Checkout src/tools/regression/tls/Makefile
+ Checkout src/tools/regression/tls/Makefile.inc
+ Checkout src/tools/regression/tls/libxx/Makefile
+ Checkout src/tools/regression/tls/libxx/xx.c
+ Checkout src/tools/regression/tls/libyy/Makefile
+ Checkout src/tools/regression/tls/libyy/yy.c
+ Checkout src/tools/regression/tls/ttls1/Makefile
+ Checkout src/tools/regression/tls/ttls1/ttls1.c
+ Checkout src/tools/regression/tls/ttls2/Makefile
+ Checkout src/tools/regression/tls/ttls2/ttls2.c
+ Checkout src/tools/regression/tls/ttls3/Makefile
+ Checkout src/tools/regression/tls/ttls3/elftls.S
+ Checkout src/tools/regression/tls/ttls3/tls-test-lib.c
+ Checkout src/tools/regression/tls/ttls3/tls-test.c
+ Edit src/usr.bin/make/Makefile
+  Add delta 1.32 2004.08.03.18.56.31 harti
+ Edit src/usr.bin/make/main.c
+  Add delta 1.89 2004.08.03.18.43.43 harti
+  Add delta 1.90 2004.08.03.18.56.31 harti
+ Edit src/usr.bin/make/make.1
+  Add delta 1.76 2004.08.03.19.14.14 harti
+ Edit src/usr.bin/make/nonints.h
+  Add delta 1.22 2004.08.03.18.56.31 harti
+ Edit src/usr.bin/make/var.c
+  Add delta 1.47 2004.08.03.18.56.31 harti
+ Edit src/usr.bin/tar/bsdtar.1
+  Add delta 1.19 2004.08.03.06.19.08 kientzle
+ Edit src/usr.bin/tar/bsdtar.c
+  Add delta 1.45 2004.08.03.06.19.08 kientzle
+ Edit src/usr.sbin/boot0cfg/boot0cfg.c
+  Add delta 1.17 2004.08.03.15.20.55 obrien
+ Edit src/usr.sbin/moused/moused.8
+  Add delta 1.46 2004.08.03.18.43.45 philip
+ Edit src/usr.sbin/moused/moused.c
+  Add delta 1.67 2004.08.03.18.43.45 philip
+Shutting down connection to server
+Finished successfully
+** No need to upgrade 'pcre-4.5' (>= pcre-4.5). (specify -f to force)
+** No need to upgrade 'ruby-1.6.8.2004.04.16_1' (>= ruby-1.6.8.2004.04.16_1). (specify -f to force)
+** Detected a package name change: ruby-shim-ruby18 (lang/ruby16-shim-ruby18) -> 'ruby16-shim-ruby18' (lang/ruby16-shim-ruby18)
+** No need to upgrade 'ruby-shim-ruby18-1.8.1.p3' (>= ruby16-shim-ruby18-1.8.1.p3). (specify -f to force)
+** No need to upgrade 'png-1.2.5_7' (>= png-1.2.5_7). (specify -f to force)
+** No need to upgrade 'curl-7.12.0' (>= curl-7.12.0). (specify -f to force)
+** No need to upgrade 'ruby-1.8.1.2004.05.02_1' (>= ruby-1.8.1.2004.05.02_1). (specify -f to force)
+** No need to upgrade 'cracklib-2.7_2' (>= cracklib-2.7_2). (specify -f to force)
+** No need to upgrade 'fping-2.4b2' (>= fping-2.4b2). (specify -f to force)
+** No need to upgrade 'libltdl-1.5.6' (>= libltdl-1.5.6). (specify -f to force)
+** No need to upgrade 'openldap-client-2.2.14' (>= openldap-client-2.2.14). (specify -f to force)
+** No need to upgrade 'imake-4.3.0_2' (>= imake-4.3.0_2). (specify -f to force)
+** No need to upgrade 'm4-1.4.1' (>= m4-1.4.1). (specify -f to force)
+** No need to upgrade 'lynx-ssl-2.8.5' (>= lynx-ssl-2.8.5). (specify -f to force)
+** No need to upgrade 'tcl-8.4.6_1,1' (>= tcl-8.4.6_1,1). (specify -f to force)
+** No need to upgrade 'libmcrypt-2.5.7_1' (>= libmcrypt-2.5.7_1). (specify -f to force)
+** Makefile possibly broken: devel/automake:
+	make: no target to make.
+	
+	
+	
+** No need to upgrade 'ucspi-tcp-0.88' (>= ucspi-tcp-0.88). (specify -f to force)
+** No need to upgrade 'libgnugetopt-1.2' (>= libgnugetopt-1.2). (specify -f to force)
+** No need to upgrade 'p5-File-Spec-0.86' (>= p5-File-Spec-0.86). (specify -f to force)
+** No need to upgrade 'autoconf-2.13.000227_5' (>= autoconf-2.13.000227_5). (specify -f to force)
+** No need to upgrade 'libtool-1.3.5_2' (>= libtool-1.3.5_2). (specify -f to force)
+** No need to upgrade 'rrdtool-1.0.48' (>= rrdtool-1.0.48). (specify -f to force)
+** No need to upgrade 'mhash-0.8.18' (>= mhash-0.8.18). (specify -f to force)
+** No need to upgrade 'bash-2.05b.007_1' (>= bash-2.05b.007_1). (specify -f to force)
+** No need to upgrade 'rc_subr-1.29' (>= rc_subr-1.29). (specify -f to force)
+** No need to upgrade 'expat-1.95.7' (>= expat-1.95.7). (specify -f to force)
+** No need to upgrade 'p5-CGI.pm-3.04,1' (>= p5-CGI.pm-3.04,1). (specify -f to force)
+** No need to upgrade 'mysql-client-4.0.20' (>= mysql-client-4.0.20). (specify -f to force)
+** No need to upgrade 'mysql-server-4.0.20' (>= mysql-server-4.0.20). (specify -f to force)
+** No need to upgrade 'portsman-0.2_2' (>= portsman-0.2_2). (specify -f to force)
+** No need to upgrade 'p5-XML-Parser-2.34_1' (>= p5-XML-Parser-2.34_1). (specify -f to force)
+** No need to upgrade 'gettext-0.13.1_1' (>= gettext-0.13.1_1). (specify -f to force)
+** No need to upgrade 'net-snmp-5.1.1_6' (>= net-snmp-5.1.1_6). (specify -f to force)
+** No need to upgrade 'mysql-client-3.23.58_2' (>= mysql-client-3.23.58_2). (specify -f to force)
+** No need to upgrade 'p5-gettext-1.01_4' (>= p5-gettext-1.01_4). (specify -f to force)
+** No need to upgrade 'help2man-1.33.1' (>= help2man-1.33.1). (specify -f to force)
+** No need to upgrade 'libgmp-4.1.3' (>= libgmp-4.1.3). (specify -f to force)
+** No need to upgrade 'lzo-1.08_1' (>= lzo-1.08_1). (specify -f to force)
+** No need to upgrade 'rsync-2.6.2_1' (>= rsync-2.6.2_1). (specify -f to force)
+** No need to upgrade 'ruby18-bdb1-0.2.2' (>= ruby18-bdb1-0.2.2). (specify -f to force)
+** No need to upgrade 'portupgrade-20040701_3' (>= portupgrade-20040701_3). (specify -f to force)
+** No need to upgrade 'gmake-3.80_2' (>= gmake-3.80_2). (specify -f to force)
+** No need to upgrade 'postgresql-7.3.6' (>= postgresql-7.3.6). (specify -f to force)
+** No need to upgrade 'djbdns-1.05_8' (>= djbdns-1.05_8). (specify -f to force)
+** No need to upgrade 'wget-1.8.2_6' (>= wget-1.8.2_6). (specify -f to force)
+** No need to upgrade 'automake-1.4.6_1' (>= automake-1.4.6_1). (specify -f to force)
+** No need to upgrade 'nagios-plugins-1.3.1_5' (>= nagios-plugins-1.3.1_5). (specify -f to force)
+** No need to upgrade 'jpeg-6b_3' (>= jpeg-6b_3). (specify -f to force)
+** No need to upgrade 'gcc-3.2.3_1' (>= gcc-3.2.3_1). (specify -f to force)
+** No need to upgrade 'freetype2-2.1.7_3' (>= freetype2-2.1.7_3). (specify -f to force)
+** No need to upgrade 'gd-2.0.25,1' (>= gd-2.0.25,1). (specify -f to force)
+** No need to upgrade 'sqlite-2.8.14' (>= sqlite-2.8.14). (specify -f to force)
+** No need to upgrade 'libtool-1.5.6_1' (>= libtool-1.5.6_1). (specify -f to force)
+** No need to upgrade 'cvsup-without-gui-16.1h' (>= cvsup-without-gui-16.1h). (specify -f to force)
+** No need to upgrade 'openvpn-1.6.0' (>= openvpn-1.6.0). (specify -f to force)
+** No need to upgrade 'pkgconfig-0.15.0_1' (>= pkgconfig-0.15.0_1). (specify -f to force)
+** No need to upgrade 'fontconfig-2.2.3,1' (>= fontconfig-2.2.3,1). (specify -f to force)
+** No need to upgrade 'zziplib-0.10.82' (>= zziplib-0.10.82). (specify -f to force)
+** No need to upgrade 'nmap-3.55' (>= nmap-3.55). (specify -f to force)
+** No need to upgrade 'XFree86-libraries-4.3.0_7' (>= XFree86-libraries-4.3.0_7). (specify -f to force)
+** No need to upgrade 'libXft-2.1.6' (>= libXft-2.1.6). (specify -f to force)
+** No need to upgrade 'dri-5.0.2,1' (>= dri-5.0.2,1). (specify -f to force)
+** No need to upgrade 'glib-1.2.10_11' (>= glib-1.2.10_11). (specify -f to force)
+** No need to upgrade 'lftp-3.0.6' (>= lftp-3.0.6). (specify -f to force)
+** No need to upgrade 'libungif-4.1.3' (>= libungif-4.1.3). (specify -f to force)
+** No need to upgrade 'ming-0.2a_1' (>= ming-0.2a_1). (specify -f to force)
+** No need to upgrade 'XFree86-clients-4.3.0_8' (>= XFree86-clients-4.3.0_8). (specify -f to force)
+** No need to upgrade 'XFree86-Server-4.3.0_14' (>= XFree86-Server-4.3.0_14). (specify -f to force)
+** No need to upgrade 'wrapper-1.0_3' (>= wrapper-1.0_3). (specify -f to force)
+** No need to upgrade 'bison-1.75_2' (>= bison-1.75_2). (specify -f to force)
+** No need to upgrade 'nagios-1.2_1' (>= nagios-1.2_1). (specify -f to force)
+** No need to upgrade 'pear-XML_RPC-1.1.0' (>= pear-XML_RPC-1.1.0). (specify -f to force)
+** No need to upgrade 'libxml2-2.6.11_1' (>= libxml2-2.6.11_1). (specify -f to force)
+** No need to upgrade 'pear-Archive_Tar-1.2' (>= pear-Archive_Tar-1.2). (specify -f to force)
+** No need to upgrade 'postgresql-7.4.3' (>= postgresql-7.4.3). (specify -f to force)
+** No need to upgrade 'XFree86-FontServer-4.3.0_3' (>= XFree86-FontServer-4.3.0_3). (specify -f to force)
+** No need to upgrade 'postgresql-libpq++-4.0_2' (>= postgresql-libpq++-4.0_2). (specify -f to force)
+** No need to upgrade 'nagiostat-1.0.0' (>= nagiostat-1.0.0). (specify -f to force)
+** No need to upgrade 'XFree86-fontEncodings-4.3.0' (>= XFree86-fontEncodings-4.3.0). (specify -f to force)
+** No need to upgrade 'XFree86-font75dpi-4.3.0' (>= XFree86-font75dpi-4.3.0). (specify -f to force)
+** No need to upgrade 'powerdns-2.9.16_4' (>= powerdns-2.9.16_4). (specify -f to force)
+** No need to upgrade 'XFree86-font100dpi-4.3.0' (>= XFree86-font100dpi-4.3.0). (specify -f to force)
+** No need to upgrade 'libxslt-1.1.8_1' (>= libxslt-1.1.8_1). (specify -f to force)
+** No need to upgrade 'XFree86-fontDefaultBitmaps-4.3.0' (>= XFree86-fontDefaultBitmaps-4.3.0). (specify -f to force)
+** No need to upgrade 'XFree86-documents-4.3.0' (>= XFree86-documents-4.3.0). (specify -f to force)
+** No need to upgrade 'pear-Console_Getopt-1.2' (>= pear-Console_Getopt-1.2). (specify -f to force)
+** No need to upgrade 't1lib-5.0.1,1' (>= t1lib-5.0.1,1). (specify -f to force)
+** No need to upgrade 'gtk-1.2.10_12' (>= gtk-1.2.10_12). (specify -f to force)
+** Makefile possibly broken: devel/autoconf:
+	make: no target to make.
+	
+	
+	
+** No need to upgrade 'XFree86-fontScalable-4.3.0' (>= XFree86-fontScalable-4.3.0). (specify -f to force)
+** No need to upgrade 'pear-PEAR-1.3.1' (>= pear-PEAR-1.3.1). (specify -f to force)
+** No need to upgrade 'XFree86-fontCyrillic-4.3.0' (>= XFree86-fontCyrillic-4.3.0). (specify -f to force)
+** No need to upgrade 'XFree86-4.3.0,1' (>= XFree86-4.3.0,1). (specify -f to force)
+--->  Session started at: Wed, 04 Aug 2004 03:28:05 +0200
+--->  Upgrade of sysutils/daemontools started at: Wed, 04 Aug 2004 03:28:28 +0200
+--->  Upgrade of sysutils/daemontools ended at: Wed, 04 Aug 2004 03:28:28 +0200 (consumed 00:00:00)
+--->  Upgrade of converters/libiconv started at: Wed, 04 Aug 2004 03:28:30 +0200
+--->  Upgrade of converters/libiconv ended at: Wed, 04 Aug 2004 03:28:30 +0200 (consumed 00:00:00)
+--->  Upgrade of www/apache13 started at: Wed, 04 Aug 2004 03:28:31 +0200
+--->  Upgrade of www/apache13 ended at: Wed, 04 Aug 2004 03:28:31 +0200 (consumed 00:00:00)
+--->  Upgrade of lang/ezm3 started at: Wed, 04 Aug 2004 03:28:32 +0200
+--->  Upgrade of lang/ezm3 ended at: Wed, 04 Aug 2004 03:28:32 +0200 (consumed 00:00:00)
+--->  Upgrade of textproc/sablotron started at: Wed, 04 Aug 2004 03:28:33 +0200
+--->  Upgrade of textproc/sablotron ended at: Wed, 04 Aug 2004 03:28:33 +0200 (consumed 00:00:00)
+--->  Upgrade of devel/autoconf259 started at: Wed, 04 Aug 2004 03:28:35 +0200
+--->  Upgrade of devel/autoconf259 ended at: Wed, 04 Aug 2004 03:28:35 +0200 (consumed 00:00:00)
+--->  Upgrade of lang/php4-cli started at: Wed, 04 Aug 2004 03:28:38 +0200
+--->  Upgrade of lang/php4-cli ended at: Wed, 04 Aug 2004 03:28:38 +0200 (consumed 00:00:00)
+--->  Upgrade of www/mod_php4 started at: Wed, 04 Aug 2004 03:28:39 +0200
+--->  Upgrade of www/mod_php4 ended at: Wed, 04 Aug 2004 03:28:39 +0200 (consumed 00:00:00)
+--->  Upgrade of devel/php4-pcre started at: Wed, 04 Aug 2004 03:28:40 +0200
+--->  Upgrade of devel/php4-pcre ended at: Wed, 04 Aug 2004 03:28:40 +0200 (consumed 00:00:00)
+--->  Upgrade of databases/php4-mysql started at: Wed, 04 Aug 2004 03:28:40 +0200
+--->  Upgrade of databases/php4-mysql ended at: Wed, 04 Aug 2004 03:28:40 +0200 (consumed 00:00:00)
+--->  Upgrade of editors/vim started at: Wed, 04 Aug 2004 03:28:43 +0200
+--->  Upgrade of editors/vim ended at: Wed, 04 Aug 2004 03:28:43 +0200 (consumed 00:00:00)
+--->  Upgrade of databases/pear-DB started at: Wed, 04 Aug 2004 03:28:43 +0200
+--->  Upgrade of databases/pear-DB ended at: Wed, 04 Aug 2004 03:28:43 +0200 (consumed 00:00:00)
+--->  Listing the results (+:done / -:ignored / *:skipped / !:failed)
+	+ sysutils/daemontools (daemontools-0.76_6)
+	+ converters/libiconv (libiconv-1.9.2)
+	+ www/apache13 (apache-1.3.31_2)
+	+ lang/ezm3 (ezm3-1.1_2)
+	+ textproc/sablotron (Sablot-1.0_2)
+	+ devel/autoconf259 (autoconf-2.59_1)
+	+ lang/php4-cli (php4-cli-4.3.7_3)
+	+ www/mod_php4 (mod_php4-4.3.8_1,1)
+	- databases/postgresql-libpq++ (postgresql-libpq++-4.0_2)
+	+ devel/php4-pcre (php4-pcre-4.3.8_1)
+	+ databases/php4-mysql (php4-mysql-4.3.8_1)
+	+ editors/vim (vim-6.3.0)
+	+ databases/pear-DB (pear-DB-1.6.4,1)
+--->  Session ended at: Wed, 04 Aug 2004 03:28:44 +0200 (consumed 00:00:39)
+
+-- End of daily output --

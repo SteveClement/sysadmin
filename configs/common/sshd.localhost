@@ -1,0 +1,35 @@
+#!/sbin/runscript
+# Copyright 1999-2004 Gentoo Technologies, Inc.
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /home/cvs/kierbiischt-ion-sysadmin/configs/common/sshd.localhost,v 1.1 2004/07/12 14:13:16 steve Exp $
+
+depend() {
+	use logger dns
+	need net
+}
+
+checkconfig() {
+	if [ ! -d /var/empty ] ; then
+		mkdir -p /var/empty || return 1
+	fi
+
+	if [ ! -e /etc/ssh/sshd_config.localhost ] ; then
+		eerror "You need an /etc/ssh/sshd_config.localhost file to run sshd.localhost"
+		return 1
+	fi
+
+}
+
+start() {
+	checkconfig || return 1
+	ebegin "Starting sshd.localhost"
+	start-stop-daemon --start --quiet --pidfile /var/run/sshd.localhost.pid \
+		--startas /usr/sbin/sshd -- -f /etc/ssh/sshd_config.localhost 
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping sshd.localhost"
+	start-stop-daemon --stop --quiet --pidfile /var/run/sshd.localhost.pid
+	eend $?
+}

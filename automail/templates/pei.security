@@ -1,0 +1,115 @@
+*Received: (qmail 77080 invoked by uid 89); 3 Sep 2007 03:02:02 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 03:02:02 +0200
+Received: (qmail 29570 invoked by uid 98); 3 Sep 2007 02:45:16 +0200
+Received: from 85.93.200.67 by radium.ion.lu (envelope-from <root@pei.ion.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(85.93.200.67):SA:0(2.6/7.0):. 
+ Processed in 5.364877 secs); 03 Sep 2007 00:45:16 -0000
+X-Spam-Status: No, score=2.6 required=7.0
+X-Spam-Level: ++
+Received: from vodsl-8515.vo.lu (HELO pei.ion.lu) (85.93.200.67)
+  by radium.ion.lu with SMTP; 3 Sep 2007 02:45:11 +0200
+Received-SPF: none (radium.ion.lu: domain at pei.ion.lu does not designate permitted sender hosts)
+Received: (qmail 99424 invoked by alias); 3 Sep 2007 03:01:16 +0200
+Delivered-To: root@pei.ion.lu
+Received: (qmail 99387 invoked by uid 0); 3 Sep 2007 03:01:16 +0200
+Date: 3 Sep 2007 03:01:16 +0200
+Message-ID: <20070903010116.99385.qmail@pei.ion.lu>
+From: root@pei.ion.lu
+To: root@pei.ion.lu
+Subject: pei.ion.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+pei.ion.lu kernel log messages:
+
+pei.ion.lu login failures:
+
+pei.ion.lu refused connections:
+
+Checking for a current audit database:
+
+Downloading fresh database.
+auditfile.tbz                                           43 kB   75 kBps
+New database installed.
+Database created: Mon Sep  3 02:40:01 CEST 2007
+
+Checking for packages with security vulnerabilities:
+
+Affected package: fetchmail-6.3.5
+Type of problem: fetchmail -- denial of service on reject of local warning message.
+Reference: <http://www.FreeBSD.org/ports/portaudit/45500f74-5947-11dc-87c1-000e2e5785ad.html>
+
+Affected package: rsync-2.6.8_2
+Type of problem: rsync -- off by one stack overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/af8e3a0c-5009-11dc-8a43-003048705d5a.html>
+
+Affected package: cups-base-1.2.2
+Type of problem: xpdf -- stack based buffer overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/0e43a14d-3f3f-11dc-a79a-0016179b2dd5.html>
+
+Affected package: vim-7.0.94
+Type of problem: vim -- Command Format String Vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/1ed03222-3c65-11dc-b3d3-0016179b2dd5.html>
+
+Affected package: gd-2.0.33_4,1
+Type of problem: gd -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/6e099997-25d8-11dc-878b-000c29c5647f.html>
+
+Affected package: cups-base-1.2.2
+Type of problem: cups -- Incomplete SSL Negotiation Denial of Service.
+Reference: <http://www.FreeBSD.org/ports/portaudit/39988ee8-1918-11dc-b6bd-0016179b2dd5.html>
+
+Affected package: freetype2-2.2.1_1
+Type of problem: FreeType 2 -- Heap overflow vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/de2fab2d-0a37-11dc-aae2-00304881ac9a.html>
+
+Affected package: png-1.2.12_1
+Type of problem: png -- DoS crash vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/4cb9c513-03ef-11dc-a51d-0019b95d4f14.html>
+
+Affected package: samba-3.0.23c_2,1
+Type of problem: samba -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/3546a833-03ea-11dc-a51d-0019b95d4f14.html>
+
+Affected package: fetchmail-6.3.5
+Type of problem: fetchmail -- insecure APOP authentication.
+Reference: <http://www.FreeBSD.org/ports/portaudit/f1c4d133-e6d3-11db-99ea-0060084a00e5.html>
+
+Affected package: samba-3.0.23c_2,1
+Type of problem: samba -- potential Denial of Service bug in smbd.
+Reference: <http://www.FreeBSD.org/ports/portaudit/f235fe7a-b9ca-11db-bf0f-0013720b182d.html>
+
+Affected package: samba-3.0.23c_2,1
+Type of problem: samba -- format string bug in afsacl.so VFS plugin.
+Reference: <http://www.FreeBSD.org/ports/portaudit/57ae52f7-b9cc-11db-bf0f-0013720b182d.html>
+
+Affected package: fetchmail-6.3.5
+Type of problem: fetchmail -- crashes when refusing a message bound for an MDA.
+Reference: <http://www.FreeBSD.org/ports/portaudit/37e30313-9d8c-11db-858b-0060084a00e5.html>
+
+Affected package: fetchmail-6.3.5
+Type of problem: fetchmail -- TLS enforcement problem/MITM attack/password exposure.
+Reference: <http://www.FreeBSD.org/ports/portaudit/5238ac45-9d8c-11db-858b-0060084a00e5.html>
+
+Affected package: gnupg-1.4.5_1
+Type of problem: gnupg -- remotely controllable function pointer.
+Reference: <http://www.FreeBSD.org/ports/portaudit/4db1669c-8589-11db-ac4f-02e081235dab.html>
+
+Affected package: ruby-1.8.5_4,1
+Type of problem: ruby -- cgi.rb library Denial of Service.
+Reference: <http://www.FreeBSD.org/ports/portaudit/a8674c14-83d7-11db-88d5-0012f06707f0.html>
+
+16 problem(s) in your installed packages found.
+
+You are advised to update or deinstall the affected package(s) immediately.
+
+-- End of security output --

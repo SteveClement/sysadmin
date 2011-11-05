@@ -1,0 +1,1 @@
+this could contain client specific confs this is sort of a last resort if the conf either dont really bwelong to the hosts directory or are of another nature

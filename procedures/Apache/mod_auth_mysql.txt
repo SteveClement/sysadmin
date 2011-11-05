@@ -1,0 +1,10 @@
+be warned... if you get an error about alloc.h, you need to edit:
+
+  ~software/unpacked/apache_1.3.14/src/modules/auth_mysql/Makefile
+
+and change the reference to ap_alloc.h
+
+and if you can find the new home page for this project, please let us know! currently you need to grab it from a 
+machine that already has it (like signpost). also note there is an MD5 patch if you want to add MD5 as a crypto 
+method. this is required if you are going to share authentication database with PTS, for example.
+> 

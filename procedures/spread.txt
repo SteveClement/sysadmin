@@ -1,0 +1,13 @@
+Apply patches/spread.patch [move this before committing]
+
+[Check out WHAT spread is an DELeTE/KEEP accordingly]
+
+Run:
+
+ln -s FreeBSD_makefile Makefile
+make
+rootdo make install
+
+Add a user and group "spread", no shell.
+
+Create a directory, /var/run/spread

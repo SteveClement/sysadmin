@@ -1,0 +1,199 @@
+*Received: (qmail 85323 invoked by uid 89); 3 Sep 2007 04:07:10 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 04:07:10 +0200
+Received: (qmail 8090 invoked by uid 98); 3 Sep 2007 03:50:24 +0200
+Received: from 194.7.63.66 by radium.ion.lu (envelope-from <root@aquila-server.ion.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(194.7.63.66):SA:0(1.9/7.0):. 
+ Processed in 4.335382 secs); 03 Sep 2007 01:50:24 -0000
+X-Spam-Status: No, score=1.9 required=7.0
+X-Spam-Level: +
+Received: from uu194-7-63-66.unknown.uunet.be (HELO aquila-server.ion.lu) (194.7.63.66)
+  by radium.ion.lu with SMTP; 3 Sep 2007 03:50:19 +0200
+Received-SPF: none (radium.ion.lu: domain at aquila-server.ion.lu does not designate permitted sender hosts)
+Received: (qmail 67429 invoked by alias); 3 Sep 2007 04:06:20 +0200
+Delivered-To: root@aquila-server.ion.lu
+Received: (qmail 67426 invoked by uid 0); 3 Sep 2007 04:06:20 +0200
+Date: 3 Sep 2007 04:06:20 +0200
+Message-ID: <20070903020620.67424.qmail@aquila-server.ion.lu>
+From: root@aquila-server.ion.lu
+To: root@aquila-server.ion.lu
+Subject: aquila-server.ion.lu daily run output
+
+
+Removing stale files from /var/preserve:
+
+Cleaning out old system announcements:
+
+Removing stale files from /var/rwho:
+
+Backup passwd and group files:
+
+Verifying group file syntax:
+/etc/group is fine
+
+Backing up mail aliases:
+
+Disk status:
+Filesystem  1K-blocks    Used     Avail Capacity  Mounted on
+/dev/ad8s1a 149336674 3588052 133801690     3%    /
+devfs               1       1         0   100%    /dev
+devfs               1       1         0   100%    /var/db/dhcpd/dev
+
+Last dump(s) done (Dump '>' file systems):
+
+Network interface status:
+Name    Mtu Network       Address              Ipkts Ierrs    Opkts Oerrs  Coll
+em0    1500 <Link#1>      00:13:20:d2:30:41 10137791     0 13087858     0     0 
+em0    1500 fe80:1::213:2 fe80:1::213:20ff:        0     -        2     -     - 
+em0    1500 192.168.42    aliuqa-server       264685     -    22881     -     - 
+rl0    1500 <Link#2>      00:a1:b0:01:a7:84 15865465     0 12148577     0     0 
+rl0    1500 fe80:2::2a1:b fe80:2::2a1:b0ff:        0     -        0     -     - 
+rl0    1500 194.7.63.64/2 uu194-7-63-66.unk  2507436     - 12148183     -     - 
+plip0  1500 <Link#3>                               0     0        0     0     0 
+lo0   16384 <Link#4>                               0     0        0     0     0 
+lo0   16384 localhost     ::1                      0     -        0     -     - 
+lo0   16384 fe80:4::1     fe80:4::1                0     -        0     -     - 
+lo0   16384 your-net      localhost                0     -        0     -     - 
+
+Local system status:
+ 3:01AM  up 70 days,  2:53, 0 users, load averages: 0.00, 0.00, 0.00
+
+Mail in local queue:
+
+Mail in submit queue:
+
+Security check:
+    (output mailed separately)
+
+Checking for rejected mail hosts:
+
+Checking for denied zone transfers (AXFR and IXFR):
+
+Running /etc/daily.local:
+Removing old files and directories... done.
+Extracting new files:
+/usr/ports/MOVED
+/usr/ports/Mk/bsd.qt.mk
+/usr/ports/accessibility/qt4-accessible/
+/usr/ports/audio/boodler/
+/usr/ports/biology/pymol/
+/usr/ports/chinese/qt4-codecs-cn/
+/usr/ports/chinese/qt4-codecs-tw/
+/usr/ports/databases/qt-ibase-plugin/
+/usr/ports/databases/qt-mysql-plugin/
+/usr/ports/databases/qt-odbc-plugin/
+/usr/ports/databases/qt-pgsql-plugin/
+/usr/ports/databases/qt-sqlite-plugin/
+/usr/ports/databases/qt4-ibase-plugin/
+/usr/ports/databases/qt4-mysql-plugin/
+/usr/ports/databases/qt4-odbc-plugin/
+/usr/ports/databases/qt4-pgsql-plugin/
+/usr/ports/databases/qt4-sql/
+/usr/ports/databases/qt4-sqlite-plugin/
+/usr/ports/databases/qt4-sqlite3-plugin/
+/usr/ports/devel/acpicatools/
+/usr/ports/devel/bouml/
+/usr/ports/devel/dbus-qt4/
+/usr/ports/devel/noweb/
+/usr/ports/devel/pypersrc/
+/usr/ports/devel/qmake4/
+/usr/ports/devel/qt4-assistant/
+/usr/ports/devel/qt4-corelib/
+/usr/ports/devel/qt4-designer/
+/usr/ports/devel/qt4-libqtassistantclient/
+/usr/ports/devel/qt4-linguist/
+/usr/ports/devel/qt4-makeqpf/
+/usr/ports/devel/qt4-moc/
+/usr/ports/devel/qt4-porting/
+/usr/ports/devel/qt4-qdbusviewer/
+/usr/ports/devel/qt4-qt3support/
+/usr/ports/devel/qt4-qtestlib/
+/usr/ports/devel/qt4-qvfb/
+/usr/ports/devel/qt4-rcc/
+/usr/ports/devel/qt4-script/
+/usr/ports/devel/qt4-uic/
+/usr/ports/devel/qt4-uic3/
+/usr/ports/devel/qt4/
+/usr/ports/dns/bind84/
+/usr/ports/editors/Makefile
+/usr/ports/editors/nxml-emacs21/
+/usr/ports/editors/nxml/
+/usr/ports/editors/psgml/
+/usr/ports/finance/quantlib/
+/usr/ports/french/eficas/
+/usr/ports/games/brutalchess/
+/usr/ports/games/ptkei/
+/usr/ports/games/xroach/
+/usr/ports/graphics/ogre312/
+/usr/ports/graphics/qt4-iconengines/
+/usr/ports/graphics/qt4-imageformats/
+/usr/ports/graphics/qt4-pixeltool/
+/usr/ports/graphics/qt4-svg/
+/usr/ports/graphics/xmfract/
+/usr/ports/graphics/xpdf/
+/usr/ports/japanese/ptex/
+/usr/ports/japanese/qt4-codecs-jp/
+/usr/ports/japanese/scim-canna/
+/usr/ports/japanese/scim-uim/
+/usr/ports/japanese/vlgothic/
+/usr/ports/java/jdk14/
+/usr/ports/java/jdk16/
+/usr/ports/korean/qt4-codecs-kr/
+/usr/ports/lang/munger/
+/usr/ports/lang/sml-nj-devel/
+/usr/ports/lang/sml-nj/
+/usr/ports/lang/vala/
+/usr/ports/mail/Makefile
+/usr/ports/mail/ilohamail-devel/
+/usr/ports/mail/ovs/
+/usr/ports/mail/qmail-scanner1/
+/usr/ports/math/asir2000/
+/usr/ports/math/py-numpy/
+/usr/ports/misc/cuecat/
+/usr/ports/misc/qt4-doc/
+/usr/ports/misc/qt4-qtconfig/
+/usr/ports/misc/qt4-qtdemo/
+/usr/ports/net-im/fugu/
+/usr/ports/net-mgmt/aguri/
+/usr/ports/net/forg/
+/usr/ports/net/grsync/
+/usr/ports/net/qt4-network/
+/usr/ports/science/py-scipy/
+/usr/ports/security/gnupg/
+/usr/ports/security/ipsec-tools/
+/usr/ports/security/tor/
+/usr/ports/security/vuxml/
+/usr/ports/sysutils/conky/
+/usr/ports/sysutils/lcdproc/
+/usr/ports/sysutils/tw_cli/
+/usr/ports/textproc/qt4-xml/
+/usr/ports/textproc/xmlroff/
+/usr/ports/www/mod_musicindex/
+/usr/ports/www/p5-Catalyst-Action-RenderView/
+/usr/ports/x11-fonts/p5-type1inst/
+/usr/ports/x11-toolkits/Makefile
+/usr/ports/x11-toolkits/py-Pmw/
+/usr/ports/x11-toolkits/py-tktreectrl/
+/usr/ports/x11-toolkits/qt4-gui/
+/usr/ports/x11/qt4-inputmethods/
+/usr/ports/x11/qt4-opengl/
+Building new INDEX files... done.
+Parsing supfile "/etc/cvsupfile-6_1"
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Server software version: SNAP_16_1h
+Negotiating file attribute support
+Exchanging collection information
+Establishing multiplexed-mode data connection
+Running
+Updating collection src-all/cvs
+Shutting down connection to server
+Finished successfully
+>>> WARNING
+>>> Executing updatedb as root.  This WILL reveal all filenames
+>>> on your machine to all login users, which is a security risk.
+--->  Session started at: Mon, 03 Sep 2007 04:06:13 +0200
+--->  Session ended at: Mon, 03 Sep 2007 04:06:20 +0200 (consumed 00:00:06)
+
+-- End of daily output --

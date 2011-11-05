@@ -1,0 +1,117 @@
+ISDN on FreeBSD 6.2
+
+MAKE=make sh /usr/src/sys/conf/newvers.sh ASTERION
+cc -c -O -pipe -march=pentium4 -Wall -Wredundant-decls -Wnested-externs -Wstrict-prototypes  -Wmissing-prototypes -Wpointer-arith -Winline -Wcast-qual -fformat-extensions -std=c99 -g -nostdinc -I-  -I. -I/usr/src/sys -I/usr/src/sys/contrib/altq -I/usr/src/sys/contrib/ipfilter -I/usr/src/sys/contrib/pf -I/usr/src/sys/dev/ath -I/usr/src/sys/contrib/ngatm -I/usr/src/sys/dev/twa -D_KERNEL -DHAVE_KERNEL_OPTION_HEADERS -include opt_global.h -fno-common -finline-limit=8000 --param inline-unit-growth=100 --param large-function-growth=1000  -mno-align-long-strings -mpreferred-stack-boundary=2  -mno-mmx -mno-3dnow -mno-sse -mno-sse2 -ffreestanding -Werror  vers.c
+linking kernel.debug
+i4b_ctl.o(.text+0x163): In function `i4bctlioctl': /usr/src/sys/i4b/driver/i4b_ctl.c:132: undefined reference to `i4b_l1_debug'
+i4b_ctl.o(.text+0x189):/usr/src/sys/i4b/driver/i4b_ctl.c:140: undefined reference to `i4b_l1_debug'
+i4b_l2.o(.text+0x23a): In function `i4b_ph_activate_ind': /usr/src/sys/i4b/layer2/i4b_l2.c:182: undefined reference to `i4b_l1_debug'
+i4b_l2.o(.text+0x284): In function `i4b_ph_deactivate_ind': /usr/src/sys/i4b/layer2/i4b_l2.c:195: undefined reference to `i4b_l1_debug'
+i4b_l2.o(.text+0x3bf): In function `i4b_mph_status_ind': /usr/src/sys/i4b/layer2/i4b_l2.c:256: undefined reference to `i4b_l1_debug'
+i4b_l2.o(.text+0x5bf): In function `i4b_mdl_command_req': /usr/src/sys/i4b/layer2/i4b_l2.c:327: undefined reference to `i4b_l1l2_func'
+i4b_uframe.o(.text+0x56d): In function `i4b_tx_sabme': /usr/src/sys/i4b/layer2/i4b_uframe.c:220: undefined reference to `i4b_l1l2_func'
+i4b_uframe.o(.text+0x5df): In function `i4b_tx_dm': /usr/src/sys/i4b/layer2/i4b_uframe.c:234: undefined reference to `i4b_l1l2_func'
+i4b_uframe.o(.text+0x651): In function `i4b_tx_disc': /usr/src/sys/i4b/layer2/i4b_uframe.c:248: undefined reference to `i4b_l1l2_func'
+i4b_uframe.o(.text+0x6c3): In function `i4b_tx_ua': /usr/src/sys/i4b/layer2/i4b_uframe.c:262: undefined reference to `i4b_l1l2_func'
+i4b_uframe.o(.text+0x735):/usr/src/sys/i4b/layer2/i4b_uframe.c:276: more undefined references to `i4b_l1l2_func' follow
+*** Error code 1
+
+Stop in /usr/obj/usr/src/sys/ASTERION.
+*** Error code 1
+
+Stop in /usr/src.
+*** Error code 1
+
+Stop in /usr/src.
+asterion src #
+
+
+MAKE=make sh /usr/src/sys/conf/newvers.sh ASTERION
+cc -c -O -pipe -march=pentium4 -Wall -Wredundant-decls -Wnested-externs -Wstrict-prototypes  -Wmissing-prototypes -Wpointer-arith -Winline -Wcast-qual -fformat-extensions -std=c99 -g -nostdinc -I-  -I. -I/usr/src/sys -I/usr/src/sys/contrib/altq -I/usr/src/sys/contrib/ipfilter -I/usr/src/sys/contrib/pf -I/usr/src/sys/dev/ath -I/usr/src/sys/contrib/ngatm -I/usr/src/sys/dev/twa -D_KERNEL -DHAVE_KERNEL_OPTION_HEADERS -include opt_global.h -fno-common -finline-limit=8000 --param inline-unit-growth=100 --param large-function-growth=1000  -mno-align-long-strings -mpreferred-stack-boundary=2  -mno-mmx -mno-3dnow -mno-sse -mno-sse2 -ffreestanding -Werror  vers.c
+linking kernel.debug
+i4b_l2.o(.text+0x120): In function `i4b_dl_data_req': /usr/src/sys/i4b/layer2/i4b_l2.c:152: undefined reference to `i4b_Dfreembuf'
+i4b_l2.o(.text+0x20c):/usr/src/sys/i4b/layer2/i4b_l2.c:168: undefined reference to `i4b_Dfreembuf'
+i4b_l2.o(.text+0x23a): In function `i4b_ph_activate_ind': /usr/src/sys/i4b/layer2/i4b_l2.c:182: undefined reference to `i4b_l1_debug'
+i4b_l2.o(.text+0x284): In function `i4b_ph_deactivate_ind': /usr/src/sys/i4b/layer2/i4b_l2.c:195: undefined reference to `i4b_l1_debug'
+i4b_l2.o(.text+0x35f): In function `i4b_l2_unit_init': /usr/src/sys/i4b/layer2/i4b_l2.c:232: undefined reference to `i4b_Dfreembuf'
+i4b_l2.o(.text+0x3bf): In function `i4b_mph_status_ind': /usr/src/sys/i4b/layer2/i4b_l2.c:256: undefined reference to `i4b_l1_debug'
+i4b_l2.o(.text+0x5bf): In function `i4b_mdl_command_req': /usr/src/sys/i4b/layer2/i4b_l2.c:327: undefined reference to `i4b_l1l2_func'
+i4b_l2.o(.text+0x627): In function `i4b_ph_data_ind': /usr/src/sys/i4b/layer2/i4b_l2.c:350: undefined reference to `i4b_Dfreembuf'
+i4b_l2.o(.text+0x682):/usr/src/sys/i4b/layer2/i4b_l2.c:361: undefined reference to `i4b_Dfreembuf'
+i4b_l2.o(.text+0x6dd):/usr/src/sys/i4b/layer2/i4b_l2.c:372: undefined reference to `i4b_Dfreembuf'
+i4b_l2.o(.text+0x731):/usr/src/sys/i4b/layer2/i4b_l2.c:382: undefined reference to `i4b_Dfreembuf'
+i4b_l2fsm.o(.text+0x62e): In function `F_AE01': /usr/src/sys/i4b/layer2/i4b_l2fsm.c:510: undefined reference to `i4b_Dcleanifq'
+i4b_l2fsm.o(.text+0x66e): In function `F_AE05': /usr/src/sys/i4b/layer2/i4b_l2fsm.c:523: undefined reference to `i4b_Dcleanifq'
+i4b_l2fsm.o(.text+0x6c2): In function `F_AE06': /usr/src/sys/i4b/layer2/i4b_l2fsm.c:539: undefined reference to `i4b_Dcleanifq'
+i4b_l2fsm.o(.text+0x818): In function `F_AE09': /usr/src/sys/i4b/layer2/i4b_l2fsm.c:596: undefined reference to `i4b_Dcleanifq'
+i4b_l2fsm.o(.text+0x8b6): In function `F_AE10': /usr/src/sys/i4b/layer2/i4b_l2fsm.c:628: undefined reference to `i4b_Dcleanifq'
+i4b_l2fsm.o(.text+0x91a):/usr/src/sys/i4b/layer2/i4b_l2fsm.c:649: more undefined references to `i4b_Dcleanifq' follow i4b_uframe.o(.text+0x120): In function `i4b_rxd_u_frame': /usr/src/sys/i4b/layer2/i4b_uframe.c:78: undefined reference to `i4b_Dfreembuf'
+i4b_uframe.o(.text+0x1c5):/usr/src/sys/i4b/layer2/i4b_uframe.c:103: undefined reference to `i4b_Dfreembuf'
+i4b_uframe.o(.text+0x234):/usr/src/sys/i4b/layer2/i4b_uframe.c:116: undefined reference to `i4b_Dfreembuf'
+i4b_uframe.o(.text+0x28a):/usr/src/sys/i4b/layer2/i4b_uframe.c:126: undefined reference to `i4b_Dfreembuf'
+i4b_uframe.o(.text+0x30b):/usr/src/sys/i4b/layer2/i4b_uframe.c:141: undefined reference to `i4b_Dfreembuf'
+i4b_uframe.o(.text+0x37a):/usr/src/sys/i4b/layer2/i4b_uframe.c:153: more undefined references to `i4b_Dfreembuf' follow
+i4b_uframe.o(.text+0x4b5): In function `i4b_build_u_frame': /usr/src/sys/i4b/layer2/i4b_uframe.c:194: undefined reference to `i4b_Dgetmbuf'
+i4b_uframe.o(.text+0x56d): In function `i4b_tx_sabme': /usr/src/sys/i4b/layer2/i4b_uframe.c:220: undefined reference to `i4b_l1l2_func'
+i4b_uframe.o(.text+0x5df): In function `i4b_tx_dm': /usr/src/sys/i4b/layer2/i4b_uframe.c:234: undefined reference to `i4b_l1l2_func'
+i4b_uframe.o(.text+0x651): In function `i4b_tx_disc': /usr/src/sys/i4b/layer2/i4b_uframe.c:248: undefined reference to `i4b_l1l2_func'
+i4b_uframe.o(.text+0x6c3): In function `i4b_tx_ua': /usr/src/sys/i4b/layer2/i4b_uframe.c:262: undefined reference to `i4b_l1l2_func'
+i4b_uframe.o(.text+0x735): In function `i4b_tx_frmr': /usr/src/sys/i4b/layer2/i4b_uframe.c:276: undefined reference to `i4b_l1l2_func'
+i4b_tei.o(.text+0x350): In function `i4b_tei_rxframe': /usr/src/sys/i4b/layer2/i4b_tei.c:146: undefined reference to `i4b_Dfreembuf'
+i4b_tei.o(.text+0x37c): In function `build_tei_mgmt_frame': /usr/src/sys/i4b/layer2/i4b_tei.c:157: undefined reference to `i4b_Dgetmbuf'
+i4b_tei.o(.text+0x43e):/usr/src/sys/i4b/layer2/i4b_tei.c:189: undefined reference to `i4b_Dfreembuf'
+i4b_tei.o(.text+0x4cf): In function `i4b_tei_assign': /usr/src/sys/i4b/layer2/i4b_tei.c:215: undefined reference to `i4b_l1l2_func'
+i4b_tei.o(.text+0x548): In function `i4b_tei_verify': /usr/src/sys/i4b/layer2/i4b_tei.c:236: undefined reference to `i4b_l1l2_func'
+i4b_tei.o(.text+0x5c2): In function `i4b_tei_chkresp': /usr/src/sys/i4b/layer2/i4b_tei.c:259: undefined reference to `i4b_l1l2_func'
+i4b_sframe.o(.text+0x3a): In function `i4b_rxd_s_frame': /usr/src/sys/i4b/layer2/i4b_sframe.c:63: undefined reference to `i4b_Dfreembuf'
+i4b_sframe.o(.text+0x1a0):/usr/src/sys/i4b/layer2/i4b_sframe.c:99: undefined reference to `i4b_Dfreembuf'
+i4b_sframe.o(.text+0x211): In function `i4b_tx_rr_command': /usr/src/sys/i4b/layer2/i4b_sframe.c:114: undefined reference to `i4b_l1l2_func'
+i4b_sframe.o(.text+0x282): In function `i4b_tx_rr_response': /usr/src/sys/i4b/layer2/i4b_sframe.c:131: undefined reference to `i4b_l1l2_func'
+i4b_sframe.o(.text+0x2f3): In function `i4b_tx_rnr_command': /usr/src/sys/i4b/layer2/i4b_sframe.c:148: undefined reference to `i4b_l1l2_func'
+i4b_sframe.o(.text+0x364): In function `i4b_tx_rnr_response': /usr/src/sys/i4b/layer2/i4b_sframe.c:165: undefined reference to `i4b_l1l2_func'
+i4b_sframe.o(.text+0x3d5): In function `i4b_tx_rej_response': /usr/src/sys/i4b/layer2/i4b_sframe.c:182: undefined reference to `i4b_l1l2_func'
+i4b_sframe.o(.text+0x404): In function `i4b_build_s_frame': /usr/src/sys/i4b/layer2/i4b_sframe.c:195: undefined reference to `i4b_Dgetmbuf'
+i4b_iframe.o(.text+0x3a): In function `i4b_rxd_i_frame': /usr/src/sys/i4b/layer2/i4b_iframe.c:72: undefined reference to `i4b_Dfreembuf'
+i4b_iframe.o(.text+0x52):/usr/src/sys/i4b/layer2/i4b_iframe.c:78: undefined reference to `i4b_Dfreembuf'
+i4b_iframe.o(.text+0xc1):/usr/src/sys/i4b/layer2/i4b_iframe.c:95: undefined reference to `i4b_Dfreembuf'
+i4b_iframe.o(.text+0x15a):/usr/src/sys/i4b/layer2/i4b_iframe.c:125: undefined reference to `i4b_Dfreembuf'
+i4b_iframe.o(.text+0x404): In function `i4b_i_frame_queued_up': /usr/src/sys/i4b/layer2/i4b_iframe.c:245: undefined reference to `i4b_l1l2_func'
+i4b_iframe.o(.text+0x455):/usr/src/sys/i4b/layer2/i4b_iframe.c:253: undefined reference to `i4b_Dfreembuf'
+i4b_util.o(.text+0x5b): In function `i4b_clear_exception_conditions': /usr/src/sys/i4b/layer2/i4b_util.c:83: undefined reference to `i4b_Dcleanifq'
+i4b_util.o(.text+0x72):/usr/src/sys/i4b/layer2/i4b_util.c:87: undefined reference to `i4b_Dfreembuf'
+i4b_util.o(.text+0x46a): In function `i4b_rxd_ack': /usr/src/sys/i4b/layer2/i4b_util.c:265: undefined reference to `i4b_Dfreembuf'
+i4b_util.o(.text+0x49c): In function `i4b_l1_activate': /usr/src/sys/i4b/layer2/i4b_util.c:281: undefined reference to `i4b_l1l2_func'
+i4b_l2if.o(.text+0x5c1): In function `i4b_dl_data_ind': /usr/src/sys/i4b/layer3/i4b_l2if.c:298: undefined reference to `i4b_Dfreembuf'
+i4b_l2if.o(.text+0x5f7): In function `i4b_dl_unit_data_ind': /usr/src/sys/i4b/layer3/i4b_l2if.c:312: undefined reference to `i4b_Dfreembuf'
+i4b_l2if.o(.text+0x65d): In function `i4b_l3_tx_connect': /usr/src/sys/i4b/layer3/i4b_l2if.c:327: undefined reference to `i4b_Dgetmbuf'
+i4b_l2if.o(.text+0x76a): In function `i4b_l3_tx_release_complete': /usr/src/sys/i4b/layer3/i4b_l2if.c:362: undefined reference to `i4b_Dgetmbuf'
+i4b_l2if.o(.text+0x849): In function `i4b_l3_tx_disconnect': /usr/src/sys/i4b/layer3/i4b_l2if.c:394: undefined reference to `i4b_Dgetmbuf'
+i4b_l2if.o(.text+0x9ad): In function `i4b_l3_tx_setup': /usr/src/sys/i4b/layer3/i4b_l2if.c:445: undefined reference to `i4b_Dgetmbuf'
+i4b_l2if.o(.text+0xc24): In function `i4b_l3_tx_connect_ack': /usr/src/sys/i4b/layer3/i4b_l2if.c:576: undefined reference to `i4b_Dgetmbuf'
+i4b_l2if.o(.text+0xce3):/usr/src/sys/i4b/layer3/i4b_l2if.c:600: more undefined references to `i4b_Dgetmbuf' follow
+i4b_i4bdrv.o(.text+0x11b): In function `i4bclose': /usr/src/sys/i4b/layer4/i4b_i4bdrv.c:138: undefined reference to `i4b_Dcleanifq'
+i4b_i4bdrv.o(.text+0x2d7): In function `i4bread': /usr/src/sys/i4b/layer4/i4b_i4bdrv.c:183: undefined reference to `i4b_Dfreembuf'
+i4b_i4bdrv.o(.text+0xe6d): In function `i4bputqueue': /usr/src/sys/i4b/layer4/i4b_i4bdrv.c:791: undefined reference to `i4b_Dfreembuf'
+i4b_i4bdrv.o(.text+0xf00):/usr/src/sys/i4b/layer4/i4b_i4bdrv.c:802: undefined reference to `i4b_Dfreembuf' i4b_i4bdrv.o(.text+0xff9): In function `i4bputqueue_hipri': /usr/src/sys/i4b/layer4/i4b_i4bdrv.c:834: undefined reference to
+`i4b_Dfreembuf'
+i4b_i4bdrv.o(.text+0x108c):/usr/src/sys/i4b/layer4/i4b_i4bdrv.c:845: undefined reference to `i4b_Dfreembuf'
+i4b_l4.o(.text+0xf1): In function `i4b_l4_pdeact': /usr/src/sys/i4b/layer4/i4b_l4.c:108: undefined reference to `i4b_Dgetmbuf'
+i4b_l4.o(.text+0x132): In function `i4b_l4_l12stat': /usr/src/sys/i4b/layer4/i4b_l4.c:130: undefined reference to `i4b_Dgetmbuf'
+i4b_l4.o(.text+0x177): In function `i4b_l4_teiasg': /usr/src/sys/i4b/layer4/i4b_l4.c:153: undefined reference to `i4b_Dgetmbuf'
+i4b_l4.o(.text+0x1c1): In function `i4b_l4_dialout': /usr/src/sys/i4b/layer4/i4b_l4.c:175: undefined reference to `i4b_Dgetmbuf'
+i4b_l4.o(.text+0x202): In function `i4b_l4_dialoutnumber': /usr/src/sys/i4b/layer4/i4b_l4.c:197: undefined reference to `i4b_Dgetmbuf'
+i4b_l4.o(.text+0x302):/usr/src/sys/i4b/layer4/i4b_l4.c:234: more undefined references to `i4b_Dgetmbuf' follow
+*** Error code 1
+
+Stop in /usr/obj/usr/src/sys/ASTERION.
+*** Error code 1
+
+Stop in /usr/src.
+*** Error code 1
+
+Stop in /usr/src.
+asterion src #
+
+
+This occurs if you forgot to include a plain passive ISDN Card.
+

@@ -1,0 +1,46 @@
+grub on bsd for dummies:
+
+echo "kern.geom.debugflags=16" >> /etc/sysctl.conf
+mkdir /boot/grub
+cd /boot
+cp -Rf /usr/local/share/grub/i386-freebsd grub
+scp steve@hadron.ion.lu:splash.xpm.gz grub/
+vi grub/menu.lst
+default saved  # boot the last selection. Work together with savedefault below
+timeout 10  # timeout 10 seconds
+password --md5 $1$rEjBN0$0J06NigS.2ImTaipPOh0w/ # md5 passwd encryption: "testgrub" 
+# Boot Windows XP. You have to chainloading.
+title Windows XP Professional  # display boot title on the Grub prompt
+root (hd0,0)  # set the root device or partition
+makeactive  # set the partition active so that next time it can be automatically 
+              # booted after timing-out 
+chainloader +1  # Here we have to chainload 
+savedefault  # save this selection as the default for next bootstrap 
+# Boot FreeBSD
+title FreeBSD 5.1_p16
+root (hd0,1,a)
+kernel /boot/loader  # specify the kernel or kernel loader
+makeactive
+savedefault
+# Boot Redhat Linux
+title Redhat Linux
+root (hd0,2)
+kernel /boot/vmlinuz-2.4.18-14smp ro root=LABEL=/ hdc=ide-scsi
+nitrd /boot/initrd-2.4.18-14smp.img
+makeactive
+savedefault
+# Install Grub on Slice 1 (the FreeBSD partition)
+title Install Grub on FreeBSD (Slice 1)
+root (hd0,1,a)
+setup (hd0)
+savedefault 
+
+grub
+
+find /boot/grub/stage1
+
+root (hd0,2,a)
+setup (hd0)
+
+md5crypt
+pass

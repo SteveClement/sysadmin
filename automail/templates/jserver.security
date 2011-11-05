@@ -1,0 +1,37 @@
+*Received: (qmail 13001 invoked by uid 98); 18 Jun 2004 01:03:01 -0000
+Received: from root@jserver.tampa.lu by zinc.ion.lu by uid 82 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.72. spamassassin: 2.63.  Clear:RC:0(213.135.239.119):SA:0(3.8/5.0):. 
+ Processed in 15.237082 secs); 18 Jun 2004 01:03:01 -0000
+X-Spam-Status: No, hits=3.8 required=5.0
+X-Spam-Level: +++
+X-Antivirus-ion.lu-Mail-From: root@jserver.tampa.lu via zinc.ion.lu
+X-Antivirus-ion.lu: 1.22-st-qms (Clear:RC:0(213.135.239.119):SA:0(3.8/5.0):. Processed in 15.237082 secs Process 12993)
+Received: from pppoe239-luxdsl-119.pt.lu (HELO jserver.tampa.lu) (213.135.239.119)
+  by zinc.ion.lu with SMTP; 18 Jun 2004 01:02:45 -0000
+Received: from jserver.tampa.lu (localhost.tampa.lu [127.0.0.1])
+	by jserver.tampa.lu (8.12.6/8.12.6) with ESMTP id i5I12iOt038586
+	for <root@jserver.tampa.lu>; Fri, 18 Jun 2004 03:02:44 +0200 (CEST)
+	(envelope-from root@jserver.tampa.lu)
+Received: (from root@localhost)
+	by jserver.tampa.lu (8.12.6/8.12.6/Submit) id i5I12gUK038535
+	for root; Fri, 18 Jun 2004 03:02:42 +0200 (CEST)
+Date: Fri, 18 Jun 2004 03:02:42 +0200 (CEST)
+From: Charlie Root <root@jserver.tampa.lu>
+Message-Id: <200406180102.i5I12gUK038535@jserver.tampa.lu>
+To: root@jserver.tampa.lu
+Subject: jserver security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+jserver login failures:
+
+jserver refused connections:
+
+-- End of security output --

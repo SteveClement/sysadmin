@@ -1,0 +1,29 @@
+$ORIGIN .
+$TTL 86400	; 1 day
+netforce.lu		IN SOA	ns4.ion.lu. steve.ion.lu. (
+				171        ; serial
+				43200      ; refresh (12 hours)
+				3600       ; retry (1 hour)
+				900000     ; expire (1 week 3 days 10 hours)
+				86400      ; minimum (1 day)
+				)
+			NS	ns1.ion.lu.
+			NS	ns4.ion.lu.
+			MX	30 mail.ion.lu.
+$ORIGIN netforce.lu.
+bluepixel		CNAME	www
+bulco			CNAME	www
+cia			CNAME	www
+enouwe			CNAME	www
+ftp			CNAME	www
+horus			CNAME	www
+inquisitor		CNAME	www
+jedi			CNAME	www
+localhost		A	127.0.0.1
+lost-lord		CNAME	www
+mail			CNAME	www
+spooky			CNAME	www
+support			CNAME	www
+thc			CNAME	www
+viper			CNAME	www
+www			A	80.90.47.162

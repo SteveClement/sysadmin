@@ -1,0 +1,14 @@
+### THIS IS DEPRECATED DONT USE ######
+Installing OpenSSL 0.9.6c
+-------------------------
+
+cd ~software/archives/
+wget http://www.openssl.org/source/openssl-0.9.6d.tar.gz
+cd ~software/unpacked/
+tar -xzvf ../archives/openssl-0.9.6d.tar.gz
+cd openssl-0.9.6d/
+sh config
+make
+rootdo make install
+rootdo rm -f /usr/local/bin/openssl
+rootdo ln -s /usr/local/ssl/bin/openssl /usr/local/bin/openssl

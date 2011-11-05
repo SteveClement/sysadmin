@@ -1,0 +1,376 @@
+
+First Install MYSQL according to this document:
+
+[[ FreeBSD MySQL Install ]]
+
+Second Install an Apache
+
+[[ FreeBSD Apache 2 Install ]]
+
+
+WITH_SINGLE_DOMAIN=YES
+WITH_AUTH_LOG=YES 
+WITH_VALIAS=YES 
+RELAYCLEAR=30 
+SPAM_THRESHOLD=12 
+LOGLEVEL=y 
+WITH_MYSQL_LOG=YES
+WITH_SPAMASSASSIN=YES 
+LOGLEVEL=p make
+
+single_domain:
+echo "mail/vpopmail: WITH_SMTP_AUTH_PATCH|WITH_QMAIL_EXT|WITHOUT_PASSWD|WITHOUT_MD5_PASSWORDS|WITH_CLEAR_PASSWD|WITH_MYSQL|WITHOUT_MYSQL_REPLICATION|WITHOUT_MYSQL_LIMITS|WITH_VALIAS|WITHOUT_ROAMING|WITH_SPAMASSASSIN|WITH_SINGLE_DOMAIN|WITH_AUTH_LOG|DEFAULT_DOMAIN=croix-rouge.lu" >> /usr/local/etc/ports.conf
+
+multiple_domains:
+echo "mail/vpopmail: WITH_SMTP_AUTH_PATCH|WITH_QMAIL_EXT|WITHOUT_PASSWD|WITHOUT_MD5_PASSWORDS|WITH_CLEAR_PASSWD|WITH_MYSQL|WITHOUT_MYSQL_REPLICATION|WITHOUT_MYSQL_LIMITS|WITH_VALIAS|WITHOUT_ROAMING|WITH_SPAMASSASSIN|WITH_AUTH_LOG" >> /usr/local/etc/ports.conf
+
+
+
+# WITH_SUID_VCHKPW      - set the setuid bit on the vchkpw program
+
+# DEFAULT_DOMAIN - default domain for non-vhost lookups
+
+# WITH_SINGLE_DOMAIN - optimize for a site with many users in a single domain
+# WITH_MYSQL_USER - the username for connecting to the MySQL server (root)
+# WITH_MYSQL_PASSWD - the password for connecting to the MySQL server (secret)
+# WITH_MYSQL_DB - the name of the MySQL database to use (vpopmail)
+# RELAYCLEAR    - time in minutes before clearing relay hole (requires
+# roaming)
+# SPAM_THRESHOLD - minimum score required to delete spam messages (requires
+# spamassassin)
+
+Spamassassin install screen:
+
+            lqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqk
+            x             Options for p5-Mail-SpamAssassin 3.1.8_1 x
+            x lqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqk x
+            x x   [X] AS_ROOT        Run spamd as root (recommended) x x
+            x x   [X] DOMAINKEYS     DomainKeys support x x
+            x x   [X] DKIM           DomainKeys Identified Mail x x
+            x x   [X] SSL            Build with SSL support for spamd/spamc x x
+            x x   [X] GNUPG          Install GnuPG (for sa-update) x x
+            x x   [X] MYSQL          Add MySQL support x x
+            x x   [ ] PGSQL          Add PostreSQL support x x
+            x x   [X] RAZOR          Add Vipul's Razor support x x
+            x x   [X] SPF_QUERY      Add SPF query support x x
+            x x   [X] RELAY_COUNTRY  Relay country support x x
+            x x   [X] TOOLS          Install SpamAssassin tools x x
+            x x x x
+            x x x x
+            x x x x
+            x x x x
+            tqmqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjqu
+            x                       [  OK  ]       Cancel x
+            mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj
+
+
+
+
+dspam conf:
+
+make config select sane defaults etc..
+domainscale largescale incompatible
+
+configure clamav..	
+
+
+configure databases:
+
+dbvpopmail
+dspam
+
+/usr/local/share/examples/dspam/mysql
+mysqladmin create dbdspam
+mysql dbdspam < /usr/local/share/examples/dspam/mysql/mysql_objects-speed.sql
+OR SPACE or 4.1 (std)
+mysql dbdspam < /usr/local/share/examples/dspam/mysql/virtual_users.sql
+
+
+DONT FORGET THE PURGE SCRIPT!!!
+
+
+vpopmail sql:
+
+echo "localhost|0|vpopmail|FFg%432Sfvfd/3e|dbvpopmail" > ~vpopmail/etc/vpopmail.mysql
+chown vpopmail:vchkpw ~vpopmail/etc/vpopmail.mysql
+chmod 640 ~vpopmail/etc/vpopmail.mysql
+
+
+mysqladmin create dbvpopmail
+mysql
+GRANT select,insert,update,delete,create,drop ON dbvpopmail.* TO vpopmail@localhost IDENTIFIED BY 'FFg%432Sfvfd/3e';
+flush privileges;
+
+
+vlimits
+tcp.smtp
+127.:allow,RELAYCLIENT="",RBLSMTPD=""
+
+linion svscan:
+
+clamd           qmail-pop3d     qmail-qmtpd     qmail-smtpd     smtps
+fam             qmail-qmqpd     qmail-send      qmail-smtpd2525 stunnel
+
+redx:
+clamd       qmail-pop3d qmail-send  qmail-smtpd spamd
+
+
+Tune qmail:
+
+mkdir -p /var/qmail/supervise/qmail-smtpd
+
+        mkdir -p /var/log/qmail/qmail-smtpd
+        chown -R qmaill:wheel /var/log/qmail/qmail-smtpd
+        chmod -R 750 /var/log/qmail/qmail-smtpd
+
+        mkdir -p /var/qmail/supervise/qmail-smtpd/log
+        chmod +t /var/qmail/supervise/qmail-smtpd
+
+copy runs
+chgmod 755 run's
+
+cd /var/service 
+ln -s /var/qmail/supervise/qmail-smtpd qmail-smtpd
+
+
+courier imap:
+WITHOUT_FAM=yes WITH_CRAM=yes WITH_VPOPMAIL=yes WITHOUT_LDAP=yes make install
+NO IPV6
+W_vpop
+
+echo courier_authdaemond_enable=\"YES\"  >> /etc/rc.conf
+
+config courier auth:
+portinstall lang/expect
+/usr/local/etc/authlib
+
+authmodulelist="authvchkpw"
+
+config imapd.cnf:
+
+/usr/local/etc/courier-imap
+cp -p imapd.cnf.dist imapd.cnf
+
+edit file and adjust accordingly
+
+if quotas are used:
+
+cp -p quotawarnmsg.example quotawarnmsg
+
+adjust accordingly
+
+adjust:
+
+imapd:
+
+MAXDAEMONS=120
+
+MAXPERIP=44
+
+IMAPDSTART=YES
+
+edit imapd-ssl
+
+IMAPDSSLSTART=YES
+
+maybe add:
+MAXDAEMONS=120
+
+MAXPERIP=44
+
+run :
+
+mkimapdcert
+
+add:
+
+echo courier_imap_imapd_ssl_enable=\"YES\" >> /etc/rc.conf
+echo courier_imap_imapd_enable=\"YES\" >> /etc/rc.conf
+
+
+<<<<<<< .mine
+
+to Install Qmailadmin from Ports:
+
+Multiple domains:
+
+echo "mail/qmailadmin: WITH_DOMAIN_AUTOFILL=NO|WITH_SPAM_DETECTION=YES|WITH_MODIFY_QUOTA=NO|PREFIX=/home/apache|CGIBINDIR=cgi-bin|CGIBINSUBDIR=|CGIBINURL=/cgi-bin|WEBDATADIR=hosts/ion.lu|WEBDATASUBDIR=qmailadmin" >> /usr/local/etc/ports.conf
+
+single domains:
+echo "mail/qmailadmin: WITH_DOMAIN_AUTOFILL=YES|WITH_SPAM_DETECTION=YES|WITH_MODIFY_QUOTA=YES|PREFIX=/home/apache|CGIBINDIR=cgi-bin|CGIBINSUBDIR=|CGIBINURL=/cgi-bin|WEBDATADIR=hosts/croix-rouge.lu|WEBDATASUBDIR=qmailadmin" >> /usr/local/etc/ports.conf
+
+ezmlm-idx:
+echo "mail/ezmlm-idx: WITH_MYSQL" >> /usr/local/etc/ports.conf
+
+
+VQADMIN from Ports:
+
+echo "mail/vqadmin: PREFIX=/home/apache|CGIBINDIR=cgi-bin|WEBDATADIR=hosts/ion.lu/vqadmin" >> /usr/local/etc/ports.conf
+
+cd /home/apache/cgi-bin/vqadmin ; vi .htaccess #¼Change AuthUserfile to: /home/apache/auth/vqadmin.passwd
+
+htpasswd -c /home/apache/auth/vqadmin.passwd admin
+chown www .htaccess
+chown www /home/apache/auth/vqadmin.passwd
+chmod 640 /home/apache/auth/vqadmin.passwd
+
+AccessFileName .htaccess
+
+
+=======
+Add: qmailadmin / vqadmin / dspam / webmail / webmail-lite to the relevant Domain on NS Server
+
+clamav depends: dspam
+spamass depends: vpopmail
+
+<VirtualHost 80.90.47.168:443>
+SSLEngine on
+SSLCertificateFile /home/apache/ssl/webmail2.ion.lu.cert
+SSLCertificateKeyFile /home/apache/ssl/webmail2.ion.lu.key
+        ServerName vqadmin.ion.lu
+        DocumentRoot /home/apache/hosts/ion.lu/vqadmin
+        TransferLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/vqadmin/transfer-%Y%m%d.log"
+        ErrorLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/vqadmin/error-%Y%m%d.log"
+
+<Directory "/home/apache/cgi-bin/vqadmin">
+ deny from all
+ Options ExecCGI
+ AllowOverride AuthConfig
+ Order deny,allow
+</Directory>
+</VirtualHost>
+
+<VirtualHost 80.90.47.168:443>
+SSLEngine on
+SSLCertificateFile /home/apache/ssl/ml.firetec.lu.crt
+SSLCertificateKeyFile /home/apache/ssl/ml.firetec.lu.key
+        ServerName ml.firetec.lu
+        DocumentRoot /home/apache/hosts/firetec.lu/ml
+        TransferLog "|/usr/local/sbin/cronolog
+/home/apache/logs/firetec.lu/ml/transfer-%Y%m%d.log"
+        ErrorLog "|/usr/local/sbin/cronolog
+/home/apache/logs/firetec.lu/ml/error-%Y%m%d.log"
+</VirtualHost>
+
+
+qmailadmin:
+
+<VirtualHost 80.90.47.168:443>
+SSLEngine on
+SSLCertificateFile /home/apache/ssl/webmail2.ion.lu.cert
+SSLCertificateKeyFile /home/apache/ssl/webmail2.ion.lu.key
+        ServerName qmailadmin.ion.lu
+        DocumentRoot /home/apache/hosts/ion.lu/qmailadmin
+        TransferLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/qmailadmin/transfer-%Y%m%d.log"
+        ErrorLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/qmailadmin/error-%Y%m%d.log"
+
+<Directory "/home/apache/cgi-bin/qmailadmin">
+ deny from all
+ Options ExecCGI
+ AllowOverride AuthConfig
+ Order deny,allow
+</Directory>
+
+</VirtualHost>
+
+dspam:
+
+<VirtualHost 80.90.47.168:443>
+SSLEngine on
+SSLCertificateFile /home/apache/ssl/webmail2.ion.lu.cert
+SSLCertificateKeyFile /home/apache/ssl/webmail2.ion.lu.key
+        User vpopmail
+        Group vchkpw
+        DirectoryIndex index.php index.html dspam.cgi
+        ServerName dspam.ion.lu
+        DocumentRoot /home/apache/hosts/ion.lu/dspam
+        TransferLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/dspam/transfer-%Y%m%d.log"
+        ErrorLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/dspam/error-%Y%m%d.log"
+
+<Directory />
+        Options FollowSymLinks ExecCGI
+        AllowOverride None
+        Order deny,allow
+        Deny from all
+        AddHandler cgi-script .cgi .pl
+        SSLRequireSSL
+        Auth_IMAP_Enabled on
+        AuthType Basic
+        AuthName "DSPAM Control Center"
+        Require valid-user
+        Satisfy Any
+</Directory>
+</VirtualHost>
+
+
+webmail*:
+# Include Webmail directory
+Include /home/apache/conf/webmail
+
+httpd.conf.ion:
+# Horde Webmail
+<VirtualHost 80.90.47.168:443>
+SSLEngine on
+SSLCertificateFile /home/apache/ssl/webmail2.ion.lu.cert
+SSLCertificateKeyFile /home/apache/ssl/webmail2.ion.lu.key
+        ServerName webmail.ion.lu
+        ServerAlias webmail-horde.ion.lu
+        DocumentRoot /home/apache/hosts/ion.lu/webmail
+        TransferLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/webmail/transfer.log-%Y%m%d"
+        ErrorLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/webmail/error.log-%Y%m%d"
+</VirtualHost>
+
+# Secured Squirrelmail
+<VirtualHost 80.90.47.168:443>
+SSLEngine on
+SSLCertificateFile /home/apache/ssl/webmail2.ion.lu.cert
+SSLCertificateKeyFile /home/apache/ssl/webmail2.ion.lu.key
+        ServerName webmail-lite.ion.lu
+        ServerAlias webmail.keyline.lu webmail-lite.keyline.lu webmail2.ion.lu
+webmail-lite.fltri.lu
+        DocumentRoot /home/apache/hosts/ion.lu/webmail-lite
+        TransferLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/webmail-lite/transfer.log-%Y%m%d"
+        ErrorLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/webmail-lite/error.log-%Y%m%d"
+</VirtualHost>
+
+# Unsecured Squirrelmail (blackberry compat.)
+<VirtualHost 80.90.47.168:80>
+        ServerName wapmail-lite.ion.lu
+        DocumentRoot /home/apache/hosts/ion.lu/webmail-lite
+        TransferLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/webmail-lite/transfer.log-%Y%m%d"
+        ErrorLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/webmail-lite/error.log-%Y%m%d"
+</VirtualHost>
+
+# Unsecured Squirrelmail (blackberry compat.)
+<VirtualHost 80.90.47.168:80>
+        ServerName wapmail.ion.lu
+        DocumentRoot /home/apache/hosts/ion.lu/webmail
+        TransferLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/webmail/transfer.log-%Y%m%d"
+        ErrorLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/webmail/error.log-%Y%m%d"
+</VirtualHost>
+
+
+log dirs:
+
+mkdir ~apache/logs/ion.lu/dspam
+mkdir ~apache/logs/ion.lu/webmail
+mkdir ~apache/logs/ion.lu/webmail-lite
+mkdir ~apache/logs/ion.lu/qmailadmin
+mkdir ~apache/logs/ion.lu/vqadmin
+>>>>>>> .r83
+
+cp -pi /usr/local/etc/php.ini-recommended /usr/local/etc/php.ini

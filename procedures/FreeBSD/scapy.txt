@@ -1,0 +1,11 @@
+Installing Scap under FreeBSD 6.0
+
+It's pretty straight forward but you need to get your dependencies right:
+
+cd /usr/ports/devel/swig13 && SWIG_LANGUAGES="-php4 -guile" make install
+cd /usr/ports/net/libdnet && WITH_PYTHON=YES make install
+portinstall py-gnuplot py-pcap libpcap py-pycrypto py-PyX
+
+http://www.secdev.org/projects/scapy/files/scapy.py
+wget http://www.secdev.org/projects/scapy/files/ethertypes
+mv ethertypes /etc

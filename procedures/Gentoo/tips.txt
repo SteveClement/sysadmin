@@ -1,0 +1,83 @@
+bloserion root # equery belongs gif_lib.h 
+[ Searching for file(s) gif_lib.h in *... ]
+media-libs/libungif-4.1.0.1b (/usr/include/gif_lib.h)
+media-libs/giflib-4.1.0-r3 (/usr/include/gif_lib.h)
+
+(qpkg is more convenient emerge gentoolkit)
+
+
+smartmontools and Sata disks on 2.6.12:
+
+libata isn't ready yet so it will not work without substantial kernel patching.
+
+
+vim syntax addons in portage:
+
+nagios-syntax
+dhcpd-syntax
+...
+
+extra-syntax <- Installs all syntax file (meta-port)
+
+
+Fancy keyboard stuff is done through: lineakd
+
+
+Gentoo 2005.0 with php5 and PDFLib 6.0
+
+
+deleting gnome/kde:
+
+emerge unmerge `qpkg -nc -I kde`
+
+equery -q depends kde
+
+carefull with dependencies... (gdm/filelight)
+
+
+mail steve@ion.lu
+
+mail: command not found
+
+Haha, tricky one ey :)
+
+emerge mailx
+
+gives command line mail support....
+
+usbutils for lsusb
+
+pciutils for lspci
+
+telnet
+
+command not found?
+
+emerge telnet-bsd
+
+dig: command not found
+emerge bind-tools
+
+Some std stuff:
+
+emerge dhcpcd vim cvs ufed telnet-bsd mailx eix netcat slocate ntp
+
+Removing obsolete kernel:
+
+emerge -C =gentoo-sources-2.6.18-r4
+
+enion src # ls -la
+total 16
+drwxr-xr-x  4 root root 4096 Jan 31 21:25 .
+drwxr-xr-x 14 root root 4096 Aug  3 17:39 ..
+-rw-r--r--  1 root root    0 Aug  3 16:23 .keep
+lrwxrwxrwx  1 root root   22 Dec 21 13:25 linux -> linux-2.6.18-gentoo-r4
+drwxr-xr-x 20 root root 4096 Jan 30 15:22 linux-2.6.18-gentoo-r4
+drwxr-xr-x 19 root root 4096 Jan 31 21:26 linux-2.6.19-gentoo-r5
+genion src # cp linux/.config linux-2.6.19-gentoo-r5/
+enion src # cd !$
+cd linux-2.6.19-gentoo-r5/
+genion linux-2.6.19-gentoo-r5 # make oldconfig
+
+genion src # ln -s linux-2.6.19-gentoo-r5/ linux
+

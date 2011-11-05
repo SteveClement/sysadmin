@@ -1,0 +1,11 @@
+this should probably be split
+
+
+ocrad
+claraocr
+gocr
+
+easily installed from ports
+
+http://sourceforge.net/projects/tesseract-ocr/
+kooka

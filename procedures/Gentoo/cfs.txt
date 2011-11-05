@@ -1,0 +1,15 @@
+cfs on Gentoo Linux:
+
+emerge cfs
+
+echo "/var/lib/cfs/.cfsfs localhost(rw,sync)" >> /etc/exports
+echo "localhost:/var/lib/cfs/.cfsfs  /var/cfs  nfs  port=3049,intr,nfsvers=2 0 0" >> /etc/fstab
+
+START CFS: /etc/init.d/cfsd start
+
+/etc/init.d/nfs restart
+/etc/init.d/nfsmount restart
+
+(IF NFSMOUNT HANGS RESTART CFSD...)
+
+

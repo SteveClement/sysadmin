@@ -1,0 +1,43 @@
+This will explain how to create and manage a cryptfs on Linux (Gentoo)
+
+You'll need:
+
+Package:
+util-linux (gives mount crypto support, losetup etc...)
+Kernel:
+cryptoloop
+a crypto: aes for instance others are welcome...
+
+insmod loop cryptoloop aes
+
+This will create 120Megs worth of ciphertext:
+dd if=/dev/urandom of=/path/to/ciphertext.img bs=1M count=120
+chmod 600 /path/to/ciphertext.img
+
+losetup - set up and control loop devices
+will "attach" the ciphertext image to the loopback device
+
+This needs to be only ONCE as root:
+losetup -e aes-256 /dev/loop0 /path/to/ciphertext.img
+Enter a pass-"phrase" aes-256 tells losetup to use 256bits aes...
+
+GET $LUSER Again...
+
+create your fs of choice:
+mke2fs /dev/loop0
+
+NOW all is clear for user config:
+losetup -d /dev/loop0
+
+Add this to your /etc/fstab to be able to non-root mount the crypted disk:
+
+/home/steve/ciphertext.img	/crypt/mycryptedarea ext2 loop,rw,user,noauto,encryption=aes-256 0 0
+
+mount /path/to/crypt/mount
+Enter your previously entered passphrase...
+
+Script:
+
+mount /crypt/mycryptedarea
+
+umount /crypt/mycryptedarea

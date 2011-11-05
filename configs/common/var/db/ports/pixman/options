@@ -1,0 +1,2 @@
+_OPTIONS_READ=pixman-0.16.6
+WITHOUT_SIMD=true

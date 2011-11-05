@@ -1,0 +1,36 @@
+# $FreeBSD: src/etc/profile,v 1.12.2.1 2000/07/31 20:13:26 rwatson Exp $
+#
+# System-wide .profile file for sh(1).
+#
+# Uncomment this to give you the default 4.2 behavior, where disk 
+# information is shown in K-Blocks
+# BLOCKSIZE=K; export BLOCKSIZE
+#
+# For the setting of languages and character sets please see
+# login.conf(5) and in particular the charset and lang options.
+# For full locales list check /usr/share/locale/*
+# You should also read the setlocale(3) man page for information
+# on how to achieve more precise control of locale settings.
+#
+# Read system messages
+# msgs -f
+# Allow terminal messages
+# mesg y
+PATH=$PATH:/usr/local/mysql/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin ; export PATH
+CVS_RSH=ssh ; export CVS_RSH
+export FTP_PASSIVE_MODE=1
+alias hg='history |grep '
+alias pg='ps -wwuax |grep '
+umask 002
+# # set prompt: ``username@hostname$ ''
+if [ $TERM = "xterm" ]; then
+  PS1='\[\033]0;\u@\h: \w\007\]\u@\h:\w'
+  export PS1
+ else
+  PS1='\u@\h:\w'
+fi
+ case `id -u` in
+        0) PS1="${PS1}# "
+        umask 022;;
+        *) PS1="${PS1}$ ";;
+ esac

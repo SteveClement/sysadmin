@@ -1,0 +1,30 @@
+This guide is a full subevrsion Install with Apache Support and DAV Support,
+on workstations this is NOT needed!
+
+
+= Full Subersion Install =
+
+echo "devel/subversion: WITH_MOD_DAV_SVN|WITH_APACHE2_APR" >> /usr/local/etc/ports.conf
+echo "devel/apr-svn: APR_UTIL_WITH_BERKELEY_DB=yes" >> /usr/local/etc/ports.conf
+cd /usr/ports/devel/apr-svn && make install clean
+cd /usr/ports/devel/subversion && make install clean
+
+You should build `www/apache22' with db4 support to use subversion with it.
+Please rebuild `www/apache22' with option `WITH_BERKELEYDB=(db4|db41|db42)'
+and try again.
+
+Or you can disable db4 support. Only 'fs' repository backend will be
+available.
+To disable db4 support, define WITHOUT_BDB.
+
+echo "devel/subversion: WITHOUT_MOD_DAV_SVN|WITHOUT_APACHE2_APR" >> /usr/local/etc/ports.conf
+
+
+= Client only install =
+
+echo "devel/subversion: WITHOUT_NEON|WITHOUT_MOD_DAV_SVN|WITHOUT_APACHE2_APR" >> /usr/local/etc/ports.conf
+echo "devel/apr-svn: APR_UTIL_WITH_BERKELEY_DB=yes" >> /usr/local/etc/ports.conf
+cd /usr/ports/devel/apr-svn && make install clean
+cd /usr/ports/devel/subversion && make install clean
+
+WITH_REPOSITORY_CREATION

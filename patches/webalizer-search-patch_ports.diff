@@ -1,0 +1,4021 @@
+diff -ruN webalizer-2.01-10-pristine/hashtab.c webalizer-2.01-10/hashtab.c
+--- webalizer-2.01-10-pristine/hashtab.c	Fri Jun 15 10:34:24 2001
++++ webalizer-2.01-10/hashtab.c	Thu Dec 22 08:52:59 2005
+@@ -70,7 +70,7 @@
+ UNODEPTR new_unode(char *);                   /* new url node             */
+ RNODEPTR new_rnode(char *);                   /* new referrer node        */
+ ANODEPTR new_anode(char *);                   /* new user agent node      */
+-SNODEPTR new_snode(char *);                   /* new search string..      */
++SNODEPTR new_snode(char *, char *);           /* new search string..      */
+ INODEPTR new_inode(char *);                   /* new ident node           */
+ #ifdef USE_DNS
+ DNODEPTR new_dnode(char *);                   /* new DNS node             */
+@@ -669,10 +669,10 @@
+ /* NEW_SNODE - Search str node creation      */
+ /*********************************************/
+ 
+-SNODEPTR new_snode(char *str)
++SNODEPTR new_snode(char *str, char *site)
+ {
+    SNODEPTR newptr;
+-   char     *sptr;
++   char     *sptr, *sptr2;
+ 
+    if (strlen(str) >= MAXSRCHH)
+    {
+@@ -686,15 +686,39 @@
+       str[MAXSRCHH-1]=0;
+    }
+ 
++   if (strlen(site) >= MAXSRCHH)
++   {
++      if (verbose)
++      {
++         fprintf(stderr,"[new_snode] %s (%d)",msg_big_one,strlen(site));
++         if (debug_mode)
++            fprintf(stderr,":\n--> %s",site);
++         fprintf(stderr,"\n");
++      }
++      site[MAXSRCHH-1]=0;
++   }
++
+    if ( (sptr=malloc(strlen(str)+1))==NULL ) return (SNODEPTR)NULL;
+    strcpy(sptr,str);
+ 
++   if ( (sptr2=malloc(strlen(site)+1))==NULL )
++   {
++       free(sptr);
++       return (SNODEPTR)NULL;
++   }
++   strcpy(sptr2,site);
++
+    if (( newptr = malloc(sizeof(struct snode))) != NULL)
+    {
+       newptr->string= sptr;
++      newptr->site= sptr2;
+       newptr->count = 1;
+    }
+-   else free(sptr);
++   else
++   {
++   free(sptr);
++   free(sptr2);
++   }
+    return newptr;
+ }
+ 
+@@ -702,17 +726,18 @@
+ /* PUT_SNODE - insert/update search str node */
+ /*********************************************/
+ 
+-int put_snode(char *str, u_long count, SNODEPTR *htab)
++int put_snode(char *str, char *site, u_long count, SNODEPTR *htab)
+ {
+    SNODEPTR cptr,nptr;
+ 
+-   if (str[0]==0 || str[0]==' ') return 0;     /* skip bad search strs */
++   if (str[0]==' ') return 0;     /* skip bad search strs */
++   if (site[0]==' ') return 0;     /* skip bad search strs */
+ 
+    /* check if hashed */
+    if ( (cptr = htab[hash(str)]) == NULL)
+    {
+       /* not hashed */
+-      if ( (nptr=new_snode(str)) != NULL)
++      if ( (nptr=new_snode(str,site)) != NULL)
+       {
+          nptr->count = count;
+          nptr->next = NULL;
+@@ -724,7 +749,7 @@
+       /* hashed */
+       while (cptr != NULL)
+       {
+-         if (strcmp(cptr->string,str)==0)
++         if (strcmp(cptr->string,str)==0 && strcmp(cptr->site,site)==0)
+          {
+             /* found... bump counter */
+             cptr->count+=count;
+@@ -733,7 +758,7 @@
+          cptr = cptr->next;
+       }
+       /* not found... */
+-      if ( (nptr = new_snode(str)) != NULL)
++      if ( (nptr = new_snode(str,site)) != NULL)
+       {
+          nptr->count = count;
+          nptr->next  = htab[hash(str)];
+@@ -762,6 +787,7 @@
+          {
+             temp = aptr->next;
+             free (aptr->string);
++            free (aptr->site);
+             free (aptr);
+             aptr = temp;
+          }
+diff -ruN webalizer-2.01-10-pristine/hashtab.c.orig webalizer-2.01-10/hashtab.c.orig
+--- webalizer-2.01-10-pristine/hashtab.c.orig	Thu Jan  1 01:00:00 1970
++++ webalizer-2.01-10/hashtab.c.orig	Fri Jun 15 10:34:24 2001
+@@ -0,0 +1,1176 @@
++/*
++    webalizer - a web server log analysis program
++
++    Copyright (C) 1997-2001  Bradford L. Barrett (brad@mrunix.net)
++
++    This program is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version, and provided that the above
++    copyright and permission notice is included with all distributed
++    copies of this or derived software.
++
++    This program is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with this program; if not, write to the Free Software
++    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
++
++    This software uses the gd graphics library, which is copyright by
++    Quest Protein Database Center, Cold Spring Harbor Labs.  Please
++    see the documentation supplied with the library for additional
++    information and license terms, or visit www.boutell.com/gd/ for the
++    most recent version of the library and supporting documentation.
++*/
++
++/*********************************************/
++/* STANDARD INCLUDES                         */
++/*********************************************/
++
++#include <time.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++#include <unistd.h>                           /* normal stuff             */
++#include <ctype.h>
++#include <sys/utsname.h>
++#include <sys/times.h>
++
++/* ensure getopt */
++#ifdef HAVE_GETOPT_H
++#include <getopt.h>
++#endif
++
++/* ensure sys/types */
++#ifndef _SYS_TYPES_H
++#include <sys/types.h>
++#endif
++
++/* some systems need this */
++#ifdef HAVE_MATH_H
++#include <math.h>
++#endif
++
++/* SunOS 4.x Fix */
++#ifndef CLK_TCK
++#define CLK_TCK _SC_CLK_TCK
++#endif
++
++#include "webalizer.h"                        /* main header              */
++#include "lang.h"
++#include "linklist.h"
++#include "hashtab.h"
++
++/* internal function prototypes */
++
++HNODEPTR new_hnode(char *);                   /* new host node            */
++UNODEPTR new_unode(char *);                   /* new url node             */
++RNODEPTR new_rnode(char *);                   /* new referrer node        */
++ANODEPTR new_anode(char *);                   /* new user agent node      */
++SNODEPTR new_snode(char *);                   /* new search string..      */
++INODEPTR new_inode(char *);                   /* new ident node           */
++#ifdef USE_DNS
++DNODEPTR new_dnode(char *);                   /* new DNS node             */
++#endif  /* USE_DNS */
++
++void     update_entry(char *);                /* update entry/exit        */
++void     update_exit(char *);                 /* page totals              */
++
++u_long   hash(char *);                        /* hash function            */
++
++/* local data */
++
++HNODEPTR sm_htab[MAXHASH];                    /* hash tables              */
++HNODEPTR sd_htab[MAXHASH];
++UNODEPTR um_htab[MAXHASH];                    /* for hits, sites,         */
++RNODEPTR rm_htab[MAXHASH];                    /* referrers and agents...  */
++ANODEPTR am_htab[MAXHASH];
++SNODEPTR sr_htab[MAXHASH];                    /* search string table      */
++INODEPTR im_htab[MAXHASH];                    /* ident table (username)   */
++#ifdef USE_DNS
++DNODEPTR host_table[MAXHASH];                 /* DNS hash table           */
++#endif  /* USE_DNS */
++
++
++/*********************************************/
++/* DEL_HTABS - clear out our hash tables     */
++/*********************************************/
++
++void del_htabs()
++{
++   del_hlist(sd_htab);                        /* Clear out our various    */
++   del_ulist(um_htab);                        /* hash tables here by      */
++   del_hlist(sm_htab);                        /* calling the appropriate  */
++   del_rlist(rm_htab);                        /* del_* fuction for each   */
++   del_alist(am_htab);
++   del_slist(sr_htab);
++   del_ilist(im_htab);
++#ifdef USE_DNS
++/* del_dlist(host_table);  */                    /* delete DNS hash table    */
++#endif  /* USE_DNS */
++}
++
++/*********************************************/
++/* NEW_HNODE - create host node              */
++/*********************************************/
++
++HNODEPTR new_hnode(char *str)
++{
++   HNODEPTR newptr;
++   char     *sptr;
++
++   if (strlen(str) >= MAXHOST)
++   {
++      if (verbose)
++      {
++         fprintf(stderr,"[new_hnode] %s (%d)",msg_big_one,strlen(str));
++         if (debug_mode)
++            fprintf(stderr,":\n--> %s",str);
++         fprintf(stderr,"\n");
++      }
++      str[MAXHOST-1]=0;
++   }
++
++   if ( (sptr=malloc(strlen(str)+1))==NULL ) return (HNODEPTR)NULL;
++   strcpy(sptr,str);
++
++   if (( newptr = malloc(sizeof(struct hnode))) != NULL)
++   {
++      newptr->string    =sptr;
++      newptr->visit     =0;
++      newptr->tstamp    =0;
++      newptr->lasturl   =blank_str;
++   }
++   else free(sptr);
++   return newptr;
++}
++
++/*********************************************/
++/* PUT_HNODE - insert/update host node       */
++/*********************************************/
++
++int put_hnode( char     *str,   /* Hostname  */
++               int       type,  /* obj type  */
++               u_long    count, /* hit count */
++               u_long    file,  /* File flag */
++               double    xfer,  /* xfer size */
++               u_long   *ctr,   /* counter   */
++               u_long    visit, /* visits    */
++               u_long    tstamp,/* timestamp */
++               char     *lasturl, /* lasturl */
++               HNODEPTR *htab)  /* ptr>next  */
++{
++   HNODEPTR cptr,nptr;
++
++   /* check if hashed */
++   if ( (cptr = htab[hash(str)]) == NULL)
++   {
++      /* not hashed */
++      if ( (nptr=new_hnode(str)) != NULL)
++      {
++         nptr->flag  = type;
++         nptr->count = count;
++         nptr->files = file;
++         nptr->xfer  = xfer;
++         nptr->next  = NULL;
++         htab[hash(str)] = nptr;
++         if (type!=OBJ_GRP) (*ctr)++;
++
++         if (visit)
++         {
++            nptr->visit=(visit-1);
++            nptr->lasturl=find_url(lasturl);
++            nptr->tstamp=tstamp;
++            return 0;
++         }
++         else
++         {
++            if (ispage(log_rec.url))
++            {
++               if (htab==sm_htab) update_entry(log_rec.url);
++               nptr->lasturl=find_url(log_rec.url);
++               nptr->tstamp=tstamp;
++               nptr->visit=1;
++            }
++         }
++      }
++   }
++   else
++   {
++      /* hashed */
++      while (cptr != NULL)
++      {
++         if (strcmp(cptr->string,str)==0)
++         {
++            if ((type==cptr->flag)||((type!=OBJ_GRP)&&(cptr->flag!=OBJ_GRP)))
++            {
++               /* found... bump counter */
++               cptr->count+=count;
++               cptr->files+=file;
++               cptr->xfer +=xfer;
++
++               if (ispage(log_rec.url))
++               {
++                  if ((tstamp-cptr->tstamp)>=visit_timeout)
++                  {
++                     cptr->visit++;
++                     if (htab==sm_htab)
++                     {
++                        update_exit(cptr->lasturl);
++                        update_entry(log_rec.url);
++                     }
++                  }
++                  cptr->lasturl=find_url(log_rec.url);
++                  cptr->tstamp=tstamp;
++               }
++               return 0;
++            }
++         }
++         cptr = cptr->next;
++      }
++      /* not found... */
++      if ( (nptr = new_hnode(str)) != NULL)
++      {
++         nptr->flag  = type;
++         nptr->count = count;
++         nptr->files = file;
++         nptr->xfer  = xfer;
++         nptr->next  = htab[hash(str)];
++         htab[hash(str)]=nptr;
++         if (type!=OBJ_GRP) (*ctr)++;
++
++         if (visit)
++         {
++            nptr->visit = (visit-1);
++            nptr->lasturl=find_url(lasturl);
++            nptr->tstamp= tstamp;
++            return 0;
++         }
++         else
++         {
++            if (ispage(log_rec.url))
++            {
++               if (htab==sm_htab) update_entry(log_rec.url);
++               nptr->lasturl=find_url(log_rec.url);
++               nptr->tstamp= tstamp;
++               nptr->visit=1;
++            }
++         }
++      }
++   }
++
++   if (nptr!=NULL)
++   {
++      /* set object type */
++      if (type==OBJ_GRP) nptr->flag=OBJ_GRP;            /* is it a grouping? */
++      else
++      {
++         /* check if it's a hidden object */
++         if ((hide_sites)||(isinlist(hidden_sites,nptr->string)!=NULL))
++           nptr->flag=OBJ_HIDE;
++      }
++   }
++   return nptr==NULL;
++}
++
++/*********************************************/
++/* DEL_HLIST - delete host hash table        */
++/*********************************************/
++
++void	del_hlist(HNODEPTR *htab)
++{
++   /* free memory used by hash table */
++   HNODEPTR aptr,temp;
++   int i;
++
++   for (i=0;i<MAXHASH;i++)
++   {
++      if (htab[i] != NULL)
++      {
++         aptr = htab[i];
++         while (aptr != NULL)
++         {
++            temp = aptr->next;
++            free (aptr->string);    /* free hostname string space */
++            free (aptr);            /* free hostname structure    */
++            aptr = temp;
++         }
++         htab[i]=NULL;
++      }
++   }
++}
++
++/*********************************************/
++/* NEW_UNODE - URL node creation             */
++/*********************************************/
++
++UNODEPTR new_unode(char *str)
++{
++   UNODEPTR newptr;
++   char     *sptr;
++
++   if (strlen(str) >= MAXURLH)
++   {
++      if (verbose)
++      {
++         fprintf(stderr,"[new_unode] %s (%d)",msg_big_one,strlen(str));
++         if (debug_mode)
++            fprintf(stderr,":\n--> %s",str);
++         fprintf(stderr,"\n");
++      }
++      str[MAXURLH-1]=0;
++   }
++
++   if ( (sptr=malloc(strlen(str)+1))==NULL) return (UNODEPTR)NULL;
++   strcpy(sptr,str);
++
++   if (( newptr = malloc(sizeof(struct unode))) != NULL)
++   {
++      newptr->string=sptr;
++      newptr->count = 0;
++      newptr->flag  = OBJ_REG;
++   }
++   else free(sptr);
++   return newptr;
++}
++
++/*********************************************/
++/* PUT_UNODE - insert/update URL node        */
++/*********************************************/
++
++int put_unode(char *str, int type, u_long count, double xfer,
++              u_long *ctr, u_long entry, u_long exit, UNODEPTR *htab)
++{
++   UNODEPTR cptr,nptr;
++
++   if (str[0]=='-') return 0;
++
++   /* check if hashed */
++   if ( (cptr = htab[hash(str)]) == NULL)
++   {
++      /* not hashed */
++      if ( (nptr=new_unode(str)) != NULL)
++      {
++         nptr->flag = type;
++         nptr->count= count;
++         nptr->xfer = xfer;
++         nptr->next = NULL;
++         nptr->entry= entry;
++         nptr->exit = exit;
++         htab[hash(str)] = nptr;
++         if (type!=OBJ_GRP) (*ctr)++;
++      }
++   }
++   else
++   {
++      /* hashed */
++      while (cptr != NULL)
++      {
++         if (strcmp(cptr->string,str)==0)
++         {
++            if ((type==cptr->flag)||((type!=OBJ_GRP)&&(cptr->flag!=OBJ_GRP)))
++            {
++               /* found... bump counter */
++               cptr->count+=count;
++               cptr->xfer += xfer;
++               return 0;
++            }
++         }
++         cptr = cptr->next;
++      }
++      /* not found... */
++      if ( (nptr = new_unode(str)) != NULL)
++      {
++         nptr->flag = type;
++         nptr->count= count;
++         nptr->xfer = xfer;
++         nptr->next = htab[hash(str)];
++         nptr->entry= entry;
++         nptr->exit = exit;
++         htab[hash(str)]=nptr;
++         if (type!=OBJ_GRP) (*ctr)++;
++      }
++   }
++   if (nptr!=NULL)
++   {
++      if (type==OBJ_GRP) nptr->flag=OBJ_GRP;
++      else if (isinlist(hidden_urls,nptr->string)!=NULL)
++                         nptr->flag=OBJ_HIDE;
++   }
++   return nptr==NULL;
++}
++
++/*********************************************/
++/* DEL_ULIST - delete URL hash table         */
++/*********************************************/
++
++void	del_ulist(UNODEPTR *htab)
++{
++   /* free memory used by hash table */
++   UNODEPTR aptr,temp;
++   int i;
++
++   for (i=0;i<MAXHASH;i++)
++   {
++      if (htab[i] != NULL)
++      {
++         aptr = htab[i];
++         while (aptr != NULL)
++         {
++            temp = aptr->next;
++            free (aptr->string);  /* free up URL string memory */
++            free (aptr);          /* free up URL struct node   */
++            aptr = temp;
++         }
++         htab[i]=NULL;
++      }
++   }
++}
++
++/*********************************************/
++/* NEW_RNODE - Referrer node creation        */
++/*********************************************/
++
++RNODEPTR new_rnode(char *str)
++{
++   RNODEPTR newptr;
++   char     *sptr;
++
++   if (strlen(str) >= MAXREFH)
++   {
++      if (verbose)
++      {
++         fprintf(stderr,"[new_rnode] %s (%d)",msg_big_one,strlen(str));
++         if (debug_mode)
++            fprintf(stderr,":\n--> %s",str);
++         fprintf(stderr,"\n");
++      }
++      str[MAXREFH-1]=0;
++   }
++
++   if ( (sptr=malloc(strlen(str)+1))==NULL ) return (RNODEPTR)NULL;
++   strcpy(sptr,str);
++
++   if (( newptr = malloc(sizeof(struct rnode))) != NULL)
++   {
++      newptr->string= sptr;
++      newptr->count = 1;
++      newptr->flag  = OBJ_REG;
++   }
++   else free(sptr);
++   return newptr;
++}
++
++/*********************************************/
++/* PUT_RNODE - insert/update referrer node   */
++/*********************************************/
++
++int put_rnode(char *str, int type, u_long count, u_long *ctr, RNODEPTR *htab)
++{
++   RNODEPTR cptr,nptr;
++
++   if (str[0]=='-') strcpy(str,"- (Direct Request)");
++
++   /* check if hashed */
++   if ( (cptr = htab[hash(str)]) == NULL)
++   {
++      /* not hashed */
++      if ( (nptr=new_rnode(str)) != NULL)
++      {
++         nptr->flag  = type;
++         nptr->count = count;
++         nptr->next  = NULL;
++         htab[hash(str)] = nptr;
++         if (type!=OBJ_GRP) (*ctr)++;
++      }
++   }
++   else
++   {
++      /* hashed */
++      while (cptr != NULL)
++      {
++         if (strcmp(cptr->string,str)==0)
++         {
++            if ((type==cptr->flag)||((type!=OBJ_GRP)&&(cptr->flag!=OBJ_GRP)))
++            {
++               /* found... bump counter */
++               cptr->count+=count;
++               return 0;
++            }
++         }
++         cptr = cptr->next;
++      }
++      /* not found... */
++      if ( (nptr = new_rnode(str)) != NULL)
++      {
++         nptr->flag  = type;
++         nptr->count = count;
++         nptr->next  = htab[hash(str)];
++         htab[hash(str)]=nptr;
++         if (type!=OBJ_GRP) (*ctr)++;
++      }
++   }
++   if (nptr!=NULL)
++   {
++      if (type==OBJ_GRP) nptr->flag=OBJ_GRP;
++      else if (isinlist(hidden_refs,nptr->string)!=NULL)
++                         nptr->flag=OBJ_HIDE;
++   }
++   return nptr==NULL;
++}
++
++/*********************************************/
++/* DEL_RLIST - delete referrer hash table    */
++/*********************************************/
++
++void	del_rlist(RNODEPTR *htab)
++{
++   /* free memory used by hash table */
++   RNODEPTR aptr,temp;
++   int i;
++
++   for (i=0;i<MAXHASH;i++)
++   {
++      if (htab[i] != NULL)
++      {
++         aptr = htab[i];
++         while (aptr != NULL)
++         {
++            temp = aptr->next;
++            free (aptr->string);
++            free (aptr);
++            aptr = temp;
++         }
++         htab[i]=NULL;
++      }
++   }
++}
++
++/*********************************************/
++/* NEW_ANODE - User Agent node creation      */
++/*********************************************/
++
++ANODEPTR new_anode(char *str)
++{
++   ANODEPTR newptr;
++   char     *sptr;
++
++   if (strlen(str) >= MAXAGENT)
++   {
++      if (verbose)
++      {
++         fprintf(stderr,"[new_anode] %s (%d)",msg_big_one,strlen(str));
++         if (debug_mode)
++            fprintf(stderr,":\n--> %s",str);
++         fprintf(stderr,"\n");
++      }
++      str[MAXAGENT-1]=0;
++   }
++
++   if ( (sptr=malloc(strlen(str)+1))==NULL ) return (ANODEPTR)NULL;
++   strcpy(sptr,str);
++
++   if (( newptr = malloc(sizeof(struct anode))) != NULL)
++   {
++      newptr->string= sptr;
++      newptr->count = 1;
++      newptr->flag  = OBJ_REG;
++   }
++   else free(sptr);
++   return newptr;
++}
++
++/*********************************************/
++/* PUT_ANODE - insert/update user agent node */
++/*********************************************/
++
++int put_anode(char *str, int type, u_long count, u_long *ctr, ANODEPTR *htab)
++{
++   ANODEPTR cptr,nptr;
++
++   if (str[0]=='-') return 0;     /* skip bad user agents */
++
++   /* check if hashed */
++   if ( (cptr = htab[hash(str)]) == NULL)
++   {
++      /* not hashed */
++      if ( (nptr=new_anode(str)) != NULL)
++      {
++         nptr->flag = type;
++         nptr->count= count;
++         nptr->next = NULL;
++         htab[hash(str)] = nptr;
++         if (type!=OBJ_GRP) (*ctr)++;
++      }
++   }
++   else
++   {
++      /* hashed */
++      while (cptr != NULL)
++      {
++         if (strcmp(cptr->string,str)==0)
++         {
++            if ((type==cptr->flag)||((type!=OBJ_GRP)&&(cptr->flag!=OBJ_GRP)))
++            {
++               /* found... bump counter */
++               cptr->count+=count;
++               return 0;
++            }
++         }
++         cptr = cptr->next;
++      }
++      /* not found... */
++      if ( (nptr = new_anode(str)) != NULL)
++      {
++         nptr->flag  = type;
++         nptr->count = count;
++         nptr->next  = htab[hash(str)];
++         htab[hash(str)]=nptr;
++         if (type!=OBJ_GRP) (*ctr)++;
++      }
++   }
++   if (type==OBJ_GRP) nptr->flag=OBJ_GRP;
++   else if (isinlist(hidden_agents,nptr->string)!=NULL)
++                      nptr->flag=OBJ_HIDE;
++   return nptr==NULL;
++}
++
++/*********************************************/
++/* DEL_ALIST - delete user agent hash table  */
++/*********************************************/
++
++void	del_alist(ANODEPTR *htab)
++{
++   /* free memory used by hash table */
++   ANODEPTR aptr,temp;
++   int i;
++
++   for (i=0;i<MAXHASH;i++)
++   {
++      if (htab[i] != NULL)
++      {
++         aptr = htab[i];
++         while (aptr != NULL)
++         {
++            temp = aptr->next;
++            free (aptr->string);
++            free (aptr);
++            aptr = temp;
++         }
++         htab[i]=NULL;
++      }
++   }
++}
++
++/*********************************************/
++/* NEW_SNODE - Search str node creation      */
++/*********************************************/
++
++SNODEPTR new_snode(char *str)
++{
++   SNODEPTR newptr;
++   char     *sptr;
++
++   if (strlen(str) >= MAXSRCHH)
++   {
++      if (verbose)
++      {
++         fprintf(stderr,"[new_snode] %s (%d)",msg_big_one,strlen(str));
++         if (debug_mode)
++            fprintf(stderr,":\n--> %s",str);
++         fprintf(stderr,"\n");
++      }
++      str[MAXSRCHH-1]=0;
++   }
++
++   if ( (sptr=malloc(strlen(str)+1))==NULL ) return (SNODEPTR)NULL;
++   strcpy(sptr,str);
++
++   if (( newptr = malloc(sizeof(struct snode))) != NULL)
++   {
++      newptr->string= sptr;
++      newptr->count = 1;
++   }
++   else free(sptr);
++   return newptr;
++}
++
++/*********************************************/
++/* PUT_SNODE - insert/update search str node */
++/*********************************************/
++
++int put_snode(char *str, u_long count, SNODEPTR *htab)
++{
++   SNODEPTR cptr,nptr;
++
++   if (str[0]==0 || str[0]==' ') return 0;     /* skip bad search strs */
++
++   /* check if hashed */
++   if ( (cptr = htab[hash(str)]) == NULL)
++   {
++      /* not hashed */
++      if ( (nptr=new_snode(str)) != NULL)
++      {
++         nptr->count = count;
++         nptr->next = NULL;
++         htab[hash(str)] = nptr;
++      }
++   }
++   else
++   {
++      /* hashed */
++      while (cptr != NULL)
++      {
++         if (strcmp(cptr->string,str)==0)
++         {
++            /* found... bump counter */
++            cptr->count+=count;
++            return 0;
++         }
++         cptr = cptr->next;
++      }
++      /* not found... */
++      if ( (nptr = new_snode(str)) != NULL)
++      {
++         nptr->count = count;
++         nptr->next  = htab[hash(str)];
++         htab[hash(str)]=nptr;
++      }
++   }
++   return nptr==NULL;
++}
++
++/*********************************************/
++/* DEL_SLIST - delete search str hash table  */
++/*********************************************/
++
++void	del_slist(SNODEPTR *htab)
++{
++   /* free memory used by hash table */
++   SNODEPTR aptr,temp;
++   int i;
++
++   for (i=0;i<MAXHASH;i++)
++   {
++      if (htab[i] != NULL)
++      {
++         aptr = htab[i];
++         while (aptr != NULL)
++         {
++            temp = aptr->next;
++            free (aptr->string);
++            free (aptr);
++            aptr = temp;
++         }
++         htab[i]=NULL;
++      }
++   }
++}
++
++/*********************************************/
++/* NEW_INODE - create ident (username) node  */
++/*********************************************/
++
++INODEPTR new_inode(char *str)
++{
++   INODEPTR newptr;
++   char     *sptr;
++
++   if (strlen(str) >= MAXIDENT)
++   {
++      if (verbose)
++      {
++         fprintf(stderr,"[new_inode] %s (%d)",msg_big_one,strlen(str));
++         if (debug_mode)
++            fprintf(stderr,":\n--> %s",str);
++         fprintf(stderr,"\n");
++      }
++      str[MAXIDENT-1]=0;
++   }
++
++   if ( (sptr=malloc(strlen(str)+1))==NULL ) return (INODEPTR)NULL;
++   strcpy(sptr,str);
++
++   if (( newptr = malloc(sizeof(struct inode))) != NULL)
++   {
++      newptr->string    =sptr;
++      newptr->visit     =1;
++      newptr->tstamp    =0;
++   }
++   else free(sptr);
++   return newptr;
++}
++
++/*********************************************/
++/* PUT_INODE - insert/update ident node      */
++/*********************************************/
++
++int put_inode( char     *str,   /* ident str */
++               int       type,  /* obj type  */
++               u_long    count, /* hit count */
++               u_long    file,  /* File flag */
++               double    xfer,  /* xfer size */
++               u_long   *ctr,   /* counter   */
++               u_long    visit, /* visits    */
++               u_long    tstamp,/* timestamp */
++               INODEPTR *htab)  /* hashtable */
++{
++   INODEPTR cptr,nptr;
++
++   if ((str[0]=='-') || (str[0]==0)) return 0;  /* skip if no username */
++
++   /* check if hashed */
++   if ( (cptr = htab[hash(str)]) == NULL)
++   {
++      /* not hashed */
++      if ( (nptr=new_inode(str)) != NULL)
++      {
++         nptr->flag  = type;
++         nptr->count = count;
++         nptr->files = file;
++         nptr->xfer  = xfer;
++         nptr->next  = NULL;
++         htab[hash(str)] = nptr;
++         if (type!=OBJ_GRP) (*ctr)++;
++
++         if (visit)
++         {
++            nptr->visit=(visit-1);
++            nptr->tstamp=tstamp;
++            return 0;
++         }
++         else
++         {
++            if (ispage(log_rec.url)) nptr->tstamp=tstamp;
++         }
++      }
++   }
++   else
++   {
++      /* hashed */
++      while (cptr != NULL)
++      {
++         if (strcmp(cptr->string,str)==0)
++         {
++            if ((type==cptr->flag)||((type!=OBJ_GRP)&&(cptr->flag!=OBJ_GRP)))
++            {
++               /* found... bump counter */
++               cptr->count+=count;
++               cptr->files+=file;
++               cptr->xfer +=xfer;
++
++               if (ispage(log_rec.url))
++               {
++                  if ((tstamp-cptr->tstamp)>=visit_timeout)
++                     cptr->visit++;
++                  cptr->tstamp=tstamp;
++               }
++               return 0;
++            }
++         }
++         cptr = cptr->next;
++      }
++      /* not found... */
++      if ( (nptr = new_inode(str)) != NULL)
++      {
++         nptr->flag  = type;
++         nptr->count = count;
++         nptr->files = file;
++         nptr->xfer  = xfer;
++         nptr->next  = htab[hash(str)];
++         htab[hash(str)]=nptr;
++         if (type!=OBJ_GRP) (*ctr)++;
++
++         if (visit)
++         {
++            nptr->visit = (visit-1);
++            nptr->tstamp= tstamp;
++            return 0;
++         }
++         else
++         {
++            if (ispage(log_rec.url)) nptr->tstamp= tstamp;
++         }
++      }
++   }
++
++   if (nptr!=NULL)
++   {
++      /* set object type */
++      if (type==OBJ_GRP) nptr->flag=OBJ_GRP;            /* is it a grouping? */
++      else
++      {
++         /* check if it's a hidden object */
++         if (isinlist(hidden_users,nptr->string)!=NULL)
++           nptr->flag=OBJ_HIDE;
++      }
++   }
++   return nptr==NULL;
++}
++
++/*********************************************/
++/* DEL_ILIST - delete ident hash table       */
++/*********************************************/
++
++void	del_ilist(INODEPTR *htab)
++{
++   /* free memory used by hash table */
++   INODEPTR aptr,temp;
++   int i;
++
++   for (i=0;i<MAXHASH;i++)
++   {
++      if (htab[i] != NULL)
++      {
++         aptr = htab[i];
++         while (aptr != NULL)
++         {
++            temp = aptr->next;
++            free (aptr->string);    /* free ident string space */
++            free (aptr);            /* free ident structure    */
++            aptr = temp;
++         }
++         htab[i]=NULL;
++      }
++   }
++}
++
++#ifdef USE_DNS   /* only add these for DNS   */
++
++/*********************************************/
++/* NEW_DNODE - DNS resolver node creation    */
++/*********************************************/
++
++DNODEPTR new_dnode(char *str)
++{
++   DNODEPTR newptr;
++   char     *sptr;
++
++   if (strlen(str) >= MAXHOST)
++   {
++      if (verbose)
++      {
++         fprintf(stderr,"[new_dnode] %s (%d)",msg_big_one,strlen(str));
++         if (debug_mode)
++            fprintf(stderr,":\n--> %s",str);
++         fprintf(stderr,"\n");
++      }
++      str[MAXHOST-1]=0;
++   }
++
++   if ( (sptr=malloc(strlen(str)+1))==NULL ) return (DNODEPTR)NULL;
++   strcpy(sptr,str);
++
++   if (( newptr = malloc(sizeof(struct dnode))) != NULL)
++   {
++      newptr->string= sptr;
++   }
++   else free(sptr);
++   return newptr;
++}
++
++/*********************************************/
++/* PUT_DNODE - insert/update dns host node   */
++/*********************************************/
++
++int put_dnode(char *str, struct in_addr *addr, DNODEPTR *htab)
++{
++   DNODEPTR cptr,nptr;
++
++   if (str[0]==0 || str[0]==' ') return 0;     /* skip bad hostnames */
++
++   /* check if hashed */
++   if ( (cptr = htab[hash(str)]) == NULL)
++   {
++      /* not hashed */
++      if ( (nptr=new_dnode(str)) != NULL)
++      {
++         if (addr) memcpy(&nptr->addr, addr, sizeof(struct in_addr));
++            else   memset(&nptr->addr, 0, sizeof(struct in_addr));
++         nptr->next = NULL;
++         htab[hash(str)] = nptr;
++      }
++   }
++   else
++   {
++      /* hashed */
++      while (cptr != NULL)
++      {
++         if (strcmp(cptr->string,str)==0) return 0;
++         cptr = cptr->next;
++      }
++      /* not found... */
++      if ( (nptr = new_dnode(str)) != NULL)
++      {
++         if (addr) memcpy(&nptr->addr, addr, sizeof(struct in_addr));
++            else   memset(&nptr->addr, 0, sizeof(struct in_addr));
++         nptr->next  = htab[hash(str)];
++         htab[hash(str)]=nptr;
++      }
++   }
++   return nptr==NULL;
++}
++
++/*********************************************/
++/* DEL_DLIST - delete dns hash table         */
++/*********************************************/
++
++void	del_dlist(DNODEPTR *htab)
++{
++   /* free memory used by hash table */
++   DNODEPTR dptr,temp;
++   int i;
++
++   for (i=0;i<MAXHASH;i++)
++   {
++      if (htab[i] != NULL)
++      {
++         dptr = htab[i];
++         while (dptr != NULL)
++         {
++            temp = dptr->next;
++            free (dptr->string);
++            free (dptr);
++            dptr = temp;
++         }
++         htab[i]=NULL;
++      }
++   }
++}
++
++#endif /* USE_DNS */
++
++/*********************************************/
++/* HASH - return hash value for string       */
++/*********************************************/
++
++u_long hash(char *str)
++{
++   u_long hashval;
++   for (hashval = 0; *str != '\0'; str++)
++      hashval = *str + 31 * hashval;
++   return hashval % MAXHASH;
++}
++
++/*********************************************/
++/* FIND_URL - Find URL in hash table         */
++/*********************************************/
++
++char *find_url(char *str)
++{
++   UNODEPTR cptr;
++
++   if ( (cptr=um_htab[hash(str)]) != NULL)
++   {
++      while (cptr != NULL)
++      {
++         if (strcmp(cptr->string,str)==0)
++            return cptr->string;
++         cptr = cptr->next;
++      }
++   }
++   return blank_str;   /* shouldn't get here */
++}
++
++/*********************************************/
++/* UPDATE_ENTRY - update entry page total    */
++/*********************************************/
++
++void update_entry(char *str)
++{
++   UNODEPTR uptr;
++
++   if (str==NULL) return;
++   if ( (uptr = um_htab[hash(str)]) == NULL) return;
++   else
++   {
++      while (uptr != NULL)
++      {
++         if (strcmp(uptr->string,str)==0)
++         {
++            if (uptr->flag!=OBJ_GRP)
++            {
++               uptr->entry++;
++               return;
++            }
++         }
++         uptr=uptr->next;
++      }
++   }
++}
++
++/*********************************************/
++/* UPDATE_EXIT  - update exit page total     */
++/*********************************************/
++
++void update_exit(char *str)
++{
++   UNODEPTR uptr;
++
++   if (str==NULL) return;
++   if ( (uptr = um_htab[hash(str)]) == NULL) return;
++   else
++   {
++      while (uptr != NULL)
++      {
++         if (strcmp(uptr->string,str)==0)
++         {
++            if (uptr->flag!=OBJ_GRP)
++            {
++               uptr->exit++;
++               return;
++            }
++         }
++         uptr=uptr->next;
++      }
++   }
++}
++
++/*********************************************/
++/* MONTH_UPDATE_EXIT  - eom exit page update */
++/*********************************************/
++
++void month_update_exit(u_long tstamp)
++{
++   HNODEPTR nptr;
++   int i;
++
++   for (i=0;i<MAXHASH;i++)
++   {
++      nptr=sm_htab[i];
++      while (nptr!=NULL)
++      {
++         if (nptr->flag!=OBJ_GRP)
++         {
++            if ((tstamp-nptr->tstamp)>=visit_timeout)
++               update_exit(nptr->lasturl);
++         }
++         nptr=nptr->next;
++      }
++   }
++}
++
++/*********************************************/
++/* TOT_VISIT - calculate total visits        */
++/*********************************************/
++
++u_long tot_visit(HNODEPTR *list)
++{
++   HNODEPTR   hptr;
++   u_long     tot=0;
++   int        i;
++
++   for (i=0;i<MAXHASH;i++)
++   {
++      hptr=list[i];
++      while (hptr!=NULL)
++      {
++         if (hptr->flag!=OBJ_GRP) tot+=hptr->visit;
++         hptr=hptr->next;
++      }
++   }
++   return tot;
++}
+diff -ruN webalizer-2.01-10-pristine/hashtab.h webalizer-2.01-10/hashtab.h
+--- webalizer-2.01-10-pristine/hashtab.h	Fri Sep 29 05:50:30 2000
++++ webalizer-2.01-10/hashtab.h	Thu Dec 22 08:52:59 2005
+@@ -53,6 +53,7 @@
+               struct anode *next; };
+ 
+ struct snode {  char *string;                 /* search string struct      */
++                char *site;
+               u_long count;
+               struct snode *next; };
+ 
+@@ -84,7 +85,7 @@
+                         u_long, u_long, INODEPTR *);
+ extern int    put_rnode(char *, int, u_long, u_long *, RNODEPTR *);
+ extern int    put_anode(char *, int, u_long, u_long *, ANODEPTR *);
+-extern int    put_snode(char *, u_long, SNODEPTR *);
++extern int    put_snode(char *, char *, u_long, SNODEPTR *);
+ 
+ #ifdef USE_DNS
+ extern int    put_dnode(char *, struct in_addr *, DNODEPTR *);
+diff -ruN webalizer-2.01-10-pristine/hashtab.h.orig webalizer-2.01-10/hashtab.h.orig
+--- webalizer-2.01-10-pristine/hashtab.h.orig	Thu Jan  1 01:00:00 1970
++++ webalizer-2.01-10/hashtab.h.orig	Fri Sep 29 05:50:30 2000
+@@ -0,0 +1,106 @@
++#ifndef _HASHTAB_H
++#define _HASHTAB_H
++
++typedef struct hnode *HNODEPTR;            /* site node (host) pointer     */
++typedef struct unode *UNODEPTR;            /* url node pointer             */
++typedef struct rnode *RNODEPTR;            /* referrer node                */
++typedef struct anode *ANODEPTR;            /* user agent node pointer      */
++typedef struct snode *SNODEPTR;            /* Search string node pointer   */
++typedef struct inode *INODEPTR;            /* user (ident) node pointer    */
++#ifdef USE_DNS
++typedef struct dnode *DNODEPTR;            /* DNS hash table node struct   */
++#endif
++
++/* Object flags */
++#define OBJ_REG  0                         /* Regular object               */
++#define OBJ_HIDE 1                         /* Hidden object                */
++#define OBJ_GRP  2                         /* Grouped object               */
++
++#ifdef USE_DNS
++struct dnode {  char *string;              /* DNS node hash table struct   */
++              struct in_addr  addr;
++              struct dnode    *llist;
++              struct dnode    *next; };
++#endif
++
++struct hnode {  char *string;              /* host hash table structure    */
++                 int flag;
++              u_long count;
++              u_long files;
++              u_long visit;                /* visit information            */
++              u_long tstamp;
++                char *lasturl;
++              double xfer;
++              struct hnode *next; };
++
++struct unode {  char *string;              /* url hash table structure     */
++                 int flag;                 /* Object type (REG, HIDE, GRP) */
++              u_long count;                /* requests counter             */
++              u_long files;                /* files counter                */
++              u_long entry;                /* entry page counter           */
++              u_long exit;                 /* exit page counter            */
++              double xfer;                 /* xfer size in bytes           */
++              struct unode *next; };       /* pointer to next node         */
++
++struct rnode {  char *string;              /* referrer hash table struct   */
++                 int flag;
++              u_long count;
++              struct rnode *next; };
++
++struct anode {  char *string;
++                 int flag;
++              u_long count;
++              struct anode *next; };
++
++struct snode {  char *string;                 /* search string struct      */
++              u_long count;
++              struct snode *next; };
++
++struct inode {  char *string;                 /* host hash table struct    */
++                 int flag;
++              u_long count;
++              u_long files;
++              u_long visit;
++              u_long tstamp;
++              double xfer;
++              struct inode *next; };
++
++extern HNODEPTR sm_htab[MAXHASH];             /* hash tables               */
++extern HNODEPTR sd_htab[MAXHASH];
++extern UNODEPTR um_htab[MAXHASH];             /* for hits, sites,          */
++extern RNODEPTR rm_htab[MAXHASH];             /* referrers and agents...   */
++extern ANODEPTR am_htab[MAXHASH];
++extern SNODEPTR sr_htab[MAXHASH];             /* search string table       */
++extern INODEPTR im_htab[MAXHASH];             /* ident table (username)    */
++#ifdef USE_DNS
++extern DNODEPTR host_table[MAXHASH];          /* DNS resolver table        */
++#endif
++
++extern int    put_hnode(char *, int, u_long, u_long, double, u_long *,
++                        u_long, u_long, char *, HNODEPTR *);
++extern int    put_unode(char *, int, u_long, double, u_long *,
++                        u_long, u_long, UNODEPTR *);
++extern int    put_inode(char *, int, u_long, u_long, double, u_long *,
++                        u_long, u_long, INODEPTR *);
++extern int    put_rnode(char *, int, u_long, u_long *, RNODEPTR *);
++extern int    put_anode(char *, int, u_long, u_long *, ANODEPTR *);
++extern int    put_snode(char *, u_long, SNODEPTR *);
++
++#ifdef USE_DNS
++extern int    put_dnode(char *, struct in_addr *, DNODEPTR *);
++extern void   del_dlist(DNODEPTR *);
++#endif
++
++extern void   del_htabs();                    /* delete hash tables        */
++extern void   del_hlist(HNODEPTR *);          /* delete host htab          */
++extern void   del_ulist(UNODEPTR *);          /* delete url htab           */
++extern void   del_rlist(RNODEPTR *);          /* delete referrer htab      */
++extern void   del_alist(ANODEPTR *);          /* delete host htab          */
++extern void   del_slist(SNODEPTR *);          /* delete host htab          */
++extern void   del_ilist(INODEPTR *);          /* delete host htab          */
++
++extern void   month_update_exit(u_long);
++extern u_long tot_visit(HNODEPTR *);
++extern char   *find_url(char *);
++
++#endif  /* _HASHTAB_H */
+diff -ruN webalizer-2.01-10-pristine/lang/webalizer_lang.english webalizer-2.01-10/lang/webalizer_lang.english
+--- webalizer-2.01-10-pristine/lang/webalizer_lang.english	Fri Oct  6 07:27:48 2000
++++ webalizer-2.01-10/lang/webalizer_lang.english	Thu Dec 22 08:52:59 2005
+@@ -201,6 +201,8 @@
+ char *msg_h_ref   = "Referrer";
+ char *msg_h_ctry  = "Country";
+ char *msg_h_search= "Search String";
++char *msg_h_seasit= "Search Site";
++char *msg_h_seabot= "Search Site/String";
+ char *msg_h_uname = "Username";
+ 
+ /* links along top of page */
+@@ -213,7 +215,9 @@
+ char *msg_hlnk_r  = "Referrers";
+ char *msg_hlnk_en = "Entry";
+ char *msg_hlnk_ex = "Exit";
+-char *msg_hlnk_sr = "Search";
++char *msg_hlnk_sr = "Search Strings";
++char *msg_hlnk_srs= "Search Sites";
++char *msg_hlnk_srb= "Search Site/Strings";
+ char *msg_hlnk_i  = "Users";
+ 
+ /* monthly total table */
+@@ -255,12 +259,16 @@
+ char *msg_top_en  = "Total Entry Pages";
+ char *msg_top_ex  = "Total Exit Pages";
+ char *msg_top_sr  = "Total Search Strings";
++char *msg_top_srs = "Total Search Sites";
++char *msg_top_srb = "Total Search Site/String Pairs";
+ char *msg_top_i   = "Total Usernames";
+ char *msg_v_sites = "View All Sites";
+ char *msg_v_urls  = "View All URLs";
+ char *msg_v_refs  = "View All Referrers";
+ char *msg_v_agents= "View All User Agents";
+ char *msg_v_search= "View All Search Strings";
++char *msg_v_seasit= "View All Search Sites";
++char *msg_v_seabot= "View All Search Site/String Pairs";
+ char *msg_v_users = "View All Usernames";
+ 
+ /* short month names MUST BE 3 CHARS in size... pad if needed*/
+diff -ruN webalizer-2.01-10-pristine/lang/webalizer_lang.english.orig webalizer-2.01-10/lang/webalizer_lang.english.orig
+--- webalizer-2.01-10-pristine/lang/webalizer_lang.english.orig	Thu Jan  1 01:00:00 1970
++++ webalizer-2.01-10/lang/webalizer_lang.english.orig	Fri Oct  6 07:27:48 2000
+@@ -0,0 +1,580 @@
++/*
++   webalizer_lang.english
++
++   Webalizer V2.0x Language Support file for English.
++   15-May-1998 by Bradford L. Barrett (brad@mrunix.net)
++   31-May-1998 Modified for level 1.1 support (brad@mrunix.net)
++   23-Jul-1998 Modified for level 1.2 support (brad@mrunix.net)
++   08-Mar-1999 Updated HTTP 1.1 response codes by Yves Lafon (ylafon@w3.org)
++   28-Jun-1999 Modified for level 1.3 support (brad@mrunix.net)
++   16-Feb-2000 Modified for level 2.0 support (brad@mrunix.net)
++
++
++   Language files are named using the following convention:
++
++   webalizer_lang.LANGUAGE
++
++   where 'LANGUAGE' is the name of the language the file is
++   translated into (ie: webalizer_lang.russian for russian).
++   Either copy the desired language file to webalizer_lang.h
++   or create a symbolic link, then re-compile.
++
++   If you translate this file into a different language, please
++   send a copy to brad@mrunix.net.
++
++*/
++
++/***********************************************************************/
++/* DEFINE LANGUAGE NAME here                                           */
++/***********************************************************************/
++
++char *language  = "English";
++
++/***********************************************************************/
++/*                                                                     */
++/* Informational messages                                              */
++/*                                                                     */
++/* These messages are only displayed while The Webalizer is being run, */
++/* usually to the screen, and are not part of the HTML output.         */
++/*                                                                     */
++/***********************************************************************/
++
++/* these are only used in timing totals */
++/* Format:   XXX records (XXX ignored, XXX bad) in X.XX seconds        */
++char *msg_records = "records";
++char *msg_addresses="addresses";
++char *msg_ignored = "ignored";
++char *msg_bad     = "bad";
++char *msg_in      = "in";
++char *msg_seconds = "seconds";
++
++/* progress and setup error messages */
++char *msg_log_err = "Error: Can't open log file";
++char *msg_log_use = "Using logfile";
++char *msg_dir_err = "Error: Can't change directory to";
++char *msg_dir_use = "Creating output in";
++char *msg_cur_dir = "current directory";
++char *msg_hostname= "Hostname for reports is";
++char *msg_ign_hist= "Ignoring previous history...";
++char *msg_no_hist = "History file not found...";
++char *msg_get_hist= "Reading history file...";
++char *msg_put_hist= "Saving history information...";
++char *msg_hist_err= "Error: Unable to write history file";
++char *msg_bad_hist= "Error: Ignoring invalid history record";
++char *msg_bad_conf= "Error: Unable to open configuration file";
++char *msg_bad_key = "Warning: Invalid keyword";
++char *msg_bad_date= "Error: Skipping record (bad date)";
++char *msg_ign_nscp= "Skipping Netscape header record";
++char *msg_bad_rec = "Skipping bad record";
++char *msg_no_vrec = "No valid records found!";
++char *msg_gen_rpt = "Generating report for";
++char *msg_gen_sum = "Generating summary report";
++char *msg_get_data= "Reading previous run data..";
++char *msg_put_data= "Saving current run data...";
++char *msg_no_data = "Previous run data not found...";
++char *msg_bad_data= "Error: Unable to restore run data";
++char *msg_data_err= "Error: Unable to save current run data";
++char *msg_dup_data= "Warning: Possible duplicate data found";
++
++/* DNS Stuff */
++char *msg_dns_nocf= "No cache file specified, aborting...";
++char *msg_dns_nodb= "Error: Unable to open DNS cache file";
++char *msg_dns_nolk= "Error: Unable to lock DNS cache file";
++char *msg_dns_usec= "Using DNS cache file";
++char *msg_dns_rslv= "DNS Lookup";
++char *msg_dns_none= "None to process";
++
++/* memory allocation errors */
++char *msg_nomem_ts= "Can't allocate enough memory, Top Sites disabled!";
++char *msg_nomem_tr= "Can't allocate enough memory, Top Referrers disabled!";
++char *msg_nomem_tu= "Can't allocate enough memory, Top URLs disabled!";
++char *msg_nomem_tc= "Can't allocate enough memory, Top Countries disabled!";
++char *msg_nomem_ta= "Can't allocate enough memory, Top User Agents disabled!";
++char *msg_nomem_tsr="Can't allocate enough memory, Top Search Strings disabled!";
++char *msg_nomem_ti= "Can't allocate enough memory, Top Usernames disabled!";
++char *msg_nomem_dh= "Error adding host node (daily), skipping";
++char *msg_nomem_mh= "Error adding host node (monthly), skipping";
++char *msg_nomem_u = "Error adding URL node, skipping";
++char *msg_nomem_a = "Error adding User Agent node, skipping";
++char *msg_nomem_r = "Error adding Referrer node, skipping";
++char *msg_nomem_sc= "Error adding Search String Node, skipping";
++char *msg_nomem_i = "Error adding Username node, skipping";
++
++/* log record errors */
++char *msg_big_rec = "Error: Skipping oversized log record";
++char *msg_big_host= "Warning: Truncating oversized hostname";
++char *msg_big_date= "Warning: Truncating oversized date field";
++char *msg_big_req = "Warning: Truncating oversized request field";
++char *msg_big_ref = "Warning: Truncating oversized referrer field";
++char *msg_big_user= "Warning: Truncating oversized username";
++char *msg_big_one = "Warning: String exceeds storage size";
++
++/* misc errors */
++char *msg_no_open = "Error: Unable to open file";
++
++/* Help display... */
++char *h_usage1 = "Usage";
++char *h_usage2 = "[options] [log file]";
++char *h_msg[]= {
++         "-h        = print this help message"             ,
++         "-v -V     = print version information"           ,
++         "-d        = print additional debug info"         ,
++         "-F type   = Log type.  type= (clf | ftp | squid)",
++         "-f        = Fold sequence errors"                ,
++         "-i        = ignore history file"                 ,
++         "-p        = preserve state (incremental)"        ,
++         "-q        = supress informational messages"      ,
++         "-Q        = supress _ALL_ messages"              ,
++         "-Y        = supress country graph"               ,
++         "-G        = supress hourly graph"                ,
++         "-H        = supress hourly stats"                ,
++         "-L        = supress color coded graph legends"   ,
++         "-l num    = use num background lines on graph"   ,
++         "-m num    = Visit timout value (seconds)"        ,
++         "-T        = print timing information"            ,
++         "-c file   = use configuration file 'file'"       ,
++         "-n name   = hostname to use"                     ,
++         "-o dir    = output directory to use"             ,
++         "-t name   = report title 'name'"                 ,
++         "-a name   = hide user agent 'name'"              ,
++         "-r name   = hide referrer 'name'"                ,
++         "-s name   = hide site 'name'"                    ,
++         "-u name   = hide URL 'name'"                     ,
++         "-x name   = Use filename extension 'name'"       ,
++         "-P name   = Page type extension 'name'"          ,
++         "-I name   = Index alias 'name'"                  ,
++         "-A num    = Display num top agents"              ,
++         "-C num    = Display num top countries"           ,
++         "-R num    = Display num top referrers"           ,
++         "-S num    = Display num top sites"               ,
++         "-U num    = Display num top URLs"                ,
++         "-e num    = Display num top Entry Pages"         ,
++         "-E num    = Display num top Exit Pages"          ,
++         "-g num    = Group Domains to 'num' levels"       ,
++         "-X        = Hide individual sites"               ,
++         "-D name   = Use DNS Cache file 'name'"           ,
++         "-N num    = Number of DNS processes (0=disable)" ,
++         NULL};
++
++/***********************************************************************/
++/*                                                                     */
++/* HTML strings                                                        */
++/*                                                                     */
++/* These strings are used as part of the HTML output generated by The  */
++/* Webalizer.                                                          */ 
++/*                                                                     */
++/***********************************************************************/
++
++/* header strings */
++char *msg_hhdr_sp = "Summary Period";
++char *msg_hhdr_gt = "Generated";
++
++/* main index strings */
++char *msg_main_us = "Usage summary for";
++char *msg_main_per= "Last 12 Months";
++char *msg_main_sum= "Summary by Month";
++char *msg_main_da = "Daily Avg";
++char *msg_main_mt = "Monthly Totals";
++
++/* month HTML page strings */
++char *msg_hmth_du = "Daily usage for";
++char *msg_hmth_hu = "Hourly usage for";
++
++/* table header strings */
++char *msg_h_by    = "By";
++char *msg_h_avg   = "Avg";
++char *msg_h_max   = "Max";
++char *msg_h_total = "Total";
++char *msg_h_totals= "Totals";
++char *msg_h_day   = "Day";
++char *msg_h_mth   = "Month";
++char *msg_h_hour  = "Hour";
++char *msg_h_hits  = "Hits";
++char *msg_h_pages = "Pages";
++char *msg_h_visits= "Visits";
++char *msg_h_files = "Files";
++char *msg_h_sites = "Sites";
++char *msg_h_xfer  = "KBytes";
++char *msg_h_hname = "Hostname";
++char *msg_h_url   = "URL";
++char *msg_h_agent = "User Agent";
++char *msg_h_ref   = "Referrer";
++char *msg_h_ctry  = "Country";
++char *msg_h_search= "Search String";
++char *msg_h_uname = "Username";
++
++/* links along top of page */
++char *msg_hlnk_ds = "Daily Statistics";
++char *msg_hlnk_hs = "Hourly Statistics";
++char *msg_hlnk_u  = "URLs";
++char *msg_hlnk_s  = "Sites";
++char *msg_hlnk_a  = "Agents";
++char *msg_hlnk_c  = "Countries";
++char *msg_hlnk_r  = "Referrers";
++char *msg_hlnk_en = "Entry";
++char *msg_hlnk_ex = "Exit";
++char *msg_hlnk_sr = "Search";
++char *msg_hlnk_i  = "Users";
++
++/* monthly total table */
++char *msg_mtot_ms = "Monthly Statistics for";
++char *msg_mtot_th = "Total Hits";
++char *msg_mtot_tf = "Total Files";
++char *msg_mtot_tx = "Total KBytes";
++char *msg_mtot_us = "Total Unique Sites";
++char *msg_mtot_ur = "Total Unique Referrers";
++char *msg_mtot_ua = "Total Unique User Agents";
++char *msg_mtot_uu = "Total Unique URLs";
++char *msg_mtot_ui = "Total Unique Usernames";
++char *msg_mtot_mhd= "Hits per Day";
++char *msg_mtot_mhh= "Hits per Hour";
++char *msg_mtot_mfd= "Files per Day";
++char *msg_mtot_mpd= "Pages per Day";
++char *msg_mtot_mvd= "Visits per Day";
++char *msg_mtot_mkd= "KBytes per Day";
++char *msg_mtot_rc = "Hits by Response Code";
++
++/* daily total table */
++char *msg_dtot_ds = "Daily Statistics for";
++
++/* hourly total table */
++char *msg_htot_hs = "Hourly Statistics for";
++
++/* country pie chart */
++char *msg_ctry_use= "Usage by Country for";
++
++/* top tables */
++/* Formatted as "Top xxx of xxx Total something" */
++char *msg_top_top = "Top";
++char *msg_top_of  = "of";
++char *msg_top_s   = "Total Sites";
++char *msg_top_u   = "Total URLs";
++char *msg_top_r   = "Total Referrers";
++char *msg_top_a   = "Total User Agents";
++char *msg_top_c   = "Total Countries";
++char *msg_top_en  = "Total Entry Pages";
++char *msg_top_ex  = "Total Exit Pages";
++char *msg_top_sr  = "Total Search Strings";
++char *msg_top_i   = "Total Usernames";
++char *msg_v_sites = "View All Sites";
++char *msg_v_urls  = "View All URLs";
++char *msg_v_refs  = "View All Referrers";
++char *msg_v_agents= "View All User Agents";
++char *msg_v_search= "View All Search Strings";
++char *msg_v_users = "View All Usernames";
++
++/* short month names MUST BE 3 CHARS in size... pad if needed*/
++char *s_month[12]={ "Jan", "Feb", "Mar",
++                    "Apr", "May", "Jun",
++                    "Jul", "Aug", "Sep",
++                    "Oct", "Nov", "Dec"};
++
++/* long month names - can be any length */
++char *l_month[12]={ "January",  "February", "March",   "April",
++                    "May",      "June",     "July",    "August",
++                    "September","October",  "November","December"};
++
++/* response code descriptions... order IS important!      */
++struct response_code response[] =
++       { { "Undefined response code",                    0 },
++         { "Code 100 - Continue",                        0 },
++         { "Code 101 - Switching Protocols",             0 },
++         { "Code 200 - OK",                              0 },
++         { "Code 201 - Created",                         0 },
++         { "Code 202 - Accepted",                        0 },
++         { "Code 203 - Non-Authoritative Information",   0 },
++         { "Code 204 - No Content",                      0 },
++         { "Code 205 - Reset Content",                   0 },
++         { "Code 206 - Partial Content",                 0 },
++         { "Code 300 - Multiple Choices",                0 },
++         { "Code 301 - Moved Permanently",               0 },
++         { "Code 302 - Found",                           0 },
++         { "Code 303 - See Other",                       0 },
++         { "Code 304 - Not Modified",                    0 },
++         { "Code 305 - Use Proxy",                       0 },
++         { "Code 307 - Moved Temporarily",               0 },
++         { "Code 400 - Bad Request",                     0 },
++         { "Code 401 - Unauthorized",                    0 },
++         { "Code 402 - Payment Required",                0 },
++         { "Code 403 - Forbidden",                       0 },
++         { "Code 404 - Not Found",                       0 },
++         { "Code 405 - Method Not Allowed",              0 },
++         { "Code 406 - Not Acceptable",                  0 },
++         { "Code 407 - Proxy Authentication Required",   0 },
++         { "Code 408 - Request Timeout",                 0 },
++         { "Code 409 - Conflict",                        0 },
++         { "Code 410 - Gone",                            0 },
++         { "Code 411 - Length Required",                 0 },
++         { "Code 412 - Precondition Failed",             0 },
++         { "Code 413 - Request Entity Too Large",        0 },
++         { "Code 414 - Request-URI Too Long",            0 },
++         { "Code 415 - Unsupported Media Type",          0 },
++         { "Code 416 - Requested Range Not Satisfiable", 0 },
++         { "Code 417 - Expectation Failed",              0 },
++         { "Code 500 - Internal Server Error",           0 },
++         { "Code 501 - Not Implemented",                 0 },
++         { "Code 502 - Bad Gateway",                     0 },
++         { "Code 503 - Service Unavailable",             0 },
++         { "Code 504 - Gateway Timeout",                 0 },
++         { "Code 505 - HTTP Version Not Supported",      0 } };
++
++char *msg_title   = "Usage Statistics for";
++char *msg_h_other = "Other";
++
++/* Country codes (previously in ctry.h header file) */
++
++struct  country_code ctry[] = {
++{ 0,                      "Unresolved/Unknown",               0,0,0 },
++{ IDX_3C('c','o','m'),    "US Commercial",                    0,0,0 },
++{ IDX_3C('e','d','u'),    "US Educational",                   0,0,0 },
++{ IDX_3C('g','o','v'),    "US Government",                    0,0,0 },
++{ IDX_3C('i','n','t'),    "International (int)",              0,0,0 },
++{ IDX_3C('m','i','l'),    "US Military",                      0,0,0 },
++{ IDX_3C('n','e','t'),    "Network",                          0,0,0 },
++{ IDX_3C('o','r','g'),    "Non-Profit Organization",          0,0,0 },
++{ IDX_4C('a','r','p','a'),"Old style Arpanet (arpa)",         0,0,0 },
++{ IDX_4C('n','a','t','o'),"Nato field (nato)",                0,0,0 },
++{ IDX_2C('a','d'),        "Andorra",                          0,0,0 },
++{ IDX_2C('a','e'),        "United Arab Emirates",             0,0,0 },
++{ IDX_2C('a','f'),        "Afghanistan",                      0,0,0 },
++{ IDX_2C('a','g'),        "Antigua and Barbuda",              0,0,0 },
++{ IDX_2C('a','i'),        "Anguilla",                         0,0,0 },
++{ IDX_2C('a','l'),        "Albania",                          0,0,0 },
++{ IDX_2C('a','m'),        "Armenia",                          0,0,0 },
++{ IDX_2C('a','n'),        "Netherlands Antilles",             0,0,0 },
++{ IDX_2C('a','o'),        "Angola",                           0,0,0 },
++{ IDX_2C('a','q'),        "Antarctica",                       0,0,0 },
++{ IDX_2C('a','r'),        "Argentina",                        0,0,0 },
++{ IDX_2C('a','s'),        "American Samoa",                   0,0,0 },
++{ IDX_2C('a','t'),        "Austria",                          0,0,0 },
++{ IDX_2C('a','u'),        "Australia",                        0,0,0 },
++{ IDX_2C('a','w'),        "Aruba",                            0,0,0 },
++{ IDX_2C('a','z'),        "Azerbaijan",                       0,0,0 },
++{ IDX_2C('b','a'),        "Bosnia and Herzegovina",           0,0,0 },
++{ IDX_2C('b','b'),        "Barbados",                         0,0,0 },
++{ IDX_2C('b','d'),        "Bangladesh",                       0,0,0 },
++{ IDX_2C('b','e'),        "Belgium",                          0,0,0 },
++{ IDX_2C('b','f'),        "Burkina Faso",                     0,0,0 },
++{ IDX_2C('b','g'),        "Bulgaria",                         0,0,0 },
++{ IDX_2C('b','h'),        "Bahrain",                          0,0,0 },
++{ IDX_2C('b','i'),        "Burundi",                          0,0,0 },
++{ IDX_2C('b','j'),        "Benin",                            0,0,0 },
++{ IDX_2C('b','m'),        "Bermuda",                          0,0,0 },
++{ IDX_2C('b','n'),        "Brunei Darussalam",                0,0,0 },
++{ IDX_2C('b','o'),        "Bolivia",                          0,0,0 },
++{ IDX_2C('b','r'),        "Brazil",                           0,0,0 },
++{ IDX_2C('b','s'),        "Bahamas",                          0,0,0 },
++{ IDX_2C('b','t'),        "Bhutan",                           0,0,0 },
++{ IDX_2C('b','v'),        "Bouvet Island",                    0,0,0 },
++{ IDX_2C('b','w'),        "Botswana",                         0,0,0 },
++{ IDX_2C('b','y'),        "Belarus",                          0,0,0 },
++{ IDX_2C('b','z'),        "Belize",                           0,0,0 },
++{ IDX_2C('c','a'),        "Canada",                           0,0,0 },
++{ IDX_2C('c','c'),        "Cocos (Keeling) Islands",          0,0,0 },
++{ IDX_2C('c','f'),        "Central African Republic",         0,0,0 },
++{ IDX_2C('c','g'),        "Congo",                            0,0,0 },
++{ IDX_2C('c','h'),        "Switzerland",                      0,0,0 },
++{ IDX_2C('c','i'),        "Cote D'Ivoire (Ivory Coast)",      0,0,0 },
++{ IDX_2C('c','k'),        "Cook Islands",                     0,0,0 },
++{ IDX_2C('c','l'),        "Chile",                            0,0,0 },
++{ IDX_2C('c','m'),        "Cameroon",                         0,0,0 },
++{ IDX_2C('c','n'),        "China",                            0,0,0 },
++{ IDX_2C('c','o'),        "Colombia",                         0,0,0 },
++{ IDX_2C('c','r'),        "Costa Rica",                       0,0,0 },
++{ IDX_2C('c','s'),        "Czechoslovakia (former)",          0,0,0 },
++{ IDX_2C('c','u'),        "Cuba",                             0,0,0 },
++{ IDX_2C('c','v'),        "Cape Verde",                       0,0,0 },
++{ IDX_2C('c','x'),        "Christmas Island",                 0,0,0 },
++{ IDX_2C('c','y'),        "Cyprus",                           0,0,0 },
++{ IDX_2C('c','z'),        "Czech Republic",                   0,0,0 },
++{ IDX_2C('d','e'),        "Germany",                          0,0,0 },
++{ IDX_2C('d','j'),        "Djibouti",                         0,0,0 },
++{ IDX_2C('d','k'),        "Denmark",                          0,0,0 },
++{ IDX_2C('d','m'),        "Dominica",                         0,0,0 },
++{ IDX_2C('d','o'),        "Dominican Republic",               0,0,0 },
++{ IDX_2C('d','z'),        "Algeria",                          0,0,0 },
++{ IDX_2C('e','c'),        "Ecuador",                          0,0,0 },
++{ IDX_2C('e','e'),        "Estonia",                          0,0,0 },
++{ IDX_2C('e','g'),        "Egypt",                            0,0,0 },
++{ IDX_2C('e','h'),        "Western Sahara",                   0,0,0 },
++{ IDX_2C('e','r'),        "Eritrea",                          0,0,0 },
++{ IDX_2C('e','s'),        "Spain",                            0,0,0 },
++{ IDX_2C('e','t'),        "Ethiopia",                         0,0,0 },
++{ IDX_2C('f','i'),        "Finland",                          0,0,0 },
++{ IDX_2C('f','j'),        "Fiji",                             0,0,0 },
++{ IDX_2C('f','k'),        "Falkland Islands (Malvinas)",      0,0,0 },
++{ IDX_2C('f','m'),        "Micronesia",                       0,0,0 },
++{ IDX_2C('f','o'),        "Faroe Islands",                    0,0,0 },
++{ IDX_2C('f','r'),        "France",                           0,0,0 },
++{ IDX_2C('f','x'),        "France, Metropolitan",             0,0,0 },
++{ IDX_2C('g','a'),        "Gabon",                            0,0,0 },
++{ IDX_2C('g','b'),        "Great Britain (UK)",               0,0,0 },
++{ IDX_2C('g','d'),        "Grenada",                          0,0,0 },
++{ IDX_2C('g','e'),        "Georgia",                          0,0,0 },
++{ IDX_2C('g','f'),        "French Guiana",                    0,0,0 },
++{ IDX_2C('g','h'),        "Ghana",                            0,0,0 },
++{ IDX_2C('g','i'),        "Gibraltar",                        0,0,0 },
++{ IDX_2C('g','l'),        "Greenland",                        0,0,0 },
++{ IDX_2C('g','m'),        "Gambia",                           0,0,0 },
++{ IDX_2C('g','n'),        "Guinea",                           0,0,0 },
++{ IDX_2C('g','p'),        "Guadeloupe",                       0,0,0 },
++{ IDX_2C('g','q'),        "Equatorial Guinea",                0,0,0 },
++{ IDX_2C('g','r'),        "Greece",                           0,0,0 },
++{ IDX_2C('g','s'),        "S. Georgia and S. Sandwich Isls.", 0,0,0 },
++{ IDX_2C('g','t'),        "Guatemala",                        0,0,0 },
++{ IDX_2C('g','u'),        "Guam",                             0,0,0 },
++{ IDX_2C('g','w'),        "Guinea-Bissau",                    0,0,0 },
++{ IDX_2C('g','y'),        "Guyana",                           0,0,0 },
++{ IDX_2C('h','k'),        "Hong Kong",                        0,0,0 },
++{ IDX_2C('h','m'),        "Heard and McDonald Islands",       0,0,0 },
++{ IDX_2C('h','n'),        "Honduras",                         0,0,0 },
++{ IDX_2C('h','r'),        "Croatia (Hrvatska)",               0,0,0 },
++{ IDX_2C('h','t'),        "Haiti",                            0,0,0 },
++{ IDX_2C('h','u'),        "Hungary",                          0,0,0 },
++{ IDX_2C('i','d'),        "Indonesia",                        0,0,0 },
++{ IDX_2C('i','e'),        "Ireland",                          0,0,0 },
++{ IDX_2C('i','l'),        "Israel",                           0,0,0 },
++{ IDX_2C('i','n'),        "India",                            0,0,0 },
++{ IDX_2C('i','o'),        "British Indian Ocean Territory",   0,0,0 },
++{ IDX_2C('i','q'),        "Iraq",                             0,0,0 },
++{ IDX_2C('i','r'),        "Iran",                             0,0,0 },
++{ IDX_2C('i','s'),        "Iceland",                          0,0,0 },
++{ IDX_2C('i','t'),        "Italy",                            0,0,0 },
++{ IDX_2C('j','m'),        "Jamaica",                          0,0,0 },
++{ IDX_2C('j','o'),        "Jordan",                           0,0,0 },
++{ IDX_2C('j','p'),        "Japan",                            0,0,0 },
++{ IDX_2C('k','e'),        "Kenya",                            0,0,0 },
++{ IDX_2C('k','g'),        "Kyrgyzstan",                       0,0,0 },
++{ IDX_2C('k','h'),        "Cambodia",                         0,0,0 },
++{ IDX_2C('k','i'),        "Kiribati",                         0,0,0 },
++{ IDX_2C('k','m'),        "Comoros",                          0,0,0 },
++{ IDX_2C('k','n'),        "Saint Kitts and Nevis",            0,0,0 },
++{ IDX_2C('k','p'),        "Korea (North)",                    0,0,0 },
++{ IDX_2C('k','r'),        "Korea (South)",                    0,0,0 },
++{ IDX_2C('k','w'),        "Kuwait",                           0,0,0 },
++{ IDX_2C('k','y'),        "Cayman Islands",                   0,0,0 },
++{ IDX_2C('k','z'),        "Kazakhstan",                       0,0,0 },
++{ IDX_2C('l','a'),        "Laos",                             0,0,0 },
++{ IDX_2C('l','b'),        "Lebanon",                          0,0,0 },
++{ IDX_2C('l','c'),        "Saint Lucia",                      0,0,0 },
++{ IDX_2C('l','i'),        "Liechtenstein",                    0,0,0 },
++{ IDX_2C('l','k'),        "Sri Lanka",                        0,0,0 },
++{ IDX_2C('l','r'),        "Liberia",                          0,0,0 },
++{ IDX_2C('l','s'),        "Lesotho",                          0,0,0 },
++{ IDX_2C('l','t'),        "Lithuania",                        0,0,0 },
++{ IDX_2C('l','u'),        "Luxembourg",                       0,0,0 },
++{ IDX_2C('l','v'),        "Latvia",                           0,0,0 },
++{ IDX_2C('l','y'),        "Libya",                            0,0,0 },
++{ IDX_2C('m','a'),        "Morocco",                          0,0,0 },
++{ IDX_2C('m','c'),        "Monaco",                           0,0,0 },
++{ IDX_2C('m','d'),        "Moldova",                          0,0,0 },
++{ IDX_2C('m','g'),        "Madagascar",                       0,0,0 },
++{ IDX_2C('m','h'),        "Marshall Islands",                 0,0,0 },
++{ IDX_2C('m','k'),        "Macedonia",                        0,0,0 },
++{ IDX_2C('m','l'),        "Mali",                             0,0,0 },
++{ IDX_2C('m','m'),        "Myanmar",                          0,0,0 },
++{ IDX_2C('m','n'),        "Mongolia",                         0,0,0 },
++{ IDX_2C('m','o'),        "Macau",                            0,0,0 },
++{ IDX_2C('m','p'),        "Northern Mariana Islands",         0,0,0 },
++{ IDX_2C('m','q'),        "Martinique",                       0,0,0 },
++{ IDX_2C('m','r'),        "Mauritania",                       0,0,0 },
++{ IDX_2C('m','s'),        "Montserrat",                       0,0,0 },
++{ IDX_2C('m','t'),        "Malta",                            0,0,0 },
++{ IDX_2C('m','u'),        "Mauritius",                        0,0,0 },
++{ IDX_2C('m','v'),        "Maldives",                         0,0,0 },
++{ IDX_2C('m','w'),        "Malawi",                           0,0,0 },
++{ IDX_2C('m','x'),        "Mexico",                           0,0,0 },
++{ IDX_2C('m','y'),        "Malaysia",                         0,0,0 },
++{ IDX_2C('m','z'),        "Mozambique",                       0,0,0 },
++{ IDX_2C('n','a'),        "Namibia",                          0,0,0 },
++{ IDX_2C('n','c'),        "New Caledonia",                    0,0,0 },
++{ IDX_2C('n','e'),        "Niger",                            0,0,0 },
++{ IDX_2C('n','f'),        "Norfolk Island",                   0,0,0 },
++{ IDX_2C('n','g'),        "Nigeria",                          0,0,0 },
++{ IDX_2C('n','i'),        "Nicaragua",                        0,0,0 },
++{ IDX_2C('n','l'),        "Netherlands",                      0,0,0 },
++{ IDX_2C('n','o'),        "Norway",                           0,0,0 },
++{ IDX_2C('n','p'),        "Nepal",                            0,0,0 },
++{ IDX_2C('n','r'),        "Nauru",                            0,0,0 },
++{ IDX_2C('n','t'),        "Neutral Zone",                     0,0,0 },
++{ IDX_2C('n','u'),        "Niue",                             0,0,0 },
++{ IDX_2C('n','z'),        "New Zealand (Aotearoa)",           0,0,0 },
++{ IDX_2C('o','m'),        "Oman",                             0,0,0 },
++{ IDX_2C('p','a'),        "Panama",                           0,0,0 },
++{ IDX_2C('p','e'),        "Peru",                             0,0,0 },
++{ IDX_2C('p','f'),        "French Polynesia",                 0,0,0 },
++{ IDX_2C('p','g'),        "Papua New Guinea",                 0,0,0 },
++{ IDX_2C('p','h'),        "Philippines",                      0,0,0 },
++{ IDX_2C('p','k'),        "Pakistan",                         0,0,0 },
++{ IDX_2C('p','l'),        "Poland",                           0,0,0 },
++{ IDX_2C('p','m'),        "St. Pierre and Miquelon",          0,0,0 },
++{ IDX_2C('p','n'),        "Pitcairn",                         0,0,0 },
++{ IDX_2C('p','r'),        "Puerto Rico",                      0,0,0 },
++{ IDX_2C('p','t'),        "Portugal",                         0,0,0 },
++{ IDX_2C('p','w'),        "Palau",                            0,0,0 },
++{ IDX_2C('p','y'),        "Paraguay",                         0,0,0 },
++{ IDX_2C('q','a'),        "Qatar",                            0,0,0 },
++{ IDX_2C('r','e'),        "Reunion",                          0,0,0 },
++{ IDX_2C('r','o'),        "Romania",                          0,0,0 },
++{ IDX_2C('r','u'),        "Russian Federation",               0,0,0 },
++{ IDX_2C('r','w'),        "Rwanda",                           0,0,0 },
++{ IDX_2C('s','a'),        "Saudi Arabia",                     0,0,0 },
++{ IDX_2C('s','B'),        "Solomon Islands",                  0,0,0 },
++{ IDX_2C('s','c'),        "Seychelles",                       0,0,0 },
++{ IDX_2C('s','d'),        "Sudan",                            0,0,0 },
++{ IDX_2C('s','e'),        "Sweden",                           0,0,0 },
++{ IDX_2C('s','g'),        "Singapore",                        0,0,0 },
++{ IDX_2C('s','h'),        "St. Helena",                       0,0,0 },
++{ IDX_2C('s','i'),        "Slovenia",                         0,0,0 },
++{ IDX_2C('s','j'),        "Svalbard and Jan Mayen Islands",   0,0,0 },
++{ IDX_2C('s','k'),        "Slovak Republic",                  0,0,0 },
++{ IDX_2C('s','l'),        "Sierra Leone",                     0,0,0 },
++{ IDX_2C('s','m'),        "San Marino",                       0,0,0 },
++{ IDX_2C('s','n'),        "Senegal",                          0,0,0 },
++{ IDX_2C('s','o'),        "Somalia",                          0,0,0 },
++{ IDX_2C('s','r'),        "Suriname",                         0,0,0 },
++{ IDX_2C('s','t'),        "Sao Tome and Principe",            0,0,0 },
++{ IDX_2C('s','u'),        "USSR (former)",                    0,0,0 },
++{ IDX_2C('s','v'),        "El Salvador",                      0,0,0 },
++{ IDX_2C('s','y'),        "Syria",                            0,0,0 },
++{ IDX_2C('s','z'),        "Swaziland",                        0,0,0 },
++{ IDX_2C('t','c'),        "Turks and Caicos Islands",         0,0,0 },
++{ IDX_2C('t','d'),        "Chad",                             0,0,0 },
++{ IDX_2C('t','f'),        "French Southern Territories",      0,0,0 },
++{ IDX_2C('t','g'),        "Togo",                             0,0,0 },
++{ IDX_2C('t','h'),        "Thailand",                         0,0,0 },
++{ IDX_2C('t','j'),        "Tajikistan",                       0,0,0 },
++{ IDX_2C('t','k'),        "Tokelau",                          0,0,0 },
++{ IDX_2C('t','m'),        "Turkmenistan",                     0,0,0 },
++{ IDX_2C('t','n'),        "Tunisia",                          0,0,0 },
++{ IDX_2C('t','o'),        "Tonga",                            0,0,0 },
++{ IDX_2C('t','p'),        "East Timor",                       0,0,0 },
++{ IDX_2C('t','r'),        "Turkey",                           0,0,0 },
++{ IDX_2C('t','t'),        "Trinidad and Tobago",              0,0,0 },
++{ IDX_2C('t','v'),        "Tuvalu",                           0,0,0 },
++{ IDX_2C('t','w'),        "Taiwan",                           0,0,0 },
++{ IDX_2C('t','z'),        "Tanzania",                         0,0,0 },
++{ IDX_2C('u','a'),        "Ukraine",                          0,0,0 },
++{ IDX_2C('u','g'),        "Uganda",                           0,0,0 },
++{ IDX_2C('u','k'),        "United Kingdom",                   0,0,0 },
++{ IDX_2C('u','m'),        "US Minor Outlying Islands",        0,0,0 },
++{ IDX_2C('u','s'),        "United States",                    0,0,0 },
++{ IDX_2C('u','y'),        "Uruguay",                          0,0,0 },
++{ IDX_2C('u','z'),        "Uzbekistan",                       0,0,0 },
++{ IDX_2C('v','a'),        "Vatican City State (Holy See)",    0,0,0 },
++{ IDX_2C('v','c'),        "Saint Vincent and the Grenadines", 0,0,0 },
++{ IDX_2C('v','e'),        "Venezuela",                        0,0,0 },
++{ IDX_2C('v','g'),        "Virgin Islands (British)",         0,0,0 },
++{ IDX_2C('v','i'),        "Virgin Islands (U.S.)",            0,0,0 },
++{ IDX_2C('v','n'),        "Viet Nam",                         0,0,0 },
++{ IDX_2C('v','u'),        "Vanuatu",                          0,0,0 },
++{ IDX_2C('w','f'),        "Wallis and Futuna Islands",        0,0,0 },
++{ IDX_2C('w','s'),        "Samoa",                            0,0,0 },
++{ IDX_2C('y','e'),        "Yemen",                            0,0,0 },
++{ IDX_2C('y','t'),        "Mayotte",                          0,0,0 },
++{ IDX_2C('y','u'),        "Yugoslavia",                       0,0,0 },
++{ IDX_2C('z','a'),        "South Africa",                     0,0,0 },
++{ IDX_2C('z','m'),        "Zambia",                           0,0,0 },
++{ IDX_2C('z','r'),        "Zaire",                            0,0,0 },
++{ IDX_2C('z','w'),        "Zimbabwe",                         0,0,0 },
++{ 0              ,        NULL,                               0,0,0 }};
+diff -ruN webalizer-2.01-10-pristine/lang.h webalizer-2.01-10/lang.h
+--- webalizer-2.01-10-pristine/lang.h	Fri Sep 29 05:50:30 2000
++++ webalizer-2.01-10/lang.h	Thu Dec 22 08:52:59 2005
+@@ -107,6 +107,8 @@
+ extern char *msg_h_ref   ;
+ extern char *msg_h_ctry  ;
+ extern char *msg_h_search;
++extern char *msg_h_seasit;
++extern char *msg_h_seabot;
+ extern char *msg_h_uname ;
+ 
+ extern char *msg_hlnk_ds ;
+@@ -119,6 +121,8 @@
+ extern char *msg_hlnk_en ;
+ extern char *msg_hlnk_ex ;
+ extern char *msg_hlnk_sr ;
++extern char *msg_hlnk_srs;
++extern char *msg_hlnk_srb;
+ extern char *msg_hlnk_i  ;
+ 
+ extern char *msg_mtot_ms ;
+@@ -154,12 +158,16 @@
+ extern char *msg_top_en  ;
+ extern char *msg_top_ex  ;
+ extern char *msg_top_sr  ;
++extern char *msg_top_srs ;
++extern char *msg_top_srb ;
+ extern char *msg_top_i   ;
+ extern char *msg_v_sites ;
+ extern char *msg_v_urls  ;
+ extern char *msg_v_refs  ;
+ extern char *msg_v_agents;
+ extern char *msg_v_search;
++extern char *msg_v_seasit;
++extern char *msg_v_seabot;
+ extern char *msg_v_users ;
+ 
+ extern char *msg_title   ;
+diff -ruN webalizer-2.01-10-pristine/lang.h.orig webalizer-2.01-10/lang.h.orig
+--- webalizer-2.01-10-pristine/lang.h.orig	Thu Jan  1 01:00:00 1970
++++ webalizer-2.01-10/lang.h.orig	Fri Sep 29 05:50:30 2000
+@@ -0,0 +1,174 @@
++#ifndef _LANG_H
++#define _LANG_H
++
++extern char *language    ;
++
++extern char *msg_records ;
++extern char *msg_addresses;
++extern char *msg_ignored ;
++extern char *msg_bad     ;
++extern char *msg_in      ;
++extern char *msg_seconds ;
++
++extern char *msg_log_err ;
++extern char *msg_log_use ;
++extern char *msg_dir_err ;
++extern char *msg_dir_use ;
++extern char *msg_cur_dir ;
++extern char *msg_hostname;
++extern char *msg_ign_hist;
++extern char *msg_no_hist ;
++extern char *msg_get_hist;
++extern char *msg_put_hist;
++extern char *msg_hist_err;
++extern char *msg_bad_hist;
++extern char *msg_bad_conf;
++extern char *msg_bad_key ;
++extern char *msg_bad_date;
++extern char *msg_ign_nscp;
++extern char *msg_bad_rec ;
++extern char *msg_no_vrec ;
++extern char *msg_gen_rpt ;
++extern char *msg_gen_sum ;
++extern char *msg_get_data;
++extern char *msg_put_data;
++extern char *msg_no_data ;
++extern char *msg_bad_data;
++extern char *msg_data_err;
++extern char *msg_dup_data;
++
++extern char *msg_dns_nocf;
++extern char *msg_dns_nodb;
++extern char *msg_dns_nolk;
++extern char *msg_dns_usec;
++extern char *msg_dns_rslf;
++extern char *msg_dns_none;
++
++extern char *msg_nomem_ts;
++extern char *msg_nomem_tr;
++extern char *msg_nomem_tu;
++extern char *msg_nomem_tc;
++extern char *msg_nomem_ta;
++extern char *msg_nomem_tsr;
++extern char *msg_nomem_ti;
++extern char *msg_nomem_dh;
++extern char *msg_nomem_mh;
++extern char *msg_nomem_u ;
++extern char *msg_nomem_a ;
++extern char *msg_nomem_r ;
++extern char *msg_nomem_sc;
++extern char *msg_nomem_i ;
++
++extern char *msg_big_rec ;
++extern char *msg_big_host;
++extern char *msg_big_date;
++extern char *msg_big_req ;
++extern char *msg_big_ref ;
++extern char *msg_big_user;
++extern char *msg_big_one ;
++
++extern char *msg_no_open ;
++
++extern char *h_usage1    ;
++extern char *h_usage2    ;
++extern char *h_msg[];
++
++/* HTML Strings */
++
++extern char *msg_hhdr_sp ;
++extern char *msg_hhdr_gt ;
++
++extern char *msg_main_us ;
++extern char *msg_main_per;
++extern char *msg_main_sum;
++extern char *msg_main_da ;
++extern char *msg_main_mt ;
++
++extern char *msg_hmth_du ;
++extern char *msg_hmth_hu ;
++
++extern char *msg_h_by    ;
++extern char *msg_h_avg   ;
++extern char *msg_h_max   ;
++extern char *msg_h_total ;
++extern char *msg_h_totals;
++extern char *msg_h_day   ;
++extern char *msg_h_mth   ;
++extern char *msg_h_hour  ;
++extern char *msg_h_hits  ;
++extern char *msg_h_pages ;
++extern char *msg_h_visits;
++extern char *msg_h_files ;
++extern char *msg_h_sites ;
++extern char *msg_h_xfer  ;
++extern char *msg_h_hname ;
++extern char *msg_h_url   ;
++extern char *msg_h_agent ;
++extern char *msg_h_ref   ;
++extern char *msg_h_ctry  ;
++extern char *msg_h_search;
++extern char *msg_h_uname ;
++
++extern char *msg_hlnk_ds ;
++extern char *msg_hlnk_hs ;
++extern char *msg_hlnk_u  ;
++extern char *msg_hlnk_s  ;
++extern char *msg_hlnk_a  ;
++extern char *msg_hlnk_c  ;
++extern char *msg_hlnk_r  ;
++extern char *msg_hlnk_en ;
++extern char *msg_hlnk_ex ;
++extern char *msg_hlnk_sr ;
++extern char *msg_hlnk_i  ;
++
++extern char *msg_mtot_ms ;
++extern char *msg_mtot_th ;
++extern char *msg_mtot_tf ;
++extern char *msg_mtot_tx ;
++extern char *msg_mtot_us ;
++extern char *msg_mtot_ur ;
++extern char *msg_mtot_ua ;
++extern char *msg_mtot_uu ;
++extern char *msg_mtot_ui ;
++extern char *msg_mtot_mhd;
++extern char *msg_mtot_mhh;
++extern char *msg_mtot_mfd;
++extern char *msg_mtot_mpd;
++extern char *msg_mtot_mvd;
++extern char *msg_mtot_mkd;
++extern char *msg_mtot_rc ;
++
++extern char *msg_dtot_ds ;
++
++extern char *msg_htot_hs ;
++
++extern char *msg_ctry_use;
++
++extern char *msg_top_top ;
++extern char *msg_top_of  ;
++extern char *msg_top_s   ;
++extern char *msg_top_u   ;
++extern char *msg_top_r   ;
++extern char *msg_top_a   ;
++extern char *msg_top_c   ;
++extern char *msg_top_en  ;
++extern char *msg_top_ex  ;
++extern char *msg_top_sr  ;
++extern char *msg_top_i   ;
++extern char *msg_v_sites ;
++extern char *msg_v_urls  ;
++extern char *msg_v_refs  ;
++extern char *msg_v_agents;
++extern char *msg_v_search;
++extern char *msg_v_users ;
++
++extern char *msg_title   ;
++extern char *msg_h_other ;
++
++extern char *s_month[12];
++extern char *l_month[12];
++
++extern struct response_code response[];
++extern struct country_code ctry[];
++
++#endif  /* _LANG_H */
+diff -ruN webalizer-2.01-10-pristine/linklist.c webalizer-2.01-10/linklist.c
+--- webalizer-2.01-10-pristine/linklist.c	Thu Dec 22 08:52:36 2005
++++ webalizer-2.01-10/linklist.c	Thu Dec 22 08:52:59 2005
+@@ -71,7 +71,7 @@
+ GLISTPTR new_glist(char *, char *);                 /* new group list node */
+ void     del_glist(GLISTPTR *);                     /* del group list      */
+ 
+-int      isinstr(char *, char *);
++int      isinstr(const char *, const char *);
+ 
+ /* Linkded list pointers */
+ GLISTPTR group_sites   = NULL;                /* "group" lists            */
+@@ -240,7 +240,7 @@
+ /* ISINLIST - Test if string is in list      */
+ /*********************************************/
+ 
+-char *isinlist(NLISTPTR list, char *str)
++char *isinlist(NLISTPTR list, const char *str)
+ {
+    NLISTPTR lptr;
+ 
+@@ -257,14 +257,35 @@
+ /* ISINGLIST - Test if string is in list     */
+ /*********************************************/
+ 
+-char *isinglist(GLISTPTR list, char *str)
++char *isinglist(GLISTPTR list, const char *str)
+ {
+    GLISTPTR lptr;
+ 
+    lptr=list;
+    while (lptr!=NULL)
+    {
+-      if (isinstr(str,lptr->string)) return lptr->name;
++      if (isinstr((const char *)str,(const char *)lptr->string)) return lptr->name;
++      lptr=lptr->next;
++   }
++   return NULL;
++}
++
++/*********************************************/
++/* NAMEINGLIST - Test if string is in list   */
++/*********************************************/
++
++char *nameinglist(GLISTPTR list, const char *str, char **string)
++{
++   GLISTPTR lptr;
++
++   lptr=list;
++   while (lptr!=NULL)
++   {
++      if (isinstr(str,lptr->string))
++      {
++         if(string != NULL) *string=lptr->string;
++         return lptr->name;
++      }
+       lptr=lptr->next;
+    }
+    return NULL;
+@@ -274,9 +295,9 @@
+ /* ISINSTR - Scan for string in string       */
+ /*********************************************/
+ 
+-int isinstr(char *str, char *cp)
++int isinstr(const char *str, const char *cp)
+ {
+-   char *cp1,*cp2;
++   const char *cp1,*cp2;
+ 
+    cp1=(cp+strlen(cp))-1;
+    if (*cp=='*')
+@@ -303,6 +324,6 @@
+          if (*cp1++!=*cp2++) return 0;
+       }
+       if (*cp1=='*') return 1;
+-         else return 0;
++	 else return 0;
+    }
+ }
+diff -ruN webalizer-2.01-10-pristine/linklist.c.orig webalizer-2.01-10/linklist.c.orig
+--- webalizer-2.01-10-pristine/linklist.c.orig	Thu Dec 22 08:52:36 2005
++++ webalizer-2.01-10/linklist.c.orig	Thu Dec 22 08:52:36 2005
+@@ -197,12 +197,12 @@
+    strncpy(temp_buf,str,LINKLIST_MAX_STRING - 1);
+    temp_buf[LINKLIST_MAX_STRING - 1]=0;
+ 
+-   while (!isspace((int)*name)&&*name!=0) name++;
++   while (!isspace((unsigned char)*name)&&*name!=0) name++;
+    if (*name==0) name=temp_buf;
+    else
+    {
+       *name++=0;
+-      while (isspace((int)*name)&&*name!=0) name++;
++      while (isspace((unsigned char)*name)&&*name!=0) name++;
+       if (*name==0) name=temp_buf;
+    }
+ 
+diff -ruN webalizer-2.01-10-pristine/linklist.h webalizer-2.01-10/linklist.h
+--- webalizer-2.01-10-pristine/linklist.h	Thu Dec 22 08:52:36 2005
++++ webalizer-2.01-10/linklist.h	Thu Dec 22 08:52:59 2005
+@@ -46,8 +46,10 @@
+ extern NLISTPTR page_type     ;               /* page view types           */
+ extern GLISTPTR search_list   ;               /* Search engine list        */
+ 
+-extern char     *isinlist(NLISTPTR, char *);        /* scan list for str   */
+-extern char     *isinglist(GLISTPTR, char *);       /* scan glist for str  */
++extern char     *isinlist(NLISTPTR, const char *);  /* scan list for str   */
++extern char     *isinglist(GLISTPTR, const char *); /* scan glist for str  */
++extern char     *nameinglist(GLISTPTR, const char *,
++                             char **);              /* scan glist for str  */
+ extern int      add_nlist(char *, NLISTPTR *);      /* add list item       */
+ extern int      add_glist(char *, GLISTPTR *);      /* add group list item */
+ 
+diff -ruN webalizer-2.01-10-pristine/linklist.h.orig webalizer-2.01-10/linklist.h.orig
+--- webalizer-2.01-10-pristine/linklist.h.orig	Fri Sep 29 05:50:30 2000
++++ webalizer-2.01-10/linklist.h.orig	Thu Dec 22 08:52:36 2005
+@@ -1,12 +1,18 @@
+ #ifndef _LINKLIST_H
+ #define _LINKLIST_H
+ 
+-struct nlist {  char string[80];           /* list struct for HIDE items   */
++#ifndef	LINKLIST_MAX_STRING
++#define	LINKLIST_MAX_STRING	80
++#endif
++
++struct nlist {                             /* list struct for HIDE items   */
++              char string[LINKLIST_MAX_STRING];
+               struct nlist *next; };
+ typedef struct nlist *NLISTPTR;
+ 
+-struct glist {  char string[80];           /* list struct for GROUP items  */
+-                char name[80];
++struct glist {                             /* list struct for GROUP items  */
++              char string[LINKLIST_MAX_STRING];
++              char name[LINKLIST_MAX_STRING];
+               struct glist *next; };
+ typedef struct glist *GLISTPTR;
+ 
+diff -ruN webalizer-2.01-10-pristine/output.c webalizer-2.01-10/output.c
+--- webalizer-2.01-10-pristine/output.c	Thu Dec 22 08:52:36 2005
++++ webalizer-2.01-10/output.c	Thu Dec 22 08:52:59 2005
+@@ -81,6 +81,8 @@
+ void    top_agents_table();                         /* top n u-agents  ""  */
+ void    top_ctry_table();                           /* top n countries ""  */
+ void    top_search_table();                         /* top n search strs   */
++void    top_searchsite_table();                     /* top n search strs   */
++void    top_searchboth_table();                     /* top n search strs   */
+ void    top_users_table();                          /* top n ident table   */
+ u_long  load_url_array(  UNODEPTR *);               /* load URL array      */
+ u_long  load_site_array( HNODEPTR *);               /* load Site array     */
+@@ -105,6 +107,8 @@
+ int     all_refs_page(u_long, u_long);              /* output refs page    */
+ int     all_agents_page(u_long, u_long);            /* output agents page  */
+ int     all_search_page(u_long, u_long);            /* output search page  */
++int     all_searchsite_page(u_long, u_long);            /* output search page  */
++int     all_searchboth_page(u_long, u_long);        /* output search page  */
+ int     all_users_page(u_long, u_long);             /* output ident page   */
+ void    dump_all_sites();                           /* dump sites tab file */
+ void    dump_all_urls();                            /* dump urls tab file  */
+@@ -417,10 +421,12 @@
+     if ( (s_array=malloc(sizeof(SNODEPTR)*(a_ctr))) != NULL)
+     {
+      a_ctr=load_srch_array(s_array);
+-     if (ntop_search || dump_search)
++     if (ntop_search || ntop_searchsite || ntop_searchboth || dump_search)
+      {
+        qsort(s_array,a_ctr,sizeof(SNODEPTR),qs_srch_cmph);
+        if (ntop_search) top_search_table(); /* top search strings table     */
++       if (ntop_searchsite) top_searchsite_table(); /* top search strings table     */
++       if (ntop_searchboth) top_searchboth_table(); /* top search strings table     */
+        if (dump_search) dump_all_search();  /* dump search string tab file  */
+      }
+      free(s_array);
+@@ -492,6 +498,10 @@
+       fprintf(out_fp,"<A HREF=\"#TOPREFS\">[%s]</A>\n",msg_hlnk_r);
+    if (ntop_search && t_ref)
+       fprintf(out_fp,"<A HREF=\"#TOPSEARCH\">[%s]</A>\n",msg_hlnk_sr);
++   if (ntop_searchsite && t_ref)
++      fprintf(out_fp,"<A HREF=\"#TOPSEARCHSITE\">[%s]</A>\n",msg_hlnk_srs);
++   if (ntop_searchboth && t_ref)
++      fprintf(out_fp,"<A HREF=\"#TOPSEARCHBOTH\">[%s]</A>\n",msg_hlnk_srb);
+    if (ntop_users && t_user)
+       fprintf(out_fp,"<A HREF=\"#TOPUSERS\">[%s]</A>\n",msg_hlnk_i);
+    if (ntop_agents && t_agent)
+@@ -1635,13 +1645,20 @@
+ 
+    if ( (t_ref==0)||(a_ctr==0)) return;   /* don't bother if none to do    */
+ 
+-   cnt=tot_num=a_ctr; pointer=s_array;
++   cnt=a_ctr; pointer=s_array;
++   tot_num=0;
+    while(cnt--)
+    {
++      if(strlen((char *)((SNODEPTR)(*pointer)->site)))
++      {
++         pointer++; continue;
++      }
+       t_val+=(u_long)((SNODEPTR)(*pointer)->count);
++      tot_num++;
+       pointer++;
+    }
+ 
++   cnt=tot_num;
+    if ( tot_num > ntop_search) tot_num=ntop_search;
+ 
+    fprintf(out_fp,"<A NAME=\"TOPSEARCH\"></A>\n");
+@@ -1649,7 +1666,7 @@
+    fprintf(out_fp,"<TR><TH HEIGHT=4></TH></TR>\n");
+    fprintf(out_fp,"<TR><TH BGCOLOR=\"%s\" ALIGN=CENTER COLSPAN=4>"        \
+           "%s %lu %s %lu %s</TH></TR>\n",
+-          GREY, msg_top_top, tot_num, msg_top_of, a_ctr, msg_top_sr);
++          GREY, msg_top_top, tot_num, msg_top_of, cnt, msg_top_sr);
+    fprintf(out_fp,"<TR><TH HEIGHT=4></TH></TR>\n");
+    fprintf(out_fp,"<TR><TH BGCOLOR=\"%s\" ALIGN=center>"                  \
+           "<FONT SIZE=\"-1\">#</FONT></TH>\n",
+@@ -1666,6 +1683,7 @@
+    while(tot_num)
+    {
+       sptr=*pointer++;
++      if(strlen(sptr->site)) continue;
+       fprintf(out_fp,
+          "<TR>\n"                                                     \
+          "<TD ALIGN=center><FONT SIZE=\"-1\"><B>%d</B></FONT></TD>\n" \
+@@ -1681,7 +1699,7 @@
+    fprintf(out_fp,"<TR><TH HEIGHT=4></TH></TR>\n");
+    if ( (all_search) && (a_ctr>ntop_search) )
+    {
+-      if (all_search_page(a_ctr, t_val))
++      if (all_search_page(cnt, t_val))
+       {
+          fprintf(out_fp,"<TR BGCOLOR=\"%s\">",GRPCOLOR);
+          fprintf(out_fp,"<TD COLSPAN=4 ALIGN=\"center\">\n");
+@@ -1694,6 +1712,164 @@
+    fprintf(out_fp,"</TABLE>\n<P>\n");
+ }
+ 
++/***********************************************/
++/* TOP_SEARCHSITE_TABLE - generate top n table */
++/***********************************************/
++
++void top_searchsite_table()
++{
++   u_long   cnt,t_val=0, tot_num;
++   int      i;
++   SNODEPTR sptr, *pointer;
++
++   if ( (t_ref==0)||(a_ctr==0)) return;   /* don't bother if none to do    */
++
++   cnt=a_ctr; pointer=s_array;
++   tot_num=0;
++   while(cnt--)
++   {
++      if(strlen((char *)((SNODEPTR)(*pointer)->string)))
++      {
++         pointer++; continue;
++      }
++      t_val+=(u_long)((SNODEPTR)(*pointer)->count);
++      tot_num++;
++      pointer++;
++   }
++
++   cnt=tot_num;
++   if ( tot_num > ntop_searchsite) tot_num=ntop_searchsite;
++
++   fprintf(out_fp,"<A NAME=\"TOPSEARCHSITE\"></A>\n");
++   fprintf(out_fp,"<TABLE WIDTH=510 BORDER=2 CELLSPACING=1 CELLPADDING=1>\n");
++   fprintf(out_fp,"<TR><TH HEIGHT=4></TH></TR>\n");
++   fprintf(out_fp,"<TR><TH BGCOLOR=\"%s\" ALIGN=CENTER COLSPAN=4>"        \
++          "%s %lu %s %lu %s</TH></TR>\n",
++          GREY, msg_top_top, tot_num, msg_top_of, cnt, msg_top_srs);
++   fprintf(out_fp,"<TR><TH HEIGHT=4></TH></TR>\n");
++   fprintf(out_fp,"<TR><TH BGCOLOR=\"%s\" ALIGN=center>"                  \
++          "<FONT SIZE=\"-1\">#</FONT></TH>\n",
++          GREY);
++   fprintf(out_fp,"<TH BGCOLOR=\"%s\" ALIGN=center COLSPAN=2>"            \
++          "<FONT SIZE=\"-1\">%s</FONT></TH>\n",
++          DKGREEN,msg_h_hits);
++   fprintf(out_fp,"<TH BGCOLOR=\"%s\" ALIGN=center>"                      \
++          "<FONT SIZE=\"-1\">%s</FONT></TH></TR>\n",
++          CYAN,msg_h_seasit);
++   fprintf(out_fp,"<TR><TH HEIGHT=4></TH></TR>\n");
++
++   pointer=s_array; i=0;
++   while(tot_num)
++   {
++      sptr=*pointer++;
++      if(strlen(sptr->string)) continue;
++      fprintf(out_fp,
++         "<TR>\n"                                                     \
++         "<TD ALIGN=center><FONT SIZE=\"-1\"><B>%d</B></FONT></TD>\n" \
++         "<TD ALIGN=right><FONT SIZE=\"-1\"><B>%lu</B></FONT></TD>\n" \
++         "<TD ALIGN=right><FONT SIZE=\"-2\">%3.02f%%</FONT></TD>\n"   \
++         "<TD ALIGN=left NOWRAP><FONT SIZE=\"-1\">",
++         i+1,sptr->count,
++         (t_val==0)?0:((float)sptr->count/t_val)*100.0);
++      fprintf(out_fp,"%s</FONT></TD></TR>\n",sptr->site);
++      tot_num--;
++      i++;
++   }
++   fprintf(out_fp,"<TR><TH HEIGHT=4></TH></TR>\n");
++   if ( (all_searchsites) && (cnt>ntop_searchsite) )
++   {
++      if (all_searchsite_page(a_ctr, t_val))
++      {
++         fprintf(out_fp,"<TR BGCOLOR=\"%s\">",GRPCOLOR);
++         fprintf(out_fp,"<TD COLSPAN=4 ALIGN=\"center\">\n");
++         fprintf(out_fp,"<FONT SIZE=\"-1\">");
++         fprintf(out_fp,"<A HREF=\"./searchsite_%04d%02d.%s\">",
++                 cur_year,cur_month,html_ext);
++         fprintf(out_fp,"%s</A></TD></TR>\n",msg_v_seasit);
++      }
++   }
++   fprintf(out_fp,"</TABLE>\n<P>\n");
++}
++
++/***********************************************/
++/* TOP_SEARCHBOTH_TABLE - generate top n table */
++/***********************************************/
++
++void top_searchboth_table()
++{
++   u_long   cnt,t_val=0, tot_num;
++   int      i;
++   SNODEPTR sptr, *pointer;
++
++   if ( (t_ref==0)||(a_ctr==0)) return;   /* don't bother if none to do    */
++
++   cnt=a_ctr; pointer=s_array;
++   tot_num=0;
++   while(cnt--)
++   {
++      if(!strlen((char *)((SNODEPTR)(*pointer)->string))||!strlen((char *)((SNODEPTR)(*pointer)->site)))
++      {
++         pointer++; continue;
++      }
++      t_val+=(u_long)((SNODEPTR)(*pointer)->count);
++      tot_num++;
++      pointer++;
++   }
++
++   cnt=tot_num;
++   if ( tot_num > ntop_searchboth) tot_num=ntop_searchboth;
++
++   fprintf(out_fp,"<A NAME=\"TOPSEARCHBOTH\"></A>\n");
++   fprintf(out_fp,"<TABLE WIDTH=510 BORDER=2 CELLSPACING=1 CELLPADDING=1>\n");
++   fprintf(out_fp,"<TR><TH HEIGHT=4></TH></TR>\n");
++   fprintf(out_fp,"<TR><TH BGCOLOR=\"%s\" ALIGN=CENTER COLSPAN=4>"        \
++          "%s %lu %s %lu %s</TH></TR>\n",
++          GREY, msg_top_top, tot_num, msg_top_of, cnt, msg_top_srb);
++   fprintf(out_fp,"<TR><TH HEIGHT=4></TH></TR>\n");
++   fprintf(out_fp,"<TR><TH BGCOLOR=\"%s\" ALIGN=center>"                  \
++          "<FONT SIZE=\"-1\">#</FONT></TH>\n",
++          GREY);
++   fprintf(out_fp,"<TH BGCOLOR=\"%s\" ALIGN=center COLSPAN=2>"            \
++          "<FONT SIZE=\"-1\">%s</FONT></TH>\n",
++          DKGREEN,msg_h_hits);
++   fprintf(out_fp,"<TH BGCOLOR=\"%s\" ALIGN=center>"                      \
++          "<FONT SIZE=\"-1\">%s</FONT></TH></TR>\n",
++          CYAN,msg_h_seabot);
++   fprintf(out_fp,"<TR><TH HEIGHT=4></TH></TR>\n");
++
++   pointer=s_array; i=0;
++   while(tot_num)
++   {
++      sptr=*pointer++;
++      if(!strlen(sptr->string) || !strlen(sptr->site)) continue;
++      fprintf(out_fp,
++         "<TR>\n"                                                     \
++         "<TD ALIGN=center><FONT SIZE=\"-1\"><B>%d</B></FONT></TD>\n" \
++         "<TD ALIGN=right><FONT SIZE=\"-1\"><B>%lu</B></FONT></TD>\n" \
++         "<TD ALIGN=right><FONT SIZE=\"-2\">%3.02f%%</FONT></TD>\n"   \
++         "<TD ALIGN=left NOWRAP><FONT SIZE=\"-1\">",
++         i+1,sptr->count,
++         (t_val==0)?0:((float)sptr->count/t_val)*100.0);
++      fprintf(out_fp,"%s -&gt; %s</FONT></TD></TR>\n",sptr->site,sptr->string);
++      tot_num--;
++      i++;
++   }
++   fprintf(out_fp,"<TR><TH HEIGHT=4></TH></TR>\n");
++   if ( (all_searchboth) && (cnt>ntop_searchboth) )
++   {
++      if (all_searchboth_page(a_ctr, t_val))
++      {
++         fprintf(out_fp,"<TR BGCOLOR=\"%s\">",GRPCOLOR);
++         fprintf(out_fp,"<TD COLSPAN=4 ALIGN=\"center\">\n");
++         fprintf(out_fp,"<FONT SIZE=\"-1\">");
++         fprintf(out_fp,"<A HREF=\"./searchboth_%04d%02d.%s\">",
++                 cur_year,cur_month,html_ext);
++         fprintf(out_fp,"%s</A></TD></TR>\n",msg_v_seabot);
++      }
++   }
++   fprintf(out_fp,"</TABLE>\n<P>\n");
++}
++
+ /*********************************************/
+ /* ALL_SEARCH_PAGE - HTML for search strings */
+ /*********************************************/
+@@ -1724,6 +1900,94 @@
+    while(tot_num)
+    {
+       sptr=*pointer++;
++      if(strlen(sptr->site)) continue;
++      fprintf(out_fp,"%-8lu %6.02f%%  %s\n",
++         sptr->count,
++         (t_val==0)?0:((float)sptr->count/t_val)*100.0,
++         sptr->string);
++      tot_num--;
++   }
++   fprintf(out_fp,"</PRE></FONT>\n");
++   write_html_tail(out_fp);
++   fclose(out_fp);
++   return 1;
++}
++
++/*************************************************/
++/* ALL_SEARCHSITE_PAGE - HTML for search strings */
++/*************************************************/
++
++int all_searchsite_page(u_long tot_num, u_long t_val)
++{
++   SNODEPTR sptr, *pointer;
++   char     search_fname[256], buffer[256];
++   FILE     *out_fp;
++
++   if (!tot_num) return 0;
++
++   /* generate file name */
++   sprintf(search_fname,"searchsite_%04d%02d.%s",cur_year,cur_month,html_ext);
++
++   /* open file */
++   if ( (out_fp=open_out_file(search_fname))==NULL ) return 0;
++
++   sprintf(buffer,"%s %d - %s",l_month[cur_month-1],cur_year,msg_h_seasit);
++   write_html_head(buffer, out_fp);
++
++   fprintf(out_fp,"<FONT SIZE=\"-1\"></CENTER><PRE>\n");
++
++   fprintf(out_fp," %12s      %s\n",msg_h_hits,msg_h_seasit);
++   fprintf(out_fp,"----------------  ----------------------\n\n");
++
++   pointer=s_array;
++   while(tot_num)
++   {
++      sptr=*pointer++;
++      if(strlen(sptr->string)) continue;
++      fprintf(out_fp,"%-8lu %6.02f%%  %s\n",
++         sptr->count,
++         (t_val==0)?0:((float)sptr->count/t_val)*100.0,
++         sptr->string);
++      tot_num--;
++   }
++   fprintf(out_fp,"</PRE></FONT>\n");
++   write_html_tail(out_fp);
++   fclose(out_fp);
++   return 1;
++}
++
++
++/*************************************************/
++/* ALL_SEARCHSITE_PAGE - HTML for search strings */
++/*************************************************/
++
++int all_searchboth_page(u_long tot_num, u_long t_val)
++{
++   SNODEPTR sptr, *pointer;
++   char     search_fname[256], buffer[256];
++   FILE     *out_fp;
++
++   if (!tot_num) return 0;
++
++   /* generate file name */
++   sprintf(search_fname,"searchsite_%04d%02d.%s",cur_year,cur_month,html_ext);
++
++   /* open file */
++   if ( (out_fp=open_out_file(search_fname))==NULL ) return 0;
++
++   sprintf(buffer,"%s %d - %s",l_month[cur_month-1],cur_year,msg_h_seabot);
++   write_html_head(buffer, out_fp);
++
++   fprintf(out_fp,"<FONT SIZE=\"-1\"></CENTER><PRE>\n");
++
++   fprintf(out_fp," %12s      %s\n",msg_h_hits,msg_h_seabot);
++   fprintf(out_fp,"----------------  ----------------------\n\n");
++
++   pointer=s_array;
++   while(tot_num)
++   {
++      sptr=*pointer++;
++      if(!strlen(sptr->string) || !strlen(sptr->site)) continue;
+       fprintf(out_fp,"%-8lu %6.02f%%  %s\n",
+          sptr->count,
+          (t_val==0)?0:((float)sptr->count/t_val)*100.0,
+@@ -2291,7 +2555,8 @@
+    while(cnt)
+    {
+       sptr=*pointer++;
+-      fprintf(out_fp,"%lu\t%s\n",sptr->count,sptr->string);
++      if(!strlen(sptr->site) || !strlen(sptr->string)) continue;
++      fprintf(out_fp,"%lu\t%s\t%s\n",sptr->count,sptr->string,sptr->site);
+       cnt--;
+    }
+    fclose(out_fp);
+diff -ruN webalizer-2.01-10-pristine/output.c.orig webalizer-2.01-10/output.c.orig
+--- webalizer-2.01-10-pristine/output.c.orig	Thu Dec 22 08:52:36 2005
++++ webalizer-2.01-10/output.c.orig	Thu Dec 22 08:52:36 2005
+@@ -1450,10 +1450,17 @@
+       rptr=*pointer++;
+       if (rptr->flag == OBJ_REG)
+       {
+-         fprintf(out_fp,"%-8lu %6.02f%%  %s\n",
+-            rptr->count,
+-            (t_hit==0)?0:((float)rptr->count/t_hit)*100.0,
+-            rptr->string);
++	 if (strstr(rptr->string,"://")!=NULL)
++	    fprintf(out_fp,"%-8lu %6.02f%%  <A HREF=\"%s\">%s</A>\n",
++	       rptr->count,
++	       (t_hit==0)?0:((float)rptr->count/t_hit)*100.0,
++	       rptr->string,
++	       rptr->string);
++	 else
++	    fprintf(out_fp,"%-8lu %6.02f%%  %s\n",
++	       rptr->count,
++	       (t_hit==0)?0:((float)rptr->count/t_hit)*100.0,
++	       rptr->string);
+          r_reg--;
+       }
+    }
+diff -ruN webalizer-2.01-10-pristine/preserve.c webalizer-2.01-10/preserve.c
+--- webalizer-2.01-10-pristine/preserve.c	Thu Dec 22 08:52:36 2005
++++ webalizer-2.01-10/preserve.c	Thu Dec 22 08:52:59 2005
+@@ -352,7 +352,7 @@
+       sptr=sr_htab[i];
+       while (sptr!=NULL)
+       {
+-         sprintf(buffer,"%s\n%lu\n", sptr->string,sptr->count);
++         sprintf(buffer,"%s\n%s\n%lu\n", sptr->string,sptr->site,sptr->count);
+          if (fputs(buffer,fp)==EOF) return 1;  /* error exit */
+          sptr=sptr->next;
+       }
+@@ -402,6 +402,7 @@
+ 
+    char   buffer[BUFSIZE];
+    char   tmp_buf[BUFSIZE];
++   char   tmp_buf2[BUFSIZE];
+ 
+    u_long ul_bogus=0;
+ 
+diff -ruN webalizer-2.01-10-pristine/preserve.c.orig webalizer-2.01-10/preserve.c.orig
+--- webalizer-2.01-10-pristine/preserve.c.orig	Wed Oct 24 08:22:42 2001
++++ webalizer-2.01-10/preserve.c.orig	Thu Dec 22 08:52:36 2005
+@@ -497,7 +497,7 @@
+       tmp_buf[strlen(tmp_buf)-1]=0;
+ 
+       if ((fgets(buffer,BUFSIZE,fp)) == NULL) return 10;  /* error exit */
+-      if (!isdigit((int)buffer[0])) return 10;  /* error exit */
++      if (!isdigit((unsigned char)buffer[0])) return 10;  /* error exit */
+ 
+       /* load temporary node data */
+       sscanf(buffer,"%d %lu %lu %lf %lu %lu",
+@@ -528,7 +528,7 @@
+       tmp_buf[strlen(buffer)-1]=0;
+ 
+       if ((fgets(buffer,BUFSIZE,fp)) == NULL) return 8;  /* error exit */
+-      if (!isdigit((int)buffer[0])) return 8;  /* error exit */
++      if (!isdigit((unsigned char)buffer[0])) return 8;  /* error exit */
+ 
+       /* load temporary node data */
+       sscanf(buffer,"%d %lu %lu %lf %lu %lu",
+@@ -568,7 +568,7 @@
+       tmp_buf[strlen(buffer)-1]=0;
+ 
+       if ((fgets(buffer,BUFSIZE,fp)) == NULL) return 9;  /* error exit */
+-      if (!isdigit((int)buffer[0])) return 9;  /* error exit */
++      if (!isdigit((unsigned char)buffer[0])) return 9;  /* error exit */
+ 
+       /* load temporary node data */
+       sscanf(buffer,"%d %lu %lu %lf %lu %lu",
+@@ -607,7 +607,7 @@
+       tmp_buf[strlen(buffer)-1]=0;
+ 
+       if ((fgets(buffer,BUFSIZE,fp)) == NULL) return 11;  /* error exit */
+-      if (!isdigit((int)buffer[0])) return 11;  /* error exit */
++      if (!isdigit((unsigned char)buffer[0])) return 11;  /* error exit */
+ 
+       /* load temporary node data */
+       sscanf(buffer,"%d %lu",&t_rnode.flag,&t_rnode.count);
+@@ -632,7 +632,7 @@
+       tmp_buf[strlen(buffer)-1]=0;
+ 
+       if ((fgets(buffer,BUFSIZE,fp)) == NULL) return 12;  /* error exit */
+-      if (!isdigit((int)buffer[0])) return 12;  /* error exit */
++      if (!isdigit((unsigned char)buffer[0])) return 12;  /* error exit */
+ 
+       /* load temporary node data */
+       sscanf(buffer,"%d %lu",&t_anode.flag,&t_anode.count);
+@@ -657,7 +657,7 @@
+       tmp_buf[strlen(buffer)-1]=0;
+ 
+       if ((fgets(buffer,BUFSIZE,fp)) == NULL) return 13;  /* error exit */
+-      if (!isdigit((int)buffer[0])) return 13;  /* error exit */
++      if (!isdigit((unsigned char)buffer[0])) return 13;  /* error exit */
+ 
+       /* load temporary node data */
+       sscanf(buffer,"%lu",&t_snode.count);
+@@ -682,7 +682,7 @@
+       tmp_buf[strlen(buffer)-1]=0;
+ 
+       if ((fgets(buffer,BUFSIZE,fp)) == NULL) return 14;  /* error exit */
+-      if (!isdigit((int)buffer[0])) return 14;  /* error exit */
++      if (!isdigit((unsigned char)buffer[0])) return 14;  /* error exit */
+ 
+       /* load temporary node data */
+       sscanf(buffer,"%d %lu %lu %lf %lu %lu",
+diff -ruN webalizer-2.01-10-pristine/preserve.c.rej webalizer-2.01-10/preserve.c.rej
+--- webalizer-2.01-10-pristine/preserve.c.rej	Thu Jan  1 01:00:00 1970
++++ webalizer-2.01-10/preserve.c.rej	Thu Dec 22 08:52:59 2005
+@@ -0,0 +1,33 @@
++***************
++*** 657,669 ****
++        tmp_buf[strlen(buffer)-1]=0;
++        
++        if ((fgets(buffer,BUFSIZE,fp)) == NULL) return 13;  /* error exit */
++        if (!isdigit((int)buffer[0])) return 13;  /* error exit */
++  
++        /* load temporary node data */
++        sscanf(buffer,"%lu",&t_snode.count);
++  
++        /* insert node */
++-       if (put_snode(tmp_buf,t_snode.count,sr_htab))
++        {
++           if (verbose) fprintf(stderr,"%s %s\n", msg_nomem_sc, t_snode.string);
++        }
++--- 658,674 ----
++        tmp_buf[strlen(buffer)-1]=0;
++        
++        if ((fgets(buffer,BUFSIZE,fp)) == NULL) return 13;  /* error exit */
+++       strncpy(tmp_buf2,buffer,MAXSRCH);
+++       tmp_buf2[strlen(buffer)-1]=0;
+++ 
+++       if ((fgets(buffer,BUFSIZE,fp)) == NULL) return 13;  /* error exit */
++        if (!isdigit((int)buffer[0])) return 13;  /* error exit */
++  
++        /* load temporary node data */
++        sscanf(buffer,"%lu",&t_snode.count);
++  
++        /* insert node */
+++       if (put_snode(tmp_buf,tmp_buf2,t_snode.count,sr_htab))
++        {
++           if (verbose) fprintf(stderr,"%s %s\n", msg_nomem_sc, t_snode.string);
++        }
+diff -ruN webalizer-2.01-10-pristine/sample.conf webalizer-2.01-10/sample.conf
+--- webalizer-2.01-10-pristine/sample.conf	Fri Sep 29 05:51:42 2000
++++ webalizer-2.01-10/sample.conf	Thu Dec 22 08:52:59 2005
+@@ -311,6 +311,8 @@
+ #TopEntry        10
+ #TopExit         10
+ #TopSearch       20
++#TopSearchSites  10
++#TopSearchSiteStrs 30
+ #TopUsers        20
+ 
+ # The All* keywords allow the display of all URL's, Sites, Referrers
+@@ -333,6 +335,8 @@
+ #AllReferrers	no
+ #AllAgents	no
+ #AllSearchStr	no
++#AllSearchSites no
++#AllSearchSiteStrs no
+ #AllUsers       no
+ 
+ # The Webalizer normally strips the string 'index.' off the end of
+diff -ruN webalizer-2.01-10-pristine/sample.conf.orig webalizer-2.01-10/sample.conf.orig
+--- webalizer-2.01-10-pristine/sample.conf.orig	Thu Jan  1 01:00:00 1970
++++ webalizer-2.01-10/sample.conf.orig	Fri Sep 29 05:51:42 2000
+@@ -0,0 +1,571 @@
++#
++# Sample Webalizer configuration file
++# Copyright 1997-2000 by Bradford L. Barrett (brad@mrunix.net)
++#
++# Distributed under the GNU General Public License.  See the
++# files "Copyright" and "COPYING" provided with the webalizer
++# distribution for additional information.
++#
++# This is a sample configuration file for the Webalizer (ver 2.01)
++# Lines starting with pound signs '#' are comment lines and are
++# ignored.  Blank lines are skipped as well.  Other lines are considered
++# as configuration lines, and have the form "ConfigOption  Value" where
++# ConfigOption is a valid configuration keyword, and Value is the value
++# to assign that configuration option.  Invalid keyword/values are
++# ignored, with appropriate warnings being displayed.  There must be
++# at least one space or tab between the keyword and its value.
++#
++# As of version 0.98, The Webalizer will look for a 'default' configuration
++# file named "webalizer.conf" in the current directory, and if not found
++# there, will look for "/etc/webalizer.conf".
++
++
++# LogFile defines the web server log file to use.  If not specified
++# here or on on the command line, input will default to STDIN.  If
++# the log filename ends in '.gz' (ie: a gzip compressed file), it will
++# be decompressed on the fly as it is being read.
++
++#LogFile        /var/lib/httpd/logs/access_log
++
++# LogType defines the log type being processed.  Normally, the Webalizer
++# expects a CLF or Combined web server log as input.  Using this option,
++# you can process ftp logs as well (xferlog as produced by wu-ftp and
++# others), or Squid native logs.  Values can be 'clf', 'ftp' or 'squid',
++# with 'clf' the default.
++
++#LogType	clf
++
++# OutputDir is where you want to put the output files.  This should
++# should be a full path name, however relative ones might work as well.
++# If no output directory is specified, the current directory will be used.
++
++#OutputDir      /var/lib/httpd/htdocs/usage
++
++# HistoryName allows you to specify the name of the history file produced
++# by the Webalizer.  The history file keeps the data for up to 12 months
++# worth of logs, used for generating the main HTML page (index.html).
++# The default is a file named "webalizer.hist", stored in the specified
++# output directory.  If you specify just the filename (without a path),
++# it will be kept in the specified output directory.  Otherwise, the path
++# is relative to the output directory, unless absolute (leading /).
++
++#HistoryName	webalizer.hist
++
++# Incremental processing allows multiple partial log files to be used
++# instead of one huge one.  Useful for large sites that have to rotate
++# their log files more than once a month.  The Webalizer will save its
++# internal state before exiting, and restore it the next time run, in
++# order to continue processing where it left off.  This mode also causes
++# The Webalizer to scan for and ignore duplicate records (records already
++# processed by a previous run).  See the README file for additional
++# information.  The value may be 'yes' or 'no', with a default of 'no'.
++# The file 'webalizer.current' is used to store the current state data,
++# and is located in the output directory of the program (unless changed
++# with the IncrementalName option below).  Please read at least the section
++# on Incremental processing in the README file before you enable this option.
++
++#Incremental	no
++
++# IncrementalName allows you to specify the filename for saving the
++# incremental data in.  It is similar to the HistoryName option where the
++# name is relative to the specified output directory, unless an absolute
++# filename is specified.  The default is a file named "webalizer.current"
++# kept in the normal output directory.  If you don't specify "Incremental"
++# as 'yes' then this option has no meaning.
++
++#IncrementalName	webalizer.current
++
++# ReportTitle is the text to display as the title.  The hostname
++# (unless blank) is appended to the end of this string (seperated with
++# a space) to generate the final full title string.
++# Default is (for english) "Usage Statistics for".
++
++#ReportTitle    Usage Statistics for
++
++# HostName defines the hostname for the report.  This is used in
++# the title, and is prepended to the URL table items.  This allows
++# clicking on URL's in the report to go to the proper location in
++# the event you are running the report on a 'virtual' web server,
++# or for a server different than the one the report resides on.
++# If not specified here, or on the command line, webalizer will
++# try to get the hostname via a uname system call.  If that fails,
++# it will default to "localhost".
++
++#HostName       localhost
++
++# HTMLExtension allows you to specify the filename extension to use
++# for generated HTML pages.  Normally, this defaults to "html", but
++# can be changed for sites who need it (like for PHP embeded pages).
++
++#HTMLExtension  html
++
++# PageType lets you tell the Webalizer what types of URL's you
++# consider a 'page'.  Most people consider html and cgi documents
++# as pages, while not images and audio files.  If no types are
++# specified, defaults will be used ('htm*', 'cgi' and HTMLExtension
++# if different for web logs, 'txt' for ftp logs).
++
++PageType	htm*
++PageType	cgi
++#PageType	phtml
++#PageType	php3
++#PageType	pl
++
++# UseHTTPS should be used if the analysis is being run on a
++# secure server, and links to urls should use 'https://' instead
++# of the default 'http://'.  If you need this, set it to 'yes'.
++# Default is 'no'.  This only changes the behaviour of the 'Top
++# URL's' table.
++
++#UseHTTPS       no
++
++# DNSCache specifies the DNS cache filename to use for reverse DNS lookups.
++# This file must be specified if you wish to perform name lookups on any IP
++# addresses found in the log file.  If an absolute path is not given as
++# part of the filename (ie: starts with a leading '/'), then the name is
++# relative to the default output directory.  See the DNS.README file for
++# additional information.
++
++#DNSCache	dns_cache.db
++
++# DNSChildren allows you to specify how many "children" processes are
++# run to perform DNS lookups to create or update the DNS cache file.
++# If a number is specified, the DNS cache file will be created/updated
++# each time the Webalizer is run, immediately prior to normal processing,
++# by running the specified number of "children" processes to perform
++# DNS lookups.  If used, the DNS cache filename MUST be specified as
++# well.  The default value is zero (0), which disables DNS cache file
++# creation/updates at run time.  The number of children processes to
++# run may be anywhere from 1 to 100, however a large number may effect
++# normal system operations.  Reasonable values should be between 5 and
++# 20.  See the DNS.README file for additional information.
++
++#DNSChildren	0
++
++# HTMLPre defines HTML code to insert at the very beginning of the
++# file.  Default is the DOCTYPE line shown below.  Max line length
++# is 80 characters, so use multiple HTMLPre lines if you need more.
++
++#HTMLPre <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
++
++# HTMLHead defines HTML code to insert within the <HEAD></HEAD>
++# block, immediately after the <TITLE> line.  Maximum line length
++# is 80 characters, so use multiple lines if needed.
++
++#HTMLHead <META NAME="author" CONTENT="The Webalizer">
++
++# HTMLBody defined the HTML code to be inserted, starting with the
++# <BODY> tag.  If not specified, the default is shown below.  If
++# used, you MUST include your own <BODY> tag as the first line.
++# Maximum line length is 80 char, use multiple lines if needed.
++
++#HTMLBody <BODY BGCOLOR="#E8E8E8" TEXT="#000000" LINK="#0000FF" VLINK="#FF0000">
++
++# HTMLPost defines the HTML code to insert immediately before the
++# first <HR> on the document, which is just after the title and
++# "summary period"-"Generated on:" lines.  If anything, this should
++# be used to clean up in case an image was inserted with HTMLBody.
++# As with HTMLHead, you can define as many of these as you want and
++# they will be inserted in the output stream in order of apperance.
++# Max string size is 80 characters.  Use multiple lines if you need to.
++
++#HTMLPost 	<BR CLEAR="all">
++
++# HTMLTail defines the HTML code to insert at the bottom of each
++# HTML document, usually to include a link back to your home
++# page or insert a small graphic.  It is inserted as a table
++# data element (ie: <TD> your code here </TD>) and is right
++# alligned with the page.  Max string size is 80 characters.
++
++#HTMLTail <IMG SRC="msfree.png" ALT="100% Micro$oft free!">
++
++# HTMLEnd defines the HTML code to add at the very end of the
++# generated files.  It defaults to what is shown below.  If
++# used, you MUST specify the </BODY> and </HTML> closing tags
++# as the last lines.  Max string length is 80 characters.
++
++#HTMLEnd </BODY></HTML>
++
++# The Quiet option suppresses output messages... Useful when run
++# as a cron job to prevent bogus e-mails.  Values can be either
++# "yes" or "no".  Default is "no".  Note: this does not suppress
++# warnings and errors (which are printed to stderr).
++
++#Quiet		no
++
++# ReallyQuiet will supress all messages including errors and
++# warnings.  Values can be 'yes' or 'no' with 'no' being the
++# default.  If 'yes' is used here, it cannot be overriden from
++# the command line, so use with caution.  A value of 'no' has
++# no effect.
++
++#ReallyQuiet	no
++
++# TimeMe allows you to force the display of timing information
++# at the end of processing.  A value of 'yes' will force the
++# timing information to be displayed.  A value of 'no' has no
++# effect.
++
++#TimeMe		no
++
++# GMTTime allows reports to show GMT (UTC) time instead of local
++# time.  Default is to display the time the report was generated
++# in the timezone of the local machine, such as EDT or PST.  This
++# keyword allows you to have times displayed in UTC instead.  Use
++# only if you really have a good reason, since it will probably
++# screw up the reporting periods by however many hours your local
++# time zone is off of GMT.
++
++#GMTTime		no
++
++# Debug prints additional information for error messages.  This
++# will cause webalizer to dump bad records/fields instead of just
++# telling you it found a bad one.   As usual, the value can be
++# either "yes" or "no".  The default is "no".  It shouldn't be
++# needed unless you start getting a lot of Warning or Error
++# messages and want to see why.  (Note: warning and error messages
++# are printed to stderr, not stdout like normal messages).
++
++#Debug		no
++
++# FoldSeqErr forces the Webalizer to ignore sequence errors.
++# This is useful for Netscape and other web servers that cache
++# the writing of log records and do not guarentee that they
++# will be in chronological order.  The use of the FoldSeqErr
++# option will cause out of sequence log records to be treated
++# as if they had the same time stamp as the last valid record.
++# Default is to ignore out of sequence log records.
++
++#FoldSeqErr	no
++
++# VisitTimeout allows you to set the default timeout for a visit
++# (sometimes called a 'session').  The default is 30 minutes,
++# which should be fine for most sites.
++# Visits are determined by looking at the time of the current
++# request, and the time of the last request from the site.  If
++# the time difference is greater than the VisitTimeout value, it
++# is considered a new visit, and visit totals are incremented.
++# Value is the number of seconds to timeout (default=1800=30min)
++
++#VisitTimeout	1800
++
++# IgnoreHist shouldn't be used in a config file, but it is here
++# just because it might be usefull in certain situations.  If the
++# history file is ignored, the main "index.html" file will only
++# report on the current log files contents.  Usefull only when you
++# want to reproduce the reports from scratch.  USE WITH CAUTION!
++# Valid values are "yes" or "no".  Default is "no".
++
++#IgnoreHist	no
++
++# Country Graph allows the usage by country graph to be disabled.
++# Values can be 'yes' or 'no', default is 'yes'.
++
++#CountryGraph	yes
++
++# DailyGraph and DailyStats allows the daily statistics graph
++# and statistics table to be disabled (not displayed).  Values
++# may be "yes" or "no". Default is "yes".
++
++#DailyGraph	yes
++#DailyStats	yes
++
++# HourlyGraph and HourlyStats allows the hourly statistics graph
++# and statistics table to be disabled (not displayed).  Values
++# may be "yes" or "no". Default is "yes".
++
++#HourlyGraph	yes
++#HourlyStats	yes
++
++# GraphLegend allows the color coded legends to be turned on or off
++# in the graphs.  The default is for them to be displayed.  This only
++# toggles the color coded legends, the other legends are not changed.
++# If you think they are hideous and ugly, say 'no' here :)
++
++#GraphLegend	yes
++
++# GraphLines allows you to have index lines drawn behind the graphs.
++# I personally am not crazy about them, but a lot of people requested
++# them and they weren't a big deal to add.  The number represents the
++# number of lines you want displayed.  Default is 2, you can disable
++# the lines by using a value of zero ('0').  [max is 20]
++# Note, due to rounding errors, some values don't work quite right.
++# The lower the better, with 1,2,3,4,6 and 10 producing nice results.
++
++#GraphLines	2
++
++# The "Top" options below define the number of entries for each table.
++# Defaults are Sites=30, URL's=30, Referrers=30 and Agents=15, and
++# Countries=30. TopKSites and TopKURLs (by KByte tables) both default
++# to 10, as do the top entry/exit tables (TopEntry/TopExit).  The top
++# search strings and usernames default to 20.  Tables may be disabled
++# by using zero (0) for the value.
++
++#TopSites        30
++#TopKSites       10
++#TopURLs         30
++#TopKURLs        10
++#TopReferrers    30
++#TopAgents       15
++#TopCountries    30
++#TopEntry        10
++#TopExit         10
++#TopSearch       20
++#TopUsers        20
++
++# The All* keywords allow the display of all URL's, Sites, Referrers
++# User Agents, Search Strings and Usernames.  If enabled, a seperate
++# HTML page will be created, and a link will be added to the bottom
++# of the appropriate "Top" table.  There are a couple of conditions
++# for this to occur..  First, there must be more items than will fit
++# in the "Top" table (otherwise it would just be duplicating what is
++# already displayed).  Second, the listing will only show those items
++# that are normally visable, which means it will not show any hidden
++# items.  Grouped entries will be listed first, followed by individual
++# items.  The value for these keywords can be either 'yes' or 'no',
++# with the default being 'no'.  Please be aware that these pages can
++# be quite large in size, particularly the sites page,  and seperate
++# pages are generated for each month, which can consume quite a lot
++# of disk space depending on the traffic to your site.
++
++#AllSites	no
++#AllURLs	no
++#AllReferrers	no
++#AllAgents	no
++#AllSearchStr	no
++#AllUsers       no
++
++# The Webalizer normally strips the string 'index.' off the end of
++# URL's in order to consolidate URL totals.  For example, the URL
++# /somedir/index.html is turned into /somedir/ which is really the
++# same URL.  This option allows you to specify additional strings
++# to treat in the same way.  You don't need to specify 'index.' as
++# it is always scanned for by The Webalizer, this option is just to
++# specify _additional_ strings if needed.  If you don't need any,
++# don't specify any as each string will be scanned for in EVERY
++# log record... A bunch of them will degrade performance.  Also,
++# the string is scanned for anywhere in the URL, so a string of
++# 'home' would turn the URL /somedir/homepages/brad/home.html into
++# just /somedir/ which is probably not what was intended.
++
++#IndexAlias     home.htm
++#IndexAlias	homepage.htm
++
++# The Hide*, Group* and Ignore* and Include* keywords allow you to
++# change the way Sites, URL's, Referrers, User Agents and Usernames
++# are manipulated.  The Ignore* keywords will cause The Webalizer to
++# completely ignore records as if they didn't exist (and thus not
++# counted in the main site totals).  The Hide* keywords will prevent
++# things from being displayed in the 'Top' tables, but will still be
++# counted in the main totals.  The Group* keywords allow grouping
++# similar objects as if they were one.  Grouped records are displayed
++# in the 'Top' tables and can optionally be displayed in BOLD and/or
++# shaded. Groups cannot be hidden, and are not counted in the main
++# totals. The Group* options do not, by default, hide all the items
++# that it matches.  If you want to hide the records that match (so just
++# the grouping record is displayed), follow with an identical Hide*
++# keyword with the same value.  (see example below)  In addition,
++# Group* keywords may have an optional label which will be displayed
++# instead of the keywords value.  The label should be seperated from
++# the value by at least one 'white-space' character, such as a space
++# or tab.
++#
++# The value can have either a leading or trailing '*' wildcard
++# character.  If no wildcard is found, a match can occur anywhere
++# in the string. Given a string "www.yourmama.com", the values "your",
++# "*mama.com" and "www.your*" will all match.
++
++# Your own site should be hidden
++#HideSite	*mrunix.net
++#HideSite	localhost
++
++# Your own site gives most referrals
++#HideReferrer	mrunix.net/
++
++# This one hides non-referrers ("-" Direct requests)
++#HideReferrer	Direct Request
++
++# Usually you want to hide these
++HideURL		*.gif
++HideURL		*.GIF
++HideURL		*.jpg
++HideURL		*.JPG
++HideURL		*.png
++HideURL		*.PNG
++HideURL		*.ra
++
++# Hiding agents is kind of futile
++#HideAgent	RealPlayer
++
++# You can also hide based on authenticated username
++#HideUser	root
++#HideUser	admin
++
++# Grouping options
++#GroupURL	/cgi-bin/*	CGI Scripts
++#GroupURL	/images/*	Images
++
++#GroupSite	*.aol.com
++#GroupSite	*.compuserve.com
++
++#GroupReferrer	yahoo.com/	Yahoo!
++#GroupReferrer	excite.com/     Excite
++#GroupReferrer	infoseek.com/   InfoSeek
++#GroupReferrer	webcrawler.com/ WebCrawler
++
++#GroupUser      root            Admin users
++#GroupUser      admin           Admin users
++#GroupUser      wheel           Admin users
++
++# The following is a great way to get an overall total
++# for browsers, and not display all the detail records.
++# (You should use MangleAgent to refine further...)
++
++#GroupAgent	MSIE		Micro$oft Internet Exploder
++#HideAgent	MSIE
++#GroupAgent	Mozilla		Netscape
++#HideAgent	Mozilla
++#GroupAgent	Lynx*		Lynx
++#HideAgent	Lynx*
++
++# HideAllSites allows forcing individual sites to be hidden in the
++# report.  This is particularly useful when used in conjunction
++# with the "GroupDomain" feature, but could be useful in other
++# situations as well, such as when you only want to display grouped
++# sites (with the GroupSite keywords...).  The value for this
++# keyword can be either 'yes' or 'no', with 'no' the default,
++# allowing individual sites to be displayed.
++
++#HideAllSites	no
++
++# The GroupDomains keyword allows you to group individual hostnames
++# into their respective domains.  The value specifies the level of
++# grouping to perform, and can be thought of as 'the number of dots'
++# that will be displayed.  For example, if a visiting host is named
++# cust1.tnt.mia.uu.net, a domain grouping of 1 will result in just
++# "uu.net" being displayed, while a 2 will result in "mia.uu.net".
++# The default value of zero disable this feature.  Domains will only
++# be grouped if they do not match any existing "GroupSite" records,
++# which allows overriding this feature with your own if desired.
++
++#GroupDomains	0
++
++# The GroupShading allows grouped rows to be shaded in the report.
++# Useful if you have lots of groups and individual records that
++# intermingle in the report, and you want to diferentiate the group
++# records a little more.  Value can be 'yes' or 'no', with 'yes'
++# being the default.
++
++#GroupShading	yes
++
++# GroupHighlight allows the group record to be displayed in BOLD.
++# Can be either 'yes' or 'no' with the default 'yes'.
++
++#GroupHighlight	yes
++
++# The Ignore* keywords allow you to completely ignore log records based
++# on hostname, URL, user agent, referrer or username.  I hessitated in
++# adding these, since the Webalizer was designed to generate _accurate_
++# statistics about a web servers performance.  By choosing to ignore
++# records, the accuracy of reports become skewed, negating why I wrote
++# this program in the first place.  However, due to popular demand, here
++# they are.  Use the same as the Hide* keywords, where the value can have
++# a leading or trailing wildcard '*'.  Use at your own risk ;)
++
++#IgnoreSite	bad.site.net
++#IgnoreURL	/test*
++#IgnoreReferrer	file:/*
++#IgnoreAgent	RealPlayer
++#IgnoreUser     root
++
++# The Include* keywords allow you to force the inclusion of log records
++# based on hostname, URL, user agent, referrer or username.  They take
++# precidence over the Ignore* keywords.  Note: Using Ignore/Include
++# combinations to selectivly process parts of a web site is _extremely
++# inefficent_!!! Avoid doing so if possible (ie: grep the records to a
++# seperate file if you really want that kind of report).
++
++# Example: Only show stats on Joe User's pages...
++#IgnoreURL	*
++#IncludeURL	~joeuser*
++
++# Or based on an authenticated username
++#IgnoreUser     *
++#IncludeUser    someuser
++
++# The MangleAgents allows you to specify how much, if any, The Webalizer
++# should mangle user agent names.  This allows several levels of detail
++# to be produced when reporting user agent statistics.  There are six
++# levels that can be specified, which define different levels of detail
++# supression.  Level 5 shows only the browser name (MSIE or Mozilla)
++# and the major version number.  Level 4 adds the minor version number
++# (single decimal place).  Level 3 displays the minor version to two
++# decimal places.  Level 2 will add any sub-level designation (such
++# as Mozilla/3.01Gold or MSIE 3.0b).  Level 1 will attempt to also add
++# the system type if it is specified.  The default Level 0 displays the
++# full user agent field without modification and produces the greatest
++# amount of detail.  User agent names that can't be mangled will be
++# left unmodified.
++
++#MangleAgents    0
++
++# The SearchEngine keywords allow specification of search engines and
++# their query strings on the URL.  These are used to locate and report
++# what search strings are used to find your site.  The first word is
++# a substring to match in the referrer field that identifies the search
++# engine, and the second is the URL variable used by that search engine
++# to define it's search terms.
++
++SearchEngine	yahoo.com	p=
++SearchEngine	altavista.com	q=
++SearchEngine	google.com	q=
++SearchEngine	eureka.com	q=
++SearchEngine	lycos.com	query=
++SearchEngine	hotbot.com	MT=
++SearchEngine	msn.com		MT=
++SearchEngine	infoseek.com	qt=
++SearchEngine	webcrawler	searchText=
++SearchEngine	excite		search=
++SearchEngine	netscape.com	search=
++SearchEngine	mamma.com	query=
++SearchEngine	alltheweb.com	query=
++SearchEngine	northernlight.com  qr=
++
++# The Dump* keywords allow the dumping of Sites, URL's, Referrers
++# User Agents, Usernames and Search strings to seperate tab delimited
++# text files, suitable for import into most database or spreadsheet
++# programs.
++
++# DumpPath specifies the path to dump the files.  If not specified,
++# it will default to the current output directory.  Do not use a
++# trailing slash ('/').
++
++#DumpPath	/var/lib/httpd/logs
++
++# The DumpHeader keyword specifies if a header record should be
++# written to the file.  A header record is the first record of the
++# file, and contains the labels for each field written.  Normally,
++# files that are intended to be imported into a database system
++# will not need a header record, while spreadsheets usually do.
++# Value can be either 'yes' or 'no', with 'no' being the default.
++
++#DumpHeader	no
++
++# DumpExtension allow you to specify the dump filename extension
++# to use.  The default is "tab", but some programs are pickey about
++# the filenames they use, so you may change it here (for example,
++# some people may prefer to use "csv").
++
++#DumpExtension	tab
++
++# These control the dumping of each individual table.  The value
++# can be either 'yes' or 'no'.. the default is 'no'.
++
++#DumpSites	no
++#DumpURLs	no
++#DumpReferrers	no
++#DumpAgents	no
++#DumpUsers	no
++#DumpSearchStr  no
++
++# End of configuration file...  Have a nice day!
+diff -ruN webalizer-2.01-10-pristine/webalizer.c webalizer-2.01-10/webalizer.c
+--- webalizer-2.01-10-pristine/webalizer.c	Thu Dec 22 08:52:36 2005
++++ webalizer-2.01-10/webalizer.c	Thu Dec 22 08:53:11 2005
+@@ -149,6 +149,8 @@
+ int     ntop_agents  = 15;                    /* top n user agents ""     */
+ int     ntop_ctrys   = 30;                    /* top n countries   ""     */
+ int     ntop_search  = 20;                    /* top n search strings     */
++int     ntop_searchsite = 10;                 /* top n search sites       */
++int     ntop_searchboth = 30;                 /* top n search site/string */
+ int     ntop_users   = 20;                    /* top n users to display   */
+ 
+ int     all_sites    = 0;                     /* List All sites (0=no)    */
+@@ -156,6 +158,8 @@
+ int     all_refs     = 0;                     /* List All Referrers       */
+ int     all_agents   = 0;                     /* List All User Agents     */
+ int     all_search   = 0;                     /* List All Search Strings  */
++int     all_searchsites = 0;                  /* List All Search Sites    */
++int     all_searchboth  = 0;                  /* List All Search String/Sites */
+ int     all_users    = 0;                     /* List All Usernames       */
+ 
+ int     dump_sites   = 0;                     /* Dump tab delimited sites */
+@@ -1515,6 +1519,10 @@
+         case 14: ntop_agents = atoi(value);        break; /* TopAgents      */
+         case 15: ntop_ctrys = atoi(value);         break; /* TopCountries   */
+         case 16: add_nlist(value,&hidden_sites);   break; /* HideSite       */
++                     "TopSearchSites",    /* Top Search Sites           90  */
++                     "TopSearchSiteStrs", /* Top Search Site/String Pair91  */
++                     "AllSearchSites",    /* List all Search Sites      92  */
++                     "AllSearchSiteStrs", /* List all Search Site/String93  */
+         case 17: add_nlist(value,&hidden_urls);    break; /* HideURL        */
+         case 18: add_nlist(value,&hidden_refs);    break; /* HideReferrer   */
+         case 19: add_nlist(value,&hidden_agents);  break; /* HideAgent      */
+@@ -1593,6 +1601,10 @@
+ #endif  /* USE_DNS */
+         case 86: daily_graph=(value[0]=='n')?0:1; break;  /* HourlyGraph    */
+         case 87: daily_stats=(value[0]=='n')?0:1; break;  /* HourlyStats    */
++        case 90: ntop_searchsite = atoi(value);        break; /* Top Search pgs */
++        case 91: ntop_searchboth = atoi(value);        break; /* Top Search pgs */
++        case 92: all_searchsites=(value[0]=='y')?1:0;  break; /* All Srch str   */
++        case 93: all_searchboth=(value[0]=='y')?1:0;   break; /* All Srch str   */
+       }
+    }
+    fclose(fp);
+@@ -1802,11 +1814,11 @@
+    /* ptr should point to unescaped query string */
+    char tmpbuf[BUFSIZE];
+    char srch[80]="";
+-   unsigned char *cp1, *cp2, *cps;
++   unsigned char *cp1, *cp2, *cps, *cpsite;
+    int  sp_flg=0;
+ 
+    /* Check if search engine referrer or return  */
+-   if ( (cps=isinglist(search_list,log_rec.refer))==NULL) return; 
++   if ( (cps=nameinglist(search_list,log_rec.refer,(char **)&cpsite))==NULL) return; 
+ 
+    /* Try to find query variable */
+    srch[0]='?'; strcpy(&srch[1],cps);              /* First, try "?..."      */
+@@ -1843,10 +1855,22 @@
+    cp1=cp2;
+    while (*cp1!=0) { if ((*cp1<32)||(*cp1==127)) *cp1='_'; cp1++; }
+ 
+-   if (put_snode(cp2,(u_long)1,sr_htab))
++   if (put_snode(cp2,cpsite,(u_long)1,sr_htab))
+    {
+       if (verbose)
+-      /* Error adding search string node, skipping .... */
++      /* Error adding search sitestring node, skipping .... */
++      fprintf(stderr,"%s %s\n", msg_nomem_sc, tmpbuf);
++   }
++   if (put_snode("",cpsite,(u_long)1,sr_htab))
++   {
++      if (verbose)
++      /* Error adding search site node, skipping .... */
++      fprintf(stderr,"%s %s\n", msg_nomem_sc, tmpbuf);
++   }
++   if (put_snode(cp2,"",(u_long)1,sr_htab))
++   {
++      if (verbose)
++      /* Error adding search site node, skipping .... */
+       fprintf(stderr,"%s %s\n", msg_nomem_sc, tmpbuf);
+    }
+    return;
+diff -ruN webalizer-2.01-10-pristine/webalizer.c.orig webalizer-2.01-10/webalizer.c.orig
+--- webalizer-2.01-10-pristine/webalizer.c.orig	Thu Dec 22 08:52:36 2005
++++ webalizer-2.01-10/webalizer.c.orig	Thu Dec 22 08:52:59 2005
+@@ -149,6 +149,8 @@
+ int     ntop_agents  = 15;                    /* top n user agents ""     */
+ int     ntop_ctrys   = 30;                    /* top n countries   ""     */
+ int     ntop_search  = 20;                    /* top n search strings     */
++int     ntop_searchsite = 10;                 /* top n search sites       */
++int     ntop_searchboth = 30;                 /* top n search site/string */
+ int     ntop_users   = 20;                    /* top n users to display   */
+ 
+ int     all_sites    = 0;                     /* List All sites (0=no)    */
+@@ -156,6 +158,8 @@
+ int     all_refs     = 0;                     /* List All Referrers       */
+ int     all_agents   = 0;                     /* List All User Agents     */
+ int     all_search   = 0;                     /* List All Search Strings  */
++int     all_searchsites = 0;                  /* List All Search Sites    */
++int     all_searchboth  = 0;                  /* List All Search String/Sites */
+ int     all_users    = 0;                     /* List All Usernames       */
+ 
+ int     dump_sites   = 0;                     /* Dump tab delimited sites */
+@@ -688,6 +692,14 @@
+          /* un-escape URL */
+          unescape(log_rec.url);
+ 
++         /* strip query portion of cgi scripts */
++         cp1 = log_rec.url;
++         while (*cp1 != '\0')
++           if (!isurlchar(*cp1)) { *cp1 = '\0'; break; }
++           else cp1++;
++         if (log_rec.url[0]=='\0')
++           { log_rec.url[0]='/'; log_rec.url[1]='\0'; }
++
+          /* check for service (ie: http://) and lowercase if found */
+          if ( (cp2=strstr(log_rec.url,"://")) != NULL)
+          {
+@@ -699,14 +711,6 @@
+             }
+          }
+ 
+-         /* strip query portion of cgi scripts */
+-         cp1 = log_rec.url;
+-         while (*cp1 != '\0')
+-           if (!isurlchar(*cp1)) { *cp1 = '\0'; break; }
+-           else cp1++;
+-         if (log_rec.url[0]=='\0')
+-           { log_rec.url[0]='/'; log_rec.url[1]='\0'; }
+-
+          /* strip off index.html (or any aliases) */
+          lptr=index_alias;
+          while (lptr!=NULL)
+@@ -1593,6 +1597,10 @@
+ #endif  /* USE_DNS */
+         case 86: daily_graph=(value[0]=='n')?0:1; break;  /* HourlyGraph    */
+         case 87: daily_stats=(value[0]=='n')?0:1; break;  /* HourlyStats    */
++        case 90: ntop_searchsite = atoi(value);        break; /* Top Search pgs */
++        case 91: ntop_searchboth = atoi(value);        break; /* Top Search pgs */
++        case 92: all_searchsites=(value[0]=='y')?1:0;  break; /* All Srch str   */
++        case 93: all_searchboth=(value[0]=='y')?1:0;   break; /* All Srch str   */
+       }
+    }
+    fclose(fp);
+@@ -1802,11 +1810,11 @@
+    /* ptr should point to unescaped query string */
+    char tmpbuf[BUFSIZE];
+    char srch[80]="";
+-   unsigned char *cp1, *cp2, *cps;
++   unsigned char *cp1, *cp2, *cps, *cpsite;
+    int  sp_flg=0;
+ 
+    /* Check if search engine referrer or return  */
+-   if ( (cps=isinglist(search_list,log_rec.refer))==NULL) return; 
++   if ( (cps=nameinglist(search_list,log_rec.refer,(char **)&cpsite))==NULL) return; 
+ 
+    /* Try to find query variable */
+    srch[0]='?'; strcpy(&srch[1],cps);              /* First, try "?..."      */
+@@ -1843,10 +1851,22 @@
+    cp1=cp2;
+    while (*cp1!=0) { if ((*cp1<32)||(*cp1==127)) *cp1='_'; cp1++; }
+ 
+-   if (put_snode(cp2,(u_long)1,sr_htab))
++   if (put_snode(cp2,cpsite,(u_long)1,sr_htab))
++   {
++      if (verbose)
++      /* Error adding search sitestring node, skipping .... */
++      fprintf(stderr,"%s %s\n", msg_nomem_sc, tmpbuf);
++   }
++   if (put_snode("",cpsite,(u_long)1,sr_htab))
++   {
++      if (verbose)
++      /* Error adding search site node, skipping .... */
++      fprintf(stderr,"%s %s\n", msg_nomem_sc, tmpbuf);
++   }
++   if (put_snode(cp2,"",(u_long)1,sr_htab))
+    {
+       if (verbose)
+-      /* Error adding search string node, skipping .... */
++      /* Error adding search site node, skipping .... */
+       fprintf(stderr,"%s %s\n", msg_nomem_sc, tmpbuf);
+    }
+    return;
+diff -ruN webalizer-2.01-10-pristine/webalizer.h webalizer-2.01-10/webalizer.h
+--- webalizer-2.01-10-pristine/webalizer.h	Sat Feb 10 01:58:18 2001
++++ webalizer-2.01-10/webalizer.h	Thu Dec 22 08:52:59 2005
+@@ -201,6 +201,8 @@
+ extern int     ntop_agents  ;                 /* top n user agents ""     */
+ extern int     ntop_ctrys   ;                 /* top n countries   ""     */
+ extern int     ntop_search  ;                 /* top n search strings     */
++extern int     ntop_searchsite;               /* top n search sites       */
++extern int     ntop_searchboth;               /* top n search site/strings*/
+ extern int     ntop_users   ;                 /* top n users to display   */
+ 
+ extern int     all_sites    ;                 /* List All sites (0=no)    */
+@@ -208,6 +210,8 @@
+ extern int     all_refs     ;                 /* List All Referrers       */
+ extern int     all_agents   ;                 /* List All User Agents     */
+ extern int     all_search   ;                 /* List All Search Strings  */
++extern int     all_searchsites;               /* List All Search Sites    */
++extern int     all_searchboth;                /* List All Search Site/Strings*/
+ extern int     all_users    ;                 /* List All Usernames       */
+ 
+ extern int     dump_sites   ;                 /* Dump tab delimited sites */
+diff -ruN webalizer-2.01-10-pristine/webalizer.h.orig webalizer-2.01-10/webalizer.h.orig
+--- webalizer-2.01-10-pristine/webalizer.h.orig	Thu Jan  1 01:00:00 1970
++++ webalizer-2.01-10/webalizer.h.orig	Sat Feb 10 01:58:18 2001
+@@ -0,0 +1,263 @@
++#ifndef _WEBALIZER_H
++#define _WEBALIZER_H
++
++#define PCENT(val,max) ((val)?((double)val/(double)max)*100.0 : 0.0)
++#define IDX_2C(c1,c2)       (((c1-'a'+1)<<5)+(c2-'a'+1) )
++#define IDX_3C(c1,c2,c3)    (((c1-'a'+1)<<10)+((c2-'a'+1)<<5)+(c3-'a'+1) )
++#define IDX_4C(c1,c2,c3,c4) (((c1-'a'+1)<<15)+((c2-'a'+1)<<10)+((c3-'a'+1)<<5)+(c4-'a'+1) )
++
++#ifndef MAX
++#define MAX(a,b) ((a) > (b) ? (a) : (b))
++#endif
++
++#define MAXHASH  2048                  /* Size of our hash tables          */
++#define BUFSIZE  4096                  /* Max buffer size for log record   */
++#define MAXHOST  128                   /* Max hostname buffer size         */
++#define MAXURL   1024                  /* Max HTTP request/URL field size  */
++#define MAXURLH  128                   /* Max URL field size in htab       */
++#define MAXREF   1024                  /* Max referrer field size          */
++#define MAXREFH  128                   /* Max referrer field size in htab  */
++#define MAXAGENT 64                    /* Max user agent field size        */
++#define MAXCTRY  48                    /* Max country name size            */
++#define MAXSRCH  256                   /* Max size of search string buffer */
++#define MAXSRCHH 64                    /* Max size of search str in htab   */
++#define MAXIDENT 64                    /* Max size of ident string (user)  */
++
++#define SLOP_VAL 3600                  /* out of sequence slop (seconds)   */
++
++/* Log types */
++#define LOG_CLF   0                        /* CLF/combined log type        */
++#define LOG_FTP   1                        /* wu-ftpd xferlog type         */
++#define LOG_SQUID 2                        /* squid proxy log              */
++
++/* Response code defines as per draft ietf HTTP/1.1 rev 6 */
++#define RC_CONTINUE           100
++#define RC_SWITCHPROTO        101
++#define RC_OK                 200
++#define RC_CREATED            201
++#define RC_ACCEPTED           202
++#define RC_NONAUTHINFO        203
++#define RC_NOCONTENT          204
++#define RC_RESETCONTENT       205
++#define RC_PARTIALCONTENT     206
++#define RC_MULTIPLECHOICES    300
++#define RC_MOVEDPERM          301
++#define RC_MOVEDTEMP          302
++#define RC_SEEOTHER           303
++#define RC_NOMOD              304
++#define RC_USEPROXY           305
++#define RC_MOVEDTEMPORARILY   307
++#define RC_BAD                400
++#define RC_UNAUTH             401
++#define RC_PAYMENTREQ         402
++#define RC_FORBIDDEN          403
++#define RC_NOTFOUND           404
++#define RC_METHODNOTALLOWED   405
++#define RC_NOTACCEPTABLE      406
++#define RC_PROXYAUTHREQ       407
++#define RC_TIMEOUT            408
++#define RC_CONFLICT           409
++#define RC_GONE               410
++#define RC_LENGTHREQ          411
++#define RC_PREFAILED          412
++#define RC_REQENTTOOLARGE     413
++#define RC_REQURITOOLARGE     414
++#define RC_UNSUPMEDIATYPE     415
++#define RC_RNGNOTSATISFIABLE  416
++#define RC_EXPECTATIONFAILED  417
++#define RC_SERVERERR          500
++#define RC_NOTIMPLEMENTED     501
++#define RC_BADGATEWAY         502
++#define RC_UNAVAIL            503
++#define RC_GATEWAYTIMEOUT     504
++#define RC_BADHTTPVER         505
++
++/* Index defines for RC codes */
++#define IDX_UNDEFINED          0
++#define IDX_CONTINUE           1
++#define IDX_SWITCHPROTO        2
++#define IDX_OK                 3
++#define IDX_CREATED            4 
++#define IDX_ACCEPTED           5 
++#define IDX_NONAUTHINFO        6 
++#define IDX_NOCONTENT          7  
++#define IDX_RESETCONTENT       8 
++#define IDX_PARTIALCONTENT     9 
++#define IDX_MULTIPLECHOICES    10 
++#define IDX_MOVEDPERM          11 
++#define IDX_MOVEDTEMP          12 
++#define IDX_SEEOTHER           13 
++#define IDX_NOMOD              14 
++#define IDX_USEPROXY           15 
++#define IDX_MOVEDTEMPORARILY   16
++#define IDX_BAD                17 
++#define IDX_UNAUTH             18 
++#define IDX_PAYMENTREQ         19 
++#define IDX_FORBIDDEN          20 
++#define IDX_NOTFOUND           21 
++#define IDX_METHODNOTALLOWED   22 
++#define IDX_NOTACCEPTABLE      23 
++#define IDX_PROXYAUTHREQ       24 
++#define IDX_TIMEOUT            25 
++#define IDX_CONFLICT           26 
++#define IDX_GONE               27 
++#define IDX_LENGTHREQ          28 
++#define IDX_PREFAILED          29 
++#define IDX_REQENTTOOLARGE     30 
++#define IDX_REQURITOOLARGE     31 
++#define IDX_UNSUPMEDIATYPE     32
++#define IDX_RNGNOTSATISFIABLE  33
++#define IDX_EXPECTATIONFAILED  34 
++#define IDX_SERVERERR          35 
++#define IDX_NOTIMPLEMENTED     36 
++#define IDX_BADGATEWAY         37 
++#define IDX_UNAVAIL            38 
++#define IDX_GATEWAYTIMEOUT     39 
++#define IDX_BADHTTPVER         40 
++#define TOTAL_RC               41
++
++#ifdef USE_DNS
++#include <netinet/in.h>       /* needed for in_addr structure definition   */
++#ifndef INADDR_NONE
++#define INADDR_NONE 0xFFFFFFFF
++#endif  /* INADDR_NONE */
++#endif
++
++/* Response code structure */
++struct response_code {     char    *desc;         /* response code struct  */
++                         u_long    count; };
++
++/* Country code structure */
++struct	country_code { u_long idx;
++                         char *desc;
++                       u_long count;
++                       u_long files;
++                       double  xfer; };
++
++typedef struct country_code *CLISTPTR;
++
++/* log record structure */
++struct  log_struct  {  char   hostname[MAXHOST];   /* hostname             */
++                       char   datetime[29];        /* raw timestamp        */
++                       char   url[MAXURL];         /* raw request field    */
++                       int    resp_code;           /* response code        */
++                       u_long xfer_size;           /* xfer size in bytes   */
++#ifdef USE_DNS
++                       struct in_addr addr;        /* IP address structure */
++#endif  /* USE_DNS */
++                       char   refer[MAXREF];       /* referrer             */
++                       char   agent[MAXAGENT];     /* user agent (browser) */
++                       char   srchstr[MAXSRCH];    /* search string        */
++                       char   ident[MAXIDENT]; };  /* ident string (user)  */
++
++extern struct log_struct log_rec;
++
++extern char    *version     ;                 /* program version          */
++extern char    *editlvl     ;                 /* edit level               */
++extern char    *moddate     ;                 /* modification date        */
++extern char    *copyright   ;
++
++extern int     verbose      ;                 /* 2=verbose,1=err, 0=none  */ 
++extern int     debug_mode   ;                 /* debug mode flag          */
++extern int     time_me      ;                 /* timing display flag      */
++extern int     local_time   ;                 /* 1=localtime 0=GMT (UTC)  */
++extern int     ignore_hist  ;                 /* history flag (1=skip)    */
++extern int     hourly_graph ;                 /* hourly graph display     */
++extern int     hourly_stats ;                 /* hourly stats table       */
++extern int     daily_graph  ;                 /* daily graph display      */
++extern int     daily_stats  ;                 /* daily stats table        */
++extern int     ctry_graph   ;                 /* country graph display    */
++extern int     shade_groups ;                 /* Group shading 0=no 1=yes */
++extern int     hlite_groups ;                 /* Group hlite 0=no 1=yes   */
++extern int     mangle_agent ;                 /* mangle user agents       */
++extern int     incremental  ;                 /* incremental mode 1=yes   */
++extern int     use_https    ;                 /* use 'https://' on URL's  */
++extern int     visit_timeout;                 /* visit timeout (30 min)   */
++extern int     graph_legend ;                 /* graph legend (1=yes)     */
++extern int     graph_lines  ;                 /* graph lines (0=none)     */
++extern int     fold_seq_err ;                 /* fold seq err (0=no)      */
++extern int     log_type     ;                 /* (0=clf, 1=ftp, 2=squid)  */
++extern int     group_domains;                 /* Group domains 0=none     */
++extern int     hide_sites   ;                 /* Hide ind. sites (0=no)   */
++extern char    *hname       ;                 /* hostname for reports     */
++extern char    *state_fname ;                 /* run state file name      */
++extern char    *hist_fname  ;                 /* name of history file     */
++extern char    *html_ext    ;                 /* HTML file prefix         */
++extern char    *dump_ext    ;                 /* Dump file prefix         */
++extern char    *conf_fname  ;                 /* name of config file      */
++extern char    *log_fname   ;                 /* log file pointer         */
++extern char    *out_dir     ;                 /* output directory         */
++extern char    *blank_str   ;                 /* blank string             */
++extern char    *dns_cache   ;                 /* DNS cache file name      */
++extern int     dns_children ;                 /* # of DNS children        */
++
++extern int     ntop_sites   ;                 /* top n sites to display   */
++extern int     ntop_sitesK  ;                 /* top n sites (by kbytes)  */
++extern int     ntop_urls    ;                 /* top n url's to display   */
++extern int     ntop_urlsK   ;                 /* top n url's (by kbytes)  */
++extern int     ntop_entry   ;                 /* top n entry url's        */
++extern int     ntop_exit    ;                 /* top n exit url's         */
++extern int     ntop_refs    ;                 /* top n referrers ""       */
++extern int     ntop_agents  ;                 /* top n user agents ""     */
++extern int     ntop_ctrys   ;                 /* top n countries   ""     */
++extern int     ntop_search  ;                 /* top n search strings     */
++extern int     ntop_users   ;                 /* top n users to display   */
++
++extern int     all_sites    ;                 /* List All sites (0=no)    */
++extern int     all_urls     ;                 /* List All URL's (0=no)    */
++extern int     all_refs     ;                 /* List All Referrers       */
++extern int     all_agents   ;                 /* List All User Agents     */
++extern int     all_search   ;                 /* List All Search Strings  */
++extern int     all_users    ;                 /* List All Usernames       */
++
++extern int     dump_sites   ;                 /* Dump tab delimited sites */
++extern int     dump_urls    ;                 /* URL's                    */
++extern int     dump_refs    ;                 /* Referrers                */
++extern int     dump_agents  ;                 /* User Agents              */
++extern int     dump_users   ;                 /* Usernames                */
++extern int     dump_search  ;                 /* Search strings           */
++extern int     dump_header  ;                 /* Dump header as first rec */
++extern char    *dump_path   ;                 /* Path for dump files      */
++
++extern u_long  cur_tstamp;                    /* Current timestamp        */
++extern u_long  epoch;                         /* used for timestamp adj.  */
++extern int     check_dup;                     /* check for dups flag      */
++
++extern int     cur_year,cur_month,            /* year/month/day/hour      */
++               cur_day, cur_hour,             /* tracking variables       */
++               cur_min, cur_sec;
++
++extern double  t_xfer;                        /* monthly total xfer value */
++extern u_long  t_hit, t_file, t_site,         /* monthly total vars       */
++               t_url, t_ref,  t_agent,
++               t_page,t_visit,t_user;
++
++extern double  tm_xfer[31];                   /* daily transfer totals    */
++
++extern u_long  tm_hit[31], tm_file[31],       /* daily total arrays       */
++               tm_site[31],tm_page[31],
++               tm_visit[31];
++
++extern u_long  dt_site;                       /* daily 'sites' total      */
++
++extern u_long  ht_hit,mh_hit;                 /* hourly hits totals       */
++
++extern u_long  th_hit[24], th_file[24],       /* hourly total arrays      */
++               th_page[24];
++
++extern double  th_xfer[24];
++
++extern int     f_day,l_day;                   /* first/last day vars      */
++extern int     gz_log;                        /* flag for zipped log      */
++
++extern CLISTPTR *top_ctrys;                   /* Top countries table      */
++
++/* define our externally visable functions */
++
++extern char   *cur_time();
++extern u_long ctry_idx(char *);
++extern void   init_counters();
++extern int    ispage(char *);
++extern u_long jdate(int,int,int);
++
++#endif  /* _WEBALIZER_H */
+diff -ruN webalizer-2.01-10-pristine/webalizer_lang.h webalizer-2.01-10/webalizer_lang.h
+--- webalizer-2.01-10-pristine/webalizer_lang.h	Fri Oct  6 07:27:48 2000
++++ webalizer-2.01-10/webalizer_lang.h	Thu Dec 22 08:52:59 2005
+@@ -201,6 +201,8 @@
+ char *msg_h_ref   = "Referrer";
+ char *msg_h_ctry  = "Country";
+ char *msg_h_search= "Search String";
++char *msg_h_seasit= "Search Site";
++char *msg_h_seabot= "Search Site/String";
+ char *msg_h_uname = "Username";
+ 
+ /* links along top of page */
+@@ -213,7 +215,9 @@
+ char *msg_hlnk_r  = "Referrers";
+ char *msg_hlnk_en = "Entry";
+ char *msg_hlnk_ex = "Exit";
+-char *msg_hlnk_sr = "Search";
++char *msg_hlnk_sr = "Search Strings";
++char *msg_hlnk_srs= "Search Sites";
++char *msg_hlnk_srb= "Search Site/Strings";
+ char *msg_hlnk_i  = "Users";
+ 
+ /* monthly total table */
+@@ -255,12 +259,16 @@
+ char *msg_top_en  = "Total Entry Pages";
+ char *msg_top_ex  = "Total Exit Pages";
+ char *msg_top_sr  = "Total Search Strings";
++char *msg_top_srs = "Total Search Sites";
++char *msg_top_srb = "Total Search Site/String Pairs";
+ char *msg_top_i   = "Total Usernames";
+ char *msg_v_sites = "View All Sites";
+ char *msg_v_urls  = "View All URLs";
+ char *msg_v_refs  = "View All Referrers";
+ char *msg_v_agents= "View All User Agents";
+ char *msg_v_search= "View All Search Strings";
++char *msg_v_seasit= "View All Search Sites";
++char *msg_v_seabot= "View All Search Site/String Pairs";
+ char *msg_v_users = "View All Usernames";
+ 
+ /* short month names MUST BE 3 CHARS in size... pad if needed*/

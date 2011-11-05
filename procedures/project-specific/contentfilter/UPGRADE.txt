@@ -1,0 +1,15 @@
+ssh to the machine to be updated.
+
+cvs checkout or cvs up the repository:
+
+kierbiischt-ion-dgbi
+
+Then backup your databases and Webroots.
+
+mkdir -p /home/bup/dgbi
+tar cfvpj /home/bup/dgbi/dgbi-`date +%d%m%y`.tbz /home/apache/hosts
+
+mysqldump -A >> /home/bup/dgbi/all_db-`date +%d%m%y`.sql 
+
+
+

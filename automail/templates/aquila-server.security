@@ -1,0 +1,696 @@
+*Received: (qmail 77132 invoked by uid 89); 3 Sep 2007 03:02:15 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 03:02:15 +0200
+Received: (qmail 29636 invoked by uid 98); 3 Sep 2007 02:45:29 +0200
+Received: from 194.7.63.66 by radium.ion.lu (envelope-from <root@aquila-server.ion.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(194.7.63.66):SA:0(2.8/7.0):. 
+ Processed in 17.477155 secs); 03 Sep 2007 00:45:29 -0000
+X-Spam-Status: No, score=2.8 required=7.0
+X-Spam-Level: ++
+Received: from uu194-7-63-66.unknown.uunet.be (HELO aquila-server.ion.lu) (194.7.63.66)
+  by radium.ion.lu with SMTP; 3 Sep 2007 02:45:12 +0200
+Received-SPF: none (radium.ion.lu: domain at aquila-server.ion.lu does not designate permitted sender hosts)
+Received: (qmail 64237 invoked by alias); 3 Sep 2007 03:01:12 +0200
+Delivered-To: root@aquila-server.ion.lu
+Received: (qmail 64202 invoked by uid 0); 3 Sep 2007 03:01:11 +0200
+Date: 3 Sep 2007 03:01:11 +0200
+Message-ID: <20070903010111.64200.qmail@aquila-server.ion.lu>
+From: root@aquila-server.ion.lu
+To: root@aquila-server.ion.lu
+Subject: aquila-server.ion.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+aquila-server.ion.lu login failures:
+Sep  2 06:21:18 aquila-server sshd[53663]: Invalid user postgres from 87.233.129.72
+Sep  2 06:21:19 aquila-server sshd[53665]: Invalid user accept from 87.233.129.72
+Sep  2 06:21:19 aquila-server sshd[53667]: Invalid user leo from 87.233.129.72
+Sep  2 06:21:20 aquila-server sshd[53669]: Invalid user zeppelin from 87.233.129.72
+Sep  2 06:21:20 aquila-server sshd[53671]: Invalid user hacker from 87.233.129.72
+Sep  2 06:21:21 aquila-server sshd[53673]: Invalid user olga from 87.233.129.72
+Sep  2 06:21:22 aquila-server sshd[53675]: Invalid user boris from 87.233.129.72
+Sep  2 06:21:22 aquila-server sshd[53677]: Invalid user mathew from 87.233.129.72
+Sep  2 06:21:23 aquila-server sshd[53679]: Invalid user testing from 87.233.129.72
+Sep  2 06:21:23 aquila-server sshd[53681]: Invalid user galaxy from 87.233.129.72
+Sep  2 06:21:24 aquila-server sshd[53683]: Invalid user mail from 87.233.129.72
+Sep  2 06:21:25 aquila-server sshd[53685]: Invalid user venice from 87.233.129.72
+Sep  2 06:21:25 aquila-server sshd[53687]: Invalid user user3 from 87.233.129.72
+Sep  2 06:21:26 aquila-server sshd[53689]: Invalid user sa from 87.233.129.72
+Sep  2 06:21:26 aquila-server sshd[53691]: Invalid user acer from 87.233.129.72
+Sep  2 06:21:27 aquila-server sshd[53693]: Invalid user angus from 87.233.129.72
+Sep  2 06:21:27 aquila-server sshd[53695]: Invalid user mars from 87.233.129.72
+Sep  2 06:21:28 aquila-server sshd[53697]: Invalid user cruz from 87.233.129.72
+Sep  2 06:21:28 aquila-server sshd[53699]: Invalid user danny from 87.233.129.72
+Sep  2 06:21:29 aquila-server sshd[53701]: Invalid user george from 87.233.129.72
+Sep  2 06:21:29 aquila-server sshd[53703]: Invalid user georgel from 87.233.129.72
+Sep  2 06:21:30 aquila-server sshd[53705]: Invalid user eggdrop from 87.233.129.72
+Sep  2 06:21:30 aquila-server sshd[53707]: Invalid user usd from 87.233.129.72
+Sep  2 06:21:31 aquila-server sshd[53709]: Invalid user test from 87.233.129.72
+Sep  2 06:21:31 aquila-server sshd[53711]: Invalid user ftpadmin from 87.233.129.72
+Sep  2 06:21:32 aquila-server sshd[53713]: Invalid user helen from 87.233.129.72
+Sep  2 06:21:32 aquila-server sshd[53715]: Invalid user jobs from 87.233.129.72
+Sep  2 06:21:33 aquila-server sshd[53717]: Invalid user bella from 87.233.129.72
+Sep  2 06:21:33 aquila-server sshd[53719]: Invalid user web2 from 87.233.129.72
+Sep  2 06:21:34 aquila-server sshd[53721]: Invalid user spam from 87.233.129.72
+Sep  2 06:21:35 aquila-server sshd[53725]: Invalid user alex from 87.233.129.72
+Sep  2 06:21:37 aquila-server sshd[53727]: Invalid user ralph from 87.233.129.72
+Sep  2 06:21:38 aquila-server sshd[53729]: Invalid user jefferson from 87.233.129.72
+Sep  2 06:21:39 aquila-server sshd[53731]: Invalid user carla from 87.233.129.72
+Sep  2 06:21:39 aquila-server sshd[53733]: Invalid user thomas from 87.233.129.72
+Sep  2 06:21:40 aquila-server sshd[53735]: Invalid user stephen from 87.233.129.72
+Sep  2 06:21:40 aquila-server sshd[53737]: Invalid user scan from 87.233.129.72
+Sep  2 06:21:43 aquila-server sshd[53739]: Invalid user jeff from 87.233.129.72
+Sep  2 06:21:44 aquila-server sshd[53741]: Invalid user guest from 87.233.129.72
+Sep  2 06:21:44 aquila-server sshd[53743]: Invalid user cathy from 87.233.129.72
+Sep  2 06:21:45 aquila-server sshd[53747]: Invalid user bob from 87.233.129.72
+Sep  2 06:21:46 aquila-server sshd[53749]: Invalid user denis from 87.233.129.72
+Sep  2 06:21:46 aquila-server sshd[53751]: Invalid user dennis from 87.233.129.72
+Sep  2 06:21:47 aquila-server sshd[53753]: Invalid user download from 87.233.129.72
+Sep  2 06:21:47 aquila-server sshd[53755]: Invalid user video from 87.233.129.72
+Sep  2 06:21:48 aquila-server sshd[53757]: Invalid user luciana from 87.233.129.72
+Sep  2 06:21:48 aquila-server sshd[53759]: Invalid user sunny from 87.233.129.72
+Sep  2 06:21:50 aquila-server sshd[53761]: Invalid user online from 87.233.129.72
+Sep  2 06:21:51 aquila-server sshd[53763]: Invalid user office from 87.233.129.72
+Sep  2 06:21:51 aquila-server sshd[53765]: Invalid user abba from 87.233.129.72
+Sep  2 06:21:52 aquila-server sshd[53767]: Invalid user sam from 87.233.129.72
+Sep  2 06:21:52 aquila-server sshd[53769]: Invalid user kelvin from 87.233.129.72
+Sep  2 06:21:53 aquila-server sshd[53771]: Invalid user monroe from 87.233.129.72
+Sep  2 06:21:53 aquila-server sshd[53773]: Invalid user test1 from 87.233.129.72
+Sep  2 06:21:55 aquila-server sshd[53777]: Invalid user client from 87.233.129.72
+Sep  2 06:21:55 aquila-server sshd[53779]: Invalid user carolina from 87.233.129.72
+Sep  2 06:21:56 aquila-server sshd[53781]: Invalid user ray from 87.233.129.72
+Sep  2 06:21:56 aquila-server sshd[53783]: Invalid user raymond from 87.233.129.72
+Sep  2 06:21:57 aquila-server sshd[53785]: Invalid user usr from 87.233.129.72
+Sep  2 06:21:57 aquila-server sshd[53787]: Invalid user robert from 87.233.129.72
+Sep  2 06:21:58 aquila-server sshd[53789]: Invalid user laura from 87.233.129.72
+Sep  2 06:21:58 aquila-server sshd[53791]: Invalid user matt from 87.233.129.72
+Sep  2 06:21:59 aquila-server sshd[53793]: Invalid user mat from 87.233.129.72
+Sep  2 06:21:59 aquila-server sshd[53795]: Invalid user bogus from 87.233.129.72
+Sep  2 06:22:00 aquila-server sshd[53797]: Invalid user mysql from 87.233.129.72
+Sep  2 06:22:00 aquila-server sshd[53799]: Invalid user sasha from 87.233.129.72
+Sep  2 06:22:01 aquila-server sshd[53801]: Invalid user mark from 87.233.129.72
+Sep  2 06:22:01 aquila-server sshd[53816]: Invalid user flo from 87.233.129.72
+Sep  2 06:22:02 aquila-server sshd[53818]: Invalid user fabio from 87.233.129.72
+Sep  2 06:22:02 aquila-server sshd[53820]: Invalid user tomcat from 87.233.129.72
+Sep  2 06:22:03 aquila-server sshd[53822]: Invalid user tom from 87.233.129.72
+Sep  2 06:22:03 aquila-server sshd[53824]: Invalid user kenneth from 87.233.129.72
+Sep  2 06:22:04 aquila-server sshd[53826]: Invalid user family from 87.233.129.72
+Sep  2 06:22:04 aquila-server sshd[53828]: Invalid user anderson from 87.233.129.72
+Sep  2 06:22:05 aquila-server sshd[53830]: Invalid user ron from 87.233.129.72
+Sep  2 06:22:05 aquila-server sshd[53832]: Invalid user magdalena from 87.233.129.72
+Sep  2 06:22:06 aquila-server sshd[53834]: Invalid user test2 from 87.233.129.72
+Sep  2 06:22:06 aquila-server sshd[53836]: Invalid user victor from 87.233.129.72
+Sep  2 06:22:07 aquila-server sshd[53838]: Invalid user demo from 87.233.129.72
+Sep  2 06:22:07 aquila-server sshd[53840]: Invalid user jan from 87.233.129.72
+Sep  2 06:22:08 aquila-server sshd[53842]: Invalid user leo from 87.233.129.72
+Sep  2 06:22:08 aquila-server sshd[53844]: Invalid user alexandre from 87.233.129.72
+Sep  2 06:22:09 aquila-server sshd[53846]: Invalid user install from 87.233.129.72
+Sep  2 06:22:10 aquila-server sshd[53848]: Invalid user tony from 87.233.129.72
+Sep  2 06:22:12 aquila-server sshd[53850]: Invalid user oscar from 87.233.129.72
+Sep  2 06:22:13 aquila-server sshd[53852]: Invalid user paul from 87.233.129.72
+Sep  2 06:22:13 aquila-server sshd[53854]: Invalid user pedro from 87.233.129.72
+Sep  2 06:22:14 aquila-server sshd[53856]: Invalid user ar from 87.233.129.72
+Sep  2 06:22:15 aquila-server sshd[53858]: Invalid user br from 87.233.129.72
+Sep  2 06:22:16 aquila-server sshd[53860]: Invalid user scanner from 87.233.129.72
+Sep  2 06:22:17 aquila-server sshd[53862]: Invalid user bill from 87.233.129.72
+Sep  2 06:22:17 aquila-server sshd[53864]: Invalid user rf from 87.233.129.72
+Sep  2 06:22:18 aquila-server sshd[53866]: Invalid user conrad from 87.233.129.72
+Sep  2 06:22:18 aquila-server sshd[53868]: Invalid user abby from 87.233.129.72
+Sep  2 06:22:20 aquila-server sshd[53870]: Invalid user amber from 87.233.129.72
+Sep  2 06:22:20 aquila-server sshd[53872]: Invalid user lala from 87.233.129.72
+Sep  2 06:22:21 aquila-server sshd[53874]: Invalid user doctor from 87.233.129.72
+Sep  2 06:22:21 aquila-server sshd[53876]: Invalid user stu from 87.233.129.72
+Sep  2 06:22:22 aquila-server sshd[53878]: Invalid user fedora from 87.233.129.72
+Sep  2 06:22:22 aquila-server sshd[53880]: Invalid user apollo from 87.233.129.72
+Sep  2 06:22:23 aquila-server sshd[53882]: Invalid user john from 87.233.129.72
+Sep  2 06:22:24 aquila-server sshd[53884]: Invalid user word from 87.233.129.72
+Sep  2 06:22:24 aquila-server sshd[53886]: Invalid user denise from 87.233.129.72
+Sep  2 06:22:25 aquila-server sshd[53888]: Invalid user diana from 87.233.129.72
+Sep  2 06:22:25 aquila-server sshd[53890]: Invalid user cam from 87.233.129.72
+Sep  2 06:22:26 aquila-server sshd[53892]: Invalid user com from 87.233.129.72
+Sep  2 06:22:26 aquila-server sshd[53894]: Invalid user elaine from 87.233.129.72
+Sep  2 06:22:27 aquila-server sshd[53896]: Invalid user danna from 87.233.129.72
+Sep  2 06:22:27 aquila-server sshd[53898]: Invalid user bettina from 87.233.129.72
+Sep  2 06:22:28 aquila-server sshd[53900]: Invalid user astro from 87.233.129.72
+Sep  2 06:22:28 aquila-server sshd[53902]: Invalid user diego from 87.233.129.72
+Sep  2 06:22:29 aquila-server sshd[53904]: Invalid user ashley from 87.233.129.72
+Sep  2 06:22:30 aquila-server sshd[53906]: Invalid user dausy from 87.233.129.72
+Sep  2 06:22:30 aquila-server sshd[53908]: Invalid user cecilia from 87.233.129.72
+Sep  2 06:22:31 aquila-server sshd[53910]: Invalid user al from 87.233.129.72
+Sep  2 06:22:31 aquila-server sshd[53912]: Invalid user erin from 87.233.129.72
+Sep  2 06:22:32 aquila-server sshd[53914]: Invalid user sa from 87.233.129.72
+Sep  2 06:22:32 aquila-server sshd[53916]: Invalid user samuel from 87.233.129.72
+Sep  2 06:22:33 aquila-server sshd[53918]: Invalid user craig from 87.233.129.72
+Sep  2 06:22:33 aquila-server sshd[53920]: Invalid user foster from 87.233.129.72
+Sep  2 06:22:34 aquila-server sshd[53922]: Invalid user donald from 87.233.129.72
+Sep  2 06:22:37 aquila-server sshd[53924]: Invalid user esteban from 87.233.129.72
+Sep  2 06:22:37 aquila-server sshd[53926]: Invalid user alissa from 87.233.129.72
+Sep  2 06:22:38 aquila-server sshd[53928]: Invalid user mwe from 87.233.129.72
+Sep  2 06:22:38 aquila-server sshd[53930]: Invalid user bluebary from 87.233.129.72
+Sep  2 06:22:39 aquila-server sshd[53932]: Invalid user danim from 87.233.129.72
+Sep  2 06:22:39 aquila-server sshd[53934]: Invalid user ninja from 87.233.129.72
+Sep  2 06:22:41 aquila-server sshd[53936]: Invalid user doolph from 87.233.129.72
+Sep  2 06:22:42 aquila-server sshd[53938]: Invalid user kayin from 87.233.129.72
+Sep  2 06:22:42 aquila-server sshd[53940]: Invalid user megamax from 87.233.129.72
+Sep  2 06:22:43 aquila-server sshd[53942]: Invalid user nokia from 87.233.129.72
+Sep  2 06:22:43 aquila-server sshd[53944]: Invalid user sae from 87.233.129.72
+Sep  2 06:22:45 aquila-server sshd[53946]: Invalid user revers from 87.233.129.72
+Sep  2 06:22:46 aquila-server sshd[53948]: Invalid user yakusa from 87.233.129.72
+Sep  2 06:22:46 aquila-server sshd[53950]: Invalid user yakuza from 87.233.129.72
+Sep  2 06:22:47 aquila-server sshd[53952]: Invalid user Terminator from 87.233.129.72
+Sep  2 06:22:47 aquila-server sshd[53954]: Invalid user terminator from 87.233.129.72
+Sep  2 06:22:48 aquila-server sshd[53956]: Invalid user brunos from 87.233.129.72
+Sep  2 06:22:48 aquila-server sshd[53958]: Invalid user joao from 87.233.129.72
+Sep  2 06:22:49 aquila-server sshd[53960]: Invalid user brett from 87.233.129.72
+Sep  2 06:22:49 aquila-server sshd[53962]: Invalid user webadmin from 87.233.129.72
+Sep  2 06:22:50 aquila-server sshd[53964]: Invalid user sc from 87.233.129.72
+Sep  2 06:22:50 aquila-server sshd[53966]: Invalid user schoala from 87.233.129.72
+Sep  2 06:22:51 aquila-server sshd[53968]: Invalid user school from 87.233.129.72
+Sep  2 06:22:52 aquila-server sshd[53970]: Invalid user discovery from 87.233.129.72
+Sep  2 06:22:52 aquila-server sshd[53972]: Invalid user abril from 87.233.129.72
+Sep  2 06:22:53 aquila-server sshd[53974]: Invalid user dan from 87.233.129.72
+Sep  2 06:22:57 aquila-server sshd[53978]: Invalid user alexis from 87.233.129.72
+Sep  2 06:22:57 aquila-server sshd[53980]: Invalid user art from 87.233.129.72
+Sep  2 06:22:58 aquila-server sshd[53982]: Invalid user desiree from 87.233.129.72
+Sep  2 06:22:58 aquila-server sshd[53984]: Invalid user abel from 87.233.129.72
+Sep  2 06:22:59 aquila-server sshd[53986]: Invalid user doris from 87.233.129.72
+Sep  2 06:22:59 aquila-server sshd[53988]: Invalid user damian from 87.233.129.72
+Sep  2 06:23:00 aquila-server sshd[53990]: Invalid user jean from 87.233.129.72
+Sep  2 06:23:00 aquila-server sshd[53992]: Invalid user vova from 87.233.129.72
+Sep  2 06:23:01 aquila-server sshd[53994]: Invalid user vava from 87.233.129.72
+Sep  2 06:23:01 aquila-server sshd[53996]: Invalid user baba from 87.233.129.72
+Sep  2 06:23:02 aquila-server sshd[53998]: Invalid user ba from 87.233.129.72
+Sep  2 06:23:03 aquila-server sshd[54000]: Invalid user ha from 87.233.129.72
+Sep  2 06:23:04 aquila-server sshd[54002]: Invalid user box from 87.233.129.72
+Sep  2 06:23:04 aquila-server sshd[54004]: Invalid user dummy from 87.233.129.72
+Sep  2 06:23:05 aquila-server sshd[54006]: Invalid user gianluca from 87.233.129.72
+Sep  2 06:23:05 aquila-server sshd[54008]: Invalid user luca from 87.233.129.72
+Sep  2 06:23:06 aquila-server sshd[54010]: Invalid user suga from 87.233.129.72
+Sep  2 06:23:06 aquila-server sshd[54012]: Invalid user qwerty from 87.233.129.72
+Sep  2 06:23:07 aquila-server sshd[54014]: Invalid user tim from 87.233.129.72
+Sep  2 06:23:08 aquila-server sshd[54016]: Invalid user pix from 87.233.129.72
+Sep  2 06:23:08 aquila-server sshd[54018]: Invalid user next from 87.233.129.72
+Sep  2 06:23:09 aquila-server sshd[54020]: Invalid user ness from 87.233.129.72
+Sep  2 06:23:11 aquila-server sshd[54022]: Invalid user ne from 87.233.129.72
+Sep  2 06:23:11 aquila-server sshd[54024]: Invalid user nee from 87.233.129.72
+Sep  2 06:23:12 aquila-server sshd[54026]: Invalid user simona from 87.233.129.72
+Sep  2 06:23:12 aquila-server sshd[54028]: Invalid user tmp from 87.233.129.72
+Sep  2 06:23:13 aquila-server sshd[54030]: Invalid user temp from 87.233.129.72
+Sep  2 06:23:13 aquila-server sshd[54032]: Invalid user temp from 87.233.129.72
+Sep  2 06:23:14 aquila-server sshd[54034]: Invalid user drweb from 87.233.129.72
+Sep  2 06:23:14 aquila-server sshd[54036]: Invalid user fax from 87.233.129.72
+Sep  2 06:23:15 aquila-server sshd[54038]: Invalid user php from 87.233.129.72
+Sep  2 06:23:15 aquila-server sshd[54040]: Invalid user media from 87.233.129.72
+Sep  2 06:23:16 aquila-server sshd[54042]: Invalid user cvs from 87.233.129.72
+Sep  2 06:23:18 aquila-server sshd[54044]: Invalid user cv from 87.233.129.72
+Sep  2 06:23:18 aquila-server sshd[54046]: Invalid user cs from 87.233.129.72
+Sep  2 06:23:19 aquila-server sshd[54048]: Invalid user transfer from 87.233.129.72
+Sep  2 06:23:19 aquila-server sshd[54050]: Invalid user catherine from 87.233.129.72
+Sep  2 06:23:20 aquila-server sshd[54052]: Invalid user sori from 87.233.129.72
+Sep  2 06:23:20 aquila-server sshd[54054]: Invalid user sorinel from 87.233.129.72
+Sep  2 06:23:21 aquila-server sshd[54056]: Invalid user sorin from 87.233.129.72
+Sep  2 06:23:22 aquila-server sshd[54058]: Invalid user vasile from 87.233.129.72
+Sep  2 06:23:22 aquila-server sshd[54060]: Invalid user eggdrop from 87.233.129.72
+Sep  2 06:23:23 aquila-server sshd[54062]: Invalid user viktor from 87.233.129.72
+Sep  2 06:23:23 aquila-server sshd[54064]: Invalid user jenny from 87.233.129.72
+Sep  2 06:23:27 aquila-server sshd[54066]: Invalid user monika from 87.233.129.72
+Sep  2 06:23:27 aquila-server sshd[54068]: Invalid user monica from 87.233.129.72
+Sep  2 06:23:28 aquila-server sshd[54070]: Invalid user virtual from 87.233.129.72
+Sep  2 06:23:28 aquila-server sshd[54072]: Invalid user pos from 87.233.129.72
+Sep  2 06:23:29 aquila-server sshd[54074]: Invalid user toto from 87.233.129.72
+Sep  2 06:23:29 aquila-server sshd[54076]: Invalid user support from 87.233.129.72
+Sep  2 06:23:31 aquila-server sshd[54078]: Invalid user out from 87.233.129.72
+Sep  2 06:23:31 aquila-server sshd[54080]: Invalid user server from 87.233.129.72
+Sep  2 06:23:32 aquila-server sshd[54082]: Invalid user english from 87.233.129.72
+Sep  2 06:23:32 aquila-server sshd[54084]: Invalid user jana from 87.233.129.72
+Sep  2 06:23:33 aquila-server sshd[54086]: Invalid user nico from 87.233.129.72
+Sep  2 06:23:34 aquila-server sshd[54088]: Invalid user nicole from 87.233.129.72
+Sep  2 06:23:35 aquila-server sshd[54090]: Invalid user marcel from 87.233.129.72
+Sep  2 06:23:35 aquila-server sshd[54092]: Invalid user neo from 87.233.129.72
+Sep  2 06:23:36 aquila-server sshd[54094]: Invalid user free from 87.233.129.72
+Sep  2 06:23:36 aquila-server sshd[54096]: Invalid user web from 87.233.129.72
+Sep  2 06:23:41 aquila-server sshd[54098]: Invalid user start from 87.233.129.72
+Sep  2 06:23:41 aquila-server sshd[54100]: Invalid user samba from 87.233.129.72
+Sep  2 06:23:42 aquila-server sshd[54102]: Invalid user webmaster from 87.233.129.72
+Sep  2 06:23:42 aquila-server sshd[54104]: Invalid user nick from 87.233.129.72
+Sep  2 06:23:43 aquila-server sshd[54106]: Invalid user nik from 87.233.129.72
+Sep  2 06:23:43 aquila-server sshd[54108]: Invalid user cisco from 87.233.129.72
+Sep  2 06:23:44 aquila-server sshd[54110]: Invalid user ella from 87.233.129.72
+Sep  2 06:23:44 aquila-server sshd[54112]: Invalid user quatrida from 87.233.129.72
+Sep  2 06:23:45 aquila-server sshd[54114]: Invalid user larry from 87.233.129.72
+Sep  2 06:23:45 aquila-server sshd[54116]: Invalid user aaron from 87.233.129.72
+Sep  2 06:23:46 aquila-server sshd[54118]: Invalid user aron from 87.233.129.72
+Sep  2 06:23:46 aquila-server sshd[54120]: Invalid user ftpuser from 87.233.129.72
+Sep  2 06:23:47 aquila-server sshd[54122]: Invalid user carlos from 87.233.129.72
+Sep  2 06:23:47 aquila-server sshd[54124]: Invalid user lucian from 87.233.129.72
+Sep  2 06:23:48 aquila-server sshd[54126]: Invalid user luciana from 87.233.129.72
+Sep  2 06:23:48 aquila-server sshd[54128]: Invalid user stefan from 87.233.129.72
+Sep  2 06:23:49 aquila-server sshd[54130]: Invalid user install from 87.233.129.72
+Sep  2 06:23:49 aquila-server sshd[54132]: Invalid user transfer from 87.233.129.72
+Sep  2 06:23:50 aquila-server sshd[54134]: Invalid user invite from 87.233.129.72
+Sep  2 06:23:50 aquila-server sshd[54136]: Invalid user raul from 87.233.129.72
+Sep  2 06:23:51 aquila-server sshd[54138]: Invalid user sales from 87.233.129.72
+Sep  2 06:23:51 aquila-server sshd[54140]: Invalid user backup from 87.233.129.72
+Sep  2 06:23:55 aquila-server sshd[54142]: Invalid user admin from 87.233.129.72
+Sep  2 06:23:55 aquila-server sshd[54144]: Invalid user eric from 87.233.129.72
+Sep  2 06:23:56 aquila-server sshd[54146]: Invalid user ventas from 87.233.129.72
+Sep  2 06:23:56 aquila-server sshd[54148]: Invalid user antonio from 87.233.129.72
+Sep  2 06:23:57 aquila-server sshd[54150]: Invalid user tester from 87.233.129.72
+Sep  2 06:23:58 aquila-server sshd[54152]: Invalid user elena from 87.233.129.72
+Sep  2 06:24:00 aquila-server sshd[54154]: Invalid user ted from 87.233.129.72
+Sep  2 06:24:01 aquila-server sshd[54156]: Invalid user user2 from 87.233.129.72
+Sep  2 06:24:01 aquila-server sshd[54158]: Invalid user postmaster from 87.233.129.72
+Sep  2 06:24:02 aquila-server sshd[54160]: Invalid user document from 87.233.129.72
+Sep  2 06:24:02 aquila-server sshd[54162]: Invalid user flood from 87.233.129.72
+Sep  2 06:24:03 aquila-server sshd[54164]: Invalid user edu from 87.233.129.72
+Sep  2 06:24:03 aquila-server sshd[54166]: Invalid user rich from 87.233.129.72
+Sep  2 06:24:04 aquila-server sshd[54168]: Invalid user microsoft from 87.233.129.72
+Sep  2 06:24:04 aquila-server sshd[54170]: Invalid user start from 87.233.129.72
+Sep  2 06:24:05 aquila-server sshd[54172]: Invalid user prueba from 87.233.129.72
+Sep  2 06:24:05 aquila-server sshd[54174]: Invalid user nero from 87.233.129.72
+Sep  2 06:24:07 aquila-server sshd[54176]: Invalid user sony from 87.233.129.72
+Sep  2 06:24:07 aquila-server sshd[54178]: Invalid user nokia from 87.233.129.72
+Sep  2 06:24:08 aquila-server sshd[54180]: Invalid user samsung from 87.233.129.72
+Sep  2 06:24:08 aquila-server sshd[54182]: Invalid user fast from 87.233.129.72
+Sep  2 06:24:09 aquila-server sshd[54184]: Invalid user furious from 87.233.129.72
+Sep  2 06:24:09 aquila-server sshd[54186]: Invalid user shop from 87.233.129.72
+Sep  2 06:24:10 aquila-server sshd[54188]: Invalid user candy from 87.233.129.72
+Sep  2 06:24:10 aquila-server sshd[54190]: Invalid user nasa from 87.233.129.72
+Sep  2 06:24:15 aquila-server sshd[54196]: Invalid user login from 87.233.129.72
+Sep  2 06:24:16 aquila-server sshd[54198]: Invalid user nice from 87.233.129.72
+Sep  2 06:24:16 aquila-server sshd[54200]: Invalid user english from 87.233.129.72
+Sep  2 06:24:17 aquila-server sshd[54202]: Invalid user win from 87.233.129.72
+Sep  2 06:24:17 aquila-server sshd[54204]: Invalid user windows from 87.233.129.72
+Sep  2 06:24:18 aquila-server sshd[54206]: Invalid user invite from 87.233.129.72
+Sep  2 06:24:19 aquila-server sshd[54208]: Invalid user bill from 87.233.129.72
+Sep  2 06:24:19 aquila-server sshd[54210]: Invalid user gates from 87.233.129.72
+Sep  2 06:24:20 aquila-server sshd[54212]: Invalid user sugar from 87.233.129.72
+Sep  2 06:24:20 aquila-server sshd[54214]: Invalid user frequency from 87.233.129.72
+Sep  2 06:24:21 aquila-server sshd[54216]: Invalid user next from 87.233.129.72
+Sep  2 06:24:21 aquila-server sshd[54218]: Invalid user gregorian from 87.233.129.72
+Sep  2 06:24:22 aquila-server sshd[54220]: Invalid user sean from 87.233.129.72
+Sep  2 06:24:22 aquila-server sshd[54222]: Invalid user paul from 87.233.129.72
+Sep  2 06:24:23 aquila-server sshd[54224]: Invalid user seanpaul from 87.233.129.72
+Sep  2 06:24:23 aquila-server sshd[54226]: Invalid user mail from 87.233.129.72
+Sep  2 06:24:25 aquila-server sshd[54228]: Invalid user com from 87.233.129.72
+Sep  2 06:24:25 aquila-server sshd[54230]: Invalid user moment from 87.233.129.72
+Sep  2 06:24:26 aquila-server sshd[54232]: Invalid user natural from 87.233.129.72
+Sep  2 06:24:26 aquila-server sshd[54234]: Invalid user peace from 87.233.129.72
+Sep  2 06:24:27 aquila-server sshd[54236]: Invalid user fbi from 87.233.129.72
+Sep  2 06:24:27 aquila-server sshd[54238]: Invalid user beast from 87.233.129.72
+Sep  2 06:24:31 aquila-server sshd[54240]: Invalid user thebeast from 87.233.129.72
+Sep  2 06:24:31 aquila-server sshd[54242]: Invalid user silence from 87.233.129.72
+Sep  2 06:24:32 aquila-server sshd[54244]: Invalid user chat from 87.233.129.72
+Sep  2 06:24:32 aquila-server sshd[54246]: Invalid user dcc from 87.233.129.72
+Sep  2 06:24:33 aquila-server sshd[54248]: Invalid user sientelo from 87.233.129.72
+Sep  2 06:24:33 aquila-server sshd[54250]: Invalid user nova from 87.233.129.72
+Sep  2 06:24:34 aquila-server sshd[54252]: Invalid user player from 87.233.129.72
+Sep  2 06:24:34 aquila-server sshd[54254]: Invalid user baby from 87.233.129.72
+Sep  2 06:24:35 aquila-server sshd[54256]: Invalid user babyboy from 87.233.129.72
+Sep  2 06:24:35 aquila-server sshd[54258]: Invalid user foryou from 87.233.129.72
+Sep  2 06:24:37 aquila-server sshd[54260]: Invalid user hades from 87.233.129.72
+Sep  2 06:24:38 aquila-server sshd[54262]: Invalid user zeus from 87.233.129.72
+Sep  2 06:24:38 aquila-server sshd[54264]: Invalid user atena from 87.233.129.72
+Sep  2 06:24:39 aquila-server sshd[54266]: Invalid user hera from 87.233.129.72
+Sep  2 06:24:39 aquila-server sshd[54268]: Invalid user test from 87.233.129.72
+Sep  2 06:24:40 aquila-server sshd[54270]: Invalid user test from 87.233.129.72
+Sep  2 06:24:41 aquila-server sshd[54272]: Invalid user boy from 87.233.129.72
+Sep  2 06:24:41 aquila-server sshd[54274]: Invalid user girl from 87.233.129.72
+Sep  2 06:24:42 aquila-server sshd[54276]: Invalid user path from 87.233.129.72
+Sep  2 06:24:42 aquila-server sshd[54278]: Invalid user god from 87.233.129.72
+Sep  2 06:24:43 aquila-server sshd[54280]: Invalid user good from 87.233.129.72
+Sep  2 06:24:43 aquila-server sshd[54282]: Invalid user american from 87.233.129.72
+Sep  2 06:24:44 aquila-server sshd[54284]: Invalid user world from 87.233.129.72
+Sep  2 06:24:44 aquila-server sshd[54286]: Invalid user burn from 87.233.129.72
+Sep  2 13:20:14 aquila-server sshd[55096]: Invalid user staff from 201.63.19.250
+Sep  2 13:20:14 aquila-server sshd[55096]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:16 aquila-server sshd[55098]: Invalid user sales from 201.63.19.250
+Sep  2 13:20:16 aquila-server sshd[55098]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:18 aquila-server sshd[55100]: Invalid user recruit from 201.63.19.250
+Sep  2 13:20:18 aquila-server sshd[55100]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:20 aquila-server sshd[55102]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:22 aquila-server sshd[55104]: Invalid user office from 201.63.19.250
+Sep  2 13:20:22 aquila-server sshd[55104]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:25 aquila-server sshd[55106]: Invalid user samba from 201.63.19.250
+Sep  2 13:20:25 aquila-server sshd[55106]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:27 aquila-server sshd[55108]: Invalid user tomcat from 201.63.19.250
+Sep  2 13:20:27 aquila-server sshd[55108]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:29 aquila-server sshd[55110]: Invalid user webadmin from 201.63.19.250
+Sep  2 13:20:29 aquila-server sshd[55110]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:31 aquila-server sshd[55112]: Invalid user spam from 201.63.19.250
+Sep  2 13:20:31 aquila-server sshd[55112]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:33 aquila-server sshd[55114]: Invalid user virus from 201.63.19.250
+Sep  2 13:20:33 aquila-server sshd[55114]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:35 aquila-server sshd[55116]: Invalid user cyrus from 201.63.19.250
+Sep  2 13:20:36 aquila-server sshd[55116]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:38 aquila-server sshd[55118]: Invalid user oracle from 201.63.19.250
+Sep  2 13:20:38 aquila-server sshd[55118]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:40 aquila-server sshd[55120]: Invalid user michael from 201.63.19.250
+Sep  2 13:20:40 aquila-server sshd[55120]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:42 aquila-server sshd[55122]: Invalid user ftp from 201.63.19.250
+Sep  2 13:20:42 aquila-server sshd[55122]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:44 aquila-server sshd[55124]: Invalid user test from 201.63.19.250
+Sep  2 13:20:44 aquila-server sshd[55124]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:46 aquila-server sshd[55126]: Invalid user webmaster from 201.63.19.250
+Sep  2 13:20:46 aquila-server sshd[55126]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:49 aquila-server sshd[55128]: Invalid user postmaster from 201.63.19.250
+Sep  2 13:20:49 aquila-server sshd[55128]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:51 aquila-server sshd[55130]: Invalid user postfix from 201.63.19.250
+Sep  2 13:20:51 aquila-server sshd[55130]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:53 aquila-server sshd[55132]: Invalid user postgres from 201.63.19.250
+Sep  2 13:20:53 aquila-server sshd[55132]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:55 aquila-server sshd[55134]: Invalid user paul from 201.63.19.250
+Sep  2 13:20:55 aquila-server sshd[55134]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:57 aquila-server sshd[55136]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:20:59 aquila-server sshd[55138]: Invalid user guest from 201.63.19.250
+Sep  2 13:20:59 aquila-server sshd[55138]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:02 aquila-server sshd[55140]: Invalid user admin from 201.63.19.250
+Sep  2 13:21:02 aquila-server sshd[55140]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:04 aquila-server sshd[55142]: Invalid user linux from 201.63.19.250
+Sep  2 13:21:04 aquila-server sshd[55142]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:06 aquila-server sshd[55144]: Invalid user user from 201.63.19.250
+Sep  2 13:21:06 aquila-server sshd[55144]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:08 aquila-server sshd[55146]: Invalid user david from 201.63.19.250
+Sep  2 13:21:08 aquila-server sshd[55146]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:10 aquila-server sshd[55148]: Invalid user web from 201.63.19.250
+Sep  2 13:21:10 aquila-server sshd[55148]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:12 aquila-server sshd[55150]: Invalid user apache from 201.63.19.250
+Sep  2 13:21:12 aquila-server sshd[55150]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:15 aquila-server sshd[55152]: Invalid user pgsql from 201.63.19.250
+Sep  2 13:21:15 aquila-server sshd[55152]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:17 aquila-server sshd[55154]: Invalid user mysql from 201.63.19.250
+Sep  2 13:21:17 aquila-server sshd[55154]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:19 aquila-server sshd[55156]: Invalid user info from 201.63.19.250
+Sep  2 13:21:19 aquila-server sshd[55156]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:21 aquila-server sshd[55158]: Invalid user tony from 201.63.19.250
+Sep  2 13:21:21 aquila-server sshd[55158]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:23 aquila-server sshd[55160]: Invalid user core from 201.63.19.250
+Sep  2 13:21:23 aquila-server sshd[55160]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:26 aquila-server sshd[55162]: Invalid user newsletter from 201.63.19.250
+Sep  2 13:21:26 aquila-server sshd[55162]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:28 aquila-server sshd[55164]: Invalid user named from 201.63.19.250
+Sep  2 13:21:28 aquila-server sshd[55164]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:30 aquila-server sshd[55166]: Invalid user visitor from 201.63.19.250
+Sep  2 13:21:31 aquila-server sshd[55166]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:33 aquila-server sshd[55168]: Invalid user ftpuser from 201.63.19.250
+Sep  2 13:21:33 aquila-server sshd[55168]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:35 aquila-server sshd[55170]: Invalid user username from 201.63.19.250
+Sep  2 13:21:35 aquila-server sshd[55170]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:37 aquila-server sshd[55172]: Invalid user administrator from 201.63.19.250
+Sep  2 13:21:37 aquila-server sshd[55172]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:39 aquila-server sshd[55174]: Invalid user library from 201.63.19.250
+Sep  2 13:21:40 aquila-server sshd[55174]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:42 aquila-server sshd[55176]: Invalid user test from 201.63.19.250
+Sep  2 13:21:42 aquila-server sshd[55176]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:44 aquila-server sshd[55178]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:46 aquila-server sshd[55180]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:48 aquila-server sshd[55182]: Invalid user admin from 201.63.19.250
+Sep  2 13:21:48 aquila-server sshd[55182]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:50 aquila-server sshd[55184]: Invalid user guest from 201.63.19.250
+Sep  2 13:21:50 aquila-server sshd[55184]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:52 aquila-server sshd[55186]: Invalid user master from 201.63.19.250
+Sep  2 13:21:52 aquila-server sshd[55186]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:55 aquila-server sshd[55188]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:57 aquila-server sshd[55190]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:21:59 aquila-server sshd[55192]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:01 aquila-server sshd[55194]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:03 aquila-server sshd[55209]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:06 aquila-server sshd[55211]: Invalid user admin from 201.63.19.250
+Sep  2 13:22:06 aquila-server sshd[55211]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:08 aquila-server sshd[55213]: Invalid user admin from 201.63.19.250
+Sep  2 13:22:08 aquila-server sshd[55213]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:10 aquila-server sshd[55215]: Invalid user admin from 201.63.19.250
+Sep  2 13:22:10 aquila-server sshd[55215]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:12 aquila-server sshd[55217]: Invalid user admin from 201.63.19.250
+Sep  2 13:22:12 aquila-server sshd[55217]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:14 aquila-server sshd[55219]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:16 aquila-server sshd[55221]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:19 aquila-server sshd[55223]: Invalid user test from 201.63.19.250
+Sep  2 13:22:19 aquila-server sshd[55223]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:21 aquila-server sshd[55225]: Invalid user test from 201.63.19.250
+Sep  2 13:22:21 aquila-server sshd[55225]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:23 aquila-server sshd[55227]: Invalid user webmaster from 201.63.19.250
+Sep  2 13:22:23 aquila-server sshd[55227]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:25 aquila-server sshd[55229]: Invalid user username from 201.63.19.250
+Sep  2 13:22:25 aquila-server sshd[55229]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:27 aquila-server sshd[55231]: Invalid user user from 201.63.19.250
+Sep  2 13:22:27 aquila-server sshd[55231]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:29 aquila-server sshd[55233]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:32 aquila-server sshd[55235]: Invalid user admin from 201.63.19.250
+Sep  2 13:22:32 aquila-server sshd[55235]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:34 aquila-server sshd[55237]: Invalid user test from 201.63.19.250
+Sep  2 13:22:34 aquila-server sshd[55237]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:36 aquila-server sshd[55239]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:38 aquila-server sshd[55241]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:40 aquila-server sshd[55243]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:43 aquila-server sshd[55245]: Invalid user danny from 201.63.19.250
+Sep  2 13:22:43 aquila-server sshd[55245]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:45 aquila-server sshd[55247]: Invalid user alex from 201.63.19.250
+Sep  2 13:22:45 aquila-server sshd[55247]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:47 aquila-server sshd[55249]: Invalid user brett from 201.63.19.250
+Sep  2 13:22:47 aquila-server sshd[55249]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:49 aquila-server sshd[55251]: Invalid user mike from 201.63.19.250
+Sep  2 13:22:49 aquila-server sshd[55251]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:51 aquila-server sshd[55253]: Invalid user alan from 201.63.19.250
+Sep  2 13:22:51 aquila-server sshd[55253]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:53 aquila-server sshd[55255]: Invalid user data from 201.63.19.250
+Sep  2 13:22:54 aquila-server sshd[55255]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:56 aquila-server sshd[55257]: Invalid user www-data from 201.63.19.250
+Sep  2 13:22:56 aquila-server sshd[55257]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:22:58 aquila-server sshd[55259]: Invalid user http from 201.63.19.250
+Sep  2 13:22:58 aquila-server sshd[55259]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:00 aquila-server sshd[55261]: Invalid user httpd from 201.63.19.250
+Sep  2 13:23:00 aquila-server sshd[55261]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:02 aquila-server sshd[55263]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:04 aquila-server sshd[55265]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:07 aquila-server sshd[55267]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:09 aquila-server sshd[55269]: Invalid user backup from 201.63.19.250
+Sep  2 13:23:09 aquila-server sshd[55269]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:11 aquila-server sshd[55271]: Invalid user info from 201.63.19.250
+Sep  2 13:23:11 aquila-server sshd[55271]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:13 aquila-server sshd[55273]: Invalid user shop from 201.63.19.250
+Sep  2 13:23:13 aquila-server sshd[55273]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:15 aquila-server sshd[55275]: Invalid user sales from 201.63.19.250
+Sep  2 13:23:15 aquila-server sshd[55275]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:17 aquila-server sshd[55277]: Invalid user web from 201.63.19.250
+Sep  2 13:23:17 aquila-server sshd[55277]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:20 aquila-server sshd[55279]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:22 aquila-server sshd[55281]: Invalid user wwwrun from 201.63.19.250
+Sep  2 13:23:22 aquila-server sshd[55281]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:24 aquila-server sshd[55283]: Invalid user adam from 201.63.19.250
+Sep  2 13:23:24 aquila-server sshd[55283]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:26 aquila-server sshd[55285]: Invalid user stephen from 201.63.19.250
+Sep  2 13:23:26 aquila-server sshd[55285]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:28 aquila-server sshd[55287]: Invalid user richard from 201.63.19.250
+Sep  2 13:23:28 aquila-server sshd[55287]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:31 aquila-server sshd[55289]: Invalid user george from 201.63.19.250
+Sep  2 13:23:31 aquila-server sshd[55289]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:33 aquila-server sshd[55291]: Invalid user john from 201.63.19.250
+Sep  2 13:23:33 aquila-server sshd[55291]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:35 aquila-server sshd[55293]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:37 aquila-server sshd[55295]: Invalid user angel from 201.63.19.250
+Sep  2 13:23:37 aquila-server sshd[55295]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:40 aquila-server sshd[55297]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:42 aquila-server sshd[55299]: Invalid user pgsql from 201.63.19.250
+Sep  2 13:23:42 aquila-server sshd[55299]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:44 aquila-server sshd[55301]: Invalid user mail from 201.63.19.250
+Sep  2 13:23:44 aquila-server sshd[55301]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:46 aquila-server sshd[55303]: Invalid user adm from 201.63.19.250
+Sep  2 13:23:46 aquila-server sshd[55303]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:48 aquila-server sshd[55305]: Invalid user ident from 201.63.19.250
+Sep  2 13:23:48 aquila-server sshd[55305]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:50 aquila-server sshd[55307]: Invalid user webpop from 201.63.19.250
+Sep  2 13:23:50 aquila-server sshd[55307]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:53 aquila-server sshd[55309]: Invalid user susan from 201.63.19.250
+Sep  2 13:23:53 aquila-server sshd[55309]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:55 aquila-server sshd[55311]: Invalid user sunny from 201.63.19.250
+Sep  2 13:23:55 aquila-server sshd[55311]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:57 aquila-server sshd[55313]: Invalid user steven from 201.63.19.250
+Sep  2 13:23:57 aquila-server sshd[55313]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:23:59 aquila-server sshd[55315]: Invalid user ssh from 201.63.19.250
+Sep  2 13:23:59 aquila-server sshd[55315]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:01 aquila-server sshd[55317]: Invalid user search from 201.63.19.250
+Sep  2 13:24:01 aquila-server sshd[55317]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:03 aquila-server sshd[55319]: Invalid user sara from 201.63.19.250
+Sep  2 13:24:04 aquila-server sshd[55319]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:06 aquila-server sshd[55321]: Invalid user robert from 201.63.19.250
+Sep  2 13:24:06 aquila-server sshd[55321]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:08 aquila-server sshd[55323]: Invalid user richard from 201.63.19.250
+Sep  2 13:24:08 aquila-server sshd[55323]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:10 aquila-server sshd[55325]: Invalid user party from 201.63.19.250
+Sep  2 13:24:10 aquila-server sshd[55325]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:12 aquila-server sshd[55327]: Invalid user amanda from 201.63.19.250
+Sep  2 13:24:12 aquila-server sshd[55327]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:14 aquila-server sshd[55329]: Invalid user rpm from 201.63.19.250
+Sep  2 13:24:14 aquila-server sshd[55329]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:17 aquila-server sshd[55331]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:19 aquila-server sshd[55333]: Invalid user sgi from 201.63.19.250
+Sep  2 13:24:19 aquila-server sshd[55333]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:24 aquila-server sshd[55335]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:26 aquila-server sshd[55337]: Invalid user users from 201.63.19.250
+Sep  2 13:24:26 aquila-server sshd[55337]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:29 aquila-server sshd[55339]: Invalid user admins from 201.63.19.250
+Sep  2 13:24:29 aquila-server sshd[55339]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:31 aquila-server sshd[55341]: Invalid user admins from 201.63.19.250
+Sep  2 13:24:31 aquila-server sshd[55341]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:33 aquila-server sshd[55343]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:35 aquila-server sshd[55345]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:37 aquila-server sshd[55347]: Invalid user lp from 201.63.19.250
+Sep  2 13:24:37 aquila-server sshd[55347]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:39 aquila-server sshd[55349]: Invalid user sync from 201.63.19.250
+Sep  2 13:24:39 aquila-server sshd[55349]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:41 aquila-server sshd[55351]: Invalid user shutdown from 201.63.19.250
+Sep  2 13:24:41 aquila-server sshd[55351]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:44 aquila-server sshd[55353]: Invalid user halt from 201.63.19.250
+Sep  2 13:24:44 aquila-server sshd[55353]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:46 aquila-server sshd[55355]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:48 aquila-server sshd[55357]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:50 aquila-server sshd[55359]: Invalid user dean from 201.63.19.250
+Sep  2 13:24:50 aquila-server sshd[55359]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:52 aquila-server sshd[55361]: Invalid user unknown from 201.63.19.250
+Sep  2 13:24:53 aquila-server sshd[55361]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:55 aquila-server sshd[55363]: Invalid user securityagent from 201.63.19.250
+Sep  2 13:24:55 aquila-server sshd[55363]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:57 aquila-server sshd[55365]: Invalid user tokend from 201.63.19.250
+Sep  2 13:24:57 aquila-server sshd[55365]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:24:59 aquila-server sshd[55367]: Invalid user windowserver from 201.63.19.250
+Sep  2 13:24:59 aquila-server sshd[55367]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:01 aquila-server sshd[55369]: Invalid user appowner from 201.63.19.250
+Sep  2 13:25:02 aquila-server sshd[55369]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:04 aquila-server sshd[55374]: Invalid user xgridagent from 201.63.19.250
+Sep  2 13:25:04 aquila-server sshd[55374]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:06 aquila-server sshd[55376]: Invalid user agent from 201.63.19.250
+Sep  2 13:25:06 aquila-server sshd[55376]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:08 aquila-server sshd[55378]: Invalid user xgridcontroller from 201.63.19.250
+Sep  2 13:25:08 aquila-server sshd[55378]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:10 aquila-server sshd[55380]: Invalid user jabber from 201.63.19.250
+Sep  2 13:25:10 aquila-server sshd[55380]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:12 aquila-server sshd[55382]: Invalid user amavisd from 201.63.19.250
+Sep  2 13:25:12 aquila-server sshd[55382]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:15 aquila-server sshd[55384]: Invalid user clamav from 201.63.19.250
+Sep  2 13:25:15 aquila-server sshd[55384]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:17 aquila-server sshd[55386]: Invalid user appserver from 201.63.19.250
+Sep  2 13:25:17 aquila-server sshd[55386]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:19 aquila-server sshd[55388]: Invalid user mailman from 201.63.19.250
+Sep  2 13:25:19 aquila-server sshd[55388]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:21 aquila-server sshd[55390]: Invalid user cyrusimap from 201.63.19.250
+Sep  2 13:25:21 aquila-server sshd[55390]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:23 aquila-server sshd[55392]: Invalid user qtss from 201.63.19.250
+Sep  2 13:25:23 aquila-server sshd[55392]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:25 aquila-server sshd[55394]: Invalid user eppc from 201.63.19.250
+Sep  2 13:25:26 aquila-server sshd[55394]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:28 aquila-server sshd[55396]: Invalid user telnetd from 201.63.19.250
+Sep  2 13:25:28 aquila-server sshd[55396]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:30 aquila-server sshd[55398]: Invalid user identd from 201.63.19.250
+Sep  2 13:25:30 aquila-server sshd[55398]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:32 aquila-server sshd[55400]: Invalid user gnats from 201.63.19.250
+Sep  2 13:25:32 aquila-server sshd[55400]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:34 aquila-server sshd[55402]: Invalid user jeff from 201.63.19.250
+Sep  2 13:25:34 aquila-server sshd[55402]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:37 aquila-server sshd[55404]: Invalid user irc from 201.63.19.250
+Sep  2 13:25:37 aquila-server sshd[55404]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:39 aquila-server sshd[55406]: Invalid user list from 201.63.19.250
+Sep  2 13:25:39 aquila-server sshd[55406]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:41 aquila-server sshd[55408]: Invalid user eleve from 201.63.19.250
+Sep  2 13:25:41 aquila-server sshd[55408]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:43 aquila-server sshd[55410]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:45 aquila-server sshd[55412]: Invalid user sys from 201.63.19.250
+Sep  2 13:25:45 aquila-server sshd[55412]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:47 aquila-server sshd[55414]: Invalid user zzz from 201.63.19.250
+Sep  2 13:25:48 aquila-server sshd[55414]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:50 aquila-server sshd[55416]: Invalid user frank from 201.63.19.250
+Sep  2 13:25:50 aquila-server sshd[55416]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:52 aquila-server sshd[55418]: Invalid user dan from 201.63.19.250
+Sep  2 13:25:52 aquila-server sshd[55418]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:54 aquila-server sshd[55420]: Invalid user james from 201.63.19.250
+Sep  2 13:25:54 aquila-server sshd[55420]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:56 aquila-server sshd[55422]: Invalid user snort from 201.63.19.250
+Sep  2 13:25:56 aquila-server sshd[55422]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:25:59 aquila-server sshd[55424]: Invalid user radiomail from 201.63.19.250
+Sep  2 13:25:59 aquila-server sshd[55424]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:26:01 aquila-server sshd[55426]: Invalid user harrypotter from 201.63.19.250
+Sep  2 13:26:01 aquila-server sshd[55426]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:26:03 aquila-server sshd[55428]: Invalid user divine from 201.63.19.250
+Sep  2 13:26:03 aquila-server sshd[55428]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:26:05 aquila-server sshd[55430]: Invalid user popa3d from 201.63.19.250
+Sep  2 13:26:05 aquila-server sshd[55430]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:26:08 aquila-server sshd[55432]: Invalid user aptproxy from 201.63.19.250
+Sep  2 13:26:08 aquila-server sshd[55432]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:26:10 aquila-server sshd[55434]: Invalid user desktop from 201.63.19.250
+Sep  2 13:26:10 aquila-server sshd[55434]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:26:12 aquila-server sshd[55436]: Invalid user workshop from 201.63.19.250
+Sep  2 13:26:12 aquila-server sshd[55436]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:26:14 aquila-server sshd[55438]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:26:16 aquila-server sshd[55440]: Invalid user nfsnobody from 201.63.19.250
+Sep  2 13:26:16 aquila-server sshd[55440]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:26:18 aquila-server sshd[55442]: Invalid user rpcuser from 201.63.19.250
+Sep  2 13:26:18 aquila-server sshd[55442]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:26:20 aquila-server sshd[55444]: Invalid user rpc from 201.63.19.250
+Sep  2 13:26:20 aquila-server sshd[55444]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 13:26:23 aquila-server sshd[55446]: Invalid user gopher from 201.63.19.250
+Sep  2 13:26:23 aquila-server sshd[55446]: reverse mapping checking getaddrinfo for 201-63-19-250.customer.tdatabrasil.net.br failed - POSSIBLE BREAKIN ATTEMPT!
+
+aquila-server.ion.lu refused connections:
+
+Checking for a current audit database:
+
+Downloading fresh database.
+auditfile.tbz                                           43 kB   56 kBps
+New database installed.
+Database created: Mon Sep  3 02:40:01 CEST 2007
+
+Checking for packages with security vulnerabilities:
+
+Affected package: rsync-2.6.8_2
+Type of problem: rsync -- off by one stack overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/af8e3a0c-5009-11dc-8a43-003048705d5a.html>
+
+Affected package: vim-7.0.39
+Type of problem: vim -- Command Format String Vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/1ed03222-3c65-11dc-b3d3-0016179b2dd5.html>
+
+Affected package: gd-2.0.33_4,1
+Type of problem: gd -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/6e099997-25d8-11dc-878b-000c29c5647f.html>
+
+Affected package: freetype2-2.1.10_4
+Type of problem: FreeType 2 -- Heap overflow vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/de2fab2d-0a37-11dc-aae2-00304881ac9a.html>
+
+Affected package: png-1.2.12_1
+Type of problem: png -- DoS crash vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/4cb9c513-03ef-11dc-a51d-0019b95d4f14.html>
+
+Affected package: gnupg-1.4.5
+Type of problem: gnupg -- remotely controllable function pointer.
+Reference: <http://www.FreeBSD.org/ports/portaudit/4db1669c-8589-11db-ac4f-02e081235dab.html>
+
+Affected package: ruby-1.8.5_3,1
+Type of problem: ruby -- cgi.rb library Denial of Service.
+Reference: <http://www.FreeBSD.org/ports/portaudit/a8674c14-83d7-11db-88d5-0012f06707f0.html>
+
+Affected package: gnupg-1.4.5
+Type of problem: gnupg -- buffer overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/34c93ae8-7e6f-11db-bf00-02e081235dab.html>
+
+Affected package: ruby-1.8.5_3,1
+Type of problem: ruby -- cgi.rb library Denial of Service.
+Reference: <http://www.FreeBSD.org/ports/portaudit/ab8dbe98-6be4-11db-ae91-0012f06707f0.html>
+
+Affected package: freetype2-2.1.10_4
+Type of problem: freetype -- LWFN Files Buffer Overflow Vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/b975763f-5210-11db-8f1a-000a48049292.html>
+
+10 problem(s) in your installed packages found.
+
+You are advised to update or deinstall the affected package(s) immediately.
+
+-- End of security output --

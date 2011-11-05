@@ -1,0 +1,20 @@
+Retrieve mod_auth_pam from Sourceforge.
+
+Unpack it.
+
+Copy mod_auth_pam.c to apache-xxx/src/modules/extra.
+
+Modify in apache-xxx/src/Configuration:
+
+EXTRA_LIBS=-lpam
+
+Add to Configuration:
+
+Module pam_auth_module modules/extra/mod_auth_pam.o
+
+This probably should go before any SSL additions (so FakeBasicAuth
+continues to work).
+
+Run Configure.
+
+Build.

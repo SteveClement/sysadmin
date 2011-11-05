@@ -1,0 +1,2 @@
+@daily /usr/bin/growisofs -Z /dev/dvd -R -J /home/share/
+

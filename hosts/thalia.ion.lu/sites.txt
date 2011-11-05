@@ -1,0 +1,6 @@
+This contains the sites if the server is a webserver...
+
+What would be nice is an ls of: ~apache/hosts/
+and then http(s)d.conf could be grepped for Virtualhosts or so...
+
+bRich Bankj

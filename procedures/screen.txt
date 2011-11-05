@@ -1,0 +1,117 @@
+===== Multiuser screen =====
+
+screen can allow multiple users to access the same session.  This can be
+useful for all sorts of information sharing, from helpdesk applications to
+extreme programming.  By default, multiuser mode is disabled, for security
+reasons.
+==== Basics ====
+
+To start using multiuser mode, use the command ''multiuser on'' in either
+your .screenrc or on screen's command line.  (The Screen command line can be
+reached by using the ^A key, unless it has been overridden.) Then use
+''acladd'' or
+''aclchg'' to tell screen about the users that you want to connect.
+screen will not allow connections from any user it hasn't been explicitly
+told about.  Once the permissions are set up, the other users run ''screen
+-r <your username>/'' to attach.  (If you want them to attach at the same
+time, use ''-x'' instead of ''-r''.  If you have multiple sessions, put
+the session name after the slash.)
+==== Extras ====
+
+screen can require a password before the user connects.  To enable this,
+add a crypted password as a parameter to ''acladd''.  The easiest way to
+get a crypted password is to run the screen command ''password''.  It will
+prompt you twice for a password.  If the passwords match, it will put the
+crypted version in the paste buffer.  From there, you can paste it into
+the config file or onto the command line.
+
+To simplify permission management, screen supports groups, to a degree.
+Each group is named after the group owner, and shares that owner's
+permissions.  If a member of the group fails a permission check, the check
+is repeated against the group owner's permissions.
+
+screen has a relatively flexible representation of permissions.  The
+permissions that can be set are read, write, and execute.  Read does
+nothing.  Write applies to windows and allows the user to type into the
+windows.  Execute applies to commands and allows the user to run the
+specified commands.  '#' can be used to apply to all windows and '?' to
+all commands.
+
+Relatedly, only one user can be typing in a given window at once.  That
+user has the window's //writelock//.  Normally, writelocks are in auto
+mode, meaning that whoever types into the window first gets the lock.  The
+lock is relinquished when the user leaves that window.  An acquired
+writelock can also be removed by using the command ''writelock off''.  If
+the user uses ''writelock on'', he will keep the writelock even after
+leaving the window.
+
+screen can allow programs to send commands to it via the escape sequence
+''ESC ] 83 ; //cmd// ^G''; in order for this to work, the pseudo-user :window:
+must exist and have the appropriate permissions to execute the supplied
+command.
+
+==== Commands ====
+
+  * ''acladd //usernames// [//crypted-pw//]'' - Adds users with full
+  * permission to all windows.  //usernames// can be a single user or a
+  * comma-delimited list.  This is the only way to set a password on a user.
+  * ''aclchg //usernames// //permbits// //list//'' - Adds users with more
+  * flexible permissions or changes the permissions on an existing user.
+  * //list// is a comma-delimited list of windows and commands.
+  * ''acldel //username//'' - Removes a user from screen's knowledge.  User
+  * will no longer be able to attach to session.
+  * ''aclgrp //username// [//groupname//]'' - Adds a user to a group or just
+  * describes user's group membership.
+  * ''aclumask [[//users//]//+bits//|[//users//]//-bits// ... ]'' - Sets
+  * default permissions for windows not yet created.  Username '?' is a
+  * placeholder for users that don't yet exist.  [//There's also '??'.  '?'
+  * only applies to windows and '??' applies to commands?  How does aclumask
+  * affect commands for existing users?  It doesn't seem as fine-grained as
+  * aclchg.//]
+  * ''defwritelock on|off|auto'' - Sets the default writelock setting for new
+  * windows.  Defaults to off.
+  * ''multiuser on|off'' - Enables or disables multiuser mode.
+  * ''writelock [on|off|auto]'' - Sets writelock mode for current window.
+
+==== Examples ====
+
+Add user phil with password moo, gives him full permission to everything.
+
+<code>acladd phil QSsUHy/lmL5CM</code>
+
+Remove all of phil's permissions (but he can still connect to the session
+and view all windows).
+
+<code>aclchg phil -rwx "#?"</code>
+
+Allow phil to write to windows 1, 2, and 7.  Also allow him to run the
+commands select, next, and prev.  Add a new user, bob, and give him the
+same permissions.
+
+<code>aclchg phil,bob +rwx 1,2,7,select,next,prev</code>
+
+Remove user bob.
+
+<code>acldel bob</code>
+
+Add user jeff to group phil.
+
+<code>aclgrp jeff phil</code>
+
+Show what groups (if any) phil belongs to.
+
+<code>aclgrp phil</code>
+
+==== Common problems ====
+
+* If you get a ''chmod /dev/pts/xx: Operation not permitted'' error, it may be
+* because you have ''su'' on a tty you do not own. This does not work because
+* you have to own the tty for screen to work.
+
+* If you have a ''/tmp/uscreen'' file instead of a ''/tmp/screen/S-xxxxxxxx''
+* file, put ''multiuser on'' in you ''.screenrc'' file, and try again. I also
+* had to forcibly remove ''/tmp/uscreen'' before restarting screen.
+
+* You may also need to set-uid on the screen executable. Do this on your
+* screen executable as root: ''chmod +s /usr/bin/screen''. This is in ''man
+* screen'' towards the end.

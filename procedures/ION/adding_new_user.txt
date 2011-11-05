@@ -1,0 +1,10 @@
+export LUSER="oliver"
+export KEY2="ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAgLFR12K64yXSGVwo3BfICbAzU9s9Lhub6TL2AASLUCbT+7Cu5wRBy2juLdaY9XmOpzet/t1y+i/I6itfs+HFC6oW7ols1ed5ay4b0gys18+lgpyg/0onPgJL3hy1d7xOtmPikPL0+DrHXMWAJByx6nCrK1UNxybwpNXg2jp8SMU= oliver.klar.key"
+pw useradd $LUSER
+mkdir -p /home/$LUSER/.ssh
+chown $LUSER:$LUSER /home/$LUSER/.ssh
+chown $LUSER:$LUSER /home/$LUSER/
+chmod 700 ~$LUSER/.ssh
+echo $KEY2 > ~$LUSER/.ssh/authorized_keys2
+chmod 600 ~$LUSER/.ssh/authorized_keys2
+cat ~$LUSER/.ssh/authorized_keys2 >> /root/.ssh/authorized_keys2

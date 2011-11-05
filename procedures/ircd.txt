@@ -1,0 +1,272 @@
+# ircd.txt
+# lemon 20020509
+
+# setting up an irc daemon and ircservices
+
+overview:
+  we use the DALnet ircd (bahamut)
+  we use ircservices for channel maintenance (auto-op, nick reservation) etc
+
+bahamut:
+  create an irc user, no shell, with a real home directory
+  unpack
+  ./configure --disable-encryption (server-to-server - needs gnu mp)
+  ./config
+     use the defaults, except:
+
+     for 'What directory are the server configuration files in?'
+        '/home/irc/conf'
+     for 'What is the explicit path to where the ircd binary...?'
+        '/home/irc/bin/ircd'
+     for 'Would you like clients to automatically set +i?'
+	No
+     for 'Would you like to compile as a HUB?'
+        Yes
+     for 'Would you like ... wingate and socks scans'
+        No
+     for all email addresses put:
+        sysadmin@aldigital.co.uk
+     for syslog logging we want:
+        Yes
+     for services stuff put the name of your proposed services, eg:
+        services.scottishwidows.aldigital.co.uk
+     for 'Would you like to encrypt oper passwords in O:lines'
+        Yes
+  edit include/config.h and put an explicit path for the [CKMSLPH]PATH's, eg:
+    #defined CPATH "/home/irc/conf/ircd.conf"
+  and
+    #undef DO_IDENTD
+
+  make
+  as root:
+   make install
+   cd ~irc/conf && cp ircd.conf ircd.conf-dist
+   create a sane trimmed ~irc/conf/ircd.conf, see below [0]
+   chmod 640 ~irc/conf/ircd.conf && chown root:irc ~irc/conf/*
+
+ircservices:
+  unpack
+  ./configure
+     set binary path to '/home/irc/bin'
+     set data path to '/home/irc/services'
+     set group to 'irc'
+     use the default umask
+     don't set a common domainname
+     select 23 for ircd type - bahamut
+     answer 'yes' to the MD5 encryption stuff
+     answer 'no' to legacy crypto support
+     use defaults for the rest
+  gmake
+  as root:
+   gmake install
+   cd ~irc && mv bin/helpfiles services/ && mv bin/languages services/
+   create a sane trimmed ~irc/services/services.conf, see below [1]
+     you must choose a nick that ircservices treats as the first god
+     your services name must match the one in the C,N,U lines in ircd.conf
+     your RemoteServer line must have the plaintext server password
+   chmod 640 ~irc/services/services.conf && chown root:irc ~irc/services/services.conf
+
+boot:
+  make a nice boot script for both bahamut and ircservices
+  solaris examples - see below [2,3]
+
+--
+[0] /home/irc/conf/ircd.conf example (look for @@PLACEHOLDERS@@)
+# trimmed ircd.conf
+# use ircd.conf-dist for the full jibber
+M:denise.scottishwidows.aldigital.co.uk:213.129.67.80:ScottishWidows IRC Server:6667
+A:ScottishWidows:ScottishWidows IRC Server:<sysadmin@aldigital.co.uk>
+
+# connection classes
+# Y:<class>:<ping freq>:<connect freq>:<maximum links>:<sendq size>
+
+# no hub for servers on 90
+Y:90:90:300:10:1700000
+
+# everyone else
+Y:80:90:300:10:1700000
+Y:70:90:300:10:1700000
+
+# leaf
+Y:50:90:300:10:1700000
+
+# lusers
+Y:1:90:0:400:160000
+Y:10:90:0:100:160000
+
+# I:IP Address Mask:Password:Domain-Mask:Port:Connection Class
+I:*:@@CLIENT-PASSWORD@@:*@*:6667:1
+
+# O:Hostname:Password:Nickname:AccessFlags:Class
+O:*@sockittome.aldigital.co.uk:@@CRYPT-PWD@@:@@IRC-OPERATOR-NICK@@:OoARD:10
+O:*@*.blueyonder.co.uk:@@CRYPT-PWD@@:@@IRC-OPERATOR NICK@@:OoARD:10
+
+# U:Server Name:Unused:Unused
+U:services.scottishwidows.aldigital.co.uk:*:*
+
+# X:diepass:restartpass
+
+# C:Remote Hostname:Password:Remote Servername:Port:Class
+# N:Remote Hostname:Password:Remote Servername:Flags:Class
+
+# sump as a leaf
+#C:213.129.65.104:@@PLAINTEXT-SERVER-PWD-1@@:test.links.org:6667:90
+#N:213.129.65.104:@@PLAINTEXT-SERVER_PWD-1@@:test.links.org::90
+
+# services (localhost)
+C:127.0.0.1:@@PLAINTEXT-SERVER-PWD-2@@:services.scottishwidows.aldigital.co.uk::90
+N:127.0.0.1:@@PLAINTEXT-SERVER-PWD-2@@:services.scottishwidows.aldigital.co.uk::90
+
+# Q:*:Reason:Nickname
+Q::Reserved for services:ChanServ
+Q::Reserved for services:NickServ
+Q::Reserved for services:MemoServ
+Q::Reserved for services:OperServ
+Q::Reserved for services:HelpServ
+#
+Q::Reserved for operators:DALnet
+Q::Reserved for operators:IRCop
+
+# H:Servers which are permitted::Hub Servername
+
+# P:Remote IP:Local IP:Unused:Port
+P:*:*::6667
+
+[1] /home/irc/services/services.conf
+#see example.conf for verbose explanations
+
+RemoteServer    localhost 6667 @@PLAINTEXT-SERVER-PWD-2@@
+ServerName      "services.scottishwidows.aldigital.co.uk"
+ServerDesc      "services for Scottish Widows IRC"
+#ServerNumeric  3
+ServicesRoot    "lemon" # way!
+ServiceUser     "services@scottishwidows.aldigital.co.uk"
+
+NickServName    "NickServ"      "Nickname Server"
+ChanServName    "ChanServ"      "Channel Server"
+MemoServName    "MemoServ"      "Memo Server"
+HelpServName    "HelpServ"      "Help Server"
+OperServName    "OperServ"      "Operator Server"
+StatServName    "StatServ"      "Statistics Server"
+GlobalName      "Global"        "Global Noticer"
+
+PIDFILE         services.pid
+MOTDFile        services.motd
+HelpDir         /home1/irc/services/helpfiles
+
+NickServDB      nick.db
+ChanServDB      chan.db
+OperServDB      oper.db
+AutokillDB      akill.db
+NewsDB          news.db
+ExceptionDB     exception.db
+StatServDB      stats.db
+
+StrictPasswords
+#BadPassLimit    5
+#BadPassTimeout  1h
+#BadPassWarning  5
+#BadPassSuspend  10
+
+UpdateTimeout   5m
+ExpireTimeout   30m
+ReadTimeout     5s
+WarningTimeout  4h
+TimeoutCheck    1.5
+
+NSDefSecure
+NSDefMemoSignon
+NSDefMemoReceive
+NSRegDelay      30s
+NSExpire        30d
+NSExpireWarning 3d
+NSSuspendExpire 25d 5d
+NSAccessMax     32
+NSEnforcerUser  enforcer
+NSReleaseTimeout 1m
+NSMaxLinkDepth 3
+NSListMax       50
+NSGuestNickPrefix       "Guest"
+NSSecureAdmins
+
+CSMaxReg        20
+CSExpire        14d
+CSSuspendExpire 12d 2d
+CSAccessMax     1024
+CSAutokickMax   32
+CSAutokickReason "User has been banned from the channel"
+CSInhabit       15s
+CSListMax       50
+
+MSMaxMemos      20
+MSSendDelay     3s
+MSNotifyAll
+
+LogMaxUsers
+StaticAkillReason "You are banned from this network"
+   
+AutokillExpiry  30d
+KillClonesAkillExpire   30m
+WallSU
+WallGetpass
+WallSetpass
+LimitSessions
+DefSessionLimit 3
+MaxSessionLimit 100
+ExceptionExpiry 1d
+SessionLimitExceeded "The session limit for your host %s has been exceeded."
+
+[2] /etc/rc2.d/S98ircd
+#!/bin/sh
+
+case "$1" in
+  'start')
+        /usr/bin/su irc -c "/home1/irc/bin/ircd -f /home1/irc/conf/ircd.conf"
+        echo ircd
+  ;;
+
+  'stop')
+    if test -f "/home1/irc/ircd.pid"
+    then
+      ircd_pid=`cat /home1/irc/ircd.pid`
+      echo "killing ircd ($ircd_pid)"
+      kill $ircd_pid
+    else
+      echo "couldn't find ircd pid at /home1/irc/ircd.pid"
+    fi
+    ;;
+
+  *)
+    # usage
+    echo "usage: $0 start|stop"
+    exit 1
+    ;;
+esac
+
+[3] /etc/rc2.d/S99ircservices
+#!/bin/sh
+
+case "$1" in
+  'start')
+        /usr/bin/su irc -c "/home1/irc/bin/services -dir /home1/irc/services"
+        echo ircservices
+  ;;
+
+  'stop')
+    if test -f "/home1/irc/services/services.pid"
+    then
+      services_pid=`cat /home1/irc/services/services.pid`
+      echo "killing ircservices ($services_pid)"
+      kill $services_pid
+    else
+      echo "couldn't find services pid at /home1/irc/services/services.pid" 
+    fi
+    ;;
+
+  *)
+    # usage
+    echo "usage: $0 start|stop"
+    exit 1
+    ;;
+esac
+

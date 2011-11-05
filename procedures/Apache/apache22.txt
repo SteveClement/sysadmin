@@ -1,0 +1,182 @@
+Installing Apache22 Through Ports:
+
+ To enable a module category: WITH_<CATEGORY>_MODULES
+ To disable a module category: WITHOUT_<CATEGORY>_MODULES
+
+ Per default categories are:
+  AUTH AUTHN AUTHZ DAV CACHE MISC
+ Categories available:
+  AUTH AUTHN AUTHZ CACHE DAV EXPERIMENTAL LDAP  MISC PROXY SSL SUEXEC THREADS
+
+ Available knobs:
+   WITHOUT_APACHE_OPTIONS:      Don't use OPTIONS and will allow you to use
+                                those knobs directly to select modules.
+                                Knobs with (*) are working only if
+                                WITHOUT_APACHE_OPTIONS is defined.
+
+ By default, modules are compiled as dynamically loadable modules (DSO).
+
+ Modules knobs philosophy:
+ Modules are split in categories, "make show-categories" shows you
+ which modules they contain. You can enable/disable/customize a category (*):
+ - To enable a category: WITH_<CATEGORY>_MODULES=yes
+                            [WITH_PROXY_MODULES=yes]
+ - To disable a category: WITHOUT_<CATEGORY>_MODULES=yes
+                            [WITHOUT_DAV_MODULES=yes]
+ - To customize a category: WITH_CUSTOM_<CATEGORY>
+                            [WITH_CUSTOM_PROXY="proxy proxy_http"]
+
+   Apache-related
+      WITH_MPM:                 prefork (default)
+                                worker
+                                event
+                                itk
+      WITH_HTTP_PORT:           default: 80
+      WITH_LDAP:                Enable LDAP support (mod_auth_ldap) (implies
+WITH_LDAP_MODULES)
+      WITH_(MYSQL|PGSQL|SQLITE): Enable SQL backend for dbd and apr_dbd.
+                                 When MySQL is chosen, threads are enabled.
+      WITHOUT_V4MAPPED
+      WITH_IPV6_V6ONLY:         Don't allow IPv6 sockets to handle IPv4
+                                connections
+      WITHOUT_SSL:              Disable SSL support
+      WITH_THREADS:             Enable threads support
+      WITH_DBM:                 Choose your DBM: bdb (Berkeley DB), gdbm or
+                                ndbm (default)
+          WITH_BDB:             Define to select bdb via bsd.database.mk
+                                desired version may be set with
+                                WITH_BDB_VER or APACHE22_WITH_BDB_VER
+          WITH_BDB_BASE:        Define to use bdb from base (1.85)
+      WITH_STATIC_SUPPORT:      Build statically linked support binaries
+      WITH_STATIC_APACHE:       Build a static version of httpd (implies
+                                WITH_STATIC_MODULES)
+      WITH_ALL_STATIC_MODULES:  All modules will be statically linked.
+      WITH_STATIC_MODULES (*):  List of modules to build modules statics
+                                (usefull for slave ports)
+                                (They must be already enabled (i.e.
+                                WITH_MODULES or with default configuration
+                                use 'make show-modules', to check if they are
+                                enabled)
+      WITH_MODULES (*):         List of modules you choose
+      WITHOUT_MODULES (*):      Disable selected modules
+      WITH_SUEXEC:              Enable suExec support
+            SUEXEC_DOCROOT:     SuExec root directory
+            SUEXEC_USERDIR:     User subdirectory (default public_html)
+            SUEXEC_SAFEPATH:    Set the safepath
+            SUEXEC_LOGFILE:     Set log file for suexec (default:
+/var/log/httpd-suexec.log)
+            SUEXEC_UIDMIN:      Minimal allowed UID (default 1000)
+            SUEXEC_GIDMIN:      Minimal allowed GID (default 1000)
+            SUEXEC_CALLER:      User allowed to call SuExec (default
+                                ${WWWOWN} (www))
+            SUEXEC_UMASK:       Defines umask for suexec'd process(default:
+                                unset)
+        WITH_DEBUG:               Build a debug versoin of apache (set CFLAGS
+                                to "-O0 -g -ggdb3" or ${DEBUG_FLAGS} and
+                                defines WITH_EXCEPTION_HOOK too)
+      WITH_EXCEPTION_HOOK:      Enable fatal exception hook
+
+  Optionnal patches:
+      WITH_EXPERIMENTAL_PATCHES Add performance patches (generally backported
+                                from apr/httpd SVN repositories)
+
+ Available make targets:
+      show-options:             prints this message
+      show-modules:             prints list of available modules
+      show-categories:          prints list of modules sorted by category
+
+ Examples (*):
+      make WITH_STATIC_MODULES="ssl rewrite include"
+WITH_EXPERIMENTAL_MODULES=yes \
+           WITH_CUSTOM_AUTH="auth auth_dbm"
+      make WITHOUT_MODULES="access speling status" WITH_PROXY_MODULES=yes
+      make WITH_MODULES="include rewrite auth"
+      Note: If you define your custom options in /etc/make.conf, don't forget
+            to do not use quotes.
+
+nasion apache22 # cat /var/db/ports/apache22/options
+# This file is auto-generated by 'make config'.
+# No user-servicable parts inside!
+# Options for apache-2.2.9
+_OPTIONS_READ=apache-2.2.9
+WITHOUT_APR_FROM_PORTS=true
+WITHOUT_THREADS=true
+WITHOUT_MYSQL=true
+WITHOUT_PGSQL=true
+WITHOUT_SQLITE=true
+WITHOUT_IPV6=true
+WITHOUT_PCRE_FROM_PORTS=true
+WITHOUT_BDB=true
+WITH_AUTH_BASIC=true
+WITH_AUTH_DIGEST=true
+WITH_AUTHN_FILE=true
+WITHOUT_AUTHN_DBD=true
+WITH_AUTHN_DBM=true
+WITH_AUTHN_ANON=true
+WITH_AUTHN_DEFAULT=true
+WITH_AUTHN_ALIAS=true
+WITH_AUTHZ_HOST=true
+WITH_AUTHZ_GROUPFILE=true
+WITH_AUTHZ_USER=true
+WITH_AUTHZ_DBM=true
+WITH_AUTHZ_OWNER=true
+WITH_AUTHZ_DEFAULT=true
+WITH_CACHE=true
+WITH_DISK_CACHE=true
+WITH_FILE_CACHE=true
+WITHOUT_MEM_CACHE=true
+WITH_DAV=true
+WITH_DAV_FS=true
+WITHOUT_BUCKETEER=true
+WITHOUT_CASE_FILTER=true
+WITHOUT_CASE_FILTER_IN=true
+WITHOUT_EXT_FILTER=true
+WITHOUT_LOG_FORENSIC=true
+WITHOUT_OPTIONAL_HOOK_EXPORT=true
+WITHOUT_OPTIONAL_HOOK_IMPORT=true
+WITHOUT_OPTIONAL_FN_IMPORT=true
+WITHOUT_OPTIONAL_FN_EXPORT=true
+WITHOUT_LDAP=true
+WITHOUT_AUTHNZ_LDAP=true
+WITH_ACTIONS=true
+WITH_ALIAS=true
+WITH_ASIS=true
+WITH_AUTOINDEX=true
+WITH_CERN_META=true
+WITH_CGI=true
+WITH_CHARSET_LITE=true
+WITHOUT_DBD=true
+WITH_DEFLATE=true
+WITH_DIR=true
+WITH_DUMPIO=true
+WITH_ENV=true
+WITH_EXPIRES=true
+WITH_HEADERS=true
+WITH_IMAGEMAP=true
+WITH_INCLUDE=true
+WITH_INFO=true
+WITH_LOG_CONFIG=true
+WITH_LOGIO=true
+WITH_MIME=true
+WITH_MIME_MAGIC=true
+WITH_NEGOTIATION=true
+WITH_REWRITE=true
+WITH_SETENVIF=true
+WITH_SPELING=true
+WITH_STATUS=true
+WITH_UNIQUE_ID=true
+WITH_USERDIR=true
+WITH_USERTRACK=true
+WITH_VHOST_ALIAS=true
+WITH_FILTER=true
+WITH_VERSION=true
+WITHOUT_PROXY=true
+WITHOUT_PROXY_CONNECT=true
+WITHOUT_PROXY_FTP=true
+WITHOUT_PROXY_HTTP=true
+WITHOUT_PROXY_AJP=true
+WITHOUT_PROXY_BALANCER=true
+WITH_SSL=true
+WITHOUT_SUEXEC=true
+WITHOUT_CGID=true
+

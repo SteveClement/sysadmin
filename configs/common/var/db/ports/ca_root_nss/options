@@ -1,0 +1,2 @@
+_OPTIONS_READ=ca_root_nss-3.12.4
+WITHOUT_ETCSYMLINK=true

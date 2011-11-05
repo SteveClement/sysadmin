@@ -1,0 +1,683 @@
+Installing djbdns
+
+If you need a quick and dirty DNS server and secure by default use djb's dns.
+
+you need at least 2 public IP's for a fully functional DNS Server, preferably
+2 distinct servers on 2 distinct public networks
+
+portinstall ucspi-tcp daemontools djbdns djbdns-tools
+
+djbdns options:
+
+
+OPTIONS=        DUMPCACHE       'persistent cache for dnscache' off \
+                IPV6            'IPv6 support by Felix von Leitner' off \
+                IGNOREIP        'ignoreip2 patch by Russell Nelson' off \
+                JUMBO           'jumbo patch by Claudiu Costin' off \
+                MAN             'manual pages by Gerritt Pape' on \
+                PERSISTENT_MMAP 'persistent mmap patch by Lennert Buytenhek' off \
+                SRV             'SRV record patch by Michael Handler' off
+
+one djbdns # cat ../djbdns-tools//pkg-descr
+This port contains a subset of the DJBDNS package.
+It includes several useful Domain Name System (DNS) tools:
+
+- dnsfilter: a parallel IP-address-to-host-name converter
+- dnsip, dnsipq, dnsname, dnstxt, and dnsmx: simple
+  command-line interfaces to DNS
+- dnsq, dnstrace, dnstracesort: DNS debugging tools
+
+Author: Daniel J. Bernstein <djb@cr.yp.to>
+WWW:    http://cr.yp.to/djbdns.html
+
+
+pw groupadd nofiles
+pw useradd tinydns -g nofiles -s /sbin/nologin -d /nonexistent
+pw useradd dnslog -g nofiles -s /sbin/nologin -d /nonexistent
+pw useradd dnscache -g nofiles -s /sbin/nologin -d /nonexistent
+pw useradd syncdns -s /sbin/nologin -d /etc/syncdns
+
+dnscache-conf dnscache dnslog /etc/dnscache 127.0.0.1
+touch /etc/dnscache/root/ip/80.90.47.176
+ln -s /etc/dnscache /var/service
+svc -t /var/service/dnscache/
+
+
+/usr/local/bin/tinydns-conf tinydns dnslog /etc/tinydns1 80.90.47.176
+/usr/local/bin/tinydns-conf tinydns dnslog /etc/tinydns2 80.90.47.177
+
+echo "/etc/tinydns1/root" > /etc/tinydns2/env/ROOT
+ln -s /etc/tinydns[1-2] /var/service
+ln -s /etc/tinydns1 /var/service
+
+vi /etc/tinydns1/root/data
+
+ADD:
+## NS Delegation
+.test.lu:80.90.47.176:ns1.test.lu:1800
+.test.lu:80.90.47.177:ns2.test.lu:1800
+
+## MX
+@test.lu:80.90.47.176:mail.test.lu:10:1800
+
+## A record
+=test.lu:80.90.47.176:1800
+
+## Aliases
++ftp.test.lu:80.90.47.176
++ssh.test.lu:80.90.47.176
++www.test.lu:80.90.47.176
+
+creeate cdb:
+
+cd /etc/tinydns1/root
+make
+
+
+create dnsctl in /usr/local/sbin
+
+
+edit svscan.sh 
+uncomment the ulimits
+
+enable svscan in rc.conf
+
+
+Here are a couple quick tips for managing your internal caching nameserver:
+
+1. You can manually refresh your nameserver (flush the cache) by runing the
+following command:
+
+svc -t /var/service/dnscache
+
+This will flush your nameservers cache and query the internet's root
+nameservers for the latest DNS information. This often comes in handy if
+you've recently made DNS change to a domain and you want your server to
+realize the changes quickly.
+
+2. You caching nameserver does, however, automatically flush it's cache at
+regular intervals. This interval is determined by the amount of traffic
+(queries) that the server handles. You can adjust the level of traffic at
+which your nameserver will flish it's cache by editing the file
+/etc/dnscache/env/CACHESIZE. This file simply contains a number. That number
+is the size (a bytes) that the log files have to reach before the cache is
+cleared. The default setting, if I'm not mistaken, is 1000000, or
+approximately 1 megabyte.
+
+If you need / want a GUI to mangage your dns: vegadns
+
+ Single server DNS solution
+ - Deploying Vegadns -
+
+ In this next step, we're going to install a web based DNS management tool
+ called Vegadns. This tool will make the day to day DNS management a bit
+ easier for you and any assistants you may have.
+
+ In addition to having djbdns, daemontools and ucspi-tcp installed, you will
+ also need:
+
+ php 4 or higher with mysql functionality
+ mysql 3.x or 4.x installed
+
+ You will want to install Vegadns directly into the public web directory of
+ your server. This folder, for example, may be /var/www/html. If I'm confusing
+ you at this point, you will need to familiarize yourself with Apache.
+
+ cd /path/to/your/server/web/directory
+
+ (Example: cd /var/www/html)
+
+ Now we unpack Vegadns into your server's public web directory...
+
+ tar zxvf /path/to/djbdnsrocks/vegadns-0.9.10.tgz
+
+ And let's rename it to something friendly...
+
+ mv vegadns-0.9.10 vegadns
+
+ Now it's time to create the vegadns database and database user. This database
+ will store all of your DNS server's domain records as well as all vegadns
+ user information.
+
+ First we create the vegadns database...
+
+ mysqladmin -u root create vegadns -p
+
+ Enter your mysql server's root password when prompted. Upon authentication, a
+ new database called "vegadns" will be created.
+
+ Now we create a user which will have rights on the vegadns database...
+
+ mysql -u root -e "GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, ALTER
+ ON vegadns.* TO vegadns@localhost IDENTIFIED BY 'password'" mysql -p
+
+ Enter you mysql server's root password when prompted. Upon authentication, a
+ new user called "vegadns" will be added to your mysql server and that user
+ will be assigned all needed privileges on the "vegadns" database.
+
+ Alright. That's it for the database business. Now it's time to configure
+ Vegadns itself. The first thing we will do is create series "private"
+ directories. These directories will store template information, config
+ information, caching information and session information. The location of the
+ folder containing these "private" directories will be located just outside of
+ your web server's public directory. This location will vary from system to
+ system, so you will need to know how your particular server is configured in
+ order to supply the correct information. On Redhat, for example, the public
+ html directory is usually located at /var/www/html. So, in the case of
+ Redhat, I would place the private folder just outside on the html directory,
+ at /var/www/vegadns_private. So let's get to it...
+
+ cd /path/to/your/server/web/directory/
+
+ (Example: cd /var/www/html)
+
+ mkdir -p vegadns_private/templates_c
+ mkdir vegadns_private/configs
+ mkdir vegadns_private/cache
+ mkdir vegadns_private/sessions
+
+ Here's an example. Keep in mind that this path may vary. Don't be a dumbass
+ here. Find out how your web server is configured and make whatever
+ adjustments are needed...
+
+ mkdir -p /var/www/vegadns_private/templates_c
+ mkdir /var/www/vegadns_private/configs
+ mkdir /var/www/vegadns_private/cache
+ mkdir /var/www/vegadns_private/sessions
+
+ Now we will grant ownership of this new directory to whatever user your
+ Apache server runs as. On Redhat, this is usually a user called "apache". On
+ FreeBSD, it could be a user called "www" or "nobody". Again, check your
+ Apache setup to be sure.
+
+ chown -R apache:apache vegadns_private
+
+ And now we set the correct permissions on the directory...
+
+ chmod -R 770 vegadns_private
+
+ OK, that's it for the private directory. Now it's time to edit the master
+ Vegadns config file. Again, the path to this file will vary, but it will be
+ in the public web directory that you unpacked Vegadns in to begin with. On
+ Redhat, for example, this would be /var/www/html/vegadns/src/config.php.
+
+ vi vegadns/src/config.php
+
+ Make sure that each of the following variables are set accordingly. As
+ always, I have highlighted in RED the areas where you will need to substitute
+ in the correct information.
+
+ $private_dirs = '/path/to/web/server/root/vegadns_private';
+
+ // Mysql settings
+ $mysql_host = 'localhost';
+ $mysql_user = 'vegadns';
+ $mysql_pass = 'password';
+ $mysql_db = 'vegadns';
+
+ $vegadns_url = 'http://127.0.0.1/vegadns/';
+
+ $supportname = "Your Organization";
+ $supportemail = "postmaster@yourdomain.com";
+ $trusted_hosts = '127.0.0.1';
+
+ Note: If you plan to administer your DNS server from somewhere besides
+ localhost, you will need to add that IP address to the $trusted_hosts
+ variable above. Each IP is separated by a comma.
+
+ Save and exit the file.
+
+ Now it's time to test Vegadns. We'll log into the web interface, make some
+ changes and create a zone entry or 2. After that we will make the zone
+ entries active by writing the changes out the actual tinydns data file.
+
+ So let's do it...
+
+ Log into your Vegadns interface:
+
+ http://yourdomain.com/vegadns (screenshot)
+
+ For our first login, we will use the default login account that comes with
+ Vegadns...
+
+ Email: test@test.com
+ Password: test
+
+ Once you are logged in, you'll want to start customizing your Vegadns setup
+ and then create some domain entries. After that, you will then want to write
+ your new domain entries out to the actual tinydns data file. Any and all
+ changes made in the Vegadns interface are only live once those changes get
+ written to the tinydns data file. We'll go over that further down the page.
+ I've divided this work into 4 sections:
+
+ Configuring your user account
+
+ The first thing you will want to do is to change the login account
+ information. This is done by clicking on "accounts" and then editing the
+ account info for the "test@test.com" user (screenshot). You will want to do a
+ couple things to that user:
+
+ 1. Change the name to yours
+
+ 2. Change the email address to your own.
+
+ 3. Change the password to a more personal one.
+
+ 4. Keep the privileges set to "senior_admin".
+
+ You can also create any other users you may desire in the "accounts" section.
+
+ Configuring the default domain settings
+
+ Next, you will want to configure the default template for all domains. A
+ default domain template ensures that every time you create a new domain entry
+ on your tinydns server, it gets created with certain basic settings and
+ records. The domain gets created with pre-configured A records, MX records,
+ nameservers, TTL settings and more. Then, all you have to do is make any
+ customizations to the new domain and you're all set. In short, a domain
+ template saves time and ensures that all domains get created in a standard
+ fashion. So let's do it...
+
+ You can edit the default domain settings by clicking on the "Default Records"
+ link in the Vegadns interface. Now it's simply a matter or setting whatever
+ defaults you want each domain to have.
+
+ Here's a screenshot of an example default setting. Make sure you substitute
+ in your own IP addresses and any custom records you may want.
+
+
+ click to enlarge
+
+ Creating a new domain entry (required)
+
+ NOTE: You must create a domain entry in this step. Failure to do so will
+ prevent you from successfully testing the nameserver update script below.
+
+ Now that you've got a default domain template, you can create a new domain on
+ your tinydns server. This is easily done by clicking on the "New Domain" link
+ and following the instructions. You will notice that the new domain gets
+ created with the default settings that you specified in the default domain
+ area. Once the domain has been created, you can then go in and customize the
+ record for that domain to your liking, if any customizations are needed at
+ all. Pretty cool, huh?
+
+ Writing the changes out to tinydns
+
+ As I said above, all changes made with Vegadns are not live until you write
+ them out to the actual tinydns data file and then run "make" on that file.
+ The changes you make ARE instantly written to the vegadns database, but that
+ database DOES NOT control tinydns. It is only when the database contents are
+ written out to tinydns that your changes are made live.
+
+ Fortunately, Vegadns comes equipped with a handy script that writes all
+ changes out to tinydns. This script is called update-data.sh.
+
+ So let's set up the update-data.sh script...
+
+ cd /path/to/vegadns
+
+ mv update-data.sh update-date.sh.old
+
+ And now we'll copy a customized version of the update-data.sh script that
+ I've created over to the vegadns directory. The custom scripts simply writes
+ the changes out to 2 nameservers instead of 1.
+
+ cp /downloads/djbdnsrocks/scripts/update_data_single.sh ./update-date.sh
+
+ chmod 750 update-data.sh
+
+ And now we will copy this script to a more handy location...
+
+ cp update-data.sh /usr/local/sbin/update-data.sh
+
+ OK, now it's time to test the update-data.sh script and make sure it's
+ updating our nameservers correctly. Assuming you DID create a new domain
+ entry up above, all we need to do is run the update scripts and then the data
+ should be pushed out to the new nameservers.
+
+ So let's do it...
+
+ update-data.sh
+
+ Let's see if it worked. If it worked, the scripts should have taken the
+ domain information you entered in Vegadns and written out to both of our
+ nameservers. You will want to verify new content in the following files. This
+ can be done by checking both the content of the files AND by checking the
+ timestamp for each file.
+
+ /etc/tinydns/root/data (will contain the readable zone entries)
+
+ /etc/tinydns2/root/data (should be identical to the file above)
+
+ /etc/tinydns/root/data.cdb (will consist of a mess of illegible code)
+
+ /etc/tinydns2/root/data.cdb (should be identical to the file above)
+
+ Once you have verified that the above files have been written to, we'll make
+ a final check to make sure that the files for each nameserver are EXACTLY
+ IDENTICAL. We will do this by running "diff" on the data and data.cdb files
+ for each nameserver. If the files are exactly identical, the following
+ command should produce NO OUTPUT. If they are not identical, the following
+ commands will state their differences.
+
+ diff /etc/tinydns/root/data /etc/tinydns2/root/data
+
+ diff /etc/tinydns/root/data.cdb /etc/tinydns2/root/data.cdb
+
+ If you find that the files are not identical, this is bad. For whatever
+ reason, the update-data.sh script is NOT writing the same data out to both
+ nameservers. You will need to go back over each step on this page and look
+ for where you screwed up.
+
+ Once you've successfully verified that both nameserver are being written to
+ by the update script, we will install a cronjob to run the update script
+ every 10 minutes. In this way, anytime you update your Vegadns domain
+ entries, you will only have to wait a maximum of 10 minutes before the
+ changes are automatically written our to tinydns and put into effect. Not
+ bad.
+
+ crontab -e
+
+ */10 * * * * /usr/local/sbin/update-data.sh > /dev/null
+
+ Save and exit from the crontab editor.
+
+ Alright! You've done it. You now have a fully functioning DNS server and a
+ user friendly interface for managing all of your domains. It doesn't get any
+ easier than this! In the next few steps, we'll test out our new DNS server as
+ well as take a look behind the scenes so that you will have at least a basic
+ understanding of how things work. We will also go over a few tweaks, tips and
+ tricks as well as discuss expansion plans, should you ever want to expand
+ your DNS system to a more professional configuration. 
+
+
+
+
+
+DNS compliance
+
+Our final test will analyze and point out any inconsistencies and/or problems
+in our nameservers. To do this test, we're going to use
+http://www.dnsreport.com. The tests available at dnsreport.com do a superb job
+of analyzing all aspects of a domain's DNS records and the nameservers that
+serve that domain. Through these tests, you will be able to correct any
+problems in your nameserver and DNS configuration and you'll be able to have a
+DNS system which meets most or all of the international standards. This is
+very important, as some registrars (particularly overseas) will not allow a
+domain to be pointed at your nameservers if they fail many of these tests. So
+let's do it....
+
+To do this test, you will need an active and functional domain name that is
+currently running off of your nameservers. For my test, I'm going to use
+djbdnsrocks.org
+
+So let's go to http://www.dnsreport.com....
+
+And now I enter djbdnsrocks.org in the "DNS report" field. Then a press the
+button and let the test go...
+
+What comes back is a slew of test results. Every test result either passes,
+warns or fails. Ideally, you want your DNS system to pass all tests. However,
+a few warnings here and there do not constitute a crisis. What you really want
+to avoid is the failures. In the space below, I'm going to cover some of the
+tests, discussing what they mean and how to fix problems when they show up.
+There are a lot of tests, so I'm not going to cover every single one (at least
+not yet), but I will go over some of the more important and often failed
+tests.
+
+NS records at parent servers
+
+This is the second test performed and it makes sure that the nameservers to
+which you have pointed your domain to (at the registrar level) are reachable.
+A successful test in this area will show all of the nameservers that you
+pointed your domain to. In the case of djbdnsrocks.org, you can see the 4
+nameservers that it's pointed to. They all resolve, they are all up and
+running and so it passes this test. Passing this test is vital and failures in
+this area usually result from one or more of your nameservers not answering
+queries correctly. If you see any failures, make sure that all of your
+nameservers are running and that they are answering all queries. You can
+typically tell if you nameserver if answering queries by looking at the logs.
+
+For example:
+
+tail -f /etc/tinydns/log/main/current
+
+ 
+  
+
+  Parent nameservers have your nameservers listed
+
+  Just like the test above, passing this test is crucial. This test makes sure
+  that the nameservers to which your domain is pointing actually contain DNS
+  information for that domain. Failing this test would mean that you
+  successfully pointed you domain to your nameservers but that you failed to
+  create the domain zone entry on the nameservers. In other words, you forgot
+  to add the domain to your nameservers via Vegadns.
+
+   
+    
+
+    Glue at parent nameservers
+
+    This test often results in a WARNING. A warning on this test is perfectly
+    fine and it is not a critical problem. Essentially, the glue test looks at
+    the TLD of your domain and compares that to the TLD of your nameservers.
+    In case you don't know, a TLD is the ending on a domain, such as .com,
+    .net or .org. If the domain your are testing has a different TLD than the
+    nameservers to which it points, the test fails. For example,
+    djbdnsrocks.org is pointed to ns1.namegenie.net. Since the domain is a
+    .org and the nameservers are .net, the test fails. Again, this is not a
+    critical error and in most cases, there's nothing you can do about it
+    without doing a lot of extra work creating nameservers for each TLD. Don't
+    worry about it.
+     
+
+     NS records at your nameservers
+
+     This test makes sure that the zone entry for your domain contains NS
+     records that match the nameservers to which it points. For example,
+     djbdnsrocks.org points to ns1, ns2, ns3 and ns3.namegenie.net. In the
+     zone entry for djbdnsrocks.org (visible in Vegadns), there are 4 NS
+     records in place indicating all 4 nameservers. If, for example, the zone
+     entry for djbdnsrocks.org only contained an NS record for ns1 and
+     ns2.namegenie.net, the test would fail because there are no NS records
+     for ns3 and ns4.namegenie.net. You want to pass this test!
+      
+
+      All nameservers report identical NS records
+
+      Similar to the test above. It simply makes sure that each of your
+      nameservers contains the same NS records for your domain.
+       
+
+       Nameservers on separate class C's
+
+       A non-critical test, this simply checks to see if each of your
+       nameservers exist on different C classes. In other words, it checks to
+       see if each of your nameservers resides on a different network. In a
+       truly redundant setup, each nameserver would lie on a completely
+       different network from the other nameservers. This would help to ensure
+       functionality even if an entire network had problems. Again, this is
+       not critical and if you are running all of your nameserver on a single
+       machine you will most definitely fail this test. Don't sweat it. You've
+       got a little less redundancy, but it's not a crisis.
+        
+
+	NS agreement on SOA serial #
+
+	This test makes sure that all of your nameservers have the same serial
+	number, meaning that they were all updated at the same time and
+	contain identical information. On the single server DNS setup, you
+	should pass this. This test comes more into play when you have
+	multiple servers at different locations. They must all have the same
+	exact timestamp/serial to show that they all contain the same
+	information.
+	 
+
+	 SOA serial number
+
+	 When using tinydns, this test will likely fail. But don't worry.
+	 Tinydns simply uses a different serial process than other DNS
+	 solutions. This is non-critical and will not effect anything.
+	  
+
+	  MX record
+
+	  A no brainer. This checks to make sure your domain has an MX record
+	  for mail functionality. This is non-critical, but the lack of an MX
+	  record will prevent your domain from being able to receive email.
+	   
+
+	   Multiple MX records
+
+	   I'm not really sure why they include this test. I personally think
+	   it's not needed. This test checks to see if you have a secondary MX
+	   record that points to a backup mail server. I personally don't
+	   believe in backup mail servers and most people don't have them.
+	   This is non-critical and you don't need to worry about it, unless
+	   you are looking to have a backup mail server in the mix.
+	    
+
+	    Reverse DNS entries for MX records
+
+	    This is a non-critical test, but an important one nevertheless.
+	    This test checks for the existence of a PTR record for your MX
+	    record. A PTR record validates your mail server. Many spam filters
+	    check for the existence of a PTR record and often a mail server
+	    won't accept mail from a mail server that doesn't have a PTR
+	    record. As a rule of thumb, I create a PTR record for every IP
+	    address that my server's have bound to them.
+	     
+
+	     Mail server host name in greeting
+
+	     Another non-critical test. This simply checks to see if your mail
+	     server has the same greeting name as your MX record. As you can
+	     see from the djbdnsrocks.org test, my mail server has a different
+	     hostname, so it fails. Don't worry to much about this one.
+	      
+
+	      SPF record
+
+	      Many mail servers these days check for an SPF record. An SPF
+	      record helps to prevent spam from being sent with your domain as
+	      a return address. In other works, it helps to prevent spammers
+	      from spoofing your domain when they spam people. That reminds
+	      me, I need to add an SPF record to djbdnsrocks.org. I plan to
+	      have a section of this tutorial that will cover SPF records very
+	      soon. 
+
+Tinydns
+
+On the single server setup I've documented here, Tinydns runs out of
+/etc/tinydns (primary nameserver) and /etc/tinydns2 (secondary nameserver).
+Within each tinydns directory are a number of files and folders. Let's go over
+some of them now.
+
+env - Contains environmental variables for the tinydns server. There are 2
+files in this directory:
+
+     IP - This file contains the IP that the tinydns server listens on. Pretty
+straight forward.
+
+     ROOT - Contains the path to the Tinydns root directory. We'll cover this
+in more detail below.
+
+log - You can guss what this directory is for. The tinydns server logs stored
+here are stored in          much the same way qmail does it's logging. If
+you're familiar with qmail logs, this should also          be familiar stuff.
+There are a several files and directories to comment on in the logs
+directory:
+
+     main - Where the main log files live. You will find the active "current"
+log file here as well as the                 older logs that have rotated out
+of service. Older archived logs files begin with a "@".
+
+     run - The run script that governs how tinydns logs. Again, qmail fans
+should recognize this               stuff.
+
+     status - A zero length file serving as a status indicator. Never touch
+this file.
+
+     supervise - The supervise scripts for the logger. Never touch these.
+
+root - The heart of the tinydns server:
+
+    data - The plain text file which contains the zone entries for all domains
+on your nameserver.               This is the file that DNS changes are
+written to (either manually or by VegaDNS) before               they are
+converted to cdb format.
+
+    data.cdb - After "make" is run, the zone entries in the "data" files are
+converted into a simple                      database called "data.cdb" which
+can be read very fast by your tinydns server.
+
+    add-xxxx scripts - These are ready made scripts for adding zone entries to
+the "data" file. If you                                 are using VegaDNS or
+some other tinydns managment too, you won't need to
+use these.
+
+run - The tinydns run script. Never touch unless you know what you are doing
+
+supervise - The tinydns supervise scripts. Again, don't touch.
+
+status - A zero length status file. Never touch.
+
+DNScache
+
+Dnscache runs out of /etc/dnscache. If you take a look inside, you'll see that
+it looks a lot like Tinydns is the way it's set up. This should be familiar
+stuff by now, but let's go over a few things that are specific to DNScache...
+
+env - Contains environmental variables for the dnscache caching nameserver.
+There are 2 files in this directory:
+
+     IP - This file contains the IP that the cnscache server listens on.
+Pretty straight forward. An                    internal caching nameserver,
+like we've set up in this guide, should have 127.0.0.1 in this
+file.
+
+     ROOT - Contains the path to the dnscache root directory.
+
+     CACHESIZE - This file simply contains a number that represents how large
+your dnscache will                             get (bytes) before it
+refreshes. By default it's set to 1000000 bytes, or roughly
+1MB. Setting this number lower will cause you caching nameserver to refresh
+itself more frequently. Alternatively, setting it higher allows your server to
+cache                             DNS info for a longer period of time. Unless
+you have a specific reason for                             changing it, it's
+best to just leave it as is.
+
+     DATALIMIT - Contains the path to the dnscache root directory.
+
+     IPSEND - The IP address on which dnscache send outgoing packets. This
+should typically                      read 0.0.0.0. Don't mess with this
+unless you know what you are doing.
+
+log - Again, you can guss what this directory is for. The dnscache server logs
+stored here are stored in much the same way qmail and tinydns do their
+logging. I'm not going to repeat myself, since the loggin setup is pretty much
+identical to the tinydns setup above.
+
+root - The heart of the dnscache caching nameserver:
+
+    ip- A directoty containing zero length files named for hosts which are
+allowed to query this          caching nameserver. If you've used this guide,
+there should be one file in there called          127.0.0.1. This means that
+127.0.0.1 is allowed to query this caching nameserver. You can          add
+other allowed hosts by touching a new file (example: touch 1.2.3.4). buit
+since this          caching nameserver is only running on an internal IP of
+127.0.0.1, external hosts wont be          able to see it. If you want
+external hosts to be able to use your server as a caching          nameserver,
+you have to to set up a seperate external nameserver.
+
+    servers - Typically contains a single file called "@" which contains a
+list of the internet's root                    nameservers. Don't mess with
+this unless you know what you're doing.
+
+run - The tinydns run script. Never touch unless you know what you are doing
+
+supervise - The tinydns supervise scripts. Again, don't touch.
+
+seed- The seed which dnscache reads and then passes to dns random init. Don't
+touch. 

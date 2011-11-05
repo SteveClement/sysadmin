@@ -1,0 +1,37 @@
+Smokeping is tobi oetiker's baby tricky to install but here goes:
+
+You need,
+
+ - RRDtool
+ - FPing
+ - EchoPing
+ - Curl
+ - dig
+ - SSH
+ - Net::Telnet
+ - Net::DNS
+ - Net::LDAP
+ - IO::Socket::SSL
+ - SpeedyCGI
+ - CGI::Carp
+
+emerge rrdtool curl echoping fping Net-Telnet Net-DNS perl-ldap IO-Socket-SSL
+
+use the smokeping ebuild for the rest!
+
+add: PORTDIR_OVERLAY="/usr/local/portage"
+to /etc/make.conf
+
+add: www-apache/mod_perl ~x86
+to /etc/portage/package.keywords
+
+emerge smokeping
+chmod u+s /usr/sbin/fping
+
+copy:
+cp /var/www/localhost/perl/smokeping.pl /var/www/localhost/cgi-bin/
+edit /etc/apache2/modules.d/78_smokeping.conf (Allow from directive)
+and /etc/conf.d/apache2 (-D PERL)
+
+
+edit /etc/smokeping accordingly remove all the fake references.

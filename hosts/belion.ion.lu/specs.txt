@@ -1,0 +1,30 @@
+<server>
+ <name>belion</name>
+ <cpu>Intel Pentium 3 1000Mhz </cpu>
+</server>
+uname -a:
+FreeBSD belion.ion.lu 4.8-RELEASE FreeBSD 4.8-RELEASE #0: Thu Apr  3 10:53:38 GMT 2003     root@freebsd-stable.sentex.ca:/usr/obj/usr/src/sys/GENERIC  i386
+
+
+CPU: Intel Pentium III (997.46-MHz 686-class CPU)
+  Origin = "GenuineIntel"  Id = 0x68a  Stepping = 10
+  Features=0x387fbff<FPU,VME,DE,PSE,TSC,MSR,PAE,MCE,CX8,APIC,SEP,MTRR,PGE,MCA,CMOV,PAT,PSE36,PN,MMX,FXSR,SSE>
+real memory  = 259981312 (253888K bytes)
+avail memory = 247721984 (241916K bytes)
+uhci0: <VIA 83C572 USB controller> port 0xd400-0xd41f irq 10 at device 7.2 on pci0
+usb0: <VIA 83C572 USB controller> on uhci0
+usb0: USB revision 1.0
+uhub0: VIA UHCI root hub, class 9/0, rev 1.00/1.00, addr 1
+uhub0: 2 ports with 2 removable, self powered
+uhci1: <VIA 83C572 USB controller> port 0xd800-0xd81f irq 10 at device 7.3 on pci0
+usb1: <VIA 83C572 USB controller> on uhci1
+usb1: USB revision 1.0
+uhub1: VIA UHCI root hub, class 9/0, rev 1.00/1.00, addr 1
+uhub1: 2 ports with 2 removable, self powered
+rl0: <RealTek 8139 10/100BaseTX> port 0xe000-0xe0ff mem 0xe8001000-0xe80010ff irq 10 at device 16.0 on pci0
+rl0: Ethernet address: 00:50:70:51:74:f2
+ad0: 76319MB <WDC WD800JB-00CRA1> [155061/16/63] at ata0-master UDMA100
+ad1: 76319MB <WDC WD800JB-00CRA1> [155061/16/63] at ata0-slave UDMA100
+acd0: CDROM <HL-DT-ST CD-ROM GCR-8520B> at ata1-master PIO4
+Waiting 15 seconds for SCSI devices to settle
+Mounting root from ufs:/dev/ad0s1a

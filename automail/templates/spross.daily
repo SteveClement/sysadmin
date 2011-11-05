@@ -1,0 +1,706 @@
+*Received: (qmail 14463 invoked by uid 98); 18 Jun 2004 02:23:54 -0000
+Received: from root@spross.lxcdm.lu by zinc.ion.lu by uid 82 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.72. spamassassin: 2.63.  Clear:RC:0(212.24.214.36):SA:0(0.3/5.0):. 
+ Processed in 15.143484 secs); 18 Jun 2004 02:23:54 -0000
+X-Spam-Status: No, hits=0.3 required=5.0
+X-Antivirus-ion.lu-Mail-From: root@spross.lxcdm.lu via zinc.ion.lu
+X-Antivirus-ion.lu: 1.22-st-qms (Clear:RC:0(212.24.214.36):SA:0(0.3/5.0):. Processed in 15.143484 secs Process 14455)
+Received: from unknown (HELO spross.lxcdm.lu) (212.24.214.36)
+  by zinc.ion.lu with SMTP; 18 Jun 2004 02:23:38 -0000
+Received: (qmail 78494 invoked by alias); 18 Jun 2004 02:23:39 -0000
+Delivered-To: root@spross.lxcdm.lu
+Received: (qmail 78488 invoked by uid 0); 18 Jun 2004 02:23:39 -0000
+Date: 18 Jun 2004 02:23:39 -0000
+Message-ID: <20040618022339.78487.qmail@spross.lxcdm.lu>
+From: root@spross.lxcdm.lu
+To: root@spross.lxcdm.lu
+Subject: spross.lxcdm.lu daily run output
+
+
+Removing stale files from /var/preserve:
+
+Cleaning out old system announcements:
+
+Removing stale files from /var/rwho:
+
+Removing stale entries from sendmail host status cache:
+sendmail: usage: sendmail [ -t ] [ -fsender ] [ -Fname ] [ -bp ] [ -bs ] [ arg ... ]
+
+Backup passwd and group files:
+
+Verifying group file syntax:
+
+Backing up mail aliases:
+
+Disk status:
+Filesystem  1K-blocks    Used    Avail Capacity  Mounted on
+/dev/ar0s1a  75894856 2721158 67102110     4%    /
+procfs              4       4        0   100%    /proc
+
+Last dump(s) done (Dump '>' file systems):
+
+UUCP status:
+
+Network interface status:
+Name  Mtu   Network       Address            Ipkts Ierrs    Opkts Oerrs  Coll
+em0   1500  <Link#1>    00:0a:e4:07:1d:f8    65697     0      276     0     0
+em0   1500  192.168.254   ssorps                38     -        2     -     -
+em0   1500  fe80:1::20a fe80:1::20a:e4ff:        0     -        0     -     -
+fxp0  1500  <Link#2>    00:0a:e4:07:1d:f9  1120654 21140   704256     0     0
+fxp0  1500  212.24.214.32 spross            682538     -   700853     -     -
+fxp0  1500  fe80:2::20a fe80:2::20a:e4ff:        0     -        0     -     -
+lo0   16384 <Link#3>                        364546     0   364546     0     0
+lo0   16384 localhost   ::1                    123     -      123     -     -
+lo0   16384 fe80:3::1   fe80:3::1                0     -        0     -     -
+lo0   16384 your-net      localhost         364421     -   364421     -     -
+ppp0* 1500  <Link#4>                             0     0        0     0     0
+sl0*  552   <Link#5>                             0     0        0     0     0
+faith 1500  <Link#6>                             0     0        0     0     0
+
+Local system status:
+ 3:01AM  up 45 days, 11:07, 0 users, load averages: 0.36, 0.45, 0.58
+
+Mail in local queue:
+/var/spool/mqueue is empty
+		Total requests: 0
+
+Mail in submit queue:
+/var/spool/clientmqueue is empty
+		Total requests: 0
+
+Security check:
+    (output mailed separately)
+
+Checking for rejected mail hosts:
+
+Checking for denied zone transfers (AXFR and IXFR):
+
+Running /etc/daily.local:
+Parsing supfile "/etc/cvsupfile"
+Connecting to cvsup7.de.FreeBSD.org
+Connected to cvsup7.de.FreeBSD.org
+Server software version: SNAP_16_1g
+Negotiating file attribute support
+Exchanging collection information
+Establishing multiplexed-mode data connection
+Running
+Updating collection ports-all/cvs
+ Edit ports/audio/amarok/Makefile
+  Add delta 1.6 2004.06.17.13.43.10 markus
+ Edit ports/audio/amarok/distinfo
+  Add delta 1.2 2004.06.17.13.43.10 markus
+ Delete ports/audio/amarok/files/patch-loader.cpp
+ Delete ports/audio/amarok/files/patch-playerapp.cpp
+ Delete ports/audio/amarok/files/patch-playlistloader.h
+ Checkout ports/audio/amarok/files/patch-playlistwindow.cpp
+ Edit ports/audio/amarok/pkg-plist
+  Add delta 1.2 2004.06.17.13.43.10 markus
+ Edit ports/audio/sound-juicer/files/patch-src::Makefile.in
+  Add delta 1.4 2004.06.17.11.06.57 bland
+ Edit ports/audio/xmms-arts/Makefile
+  Add delta 1.7 2004.06.16.23.56.20 fjoe
+  Add delta 1.8 2004.06.17.00.46.45 fjoe
+ Edit ports/databases/Makefile
+  Add delta 1.346 2004.06.17.22.13.34 thierry
+ Checkout ports/databases/postgis/Makefile
+ Checkout ports/databases/postgis/distinfo
+ Checkout ports/databases/postgis/pkg-descr
+ Checkout ports/databases/postgis/pkg-plist
+ Edit ports/deskutils/Makefile
+  Add delta 1.152 2004.06.17.18.31.31 pav
+ Checkout ports/deskutils/gtweakui/Makefile
+ Checkout ports/deskutils/gtweakui/distinfo
+ Checkout ports/deskutils/gtweakui/files/patch-Makefile.in
+ Checkout ports/deskutils/gtweakui/pkg-descr
+ Checkout ports/deskutils/gtweakui/pkg-plist
+ Edit ports/devel/arch/pkg-descr
+  Add delta 1.4 2004.06.17.21.00.00 brueffer
+ Edit ports/devel/cedet/Makefile
+  Add delta 1.4 2004.06.17.19.37.56 pav
+ Edit ports/devel/ecb/Makefile
+  Add delta 1.11 2004.06.17.11.31.28 vs
+ Edit ports/devel/ecb/distinfo
+  Add delta 1.9 2004.06.17.11.31.28 vs
+ Edit ports/devel/ecb/pkg-plist
+  Add delta 1.8 2004.06.17.11.31.28 vs
+ Edit ports/devel/subversion/Makefile
+  Add delta 1.65 2004.06.17.06.37.54 lev
+ Edit ports/devel/subversion/distinfo
+  Add delta 1.30 2004.06.17.06.37.54 lev
+ Edit ports/editors/rox-edit/Makefile
+  Add delta 1.8 2004.06.17.15.59.47 olgeni
+  Add delta 1.9 2004.06.17.16.00.55 olgeni
+ Edit ports/editors/rox-edit/distinfo
+  Add delta 1.6 2004.06.17.15.59.47 olgeni
+ Edit ports/editors/rox-edit/pkg-plist
+  Add delta 1.3 2004.06.17.15.59.47 olgeni
+ Edit ports/editors/ted/Makefile
+  Add delta 1.16 2004.06.17.08.18.53 pav
+ Edit ports/emulators/linux-mupen64/Makefile
+  Add delta 1.6 2004.06.17.19.12.57 pav
+ Checkout ports/emulators/linux-mupen64/files/pkg-message.in
+ Delete ports/emulators/linux-mupen64/pkg-message
+ Edit ports/emulators/pearpc/Makefile
+  Add delta 1.6 2004.06.17.05.54.44 mezz
+ Edit ports/emulators/pearpc/distinfo
+  Add delta 1.2 2004.06.17.05.54.44 mezz
+ Delete ports/emulators/pearpc/files/patch-configure
+ Delete ports/emulators/pearpc/files/patch-src::io::3c90x::3c90x.cc
+ Delete ports/emulators/pearpc/files/patch-src::io::3c90x::if_posix.cc
+ Edit ports/ftp/lftp/Makefile
+  Add delta 1.91 2004.06.17.14.23.36 krion
+ Edit ports/ftp/lftp/distinfo
+  Add delta 1.61 2004.06.17.14.23.36 krion
+ Edit ports/games/monopd/Makefile
+  Add delta 1.3 2004.06.17.20.12.00 jhb
+ Edit ports/games/monopd/distinfo
+  Add delta 1.3 2004.06.17.20.12.00 jhb
+ Edit ports/graphics/Makefile
+  Add delta 1.696 2004.06.17.06.36.54 mezz
+ Checkout ports/graphics/cbview/Makefile
+ Checkout ports/graphics/cbview/distinfo
+ Checkout ports/graphics/cbview/pkg-descr
+ Edit ports/graphics/gimp/Makefile
+  Add delta 1.158 2004.06.17.16.04.37 pav
+ Edit ports/graphics/gimp/distinfo
+  Add delta 1.68 2004.06.17.16.04.37 pav
+ Edit ports/graphics/gimp/pkg-plist
+  Add delta 1.89 2004.06.17.16.04.37 pav
+ Edit ports/japanese/zangband/Makefile
+  Add delta 1.9 2004.06.17.19.26.34 pav
+ Edit ports/java/sablevm/Makefile
+  Add delta 1.27 2004.06.17.15.25.28 archie
+  Add delta 1.28 2004.06.17.17.48.24 archie
+ Edit ports/java/sablevm/distinfo
+  Add delta 1.8 2004.06.17.15.25.28 archie
+ Delete ports/java/sablevm/files/extra-patch-aa
+ Delete ports/java/sablevm/files/extra-patch-ab
+ Delete ports/java/sablevm/files/patch-aa
+ Delete ports/java/sablevm/files/patch-ab
+ Delete ports/java/sablevm/files/patch-ac
+ Delete ports/java/sablevm/files/patch-ad
+ Delete ports/java/sablevm/files/patch-ae
+ Delete ports/java/sablevm/files/patch-af
+ Delete ports/java/sablevm/files/patch-ag
+ Delete ports/java/sablevm/files/patch-ah
+ Delete ports/java/sablevm/files/patch-ai
+ Delete ports/java/sablevm/files/patch-aj
+ Delete ports/java/sablevm/files/patch-ak
+ Delete ports/java/sablevm/files/patch-al
+ Delete ports/java/sablevm/files/patch-am
+ Delete ports/java/sablevm/files/patch-an
+ Delete ports/java/sablevm/files/patch-ao
+ Delete ports/java/sablevm/files/patch-ap
+ Delete ports/java/sablevm/files/patch-aq
+ Delete ports/java/sablevm/files/patch-ar
+ Edit ports/java/sablevm/pkg-plist
+  Add delta 1.6 2004.06.17.15.25.28 archie
+ Edit ports/korean/hlatexfonts-ocf/Makefile
+  Add delta 1.4 2004.06.17.08.18.54 pav
+ Edit ports/lang/gcc33/Makefile
+  Add delta 1.183 2004.06.17.21.30.56 gerald
+ Edit ports/lang/gcc33/distinfo
+  Add delta 1.92 2004.06.17.21.30.57 gerald
+ Edit ports/lang/gcc34/Makefile
+  Add delta 1.172 2004.06.17.21.39.17 gerald
+ Edit ports/mail/bogofilter/Makefile
+  Add delta 1.37 2004.06.17.07.10.44 yar
+ Edit ports/mail/courier-imap/Makefile
+  Add delta 1.80 2004.06.17.21.24.54 oliver
+ Edit ports/mail/courier-imap/distinfo
+  Add delta 1.36 2004.06.17.21.24.54 oliver
+ Edit ports/mail/milter-sender/Makefile
+  Add delta 1.35 2004.06.17.08.04.37 yar
+ Edit ports/mail/milter-sender/distinfo
+  Add delta 1.16 2004.06.17.08.04.37 yar
+ Edit ports/mail/milter-sender/files/patch-aa
+  Add delta 1.4 2004.06.17.08.04.38 yar
+ Edit ports/mail/milter-sender/files/patch-ab
+  Add delta 1.9 2004.06.17.08.04.38 yar
+ Edit ports/mail/milter-sender/files/patch-ad
+  Add delta 1.8 2004.06.17.08.04.38 yar
+ Edit ports/mail/milter-sender/files/patch-ae
+  Add delta 1.6 2004.06.17.08.04.38 yar
+ Edit ports/mail/milter-sender/pkg-plist
+  Add delta 1.10 2004.06.17.08.04.37 yar
+ Edit ports/mail/msmtp-devel/Makefile
+  Add delta 1.2 2004.06.17.17.45.55 leeym
+ Edit ports/mail/msmtp-devel/distinfo
+  Add delta 1.2 2004.06.17.17.45.55 leeym
+ Edit ports/mail/sylpheed/Makefile
+  Add delta 1.84 2004.06.17.21.34.13 oliver
+ Edit ports/mail/sylpheed/distinfo
+  Add delta 1.57 2004.06.17.21.34.13 oliver
+ Edit ports/misc/pdmenu/Makefile
+  Add delta 1.19 2004.06.17.06.18.52 mezz
+ Edit ports/misc/pdmenu/distinfo
+  Add delta 1.12 2004.06.17.06.18.52 mezz
+ Edit ports/misc/pdmenu/files/patch-ab
+  Add delta 1.5 2004.06.17.06.18.52 mezz
+ Edit ports/misc/zaptel/Makefile
+  Add delta 1.5 2004.06.17.17.01.33 sobomax
+ Edit ports/misc/zaptel/distinfo
+  Add delta 1.5 2004.06.17.17.01.33 sobomax
+ Edit ports/misc/zaptel/files/patch-Makefile
+  Add delta 1.3 2004.06.17.17.01.34 sobomax
+ Edit ports/misc/zaptel/files/patch-test::Makefile
+  Add delta 1.2 2004.06.17.17.01.34 sobomax
+ Edit ports/misc/zaptel/files/patch-zaptel::Makefile
+  Add delta 1.2 2004.06.17.17.01.34 sobomax
+ Edit ports/misc/zaptel/files/zaptel.sh
+  Add delta 1.2 2004.06.17.17.01.34 sobomax
+ Edit ports/misc/zaptel/pkg-descr
+  Add delta 1.2 2004.06.17.17.01.33 sobomax
+ Edit ports/misc/zaptel/pkg-plist
+  Add delta 1.2 2004.06.17.17.01.33 sobomax
+ Edit ports/multimedia/avifile/Makefile
+  Add delta 1.55 2004.06.17.19.05.53 pav
+ Edit ports/net/cvsup/Makefile
+  Add delta 1.55 2004.06.17.22.59.47 obrien
+ Edit ports/net/ossp-sa/Makefile
+  Add delta 1.14 2004.06.17.06.09.19 mezz
+ Edit ports/net/ossp-sa/distinfo
+  Add delta 1.4 2004.06.17.06.09.19 mezz
+ Edit ports/print/Makefile
+  Add delta 1.307 2004.06.17.20.00.24 pav
+ Checkout ports/print/cups-pdf/Makefile
+ Checkout ports/print/cups-pdf/distinfo
+ Checkout ports/print/cups-pdf/pkg-descr
+ Checkout ports/print/cups-pdf/pkg-plist
+ Edit ports/print/ghostscript-afpl/Makefile
+  Add delta 1.133 2004.06.17.08.18.54 pav
+ Edit ports/print/ghostscript-gnu/Makefile
+  Add delta 1.109 2004.06.17.08.18.55 pav
+ Edit ports/security/f-prot-sig/Makefile
+  Add delta 1.12 2004.06.17.18.53.54 krion
+ Edit ports/security/f-prot-sig/distinfo
+  Add delta 1.8 2004.06.17.18.53.54 krion
+ Edit ports/security/nmap/Makefile
+  Add delta 1.79 2004.06.17.11.56.03 eik
+ Edit ports/security/nmap/distinfo
+  Add delta 1.49 2004.06.17.11.56.03 eik
+ Checkout ports/security/nmap/files/patch-targets.cc
+ Checkout ports/security/nmap/files/patch-tcpip.cc
+ Edit ports/security/nmap/pkg-plist
+  Add delta 1.14 2004.06.17.11.56.03 eik
+ Edit ports/security/portaudit-db/Makefile
+  Add delta 1.5 2004.06.17.07.13.36 eik
+ Edit ports/security/portaudit-db/database/portaudit.txt
+  Add delta 1.8 2004.06.17.06.35.51 eik
+  Add delta 1.9 2004.06.17.07.13.37 eik
+  Add delta 1.10 2004.06.17.08.02.23 eik
+ Edit ports/security/portaudit-db/files/portaudit2vuxml.awk
+  Add delta 1.2 2004.06.17.07.13.37 eik
+ Edit ports/security/stunnel/Makefile
+  Add delta 1.54 2004.06.17.09.35.23 roam
+ Edit ports/security/stunnel/pkg-plist
+  Add delta 1.8 2004.06.17.09.34.50 roam
+ Edit ports/sysutils/Makefile
+  Add delta 1.546 2004.06.17.16.14.12 glewis
+ Edit ports/sysutils/bacula/Makefile
+  Add delta 1.25 2004.06.17.13.19.36 krion
+ Edit ports/sysutils/bacula/distinfo
+  Add delta 1.10 2004.06.17.13.19.36 krion
+ Checkout ports/sysutils/powerman/Makefile
+ Checkout ports/sysutils/powerman/distinfo
+ Checkout ports/sysutils/powerman/files/patch-Makefile
+ Checkout ports/sysutils/powerman/files/patch-man-powerman.1
+ Checkout ports/sysutils/powerman/files/patch-man-powerman.conf.5
+ Checkout ports/sysutils/powerman/files/patch-man-powermand.1
+ Checkout ports/sysutils/powerman/files/patch-scripts-powerman.init
+ Checkout ports/sysutils/powerman/files/patch-src-Makefile
+ Checkout ports/sysutils/powerman/files/patch-src-client.c
+ Checkout ports/sysutils/powerman/files/patch-src-device_pipe.c
+ Checkout ports/sysutils/powerman/files/patch-src-hostlist.c
+ Checkout ports/sysutils/powerman/files/patch-src-parse.lex
+ Checkout ports/sysutils/powerman/files/patch-src-parse.y
+ Checkout ports/sysutils/powerman/files/patch-src-powerman.c
+ Checkout ports/sysutils/powerman/files/patch-src-powerman.h
+ Checkout ports/sysutils/powerman/files/patch-src-powermand.c
+ Checkout ports/sysutils/powerman/files/patch-src-wrappers.c
+ Checkout ports/sysutils/powerman/files/patch-src-wrappers.h
+ Checkout ports/sysutils/powerman/files/patch-test-Makefile
+ Checkout ports/sysutils/powerman/files/patch-test-vpcd.c
+ Checkout ports/sysutils/powerman/pkg-descr
+ Checkout ports/sysutils/powerman/pkg-plist
+ Edit ports/textproc/p5-XML-RAI/Makefile
+  Add delta 1.7 2004.06.17.07.50.41 arved
+ Edit ports/textproc/p5-XML-RAI/distinfo
+  Add delta 1.3 2004.06.17.07.50.41 arved
+ Edit ports/www/openvrml/Makefile
+  Add delta 1.12 2004.06.17.16.02.07 marcus
+ Edit ports/x11/xorg-clients/Makefile
+  Add delta 1.3 2004.06.17.01.53.09 anholt
+ Edit ports/x11/xorg-clients/files/patch-xdm_session.c
+  Add delta 1.2 2004.06.17.01.53.09 anholt
+ Edit ports/x11-wm/ratpoison/Makefile
+  Add delta 1.8 2004.06.17.10.56.42 jkoshy
+  Add delta 1.9 2004.06.17.14.28.27 krion
+ Edit ports/x11-wm/ratpoison/distinfo
+  Add delta 1.7 2004.06.17.10.56.42 jkoshy
+ Edit ports/x11-wm/ratpoison/pkg-plist
+  Add delta 1.5 2004.06.17.10.56.42 jkoshy
+ Edit ports/x11-wm/wmi/Makefile
+  Add delta 1.2 2004.06.17.05.35.19 mezz
+ Edit ports/x11-wm/wmi/distinfo
+  Add delta 1.2 2004.06.17.05.35.19 mezz
+Shutting down connection to server
+Finished successfully
+Parsing supfile "/etc/cvsupfile-4_9"
+Connecting to cvsup7.de.FreeBSD.org
+Connected to cvsup7.de.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 03:12:01
+Retrying
+Connecting to cvsup7.de.FreeBSD.org
+Connected to cvsup7.de.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 03:22:04
+Retrying
+Connecting to cvsup7.de.FreeBSD.org
+Connected to cvsup7.de.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 03:42:33
+Retrying
+Connecting to cvsup7.de.FreeBSD.org
+Connected to cvsup7.de.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 04:21:02
+Retrying
+Connecting to cvsup7.de.FreeBSD.org
+Connected to cvsup7.de.FreeBSD.org
+Server software version: SNAP_16_1g
+Negotiating file attribute support
+Exchanging collection information
+Establishing multiplexed-mode data connection
+Running
+Updating collection src-all/cvs
+Shutting down connection to server
+Finished successfully
+** No need to upgrade 'qlogtools-3.1_1' (>= qlogtools-3.1_1). (specify -f to force)
+** No need to upgrade 'openssl-0.9.7d' (>= openssl-0.9.7d). (specify -f to force)
+** No need to upgrade 'ruby-1.8.1.2004.05.02' (>= ruby-1.8.1.2004.05.02). (specify -f to force)
+** No need to upgrade 'p5-Time-HiRes-1.55,1' (>= p5-Time-HiRes-1.55,1). (specify -f to force)
+** No need to upgrade 'xmlcatmgr-2.1' (>= xmlcatmgr-2.1). (specify -f to force)
+** No need to upgrade 'automake-1.4.6_1' (>= automake-1.4.6_1). (specify -f to force)
+** No need to upgrade 'libtool-1.4.3_3' (>= libtool-1.4.3_3). (specify -f to force)
+** No need to upgrade 'zoo-2.10.1' (>= zoo-2.10.1). (specify -f to force)
+** No need to upgrade 'p5-MIME-Base64-3.01' (>= p5-MIME-Base64-3.01). (specify -f to force)
+** No need to upgrade 'cclient-2004,1' (>= cclient-2004,1). (specify -f to force)
+** No need to upgrade 'ruby18-bdb1-0.2.2' (>= ruby18-bdb1-0.2.2). (specify -f to force)
+** No need to upgrade 'bglibs-1.017' (>= bglibs-1.017). (specify -f to force)
+** No need to upgrade 'p5-Authen-SASL-2.08' (>= p5-Authen-SASL-2.08). (specify -f to force)
+** No need to upgrade 'automake-1.5,1' (>= automake-1.5,1). (specify -f to force)
+** No need to upgrade 'arc-5.21j' (>= arc-5.21j). (specify -f to force)
+** No need to upgrade 'libtool-1.3.5_2' (>= libtool-1.3.5_2). (specify -f to force)
+** No need to upgrade 'p5-Socket6-0.17' (>= p5-Socket6-0.17). (specify -f to force)
+** No need to upgrade 'bash-2.05b.007' (>= bash-2.05b.007). (specify -f to force)
+** No need to upgrade 'p5-IO-INET6-2.01' (>= p5-IO-INET6-2.01). (specify -f to force)
+** No need to upgrade 'autorespond-2.0.5' (>= autorespond-2.0.5). (specify -f to force)
+** No need to upgrade 'lha-1.14i_4' (>= lha-1.14i_4). (specify -f to force)
+** No need to upgrade 'p5-Digest-1.08' (>= p5-Digest-1.08). (specify -f to force)
+** No need to upgrade 'imake-4.3.0_2' (>= imake-4.3.0_2). (specify -f to force)
+** No need to upgrade 'unix2dos-1.3' (>= unix2dos-1.3). (specify -f to force)
+** No need to upgrade 'libmcrypt-2.5.7_1' (>= libmcrypt-2.5.7_1). (specify -f to force)
+** No need to upgrade 'p5-Authen-PAM-0.14' (>= p5-Authen-PAM-0.14). (specify -f to force)
+** No need to upgrade 'qmail-autoresponder-0.96.1_1' (>= qmail-autoresponder-0.96.1_1). (specify -f to force)
+** No need to upgrade 'python-2.3.4' (>= python-2.3.4). (specify -f to force)
+** No need to upgrade 'jpeg-6b_3' (>= jpeg-6b_3). (specify -f to force)
+** No need to upgrade 'libmad-0.15.0b' (>= libmad-0.15.0b). (specify -f to force)
+** No need to upgrade 'imap-uw-2004,1' (>= imap-uw-2004,1). (specify -f to force)
+** No need to upgrade 'p5-Digest-MD5-2.33' (>= p5-Digest-MD5-2.33). (specify -f to force)
+** No need to upgrade 'tiff-3.6.1_1' (>= tiff-3.6.1_1). (specify -f to force)
+** No need to upgrade 'lcms-1.12,1' (>= lcms-1.12,1). (specify -f to force)
+** No need to upgrade 'p5-Net-SSLeay-1.23' (>= p5-Net-SSLeay-1.23). (specify -f to force)
+** No need to upgrade 'p5-SNMP_Session-1.03' (>= p5-SNMP_Session-1.03). (specify -f to force)
+** No need to upgrade 'usermin-1.080_1' (>= usermin-1.080_1). (specify -f to force)
+** No need to upgrade 'libtool-1.5.6' (>= libtool-1.5.6). (specify -f to force)
+** No need to upgrade 'unzip-5.51' (>= unzip-5.51). (specify -f to force)
+** No need to upgrade 'lynx-2.8.5' (>= lynx-2.8.5). (specify -f to force)
+** No need to upgrade 'p5-Digest-Nilsimsa-0.06' (>= p5-Digest-Nilsimsa-0.06). (specify -f to force)
+** No need to upgrade 'queue-repair-0.9.0' (>= queue-repair-0.9.0). (specify -f to force)
+** No need to upgrade 'unarj-2.43_1' (>= unarj-2.43_1). (specify -f to force)
+** No need to upgrade 'p5-HTML-Tagset-3.03' (>= p5-HTML-Tagset-3.03). (specify -f to force)
+** No need to upgrade 'docbook-xml-4.2_1' (>= docbook-xml-4.2_1). (specify -f to force)
+** No need to upgrade 'sdocbook-xml-4.1.2.5_2' (>= sdocbook-xml-4.1.2.5_2). (specify -f to force)
+** No need to upgrade 'mysql-client-4.0.20' (>= mysql-client-4.0.20). (specify -f to force)
+** No need to upgrade 'libmng-1.0.7' (>= libmng-1.0.7). (specify -f to force)
+** No need to upgrade 'libiconv-1.9.1_3' (>= libiconv-1.9.1_3). (specify -f to force)
+** No need to upgrade 'webmin-1.150' (>= webmin-1.150). (specify -f to force)
+** No need to upgrade 'getline-3.9' (>= getline-3.9). (specify -f to force)
+** No need to upgrade 'p5-Digest-SHA1-2.10' (>= p5-Digest-SHA1-2.10). (specify -f to force)
+** No need to upgrade 'openldap-client-2.1.30' (>= openldap-client-2.1.30). (specify -f to force)
+** No need to upgrade 'docbook-xsl-1.65.1' (>= docbook-xsl-1.65.1). (specify -f to force)
+** No need to upgrade 'sox-12.17.4_1' (>= sox-12.17.4_1). (specify -f to force)
+** No need to upgrade 'mysql-server-4.0.20' (>= mysql-server-4.0.20). (specify -f to force)
+** No need to upgrade 'm4-1.4_1' (>= m4-1.4_1). (specify -f to force)
+** No need to upgrade 'autoconf-2.13.000227_5' (>= autoconf-2.13.000227_5). (specify -f to force)
+** No need to upgrade 'p5-HTML-Parser-3.36' (>= p5-HTML-Parser-3.36). (specify -f to force)
+** No need to upgrade 'zip-2.3_1' (>= zip-2.3_1). (specify -f to force)
+** No need to upgrade 'libghttp-1.0.9' (>= libghttp-1.0.9). (specify -f to force)
+** No need to upgrade 'portupgrade-20040529' (>= portupgrade-20040529). (specify -f to force)
+** No need to upgrade 'ezmlm-idx-0.40_3' (>= ezmlm-idx-0.40_3). (specify -f to force)
+** No need to upgrade 'docbook-sk-4.1.2_3' (>= docbook-sk-4.1.2_3). (specify -f to force)
+** No need to upgrade 'p5-File-Spec-0.86' (>= p5-File-Spec-0.86). (specify -f to force)
+** No need to upgrade 'sudo-1.6.7.5' (>= sudo-1.6.7.5). (specify -f to force)
+** No need to upgrade 'rc_subr-1.26' (>= rc_subr-1.26). (specify -f to force)
+** No need to upgrade 'png-1.2.5_5' (>= png-1.2.5_5). (specify -f to force)
+** No need to upgrade 'p5-PodParser-1.28' (>= p5-PodParser-1.28). (specify -f to force)
+** No need to upgrade 'libid3tag-0.15.0b_1' (>= libid3tag-0.15.0b_1). (specify -f to force)
+** No need to upgrade 'libltdl-1.5.6' (>= libltdl-1.5.6). (specify -f to force)
+** No need to upgrade 'libgnugetopt-1.2' (>= libgnugetopt-1.2). (specify -f to force)
+** No need to upgrade 'tnef-1.2.1' (>= tnef-1.2.1). (specify -f to force)
+** No need to upgrade 'pcre-4.5' (>= pcre-4.5). (specify -f to force)
+** No need to upgrade 'expat-1.95.7' (>= expat-1.95.7). (specify -f to force)
+** No need to upgrade 'gettext-0.13.1_1' (>= gettext-0.13.1_1). (specify -f to force)
+** No need to upgrade 'p5-gettext-1.01_4' (>= p5-gettext-1.01_4). (specify -f to force)
+** No need to upgrade 'help2man-1.33.1' (>= help2man-1.33.1). (specify -f to force)
+** No need to upgrade 'bison-1.75_2' (>= bison-1.75_2). (specify -f to force)
+** No need to upgrade 'p5-XML-Parser-2.34_1' (>= p5-XML-Parser-2.34_1). (specify -f to force)
+** No need to upgrade 'autoconf-2.53_1' (>= autoconf-2.53_1). (specify -f to force)
+** No need to upgrade 'popt-1.6.4_2' (>= popt-1.6.4_2). (specify -f to force)
+** No need to upgrade 'gmake-3.80_2' (>= gmake-3.80_2). (specify -f to force)
+** No need to upgrade 'fetchmail-6.2.5_2' (>= fetchmail-6.2.5_2). (specify -f to force)
+** No need to upgrade 'rpm-3.0.6_9' (>= rpm-3.0.6_9). (specify -f to force)
+** No need to upgrade 'xinetd-2.3.13' (>= xinetd-2.3.13). (specify -f to force)
+** No need to upgrade 'xlhtml-0.5_1,1' (>= xlhtml-0.5_1,1). (specify -f to force)
+** No need to upgrade 'Hermes-1.3.3_1' (>= Hermes-1.3.3_1). (specify -f to force)
+** No need to upgrade 'vpopmail-5.4.3_1' (>= vpopmail-5.4.3_1). (specify -f to force)
+** No need to upgrade 'pkgconfig-0.15.0_1' (>= pkgconfig-0.15.0_1). (specify -f to force)
+** No need to upgrade 'libaudiofile-0.2.6' (>= libaudiofile-0.2.6). (specify -f to force)
+** No need to upgrade 'wget-1.8.2_6' (>= wget-1.8.2_6). (specify -f to force)
+** No need to upgrade 'cdrtools-2.0.3_3' (>= cdrtools-2.0.3_3). (specify -f to force)
+** No need to upgrade 'guile-1.6.4_4' (>= guile-1.6.4_4). (specify -f to force)
+** No need to upgrade 'glib-2.4.2' (>= glib-2.4.2). (specify -f to force)
+** No need to upgrade 'atk-1.6.1' (>= atk-1.6.1). (specify -f to force)
+** No need to upgrade 'nspr-4.4.1_1' (>= nspr-4.4.1_1). (specify -f to force)
+** No need to upgrade 'libart_lgpl2-2.3.16' (>= libart_lgpl2-2.3.16). (specify -f to force)
+** No need to upgrade 'aspell-0.50.5_2' (>= aspell-0.50.5_2). (specify -f to force)
+** No need to upgrade 'linc-1.0.3_2' (>= linc-1.0.3_2). (specify -f to force)
+** No need to upgrade 'vqadmin-2.3.6' (>= vqadmin-2.3.6). (specify -f to force)
+** No need to upgrade 'ezm3-1.1_2' (>= ezm3-1.1_2). (specify -f to force)
+** No need to upgrade 'libmcal-0.7_1' (>= libmcal-0.7_1). (specify -f to force)
+** No need to upgrade 'fam-2.6.9_4' (>= fam-2.6.9_4). (specify -f to force)
+** No need to upgrade 'libxml2-2.6.9' (>= libxml2-2.6.9). (specify -f to force)
+** No need to upgrade 'intltool-0.30_1' (>= intltool-0.30_1). (specify -f to force)
+** No need to upgrade 'shared-mime-info-0.14_2' (>= shared-mime-info-0.14_2). (specify -f to force)
+** No need to upgrade 'php4-horde-4.3.7_1' (>= php4-horde-4.3.7_1). (specify -f to force)
+** No need to upgrade 'isoqlog-2.1.1_1' (>= isoqlog-2.1.1_1). (specify -f to force)
+** No need to upgrade 'esound-0.2.34' (>= esound-0.2.34). (specify -f to force)
+** No need to upgrade 'pear-Archive_Tar-1.2' (>= pear-Archive_Tar-1.2). (specify -f to force)
+** No need to upgrade 'qmailadmin-1.2.0_1,1' (>= qmailadmin-1.2.0_1,1). (specify -f to force)
+** No need to upgrade 'freetype2-2.1.7_3' (>= freetype2-2.1.7_3). (specify -f to force)
+** No need to upgrade 'unrar-3.30_1,3' (>= unrar-3.30_1,3). (specify -f to force)
+** No need to upgrade 'gd-2.0.25,1' (>= gd-2.0.25,1). (specify -f to force)
+** No need to upgrade 'pear-XML_RPC-1.1.0' (>= pear-XML_RPC-1.1.0). (specify -f to force)
+** No need to upgrade 'fontconfig-2.2.2,1' (>= fontconfig-2.2.2,1). (specify -f to force)
+** No need to upgrade 'glib-1.2.10_11' (>= glib-1.2.10_11). (specify -f to force)
+** No need to upgrade 'XFree86-libraries-4.3.0_7' (>= XFree86-libraries-4.3.0_7). (specify -f to force)
+** No need to upgrade 'hicolor-icon-theme-0.5' (>= hicolor-icon-theme-0.5). (specify -f to force)
+** No need to upgrade 'gnome-icon-theme-1.2.3' (>= gnome-icon-theme-1.2.3). (specify -f to force)
+** No need to upgrade 'gnomehier-1.0_17' (>= gnomehier-1.0_17). (specify -f to force)
+** No need to upgrade 'XFree86-FontServer-4.3.0_3' (>= XFree86-FontServer-4.3.0_3). (specify -f to force)
+** No need to upgrade 'gnomeaudio2-2.0.0' (>= gnomeaudio2-2.0.0). (specify -f to force)
+** No need to upgrade 'libxklavier-1.02,1' (>= libxklavier-1.02,1). (specify -f to force)
+** No need to upgrade 'gnomemimedata-2.4.1_2' (>= gnomemimedata-2.4.1_2). (specify -f to force)
+** No need to upgrade 'XFree86-documents-4.3.0' (>= XFree86-documents-4.3.0). (specify -f to force)
+** No need to upgrade 'libungif-4.1.3' (>= libungif-4.1.3). (specify -f to force)
+** No need to upgrade 'libglut-6.0.1' (>= libglut-6.0.1). (specify -f to force)
+** No need to upgrade 'libXft-2.1.6' (>= libXft-2.1.6). (specify -f to force)
+** No need to upgrade 'dri-4.3.0,1' (>= dri-4.3.0,1). (specify -f to force)
+** No need to upgrade 'XFree86-clients-4.3.0_8' (>= XFree86-clients-4.3.0_8). (specify -f to force)
+** No need to upgrade 'gle-3.0.3' (>= gle-3.0.3). (specify -f to force)
+** No need to upgrade 'XFree86-Server-4.3.0_14' (>= XFree86-Server-4.3.0_14). (specify -f to force)
+** No need to upgrade 'freetype-1.3.1_3' (>= freetype-1.3.1_3). (specify -f to force)
+** No need to upgrade 'gtk-1.2.10_12' (>= gtk-1.2.10_12). (specify -f to force)
+** No need to upgrade 'libwmf-0.2.8.3' (>= libwmf-0.2.8.3). (specify -f to force)
+** No need to upgrade 'wv-1.0.0_1' (>= wv-1.0.0_1). (specify -f to force)
+** No need to upgrade 'bitstream-vera-1.10' (>= bitstream-vera-1.10). (specify -f to force)
+** No need to upgrade 'cvsup-16.1h' (>= cvsup-16.1h). (specify -f to force)
+** No need to upgrade 'libxslt-1.1.6' (>= libxslt-1.1.6). (specify -f to force)
+** No need to upgrade 'squirrelmail-1.4.3a' (>= squirrelmail-1.4.3a). (specify -f to force)
+** No need to upgrade 'imlib-1.9.14_2' (>= imlib-1.9.14_2). (specify -f to force)
+** No need to upgrade 'startup-notification-0.6' (>= startup-notification-0.6). (specify -f to force)
+** No need to upgrade 'libgtop2-2.6.0' (>= libgtop2-2.6.0). (specify -f to force)
+** No need to upgrade 'fnlib-0.5_2' (>= fnlib-0.5_2). (specify -f to force)
+** No need to upgrade 'wrapper-1.0_3' (>= wrapper-1.0_3). (specify -f to force)
+** No need to upgrade 'scrollkeeper-0.3.14_1,1' (>= scrollkeeper-0.3.14_1,1). (specify -f to force)
+** No need to upgrade 'enlightenment-0.16.6_1' (>= enlightenment-0.16.6_1). (specify -f to force)
+** No need to upgrade 'XFree86-fontEncodings-4.3.0' (>= XFree86-fontEncodings-4.3.0). (specify -f to force)
+** No need to upgrade 'gnomeuserdocs2-2.6.0.1' (>= gnomeuserdocs2-2.6.0.1). (specify -f to force)
+** No need to upgrade 'XFree86-font100dpi-4.3.0' (>= XFree86-font100dpi-4.3.0). (specify -f to force)
+** No need to upgrade 'imlib2-1.1.0' (>= imlib2-1.1.0). (specify -f to force)
+** No need to upgrade 'libast-0.5' (>= libast-0.5). (specify -f to force)
+** No need to upgrade 'XFree86-fontDefaultBitmaps-4.3.0' (>= XFree86-fontDefaultBitmaps-4.3.0). (specify -f to force)
+** No need to upgrade 'XFree86-fontScalable-4.3.0' (>= XFree86-fontScalable-4.3.0). (specify -f to force)
+** No need to upgrade 'XFree86-fontCyrillic-4.3.0' (>= XFree86-fontCyrillic-4.3.0). (specify -f to force)
+** No need to upgrade 'XFree86-font75dpi-4.3.0' (>= XFree86-font75dpi-4.3.0). (specify -f to force)
+** No need to upgrade 'XFree86-4.3.0,1' (>= XFree86-4.3.0,1). (specify -f to force)
+** No need to upgrade 'libIDL-0.8.3_2' (>= libIDL-0.8.3_2). (specify -f to force)
+** No need to upgrade 'ORBit2-2.10.2' (>= ORBit2-2.10.2). (specify -f to force)
+** No need to upgrade 'linux_base-7.1_7' (>= linux_base-7.1_7). (specify -f to force)
+** No need to upgrade 'libbonobo-2.6.2' (>= libbonobo-2.6.2). (specify -f to force)
+** No need to upgrade 'p5-Net-1.18,1' (>= p5-Net-1.18,1). (specify -f to force)
+** No need to upgrade 'p5-Mail-Tools-1.62' (>= p5-Mail-Tools-1.62). (specify -f to force)
+** No need to upgrade 'man2html-3.0.1_1' (>= man2html-3.0.1_1). (specify -f to force)
+** No need to upgrade 'eterm-0.9.2_1' (>= eterm-0.9.2_1). (specify -f to force)
+** No need to upgrade 'pango-1.4.0_1' (>= pango-1.4.0_1). (specify -f to force)
+** No need to upgrade 'libglade2-2.4.0' (>= libglade2-2.4.0). (specify -f to force)
+** No need to upgrade 'mozilla-1.6_4,2' (>= mozilla-1.6_4,2). (specify -f to force)
+** No need to upgrade 'libgnomeprint-2.6.1' (>= libgnomeprint-2.6.1). (specify -f to force)
+** No need to upgrade 'libgnomecanvas-2.6.1.1' (>= libgnomecanvas-2.6.1.1). (specify -f to force)
+** No need to upgrade 'vte-0.11.11' (>= vte-0.11.11). (specify -f to force)
+** No need to upgrade 'xscreensaver-gnome-4.16' (>= xscreensaver-gnome-4.16). (specify -f to force)
+** No need to upgrade 'gnomekeyring-0.2.1_1' (>= gnomekeyring-0.2.1_1). (specify -f to force)
+** No need to upgrade 'libgnomeprintui-2.6.1' (>= libgnomeprintui-2.6.1). (specify -f to force)
+** No need to upgrade 'gtk-engines2-2.2.0_3' (>= gtk-engines2-2.2.0_3). (specify -f to force)
+** No need to upgrade 'gnomevfs2-2.6.1.1_1' (>= gnomevfs2-2.6.1.1_1). (specify -f to force)
+** No need to upgrade 'libcroco-0.5.1' (>= libcroco-0.5.1). (specify -f to force)
+** No need to upgrade 'p5-Digest-HMAC-1.01' (>= p5-Digest-HMAC-1.01). (specify -f to force)
+** No need to upgrade 'p5-Net-DNS-0.47' (>= p5-Net-DNS-0.47). (specify -f to force)
+** No need to upgrade 'libgsf-1.9.1_1' (>= libgsf-1.9.1_1). (specify -f to force)
+** No need to upgrade 'libgnome-2.6.1.1' (>= libgnome-2.6.1.1). (specify -f to force)
+** No need to upgrade 'librsvg2-2.6.5_1' (>= librsvg2-2.6.5_1). (specify -f to force)
+** No need to upgrade 'metacity-2.8.1' (>= metacity-2.8.1). (specify -f to force)
+** No need to upgrade 'at-spi-1.4.2' (>= at-spi-1.4.2). (specify -f to force)
+** No need to upgrade 'gtksourceview-1.0.1' (>= gtksourceview-1.0.1). (specify -f to force)
+** No need to upgrade 'libbonoboui-2.6.1' (>= libbonoboui-2.6.1). (specify -f to force)
+** No need to upgrade 'libgnomeui-2.6.1.1' (>= libgnomeui-2.6.1.1). (specify -f to force)
+** No need to upgrade 'gnometerminal-2.6.1_1' (>= gnometerminal-2.6.1_1). (specify -f to force)
+** No need to upgrade 'gnomegames2-2.6.1' (>= gnomegames2-2.6.1). (specify -f to force)
+** No need to upgrade 'yelp-2.6.1' (>= yelp-2.6.1). (specify -f to force)
+** No need to upgrade 'eel2-2.6.2' (>= eel2-2.6.2). (specify -f to force)
+** No need to upgrade 'gnomesystemmonitor-2.6.0_2' (>= gnomesystemmonitor-2.6.0_2). (specify -f to force)
+** No need to upgrade 'gedit2-2.6.1' (>= gedit2-2.6.1). (specify -f to force)
+** No need to upgrade 'gok-0.10.2' (>= gok-0.10.2). (specify -f to force)
+** No need to upgrade 'fileroller-2.6.1_1,1' (>= fileroller-2.6.1_1,1). (specify -f to force)
+** No need to upgrade 'gucharmap-gnome-1.4.1' (>= gucharmap-gnome-1.4.1). (specify -f to force)
+** No need to upgrade 'razor-agents-2.40' (>= razor-agents-2.40). (specify -f to force)
+** No need to upgrade 'ggv2-2.6.1' (>= ggv2-2.6.1). (specify -f to force)
+** No need to upgrade 'p5-Mail-SpamAssassin-2.63_2' (>= p5-Mail-SpamAssassin-2.63_2). (specify -f to force)
+** No need to upgrade 'dasher-3.2.10' (>= dasher-3.2.10). (specify -f to force)
+** No need to upgrade 'libgail-gnome-1.0.4' (>= libgail-gnome-1.0.4). (specify -f to force)
+** No need to upgrade 'eog2-2.6.1' (>= eog2-2.6.1). (specify -f to force)
+** No need to upgrade 'gnomeutils2-2.6.2,1' (>= gnomeutils2-2.6.2,1). (specify -f to force)
+** No need to upgrade 'nautilus-cd-burner-2.6.1_1' (>= nautilus-cd-burner-2.6.1_1). (specify -f to force)
+** No need to upgrade 'bugbuddy2-2.6.1' (>= bugbuddy2-2.6.1). (specify -f to force)
+** No need to upgrade 'gnomemag-0.10.11' (>= gnomemag-0.10.11). (specify -f to force)
+** No need to upgrade 'gnopernicus-0.8.4' (>= gnopernicus-0.8.4). (specify -f to force)
+** No need to upgrade 'zenity-2.6.2' (>= zenity-2.6.2). (specify -f to force)
+** No need to upgrade 'gnome2-2.6.1' (>= gnome2-2.6.1). (specify -f to force)
+** No need to upgrade 'pear-Console_Getopt-1.2' (>= pear-Console_Getopt-1.2). (specify -f to force)
+** No need to upgrade 'pear-PEAR-1.3.1' (>= pear-PEAR-1.3.1). (specify -f to force)
+** No need to upgrade 'pear-HTML_Common-1.2.1' (>= pear-HTML_Common-1.2.1). (specify -f to force)
+** No need to upgrade 'pear-Date-1.4.3' (>= pear-Date-1.4.3). (specify -f to force)
+** No need to upgrade 'pear-Net_Socket-1.0.2' (>= pear-Net_Socket-1.0.2). (specify -f to force)
+** No need to upgrade 'pear-DB-1.6.4,1' (>= pear-DB-1.6.4,1). (specify -f to force)
+** No need to upgrade 'pear-Log-1.8.4' (>= pear-Log-1.8.4). (specify -f to force)
+** No need to upgrade 'pear-Auth-1.2.3' (>= pear-Auth-1.2.3). (specify -f to force)
+** No need to upgrade 'pear-Auth_SASL-1.0.1_1' (>= pear-Auth_SASL-1.0.1_1). (specify -f to force)
+** No need to upgrade 'pear-Net_SMTP-1.2.6' (>= pear-Net_SMTP-1.2.6). (specify -f to force)
+** No need to upgrade 'pear-Mail-1.1.3' (>= pear-Mail-1.1.3). (specify -f to force)
+** No need to upgrade 'pear-Mail_Mime-1.2.1_4' (>= pear-Mail_Mime-1.2.1_4). (specify -f to force)
+** No need to upgrade 'horde-2.2.5' (>= horde-2.2.5). (specify -f to force)
+** No need to upgrade 'turba-1.2.2' (>= turba-1.2.2). (specify -f to force)
+** No need to upgrade 'imp-3.2.4' (>= imp-3.2.4). (specify -f to force)
+** No need to upgrade 'kronolith-1.1.2' (>= kronolith-1.1.2). (specify -f to force)
+** No need to upgrade 'mnemo-1.1.1' (>= mnemo-1.1.1). (specify -f to force)
+** No need to upgrade 'nag-1.1.1' (>= nag-1.1.1). (specify -f to force)
+--->  Session started at: Fri, 18 Jun 2004 04:22:13 +0200
+--->  Upgrade of math/libgmp4 started at: Fri, 18 Jun 2004 04:22:43 +0200
+--->  Upgrade of math/libgmp4 ended at: Fri, 18 Jun 2004 04:22:43 +0200 (consumed 00:00:00)
+--->  Upgrade of net/p5-URI started at: Fri, 18 Jun 2004 04:22:44 +0200
+--->  Upgrade of net/p5-URI ended at: Fri, 18 Jun 2004 04:22:44 +0200 (consumed 00:00:00)
+--->  Upgrade of www/apache13 started at: Fri, 18 Jun 2004 04:22:51 +0200
+--->  Upgrade of www/apache13 ended at: Fri, 18 Jun 2004 04:22:51 +0200 (consumed 00:00:00)
+--->  Upgrade of security/clamav started at: Fri, 18 Jun 2004 04:22:57 +0200
+--->  Upgrade of security/clamav ended at: Fri, 18 Jun 2004 04:22:57 +0200 (consumed 00:00:00)
+--->  Upgrade of net-mgmt/mrtg started at: Fri, 18 Jun 2004 04:22:57 +0200
+--->  Upgrade of net-mgmt/mrtg ended at: Fri, 18 Jun 2004 04:22:57 +0200 (consumed 00:00:00)
+--->  Upgrade of editors/vim started at: Fri, 18 Jun 2004 04:23:00 +0200
+--->  Upgrade of editors/vim ended at: Fri, 18 Jun 2004 04:23:00 +0200 (consumed 00:00:00)
+--->  Upgrade of print/ghostscript-gnu started at: Fri, 18 Jun 2004 04:23:04 +0200
+--->  Upgrade of print/ghostscript-gnu ended at: Fri, 18 Jun 2004 04:23:04 +0200 (consumed 00:00:00)
+--->  Upgrade of accessibility/gnomespeech started at: Fri, 18 Jun 2004 04:23:06 +0200
+--->  Upgrade of accessibility/gnomespeech ended at: Fri, 18 Jun 2004 04:23:06 +0200 (consumed 00:00:00)
+--->  Upgrade of x11-toolkits/gtk20 started at: Fri, 18 Jun 2004 04:23:07 +0200
+--->  Upgrade of x11-toolkits/gtk20 ended at: Fri, 18 Jun 2004 04:23:07 +0200 (consumed 00:00:00)
+--->  Upgrade of accessibility/gail started at: Fri, 18 Jun 2004 04:23:08 +0200
+--->  Upgrade of accessibility/gail ended at: Fri, 18 Jun 2004 04:23:08 +0200 (consumed 00:00:00)
+--->  Upgrade of x11-toolkits/libwnck started at: Fri, 18 Jun 2004 04:23:09 +0200
+--->  Upgrade of x11-toolkits/libwnck ended at: Fri, 18 Jun 2004 04:23:09 +0200 (consumed 00:00:00)
+--->  Upgrade of devel/gconf2 started at: Fri, 18 Jun 2004 04:23:09 +0200
+--->  Upgrade of devel/gconf2 ended at: Fri, 18 Jun 2004 04:23:09 +0200 (consumed 00:00:00)
+--->  Upgrade of sysutils/gconf-editor started at: Fri, 18 Jun 2004 04:23:10 +0200
+--->  Upgrade of sysutils/gconf-editor ended at: Fri, 18 Jun 2004 04:23:10 +0200 (consumed 00:00:00)
+--->  Upgrade of www/firefox started at: Fri, 18 Jun 2004 04:23:10 +0200
+--->  Upgrade of www/firefox ended at: Fri, 18 Jun 2004 04:23:10 +0200 (consumed 00:00:00)
+--->  Upgrade of www/libgtkhtml started at: Fri, 18 Jun 2004 04:23:11 +0200
+--->  Upgrade of www/libgtkhtml ended at: Fri, 18 Jun 2004 04:23:11 +0200 (consumed 00:00:00)
+--->  Upgrade of graphics/gpdf started at: Fri, 18 Jun 2004 04:23:13 +0200
+--->  Upgrade of graphics/gpdf ended at: Fri, 18 Jun 2004 04:23:13 +0200 (consumed 00:00:00)
+--->  Upgrade of math/gcalctool started at: Fri, 18 Jun 2004 04:23:13 +0200
+--->  Upgrade of math/gcalctool ended at: Fri, 18 Jun 2004 04:23:13 +0200 (consumed 00:00:00)
+--->  Upgrade of multimedia/gstreamer started at: Fri, 18 Jun 2004 04:23:14 +0200
+--->  Upgrade of multimedia/gstreamer ended at: Fri, 18 Jun 2004 04:23:14 +0200 (consumed 00:00:00)
+--->  Upgrade of x11/gnomesession started at: Fri, 18 Jun 2004 04:23:15 +0200
+--->  Upgrade of x11/gnomesession ended at: Fri, 18 Jun 2004 04:23:15 +0200 (consumed 00:00:00)
+--->  Upgrade of x11-themes/gnome-themes started at: Fri, 18 Jun 2004 04:23:17 +0200
+--->  Upgrade of x11-themes/gnome-themes ended at: Fri, 18 Jun 2004 04:23:17 +0200 (consumed 00:00:00)
+--->  Upgrade of multimedia/gstreamer-plugins started at: Fri, 18 Jun 2004 04:23:17 +0200
+--->  Upgrade of multimedia/gstreamer-plugins ended at: Fri, 18 Jun 2004 04:23:17 +0200 (consumed 00:00:00)
+--->  Upgrade of x11/gdm2 started at: Fri, 18 Jun 2004 04:23:18 +0200
+--->  Upgrade of x11/gdm2 ended at: Fri, 18 Jun 2004 04:23:18 +0200 (consumed 00:00:00)
+--->  Upgrade of x11/gnomedesktop started at: Fri, 18 Jun 2004 04:23:19 +0200
+--->  Upgrade of x11/gnomedesktop ended at: Fri, 18 Jun 2004 04:23:19 +0200 (consumed 00:00:00)
+--->  Upgrade of x11/gnomepanel started at: Fri, 18 Jun 2004 04:23:20 +0200
+--->  Upgrade of x11/gnomepanel ended at: Fri, 18 Jun 2004 04:23:20 +0200 (consumed 00:00:00)
+--->  Upgrade of x11/gnomeapplets2 started at: Fri, 18 Jun 2004 04:23:20 +0200
+--->  Upgrade of x11/gnomeapplets2 ended at: Fri, 18 Jun 2004 04:23:20 +0200 (consumed 00:00:00)
+--->  Upgrade of audio/gnomemedia2 started at: Fri, 18 Jun 2004 04:23:22 +0200
+--->  Upgrade of audio/gnomemedia2 ended at: Fri, 18 Jun 2004 04:23:22 +0200 (consumed 00:00:00)
+--->  Upgrade of net/gnomenetstatus started at: Fri, 18 Jun 2004 04:23:22 +0200
+--->  Upgrade of net/gnomenetstatus ended at: Fri, 18 Jun 2004 04:23:22 +0200 (consumed 00:00:00)
+--->  Upgrade of x11-fm/nautilus2 started at: Fri, 18 Jun 2004 04:23:23 +0200
+--->  Upgrade of x11-fm/nautilus2 ended at: Fri, 18 Jun 2004 04:23:23 +0200 (consumed 00:00:00)
+--->  Upgrade of www/epiphany started at: Fri, 18 Jun 2004 04:23:25 +0200
+--->  Upgrade of www/epiphany ended at: Fri, 18 Jun 2004 04:23:25 +0200 (consumed 00:00:00)
+--->  Upgrade of multimedia/nautilus-media started at: Fri, 18 Jun 2004 04:23:25 +0200
+--->  Upgrade of multimedia/nautilus-media ended at: Fri, 18 Jun 2004 04:23:25 +0200 (consumed 00:00:00)
+--->  Upgrade of sysutils/gnomecontrolcenter2 started at: Fri, 18 Jun 2004 04:23:26 +0200
+--->  Upgrade of sysutils/gnomecontrolcenter2 ended at: Fri, 18 Jun 2004 04:23:26 +0200 (consumed 00:00:00)
+--->  Listing the results (+:done / -:ignored / *:skipped / !:failed)
+	+ math/libgmp4 (libgmp-4.1.2_3)
+	+ net/p5-URI (p5-URI-1.30)
+	+ www/apache13 (apache-1.3.31)
+	+ security/clamav (clamav-0.70_1)
+	+ net-mgmt/mrtg (mrtg-2.10.13,1)
+	+ editors/vim (vim-6.2.531)
+	+ print/ghostscript-gnu (ghostscript-gnu-7.07_6)
+	+ accessibility/gnomespeech (gnomespeech-0.3.2)
+	+ x11-toolkits/gtk20 (gtk-2.4.2)
+	+ accessibility/gail (gail-1.6.5)
+	+ x11-toolkits/libwnck (libwnck-2.6.1)
+	+ devel/gconf2 (gconf2-2.6.1)
+	+ sysutils/gconf-editor (gconf-editor-2.6.1,1)
+	+ www/firefox (firefox-0.8_5)
+	+ www/libgtkhtml (libgtkhtml-2.6.1)
+	+ graphics/gpdf (gpdf-0.131)
+	+ math/gcalctool (gcalctool-4.3.51_1)
+	+ multimedia/gstreamer (gstreamer-0.8.1)
+	+ x11/gnomesession (gnomesession-2.6.1_1)
+	+ x11-themes/gnome-themes (gnome-themes-2.6.1)
+	+ multimedia/gstreamer-plugins (gstreamer-plugins-0.8.1_1)
+	+ x11/gdm2 (gdm2-2.6.0.2)
+	+ x11/gnomedesktop (gnomedesktop-2.6.1)
+	+ x11/gnomepanel (gnomepanel-2.6.1)
+	+ x11/gnomeapplets2 (gnomeapplets2-2.6.1)
+	+ audio/gnomemedia2 (gnomemedia2-2.6.2)
+	+ net/gnomenetstatus (gnomenetstatus-2.6.1)
+	+ x11-fm/nautilus2 (nautilus2-2.6.2)
+	+ www/epiphany (epiphany-1.2.5)
+	+ multimedia/nautilus-media (nautilus-media-0.8.0_1)
+	+ sysutils/gnomecontrolcenter2 (gnomecontrolcenter2-2.6.1)
+--->  Session ended at: Fri, 18 Jun 2004 04:23:29 +0200 (consumed 00:01:16)
+
+-- End of daily output --

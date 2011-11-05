@@ -1,0 +1,16 @@
+REcompiling kernel is easy but you have to recompile all kernel dependencies:
+
+slmodem
+ipw2200
+ieee80211
+sony_acpi
+snd-bt-sco
+qc-usb
+zd1211 (the zd1201 driver made it into the kernel)
+
+ANY OTHER stuff...
+
+cd /lib/modules
+cd 2.6.12-gentoo-r9/ ; ls -R > ../2.6.12-r9 ; cd .. ; cd 2.6.12-gentoo-r10/ ;
+ls -R > ../2.6.12-r10 ; cd .. ; diff -u 2.6.12-r9 2.6.12-r10 |less
+rm 2.6.12-r9 2.6.12-r10

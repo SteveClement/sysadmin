@@ -1,0 +1,34 @@
+*Received: (qmail 13985 invoked by uid 98); 18 Jun 2004 01:55:25 -0000
+Received: from root@linion.ion.lu by zinc.ion.lu by uid 82 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.72. spamassassin: 2.63.  Clear:RC:0(80.90.47.168):SA:0(0.3/5.0):. 
+ Processed in 10.168993 secs); 18 Jun 2004 01:55:25 -0000
+X-Spam-Status: No, hits=0.3 required=5.0
+X-Antivirus-ion.lu-Mail-From: root@linion.ion.lu via zinc.ion.lu
+X-Antivirus-ion.lu: 1.22-st-qms (Clear:RC:0(80.90.47.168):SA:0(0.3/5.0):. Processed in 10.168993 secs Process 13977)
+Received: from unknown (HELO linion.ion.lu) (80.90.47.168)
+  by zinc.ion.lu with SMTP; 18 Jun 2004 01:55:15 -0000
+Received: (qmail 29134 invoked by alias); 18 Jun 2004 01:01:27 -0000
+Delivered-To: root@linion.ion.lu
+Received: (qmail 29112 invoked by uid 0); 18 Jun 2004 01:01:27 -0000
+Date: 18 Jun 2004 01:01:27 -0000
+Message-ID: <20040618010127.29095.qmail@linion.ion.lu>
+From: root@linion.ion.lu
+To: root@linion.ion.lu
+Subject: linion.ion.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+linion.ion.lu ipfw denied packets:
+
+linion.ion.lu login failures:
+
+linion.ion.lu refused connections:
+
+-- End of security output --

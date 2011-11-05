@@ -1,0 +1,22 @@
+On FreeBSD 4.3 and later you need to follow "Procedure 2. Building a kernel the ``new'' way" from http://www2.ua.freebsd.org/handbook/kernelconfig-building.html if the source tree has changed at all.
+
+Well, this is true but the old style kernel build is still valid e.g:
+
+cd /usr/src/sys/i386/conf/
+config KERNELCONFIGHOSTNAME
+cd ../../compile/KERNELCONFIGHOSTNAME
+make depend && make && make install
+
+Make sure your config is up-to-date and in Sync.
+If you pulled or updated the CVS tree for the kernel you better compile config first otherwise weird core dumps haunt you:
+
+cd /usr/src/usr.sbin/config
+make && make install
+
+This is indeed easier and the new way:
+
+cd /usr/src
+make buildkernel KERNCONF=TOBERMORY
+make installkernel KERNCONF=TOBERMORY
+
+In FreeBSD 4.2 and older you must replace KERNCONF= with KERNEL=. 

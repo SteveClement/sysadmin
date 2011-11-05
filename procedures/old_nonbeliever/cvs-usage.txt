@@ -1,0 +1,26 @@
+For all GUI People there is a rather good Linux CVS Client called lincvs that
+seems functional.
+
+To add a directory to CVS you don't need to commit.
+ mkdir mynewdir
+ cvs add mynewdir
+and it's in.
+
+To add a new file to CVS you 1. Create the file 2. Add the file 3. Commit the file.
+
+ vi cvs-usage.txt
+  [BLA bla bLa]
+ cvs add cvs-usage.txt
+ cvs commit
+add your description for this commit and done.
+
+To remove stuff from the Repo you need to (re)move it first from your local tree otherwise you'll get:
+cvs remove: file `cvs-usage.txt' still in working directory
+cvs remove: 1 file exists; remove it first
+
+So do what the man says :)
+
+ATTENTION CLASS:
+================
+
+If you want to copy a directory for templating purposes make sure you either dont copy the CVS directories or REMOVE them afterwards otherwise you end up with one big fucking mess...

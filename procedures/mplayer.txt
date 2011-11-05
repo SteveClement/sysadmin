@@ -1,0 +1,3 @@
+To put down the volume on the command line using the software equalizer do:
+
+mplayer -af volume=-20 *.mpg

@@ -1,0 +1,101 @@
+To poll battery status in an FreeBSD acpi enabled system you have 2 easy ways.
+
+acpiconf -i batt
+
+steve@laptop-steve steve $ acpiconf -i batt
+Design capacity:        25630 mWh
+Last full capacity:     23122 mWh
+Technology:             secondary (rechargeable)
+Design voltage:         11100 mV
+Capacity (warn):        2563 mWh
+Capacity (low):         1276 mWh
+Low/warn granularity:   253 mWh
+Warn/full granularity:  253 mWh
+Model number:
+Serial number:
+Type:
+OEM info:
+State:                  discharging
+Remaining capacity:     64%
+Remaining time:         0:58
+Present rate:           15389 mW
+Voltage:                11103 mV
+
+Tells you a lot about the current state of affairs.
+
+OR you do a sysctl on a specific item
+
+sysctl hw.acpi.battery.time
+
+A quick grep through the sysctl output reveals all the info you can grab in 2
+strokes
+
+steve@laptop-steve steve $ sysctl -a |grep batter
+hw.acpi.battery.life: 63
+hw.acpi.battery.time: 58
+hw.acpi.battery.state: 1
+hw.acpi.battery.units: 1
+hw.acpi.battery.info_expire: 5
+dev.battery.0.%desc: ACPI Control Method Battery
+dev.battery.0.%driver: battery
+dev.battery.0.%location: handle=\_SB_.PCI0.BAT0
+dev.battery.0.%pnpinfo: _HID=PNP0C0A _UID=0
+dev.battery.0.%parent: acpi0
+
+obviously the sysct output is easier to implement into battery reminders...
+
+Displaying the remaining battery life via osd_cat once below a certain
+threshold
+
+sysctl hw.acpi.battery.time |osd_cat -p middle -A center -c yellow -f -misc-fixed-medium-r-semicondensed--*-*-*-*-c-*-*-*
+
+
+you can include this script into a crontab, e.g:
+
+5 * * * * /usr/local/bin/battery.sh
+
+while [ true ]; do
+
+batt_level=`sysctl hw.acpi.battery.time |cut -f 2 -d:`
+batt_state=`sysctl hw.acpi.battery.state |cut -f 2 -d:`
+
+if [ "${batt_state}" -eq "1" ]; then
+	echo "Battery time remaining:`sysctl hw.acpi.battery.time |cut -f 2 -d:` minutes" |osd_cat -p middle -A right -o 1 -c red -f lucidasanstypewriter-24 -d 7
+fi
+
+if [ "${batt_level}" -lt "10" ]; then
+ offset=$[${offset}+1]
+ for color in `echo "white yellow red black red"`; do
+ 	mplayer -msglevel all=-1 -really-quiet -quiet /tmp/batterie-critical1.ogg > /dev/null
+	echo "Battery time remaining:`sysctl hw.acpi.battery.time |cut -f 2 -d:` minutes" |osd_cat -p middle -A left -o ${offset} -c white -f lucidasanstypewriter-24 -d 1
+ done
+#else
+ #echo "Sleeping 900 Seconds" ; sleep 900
+ #echo "Battery time remaining:`sysctl hw.acpi.battery.time |cut -f 2 -d:` minutes" |osd_cat -p middle -A left -o ${offset} -c ${color} -f lucidasanstypewriter-24 -d 10 &
+ #sleep 1
+ #mplayer -msglevel all=-1 -really-quiet -quiet /tmp/batterie-empty1.ogg > /dev/null
+fi
+
+done
+
+Asus W5F battery indicator starts flashing at less than:
+
+Design capacity:25630 mWh
+Last full capacity:23122 mWh
+Technology:secondary (rechargeable)
+Design voltage:11100 mV
+Capacity (warn):2563 mWh
+Capacity (low):1276 mWh
+Low/warn granularity:253 mWh
+Warn/full granularity:253 mWh
+Model number:
+Serial number:
+Type:
+OEM info:
+State:critical discharging
+Remaining capacity:9%
+Remaining time:0:08
+Present rate:16863 mW
+Voltage:10316 mV
+
+

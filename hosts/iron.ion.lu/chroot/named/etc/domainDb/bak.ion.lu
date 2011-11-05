@@ -1,0 +1,63 @@
+$ORIGIN .
+$TTL 86400	; 1 day
+ion.lu			IN SOA	ns4.ion.lu. steve.ion.lu. (
+				52         ; serial
+				43200      ; refresh (12 hours)
+				3600       ; retry (1 hour)
+				900000     ; expire (1 week 3 days 10 hours)
+				86400      ; minimum (1 day)
+				)
+			NS	ns1.ion.lu.
+			NS	ns4.ion.lu.
+			A	80.90.47.162
+			MX	30 mail.ion.lu.
+$ORIGIN ion.lu.
+alebion			A	80.90.47.162
+australien		CNAME	www
+belion			A	80.90.47.167
+contacts		A	80.90.47.162
+dav			A	213.129.72.10
+dellirium		A	192.168.0.102
+dellirium-wlan		A	10.10.0.102
+dev			CNAME	www
+dns			CNAME	ion.lu.
+dubnium			A	80.90.47.164
+friends			CNAME	www
+headquarter		A	192.168.0.254
+headquarter-wlan	A	10.10.0.254
+helium			A	192.168.0.10
+imap			CNAME	zinc
+ion03			A	192.168.0.100
+iron			A	213.129.72.10
+jornabsd		A	192.168.120.16
+kierbiischt		A	80.90.47.163
+kiss			A	192.168.1.254
+localhost		A	127.0.0.1
+macium			A	192.168.0.101
+			A	192.168.1.253
+macium-wlan		A	10.10.0.101
+mail			CNAME	zinc
+meegs			CNAME	www
+neon			A	192.168.0.11
+ns1			A	213.129.72.10
+ns2			A	213.129.72.11
+ns3			A	212.24.214.42
+ns4			A	80.90.47.163
+oberon			A	80.90.47.166
+paulus			NS	ns1
+			NS	ns4
+proxy			A	192.168.0.254
+putty			CNAME	ion.lu.
+ruthenium-inet		CNAME	www.somehost.lu
+ruthenmium		A	192.168.0.1
+smtp			CNAME	zinc
+support			NS	ns1
+			NS	ns4
+terbium			A	192.168.0.12
+vpn			NS	ns1
+			NS	ns4
+webmail			CNAME	zinc
+webmail2		CNAME	zinc
+www			A	80.90.47.162
+xenon			A	80.90.47.162
+zinc			A	80.90.47.165

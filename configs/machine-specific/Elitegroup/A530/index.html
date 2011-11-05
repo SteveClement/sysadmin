@@ -1,0 +1,226 @@
+<html>
+<head>
+<title>Linux on ECS A530</title>
+</head>
+<body>
+<h2>Linux on ECS A530</h2>
+Manufacturer site: <a href="http://www.ecs.com.tw/products/a530.htm">here</a>
+<br>
+Relevant site: <a href="http://islay.dyndns.org/droopy/A530.html">here</a>
+<br>
+<br>
+Spec:<ul>
+<li>CPU: <a href="http://www.transmeta.com/">Transmeta&trade;</a> Crusoe&trade; TM5600 stepping 03
+<li>VGA: <a href="http://www.sis.com/">SiS</a> 315 PRO, 15-pin female D-connector and S-Video TV out
+<li>Display: 14.1" XGA+ TFT, 1024x768; 24bpp using sis driver, 16bpp using vesa
+<li>Ethernet: Realtek Semiconductor RTL-8139/8139C/8139C+ (rev 10)
+<li>Sound: ALi Corporation M5451 PCI
+<li>WiFi: AirVast Taiwan IEEE 802.11b PRISM3 USB
+<li>Modem: ALi Corporation Intel 537 [M5457 AC-Link Modem]; PCI ID 10B9:5457 subsystem 0F22:1019; FCC ID ECSM503BAM303W
+<li>ACPI: v1.0b 
+<li>USB: v2.0, 4 ports
+<li>Pointing device: Synaptics TouchPad, 4-way scrolling
+<li>RAM: 128MB
+<li>Harddisk: Fujitsu MHS2020AT E rev 8004, 20GB
+<li>CD-ROM: QSI CD-ROM SCR-242 rev CHAA, 24x
+</ul>
+<br><br>
+<h3><center><b>IMPORTANT</b></center>
+My disk was just crashed. I suspect overheating problem is the culprit. Situation was like this: 
+The notebook was used to play several movies using mplayer, while sitting over my bed.
+(Very bad move: no air flow below notebook). I think it was running overheated for around
+one hour. (FYI, I live in a rather cool part of Indonesia, but not cool enough for PC; 
+average temperature is around 20-28 C). <font color="ff0000">So, please activate your temperature monitor
+and watch it closely.</font> I used to <b>force</b> my box run while its CPU temp around 65-85 C,
+then reduce CPU frequency using <font color="7f00ff">longrun -s 0 33</font> if temp stays over 85.</h2>
+<br><br>
+
+I install Debian GNU/Linux Sid on it:<ul>
+<li>kernel: <a href="kernel-image-2.4.22-ecs7_10.00.Custom_i386.deb">self-compile 2.4.22</a>, SiS patch: <a href="http://www.winischhofer.net/sis/sisfb_src_181003-1.tar.gz">sisfb_src_181003-1.tar.gz</a>; 
+	<a href="config-2.4.22-ecs7">config-2.4.22-ecs7</a>; kernel 2.4.23 was tested, but <b>poweroff</b> failed to
+	turn power off again despite of some tweaks I did which worked for 2.4.22; same problem with 2.4.24
+<li>vga: xserver-xfree86 4.2.1-13, 
+SiS patch: <a href="http://www.winischhofer.net/sis/sis_drv.o_4.2.1_gcc2_031103-1.tar.gz">sis_drv.o_4.2.1_gcc2_031103-1.tar.gz</a>; 
+<a href="XF86Config-4-sis">XF86Config-4 (sis)</a>, <a href="XF86Config-4-vesa">XF86Config-4 (vesa)</a>
+<li>ethernet: use <b>8139too</b> kernel module
+<li>sound: use <b>trident</b> kernel module, but doesn't have proper volume support :(<br>
+Brian Hinz gave me a must-try tip which will enable volume control:<br>
+<i>However cmedia has drivers & source
+code that work just fine available on their website:
+http://www.cmedia.com.tw/driver/Linux/Ac97/cmaudio-041.tar.gz
+The only other setting in your kernel config should be CONFIG_SOUND=y, the
+rest of the sound modules should be left out.</i>
+<li>wifi: <a href="ftp://ftp.linux-wlan.org/pub/linux-wlan-ng/linux-wlan-ng-0.2.1-pre14.tar.gz">linux-wlan-ng-0.2.1-pre14.tar.gz</a><br>
+    then <b>hotplug</b> will enable WiFi properly
+<li>acpi: thermal processor fan button ac <ul>
+	<li>power button event detected and handled properly
+	<li>lid switch event detected, but not handled correctly yet
+	<li>processor support longrun feature, install <b>longrun</b> v0.9
+	<li>processor throttle setting experiment: 8 throttle states, it works!<br>
+	<b>echo -n 0..7 > /proc/acpi/processor/CPU1/throttling</b><br>
+	... and watch its effect. I tested using <a href="http://www.distributed.net/">dnetc</a> client benchmark while running XMMS, when I set throtting level to 5 or more, xmms will starts to choke when dnetc benchmark is being run
+	<li>processor limit setting experiment (I have to read docs about this later)<br>
+	<b>echo -n X:Y > /proc/acpi/processor/CPU1/limit</b><br>
+	... catting back that proc entry showed change in active limit and user limit, both changed to the same values
+	as inputted, didn't test the real effect yet though ...
+	</ul>
+<li>usb: needs 3 kernel USB-host drivers: <b>ehci_hdc</b>, <b>usb-ohci</b>, and <b>usb-uhci</b>
+<li>pointing device: works flawlessly, you can tap on touchpad to do click or double-click, but 
+    of course you have to use the button to do a right-click :( ; only the 4-direction button 
+    function not tested yet<br>
+    Thorsten Becker gave me his tip regarding this:<br>
+<i>You need the Synaptics Driver Maintained by Peter ?sterlund:
+http://w1.894.telia.com/~u89404340/touchpad/index.html
+
+I succeeded with Version 0.12.3 (actually the first Version I tried), followed the install-instructions and it worked. I only had to add the
++following configuration Section in the XF86Config-File:
+<pre>
+Section "InputDevice"
+        Identifier  "Mouse0"
+        Driver      "synaptics"
+        Option      "Protocol" "auto-dev"
+        Option        "RightEdge"     "5400"
+        Option        "TopEdge"       "1900"
+        Option        "BottomEdge"    "4000"
+        Option        "FingerLow"     "25"
+        Option        "FingerHigh"    "30"
+        Option        "MaxTapTime"    "180"
+        Option        "MaxTapMove"    "220"
+        Option        "VertScrollDelta" "100"
+        Option        "MinSpeed"      "0.02"
+        Option        "MaxSpeed"      "0.18"
+        Option        "AccelFactor" "0.0010"
+        Option        "SHMConfig"     "on"
+	Option      "ZAxis Mapping" "4 5 6 7"
+EndSection</pre></i>
+<li><a href="dmesg-2.4.22-ecs3">dmesg</a>, <a href="lspci-v">lspci -v</a>, <a href="lspci-nv">lspci -nv</a>, <a href="lsusb">lsusb</a>, <a href="lsusb-v">lsusb -v</a>, <a href="lsmod">lsmod</a>
+<li>thermal sensor: needs i2c-source and lm-sensors-source packages; <b>sensors-detect</b> run told me to add <b>i2c-ali1535</b> and <b>adm1021</b> into /etc/modules,
+    afterward <b>gkrellm</b> can be configured to show two new parameters: board temperature and CPU temperature!. BTW, those two source packages will put a .gz file in /usr/src.
+    You need to tar xfz it, which will extract to /usr/src/module/pkgname. Then go to your kernel-source root directory, run <b>make-kpkg --rootcmd=fakeroot modules-image</b>
+<li>poweroff: to be able to power off properly using kernel-2.4.22, I move <b>/sbin/poweroff</b> 
+    to <b>/usr/local/sbin/poweroff</b> (it must keep its name, because it is a symlink to 
+    <b>/sbin/halt</b>, and the application will run <b>halt -p</b> if it detects that 
+    it was called via its symlink named <b>poweroff</b>), then create a script 
+    <b>/sbin/poweroff</b>, which called <b>/etc/init.d/hotplug stop</b> before 
+    <b>/usr/local/sbin/poweroff</b><br>
+But another info from Brian Hinz hopefully help us:<br>
+<i>When I moved to 2.4.23 the
+power off feature broke, regardless of whether or not I included my own
+dsdt, until I patched it with the 12032003 ACPI patch (it works fine under
+2.4.23 now):
+http://ftp.kernel.org/pub/linux/kernel/people/lenb/acpi/patches/release/2.4.23/acpi-20031203-2.4.23.diff.bz2
+</i>.
+<li>modem: must test soon<br>
+info from Windowx XP:<pre>
+HSP56 MR (ALI+)
+driver provider: PCtel
+PCI ID: vendor 10b9, device 5457, subsystem 0f221019
+AT+GMM: PCtel HSP Modem Data/Fax/Voice/Speakerphone/V.80
+ATI1: A97/C2050
+ATI3: PCtel HSP56 Modem 11.0341
+ATI4: idem AT+GMM
+ATI5: V.92</pre>
+<!--
+<ul>driver testing result:
+	<li>pctel-0.9.6.tar.gz<br>
+	you have to compile kernel using gcc-2.95 if you want to use pctel, because it contains some binary compiled using
+	gcc 2, and refused to be modprobed later if you use kernel compiled using gcc 3.<br>
+	<i>result:</i><br>
+	failed
+	<li>slmdm-2.7.14.tar.gz (latest official (supported) driver from <a href="http://www.smartlink.com/">SmartLink</a><br>
+	this package generates slamrmo.o, slmdm.o (there are also slusb.o and slfax.o, but unused for my purpose); 
+	device to use is /dev/ttySL0<br>
+	<i>result:</i><br>
+	driver loaded, but access to /dev/ttySL0 (via <b>pppconfig</b>, <b>minicom</b>) will hang up the machine on some point :(
+	<li>slmodem-2.9.3.tar.gz (latest unofficial driver from SmartLink)<br>
+	this package generates slamr.o (there is also slusb.o for USB modem, irrelevant to my ECS)<br>
+	<i>result:</i><br>
+	driver failed to load
+</ul>
+An A-530 owner told me that he tried to use slmodem driver, but failed with NO CARRIER message. 
+He is luckier than me, because the best thing I got is machine lockup after apparent success
+on loading driver.<p>
+Seems that lspci and ATIn results above leads to nowhere. On the other hand, Googling
+for FCC ID ECSM503BAM303W give no results also. Well, I tried to use board from my older
+laptop (Compaq Presario 12XL205, Conexant winmodem, which was worked), also failed. Maybe
+I need more time and patience.
+-->
+A very promising tip from Brian Hinz (again!):<br>
+<i>The modem is fully functional if you use the version 2.7.10 of the SmartLink
+driver AND make sure that you do not compile serial port support into your
+kernel, either statically or as a module.  There is no serial port on this
+machine but for some reason the serial port module will bind to the modem
+and prevent it from working.  Versions of slmdm &gt; 2.7.10 do not seem to work
+either. The driver can be downloaded at:
+http://linmodems.technion.ac.il/packages/smartlink/slmdm-2.7.10.tar.gz</i>
+<li>kernel 2.6.0-test9: USB mouse doesn't work, I will try to tweak kernel configuration
+<li>special keys handling: use <b>xev</b> to get keycodes, 
+    then run <b>hotkeys</b> to handle those keys. Here is xev <a href="keys.txt">result</a>.
+    I configure some of those keys to run my favorite browser (Mozilla Firebird), and MUA
+    (Mutt). Here is hotkeys <a href="ecs.def">specific configuration</a> and 
+    <a href="hotkeys.conf">hotkeys.conf</a>. Note: brightness control keys, Fn+F7 for up 
+    and Fn+F8 for down, are handled properly by BIOS(?) even when Linux is running, and <b>xev</b> 
+    doesn't detect those events.
+<li>Not ECS A-530 specific, but one of a few things I try first time using this cute box:<br>
+    <ul>
+    <li>Cablemodem connection: (a) Ethernet: simple, just setup dhcp client and make a proper
+        configuration on /etc/network/interfaces. (b) USB: also simple, hotplug will detect
+	a <b>CDCEther</b> compliant device, just add an <b>iface eth1 inet dhcp</b> line onto
+	/etc/network/interfaces.
+    <li>GPRS via USB/serial or USB/infrared adapter. Good & bad news. Using Mobile Action MA-620
+    infrared to USB adapter, kernel panic on <b>irattach</b>. But using MA-8910P SonyEricsson to
+    USB adapter, at last I can test GPRS on Linux successfully.
+    </ul>
+<li>Harddisk: install and configure <b>smartmontools</b>. Lesson learned from hard disk
+    crash in office's server: activate S.M.A.R.T and related Linux daemon/utilities, 
+    it will warn you in advance about hard disk problem. Hopefully you will be able 
+    to do backup before real problem appears.
+</ul>
+<br><br>
+
+Todo (unsorted):
+<ul>
+<li>try Brian Hinz tips on modem, need to recompile kernel
+<li>test microphone, what application to record sound?
+<li>screenshots? who needs screenshots? ;)
+<li>try doing display toggle (LCD, LCD+external, external) from Fn+F12 using <b>hotkeys</b> and
+	<a href="http://www.winischhoffer.net/linuxsisvga.shtml">sisctrl</a>
+<li>lid switch event handling: how do you trigger a sleep? 
+	<b>echo -n 1 > /proc/acpi/sleep</b> seems do, 
+	but I don't know how to wake up :(
+<li>find another wifi-equipped notebook, setup an ad-hoc network
+<li>testing software suspend after doing full backup
+<li>kernel 2.6.x
+<li>Learn to write Linux driver for a USB webcam, maybe if I have spare time and gut ...
+</ul>
+<br><br>
+
+
+Quirks:
+<ul>
+<li>no battery level interface, but battery has internal buzzer which will beeps when power is almost depleted
+<li><b>Ins</b> key is on the left side of space bar, right beside <b>Alt</b>. I press the wrong key everytime :(
+</ul>
+<br><br>
+
+Miscellaneous, updates:
+<ul>
+<li>Nov 11, 2003: Recompile kernel to support IrDA for handphone connectivity. Actually, I have two connection
+                  options (due to hardware availability): IrDA or serial, both over USB. Then I will test
+		  GPRS link using Sony Ericsson T310, Ericsson T39 or Siemens ME45.
+<li>Nov 11, 2003: My link submission to <a href="http://tuxmobil.org/ecs.html">TuxMobil</a> was accepted.
+<li>Nov 13, 2003: wmlongrun and gkrellm
+<li>Nov 16, 2003: various ACPI aspects
+<li>Dec 15, 2003: My link submission to <a href="http://www.linux-laptop.net/ecs.html">Linux on Laptops</a> was accepted.
+<li>Dec 19, 2003: kernel 2.4.23
+<li>Dec 22, 2003: modem testing, still failed :(
+<li>Dec 27, 2003: special keys worked! thanks to Francois Galea
+<li>Jan 15, 2004: wifi works!
+<li>Feb 3, 2004:  several *very* positive feedbacks: sound, poweroff, modem, synaptics, thanks to Brian Hinz and Thorsten Becker.
+</ul>
+
+<hr>
+discuss your experience using this box with me via andika at research dot indocisc dot com<br>
+<i>start hacking: Nov 4th, 2003; revision $Id: index.html,v 1.1 2004/07/22 09:54:53 steve Exp $</i>
+</body>
+</html>

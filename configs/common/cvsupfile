@@ -1,0 +1,9 @@
+*default  host=cvsup.fr.FreeBSD.org
+*default  base=/usr/local/etc/cvsup
+*default  prefix=/usr
+*default  release=cvs
+*default  tag=none
+*default  delete use-rel-suffix
+
+*default tag=.
+ports-all

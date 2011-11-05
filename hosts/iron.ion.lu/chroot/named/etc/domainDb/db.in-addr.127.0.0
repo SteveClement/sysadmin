@@ -1,0 +1,4 @@
+$TTL 3600
+@ IN SOA localhost. root.localhost. (1 3600 1800 604800 3600)
+     NS localhost.
+1 IN PTR localhost.

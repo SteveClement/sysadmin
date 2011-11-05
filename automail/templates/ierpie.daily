@@ -1,0 +1,587 @@
+*Received: (qmail 25964 invoked by uid 89); 4 Sep 2007 07:43:47 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 4 Sep 2007 07:43:47 +0200
+Received: (qmail 8184 invoked by uid 98); 4 Sep 2007 07:26:56 +0200
+Received: from 158.64.110.102 by radium.ion.lu (envelope-from <root@ierpie.ion.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(158.64.110.102):SA:0(1.6/7.0):. 
+ Processed in 5.99152 secs); 04 Sep 2007 05:26:56 -0000
+X-Spam-Status: No, score=1.6 required=7.0
+X-Spam-Level: +
+Received: from ppp-110-102.adsl.restena.lu (HELO ierpie.ion.lu) (158.64.110.102)
+  by radium.ion.lu with SMTP; 4 Sep 2007 07:26:50 +0200
+Received-SPF: none (radium.ion.lu: domain at ierpie.ion.lu does not designate permitted sender hosts)
+Received: (qmail 21420 invoked by alias); 4 Sep 2007 08:31:08 +0200
+Delivered-To: root@ierpie.ion.lu
+Received: (qmail 21417 invoked by uid 0); 4 Sep 2007 08:31:08 +0200
+Date: 4 Sep 2007 08:31:08 +0200
+Message-ID: <20070904063108.21415.qmail@ierpie.ion.lu>
+From: root@ierpie.ion.lu
+To: root@ierpie.ion.lu
+Subject: ierpie.ion.lu daily run output
+
+
+Removing stale files from /var/preserve:
+
+Cleaning out old system announcements:
+
+Removing stale files from /var/rwho:
+
+Backup passwd and group files:
+
+Verifying group file syntax:
+
+Backing up mail aliases:
+
+Disk status:
+Filesystem  1K-blocks    Used    Avail Capacity  Mounted on
+/dev/ar0s1a  73653320 2849838 64911218     4%    /
+devfs               1       1        0   100%    /dev
+
+Last dump(s) done (Dump '>' file systems):
+
+Network interface status:
+Name    Mtu Network       Address              Ipkts Ierrs    Opkts Oerrs  Coll
+bge0   1500 <Link#1>      00:30:05:97:c3:93    22464     0    15703     0     0
+bge0   1500 192.168.33    192.168.33.9         19365     -    14654     -     -
+bge0   1500 fe80:1::230:5 fe80:1::230:5ff:f        0     -        4     -     -
+plip0  1500 <Link#2>                               0     0        0     0     0
+lo0   16384 <Link#3>                               9     0        9     0     0
+lo0   16384 your-net      localhost                0     -        0     -     -
+lo0   16384 localhost     ::1                      0     -        0     -     -
+lo0   16384 fe80:3::1     fe80:3::1                0     -        0     -     -
+
+Local system status:
+ 3:01AM  up 4 days, 18:25, 0 users, load averages: 0.00, 0.00, 0.00
+
+Mail in local queue:
+
+Mail in submit queue:
+
+Security check:
+    (output mailed separately)
+
+Checking for rejected mail hosts:
+
+Checking for denied zone transfers (AXFR and IXFR):
+
+Running /etc/daily.local:
+files/6edd736e414c87821dc4674b7770e360125900870376af6eddd8fe8ce50a6d5b.gz: No such file or directory
+Removing old files and directories... done.
+Extracting new files:
+Building new INDEX files... /usr/local/portsnap/files/2bafbd0d8edc7a7cfa7e19833986ae4032f82006fd0d65cba9c4a75b432b5c8e.gz: No such file or directory
+Segmentation fault (core dumped)
+Parsing supfile "/etc/cvsupfile-5_4"
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 03:43:58
+Retrying
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 03:54:22
+Retrying
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 04:15:29
+Retrying
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 04:54:23
+Retrying
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 06:09:48
+Retrying
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 08:08:59
+Retrying
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Server software version: SNAP_16_1h
+Negotiating file attribute support
+Exchanging collection information
+Establishing multiplexed-mode data connection
+Running
+Updating collection src-all/cvs
+Shutting down connection to server
+Finished successfully
+>>> WARNING
+>>> Executing updatedb as root.  This WILL reveal all filenames
+>>> on your machine to all login users, which is a security risk.
+cd: can't cd to /usr/ports/sysutils/portupgrade
+[Updating the portsdb <format:dbm_hash> in /usr/ports ... - 0 port entries found  fgrep: /usr/ports/Makefile: No such file or directory
+..... done]
+cd: can't cd to /usr/ports/databases/adodb
+cd: can't cd to /usr/ports/www/analog
+cd: can't cd to /usr/ports/www/apache13
+cd: can't cd to /usr/ports/devel/autoconf253
+cd: can't cd to /usr/ports/devel/autoconf259
+cd: can't cd to /usr/ports/devel/automake15
+cd: can't cd to /usr/ports/devel/automake19
+cd: can't cd to /usr/ports/shells/bash2
+cd: can't cd to /usr/ports/devel/bison
+cd: can't cd to /usr/ports/x11-fonts/bitstream-vera
+cd: can't cd to /usr/ports/misc/bsdiff
+cd: can't cd to /usr/ports/ftp/curl
+cd: can't cd to /usr/ports/net/cvsup-without-gui
+cd: can't cd to /usr/ports/sysutils/daemontools
+cd: can't cd to /usr/ports/www/dansguardian
+cd: can't cd to /usr/ports/databases/db4
+cd: can't cd to /usr/ports/textproc/docbook
+cd: can't cd to /usr/ports/textproc/docbook-241
+cd: can't cd to /usr/ports/textproc/docbook-300
+cd: can't cd to /usr/ports/textproc/docbook-310
+cd: can't cd to /usr/ports/textproc/docbook-400
+cd: can't cd to /usr/ports/textproc/docbook-410
+cd: can't cd to /usr/ports/textproc/docbook-xml
+cd: can't cd to /usr/ports/textproc/expat2
+cd: can't cd to /usr/ports/lang/ezm3
+cd: can't cd to /usr/ports/x11-fonts/fontconfig
+cd: can't cd to /usr/ports/sysutils/freebsd-sha256
+cd: can't cd to /usr/ports/print/freetype2
+cd: can't cd to /usr/ports/security/fwanalog
+cd: can't cd to /usr/ports/graphics/gd
+cd: can't cd to /usr/ports/devel/gettext
+cd: can't cd to /usr/ports/devel/glib12
+cd: can't cd to /usr/ports/devel/gmake
+cd: can't cd to /usr/ports/security/gnupg
+cd: can't cd to /usr/ports/x11-toolkits/gtk12
+cd: can't cd to /usr/ports/misc/help2man
+cd: can't cd to /usr/ports/devel/imake-6
+cd: can't cd to /usr/ports/textproc/iso8879
+cd: can't cd to /usr/ports/mail/isoqlog
+cd: can't cd to /usr/ports/textproc/jade
+cd: can't cd to /usr/ports/graphics/jpeg
+cd: can't cd to /usr/ports/x11-fonts/libXft
+cd: can't cd to /usr/ports/converters/libiconv
+cd: can't cd to /usr/ports/devel/libtool13
+cd: can't cd to /usr/ports/devel/libtool15
+cd: can't cd to /usr/ports/textproc/libxml2
+cd: can't cd to /usr/ports/textproc/linuxdoc
+cd: can't cd to /usr/ports/www/lynx-ssl
+cd: can't cd to /usr/ports/archivers/lzo
+cd: can't cd to /usr/ports/devel/m4
+cd: can't cd to /usr/ports/misc/mime-support
+cd: can't cd to /usr/ports/net-mgmt/mrtg
+cd: can't cd to /usr/ports/mail/mutt
+cd: can't cd to /usr/ports/databases/mysql41-client
+cd: can't cd to /usr/ports/databases/mysql41-server
+cd: can't cd to /usr/ports/security/nmap
+cd: can't cd to /usr/ports/security/openvpn
+cd: can't cd to /usr/ports/net/p5-IO-INET6
+cd: can't cd to /usr/ports/devel/p5-PathTools
+cd: can't cd to /usr/ports/textproc/p5-Pod-Parser
+cd: can't cd to /usr/ports/net-mgmt/p5-SNMP_Session
+cd: can't cd to /usr/ports/lang/p5-Scalar-List-Utils
+cd: can't cd to /usr/ports/net/p5-Socket6
+cd: can't cd to /usr/ports/devel/p5-Locale-gettext
+cd: can't cd to /usr/ports/devel/pcre
+cd: can't cd to /usr/ports/lang/perl5.8
+cd: can't cd to /usr/ports/lang/php5
+cd: can't cd to /usr/ports/databases/php5-mysql
+cd: can't cd to /usr/ports/www/php5-session
+cd: can't cd to /usr/ports/devel/pkgconfig
+cd: can't cd to /usr/ports/graphics/png
+cd: can't cd to /usr/ports/sysutils/portsnap
+cd: can't cd to /usr/ports/sysutils/portupgrade
+cd: can't cd to /usr/ports/sysutils/qlogtools
+cd: can't cd to /usr/ports/mail/qmHandle
+cd: can't cd to /usr/ports/mail/qmail
+cd: can't cd to /usr/ports/mail/qmailanalog
+cd: can't cd to /usr/ports/net/rsync
+cd: can't cd to /usr/ports/lang/ruby18
+cd: can't cd to /usr/ports/databases/ruby-bdb
+cd: can't cd to /usr/ports/textproc/sgmlformat
+cd: can't cd to /usr/ports/www/squid
+cd: can't cd to /usr/ports/sysutils/ucspi-tcp
+cd: can't cd to /usr/ports/converters/unix2dos
+cd: can't cd to /usr/ports/archivers/unzip
+cd: can't cd to /usr/ports/editors/vim
+cd: can't cd to /usr/ports/ftp/wget
+cd: can't cd to /usr/ports/textproc/xmlcatmgr
+cd: can't cd to /usr/ports/x11/xorg-clients
+cd: can't cd to /usr/ports/x11/xorg-documents
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-100dpi
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-75dpi
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-cyrillic
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-encodings
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-miscbitmaps
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-truetype
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-type1
+cd: can't cd to /usr/ports/x11-servers/xorg-fontserver
+cd: can't cd to /usr/ports/x11/xorg-libraries
+cd: can't cd to /usr/ports/x11/xorg-manpages
+cd: can't cd to /usr/ports/x11-servers/xorg-nestserver
+cd: can't cd to /usr/ports/x11-servers/xorg-printserver
+cd: can't cd to /usr/ports/x11-servers/xorg-server
+cd: can't cd to /usr/ports/x11-servers/xorg-vfbserver
+cd: can't cd to /usr/ports/x11/xterm
+cd: can't cd to /usr/ports/archivers/zip
+** Port directory not found: archivers/lzo
+** Port directory not found: archivers/zip
+** Port directory not found: x11/xorg-manpages
+** Port directory not found: converters/unix2dos
+** Port directory not found: x11/xorg-documents
+** Port directory not found: x11-fonts/xorg-fonts-encodings
+** Port directory not found: archivers/unzip
+** Port directory not found: devel/pkgconfig
+** Port directory not found: misc/bsdiff
+** Port directory not found: sysutils/freebsd-sha256
+** Port directory not found: devel/libtool13
+** Port directory not found: lang/ruby18
+** Port directory not found: databases/mysql41-client
+** Port directory not found: shells/bash2
+** Port directory not found: graphics/png
+** Port directory not found: devel/pcre
+** Port directory not found: net/cvsup-without-gui
+** Port directory not found: misc/mime-support
+** Port directory not found: mail/isoqlog
+** Port directory not found: sysutils/ucspi-tcp
+** Port directory not found: converters/libiconv
+** Port directory not found: textproc/expat2
+** Port directory not found: sysutils/daemontools
+** Port directory not found: textproc/xmlcatmgr
+** Port directory not found: devel/m4
+** Port directory not found: lang/ezm3
+** Port directory not found: net/rsync
+** Port directory not found: ftp/curl
+** Port directory not found: www/lynx-ssl
+** Port directory not found: lang/perl5.8
+** Port directory not found: databases/db4
+** Port directory not found: graphics/jpeg
+** Port directory not found: devel/libtool15
+** Port directory not found: sysutils/qlogtools
+** Port directory not found: mail/qmail
+** Listing the failed packages (*:skipped / !:failed)
+--->  Skipping 'x11-fonts/xorg-fonts-cyrillic' (xorg-fonts-cyrillic-6.8.2) because a requisite package 'xorg-fonts-encodings-6.8.2' (x11-fonts/xorg-fonts-encodings) failed (specify -k to force)
+--->  Skipping 'print/freetype2' (freetype2-2.1.10_1) because a requisite package 'pkgconfig-0.17.2' (devel/pkgconfig) failed (specify -k to force)
+--->  Skipping 'sysutils/portsnap' (portsnap-0.9.4) because a requisite package 'bsdiff-4.2' (misc/bsdiff) failed (specify -k to force)
+--->  Skipping 'devel/glib12' (glib-1.2.10_11) because a requisite package 'pkgconfig-0.17.2' (devel/pkgconfig) failed (specify -k to force)
+--->  Skipping 'x11-fonts/xorg-fonts-100dpi' (xorg-fonts-100dpi-6.8.2) because a requisite package 'xorg-fonts-encodings-6.8.2' (x11-fonts/xorg-fonts-encodings) failed (specify -k to force)
+--->  Skipping 'security/nmap' (nmap-3.81) because a requisite package 'pcre-6.2' (devel/pcre) failed (specify -k to force)
+--->  Skipping 'textproc/jade' (jade-1.2.1_9) because a requisite package 'xmlcatmgr-2.2' (textproc/xmlcatmgr) failed (specify -k to force)
+--->  Skipping 'databases/mysql41-server' (mysql-server-4.1.13) because a requisite package 'mysql-client-4.1.13' (databases/mysql41-client) failed (specify -k to force)
+--->  Skipping 'security/openvpn' (openvpn-2.0_3) because a requisite package 'lzo-1.08_1,1' (archivers/lzo) failed (specify -k to force)
+--->  Skipping 'textproc/docbook-xml' (docbook-xml-4.2_1) because a requisite package 'xmlcatmgr-2.2' (textproc/xmlcatmgr) failed (specify -k to force)
+--->  Skipping 'x11-fonts/xorg-fonts-75dpi' (xorg-fonts-75dpi-6.8.2) because a requisite package 'xorg-fonts-encodings-6.8.2' (x11-fonts/xorg-fonts-encodings) failed (specify -k to force)
+--->  Skipping 'devel/autoconf253' (autoconf-2.53_3) because a requisite package 'm4-1.4.3' (devel/m4) failed (specify -k to force)
+--->  Skipping 'www/squid' (squid-2.5.10_4) because a requisite package 'perl-5.8.7' (lang/perl5.8) failed (specify -k to force)
+--->  Skipping 'net/p5-Socket6' (p5-Socket6-0.18) because a requisite package 'perl-5.8.7' (lang/perl5.8) failed (specify -k to force)
+--->  Skipping 'devel/automake15' (automake-1.5_2,1) because a requisite package 'm4-1.4.3' (devel/m4) failed (specify -k to force)
+--->  Skipping 'devel/autoconf259' (autoconf-2.59_2) because a requisite package 'm4-1.4.3' (devel/m4) failed (specify -k to force)
+--->  Skipping 'www/apache13' (apache-1.3.33_1) because a requisite package 'expat-1.95.8_3' (textproc/expat2) failed (specify -k to force)
+--->  Skipping 'net-mgmt/p5-SNMP_Session' (p5-SNMP_Session-1.07) because a requisite package 'perl-5.8.7' (lang/perl5.8) failed (specify -k to force)
+--->  Skipping 'devel/imake-6' (imake-6.8.2) because a requisite package 'perl-5.8.7' (lang/perl5.8) failed (specify -k to force)
+--->  Skipping 'www/dansguardian' (dansguardian-2.8.0.4) because a requisite package 'apache-1.3.33_1' (www/apache13) failed (specify -k to force)
+--->  Skipping 'devel/automake19' (automake-1.9.6) because a requisite package 'm4-1.4.3' (devel/m4) failed (specify -k to force)
+--->  Skipping 'lang/p5-Scalar-List-Utils' (p5-Scalar-List-Utils-1.14,1) because a requisite package 'perl-5.8.7' (lang/perl5.8) failed (specify -k to force)
+--->  Skipping 'devel/p5-PathTools' (p5-PathTools-3.09) because a requisite package 'p5-Scalar-List-Utils-1.14,1' (lang/p5-Scalar-List-Utils) failed (specify -k to force)
+--->  Skipping 'x11-fonts/fontconfig' (fontconfig-2.2.3,1) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'textproc/p5-Pod-Parser' (p5-Pod-Parser-1.32) because a requisite package 'p5-Scalar-List-Utils-1.14,1' (lang/p5-Scalar-List-Utils) failed (specify -k to force)
+--->  Skipping 'net/p5-IO-INET6' (p5-IO-Socket-INET6-2.51_1) because a requisite package 'p5-Socket6-0.18' (net/p5-Socket6) failed (specify -k to force)
+--->  Skipping 'textproc/iso8879' (iso8879-1986_2) because a requisite package 'xmlcatmgr-2.2' (textproc/xmlcatmgr) failed (specify -k to force)
+--->  Skipping 'textproc/docbook-300' (docbook-3.0_2) because a requisite package 'iso8879-1986_2' (textproc/iso8879) failed (specify -k to force)
+--->  Skipping 'textproc/linuxdoc' (linuxdoc-1.1_1) because a requisite package 'iso8879-1986_2' (textproc/iso8879) failed (specify -k to force)
+--->  Skipping 'x11-fonts/xorg-fonts-type1' (xorg-fonts-type1-6.8.2) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'textproc/docbook-241' (docbook-241_2) because a requisite package 'iso8879-1986_2' (textproc/iso8879) failed (specify -k to force)
+--->  Skipping 'x11-fonts/bitstream-vera' (bitstream-vera-1.10_1) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'textproc/docbook-310' (docbook-3.1_2) because a requisite package 'iso8879-1986_2' (textproc/iso8879) failed (specify -k to force)
+--->  Skipping 'x11-fonts/xorg-fonts-truetype' (xorg-fonts-truetype-6.8.2) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'textproc/docbook-400' (docbook-4.0_2) because a requisite package 'iso8879-1986_2' (textproc/iso8879) failed (specify -k to force)
+--->  Skipping 'textproc/docbook-410' (docbook-4.1_2) because a requisite package 'iso8879-1986_2' (textproc/iso8879) failed (specify -k to force)
+--->  Skipping 'textproc/docbook' (docbook-1.3) because a requisite package 'docbook-3.1_2' (textproc/docbook-310) failed (specify -k to force)
+--->  Skipping 'textproc/sgmlformat' (sgmlformat-1.7_2) because a requisite package 'docbook-3.1_2' (textproc/docbook-310) failed (specify -k to force)
+--->  Skipping 'databases/ruby-bdb' (ruby18-bdb4-0.5.3) because a requisite package 'ruby-1.8.2_4' (lang/ruby18) failed (specify -k to force)
+--->  Skipping 'sysutils/portupgrade' (portupgrade-20041226_7) because a requisite package 'ruby-1.8.2_4' (lang/ruby18) failed (specify -k to force)
+--->  Skipping 'devel/gettext' (gettext-0.14.5) because a requisite package 'libiconv-1.9.2_1' (converters/libiconv) failed (specify -k to force)
+--->  Skipping 'devel/p5-Locale-gettext' (p5-gettext-1.03) because a requisite package 'libiconv-1.9.2_1' (converters/libiconv) failed (specify -k to force)
+--->  Skipping 'ftp/wget' (wget-1.10_2) because a requisite package 'libiconv-1.9.2_1' (converters/libiconv) failed (specify -k to force)
+--->  Skipping 'devel/gmake' (gmake-3.80_2) because a requisite package 'libiconv-1.9.2_1' (converters/libiconv) failed (specify -k to force)
+--->  Skipping 'misc/help2man' (help2man-1.35.1) because a requisite package 'libiconv-1.9.2_1' (converters/libiconv) failed (specify -k to force)
+--->  Skipping 'mail/mutt' (mutt-1.4.2.1_2) because a requisite package 'libiconv-1.9.2_1' (converters/libiconv) failed (specify -k to force)
+--->  Skipping 'security/gnupg' (gnupg-1.4.2) because a requisite package 'libiconv-1.9.2_1' (converters/libiconv) failed (specify -k to force)
+--->  Skipping 'graphics/gd' (gd-2.0.33_1,1) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'net-mgmt/mrtg' (mrtg-2.12.2,1) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'www/analog' (analog-6.0,1) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'security/fwanalog' (fwanalog-0.6.4) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'x11/xorg-libraries' (xorg-libraries-6.8.2) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'x11-toolkits/gtk12' (gtk-1.2.10_13) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'devel/bison' (bison-1.75_2) because a requisite package 'libiconv-1.9.2_1' (converters/libiconv) failed (specify -k to force)
+--->  Skipping 'x11-fonts/xorg-fonts-miscbitmaps' (xorg-fonts-miscbitmaps-6.8.2) because a requisite package 'xorg-fonts-encodings-6.8.2' (x11-fonts/xorg-fonts-encodings) failed (specify -k to force)
+--->  Skipping 'textproc/libxml2' (libxml2-2.6.20) because a requisite package 'libiconv-1.9.2_1' (converters/libiconv) failed (specify -k to force)
+--->  Skipping 'x11-servers/xorg-vfbserver' (xorg-vfbserver-6.8.2) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'mail/qmailanalog' (qmailanalog-0.70_1) because a requisite package 'qmail-1.03_4' (mail/qmail) failed (specify -k to force)
+--->  Skipping 'x11-fonts/libXft' (libXft-2.1.7) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'x11/xterm' (xterm-203) because a requisite package 'libXft-2.1.7' (x11-fonts/libXft) failed (specify -k to force)
+--->  Skipping 'x11/xorg-clients' (xorg-clients-6.8.2) because a requisite package 'libXft-2.1.7' (x11-fonts/libXft) failed (specify -k to force)
+--->  Skipping 'x11-servers/xorg-nestserver' (xorg-nestserver-6.8.2) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'lang/php5' (php5-5.0.4_2) because a requisite package 'libiconv-1.9.2_1' (converters/libiconv) failed (specify -k to force)
+--->  Skipping 'x11-servers/xorg-fontserver' (xorg-fontserver-6.8.2) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'x11-servers/xorg-server' (xorg-server-6.8.2_3) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'editors/vim' (vim-6.3.85) because a requisite package 'libiconv-1.9.2_1' (converters/libiconv) failed (specify -k to force)
+--->  Skipping 'www/php5-session' (php5-session-5.0.4_2) because a requisite package 'libiconv-1.9.2_1' (converters/libiconv) failed (specify -k to force)
+--->  Skipping 'databases/php5-mysql' (php5-mysql-5.0.4_2) because a requisite package 'libiconv-1.9.2_1' (converters/libiconv) failed (specify -k to force)
+--->  Skipping 'mail/qmHandle' (qmHandle-1.2.0_1) because a requisite package 'qmail-1.03_4' (mail/qmail) failed (specify -k to force)
+--->  Skipping 'x11-servers/xorg-printserver' (xorg-printserver-6.8.2) because a requisite package 'freetype2-2.1.10_1' (print/freetype2) failed (specify -k to force)
+--->  Skipping 'databases/adodb' (adodb-4.64) because a requisite package 'libiconv-1.9.2_1' (converters/libiconv) failed (specify -k to force)
+	! archivers/lzo (lzo-1.08_1,1)	(port directory error)
+	! archivers/zip (zip-2.3_2)	(port directory error)
+	! x11/xorg-manpages (xorg-manpages-6.8.2)	(port directory error)
+	! converters/unix2dos (unix2dos-1.3)	(port directory error)
+	! x11/xorg-documents (xorg-documents-6.8.2)	(port directory error)
+	! x11-fonts/xorg-fonts-encodings (xorg-fonts-encodings-6.8.2)	(port directory error)
+	* x11-fonts/xorg-fonts-cyrillic (xorg-fonts-cyrillic-6.8.2)
+	! archivers/unzip (unzip-5.52_1)	(port directory error)
+	! devel/pkgconfig (pkgconfig-0.17.2)	(port directory error)
+	* print/freetype2 (freetype2-2.1.10_1)
+	! misc/bsdiff (bsdiff-4.2)	(port directory error)
+	! sysutils/freebsd-sha256 (freebsd-sha256-20050310)	(port directory error)
+	! devel/libtool13 (libtool-1.3.5_2)	(port directory error)
+	* sysutils/portsnap (portsnap-0.9.4)
+	* devel/glib12 (glib-1.2.10_11)
+	! lang/ruby18 (ruby-1.8.2_4)	(port directory error)
+	* x11-fonts/xorg-fonts-100dpi (xorg-fonts-100dpi-6.8.2)
+	! databases/mysql41-client (mysql-client-4.1.13)	(port directory error)
+	! shells/bash2 (bash-2.05b.007_4)	(port directory error)
+	! graphics/png (png-1.2.8_2)	(port directory error)
+	! devel/pcre (pcre-6.2)	(port directory error)
+	! net/cvsup-without-gui (cvsup-without-gui-16.1h_2)	(port directory error)
+	* security/nmap (nmap-3.81)
+	! misc/mime-support (mime-support-3.34.1_1)	(port directory error)
+	! mail/isoqlog (isoqlog-2.2.1)	(port directory error)
+	! sysutils/ucspi-tcp (ucspi-tcp-0.88_1)	(port directory error)
+	! converters/libiconv (libiconv-1.9.2_1)	(port directory error)
+	! textproc/expat2 (expat-1.95.8_3)	(port directory error)
+	! sysutils/daemontools (daemontools-0.76_11)	(port directory error)
+	! textproc/xmlcatmgr (xmlcatmgr-2.2)	(port directory error)
+	* textproc/jade (jade-1.2.1_9)
+	! devel/m4 (m4-1.4.3)	(port directory error)
+	* databases/mysql41-server (mysql-server-4.1.13)
+	* security/openvpn (openvpn-2.0_3)
+	! lang/ezm3 (ezm3-1.2)	(port directory error)
+	! net/rsync (rsync-2.6.6)	(port directory error)
+	! ftp/curl (curl-7.14.0)	(port directory error)
+	* textproc/docbook-xml (docbook-xml-4.2_1)
+	* x11-fonts/xorg-fonts-75dpi (xorg-fonts-75dpi-6.8.2)
+	! www/lynx-ssl (lynx-ssl-2.8.5)	(port directory error)
+	! lang/perl5.8 (perl-5.8.7)	(port directory error)
+	* devel/autoconf253 (autoconf-2.53_3)
+	* www/squid (squid-2.5.10_4)
+	* net/p5-Socket6 (p5-Socket6-0.18)
+	* devel/automake15 (automake-1.5_2,1)
+	* devel/autoconf259 (autoconf-2.59_2)
+	* www/apache13 (apache-1.3.33_1)
+	* net-mgmt/p5-SNMP_Session (p5-SNMP_Session-1.07)
+	* devel/imake-6 (imake-6.8.2)
+	* www/dansguardian (dansguardian-2.8.0.4)
+	* devel/automake19 (automake-1.9.6)
+	* lang/p5-Scalar-List-Utils (p5-Scalar-List-Utils-1.14,1)
+	* devel/p5-PathTools (p5-PathTools-3.09)
+	* x11-fonts/fontconfig (fontconfig-2.2.3,1)
+	* textproc/p5-Pod-Parser (p5-Pod-Parser-1.32)
+	* net/p5-IO-INET6 (p5-IO-Socket-INET6-2.51_1)
+	* textproc/iso8879 (iso8879-1986_2)
+	* textproc/docbook-300 (docbook-3.0_2)
+	* textproc/linuxdoc (linuxdoc-1.1_1)
+	* x11-fonts/xorg-fonts-type1 (xorg-fonts-type1-6.8.2)
+	* textproc/docbook-241 (docbook-241_2)
+	* x11-fonts/bitstream-vera (bitstream-vera-1.10_1)
+	* textproc/docbook-310 (docbook-3.1_2)
+	* x11-fonts/xorg-fonts-truetype (xorg-fonts-truetype-6.8.2)
+	* textproc/docbook-400 (docbook-4.0_2)
+	* textproc/docbook-410 (docbook-4.1_2)
+	* textproc/docbook (docbook-1.3)
+	* textproc/sgmlformat (sgmlformat-1.7_2)
+	! databases/db4 (db4-4.0.14_1,1)	(port directory error)
+	* databases/ruby-bdb (ruby18-bdb4-0.5.3)
+	* sysutils/portupgrade (portupgrade-20041226_7)
+	* devel/gettext (gettext-0.14.5)
+	* devel/p5-Locale-gettext (p5-gettext-1.03)
+	* ftp/wget (wget-1.10_2)
+	* devel/gmake (gmake-3.80_2)
+	* misc/help2man (help2man-1.35.1)
+	* mail/mutt (mutt-1.4.2.1_2)
+	* security/gnupg (gnupg-1.4.2)
+	! graphics/jpeg (jpeg-6b_3)	(port directory error)
+	* graphics/gd (gd-2.0.33_1,1)
+	* net-mgmt/mrtg (mrtg-2.12.2,1)
+	* www/analog (analog-6.0,1)
+	* security/fwanalog (fwanalog-0.6.4)
+	* x11/xorg-libraries (xorg-libraries-6.8.2)
+	* x11-toolkits/gtk12 (gtk-1.2.10_13)
+	* devel/bison (bison-1.75_2)
+	* x11-fonts/xorg-fonts-miscbitmaps (xorg-fonts-miscbitmaps-6.8.2)
+	* textproc/libxml2 (libxml2-2.6.20)
+	! devel/libtool15 (libtool-1.5.20)	(port directory error)
+	! sysutils/qlogtools (qlogtools-3.1_1)	(port directory error)
+	! mail/qmail (qmail-1.03_4)	(port directory error)
+	* x11-servers/xorg-vfbserver (xorg-vfbserver-6.8.2)
+	* mail/qmailanalog (qmailanalog-0.70_1)
+	* x11-fonts/libXft (libXft-2.1.7)
+	* x11/xterm (xterm-203)
+	* x11/xorg-clients (xorg-clients-6.8.2)
+	* x11-servers/xorg-nestserver (xorg-nestserver-6.8.2)
+	* lang/php5 (php5-5.0.4_2)
+	* x11-servers/xorg-fontserver (xorg-fontserver-6.8.2)
+	* x11-servers/xorg-server (xorg-server-6.8.2_3)
+	* editors/vim (vim-6.3.85)
+	* www/php5-session (php5-session-5.0.4_2)
+	* databases/php5-mysql (php5-mysql-5.0.4_2)
+	* mail/qmHandle (qmHandle-1.2.0_1)
+	* x11-servers/xorg-printserver (xorg-printserver-6.8.2)
+	* databases/adodb (adodb-4.64)
+--->  Packages processed: 0 done, 0 ignored, 71 skipped and 35 failed
+cd: can't cd to /usr/ports/sysutils/portupgrade
+cd: can't cd to /usr/ports/databases/adodb
+cd: can't cd to /usr/ports/www/analog
+cd: can't cd to /usr/ports/www/apache13
+cd: can't cd to /usr/ports/devel/autoconf253
+cd: can't cd to /usr/ports/devel/autoconf259
+cd: can't cd to /usr/ports/devel/automake15
+cd: can't cd to /usr/ports/devel/automake19
+cd: can't cd to /usr/ports/shells/bash2
+cd: can't cd to /usr/ports/devel/bison
+cd: can't cd to /usr/ports/x11-fonts/bitstream-vera
+cd: can't cd to /usr/ports/misc/bsdiff
+cd: can't cd to /usr/ports/ftp/curl
+cd: can't cd to /usr/ports/net/cvsup-without-gui
+cd: can't cd to /usr/ports/sysutils/daemontools
+cd: can't cd to /usr/ports/www/dansguardian
+cd: can't cd to /usr/ports/databases/db4
+cd: can't cd to /usr/ports/textproc/docbook
+cd: can't cd to /usr/ports/textproc/docbook-241
+cd: can't cd to /usr/ports/textproc/docbook-300
+cd: can't cd to /usr/ports/textproc/docbook-310
+cd: can't cd to /usr/ports/textproc/docbook-400
+cd: can't cd to /usr/ports/textproc/docbook-410
+cd: can't cd to /usr/ports/textproc/docbook-xml
+cd: can't cd to /usr/ports/textproc/expat2
+cd: can't cd to /usr/ports/lang/ezm3
+cd: can't cd to /usr/ports/x11-fonts/fontconfig
+cd: can't cd to /usr/ports/sysutils/freebsd-sha256
+cd: can't cd to /usr/ports/print/freetype2
+cd: can't cd to /usr/ports/security/fwanalog
+cd: can't cd to /usr/ports/graphics/gd
+cd: can't cd to /usr/ports/devel/gettext
+cd: can't cd to /usr/ports/devel/glib12
+cd: can't cd to /usr/ports/devel/gmake
+cd: can't cd to /usr/ports/security/gnupg
+cd: can't cd to /usr/ports/x11-toolkits/gtk12
+cd: can't cd to /usr/ports/misc/help2man
+cd: can't cd to /usr/ports/devel/imake-6
+cd: can't cd to /usr/ports/textproc/iso8879
+cd: can't cd to /usr/ports/mail/isoqlog
+cd: can't cd to /usr/ports/textproc/jade
+cd: can't cd to /usr/ports/graphics/jpeg
+cd: can't cd to /usr/ports/x11-fonts/libXft
+cd: can't cd to /usr/ports/converters/libiconv
+cd: can't cd to /usr/ports/devel/libtool13
+cd: can't cd to /usr/ports/devel/libtool15
+cd: can't cd to /usr/ports/textproc/libxml2
+cd: can't cd to /usr/ports/textproc/linuxdoc
+cd: can't cd to /usr/ports/www/lynx-ssl
+cd: can't cd to /usr/ports/archivers/lzo
+cd: can't cd to /usr/ports/devel/m4
+cd: can't cd to /usr/ports/misc/mime-support
+cd: can't cd to /usr/ports/net-mgmt/mrtg
+cd: can't cd to /usr/ports/mail/mutt
+cd: can't cd to /usr/ports/databases/mysql41-client
+cd: can't cd to /usr/ports/databases/mysql41-server
+cd: can't cd to /usr/ports/security/nmap
+cd: can't cd to /usr/ports/security/openvpn
+cd: can't cd to /usr/ports/net/p5-IO-INET6
+cd: can't cd to /usr/ports/devel/p5-PathTools
+cd: can't cd to /usr/ports/textproc/p5-Pod-Parser
+cd: can't cd to /usr/ports/net-mgmt/p5-SNMP_Session
+cd: can't cd to /usr/ports/lang/p5-Scalar-List-Utils
+cd: can't cd to /usr/ports/net/p5-Socket6
+cd: can't cd to /usr/ports/devel/p5-Locale-gettext
+cd: can't cd to /usr/ports/devel/pcre
+cd: can't cd to /usr/ports/lang/perl5.8
+cd: can't cd to /usr/ports/lang/php5
+cd: can't cd to /usr/ports/databases/php5-mysql
+cd: can't cd to /usr/ports/www/php5-session
+cd: can't cd to /usr/ports/devel/pkgconfig
+cd: can't cd to /usr/ports/graphics/png
+cd: can't cd to /usr/ports/sysutils/portsnap
+cd: can't cd to /usr/ports/sysutils/portupgrade
+cd: can't cd to /usr/ports/sysutils/qlogtools
+cd: can't cd to /usr/ports/mail/qmHandle
+cd: can't cd to /usr/ports/mail/qmail
+cd: can't cd to /usr/ports/mail/qmailanalog
+cd: can't cd to /usr/ports/net/rsync
+cd: can't cd to /usr/ports/lang/ruby18
+cd: can't cd to /usr/ports/databases/ruby-bdb
+cd: can't cd to /usr/ports/textproc/sgmlformat
+cd: can't cd to /usr/ports/www/squid
+cd: can't cd to /usr/ports/sysutils/ucspi-tcp
+cd: can't cd to /usr/ports/converters/unix2dos
+cd: can't cd to /usr/ports/archivers/unzip
+cd: can't cd to /usr/ports/editors/vim
+cd: can't cd to /usr/ports/ftp/wget
+cd: can't cd to /usr/ports/textproc/xmlcatmgr
+cd: can't cd to /usr/ports/x11/xorg-clients
+cd: can't cd to /usr/ports/x11/xorg-documents
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-100dpi
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-75dpi
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-cyrillic
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-encodings
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-miscbitmaps
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-truetype
+cd: can't cd to /usr/ports/x11-fonts/xorg-fonts-type1
+cd: can't cd to /usr/ports/x11-servers/xorg-fontserver
+cd: can't cd to /usr/ports/x11/xorg-libraries
+cd: can't cd to /usr/ports/x11/xorg-manpages
+cd: can't cd to /usr/ports/x11-servers/xorg-nestserver
+cd: can't cd to /usr/ports/x11-servers/xorg-printserver
+cd: can't cd to /usr/ports/x11-servers/xorg-server
+cd: can't cd to /usr/ports/x11-servers/xorg-vfbserver
+cd: can't cd to /usr/ports/x11/xterm
+cd: can't cd to /usr/ports/archivers/zip
+** Port directory not found: archivers/lzo
+** Port directory not found: archivers/zip
+** Port directory not found: x11/xorg-manpages
+** Port directory not found: converters/unix2dos
+** Port directory not found: x11/xorg-documents
+** Port directory not found: x11-fonts/xorg-fonts-encodings
+** Port directory not found: archivers/unzip
+** Port directory not found: devel/pkgconfig
+** Port directory not found: misc/bsdiff
+** Port directory not found: sysutils/freebsd-sha256
+** Port directory not found: devel/libtool13
+** Port directory not found: lang/ruby18
+** Port directory not found: databases/mysql41-client
+** Port directory not found: shells/bash2
+** Port directory not found: graphics/png
+** Port directory not found: devel/pcre
+** Port directory not found: net/cvsup-without-gui
+** Port directory not found: misc/mime-support
+** Port directory not found: mail/isoqlog
+** Port directory not found: sysutils/ucspi-tcp
+** Port directory not found: converters/libiconv
+** Port directory not found: textproc/expat2
+** Port directory not found: sysutils/daemontools
+** Port directory not found: textproc/xmlcatmgr
+** Port directory not found: devel/m4
+** Port directory not found: lang/ezm3
+** Port directory not found: net/rsync
+** Port directory not found: ftp/curl
+** Port directory not found: www/lynx-ssl
+** Port directory not found: lang/perl5.8
+** Port directory not found: databases/db4
+** Port directory not found: graphics/jpeg
+** Port directory not found: devel/libtool15
+** Port directory not found: sysutils/qlogtools
+** Port directory not found: mail/qmail
+--->  Session started at: Tue, 04 Sep 2007 08:31:07 +0200
+--->  Listing the results (+:done / -:ignored / *:skipped / !:failed)
+--->  Session ended at: Tue, 04 Sep 2007 08:31:08 +0200 (consumed 00:00:01)
+
+-- End of daily output --

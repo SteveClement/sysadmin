@@ -1,0 +1,19 @@
+$ORIGIN .
+$TTL 86400	; 1 day
+chat.party.lu		IN SOA	ns4.ion.lu. steve.ion.lu. (
+				52         ; serial
+				43200      ; refresh (12 hours)
+				3600       ; retry (1 hour)
+				900000     ; expire (1 week 3 days 10 hours)
+				86400      ; minimum (1 day)
+				)
+			NS	ns1.ion.lu.
+			NS	ns4.ion.lu.
+			A	80.90.47.181
+			MX	10 mail.ion.lu.
+$ORIGIN chat.party.lu.
+greenbot		CNAME	chat.party.lu.
+localhost		A	127.0.0.1
+redbot			CNAME	chat.party.lu.
+services		CNAME	chat.party.lu.
+www			CNAME	chat.party.lu.

@@ -1,0 +1,39 @@
+osd_cat is neat, but handling X fonts is not!
+
+the directory to look out for:
+
+/usr/local/lib/X11/fonts
+
+in there some files are important, just to give you an example how you specify
+a font on the command-line to osd_cat:
+
+-misc-fixed-medium-o-semicondensed--13-120-75-75-c-60-iso8859-1
+
+yeah right, easy :)
+
+so what does it mean, it means that this you wont find on the disk but in one
+of the files in the beforementioned directory.
+
+Some fonts include special characters:
+
+ -b&h-luxi mono-bold-r-normal--0-0-0-0-m-0-iso8859-1
+
+
+Use quotes:
+
+-f "-b&h-luxi mono-bold-r-normal--0-0-0-0-m-0-iso8859-1"
+
+Some fonts have aliases, which makes it easier to predict output:
+
+lucidasanstypewriter-24
+
+is an alias for
+
+-b&h-lucidatypewriter-medium-r-normal-sans-34-240-100-100-m-200-iso8859-1
+
+
+this is in the file
+
+fonts.alias
+
+the long format is in fonts.dir

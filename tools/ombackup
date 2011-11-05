@@ -1,0 +1,384 @@
+#!/bin/sh
+###############################################################################
+# ombackup:
+#   a backup script for scalix mail servers
+#
+#   This script is used to backup Scalix mail servers; it exports each
+#   user to a gzip compressed file using the 'omcpoutu' command, then
+#   duplicates the scalix data directory using rsync.
+#
+#   Before using this program you should set the values of the variables
+#   below to match your server/preferences.
+#
+#   For detailed descriptions of the available command line switches,
+#   execute the program with the -h flag.
+#
+#
+#   Copyright (C) 2006 Jon Allie <jon@jonallie.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+#
+#
+#
+# ------------------------------ Modifications ----------------------------
+#
+# Ianaré Sévi <ianare@gmail.com> last modified on 2006-10-13:
+#
+#   Combined various incarnations and patches of the original script
+#   found here:  http://www.scalix.com/community/viewtopic.php?t=1922
+#   into a fully working script. Huge thanks to all the original
+#   contributors - I am but a shadow in their footsteps.
+#
+#   Added -r option and associated programming to allow rotation of backups
+#   based on the day of the week (7 working backups)
+#
+#   Added -c option and associated programming to allow backing up of system
+#   configuration files in case of complete hardware failure for example.
+#
+#   Added various error checking.
+#
+###############################################################################
+ 
+ 
+ 
+### Main variables: 
+#   You MUST modify these for the script to work!
+#
+MAILNODE="mailnode"
+ROOT_BACKUP_DIR=/tmp/ScalixBackup
+SCALIX_DIR=/var/opt/scalix
+SCALIX_BIN=/opt/scalix/bin
+LOGFILE=/var/log/ombackup.log
+USERFILE=/tmp/userfile.$$
+DATE=`date +"%Y-%m-%d"`
+PROCESS_BLOCK_SIZE=5
+ROTATE_BACKUP=Y
+BACKUP_CONFIGURATION=Y
+ 
+### Configuration file locations:
+#   Modify these if backing up configuration files.
+#   The entire directory contents will be recursively tar'ed.
+#   Use a blank value to skip.
+#
+CONF_MAIL=/etc/mail
+CONF_SYSCONFIG=/etc/sysconfig
+CONF_HTTPD=/etc/httpd
+CONF_AV=/etc/clamd.d
+CONF_STUNNEL=/etc/stunnel
+CONF_RULESET=/etc/rulesdujour
+CONF_OTHER=
+ 
+ 
+### function declarations
+ 
+function usage
+{
+printf $"
+Usage: ombackup [-h] [-b backup dir] [-d scalix data dir] [-s scalix bin dir]
+                [-l logfile] [-u user file] [-m mailnode] [-r rotate backups (Y|N)]
+                [-c backup configuration files (Y|N)]
+                           
+  ombackup comes with ABSOLUTELY NO WARRANTY.  This is free software, and you
+  are welcome to redistribute it under certain conditions.  See the GNU
+  General Public Licence for details.
+               
+ombackup is a shell script to perform both user level and system level backups
+of a Scalix mail server. User mailboxes are backed up via the 'omcpoutu' utility
+and are stored in a configurable backup directory in a subdirectory named the
+same as the mailnode being backed up. Systems level backups are performed by
+copying the whole Scalix data dir (usually /var/opt/scalix) to a backup directory
+using rysnc.
+ 
+Most options can be configured by setting the values of the variables in the script
+or can be passed to the script at runtime
+ 
+Options:
+    -h                  : print this message and exit
+   
+    -m <mailnode>       : mailnode to dump users from
+   
+    -b <backup dir>     : backup directory. This directory will store both the user and
+                        system level backups. User backups are stored in a subdirectory
+                        under this directory users/<mailnode>/<userfile>.
+               
+    -d <scalix dir>     : scalix data dir. Defaults to /var/opt/scalix
+   
+    -s <bin dir>        : scalix bin dir. Contains scalix utility binaries. Defaults to
+                        /opt/scalix/bin
+   
+    -l <logfile>        : path to a logfile for logging backup actions.
+   
+    -u <userfile>       : userfile. This file is created during the user mailbox
+                        backup. Defaults to /tmp/userfile.[pid]
+                        
+    -r <Y|N>            : whether or not to rotate backups on 7 day schedule.
+    
+    -c <Y|N>            : whether or not to backup configuration files.    
+                           
+                           
+Copyright (C) 2006 by Jon Allie <jon@jonallie.com>
+ 
+With contributions from Scalix.com forum members.\n\n"
+ 
+exit ${1:-0}
+}
+ 
+function badInput
+{
+    echo "Use -h for more information."
+    echo
+    exit 1
+}
+ 
+function log_it
+{
+    echo "[ `date` ]: $*" >>$LOGFILE
+}
+ 
+function echo_and_log
+{
+    echo $*
+    log_it $*
+}
+ 
+function clean_up
+{
+    echo_and_log "Cleaning up temporary files"
+    [ -f $USERFILE ] && rm -f $USERFILE
+}
+ 
+function restart_on_error
+{
+    echo_and_log "Error: $*"
+    start_scalix
+    clean_up
+    exit 1
+}
+ 
+function exit_with_error
+{
+    echo_and_log "Error: $*"
+    clean_up
+    exit 1
+}
+ 
+function start_scalix
+{
+    echo_and_log "Starting Scalix services"
+    /etc/init.d/scalix start
+    [ "$?" != "0" ] && exit_with_error "Error restarting scalix services"
+}
+ 
+function pre_check
+{
+    # look for scalix directories
+    for dir in $SCALIX_BIN $SCALIX_DIR
+    do
+        [ -d $dir ] || exit_with_error "A required Scalix directory $dir doesn't exist."
+    done
+ 
+    # make sure that the $BACKUP_DIR structure exists, try to create it if not.   
+    for dir in $BACKUP_DIR $CONFIG_DIR $BACKUP_DIR/users $BACKUP_DIR/users/$MAILNODE
+    do
+        if [ ! -d $dir ]
+        then
+            echo_and_log "$dir doesn't exist: creating it"
+            mkdir $dir || exit_with_error "Unable to create required directory $dir"
+        fi
+    done
+    
+    # clear out user backup files
+    rm -rf $BACKUP_DIR/users/$MAILNODE/*
+    
+    # clear out timestamp
+    rm -f $BACKUP_DIR/created:*
+    
+    # make new timestamp
+    touch $BACKUP_DIR/created:\ $DATE
+}
+ 
+function dump_users
+{
+    # index for processing block
+    let i=1
+    let index=1
+ 
+    # Build userfile
+    $SCALIX_BIN/omshowu -m $MAILNODE|cut -f1 -d'/' >$USERFILE
+    [ "$?" != "0" ] && exit_with_error "Unable to build userfile $USERFILE from mailnode $MAILNODE"
+ 
+    # Loop over userfile and create backups. Use 'while read' instead of 'for' because of spaces in names
+    while read sc_username
+    do
+        # Create a version of the username without spaces and other crappy characters
+        nospaces=`echo $sc_username|sed -e "s/[ \.;=*'?_!]//g"`
+ 
+        BACKUP_FILE="$BACKUP_DIR/users/$MAILNODE/${nospaces}-mail.gz"
+ 
+        if [ $i -le $PROCESS_BLOCK_SIZE ]
+        then
+            echo "Adding Process: Number $index of $PROCESS_BLOCK_SIZE -- User: $sc_username"
+            ## BACKGROUND PROCESS
+            $SCALIX_BIN/omcpoutu -n "$sc_username/$MAILNODE" -f - -F | gzip | cat > $BACKUP_FILE || echo_and_log "Error: Unable to complete backup operation for $sc_username" &
+            PIDs[$index]=$!
+            let i+=1
+            let index=$i
+        else
+            echo "Process block is full."
+            echo "Waiting for first complete process..."
+            while [ $i -gt $PROCESS_BLOCK_SIZE ]
+            do
+                for p in `seq 1 $PROCESS_BLOCK_SIZE`
+                do
+                        ps ${PIDs[$p]} > /dev/null
+                        if [ "$?" != "0" ]
+                        then
+                                echo_and_log "Process number $p of $PROCESS_BLOCK_SIZE has completed. -- User: $sc_username"
+                                unset PIDs[$p]
+                                let index=$p
+                                #echo "Adding Process: Number $index of $PROCESS_BLOCK_SIZE -- User: $sc_username"
+                                ## BACKGROUND PROCESS
+                                $SCALIX_BIN/omcpoutu -n "$sc_username/$MAILNODE" -f - -F | gzip | cat > $BACKUP_FILE || echo_and_log "Error: Unable to complete backup operation for $sc_username" &
+                                PIDs[$index]=$!
+                                break 2
+                        fi
+                done
+            done
+        fi
+    done < $USERFILE
+    echo "All processes have been added."
+    echo "Waiting for those still running..."
+    wait
+    echo_and_log "All users done!"
+}
+ 
+function sync_files
+{
+    echo_and_log "Beginning rsync of $SCALIX_DIR to $BACKUP_DIR"
+    rsync -a --delete $SCALIX_DIR $BACKUP_DIR/ >>$LOGFILE
+   
+    if [ "$?" != "0" ]
+    then
+        restart_on_error "Rsync operation of $SCALIX_DIR to $BACKUP_DIR did not complete successfully"
+    else
+        echo_and_log "Completed rsync of $SCALIX_DIR to $BACKUP_DIR"
+    fi
+}
+ 
+# process command line arguments
+# -h            : show help
+# -b <dir>      : backup directory
+# -l <file>     : log file
+# -u <userfile> : userfile
+# -m <mailnode> : main mailnode
+# -d <dir>      : location of the scalix data dir
+# -s <dir>      : location of the scalix bin dir
+# -r <Y|N>      : rotate backups or not
+# -c <Y|N>      : backup config files or not
+ 
+while getopts hb:l:u:m:s:r:c: opt
+do
+    case "$opt" in
+        h) usage ;;
+        b) BACKUP_DIR=$OPTARG ;;
+        l) LOGFILE=$OPTARG ;;
+        u) USERFILE=$OPTARG ;;
+        m) MAILNODE=$OPTARG ;;
+        d) SCALIX_DIR=$OPTARG ;;
+        s) SCALIX_BIN=$OPTARG ;;
+        r) ROTATE_BACKUP=$OPTARG ;;
+        c) BACKUP_CONFIGURATION=$OPTARG ;;
+        \?) badInput ;;
+    esac
+done
+ 
+# validate that all required options are set
+for x in "$LOGFILE" "$ROOT_BACKUP_DIR" "$MAILNODE" "$SCALIX_DIR" "$SCALIX_BIN" "$USERFILE" "$ROTATE_BACKUP" "$BACKUP_CONFIGURATION"
+do
+    if [ -z "$x" ]
+    then
+        echo "A required parameter is missing, please check your command arguments."
+        badInput
+    fi
+done
+ 
+# rotate backups or not
+if [ "$ROTATE_BACKUP" = "Y" ]
+    then
+        DAYNUMBER=`date +%A`
+        BACKUP_DIR=$ROOT_BACKUP_DIR/$DAYNUMBER
+    else
+        BACKUP_DIR=$ROOT_BACKUP_DIR
+fi
+
+if [ "$BACKUP_CONFIGURATION" = "Y" ]
+    then
+        CONFIG_DIR=$BACKUP_DIR/configs
+    else
+        CONFIG_DIR=$BACKUP_DIR
+fi
+
+# initialize the logfile
+>$LOGFILE
+ 
+# call pre_check function to verify backup directory structure
+pre_check
+ 
+# backup configuration directories or not
+if [ "$BACKUP_CONFIGURATION" = "Y" ]
+    then
+        # clear out old file first
+        rm -f $CONFIG_DIR/* || echo "No backup config file to delete."
+
+        for dir in $CONF_MAIL $CONF_SYSCONFIG $CONF_HTTPD $CONF_AV $CONF_STUNNEL $CONF_RULESET $CONF_OTHER
+        do
+            # don't process if no value given
+            if [ ! -z "$dir" ]
+            then 
+                # directory must exist
+                if [ ! -d $dir ]
+                then
+                    echo_and_log "Config dir $dir doesn't exist: aborting!"
+                else
+                    # tar 'em up!
+                    end=`expr match "$dir" '/.*/'`                    
+                    tar -cf $CONFIG_DIR/${dir:$end}.tar $dir
+                    
+                    echo_and_log "tared $dir to $CONFIG_DIR/${dir:$end}.tar"
+                fi
+            fi
+        done
+fi
+ 
+# call dump_users function to make backups of user mailboxes
+dump_users
+ 
+# stop scalix before doing the rsync
+echo_and_log "Stopping scalix services"
+/etc/init.d/scalix stop
+[ "$?" != "0" ] && exit_with_error "Unable to halt scalix services"
+ 
+# call sync_files function to make a backup of the $SCALIX_DIR
+sync_files
+
+# restart scalix services
+start_scalix
+ 
+# explicily call the clean_up function to erase leftover files
+clean_up
+ 
+# exit successfully
+echo_and_log "All operations complete"
+exit 0 

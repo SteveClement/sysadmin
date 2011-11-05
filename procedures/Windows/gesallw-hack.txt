@@ -1,0 +1,15 @@
+How to hack gesallw in SQL mode:
+--------------------------------
+
+First off the gesall Database runs on Adaptive Server Anywhere (ASA)
+some cool tools are in: C:\Program Files\ASA(VERSION_NUM)
+
+but the tool we want: dbisql.exe 
+
+in the window that appears u/p: dba/sql
+
+now you could select you database from the browser tab but just launch Gesallw to use the on that you USE.
+
+And tada youve now got admin rights on the DB to get a listing of the table/columns Edit->Insert Table...
+
+

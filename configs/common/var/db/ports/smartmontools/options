@@ -1,0 +1,2 @@
+_OPTIONS_READ=smartmontools-5.37_1
+WITHOUT_CISS=true

@@ -1,0 +1,11 @@
+If Ruby core dumps /var/db/pkg/pkgdb.db and /usr/ports/INDEX.db are probably
+corrupted.
+
+pkgdb -fu
+
+should salvage it if not delete the 2 files and run pkgdb and portsdb
+accordingly.
+
+Even That fails sometimes, weird procedures due to Ruby upgrade (1.6->1.8) 
+cd /usr/ports/
+make fetchindex

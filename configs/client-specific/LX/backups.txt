@@ -1,0 +1,15 @@
+To back up to sblan2 SMB Lan thingie:
+
+mkdir /mnt/sblan2
+
+ cat ~/.nsmbrc
+[SBLAN2:ROOT]
+password=""
+
+cat /etc/fstab
+echo "//root@sblan2/share /mnt/sblan2         smbfs   rw              0 0" >> /etc/fstab
+
+cat /etc/hosts
+echo "192.168.254.1           sblan2 sblan2.lxcdm.lu" >> /etc/hosts
+
+

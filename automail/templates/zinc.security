@@ -1,0 +1,26 @@
+*Received: (qmail 15067 invoked by alias); 18 Jun 2004 03:03:27 -0000
+Delivered-To: root@zinc.ion.lu
+Received: (qmail 15044 invoked by uid 0); 18 Jun 2004 03:03:27 -0000
+Date: 18 Jun 2004 03:03:27 -0000
+Message-ID: <20040618030327.15039.qmail@zinc.ion.lu>
+From: root@zinc.ion.lu
+To: root@zinc.ion.lu
+Subject: zinc.ion.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+zinc.ion.lu kernel log messages:
+> 1 18:17:05 zinc imapd[40922]: no user in db
+
+zinc.ion.lu login failures:
+
+zinc.ion.lu refused connections:
+
+-- End of security output --

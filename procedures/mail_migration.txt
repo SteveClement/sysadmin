@@ -1,0 +1,60 @@
+Scripts used to migrate mail from spack.lxcdm.lu to bonnie.lxcdm.lu, mail-trans.sh: 
+
+(NOTE: everythin is to be performed in your home directory, you don't have to be root but a working mail environment is needed, this is the final step of an mail migration)
+
+for a in `cat username.txt`; do
+echo "echo \"poll spack.lxcdm.lu protocol POP3 user $a" >> fetch1.txt
+done
+
+for a in `cat password.txt`; do
+echo " password $a" >> fetch2.txt
+done
+
+for a in `cat email.txt`; do
+echo " smtpname $a smtphost bonnie.lxcdm.lu verbose \" > .fetchmailrc " >> fetch3.txt
+echo " ; chmod 600 .fetchmailrc ; fetchmail " > fetch4.txt
+done
+
+lam fetch1.txt fetch2.txt fetch3.txt fetch4.txt > fetch.sh
+
+Explanation:
+
+the following 3 files were created by dissecting mail-trans.txt:
+info@cspetange.lu,cspetange-info,PASSWORD
+comite@cspetange.lu,cspetange-comite,PASSWORD
+info@grengmiersch.lu,grengmiersch-info,PASSWORD
+
+username.txt had all the remote host (spack) usernames in it.
+The first for loop created the first part of the fetchmailrc script
+
+password.txt had all the remote host passwords NOTE: both username.txt and password.txt were 'IN-SYNC'
+The second for loop created the second part of the fetchmailrc script
+
+email.txt had all the remote host e-mail addresses to be migrated. AGAIN: they were in sync
+The third for loop did the rest of the jobs, it finished the fetchmail line and added the actual fetchmail statement.
+
+lam (laminate) does what you think it does, *fetch.txt laminated together to fetch.sh
+
+~/.fetchmailrc (file that gets called upon starting fetchmail without arguments)
+
+snipplet from fetch.sh 3lines:
+
+echo "poll spack.lxcom.lu protocol POP3 user cspetange-info password PASSWORD smtpname info@cspetange.lu smtphost bonnie.lxcdm.lu verbose " > .fetchmailrc ; chmod 600 .fetchmailrc ; fetchmail 
+echo "poll spack.lxcom.lu protocol POP3 user cspetange-comite password PASSWD smtpname comite@cspetange.lu smtphost bonnie.lxcdm.lu verbose " > .fetchmailrc ; chmod 600 .fetchmailrc ; fetchmail 
+echo "poll spack.lxcom.lu protocol POP3 user grengmiersch-info password PASSWORD smtpname info@grengmiersch.lu smtphost bonnie.lxcdm.lu verbose " > .fetchmailrc  ; chmod 600 .fetchmailrc ; fetchmail 
+
+what is fetchmail, from man fetchmail:
+
+DESCRIPTION
+       fetchmail  is  a mail-retrieval and forwarding utility; it fetches mail
+       from  remote  mailservers  and  forwards  it  to  your  local  (client)
+       machine's  delivery  system.   You  can  then handle the retrieved mail
+       using normal mail user agents such as mutt(1), elm(1) or Mail(1).   The
+       fetchmail utility can be run in a daemon mode to repeatedly poll one or
+       more systems at a specified interval.
+
+
+
+This script could've been done quicker and more elegantly, but this worked for
+me and was nicely broken down into steps of 3.
+

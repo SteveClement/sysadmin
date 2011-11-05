@@ -1,0 +1,18 @@
+Streaming is a wonderful thing but some things to bare in mind:
+
+Bandwidth, to see how much your stream chews install the google desktop bar
+and the additional system info tools. It will give you kb/s output.
+
+On my LinVDR setup streaming a DVB channel peaked at 700kb/s and average at
+500kb/s. That's probably due to the fact that I get the stream pretty RAW.
+
+Obviously in Luxembourg your upstream is pretty piss poor 192kb/s so you would
+need to downsample the stream to something that consumes your entire upstream
+and bounce it off some big pipe.
+
+I tested this working with a VLC (videolan.org) setup:
+
+UDP-Dwnsampled a stream to one of our windows servers in the Datacenter and
+re-streamed it to the web, that was working OK.
+
+

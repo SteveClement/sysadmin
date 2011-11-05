@@ -1,0 +1,6 @@
+mkdir /home/apache/hosts/ion.lu/headquarter/stats
+vi /usr/local/etc/fwanalog/fwanalog.opts
+ALTER OUT`DIR
+add ipfw as log format and apply the supplied patch to get ipfw support.
+
+cron fwanalog -t and it will do it's stuff

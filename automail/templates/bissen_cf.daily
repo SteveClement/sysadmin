@@ -1,0 +1,659 @@
+*Received: (qmail 80881 invoked by uid 89); 3 Sep 2007 03:47:54 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 03:47:54 +0200
+Received: (qmail 36837 invoked by uid 98); 3 Sep 2007 03:31:08 +0200
+Received: from 213.166.40.170 by radium.ion.lu (envelope-from <root@biisen-cf.ion.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(213.166.40.170):SA:0(3.5/7.0):. 
+ Processed in 6.113948 secs); 03 Sep 2007 01:31:08 -0000
+X-Spam-Status: No, score=3.5 required=7.0
+X-Spam-Level: +++
+Received: from ip-213-166-40-170.tvsurf.pt.lu (HELO biisen-cf.ion.lu) (213.166.40.170)
+  by radium.ion.lu with SMTP; 3 Sep 2007 03:31:00 +0200
+Received-SPF: none (radium.ion.lu: domain at biisen-cf.ion.lu does not designate permitted sender hosts)
+Received: (qmail 71872 invoked by alias); 3 Sep 2007 01:47:00 -0000
+Delivered-To: root@biisen-cf.ion.lu
+Received: (qmail 71869 invoked by uid 0); 3 Sep 2007 01:47:00 -0000
+Date: 3 Sep 2007 01:47:00 -0000
+Message-ID: <20070903014700.71867.qmail@biisen-cf.ion.lu>
+From: root@biisen-cf.ion.lu
+To: root@biisen-cf.ion.lu
+Subject: bissen-cf.ion.lu daily run output
+
+
+Removing stale files from /var/preserve:
+
+Cleaning out old system announcements:
+
+Removing stale files from /var/rwho:
+
+Backup passwd and group files:
+
+Verifying group file syntax:
+
+Backing up mail aliases:
+
+Disk status:
+Filesystem  1K-blocks     Used    Avail Capacity  Mounted on
+/dev/ar0s1a 117145364 10565964 97207772    10%    /
+procfs              4        4        0   100%    /proc
+
+Last dump(s) done (Dump '>' file systems):
+
+UUCP status:
+
+Network interface status:
+Name    Mtu Network       Address              Ipkts Ierrs    Opkts Oerrs  Coll
+em0    1500 <Link#1>    00:04:23:a9:45:29 38596195     0 20616099     0     0
+em0    1500 192.168.100   bissen-cf       33501627     - 34383347     -     -
+em0    1500 fe80:1::204 fe80:1::204:23ff:        0     -        1     -     -
+fxp0   1500 <Link#2>    00:30:05:6f:88:ae 201989404     0 41308445     0     0
+fxp0   1500 fe80:2::230 fe80:2::230:5ff:f        0     -        1     -     -
+fxp0   1500 213.166.40    ip-213-166-40-1   739963     -  1057940     -     -
+lp0*   1500 <Link#3>                             0     0        0     0     0
+lo0   16384 <Link#4>                      23795756     0 23795756     0     0
+lo0   16384 localhost   ::1                      0     -        0     -     -
+lo0   16384 fe80:4::1   fe80:4::1                0     -        0     -     -
+lo0   16384 your-net      localhost          12169     -    12555     -     -
+ppp0*  1500 <Link#5>                             0     0        0     0     0
+sl0*    552 <Link#6>                             0     0        0     0     0
+faith  1500 <Link#7>                             0     0        0     0     0
+tun0   1500 <Link#8>                             0     0     9838     0     0
+tun0   1500 fe80:8::204 fe80:8::204:23ff:        0     -        2     -     -
+tun0   1500 10.0.9.2/32   10.0.9.2               0     -        3     -     -
+
+Local system status:
+ 3:01AM  up 332 days, 15:37, 0 users, load averages: 0.00, 0.00, 0.00
+
+Mail in local queue:
+
+Mail in submit queue:
+
+Security check:
+    (output mailed separately)
+
+Checking for rejected mail hosts:
+
+Checking for denied zone transfers (AXFR and IXFR):
+
+Running /etc/daily.local:
+Parsing supfile "/etc/cvsupfile"
+Connecting to cvsup.fr.FreeBSD.org
+Connected to cvsup.fr.FreeBSD.org
+Server software version: SNAP_16_1h
+Negotiating file attribute support
+Exchanging collection information
+Establishing multiplexed-mode data connection
+Running
+Updating collection ports-all/cvs
+ Edit ports/MOVED
+  Add delta 1.1467 2007.09.02.07.15.23 rafan
+ Edit ports/Mk/bsd.qt.mk
+  Add delta 1.7 2007.09.02.06.23.17 lofi
+ Edit ports/accessibility/qt4-accessible/Makefile
+  Add delta 1.9 2007.09.02.06.23.17 lofi
+ Edit ports/accessibility/qt4-accessible/distinfo
+  Add delta 1.4 2007.09.02.06.23.17 lofi
+ Edit ports/accessibility/qt4-accessible/pkg-plist
+  Add delta 1.3 2007.09.02.06.23.17 lofi
+ Edit ports/archivers/Makefile
+  Add delta 1.182 2007.09.01.12.31.51 sat
+ Edit ports/archivers/gtar/Makefile
+  Add delta 1.56 2007.09.01.16.02.46 naddy
+ Checkout ports/archivers/gtar/files/patch-src_names.c
+ Edit ports/archivers/lzma/Makefile
+  Add delta 1.19 2007.09.01.11.30.05 sat
+ Edit ports/archivers/lzma/distinfo
+  Add delta 1.14 2007.09.01.11.30.05 sat
+ Edit ports/archivers/p7zip/Makefile
+  Add delta 1.31 2007.09.01.11.54.27 sat
+ Edit ports/archivers/p7zip/distinfo
+  Add delta 1.23 2007.09.01.11.54.27 sat
+ Checkout ports/archivers/ppmd-7z/Makefile
+ Checkout ports/archivers/ppmd-7z/distinfo
+ Checkout ports/archivers/ppmd-7z/pkg-descr
+ Edit ports/astro/gpsd/Makefile
+  Add delta 1.7 2007.09.01.20.48.37 araujo
+  Add delta 1.8 2007.09.01.20.59.37 araujo
+ Checkout ports/astro/gpsd/files/gpsd.in
+ Edit ports/audio/boodler/Makefile
+  Add delta 1.9 2007.09.02.14.55.20 arved
+ Edit ports/audio/gmpc/Makefile
+  Add delta 1.14 2007.09.01.22.59.12 pav
+ Edit ports/audio/gmpc/distinfo
+  Add delta 1.9 2007.09.01.22.59.12 pav
+ Edit ports/audio/gmpc/pkg-descr
+  Add delta 1.3 2007.09.01.22.59.12 pav
+ Edit ports/audio/gmpc/pkg-plist
+  Add delta 1.8 2007.09.01.22.59.12 pav
+ Edit ports/biology/pymol/Makefile
+  Add delta 1.30 2007.09.02.07.16.04 rafan
+ Edit ports/chinese/qt4-codecs-cn/Makefile
+  Add delta 1.7 2007.09.02.06.23.18 lofi
+ Edit ports/chinese/qt4-codecs-cn/distinfo
+  Add delta 1.4 2007.09.02.06.23.18 lofi
+ Edit ports/chinese/qt4-codecs-cn/pkg-plist
+  Add delta 1.3 2007.09.02.06.23.18 lofi
+ Edit ports/chinese/qt4-codecs-tw/Makefile
+  Add delta 1.8 2007.09.02.06.23.18 lofi
+ Edit ports/chinese/qt4-codecs-tw/distinfo
+  Add delta 1.4 2007.09.02.06.23.18 lofi
+ Edit ports/chinese/qt4-codecs-tw/pkg-plist
+  Add delta 1.3 2007.09.02.06.23.18 lofi
+ Edit ports/databases/py-PyGreSQL/Makefile
+  Add delta 1.49 2007.09.01.22.11.12 pav
+ Edit ports/databases/py-PyGreSQL/distinfo
+  Add delta 1.14 2007.09.01.22.11.12 pav
+ Edit ports/databases/py-PyGreSQL/pkg-descr
+  Add delta 1.5 2007.09.01.22.11.12 pav
+ Edit ports/databases/py-PyGreSQL/pkg-plist
+  Add delta 1.9 2007.09.01.22.11.12 pav
+ Edit ports/databases/qt-ibase-plugin/Makefile
+  Add delta 1.12 2007.09.02.06.23.18 lofi
+ Edit ports/databases/qt-mysql-plugin/Makefile
+  Add delta 1.15 2007.09.02.06.23.18 lofi
+ Edit ports/databases/qt-odbc-plugin/Makefile
+  Add delta 1.10 2007.09.02.06.23.18 lofi
+ Edit ports/databases/qt-pgsql-plugin/Makefile
+  Add delta 1.14 2007.09.02.06.23.18 lofi
+ Edit ports/databases/qt-sqlite-plugin/Makefile
+  Add delta 1.11 2007.09.02.06.23.19 lofi
+ Edit ports/databases/qt4-ibase-plugin/distinfo
+  Add delta 1.4 2007.09.02.06.23.19 lofi
+ Edit ports/databases/qt4-ibase-plugin/files/Makefile.bsd
+  Add delta 1.3 2007.09.02.06.23.19 lofi
+ Edit ports/databases/qt4-ibase-plugin/pkg-plist
+  Add delta 1.2 2007.09.02.06.23.19 lofi
+ Edit ports/databases/qt4-mysql-plugin/distinfo
+  Add delta 1.4 2007.09.02.06.23.19 lofi
+ Edit ports/databases/qt4-mysql-plugin/files/Makefile.bsd
+  Add delta 1.3 2007.09.02.06.23.19 lofi
+ Edit ports/databases/qt4-mysql-plugin/pkg-plist
+  Add delta 1.2 2007.09.02.06.23.19 lofi
+ Edit ports/databases/qt4-odbc-plugin/distinfo
+  Add delta 1.4 2007.09.02.06.23.19 lofi
+ Edit ports/databases/qt4-odbc-plugin/files/Makefile.bsd
+  Add delta 1.3 2007.09.02.06.23.20 lofi
+ Edit ports/databases/qt4-odbc-plugin/pkg-plist
+  Add delta 1.2 2007.09.02.06.23.19 lofi
+ Edit ports/databases/qt4-pgsql-plugin/distinfo
+  Add delta 1.4 2007.09.02.06.23.20 lofi
+ Edit ports/databases/qt4-pgsql-plugin/files/Makefile.bsd
+  Add delta 1.3 2007.09.02.06.23.20 lofi
+ Edit ports/databases/qt4-pgsql-plugin/pkg-plist
+  Add delta 1.2 2007.09.02.06.23.20 lofi
+ Edit ports/databases/qt4-sql/distinfo
+  Add delta 1.4 2007.09.02.06.23.20 lofi
+ Edit ports/databases/qt4-sql/pkg-plist
+  Add delta 1.6 2007.09.02.06.23.20 lofi
+ Edit ports/databases/qt4-sqlite-plugin/distinfo
+  Add delta 1.4 2007.09.02.06.23.20 lofi
+ Edit ports/databases/qt4-sqlite-plugin/files/Makefile.bsd
+  Add delta 1.3 2007.09.02.06.23.20 lofi
+ Edit ports/databases/qt4-sqlite-plugin/pkg-plist
+  Add delta 1.2 2007.09.02.06.23.20 lofi
+ Edit ports/databases/qt4-sqlite3-plugin/distinfo
+  Add delta 1.4 2007.09.02.06.23.21 lofi
+ Edit ports/databases/qt4-sqlite3-plugin/files/Makefile.bsd
+  Add delta 1.3 2007.09.02.06.23.21 lofi
+ Edit ports/databases/qt4-sqlite3-plugin/pkg-plist
+  Add delta 1.2 2007.09.02.06.23.21 lofi
+ Edit ports/devel/acpicatools/Makefile
+  Add delta 1.28 2007.09.02.14.11.32 arved
+ Edit ports/devel/acpicatools/files/patch-osunixxf.c
+  Add delta 1.3 2007.09.02.14.11.33 arved
+ Edit ports/devel/bzr-gtk/Makefile
+  Add delta 1.8 2007.09.01.21.54.24 pav
+ Edit ports/devel/bzr-gtk/distinfo
+  Add delta 1.6 2007.09.01.21.54.24 pav
+ Edit ports/devel/bzr-gtk/pkg-plist
+  Add delta 1.7 2007.09.01.21.54.24 pav
+ Edit ports/devel/dbus-qt4/distinfo
+  Add delta 1.4 2007.09.02.06.23.21 lofi
+ Edit ports/devel/dbus-qt4/pkg-plist
+  Add delta 1.6 2007.09.02.06.23.21 lofi
+ Edit ports/devel/noweb/Makefile
+  Add delta 1.24 2007.09.02.08.37.39 tg
+ Edit ports/devel/noweb/distinfo
+  Add delta 1.10 2007.09.02.08.37.39 tg
+ Edit ports/devel/noweb/files/patch-Makefile
+  Add delta 1.2 2007.09.02.08.37.39 tg
+ Edit ports/devel/p5-Config-Any/Makefile
+  Add delta 1.4 2007.09.01.20.21.21 lbr
+ Edit ports/devel/py-setuptools/pkg-plist
+  Add delta 1.10 2007.09.01.22.12.58 pav
+ Edit ports/devel/pypersrc/Makefile
+  Add delta 1.3 2007.09.02.07.16.04 rafan
+ Edit ports/devel/qmake4/Makefile
+  Add delta 1.11 2007.09.02.06.23.21 lofi
+ Edit ports/devel/qmake4/distinfo
+  Add delta 1.4 2007.09.02.06.23.21 lofi
+ Edit ports/devel/qmake4/files/qconfig.cpp
+  Add delta 1.6 2007.09.02.06.23.21 lofi
+ Edit ports/devel/qmake4/pkg-plist
+  Add delta 1.3 2007.09.02.06.23.21 lofi
+ Edit ports/devel/qt4/Makefile
+  Add delta 1.11 2007.09.02.06.23.22 lofi
+ Edit ports/devel/qt4/files/configure
+  Add delta 1.4 2007.09.02.06.23.22 lofi
+ Edit ports/devel/qt4-assistant/Makefile
+  Add delta 1.12 2007.09.02.06.23.22 lofi
+ Edit ports/devel/qt4-assistant/distinfo
+  Add delta 1.4 2007.09.02.06.23.22 lofi
+ Edit ports/devel/qt4-corelib/Makefile
+  Add delta 1.13 2007.09.02.06.23.22 lofi
+ Edit ports/devel/qt4-corelib/distinfo
+  Add delta 1.4 2007.09.02.06.23.22 lofi
+ Delete ports/devel/qt4-corelib/files/patch-src_corelib_arch_arm_arch.pri
+ Edit ports/devel/qt4-corelib/pkg-plist
+  Add delta 1.7 2007.09.02.06.23.22 lofi
+ Edit ports/devel/qt4-designer/Makefile
+  Add delta 1.13 2007.09.02.06.23.22 lofi
+ Edit ports/devel/qt4-designer/distinfo
+  Add delta 1.4 2007.09.02.06.23.22 lofi
+ Edit ports/devel/qt4-designer/pkg-plist
+  Add delta 1.6 2007.09.02.06.23.22 lofi
+ Edit ports/devel/qt4-libqtassistantclient/distinfo
+  Add delta 1.4 2007.09.02.06.23.23 lofi
+ Edit ports/devel/qt4-libqtassistantclient/pkg-plist
+  Add delta 1.5 2007.09.02.06.23.23 lofi
+ Edit ports/devel/qt4-linguist/Makefile
+  Add delta 1.11 2007.09.02.06.23.23 lofi
+ Edit ports/devel/qt4-linguist/distinfo
+  Add delta 1.4 2007.09.02.06.23.23 lofi
+ Edit ports/devel/qt4-linguist/pkg-plist
+  Add delta 1.6 2007.09.02.06.23.23 lofi
+ Edit ports/devel/qt4-makeqpf/distinfo
+  Add delta 1.2 2007.09.02.06.23.23 lofi
+ Edit ports/devel/qt4-moc/distinfo
+  Add delta 1.4 2007.09.02.06.23.23 lofi
+ Edit ports/devel/qt4-moc/pkg-plist
+  Add delta 1.4 2007.09.02.06.23.23 lofi
+ Edit ports/devel/qt4-porting/distinfo
+  Add delta 1.4 2007.09.02.06.23.23 lofi
+ Edit ports/devel/qt4-qdbusviewer/distinfo
+  Add delta 1.2 2007.09.02.06.23.24 lofi
+ Edit ports/devel/qt4-qt3support/Makefile
+  Add delta 1.12 2007.09.02.06.23.24 lofi
+ Edit ports/devel/qt4-qt3support/distinfo
+  Add delta 1.4 2007.09.02.06.23.24 lofi
+ Edit ports/devel/qt4-qt3support/pkg-plist
+  Add delta 1.5 2007.09.02.06.23.24 lofi
+ Edit ports/devel/qt4-qtestlib/Makefile
+  Add delta 1.10 2007.09.02.06.23.24 lofi
+ Edit ports/devel/qt4-qtestlib/distinfo
+  Add delta 1.4 2007.09.02.06.23.24 lofi
+ Edit ports/devel/qt4-qtestlib/pkg-plist
+  Add delta 1.6 2007.09.02.06.23.24 lofi
+ Edit ports/devel/qt4-qvfb/distinfo
+  Add delta 1.4 2007.09.02.06.23.24 lofi
+ Edit ports/devel/qt4-qvfb/pkg-plist
+  Add delta 1.5 2007.09.02.06.23.24 lofi
+ Edit ports/devel/qt4-rcc/distinfo
+  Add delta 1.4 2007.09.02.06.23.24 lofi
+ Edit ports/devel/qt4-rcc/pkg-plist
+  Add delta 1.3 2007.09.02.06.23.24 lofi
+ Edit ports/devel/qt4-script/distinfo
+  Add delta 1.2 2007.09.02.06.23.25 lofi
+ Edit ports/devel/qt4-script/pkg-plist
+  Add delta 1.3 2007.09.02.06.23.25 lofi
+ Edit ports/devel/qt4-uic/distinfo
+  Add delta 1.4 2007.09.02.06.23.25 lofi
+ Edit ports/devel/qt4-uic/pkg-plist
+  Add delta 1.4 2007.09.02.06.23.25 lofi
+ Edit ports/devel/qt4-uic3/distinfo
+  Add delta 1.4 2007.09.02.06.23.25 lofi
+ Edit ports/devel/qt4-uic3/pkg-plist
+  Add delta 1.3 2007.09.02.06.23.25 lofi
+ Edit ports/dns/sqldjbdns/Makefile
+  Add delta 1.5 2007.09.01.22.03.13 pav
+ Edit ports/dns/sqldjbdns/distinfo
+  Add delta 1.3 2007.09.01.22.03.13 pav
+ Edit ports/editors/Makefile
+  Add delta 1.383 2007.09.02.13.14.52 hrs
+ Checkout ports/editors/nxml/Makefile
+ Checkout ports/editors/nxml/distinfo
+ Checkout ports/editors/nxml/pkg-descr
+ Checkout ports/editors/nxml/pkg-message
+ Checkout ports/editors/nxml/pkg-plist
+ Edit ports/editors/nxml-emacs21/Makefile
+  Add delta 1.8 2007.09.02.13.14.52 hrs
+ Delete ports/editors/nxml-emacs21/distinfo
+ Delete ports/editors/nxml-emacs21/pkg-descr
+ Delete ports/editors/nxml-emacs21/pkg-message
+ Delete ports/editors/nxml-emacs21/pkg-plist
+ Edit ports/editors/psgml/Makefile
+  Add delta 1.33 2007.09.02.13.29.49 hrs
+ Edit ports/finance/quantlib/Makefile
+  Add delta 1.22 2007.09.02.17.52.24 arved
+ Edit ports/finance/quantlib/distinfo
+  Add delta 1.9 2007.09.02.17.52.24 arved
+ Edit ports/finance/quantlib/pkg-plist
+  Add delta 1.8 2007.09.02.17.52.24 arved
+ Edit ports/french/eficas/Makefile
+  Add delta 1.17 2007.09.02.07.16.03 rafan
+ Checkout ports/games/brutalchess/files/patch-src-md3view.cpp
+ Checkout ports/games/brutalchess/files/patch-src-objview.cpp
+ Edit ports/games/ptkei/Makefile
+  Add delta 1.12 2007.09.02.07.16.04 rafan
+ Checkout ports/graphics/ogre312/Makefile
+ Checkout ports/graphics/ogre312/distinfo
+ Checkout ports/graphics/ogre312/pkg-descr
+ Checkout ports/graphics/ogre312/pkg-plist
+ Edit ports/graphics/qt4-iconengines/Makefile
+  Add delta 1.9 2007.09.02.06.23.25 lofi
+ Edit ports/graphics/qt4-iconengines/distinfo
+  Add delta 1.4 2007.09.02.06.23.25 lofi
+ Edit ports/graphics/qt4-iconengines/pkg-plist
+  Add delta 1.3 2007.09.02.06.23.25 lofi
+ Edit ports/graphics/qt4-imageformats/Makefile
+  Add delta 1.10 2007.09.02.06.23.25 lofi
+ Edit ports/graphics/qt4-imageformats/distinfo
+  Add delta 1.4 2007.09.02.06.23.25 lofi
+ Edit ports/graphics/qt4-imageformats/pkg-plist
+  Add delta 1.4 2007.09.02.06.23.25 lofi
+ Edit ports/graphics/qt4-pixeltool/distinfo
+  Add delta 1.4 2007.09.02.06.23.25 lofi
+ Edit ports/graphics/qt4-svg/distinfo
+  Add delta 1.4 2007.09.02.06.23.26 lofi
+ Edit ports/graphics/qt4-svg/pkg-plist
+  Add delta 1.6 2007.09.02.06.23.26 lofi
+ Edit ports/graphics/xmfract/Makefile
+  Add delta 1.16 2007.09.02.14.25.46 arved
+ Edit ports/graphics/xpdf/Makefile
+  Add delta 1.79 2007.09.02.15.21.03 nork
+ Checkout ports/graphics/xpdf/files/patch-xpdf_Stream.cc
+ Edit ports/japanese/ptex/Makefile
+  Add delta 1.33 2007.09.02.15.09.05 hrs
+ Edit ports/japanese/qt4-codecs-jp/Makefile
+  Add delta 1.7 2007.09.02.06.23.26 lofi
+ Edit ports/japanese/qt4-codecs-jp/distinfo
+  Add delta 1.4 2007.09.02.06.23.26 lofi
+ Edit ports/japanese/qt4-codecs-jp/pkg-plist
+  Add delta 1.3 2007.09.02.06.23.26 lofi
+ Edit ports/japanese/scim-canna/Makefile
+  Add delta 1.18 2007.09.02.15.04.45 nork
+ Edit ports/japanese/scim-uim/Makefile
+  Add delta 1.19 2007.09.02.15.08.56 nork
+ Edit ports/japanese/vlgothic/Makefile
+  Add delta 1.7 2007.09.02.17.12.09 arved
+ Edit ports/japanese/vlgothic/distinfo
+  Add delta 1.6 2007.09.02.17.12.09 arved
+ Edit ports/java/jdk14/Makefile
+  Add delta 1.108 2007.09.02.06.00.00 glewis
+ Edit ports/java/jdk16/Makefile
+  Add delta 1.145 2007.09.02.05.54.44 glewis
+ Checkout ports/java/jdk16/files/patch-j2se-lang-UNIXProcess.java.bsd
+ Edit ports/korean/qt4-codecs-kr/Makefile
+  Add delta 1.7 2007.09.02.06.23.26 lofi
+ Edit ports/korean/qt4-codecs-kr/distinfo
+  Add delta 1.4 2007.09.02.06.23.26 lofi
+ Edit ports/korean/qt4-codecs-kr/pkg-plist
+  Add delta 1.3 2007.09.02.06.23.26 lofi
+ Edit ports/lang/sml-nj/Makefile
+  Add delta 1.22 2007.09.02.05.47.04 jkoshy
+ Edit ports/lang/sml-nj/files/pkg-install.in
+  Add delta 1.2 2007.09.02.05.47.05 jkoshy
+ Edit ports/lang/sml-nj-devel/Makefile
+  Add delta 1.36 2007.09.02.05.48.54 jkoshy
+ Edit ports/lang/sml-nj-devel/files/pkg-install.in
+  Add delta 1.2 2007.09.02.05.48.55 jkoshy
+ Edit ports/mail/Makefile
+  Add delta 1.866 2007.09.02.01.37.37 rafan
+ Checkout ports/mail/ilohamail-devel/Makefile
+ Checkout ports/mail/ilohamail-devel/distinfo
+ Checkout ports/mail/ilohamail-devel/pkg-descr
+ Checkout ports/mail/ilohamail-devel/pkg-message
+ Checkout ports/mail/ilohamail-devel/pkg-plist
+ Checkout ports/mail/ovs/Makefile
+ Checkout ports/mail/ovs/distinfo
+ Checkout ports/mail/ovs/files/ovs.sh.in
+ Checkout ports/mail/ovs/files/patch-ovs.cgi
+ Checkout ports/mail/ovs/pkg-descr
+ Checkout ports/mail/ovs/pkg-message
+ Checkout ports/mail/ovs/pkg-plist
+ Checkout ports/mail/p5-GMail-IMAPD/distinfo
+ Checkout ports/mail/qmail-scanner1/Makefile
+ Checkout ports/mail/qmail-scanner1/distinfo
+ Checkout ports/mail/qmail-scanner1/files/patch-configure
+ Checkout ports/mail/qmail-scanner1/files/patch-qmail-scanner-queue.template
+ Checkout ports/mail/qmail-scanner1/files/patch-sub-spamassassin.pl
+ Checkout ports/mail/qmail-scanner1/pkg-descr
+ Checkout ports/mail/qmail-scanner1/pkg-install
+ Checkout ports/mail/qmail-scanner1/pkg-message
+ Checkout ports/mail/qmail-scanner1/pkg-plist
+ Edit ports/math/asir2000/Makefile
+  Add delta 1.32 2007.09.02.13.41.54 arved
+ Edit ports/math/asir2000/distinfo
+  Add delta 1.18 2007.09.02.13.41.54 arved
+ Edit ports/math/asir2000/files/patch-ac
+  Add delta 1.12 2007.09.02.13.41.55 arved
+ Edit ports/math/asir2000/files/patch-ba
+  Add delta 1.3 2007.09.02.13.41.55 arved
+ Edit ports/math/asir2000/files/patch-da
+  Add delta 1.2 2007.09.02.13.41.55 arved
+ Delete ports/math/asir2000/files/patch-include-private-gcconfig.h
+ Edit ports/misc/cuecat/Makefile
+  Add delta 1.10 2007.09.02.07.16.04 rafan
+ Edit ports/misc/qt4-doc/distinfo
+  Add delta 1.4 2007.09.02.06.23.26 lofi
+ Edit ports/misc/qt4-doc/pkg-plist
+  Add delta 1.4 2007.09.02.06.23.26 lofi
+ Edit ports/misc/qt4-qtconfig/distinfo
+  Add delta 1.4 2007.09.02.06.23.26 lofi
+ Edit ports/misc/qt4-qtdemo/distinfo
+  Add delta 1.4 2007.09.02.06.23.27 lofi
+ Edit ports/misc/qt4-qtdemo/pkg-plist
+  Add delta 1.5 2007.09.02.06.23.27 lofi
+ Edit ports/net/forg/Makefile
+  Add delta 1.10 2007.09.02.07.16.04 rafan
+ Edit ports/net/grsync/Makefile
+  Add delta 1.2 2007.09.01.13.19.33 chinsan
+ Edit ports/net/grsync/pkg-plist
+  Add delta 1.2 2007.09.01.13.19.33 chinsan
+ Edit ports/net/qt4-network/distinfo
+  Add delta 1.4 2007.09.02.06.23.27 lofi
+ Edit ports/net/qt4-network/pkg-plist
+  Add delta 1.6 2007.09.02.06.23.27 lofi
+ Edit ports/net-im/fugu/Makefile
+  Add delta 1.12 2007.09.02.07.16.05 rafan
+ Edit ports/net-mgmt/aguri/Makefile
+  Add delta 1.5 2007.09.02.13.55.44 arved
+ Checkout ports/net-mgmt/aguri/files/patch-aguri.h
+ Edit ports/net-mgmt/zabbix/files/pkg-message.in
+  Add delta 1.3 2007.09.01.22.05.17 pav
+ Edit ports/security/gnupg/Makefile
+  Add delta 1.106 2007.09.02.11.08.10 novel
+ Edit ports/security/ipsec-tools/Makefile
+  Add delta 1.18 2007.09.02.16.48.49 arved
+ Edit ports/security/ipsec-tools/distinfo
+  Add delta 1.10 2007.09.02.16.48.49 arved
+ Edit ports/security/ipsec-tools/files/patch-configure
+  Add delta 1.6 2007.09.02.16.48.50 arved
+ Delete ports/security/ipsec-tools/files/patch-src__racoon__eaytest.c
+ Delete ports/security/ipsec-tools/files/patch-src__racoon__plog.c
+ Delete ports/security/ipsec-tools/files/patch-src__racoon__var.h
+ Edit ports/security/tor/Makefile
+  Add delta 1.32 2007.09.02.17.14.07 arved
+ Edit ports/security/tor/distinfo
+  Add delta 1.22 2007.09.02.17.14.07 arved
+ Edit ports/security/vuxml/vuln.xml
+  Add delta 1.1408 2007.09.01.16.04.23 naddy
+  Add delta 1.1409 2007.09.02.12.09.33 simon
+ Edit ports/sysutils/conky/Makefile
+  Add delta 1.25 2007.09.02.05.46.04 novel
+ Edit ports/sysutils/conky/distinfo
+  Add delta 1.14 2007.09.02.05.46.04 novel
+ Delete ports/sysutils/conky/files/patch-src-freebsd.c
+ Edit ports/sysutils/lcdproc/Makefile
+  Add delta 1.13 2007.09.02.13.30.22 arved
+ Checkout ports/sysutils/lcdproc/files/patch-clients__lcdproc__machine_FreeBSD.c
+ Checkout ports/sysutils/lcdproc/files/patch-configure.in
+ Edit ports/sysutils/setcdboot/Makefile
+  Add delta 1.12 2007.09.01.17.00.04 linimon
+ Edit ports/sysutils/tw_cli/Makefile
+  Add delta 1.7 2007.09.02.15.24.50 oliver
+ Edit ports/sysutils/tw_cli/distinfo
+  Add delta 1.5 2007.09.02.15.24.50 oliver
+ Edit ports/textproc/p5-xmltv/Makefile
+  Add delta 1.26 2007.09.01.20.51.12 ahze
+ Edit ports/textproc/p5-xmltv/distinfo
+  Add delta 1.19 2007.09.01.20.51.12 ahze
+ Edit ports/textproc/p5-xmltv/pkg-plist
+  Add delta 1.18 2007.09.01.20.51.12 ahze
+ Edit ports/textproc/qt4-xml/distinfo
+  Add delta 1.4 2007.09.02.06.23.27 lofi
+ Edit ports/textproc/qt4-xml/pkg-plist
+  Add delta 1.6 2007.09.02.06.23.27 lofi
+ Edit ports/textproc/xmlroff/Makefile
+  Add delta 1.16 2007.09.02.16.22.14 hrs
+ Edit ports/textproc/xmlroff/distinfo
+  Add delta 1.9 2007.09.02.16.22.14 hrs
+ Delete ports/textproc/xmlroff/files/patch-area::fo-area-layout.c
+ Delete ports/textproc/xmlroff/files/patch-datatype::fo-color.c
+ Delete ports/textproc/xmlroff/files/patch-datatype::fo-enum.c
+ Delete ports/textproc/xmlroff/files/patch-expr::fo-expr-eval.c
+ Delete ports/textproc/xmlroff/files/patch-fo-context-util.c
+ Delete ports/textproc/xmlroff/files/patch-fo-fo-block-area.c
+ Delete ports/textproc/xmlroff/files/patch-fo-fo-fo.c
+ Delete ports/textproc/xmlroff/files/patch-fo-fo-repeatable-page-master-alternatives.c
+ Delete ports/textproc/xmlroff/files/patch-fo-fo-table.c
+ Delete ports/textproc/xmlroff/files/patch-libfo::fo-doc-gp.c
+ Delete ports/textproc/xmlroff/files/patch-property-fo-property-dominant-baseline.c
+ Delete ports/textproc/xmlroff/files/patch-property-fo-property-font-family.c
+ Delete ports/textproc/xmlroff/files/patch-property-fo-property-id.c
+ Delete ports/textproc/xmlroff/files/patch-property::fo-property-util.c
+ Edit ports/textproc/xmlroff/pkg-plist
+  Add delta 1.12 2007.09.02.16.22.14 hrs
+ Edit ports/www/drood/Makefile
+  Add delta 1.6 2007.09.01.22.20.16 pav
+ Edit ports/www/drood/distinfo
+  Add delta 1.6 2007.09.01.22.20.16 pav
+ Edit ports/www/mod_musicindex/Makefile
+  Add delta 1.17 2007.09.02.16.55.06 arved
+ Edit ports/www/mod_musicindex/distinfo
+  Add delta 1.7 2007.09.02.16.55.06 arved
+ Edit ports/www/mod_security2/Makefile
+  Add delta 1.8 2007.09.01.21.58.02 pav
+ Edit ports/www/nspluginwrapper/Makefile
+  Add delta 1.5 2007.09.01.23.15.12 pav
+ Edit ports/www/nspluginwrapper/distinfo
+  Add delta 1.3 2007.09.01.23.15.12 pav
+ Edit ports/www/p5-Catalyst-Action-RenderView/Makefile
+  Add delta 1.4 2007.09.02.08.26.14 lbr
+ Edit ports/www/p5-Catalyst-Action-RenderView/distinfo
+  Add delta 1.4 2007.09.02.08.26.14 lbr
+ Edit ports/x11/qt4-inputmethods/Makefile
+  Add delta 1.9 2007.09.02.06.23.27 lofi
+ Edit ports/x11/qt4-inputmethods/distinfo
+  Add delta 1.4 2007.09.02.06.23.27 lofi
+ Edit ports/x11/qt4-inputmethods/pkg-plist
+  Add delta 1.3 2007.09.02.06.23.27 lofi
+ Edit ports/x11/qt4-opengl/distinfo
+  Add delta 1.4 2007.09.02.06.23.27 lofi
+ Edit ports/x11/qt4-opengl/pkg-plist
+  Add delta 1.5 2007.09.02.06.23.27 lofi
+ Edit ports/x11-fonts/p5-type1inst/Makefile
+  Add delta 1.19 2007.09.02.13.52.02 hrs
+ Edit ports/x11-fonts/p5-type1inst/files/patch-type1inst
+  Add delta 1.4 2007.09.02.13.52.03 hrs
+ Delete ports/x11-fonts/p5-type1inst/pkg-plist
+ Edit ports/x11-toolkits/Makefile
+  Add delta 1.466 2007.09.02.07.14.59 rafan
+ Delete ports/x11-toolkits/pmw/Makefile
+ Delete ports/x11-toolkits/pmw/distinfo
+ Delete ports/x11-toolkits/pmw/pkg-descr
+ Delete ports/x11-toolkits/pmw/pkg-plist
+ Checkout ports/x11-toolkits/py-Pmw/Makefile
+ Checkout ports/x11-toolkits/py-Pmw/distinfo
+ Checkout ports/x11-toolkits/py-Pmw/pkg-descr
+ Checkout ports/x11-toolkits/py-Pmw/pkg-plist
+ Edit ports/x11-toolkits/py-tktreectrl/Makefile
+  Add delta 1.6 2007.09.02.07.16.04 rafan
+ Edit ports/x11-toolkits/qt4-gui/Makefile
+  Add delta 1.14 2007.09.02.06.23.28 lofi
+ Edit ports/x11-toolkits/qt4-gui/distinfo
+  Add delta 1.4 2007.09.02.06.23.28 lofi
+ Edit ports/x11-toolkits/qt4-gui/pkg-plist
+  Add delta 1.5 2007.09.02.06.23.28 lofi
+Shutting down connection to server
+Finished successfully
+Parsing supfile "/etc/cvsupfile-4_10"
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Server software version: SNAP_16_1h
+Negotiating file attribute support
+Exchanging collection information
+Establishing multiplexed-mode data connection
+Running
+Updating collection src-all/cvs
+Shutting down connection to server
+Finished successfully
+cd: can't cd to /usr/ports/sysutils/portupgrade
+Fetching the ports index ... fetch: http://www.FreeBSD.org/ports/INDEX-4.bz2: Not Found
+*** Error code 1
+
+Stop in /usr/ports.
+failed to fetch INDEX!
+Updating the ports index ... Generating INDEX.tmp - please wait..===> arabic/ae_fonts_mono failed
+*** Error code 1
+===> accessibility/at-poke failed
+*** Error code 1
+2 errors
+
+********************************************************************
+Before reporting this error, verify that you are running a supported
+version of FreeBSD (see http://www.FreeBSD.org/ports/) and that you
+have a complete and up-to-date ports collection.  (INDEX builds are
+not supported with partial or out-of-date ports collections -- in
+particular, if you are using cvsup, you must cvsup the "ports-all"
+collection, and have no "refuse" files.)  If that is the case, then
+report the failure to ports@FreeBSD.org together with relevant
+details of your ports configuration (including FreeBSD version,
+your architecture, your environment, and your /etc/make.conf
+settings, especially compiler flags and WITH/WITHOUT settings).
+
+Note: the latest pre-generated version of INDEX may be fetched
+automatically with "make fetchindex".
+********************************************************************
+
+*** Error code 1
+
+Stop in /usr/ports.
+*** Error code 1
+
+Stop in /usr/ports.
+failed to generate INDEX!
+index generation error
+/usr/local/lib/ruby/site_ruby/1.8/portsdb.rb:502:in `open_db': database file error (PortsDB::DBError)
+	from /usr/local/lib/ruby/site_ruby/1.8/portsdb.rb:660:in `port'
+	from /usr/local/lib/ruby/site_ruby/1.8/portsdb.rb:848:in `all_depends_list'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:915:in `tsort_build'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:907:in `tsort_build'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:929:in `sort_build'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:933:in `sort_build!'
+	from /usr/local/sbin/portupgrade:674:in `main'
+	from /usr/local/lib/ruby/1.8/optparse.rb:815:in `initialize'
+	from /usr/local/sbin/portupgrade:207:in `main'
+	from /usr/local/sbin/portupgrade:1869
+cd: can't cd to /usr/ports/sysutils/portupgrade
+Fetching the ports index ... fetch: http://www.FreeBSD.org/ports/INDEX-4.bz2: Not Found
+failed to fetch INDEX!
+Updating the ports index ... 2 errors
+failed to generate INDEX!
+index generation error
+/usr/local/lib/ruby/site_ruby/1.8/portsdb.rb:502:in `open_db': database file error (PortsDB::DBError)
+	from /usr/local/lib/ruby/site_ruby/1.8/portsdb.rb:660:in `port'
+	from /usr/local/lib/ruby/site_ruby/1.8/portsdb.rb:848:in `all_depends_list'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:915:in `tsort_build'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:907:in `tsort_build'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:929:in `sort_build'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:933:in `sort_build!'
+	from /usr/local/sbin/portupgrade:674:in `main'
+	from /usr/local/lib/ruby/1.8/optparse.rb:815:in `initialize'
+	from /usr/local/sbin/portupgrade:207:in `main'
+	from /usr/local/sbin/portupgrade:1869
+--->  Session started at: Mon, 03 Sep 2007 03:46:59 +0200
+--->  Session ended at: Mon, 03 Sep 2007 03:47:00 +0200 (consumed 00:00:01)
+
+-- End of daily output --

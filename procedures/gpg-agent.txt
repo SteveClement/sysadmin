@@ -1,0 +1,58 @@
+  usr/bin/symcryptrun
+   usr/bin/gpg-agent
+   usr/bin/gpg-connect-agent
+   usr/bin/gpgkey2ssh
+   usr/bin/gpgconf
+   usr/bin/watchgnupg
+   usr/libexec/gpg-preset-passphrase
+   usr/libexec/gpg-protect-tool
+>>> Completed installing gpg-agent-1.9.19 into
+>>> /var/tmp/portage/gpg-agent-1.9.19/image/
+
+>>> Merging app-crypt/gpg-agent-1.9.19 to /
+ * >>> SetUID: [chmod go-r]
+ * /var/tmp/portage/gpg-agent-1.9.19/image//usr/bin/gpg-agent  ...
+ * [ ok ]
+--- /usr/
+--- /usr/bin/
+>>> /usr/bin/symcryptrun
+>>> /usr/bin/gpg-agent
+>>> /usr/bin/gpgsm-gencert.sh
+>>> /usr/bin/gpg-connect-agent
+>>> /usr/bin/gpgkey2ssh
+>>> /usr/bin/gpgconf
+>>> /usr/bin/watchgnupg
+--- /usr/sbin/
+>>> /usr/sbin/addgnupghome
+--- /usr/share/
+--- /usr/share/doc/
+>>> /usr/share/doc/gpg-agent-1.9.19/
+>>> /usr/share/doc/gpg-agent-1.9.19/README.gz
+--- /usr/share/info/
+>>> /usr/share/info/gnupg.info.gz
+--- /usr/libexec/
+>>> /usr/libexec/gpg-preset-passphrase
+>>> /usr/libexec/gpg-protect-tool
+ * ** WARNING ** WARNING ** WARNING ** WARNING ** WARNING ** WARNING **
+ *  THIS IS _ALPHA_ CODE, IT MAY NOT WORK CORRECTLY OR AT ALL. THERE
+ *  MAY BE UNDISCOVERED SECURITY OR DATA-LOSS ISSUES, DO NOT USE
+ *  IN A PRODUCTION ENVIRONMENT.
+ * gpg is installed suid root to make use of protected memory space
+ * This is needed in order to have a secure place to store your
+ * passphrases, etc. at runtime but may make some sysadmins nervous.
+
+>>> Regenerating /etc/ld.so.cache...
+>>> app-crypt/gpg-agent-1.9.19 merged.
+>>> Recording app-crypt/gpg-agent in "world" favorites file...
+
+>>> clean: No packages selected for removal.
+
+>>> Auto-cleaning packages ...
+
+>>> No outdated packages were found on your system.
+
+
+ * Regenerating GNU info directory index...
+ * Processed 223 info files.
+
+

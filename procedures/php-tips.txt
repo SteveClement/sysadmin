@@ -1,0 +1,8 @@
+Sometimes you hit the problem that mod_php is installed and you require
+CMD-Line php or pear, do this:
+
+cd /usr/ports/www/mod_php5
+make deinstall
+cd /usr/ports/lang/php5
+make install
+That port will install a mod_php and command line php.

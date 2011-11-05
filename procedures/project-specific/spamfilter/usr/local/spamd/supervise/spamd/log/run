@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /usr/local/bin/setuidgid qscand /usr/local/bin/multilog t s1000000 n20 /var/log/spamd

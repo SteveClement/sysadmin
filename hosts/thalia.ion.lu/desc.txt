@@ -1,0 +1,2 @@
+Thalia is a client Leased Windows XP Machine that serves as Game SErver and
+windows webserver

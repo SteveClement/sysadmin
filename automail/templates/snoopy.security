@@ -1,0 +1,41 @@
+*Received: (qmail 13366 invoked by uid 98); 18 Jun 2004 01:22:14 -0000
+Received: from root@snoopy.party.lu by zinc.ion.lu by uid 82 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.72. spamassassin: 2.63.  Clear:RC:0(80.90.47.180):SA:0(0.3/5.0):. 
+ Processed in 10.174755 secs); 18 Jun 2004 01:22:14 -0000
+X-Spam-Status: No, hits=0.3 required=5.0
+X-Antivirus-ion.lu-Mail-From: root@snoopy.party.lu via zinc.ion.lu
+X-Antivirus-ion.lu: 1.22-st-qms (Clear:RC:0(80.90.47.180):SA:0(0.3/5.0):. Processed in 10.174755 secs Process 13358)
+Received: from snoopy.party.lu (80.90.47.180)
+  by zinc.ion.lu with SMTP; 18 Jun 2004 01:22:04 -0000
+Received: (qmail 49069 invoked by alias); 18 Jun 2004 01:22:04 -0000
+Delivered-To: root@snoopy.party.lu
+Received: (qmail 49048 invoked by uid 0); 18 Jun 2004 01:22:04 -0000
+Date: 18 Jun 2004 01:22:04 -0000
+Message-ID: <20040618012204.49030.qmail@snoopy.party.lu>
+From: root@snoopy.party.lu
+To: root@snoopy.party.lu
+Subject: snoopy.party.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+snoopy.party.lu kernel log messages:
+> d), uid 88 on /: file system full
+> pid 43867 (httpd), uid 1005: exited on signal 11
+> pid 25089 (httpd), uid 1005: exited on signal 10
+> pid 18962 (httpd), uid 1005: exited on signal 10
+> pid 31680 (httpd), uid 1005: exited on signal 11
+> pid 34969 (httpd), uid 1005: exited on signal 11
+> pid 39924 (httpd), uid 1005: exited on signal 10
+
+snoopy.party.lu login failures:
+
+snoopy.party.lu refused connections:
+
+-- End of security output --

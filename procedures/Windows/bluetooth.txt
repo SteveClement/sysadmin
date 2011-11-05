@@ -1,0 +1,10 @@
+Bluetooth support under windows is incredibly bad:
+
+SP2 has it's own stack but is limited with services.
+
+First rename: WINDOWS\inf\bth.inf to bth.bak
+
+Then install the WIDCOMM Stack, should come on your install CD.
+
+If it's not an widcom stack you might need to reconsider the device.
+

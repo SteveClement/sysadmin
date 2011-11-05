@@ -1,0 +1,283 @@
+*Received: (qmail 77119 invoked by uid 89); 3 Sep 2007 03:02:12 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 03:02:12 +0200
+Received: (qmail 29620 invoked by uid 98); 3 Sep 2007 02:45:27 +0200
+Received: from 80.90.47.184 by radium.ion.lu (envelope-from <root@potion2.ion.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(80.90.47.184):SA:0(3.3/7.0):. 
+ Processed in 5.926645 secs); 03 Sep 2007 00:45:27 -0000
+X-Spam-Status: No, score=3.3 required=7.0
+X-Spam-Level: +++
+Received: from unknown (HELO potion2.ion.lu) (80.90.47.184)
+  by radium.ion.lu with SMTP; 3 Sep 2007 02:45:21 +0200
+Received-SPF: none (radium.ion.lu: domain at potion2.ion.lu does not designate permitted sender hosts)
+Received: (qmail 99184 invoked by alias); 3 Sep 2007 03:01:09 +0200
+Delivered-To: root@potion2.ion.lu
+Received: (qmail 99149 invoked by uid 0); 3 Sep 2007 03:01:09 +0200
+Date: 3 Sep 2007 03:01:09 +0200
+Message-ID: <20070903010109.99147.qmail@potion2.ion.lu>
+From: root@potion2.ion.lu
+To: root@potion2.ion.lu
+Subject: woodstock.ion.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+woodstock.ion.lu login failures:
+Sep  2 01:51:53 woodstock sshd[66958]: Invalid user admin from 82.144.168.216
+Sep  2 01:51:55 woodstock sshd[66960]: Invalid user test from 82.144.168.216
+Sep  2 01:51:58 woodstock sshd[66962]: Invalid user guest from 82.144.168.216
+Sep  2 01:52:00 woodstock sshd[66964]: Invalid user webmaster from 82.144.168.216
+Sep  2 01:52:02 woodstock sshd[66966]: Invalid user mysql from 82.144.168.216
+Sep  2 01:52:05 woodstock sshd[66968]: Invalid user oracle from 82.144.168.216
+Sep  2 01:52:07 woodstock sshd[66970]: Invalid user library from 82.144.168.216
+Sep  2 01:52:12 woodstock sshd[66972]: Invalid user info from 82.144.168.216
+Sep  2 01:52:18 woodstock sshd[66974]: Invalid user shell from 82.144.168.216
+Sep  2 01:52:21 woodstock sshd[66976]: Invalid user linux from 82.144.168.216
+Sep  2 01:52:24 woodstock sshd[66978]: Invalid user unix from 82.144.168.216
+Sep  2 01:52:26 woodstock sshd[66980]: Invalid user webadmin from 82.144.168.216
+Sep  2 01:52:28 woodstock sshd[66982]: Invalid user ftp from 82.144.168.216
+Sep  2 08:30:38 woodstock sshd[96002]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com [203.148.15.59] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 08:30:43 woodstock sshd[96004]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com [203.148.15.59] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 08:30:46 woodstock sshd[96006]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com [203.148.15.59] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 08:30:50 woodstock sshd[96008]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com [203.148.15.59] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 08:30:56 woodstock sshd[96010]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com [203.148.15.59] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 08:31:00 woodstock sshd[96012]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com [203.148.15.59] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 08:31:04 woodstock sshd[96014]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com [203.148.15.59] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 08:31:09 woodstock sshd[96016]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com [203.148.15.59] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:34:33 woodstock sshd[96968]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:34:35 woodstock sshd[96970]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:34:37 woodstock sshd[96972]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:34:39 woodstock sshd[96974]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:34:39 woodstock sshd[96974]: Invalid user admin from 190.2.37.241
+Sep  2 16:34:41 woodstock sshd[96976]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:34:41 woodstock sshd[96976]: Invalid user test from 190.2.37.241
+Sep  2 16:34:43 woodstock sshd[96978]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:34:43 woodstock sshd[96978]: Invalid user guest from 190.2.37.241
+Sep  2 16:34:45 woodstock sshd[96980]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:34:45 woodstock sshd[96980]: Invalid user webmaster from 190.2.37.241
+Sep  2 16:34:47 woodstock sshd[96982]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:34:47 woodstock sshd[96982]: Invalid user mysql from 190.2.37.241
+Sep  2 16:34:49 woodstock sshd[96984]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:34:49 woodstock sshd[96984]: Invalid user oracle from 190.2.37.241
+Sep  2 16:34:51 woodstock sshd[96986]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:34:51 woodstock sshd[96986]: Invalid user library from 190.2.37.241
+Sep  2 16:34:53 woodstock sshd[96988]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:34:53 woodstock sshd[96988]: Invalid user info from 190.2.37.241
+Sep  2 16:34:55 woodstock sshd[96990]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:34:55 woodstock sshd[96990]: Invalid user shell from 190.2.37.241
+Sep  2 16:34:57 woodstock sshd[96992]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:34:57 woodstock sshd[96992]: Invalid user linux from 190.2.37.241
+Sep  2 16:34:59 woodstock sshd[96994]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:34:59 woodstock sshd[96994]: Invalid user unix from 190.2.37.241
+Sep  2 16:35:01 woodstock sshd[96996]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:01 woodstock sshd[96996]: Invalid user webadmin from 190.2.37.241
+Sep  2 16:35:03 woodstock sshd[97001]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:03 woodstock sshd[97001]: Invalid user ftp from 190.2.37.241
+Sep  2 16:35:05 woodstock sshd[97003]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:05 woodstock sshd[97003]: Invalid user test from 190.2.37.241
+Sep  2 16:35:07 woodstock sshd[97005]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:10 woodstock sshd[97007]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:10 woodstock sshd[97007]: Invalid user admin from 190.2.37.241
+Sep  2 16:35:12 woodstock sshd[97009]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:12 woodstock sshd[97009]: Invalid user guest from 190.2.37.241
+Sep  2 16:35:14 woodstock sshd[97011]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:14 woodstock sshd[97011]: Invalid user master from 190.2.37.241
+Sep  2 16:35:16 woodstock sshd[97013]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:16 woodstock sshd[97013]: Invalid user apache from 190.2.37.241
+Sep  2 16:35:18 woodstock sshd[97015]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:20 woodstock sshd[97017]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:22 woodstock sshd[97019]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:22 woodstock sshd[97019]: Invalid user network from 190.2.37.241
+Sep  2 16:35:24 woodstock sshd[97021]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:24 woodstock sshd[97021]: Invalid user word from 190.2.37.241
+Sep  2 16:35:26 woodstock sshd[97023]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:28 woodstock sshd[97025]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:30 woodstock sshd[97027]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:32 woodstock sshd[97029]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:34 woodstock sshd[97031]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:36 woodstock sshd[97033]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:38 woodstock sshd[97035]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:40 woodstock sshd[97037]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:42 woodstock sshd[97039]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:42 woodstock sshd[97039]: Invalid user text from 190.2.37.241
+Sep  2 16:35:44 woodstock sshd[97041]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net [190.2.37.241] failed - POSSIBLE BREAK-IN ATTEMPT!
+Sep  2 16:35:44 woodstock sshd[97041]: Invalid user book from 190.2.37.241
+Sep  2 17:07:38 woodstock sshd[97160]: Invalid user admin from 202.70.32.106
+Sep  2 17:07:40 woodstock sshd[97162]: Invalid user admin from 202.70.32.106
+Sep  2 17:07:42 woodstock sshd[97164]: Invalid user admin from 202.70.32.106
+Sep  2 17:07:45 woodstock sshd[97166]: Invalid user admin from 202.70.32.106
+Sep  2 17:07:48 woodstock sshd[97168]: Invalid user admin from 202.70.32.106
+Sep  2 17:07:51 woodstock sshd[97170]: Invalid user admin from 202.70.32.106
+Sep  2 17:07:55 woodstock sshd[97172]: Invalid user admin from 202.70.32.106
+Sep  2 17:07:58 woodstock sshd[97174]: Invalid user admin from 202.70.32.106
+Sep  2 17:08:01 woodstock sshd[97176]: Invalid user admin from 202.70.32.106
+Sep  2 17:08:03 woodstock sshd[97178]: Invalid user admin1 from 202.70.32.106
+Sep  2 17:08:06 woodstock sshd[97180]: Invalid user admin1 from 202.70.32.106
+Sep  2 17:08:09 woodstock sshd[97182]: Invalid user admin1 from 202.70.32.106
+Sep  2 17:08:12 woodstock sshd[97184]: Invalid user admin1 from 202.70.32.106
+Sep  2 17:08:14 woodstock sshd[97186]: Invalid user admin1 from 202.70.32.106
+Sep  2 17:08:19 woodstock sshd[97188]: Invalid user admin1 from 202.70.32.106
+Sep  2 17:08:22 woodstock sshd[97190]: Invalid user admin01 from 202.70.32.106
+Sep  2 17:08:25 woodstock sshd[97192]: Invalid user admin01 from 202.70.32.106
+Sep  2 17:08:27 woodstock sshd[97194]: Invalid user admin01 from 202.70.32.106
+Sep  2 17:08:29 woodstock sshd[97196]: Invalid user admin01 from 202.70.32.106
+Sep  2 17:08:32 woodstock sshd[97198]: Invalid user admin01 from 202.70.32.106
+Sep  2 17:08:35 woodstock sshd[97200]: Invalid user test from 202.70.32.106
+Sep  2 17:08:37 woodstock sshd[97202]: Invalid user test from 202.70.32.106
+Sep  2 17:08:40 woodstock sshd[97204]: Invalid user test from 202.70.32.106
+Sep  2 17:08:42 woodstock sshd[97206]: Invalid user test from 202.70.32.106
+Sep  2 17:08:45 woodstock sshd[97208]: Invalid user test from 202.70.32.106
+Sep  2 17:08:47 woodstock sshd[97210]: Invalid user test from 202.70.32.106
+Sep  2 17:08:50 woodstock sshd[97212]: Invalid user test from 202.70.32.106
+Sep  2 17:08:52 woodstock sshd[97214]: Invalid user test from 202.70.32.106
+Sep  2 17:08:55 woodstock sshd[97216]: Invalid user test1 from 202.70.32.106
+Sep  2 17:08:57 woodstock sshd[97218]: Invalid user test1 from 202.70.32.106
+Sep  2 17:08:59 woodstock sshd[97220]: Invalid user test1 from 202.70.32.106
+Sep  2 17:09:01 woodstock sshd[97222]: Invalid user test1 from 202.70.32.106
+Sep  2 17:09:04 woodstock sshd[97224]: Invalid user test1 from 202.70.32.106
+Sep  2 17:09:07 woodstock sshd[97226]: Invalid user test1 from 202.70.32.106
+Sep  2 17:09:10 woodstock sshd[97228]: Invalid user test01 from 202.70.32.106
+Sep  2 17:09:12 woodstock sshd[97230]: Invalid user test01 from 202.70.32.106
+Sep  2 17:09:15 woodstock sshd[97232]: Invalid user test01 from 202.70.32.106
+Sep  2 17:09:17 woodstock sshd[97234]: Invalid user test01 from 202.70.32.106
+Sep  2 17:09:20 woodstock sshd[97236]: Invalid user test01 from 202.70.32.106
+Sep  2 17:09:23 woodstock sshd[97238]: Invalid user test02 from 202.70.32.106
+Sep  2 17:09:26 woodstock sshd[97240]: Invalid user test02 from 202.70.32.106
+Sep  2 17:09:29 woodstock sshd[97242]: Invalid user test02 from 202.70.32.106
+Sep  2 17:09:32 woodstock sshd[97244]: Invalid user test02 from 202.70.32.106
+Sep  2 17:09:35 woodstock sshd[97246]: Invalid user test02 from 202.70.32.106
+Sep  2 17:09:38 woodstock sshd[97248]: Invalid user test03 from 202.70.32.106
+Sep  2 17:09:40 woodstock sshd[97250]: Invalid user test03 from 202.70.32.106
+Sep  2 17:09:46 woodstock sshd[97252]: Invalid user test03 from 202.70.32.106
+Sep  2 17:09:48 woodstock sshd[97254]: Invalid user test03 from 202.70.32.106
+Sep  2 17:09:51 woodstock sshd[97256]: Invalid user test03 from 202.70.32.106
+Sep  2 17:09:54 woodstock sshd[97258]: Invalid user test04 from 202.70.32.106
+Sep  2 17:09:56 woodstock sshd[97260]: Invalid user test04 from 202.70.32.106
+Sep  2 17:09:59 woodstock sshd[97262]: Invalid user test04 from 202.70.32.106
+Sep  2 17:10:01 woodstock sshd[97264]: Invalid user test04 from 202.70.32.106
+Sep  2 17:10:04 woodstock sshd[97269]: Invalid user guest from 202.70.32.106
+Sep  2 17:10:07 woodstock sshd[97271]: Invalid user guest from 202.70.32.106
+Sep  2 17:10:09 woodstock sshd[97273]: Invalid user guest from 202.70.32.106
+Sep  2 17:10:12 woodstock sshd[97275]: Invalid user guest from 202.70.32.106
+Sep  2 17:10:14 woodstock sshd[97277]: Invalid user guest from 202.70.32.106
+Sep  2 17:10:16 woodstock sshd[97279]: Invalid user guest from 202.70.32.106
+Sep  2 17:10:19 woodstock sshd[97281]: Invalid user guest from 202.70.32.106
+Sep  2 17:10:22 woodstock sshd[97283]: Invalid user guest from 202.70.32.106
+Sep  2 17:10:25 woodstock sshd[97285]: Invalid user guest01 from 202.70.32.106
+Sep  2 17:10:28 woodstock sshd[97287]: Invalid user guest01 from 202.70.32.106
+Sep  2 17:10:30 woodstock sshd[97289]: Invalid user ftpadmin from 202.70.32.106
+Sep  2 17:10:33 woodstock sshd[97291]: Invalid user ftpadmin from 202.70.32.106
+Sep  2 17:10:36 woodstock sshd[97293]: Invalid user ftpadmin from 202.70.32.106
+Sep  2 17:10:38 woodstock sshd[97295]: Invalid user ftpadmin from 202.70.32.106
+Sep  2 17:10:41 woodstock sshd[97297]: Invalid user ftpadmin from 202.70.32.106
+Sep  2 17:10:43 woodstock sshd[97299]: Invalid user ftpuser from 202.70.32.106
+Sep  2 17:10:46 woodstock sshd[97301]: Invalid user ftpuser from 202.70.32.106
+Sep  2 17:10:48 woodstock sshd[97303]: Invalid user ftpuser from 202.70.32.106
+Sep  2 17:10:51 woodstock sshd[97305]: Invalid user ftpuser from 202.70.32.106
+Sep  2 17:10:53 woodstock sshd[97307]: Invalid user ftpuser from 202.70.32.106
+Sep  2 17:10:56 woodstock sshd[97309]: Invalid user backup from 202.70.32.106
+Sep  2 17:10:59 woodstock sshd[97311]: Invalid user backup from 202.70.32.106
+Sep  2 17:11:02 woodstock sshd[97313]: Invalid user backup from 202.70.32.106
+Sep  2 17:11:04 woodstock sshd[97328]: Invalid user backup from 202.70.32.106
+Sep  2 17:11:08 woodstock sshd[97330]: Invalid user backup from 202.70.32.106
+Sep  2 17:11:10 woodstock sshd[97332]: Invalid user postgres from 202.70.32.106
+Sep  2 17:11:13 woodstock sshd[97334]: Invalid user postgres from 202.70.32.106
+Sep  2 17:11:16 woodstock sshd[97336]: Invalid user postgres from 202.70.32.106
+Sep  2 17:11:24 woodstock sshd[97342]: Invalid user account from 202.70.32.106
+Sep  2 17:11:26 woodstock sshd[97344]: Invalid user account from 202.70.32.106
+Sep  2 17:11:28 woodstock sshd[97346]: Invalid user webmaster from 202.70.32.106
+Sep  2 17:11:31 woodstock sshd[97348]: Invalid user webmaster from 202.70.32.106
+Sep  2 17:11:33 woodstock sshd[97350]: Invalid user webmaster from 202.70.32.106
+Sep  2 17:11:36 woodstock sshd[97352]: Invalid user webmaster from 202.70.32.106
+Sep  2 17:11:38 woodstock sshd[97354]: Invalid user webmaster from 202.70.32.106
+Sep  2 17:11:41 woodstock sshd[97356]: Invalid user webmaster from 202.70.32.106
+Sep  2 17:11:43 woodstock sshd[97358]: Invalid user webadmin from 202.70.32.106
+Sep  2 17:11:46 woodstock sshd[97360]: Invalid user webadmin from 202.70.32.106
+Sep  2 17:11:48 woodstock sshd[97362]: Invalid user webadmin from 202.70.32.106
+Sep  2 17:11:52 woodstock sshd[97364]: Invalid user webadmin from 202.70.32.106
+Sep  2 17:11:54 woodstock sshd[97366]: Invalid user webadmin from 202.70.32.106
+Sep  2 17:11:57 woodstock sshd[97368]: Invalid user webadmin from 202.70.32.106
+Sep  2 17:12:00 woodstock sshd[97370]: Invalid user nagios from 202.70.32.106
+Sep  2 17:12:02 woodstock sshd[97372]: Invalid user nagios from 202.70.32.106
+Sep  2 17:12:04 woodstock sshd[97374]: Invalid user nagios from 202.70.32.106
+Sep  2 17:12:07 woodstock sshd[97376]: Invalid user nagios from 202.70.32.106
+Sep  2 17:12:09 woodstock sshd[97378]: Invalid user nagios from 202.70.32.106
+Sep  2 17:12:11 woodstock sshd[97380]: Invalid user nagios from 202.70.32.106
+Sep  2 17:12:14 woodstock sshd[97382]: Invalid user ftptest from 202.70.32.106
+Sep  2 17:12:16 woodstock sshd[97384]: Invalid user ftptest from 202.70.32.106
+Sep  2 17:12:19 woodstock sshd[97386]: Invalid user ftptest from 202.70.32.106
+Sep  2 17:12:21 woodstock sshd[97388]: Invalid user ftptest from 202.70.32.106
+Sep  2 17:12:24 woodstock sshd[97390]: Invalid user ftptest from 202.70.32.106
+Sep  2 17:12:27 woodstock sshd[97392]: Invalid user ftptest from 202.70.32.106
+Sep  2 17:12:29 woodstock sshd[97394]: Invalid user ftptest from 202.70.32.106
+Sep  2 17:12:32 woodstock sshd[97396]: Invalid user library from 202.70.32.106
+Sep  2 17:12:34 woodstock sshd[97398]: Invalid user library from 202.70.32.106
+Sep  2 17:12:37 woodstock sshd[97400]: Invalid user library from 202.70.32.106
+Sep  2 17:12:39 woodstock sshd[97402]: Invalid user ftpguest from 202.70.32.106
+Sep  2 17:12:43 woodstock sshd[97404]: Invalid user ftpguest from 202.70.32.106
+Sep  2 17:12:45 woodstock sshd[97406]: Invalid user ftpguest from 202.70.32.106
+Sep  2 17:12:48 woodstock sshd[97408]: Invalid user ftpguest from 202.70.32.106
+Sep  2 17:12:51 woodstock sshd[97410]: Invalid user info from 202.70.32.106
+Sep  2 17:12:53 woodstock sshd[97412]: Invalid user info from 202.70.32.106
+Sep  2 17:12:56 woodstock sshd[97414]: Invalid user ofni from 202.70.32.106
+Sep  2 17:12:58 woodstock sshd[97416]: Invalid user ofni from 202.70.32.106
+Sep  2 17:13:02 woodstock sshd[97418]: Invalid user info from 202.70.32.106
+Sep  2 17:13:04 woodstock sshd[97420]: Invalid user info from 202.70.32.106
+Sep  2 17:13:07 woodstock sshd[97422]: Invalid user info from 202.70.32.106
+Sep  2 17:13:10 woodstock sshd[97424]: Invalid user info from 202.70.32.106
+Sep  2 17:13:14 woodstock sshd[97426]: Invalid user ftp from 202.70.32.106
+Sep  2 17:13:16 woodstock sshd[97428]: Invalid user ftp from 202.70.32.106
+Sep  2 17:13:19 woodstock sshd[97430]: Invalid user ftp from 202.70.32.106
+Sep  2 17:13:21 woodstock sshd[97432]: Invalid user ftp from 202.70.32.106
+Sep  2 17:13:24 woodstock sshd[97434]: Invalid user ftp from 202.70.32.106
+Sep  2 17:13:27 woodstock sshd[97436]: Invalid user ftp from 202.70.32.106
+Sep  2 17:13:29 woodstock sshd[97438]: Invalid user ftp from 202.70.32.106
+Sep  2 17:13:32 woodstock sshd[97440]: Invalid user ftp from 202.70.32.106
+Sep  2 17:13:35 woodstock sshd[97442]: Invalid user upload from 202.70.32.106
+Sep  2 17:13:38 woodstock sshd[97444]: Invalid user upload from 202.70.32.106
+Sep  2 17:13:41 woodstock sshd[97446]: Invalid user upload from 202.70.32.106
+Sep  2 17:13:45 woodstock sshd[97448]: Invalid user upload from 202.70.32.106
+Sep  2 17:13:47 woodstock sshd[97450]: Invalid user upload from 202.70.32.106
+Sep  2 17:13:53 woodstock sshd[97452]: Invalid user upload from 202.70.32.106
+Sep  2 17:13:57 woodstock sshd[97454]: Invalid user upload from 202.70.32.106
+Sep  2 17:13:59 woodstock sshd[97456]: Invalid user upload from 202.70.32.106
+Sep  2 17:14:01 woodstock sshd[97458]: Invalid user usertest from 202.70.32.106
+Sep  2 17:14:04 woodstock sshd[97460]: Invalid user update from 202.70.32.106
+Sep  2 17:14:09 woodstock sshd[97462]: Invalid user update from 202.70.32.106
+Sep  2 17:14:12 woodstock sshd[97464]: Invalid user update from 202.70.32.106
+Sep  2 17:14:14 woodstock sshd[97466]: Invalid user update from 202.70.32.106
+Sep  2 17:14:16 woodstock sshd[97468]: Invalid user update from 202.70.32.106
+Sep  2 17:14:22 woodstock sshd[97470]: Invalid user update from 202.70.32.106
+Sep  2 17:14:25 woodstock sshd[97472]: Invalid user mysql from 202.70.32.106
+Sep  2 17:14:27 woodstock sshd[97474]: Invalid user mysql from 202.70.32.106
+Sep  2 17:14:30 woodstock sshd[97476]: Invalid user lqsym from 202.70.32.106
+Sep  2 17:14:32 woodstock sshd[97478]: Invalid user lqsym from 202.70.32.106
+
+woodstock.ion.lu refused connections:
+
+Checking for a current audit database:
+
+Database created: Sun Sep  2 02:40:01 CEST 2007
+
+Checking for packages with security vulnerabilities:
+
+Affected package: rsync-2.6.9
+Type of problem: rsync -- off by one stack overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/af8e3a0c-5009-11dc-8a43-003048705d5a.html>
+
+Affected package: vim-7.1.18
+Type of problem: vim -- Command Format String Vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/1ed03222-3c65-11dc-b3d3-0016179b2dd5.html>
+
+2 problem(s) in your installed packages found.
+
+You are advised to update or deinstall the affected package(s) immediately.
+
+-- End of security output --

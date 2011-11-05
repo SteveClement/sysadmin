@@ -1,0 +1,44 @@
+Installing qmail on gentoo:
+
+To do:
+# 2-Letter ISO country code
+C=US
+# FULL name of state/province/district
+# NO abbreviations!
+ST=Alabama
+# FULL name of city
+# NO abbreviations!
+L=Mobile
+# Full Name of your organization
+# NO abbreviations!
+O=Foobar Systems
+# This should be a FQDN that resolves to the IP of your server
+CN=localhost
+# This should be the email address for the administrator of the server
+emailAddress=postmaster@localhost
+
+
+
+emerge -C ssmtp
+emerge -av virtual/qmail
+vi /var/qmail/control/servercert.cnf
+ebuild /var/db/pkg/mail-mta/qmail-1.03-r*/qmail-1.03-r*.ebuild config
+ebuild /var/db/pkg/mail-mta/netqmail-1.05-r4/netqmail-1.05-r4.ebuild config
+
+echo rootmails@ion.lu > /var/qmail/alias/.qmail-root
+echo rootmails@ion.lu > /var/qmail/alias/.qmail-postmaster
+echo rootmails@ion.lu > /var/qmail/alias/.qmail-mailer-daemon
+
+rc-update add svscan boot
+cd /service
+ln -s /var/qmail/supervise/qmail-send qmail-send
+/etc/init.d/svscan start
+
+Installing mini-qmail, this forwards mails via the qmqp protocol to a full
+qmail server!
+
+emerge mini-qmail
+
+vi /var/qmail/control/qmqpserver
+ADD 127.0.0.1 if have configured Stunnel OR
+ADD 80.90.47.168 (YOU HAVE TO SPECIFY THE IP FQDN DOES NOT WORK!!!)

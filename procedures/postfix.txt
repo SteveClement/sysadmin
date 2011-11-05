@@ -1,0 +1,218 @@
+Warning.
+=======
+
+if mail is sent to the server with a first letter for which there is no
+database, postfix gives an error about being unable to open the db file,
+despite bouncing the mail.
+
+Plain old Postfix install
+-------------------------
+
+Unpack postfix. As you:
+
+  make
+
+As root:
+
+Create a postfix user, no login directory, no shell.
+Create a postdrop group.
+
+  mv /usr/sbin/sendmail /usr/sbin/sendmail.OFF
+  mv /usr/bin/newaliases /usr/bin/newaliases.OFF
+  mv /usr/bin/mailq /usr/bin/mailq.OFF
+
+Restart sendmail with -q15m (or whatever) if machine has a mail queue.
+Stop it otherwise.
+
+  cd ~software/unpacked/postfix-...
+  make install
+
+Accept the defaults for all questions.
+
+Sort out potential aliases confusion (N.B. this assumes that
+/etc/aliases is a softlink to /etc/mail/aliases, and the latter is a
+real file - be careful if that's not true):
+
+  ln -s /etc/mail/aliases /etc/aliases
+  ln -s /etc/mail/aliases.db /etc/aliases.db
+  ln -sf /etc/mail/aliases /etc/postfix/aliases
+  ln -sf /etc/mail/aliases.db /etc/postfix/aliases.db
+
+  newaliases
+
+Edit /etc/postfix/main.cf as appropriate.
+
+Edit /etc/rc.conf:
+
+sendmail_enable="NO"
+
+Edit /etc/rc.local:
+
+/usr/sbin/postfix start
+
+Then run:
+
+  /usr/sbin/postfix start
+
+Test that incoming/outgoing mail work.
+
+
+Update periodics
+----------------
+
+Automail can't handle the blank lines in Postfix' mailq output, so
+modify the daily script (/etc/periodic/daily/440.status-mailq on the
+machine I looked at) to say:
+
+    mailq | sed '/^$/d'
+
+instead of:
+
+    mailq
+
+(i.e. strip blank lines).
+
+installing with berkeley db & DRAC (see also cyrus procedures file)
+-------------------------------------------------------------------
+
+you would want to do this if you want to allow roaming users to use the postfix
+smtp server as their outgoing mail gateway.
+
+first, get & install latest berkely db (http://www.sleepycat.com)
+make sure you build it with 185-api compatibility:
+
+   cd build_unix
+   ../dist/configure --enable-compat185 
+   make
+   make install
+
+then, in postfix source directory do:
+
+  make tidy
+  # you may need to tweak the following paths for your version of db.
+  make makefiles CCARGS="-DHAS_DB -DPATH_DB_H='<db_185.h>' -I/usr/local/BerkeleyDB.3.2/include" AUXLIBS=/usr/local/BerkeleyDB.3.2/lib/libdb.a 
+  # you will get lots of "redefinition" warnings during the make - ignore them!
+  make
+  postfix stop
+  sh ./INSTALL.sh
+  # now recreate the alias & virtual databases with berkeley 3.x or postfix will fail to start
+  (make sure that all three possible locations for aliases and aliases.db are all pointing at the same files.
+   the possible locations are: /etc /etc/mail and /etc/postfix. use softlinks to point them all to one of those
+   three. i use /etc/mail).
+
+(do what it says above, in the vanilla install instructions, for soft linking alias files)
+
+  newaliases
+  postmap /etc/postfix/virtual
+
+make sure /etc/postfix/main.cf has some sensible defaults. in particular, 'mynetworks' should contain at least the machines local ip(/32) and 127.0.0.1/32 or it won't be able to send out mail itself.
+
+  postfix start
+
+aliases and virtuals
+--------------------
+
+since postfix (or rather cyrus) doesn't support dots in user names, we must rewrite them...
+
+postfix supports both local aliases and "virtual" domains. aliases will rewrite any name to a local user. 
+e.g.
+
+  m.macura:	mmacura
+
+will rewrite "m.macura@<whatever.com>" to "mmacura@<whatever.com>", where <whatever.com> is the primary local
+domain.
+
+alternatively, virtual domains allow you to receive multiple domains on the same server, but each address has to 
+be specifically translated into a local user. this results in a nice little gotcha...
+
+  m.macura@balkanholidays.co.uk   mmacura
+  @balkanholidays.co.uk		  catchall@some.other.domain.com
+
+what happens here is that "m.macura@balkanholidays.co.uk" gets re-written to "mmacura@balkanholidays.co.uk", but
+since there is no explicit entry for "mmacura@balkanholidays.co.uk" it gets caught by the fallback address and
+forwarded to "catchall@some.other.domain.com". the correct way to handle this is:
+
+
+  m.macura@balkanholidays.co.uk   mmacura
+  mmacura@balkanholidays.co.uk    mmacura
+  @balkanholidays.co.uk		  catchall@some.other.domain.com
+
+
+install DRAC
+------------
+
+get source from  http://mail.cc.umanitoba.ca/drac/
+
+edit Makefile and replace tunable section with (for FreeBSD):
+
+  INSTALL = install
+  EBIN = /usr/local/sbin
+  MAN = /usr/local/man/man
+  DEFS = -DSOCK_RPC -DFLOCK_LOCK -DGETHOST -DDASH_C -DREQ_HASH
+  CC = cc
+  RANLIB = ranlib
+  CFLAGS = $(DEFS) -g -I/usr/local/BerkeleyDB.3.2/include/
+  LDLIBS = -L/usr/local/BerkeleyDB.3.2/lib -ldb
+  TSTLIBS = -L. -ldrac
+  RPCGENFLAGS = -I -C
+  MANLIB = 3
+  MANADM = 8
+
+then do:
+
+  make
+  make install
+
+put this in /etc/rc.local:
+
+  echo starting DRACD for smtp
+  /usr/local/sbin/rpc.dracd
+
+you will also need to switch on portmap for dracd.
+
+once running, DRAC will create a database in /etc/mail/dracd.db. you can dump 
+it with db_dump which was installed as part of berkeley db:
+
+  db_dump -p /etc/mail/dracd.db
+
+which should produce something like:
+
+  VERSION=3
+  format=print
+  type=hash
+  HEADER=END
+  DATA=END
+
+'type=hash' is important - this is what postfix needs. 
+
+edit /etc/postfix/main.cf and add:
+
+  # allow DRAC controlled relaying
+  smtpd_recipient_restrictions = permit_mynetworks, check_client_access hash:/etc/mail/dracd, check_relay_domains
+
+restart postix:
+
+  postfix reload
+
+test that unauthorised relaying is still denied by pointing your outgoing smtp gateway at the server. sending 
+a mail should get you a reject. tail /var/log/maillog and find the ip address that was rejected. now add yourself
+to the drac authentication database:
+
+  cd ~software/unpacked/drac-1.11
+  ./testing localhost <IP address> 
+  db_dump -p /etc/mail/dracd.db
+
+you should see something like:
+
+  VERSION=3
+  format=print
+  type=hash
+  h_nelem=1
+  HEADER=END
+   <IP address>
+   981204512
+  DATA=END
+
+send the mail again. this time it should go through.
+
+you're done.

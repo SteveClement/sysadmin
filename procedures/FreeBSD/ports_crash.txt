@@ -1,0 +1,150 @@
+Hi Ports people,
+
+[Some search terms I used: +CONTENTS Missing , broken /var/db/pkg , +CONTENTS
+recovery , +CONTENTS gone , FreeBSD Ports /var/db/pkg/ recovery ]
+
+I had a rather nasty awakening while upgrading Xorg 7.2 which was not due to
+Xorg 7.2 but rather to a waiter that was too slow to bring me the Bill (food
+was good though) and my inability to reach a power outlet in time.
+
+In the following mail I will shortly explain what I did and what happened.
+
+
+What Happened?
+
+ While portupgrade'ing -a my battery died
+
+
+Consequence?
+
+ All my /var/db/pkg/*/+CONTENTS files were gone!
+ And my /usr partition was damaged (fsck -f /usr fixed that in Single user mode)
+
+
+Why +CONTENTS vanished?
+
+ This is a very good question that I have not answered yet, I can only say
+ that I did what /usr/ports/UPDATING suggested, upgrade to portupgrade-devel
+ portupgrade -a and of we go.
+ If someone knows why, let me know.
+
+
+What now?
+
+ So I thought I could recover them but after some Searching I think that's not
+ that easy for some obvious reasons, so I had to go the rough route of
+ reinstalling all the ports.
+
+ I did try various portsdb -Fu, pkgdb -F etc but to no avail.
+
+
+ Important note:
+
+ READ THE ENTIRE DOCUMENT FIRST, BEFORE ROCKING IN AND TYPING COMMANDS AWAY.
+
+ TAKE A BACKUP OF ALL YOUR PRECIOUS CUSTOM MADE CONFIGS AND REMEMBER THAT WE
+ ARE GOING TO REINSTALL EVERY PORT EVER INSTALLED TO THE CURRENT VERSION!
+
+
+Procedure:
+
+ As the +CONTENTS files were gone pkg_info told me for every installed package the following error:
+
+   pkg_info: the package info for package 'spca5xx-20060402_2' is corrupt
+
+ So at least I know what is broken and with a bit of stderr redirecting we can fix it.
+
+
+Now all I did is filter out the broken ports:
+
+cd /tmp
+pkg_info 2> pkg.err
+cat pkg.err |cut -f 2 -d\' |cut -f 1 -d\- |sort |uniq > pkg.reinstall
+
+
+ pkg.reinstall now contains the "base name" of the ports, as I needed a quick
+ fix package with names like xorg-name-version I did not take into account as
+ I can always do them by hand afterwards.
+
+ Let's force reinstall the packages:
+
+export FORCE_PKG_REGISTER=yes
+
+for a in `cat pkg.reinstall` ; do
+ portinstall -i $a
+done
+
+
+ The -i is the safety switch here. Bare in mind that -i does not care about
+ dependencies and will only install them without prompting (is there a way to
+ include deps in interactive mode?)
+ As /var/db/pkg is broken it will pull in every dependency off every port we
+ install in alphabetical order.
+
+
+Speeding things up:
+
+ To speed the reinstall up you might want to take a look at your ports and if
+ you have enough experience and "know" thy dependencies you can simply
+ portinstall $COMMON_PORTS and leave it run.
+ Also a pkgdb -F will pull in some dependencies and install them for you.
+ This will be more unattended that the beginning with a portinstall -i
+
+
+Monitoring Progress:
+
+cd /tmp
+while [ true ]; do
+ pkg_info 2> pkg.err.list > /dev/null
+ wc -l pkg.err.list
+ sleep 5
+done
+
+ As I installed over my ports this number diminished "steadily" :) and some
+ idea of when I will be done is always nice.
+
+
+Other Issues:
+
+ I did have to intervene manually from time to time.
+ Some packages have: ln -s source dest where destination exists the install failed
+ So I had to remove the destination file and make install again to make it go
+ through, this was especially true for some lib* ports.
+
+ Don't forget your custom config files.
+
+ Another issue I had is that some ports where updated so I ended up with stale
+ directories but pkg_delete -f $PORT did the job to remove them from my db.
+
+ Maybe a problem now is that I probably have some nasty left-overs from
+ old versions of the installed ports as I only installed over the existing port.
+ If your installed ports were VERY old (3-6months) this is even more an issue,
+ as mine was only out for a couple of weeks it was fine, allthough a ports
+ freeze in between I wasn't too concerned about the updated ports.
+
+
+Other options?
+
+ Yes, I could have reinstalled the machine but that is nowadays no option under
+ any decent OS, hell even my Windows reinstalls have become rarer :)
+
+ Another option would have been to copy the +CONTENTS files from an early
+ backup, but no backup :)
+
+ Or perhaps copying +CONTENTS from a similar machine with the same ports
+ installed, I tried that for a few ports but Checksums were wrong etc, etc so
+ I gave up, and with 300 ports installed the script needed for this would have
+ been tedious...
+
+
+The end?
+
+ Well folks I hope this comes in handy to other people and if someone has a
+ better idea that would've saved me ~150 lines of email and hours of
+ recompiling my ports, be my guest we want to know...
+
+
+
+cheers,
+
+Steve Clement

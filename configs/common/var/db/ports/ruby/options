@@ -1,0 +1,7 @@
+# Options for ruby-1.8.5_5,1
+_OPTIONS_READ=ruby-1.8.5_5,1
+WITHOUT_PTHREADS=true
+WITHOUT_ONIGURUMA=true
+WITHOUT_IPV6=true
+WITH_RDOC=true
+WITHOUT_DEBUG=true

@@ -1,0 +1,20 @@
+*Received: (qmail 10476 invoked by alias); 21 Jun 2004 00:00:04 -0000
+Delivered-To: root@zinc.ion.lu
+Received: (qmail 10471 invoked by uid 0); 21 Jun 2004 00:00:04 -0000
+Date: 21 Jun 2004 00:00:04 -0000
+Message-ID: <20040621000004.10469.qmail@zinc.ion.lu>
+From: root@zinc.ion.lu (Cron Daemon)
+To: root@zinc.ion.lu
+Subject: Cron <root@zinc> /usr/local/sbin/mysql-bup.sh
+X-Cron-Env: <SHELL=/bin/sh>
+X-Cron-Env: <HOME=/root>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=root>
+X-Cron-Env: <USER=root>
+
+dbfiretec-snoopy-210604.sql
+dbkannerschlass-snoopy-210604.sql
+horde-snoopy-210604.sql
+horde3-snoopy-210604.sql
+mysql-snoopy-210604.sql
+test-snoopy-210604.sql

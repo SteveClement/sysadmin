@@ -1,0 +1,17 @@
+Stupid trash can trick under unix:
+
+put the shell script: trash into your path
+echo $PATH
+
+mkdir ~/.trash
+vi ~/bin/trash
+#!/bin/sh
+mv $@ ~/.trash/
+
+alias rm=trash
+
+to use the original rm command:
+\rm ~/.trash/*
+
+This can be fine tuned off course, by adding compression/versioning and all
+kinds of funk to the trash shell script

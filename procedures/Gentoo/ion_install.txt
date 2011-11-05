@@ -1,0 +1,151 @@
+Install Gentoo According the ION-Gentoo Install
+
+/etc/init.d/sshd start
+passwd
+fdisk /dev/hda
+(ext2 is all you need on the /boot partition)
+livecd ~ # mke2fs /dev/sda1
+
+(Let's use ext3 on the main partition)
+livecd ~ # mke2fs -j /dev/sda3
+
+(Create and activate swap)
+livecd ~ # mkswap /dev/sda2 && swapon /dev/sda2
+livecd ~ # mount /dev/sda3 /mnt/gentoo
+livecd ~ # mkdir /mnt/gentoo/boot
+livecd ~ # mount /dev/sda1 /mnt/gentoo/boot
+date
+livecd ~ # date 030600162006 (Format is MMDDhhmmYYYY)
+livecd ~ # cd /mnt/gentoo
+livecd gentoo # wget ftp://gentoo.osuosl.org/pub/gentoo/releases/x86/current/stages/stage3-i686*tar.bz2
+livecd gentoo # time tar xjpf stage3*
+CTRL-Z
+bg
+
+livecd gentoo # cd /mnt/gentoo/usr
+livecd usr # wget http://gentoo.osuosl.org/snapshots/portage-latest.tar.bz2
+livecd usr # time tar xjf portage*
+livecd usr # cd /
+livecd / # mount -t proc proc /mnt/gentoo/proc
+livecd / # cp -L /etc/resolv.conf /mnt/gentoo/etc/
+screen
+livecd / # chroot /mnt/gentoo /bin/bash
+livecd / # env-update && source /etc/profile
+>>> Regenerating /etc/ld.so.cache...
+
+livecd / # cp /usr/share/zoneinfo/Europe/Brussels /etc/localtime
+
+livecd / # date
+Wed Mar  8 00:46:05 CET 2006
+
+livecd / # cd /etc
+livecd etc # echo "127.0.0.1 mybox.at.myplace mybox localhost" > hosts
+livecd etc # sed -i -e 's/HOSTNAME.*/HOSTNAME="mybox"/' conf.d/hostname
+(Use defined host name and check)
+livecd etc # hostname mybox
+livecd etc # hostname -f
+mybox.at.myplace
+livecd etc # time emerge gentoo-sources
+ctrl-ad
+screen
+livecd / # chroot /mnt/gentoo /bin/bash
+livecd / # env-update && source /etc/profile
+>>> Regenerating /etc/ld.so.cache...
+emerge $software
+emerge -av syslog-ng vixie-cron jfsutils dhcpcd grub  mailx gentoolkit usbutils pciutils telnet-bsd bind-tools slocate eix vim ufed netcat nmap ntp subversion screen
+ctrl-ad
+screen
+livecd / # chroot /mnt/gentoo /bin/bash
+livecd / # env-update && source /etc/profile
+>>> Regenerating /etc/ld.so.cache...
+livecd linux # cd /etc
+livecd etc # nano -w fstab
+/dev/sda1   /boot     ext2    noauto,noatime     1 2
+/dev/sda3   /         ext3    noatime            0 1
+/dev/sda2   none      swap    sw                 0 0
+livecd conf.d # rc-update add net.eth0 default
+livecd conf.d # rc-update add sshd default
+livecd conf.d # passwd
+useradd steve
+mkdir ~steve
+passwd steve
+chown steve:steve ~steve
+nano /etc/group
+livecd conf.d # nano -w /etc/conf.d/clock
+TIMEZONE="Europe/Brussels"
+livecd conf.d # nano -w /etc/rc.conf
+livecd conf.d # nano -w /etc/conf.d/rc
+livecd conf.d # nano -w /etc/conf.d/keymaps
+LOGOUT OF SESSIONS and resume the port build
+rc-update add syslog-ng default
+rc-update add vixie-cron default
+vi /boot/grub/grub.conf
+default 0
+timeout 10
+
+title=Gentoo
+root (hd0,0)
+kernel /boot/kernel root=/dev/hda3
+
+livecd conf.d # grub
+Probing devices to guess BIOS drives. This may take a long time.
+
+grub> root (hd0,0)
+ Filesystem type is ext2fs, partition type 0x83
+
+grub> setup (hd0)
+ Checking if "/boot/grub/stage1" exists... yes
+ Checking if "/boot/grub/stage2" exists... yes
+ Checking if "/boot/grub/e2fs_stage1_5" exists... yes
+ Running "embed /boot/grub/e2fs_stage1_5 (hd0)"...  16 sectors are embedded.
+succeeded
+ Running "install /boot/grub/stage1 (hd0) (hd0)1+16 p (hd0,0)/boot/grub/stage2
+/boot/
+grub/menu.lst"... succeeded
+Done.
+
+grub> quit
+
+exit
+umount /mnt/gentoo/proc /mnt/gentoo/boot /mnt/gentoo
+reboot
+
+Post Install:
+
+
+Add the following to the make.conf for a server configuration
+
+ USE="-ipv6 -gpm -X"
+
+
+For a workstation
+
+
+ USE="-ipv6 
+
+
+emerge --sync && emerge -Dauv portage && emerge -auv world
+
+
+Install qmail as per guide
+
+Install the essential:
+
+emerge -av mailx gentoolkit usbutils pciutils telnet-bsd bind-tools slocate eix vim ufed netcat nmap ntp subversion
+
+echo "app-misc/screen multiuser" >> /etc/portage/package.use
+
+echo "app-editors/vim -perl -python" >> /etc/portage/package.use
+
+After Py update:
+/usr/sbin/python-updater
+
+nice daily sync:
+@daily /usr/bin/emerge --quiet --sync
+
+keymap:
+
+KEYMAP="fr_CH-latin1"
+
+
+

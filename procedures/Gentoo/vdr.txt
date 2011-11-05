@@ -1,0 +1,11 @@
+Not the nicest install :(
+
+you have to add the german vdr sync site
+
+emerge noad
+emerge sharemarks
+
+USE flags can become tricky too. You have to decide wether you want to be a
+server only or visualize aswell.
+
+In the initial setup visualising it will be the easiest.

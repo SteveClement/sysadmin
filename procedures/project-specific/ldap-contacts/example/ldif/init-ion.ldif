@@ -1,0 +1,17 @@
+dn: dc=ion,dc=lu
+objectclass: dcObject
+objectclass: organization
+o: ION Network Solutions s.à r.l
+dc: ion
+
+dn: cn=Manager,dc=ion,dc=lu
+objectclass: organizationalRole
+cn: Manager
+
+dn: cn=Reader,dc=ion,dc=lu
+cn: Reader
+sn: Reader
+objectclass: top
+objectclass: person
+userPassword: {SSHA}qdsCVq5Y/HxJAmgmnGCuir9cBFKB/65D
+Redder23

@@ -1,0 +1,5 @@
+options RANDOM_IP_ID
+
+pseudo-device snp
+atkbd 0x01 REMOVE OPTION
+(options SUIDDIR)

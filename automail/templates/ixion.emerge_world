@@ -1,0 +1,27 @@
+*Received: (qmail 50100 invoked by uid 98); 19 Jun 2004 00:00:45 -0000
+Received: from root@ixion.ion.lu by zinc.ion.lu by uid 82 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.72. spamassassin: 2.63.  Clear:RC:0(80.90.33.250):SA:0(0.3/5.0):. 
+ Processed in 5.402289 secs); 19 Jun 2004 00:00:45 -0000
+X-Spam-Status: No, hits=0.3 required=5.0
+X-Antivirus-ion.lu-Mail-From: root@ixion.ion.lu via zinc.ion.lu
+X-Antivirus-ion.lu: 1.22-st-qms (Clear:RC:0(80.90.33.250):SA:0(0.3/5.0):. Processed in 5.402289 secs Process 50084)
+Received: from vodsl-506.vo.lu (HELO ixion) (80.90.33.250)
+  by zinc.ion.lu with SMTP; 19 Jun 2004 00:00:39 -0000
+Received: (qmail 25012 invoked by uid 0); 19 Jun 2004 02:01:37 +0200
+Date: 19 Jun 2004 02:01:37 +0200
+Message-ID: <20040619000137.25010.qmail@ixion>
+From: root@ixion.ion.lu
+To: rootmails@ion.lu
+Subject: ixion emerge world report
+
+
+These are the packages that I would merge, in order:
+
+Calculating world dependencies   
+*** Package in world file is not installed: sys-apps/sh-utils
+
+*** Package in world file is not installed: sys-apps/fileutils
+
+*** Package in world file is not installed: sys-apps/textutils
+ ...done!
+

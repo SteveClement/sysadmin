@@ -1,0 +1,27 @@
+To set up openvpn the ion way in gentoo:
+
+Kernel conf:
+Network Device Support:
+-> Universal TUN/TAP Driver
+
+either ass module (tun.o) or compiled in, as you wish.
+echo tun >> /etc/modules.autoload.d/kernel-2.4
+
+all files must reside in /etc/openvpn/*/
+
+where * is a "config name" like ion-vpn
+
+/etc/openvpn/ion-vpn/
+-> certs
+-> bin
+local.conf
+
+local.conf is the usual openvpn.conf
+
+don't forget to check if tun.o is loaded automatically...
+also /dev/net/tun must exist
+the route command is different on Linux:
+
+route add -net $NET netmask $MASK gw $GW
+
+Thats all folks :)

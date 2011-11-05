@@ -1,0 +1,17 @@
+*Received: (qmail 10585 invoked by alias); 21 Jun 2004 00:01:01 -0000
+Delivered-To: root@zinc.ion.lu
+Received: (qmail 10576 invoked by uid 0); 21 Jun 2004 00:01:01 -0000
+Date: 21 Jun 2004 00:01:01 -0000
+Message-ID: <20040621000101.10559.qmail@zinc.ion.lu>
+From: root@zinc.ion.lu (Cron Daemon)
+To: root@zinc.ion.lu
+Subject: Cron <root@zinc> /var/qmail/qmailstats.sh
+X-Cron-Env: <SHELL=/bin/sh>
+X-Cron-Env: <HOME=/root>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=root>
+X-Cron-Env: <USER=root>
+
+awk: division by zero
+ input record number 38889, file 
+ source line number 60

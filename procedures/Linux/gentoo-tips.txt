@@ -1,0 +1,9 @@
+mail steve@ion.lu
+
+mail: command not found
+
+Haha, tricky one ey :£)
+
+emerge mailx
+
+gives command line mail support....

@@ -1,0 +1,28 @@
+Installing scapy with all of it's functionality on Gentoo.
+
+get scapy, as root:
+
+wget http://www.secdev.org/projects/scapy/files/scapy.py
+chmod 750 && cp scapy /usr/local/sbin/
+emerge -av gnuplot-py pyx pycrypto ebtables
+
+The dependency biggie is gnuplot (X doc emacs gd ggi pdflib plotutils png readline svga xemacs)
+I used: USE="X gd plotutils png readline"
+
+ebtables I pulled in to get /etc/ethertypes
+
+If you are still on Python 2.3 run:
+
+python-updater
+
+If you skip this step you won't be able to plot.
+
+After that you are done!
+
+Getting Started using scapy:
+
+ - http://www.secdev.org/projects/scapy/#demo
+ - http://www.secdev.org/conf/scapy_Aachen.pdf
+
+Scapy home: http://www.secdev.org/projects/scapy/
+

@@ -1,0 +1,66 @@
+####### THIS IS DEPRECATED ########
+# kierbiischt-ion-sysadmin/procedures/ssh-upgrade.txt 15/09/2003
+
+Latest OpenSSH: 3.6.1p2
+Latest OpenSSL: 0.9.6j
+Latest zlib: 1.1.4
+
+# ION procedure for upgrading to OpenSSH 3.6 or later.
+
+#### ALL OF THE ABOVE IS SUBJECT TO CHANGES, CAUSE IF YOU  UPGRADE THIS WAY YOU END UP WITH INSTALLS IN /usr and /usr/local if PORTS installed.####
+
+For manual upgrades you should have 2 windows open on the box you are upgrading. 1 should be logged in as root. Leave it logged in until the procedure is finished.
+
+*************************************
+*                                   *
+* First install zlib 1.1.4 or later. *
+*                                   *
+*************************************
+
+Unpack OpenSSH-3.6.1p2 (the latest & greatest at the time of writing) or 3.1 or later.
+Configure it with 
+
+./configure --prefix=/usr --sysconfdir=/etc/ssh
+
+If it complains about OpenSSL you need to install the latest OpenSSL or 0.9.6d or later.
+
+Install in the usual way.
+
+make
+rootdo make install
+
+Become root, or use the other window (already logged in as root).
+
+Copy the configuration files from their new home in the repository (suppose-aldigital-sysadmin/ssh-configs) to /etc/ssh/
+
+Change the lines that load sshd in/etc/rc.local to 
+
+/usr/sbin/sshd -f /etc/ssh/sshd_config
+/usr/sbin/sshd -f /etc/ssh/sshd_config.localhost
+
+(note that the new ssh user binaries are in /usr/bin/)
+
+Both windows should now be logged in as root. 
+Kill the parent sshd task for the main sshd, not the root shim.
+         ------
+Restart sshd by copying and pasting from /etc/rc.local.
+
+On another machine remove the line(s) pertaining to the target machine and ssh to it to test that all is working.
+
+You should still have 2 windows logged in as root. kill the root shim parent sshd, copy/paste your line from rc.local to run it again.
+
+You will get a message saying Version 2 protocol not enabled. That's
+because we have left out the hostdsakey line in the root shim config
+which would stop the root shim from working.  But sshd will start up OK.
+
+ssh to root from another window to test it.
+
+Disable all the binaries and configs for the old ssh, either by renaming (or deleting) them. If renamed I feel the executable flag should be removed for the binaries as well. Comments? They are
+
+All the ssh files in /etc/ but not /etc/ssh/ !	 Maybe these should be	 moved to /etc/old-ssh_configs/ ?
+
+/usr/local/sbin/sshd*
+/usr/local/bin/ssh*
+/usr/local/bin/scp
+
+I test it once more by logging out and in again, including to root. If it all works you are done. If it doesn't you still have a window logged in as root to fix it :)

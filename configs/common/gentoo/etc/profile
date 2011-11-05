@@ -1,0 +1,55 @@
+export ION_VERSION="1.0022-v5_3"
+export PATH=$PATH:/usr/local/mysql/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin
+export CVS_RSH=ssh
+export CVSROOT=cvs.ion.lu:/home/cvs
+export FTP_PASSIVE_MODE=1
+export EDITOR=vim
+alias hg='history |grep '
+alias psg='ps -wwuax |grep '
+alias ls="ls -G"
+alias dir="echo !!!GAY!!! ; ls -G"
+alias ll="ls -G -l -a"
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+                                                                                
+umask 002
+
+## Setting $TERM to xterm-color if xterm
+
+if [ "$TERM" = 'xterm' ]
+then
+	export TERM='xterm-color'
+fi
+
+if [ `/usr/bin/whoami` = 'root' ]
+then
+	umask 022
+        # Do not set PS1 for dumb terminals
+        if [ "$TERM" != 'dumb'  ] && [ -n "$BASH" ]
+        then
+                export PS1='\[\033[01;31m\]\h \[\033[01;34m\]\W \$ \[\033[00m\]'
+        fi
+        export PATH="/bin:/sbin:/usr/bin:/usr/sbin:${ROOTPATH}"
+else
+        # Do not set PS1 for dumb terminals
+        if [ "$TERM" != 'dumb'  ] && [ -n "$BASH" ]
+        then
+                export PS1='\[\033[01;32m\]\u@\h \[\033[01;34m\]\W \$ \[\033[00m\]'
+        fi
+        export PATH="/bin:/usr/bin:${PATH}"
+fi
+if [ -f /usr/compat/linux/usr/bin/dircolors ]
+then
+	eval `/usr/compat/linux/usr/bin/dircolors -b /etc/DIR_COLORS`
+fi
+
+
+# Change the window title of X terminals
+case $TERM in
+        xterm*|rxvt|Eterm|eterm)
+                PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
+                ;;
+        screen)
+                PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\033\\"'
+                ;;
+esac

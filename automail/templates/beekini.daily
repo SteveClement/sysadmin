@@ -1,0 +1,449 @@
+*Received: (qmail 71623 invoked by uid 0); 4 Aug 2004 04:37:17 -0000
+Received: from root@beekini.dakinibooks.com by linion.ion.lu by uid 89 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.73. spamassassin: 2.63.  Clear:RC:0(213.166.78.220):SA:0(1.4/5.0):. 
+ Processed in 9.156024 secs); 04 Aug 2004 04:37:17 -0000
+X-Spam-Status: No, hits=1.4 required=5.0
+X-Spam-Level: +
+X-Antivirus-ION.LU-Mail-From: root@beekini.dakinibooks.com via linion.ion.lu
+X-Antivirus-ION.LU: 1.22-st-qms (Clear:RC:0(213.166.78.220):SA:0(1.4/5.0):. Processed in 9.156024 secs Process 71611)
+Received: from unknown (HELO beekini.dakinibooks.com) (213.166.78.220)
+  by linion.ion.lu with SMTP; 4 Aug 2004 04:37:07 -0000
+Received: (qmail 37822 invoked by alias); 4 Aug 2004 04:37:03 -0000
+Delivered-To: root@beekini.dakinibooks.com
+Received: (qmail 37819 invoked by uid 0); 4 Aug 2004 04:37:03 -0000
+Date: 4 Aug 2004 04:37:03 -0000
+Message-ID: <20040804043703.37817.qmail@beekini.dakinibooks.com>
+From: root@beekini.dakinibooks.com
+To: root@beekini.dakinibooks.com
+Subject: beekini.dakinibooks.com daily run output
+
+
+Removing stale files from /var/preserve:
+
+Cleaning out old system announcements:
+
+Removing stale files from /var/rwho:
+
+Backup passwd and group files:
+
+Verifying group file syntax:
+
+Backing up mail aliases:
+
+Disk status:
+Filesystem  1K-blocks     Used    Avail Capacity  Mounted on
+/dev/ad0s1a  78273902 42168034 29843956    59%    /
+procfs              4        4        0   100%    /proc
+
+Last dump(s) done (Dump '>' file systems):
+
+UUCP status:
+
+Network interface status:
+Name    Mtu Network       Address              Ipkts Ierrs    Opkts Oerrs  Coll
+rl0    1500 <Link#1>    00:50:fc:ce:73:3f 12263322     0 15392780     0     0
+rl0    1500 213.166.78.21 beekini          9372157     - 15402918     -     -
+rl0    1500 fe80:1::250 fe80:1::250:fcff:        0     -        2     -     -
+rl1    1500 <Link#2>    00:50:fc:ce:73:22 12689110     0 13883042     0     0
+rl1    1500 10.2.3/24     inikeeb         10016404     - 11062726     -     -
+rl1    1500 fe80:2::250 fe80:2::250:fcff:        0     -        1     -     -
+rl1    1500 169.254       169.254.113.223     2733     -     2263     -     -
+rl2*   1500 <Link#3>    00:0b:6a:1e:74:bd        0     0        0     0     0
+lp0*   1500 <Link#4>                             0     0        0     0     0
+faith  1500 <Link#5>                             0     0        0     0     0
+lo0   16384 <Link#6>                         18059     0    18059     0     0
+lo0   16384 localhost.d ::1                     12     -       12     -     -
+lo0   16384 fe80:6::1   fe80:6::1                0     -        0     -     -
+lo0   16384 your-net      localhost           7726     -     7726     -     -
+ppp0*  1500 <Link#7>                             0     0        0     0     0
+sl0*    552 <Link#8>                             0     0        0     0     0
+tun0   1260 <Link#9>                         17769     0    25731     0     0
+tun0   1260 fe80:9::250 fe80:9::250:fcff:        0     -        4     -     -
+tun0   1260 10.0.0.2/32   10.0.0.2               0     -     3709     -     -
+
+Local system status:
+ 3:01AM  up 27 days, 13:46, 0 users, load averages: 0.00, 0.00, 0.00
+
+Mail in local queue:
+
+Mail in submit queue:
+
+Security check:
+    (output mailed separately)
+
+Checking for rejected mail hosts:
+
+Checking for denied zone transfers (AXFR and IXFR):
+
+Running /etc/daily.local:
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 03:06:18
+Retrying
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 03:16:12
+Retrying
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 03:34:11
+Retrying
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 04:11:13
+Retrying
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 05:24:35
+Retrying
+Connected to cvsup.nl.FreeBSD.org
+Updating collection ports-all/cvs
+ Edit ports/CHANGES
+ Edit ports/MOVED
+ Edit ports/Mk/bsd.autotools.mk
+ Edit ports/Mk/bsd.port.mk
+ Edit ports/archivers/stuffit/Makefile
+ Edit ports/audio/faac/Makefile
+ Edit ports/audio/mp3stat/Makefile
+ Edit ports/audio/mp3stat/distinfo
+ Edit ports/audio/taglib/Makefile
+ Edit ports/audio/taglib/distinfo
+ Edit ports/audio/taglib/pkg-plist
+ Edit ports/chinese/gcin/Makefile
+ Edit ports/chinese/gcin/distinfo
+ Delete ports/chinese/gcin/files/patch-IMConn.c
+ Delete ports/chinese/gcin/files/patch-IMdkit::Makefile
+ Delete ports/chinese/gcin/files/patch-IMdkit::lib::Makefile
+ Edit ports/chinese/gcin/files/patch-Makefile
+ Edit ports/chinese/gcin/files/patch-configure
+ Delete ports/chinese/gcin/files/patch-pho-util.c
+ Delete ports/chinese/gcin/files/patch-tsin-util.c
+ Delete ports/chinese/gcin/files/patch-tsin.c
+ Edit ports/comms/efax-gtk/Makefile
+ Edit ports/comms/efax-gtk/distinfo
+ Checkout ports/comms/gammu/files/patch-configure
+ Edit ports/databases/gauche-gdbm/Makefile
+ Edit ports/databases/p5-Cache-Memcached/Makefile
+ Edit ports/databases/p5-Cache-Memcached/distinfo
+ Edit ports/devel/Makefile
+ Delete ports/devel/autoconf/Makefile
+ Delete ports/devel/autoconf/distinfo
+ Delete ports/devel/autoconf/files/patch-bin-autoscan.in
+ Delete ports/devel/autoconf/pkg-descr
+ Delete ports/devel/autoconf/pkg-plist
+ Edit ports/devel/autoconf213/Makefile
+ Edit ports/devel/autoconf253/Makefile
+ Edit ports/devel/autoconf259/Makefile
+ Delete ports/devel/automake/Makefile
+ Delete ports/devel/automake/distinfo
+ Delete ports/devel/automake/files/patch-Makefile.in
+ Delete ports/devel/automake/files/patch-aclocal.in
+ Delete ports/devel/automake/files/patch-automake.texi
+ Delete ports/devel/automake/pkg-descr
+ Delete ports/devel/automake/pkg-plist
+ Edit ports/devel/automake14/Makefile
+ Edit ports/devel/automake15/Makefile
+ Edit ports/devel/automake18/Makefile
+ Checkout ports/devel/automake19/Makefile
+ Checkout ports/devel/automake19/distinfo
+ Checkout ports/devel/automake19/files/patch-Makefile.in
+ Checkout ports/devel/automake19/files/patch-aclocal.in
+ Checkout ports/devel/automake19/files/patch-automake.in
+ Checkout ports/devel/automake19/files/patch-configure
+ Checkout ports/devel/automake19/files/patch-doc::Makefile.in
+ Checkout ports/devel/automake19/files/patch-doc::automake.texi
+ Checkout ports/devel/automake19/files/patch-lib::Automake::Config.in
+ Checkout ports/devel/automake19/files/patch-lib::Automake::Makefile.in
+ Checkout ports/devel/automake19/files/patch-m4-Makefile.in
+ Checkout ports/devel/automake19/pkg-descr
+ Checkout ports/devel/automake19/pkg-plist
+ Edit ports/devel/avrdude/Makefile
+ Edit ports/devel/avrdude/distinfo
+ Edit ports/devel/cedet/Makefile
+ Edit ports/devel/cedet/distinfo
+ Edit ports/devel/cedet/pkg-plist
+ Edit ports/devel/fam/Makefile
+ Edit ports/devel/fam/pkg-plist
+ Edit ports/devel/libtool13/Makefile
+ Edit ports/devel/libtool15/Makefile
+ Checkout ports/devel/m6811-gcc/files/patch-gcc-Makefile.in
+ Edit ports/devel/msp430-binutils/Makefile
+ Edit ports/devel/msp430-binutils/distinfo
+ Edit ports/devel/msp430-binutils/files/patch-Makefile.in
+ Delete ports/devel/msp430-binutils/files/patch-bfd::archures.c
+ Delete ports/devel/msp430-binutils/files/patch-bfd::bfd-in2.h
+ Delete ports/devel/msp430-binutils/files/patch-bfd::cpu-msp430.c
+ Delete ports/devel/msp430-binutils/files/patch-bfd::elf32-msp430.c
+ Edit ports/devel/msp430-binutils/files/patch-gas::config::tc-msp430.c
+ Delete ports/devel/msp430-binutils/files/patch-gas::doc::as.1
+ Delete ports/devel/msp430-binutils/files/patch-include::elf::msp430.h
+ Edit ports/devel/msp430-binutils/files/patch-ld::Makefile.am
+ Edit ports/devel/msp430-binutils/files/patch-ld::Makefile.in
+ Edit ports/devel/msp430-binutils/files/patch-ld::configure.tgt
+ Checkout ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430all.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x148.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x1610.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x1611.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x1612.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x168.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x415.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x417.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430x448.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430xE423.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430xE425.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430xE427.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430xW423.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430xW425.sh
+ Delete ports/devel/msp430-binutils/files/patch-ld::emulparams::msp430xW427.sh
+ Edit ports/devel/msp430-gcc/Makefile
+ Edit ports/devel/msp430-gcc/distinfo
+ Edit ports/devel/msp430-gcc/files/patch-Makefile.in
+ Edit ports/devel/msp430-gcc/files/patch-gcc-Makefile.in
+ Edit ports/devel/msp430-gcc/pkg-plist
+ Edit ports/devel/msp430-gdb/Makefile
+ Edit ports/devel/msp430-gdb/distinfo
+ Edit ports/devel/msp430-libc/Makefile
+ Edit ports/devel/msp430-libc/distinfo
+ Edit ports/devel/msp430-libc/pkg-plist
+ Checkout ports/devel/p5-Class-Accessor-Lvalue/Makefile
+ Checkout ports/devel/p5-Class-Accessor-Lvalue/distinfo
+ Checkout ports/devel/p5-Class-Accessor-Lvalue/pkg-descr
+ Checkout ports/devel/p5-Class-Accessor-Lvalue/pkg-plist
+ Edit ports/dns/nsd/Makefile
+ Edit ports/dns/nsd/distinfo
+ Delete ports/dns/nsd/files/patch-aa
+ Edit ports/editors/vim/Makefile
+ Edit ports/editors/vim/distinfo
+ Edit ports/editors/vim/files/patch-01
+ Checkout ports/emulators/pearpc/files/patch-src-cpu_generic-ppc_cpu.cc
+ Checkout ports/games/scummvm/files/patch-base-main.cpp
+ Checkout ports/games/scummvm/files/patch-scumm-actor.cpp
+ Checkout ports/games/scummvm/files/patch-scumm-debugger.cpp
+ Edit ports/graphics/Makefile
+ Checkout ports/graphics/agg/Makefile
+ Checkout ports/graphics/agg/distinfo
+ Checkout ports/graphics/agg/files/Makefile.in.FreeBSD
+ Checkout ports/graphics/agg/pkg-descr
+ Checkout ports/graphics/divxcalc/files/patch-admin::detect-autoconf.sh
+ Checkout ports/graphics/kdegraphics3/files/patch-ksvg_ecma_ksvg_bridge.h
+ Checkout ports/graphics/kdegraphics3/files/patch-ksvg_ecma_ksvg_lookup.h
+ Checkout ports/graphics/kdegraphics3/files/patch-ksvg_ecma_ksvg_scriptinterpreter.h
+ Checkout ports/graphics/kdegraphics3/files/patch-ksvg_impl_SVGHelperImpl.h
+ Checkout ports/graphics/kdegraphics3/files/patch-ksvg_impl_SVGList.h
+ Edit ports/graphics/png/Makefile
+ Edit ports/japanese/emacs20-dl-canna/pkg-plist
+ Edit ports/japanese/emacs20-dl-wnn6/pkg-plist
+ Edit ports/lang/gauche/Makefile
+ Edit ports/lang/gauche/distinfo
+ Edit ports/lang/gauche/pkg-plist
+ Edit ports/lang/harbour/Makefile
+ Edit ports/lang/harbour/distinfo
+ Edit ports/lang/harbour/pkg-plist
+ Edit ports/lang/php4/files/patch-scripts::phpize.in
+ Edit ports/mail/fetchyahoo/Makefile
+ Edit ports/mail/fetchyahoo/distinfo
+ Edit ports/mail/mutt-devel/Makefile
+ Edit ports/mail/mutt-devel/files/extra-patch-maildir-header-cache
+ Edit ports/mail/mutt-devel/files/extra-patch-maildir-mtime
+ Edit ports/mail/mutt-devel/files/extra-patch-maildir-mtime-nntp
+ Checkout ports/mail/mutt-devel/files/extra-patch-nntp.c
+ Edit ports/mail/sendmail/Makefile
+ Edit ports/mail/sendmail/distinfo
+ Edit ports/math/Makefile
+ Checkout ports/math/py-matplotlib/Makefile
+ Checkout ports/math/py-matplotlib/distinfo
+ Checkout ports/math/py-matplotlib/files/patch-setup.py
+ Checkout ports/math/py-matplotlib/files/patch-setupext.py
+ Checkout ports/math/py-matplotlib/pkg-descr
+ Edit ports/misc/bidwatcher/Makefile
+ Checkout ports/misc/bidwatcher/files/patch-Makefile.in
+ Checkout ports/misc/bidwatcher/files/patch-STABLE_1_3
+ Edit ports/net/Makefile
+ Checkout ports/net/libsocket++/files/patch-autogen
+ Edit ports/net/licq/Makefile
+ Edit ports/net/licq/files/patch-socket.cpp
+ Checkout ports/net/licq/files/patch-user.cpp
+ Edit ports/net/licq-console/Makefile
+ Checkout ports/net/p5-Net-Delicious/Makefile
+ Checkout ports/net/p5-Net-Delicious/distinfo
+ Checkout ports/net/p5-Net-Delicious/pkg-descr
+ Checkout ports/net/p5-Net-Delicious/pkg-plist
+ Edit ports/net/tkabber/Makefile
+ Edit ports/net/tkabber/distinfo
+ Delete ports/net/tkabber/files/patch-default.tcl
+ Checkout ports/net/tkabber/files/patch-login.tcl
+ Edit ports/net/tkabber/files/patch-tkabber.tcl
+ Edit ports/net/tkabber/pkg-plist
+ Edit ports/print/foomatic-db-engine/Makefile
+ Checkout ports/print/foomatic-db-engine/files/patch-make_configure
+ Edit ports/russian/prawda/distinfo
+ Edit ports/security/clamsmtp/Makefile
+ Edit ports/security/clamsmtp/distinfo
+ Edit ports/security/gnupg/Makefile
+ Edit ports/security/gnupg/distinfo
+ Edit ports/security/gnupg/pkg-plist
+ Edit ports/sysutils/bacula/Makefile
+ Edit ports/sysutils/bacula/distinfo
+ Edit ports/sysutils/bacula/files/chio-bacula
+ Edit ports/sysutils/bacula/files/patch-autoconf-Make.common.in
+ Edit ports/sysutils/bacula/files/patch-scripts-Makefile.in
+ Delete ports/sysutils/bacula/files/patch-src-dird-sql_cmds.c
+ Edit ports/sysutils/bacula/pkg-plist
+ Edit ports/textproc/Makefile
+ Edit ports/textproc/jade/Makefile
+ Checkout ports/textproc/jade/files/patch-CharsetRegistry.cxx
+ Checkout ports/textproc/jade/files/patch-CharsetRegistry.h
+ Checkout ports/textproc/jade/files/patch-CodingSystemKit.cxx
+ Checkout ports/textproc/jade/files/patch-koi8-r.h
+ Checkout ports/textproc/jade/files/patch-koi8r.dcl
+ Edit ports/textproc/jade/pkg-plist
+ Checkout ports/textproc/opensp/files/patch-RangeMap.h
+ Checkout ports/textproc/p5-Apache-XBEL/Makefile
+ Checkout ports/textproc/p5-Apache-XBEL/distinfo
+ Checkout ports/textproc/p5-Apache-XBEL/pkg-descr
+ Checkout ports/textproc/p5-Apache-XBEL/pkg-plist
+ Checkout ports/textproc/p5-XML-XBEL/Makefile
+ Checkout ports/textproc/p5-XML-XBEL/distinfo
+ Checkout ports/textproc/p5-XML-XBEL/pkg-descr
+ Checkout ports/textproc/p5-XML-XBEL/pkg-plist
+ Edit ports/textproc/skim/Makefile
+ Edit ports/textproc/wv2/Makefile
+ Delete ports/textproc/wv2/files/patch-configure
+ Edit ports/textproc/wv2/pkg-plist
+ Edit ports/www/flood/Makefile
+ Checkout ports/www/flood/files/patch-configure.in
+ Edit ports/www/mod_webapp/Makefile
+ Edit ports/x11-toolkits/php-gtk/Makefile
+ Checkout ports/x11-toolkits/php-gtk/files/patch-build2::build2.mk
+ Edit ports/x11-toolkits/viewkit/Makefile
+ Edit ports/x11-wm/wmconfig/Makefile
+ Edit ports/x11-wm/wmconfig/distinfo
+Finished successfully
+Connected to cvsup.uk.FreeBSD.org
+Updating collection src-all/cvs
+Finished successfully
+** No need to upgrade 'libmcrypt-2.5.7_1' (>= libmcrypt-2.5.7_1). (specify -f to force)
+** No need to upgrade 'phpicalendar-1.1' (>= phpicalendar-1.1). (specify -f to force)
+** No need to upgrade 'cclient-2004,1' (>= cclient-2004,1). (specify -f to force)
+** No need to upgrade 'ngrep-1.42_1' (>= ngrep-1.42_1). (specify -f to force)
+** No need to upgrade 'p5-Authen-PAM-0.14' (>= p5-Authen-PAM-0.14). (specify -f to force)
+** No need to upgrade 'libtool-1.3.5_2' (>= libtool-1.3.5_2). (specify -f to force)
+** No need to upgrade 'libltdl-1.5.6' (>= libltdl-1.5.6). (specify -f to force)
+** No need to upgrade 'imake-4.3.0_2' (>= imake-4.3.0_2). (specify -f to force)
+** Port directory not found: devel/libtool14
+** No need to upgrade 'mysql-client-4.0.20' (>= mysql-client-4.0.20). (specify -f to force)
+** No need to upgrade 'cracklib-2.7_2' (>= cracklib-2.7_2). (specify -f to force)
+** No need to upgrade 'p5-Net-SSLeay-1.23' (>= p5-Net-SSLeay-1.23). (specify -f to force)
+** No need to upgrade 'bash-2.05b.007_1' (>= bash-2.05b.007_1). (specify -f to force)
+** No need to upgrade 'db41-4.1.25_2' (>= db41-4.1.25_2). (specify -f to force)
+** No need to upgrade 'expat-1.95.7' (>= expat-1.95.7). (specify -f to force)
+** No need to upgrade 'mhash-0.8.18' (>= mhash-0.8.18). (specify -f to force)
+** No need to upgrade 'p5-XML-Parser-2.34_1' (>= p5-XML-Parser-2.34_1). (specify -f to force)
+** No need to upgrade 'gettext-0.13.1_1' (>= gettext-0.13.1_1). (specify -f to force)
+** No need to upgrade 'lynx-2.8.5' (>= lynx-2.8.5). (specify -f to force)
+** No need to upgrade 'openldap-client-2.1.30' (>= openldap-client-2.1.30). (specify -f to force)
+** No need to upgrade 'libgmp-4.1.3' (>= libgmp-4.1.3). (specify -f to force)
+** No need to upgrade 'gmake-3.80_2' (>= gmake-3.80_2). (specify -f to force)
+** No need to upgrade 'lftp-3.0.6' (>= lftp-3.0.6). (specify -f to force)
+** No need to upgrade 'pkgconfig-0.15.0_1' (>= pkgconfig-0.15.0_1). (specify -f to force)
+** No need to upgrade 'glib-1.2.10_11' (>= glib-1.2.10_11). (specify -f to force)
+** No need to upgrade 'aspell-0.50.5_3' (>= aspell-0.50.5_3). (specify -f to force)
+** No need to upgrade 'curl-7.12.0' (>= curl-7.12.0). (specify -f to force)
+** No need to upgrade 'pcre-4.5' (>= pcre-4.5). (specify -f to force)
+** No need to upgrade 'freetype2-2.1.7_3' (>= freetype2-2.1.7_3). (specify -f to force)
+** No need to upgrade 'qmail-1.03_3' (>= qmail-1.03_3). (specify -f to force)
+** No need to upgrade 'rc_subr-1.29' (>= rc_subr-1.29). (specify -f to force)
+** No need to upgrade 'rsync-2.6.2_1' (>= rsync-2.6.2_1). (specify -f to force)
+** No need to upgrade 'db42-4.2.52_3' (>= db42-4.2.52_3). (specify -f to force)
+** No need to upgrade 'jpeg-6b_3' (>= jpeg-6b_3). (specify -f to force)
+** No need to upgrade 'openldap-server-2.1.30' (>= openldap-server-2.1.30). (specify -f to force)
+** No need to upgrade 'lzo-1.08_1' (>= lzo-1.08_1). (specify -f to force)
+** No need to upgrade 'openvpn-1.6.0' (>= openvpn-1.6.0). (specify -f to force)
+** No need to upgrade 'mnogosearch-3.1.21_1' (>= mnogosearch-3.1.21_1). (specify -f to force)
+** No need to upgrade 'tiff-3.6.1_1' (>= tiff-3.6.1_1). (specify -f to force)
+** No need to upgrade 'p5-gettext-1.01_4' (>= p5-gettext-1.01_4). (specify -f to force)
+** No need to upgrade 'help2man-1.33.1' (>= help2man-1.33.1). (specify -f to force)
+** No need to upgrade 'autoconf-2.13.000227_5' (>= autoconf-2.13.000227_5). (specify -f to force)
+** No need to upgrade 'mod_dav-1.0.3_1' (>= mod_dav-1.0.3_1). (specify -f to force)
+** No need to upgrade 'ruby18-bdb1-0.2.2' (>= ruby18-bdb1-0.2.2). (specify -f to force)
+** Port directory not found: devel/autoconf
+** No need to upgrade 'cups-lpr-1.1.20.0' (>= cups-lpr-1.1.20.0). (specify -f to force)
+** No need to upgrade 'cups-base-1.1.20.0' (>= cups-base-1.1.20.0). (specify -f to force)
+** No need to upgrade 'samba-2.2.10' (>= samba-2.2.10). (specify -f to force)
+** No need to upgrade 'foomatic-db-20040107_2' (>= foomatic-db-20040107_2). (specify -f to force)
+** No need to upgrade 'portupgrade-20040701_3' (>= portupgrade-20040701_3). (specify -f to force)
+** No need to upgrade 'XFree86-libraries-4.3.0_7' (>= XFree86-libraries-4.3.0_7). (specify -f to force)
+** No need to upgrade 'libXft-2.1.6' (>= libXft-2.1.6). (specify -f to force)
+** No need to upgrade 'zziplib-0.10.82' (>= zziplib-0.10.82). (specify -f to force)
+** No need to upgrade 'XFree86-clients-4.3.0_8' (>= XFree86-clients-4.3.0_8). (specify -f to force)
+** No need to upgrade 'gsfonts-8.11_1' (>= gsfonts-8.11_1). (specify -f to force)
+** No need to upgrade 'cvsup-16.1h' (>= cvsup-16.1h). (specify -f to force)
+** No need to upgrade 't1lib-5.0.1,1' (>= t1lib-5.0.1,1). (specify -f to force)
+** No need to upgrade 'libungif-4.1.3' (>= libungif-4.1.3). (specify -f to force)
+** No need to upgrade 'ming-0.2a_1' (>= ming-0.2a_1). (specify -f to force)
+** No need to upgrade 'gtk-1.2.10_12' (>= gtk-1.2.10_12). (specify -f to force)
+** No need to upgrade 'XFree86-fontEncodings-4.3.0' (>= XFree86-fontEncodings-4.3.0). (specify -f to force)
+** No need to upgrade 'cups-pstoraster-7.07_1' (>= cups-pstoraster-7.07_1). (specify -f to force)
+** No need to upgrade 'XFree86-fontDefaultBitmaps-4.3.0' (>= XFree86-fontDefaultBitmaps-4.3.0). (specify -f to force)
+** No need to upgrade 'tightvnc-1.2.9' (>= tightvnc-1.2.9). (specify -f to force)
+** No need to upgrade 'cups-1.1.20.0' (>= cups-1.1.20.0). (specify -f to force)
+** No need to upgrade 'bison-1.75_2' (>= bison-1.75_2). (specify -f to force)
+--->  Session started at: Wed, 04 Aug 2004 05:36:51 +0100
+--->  Upgrade of lang/python started at: Wed, 04 Aug 2004 05:36:54 +0100
+--->  Upgrade of lang/python ended at: Wed, 04 Aug 2004 05:36:54 +0100 (consumed 00:00:00)
+--->  Upgrade of graphics/png started at: Wed, 04 Aug 2004 05:36:54 +0100
+--->  Upgrade of graphics/png ended at: Wed, 04 Aug 2004 05:36:54 +0100 (consumed 00:00:00)
+--->  Upgrade of devel/m4 started at: Wed, 04 Aug 2004 05:36:55 +0100
+--->  Upgrade of devel/m4 ended at: Wed, 04 Aug 2004 05:36:55 +0100 (consumed 00:00:00)
+--->  Upgrade of converters/libiconv started at: Wed, 04 Aug 2004 05:36:55 +0100
+--->  Upgrade of converters/libiconv ended at: Wed, 04 Aug 2004 05:36:55 +0100 (consumed 00:00:00)
+--->  Upgrade of devel/libtool15 started at: Wed, 04 Aug 2004 05:36:56 +0100
+--->  Upgrade of devel/libtool15 ended at: Wed, 04 Aug 2004 05:36:56 +0100 (consumed 00:00:00)
+--->  Upgrade of devel/popt started at: Wed, 04 Aug 2004 05:36:56 +0100
+--->  Upgrade of devel/popt ended at: Wed, 04 Aug 2004 05:36:56 +0100 (consumed 00:00:00)
+--->  Upgrade of print/pdflib started at: Wed, 04 Aug 2004 05:36:57 +0100
+--->  Upgrade of print/pdflib ended at: Wed, 04 Aug 2004 05:36:57 +0100 (consumed 00:00:00)
+--->  Upgrade of textproc/sablotron started at: Wed, 04 Aug 2004 05:36:57 +0100
+--->  Upgrade of textproc/sablotron ended at: Wed, 04 Aug 2004 05:36:57 +0100 (consumed 00:00:00)
+--->  Upgrade of security/nmap started at: Wed, 04 Aug 2004 05:36:58 +0100
+--->  Upgrade of security/nmap ended at: Wed, 04 Aug 2004 05:36:58 +0100 (consumed 00:00:00)
+--->  Upgrade of lang/ezm3 started at: Wed, 04 Aug 2004 05:36:58 +0100
+--->  Upgrade of lang/ezm3 ended at: Wed, 04 Aug 2004 05:36:58 +0100 (consumed 00:00:00)
+--->  Upgrade of lang/ruby18 started at: Wed, 04 Aug 2004 05:36:58 +0100
+--->  Upgrade of lang/ruby18 ended at: Wed, 04 Aug 2004 05:36:58 +0100 (consumed 00:00:00)
+--->  Upgrade of sysutils/webmin started at: Wed, 04 Aug 2004 05:36:59 +0100
+--->  Upgrade of sysutils/webmin ended at: Wed, 04 Aug 2004 05:36:59 +0100 (consumed 00:00:00)
+--->  Upgrade of www/apache13 started at: Wed, 04 Aug 2004 05:36:59 +0100
+--->  Upgrade of www/apache13 ended at: Wed, 04 Aug 2004 05:36:59 +0100 (consumed 00:00:00)
+--->  Upgrade of textproc/libxml2 started at: Wed, 04 Aug 2004 05:36:59 +0100
+--->  Upgrade of textproc/libxml2 ended at: Wed, 04 Aug 2004 05:36:59 +0100 (consumed 00:00:00)
+--->  Upgrade of x11-fonts/fontconfig started at: Wed, 04 Aug 2004 05:37:01 +0100
+--->  Upgrade of x11-fonts/fontconfig ended at: Wed, 04 Aug 2004 05:37:01 +0100 (consumed 00:00:00)
+--->  Upgrade of editors/vim started at: Wed, 04 Aug 2004 05:37:02 +0100
+--->  Upgrade of editors/vim ended at: Wed, 04 Aug 2004 05:37:02 +0100 (consumed 00:00:00)
+--->  Upgrade of print/ghostscript-gnu started at: Wed, 04 Aug 2004 05:37:03 +0100
+--->  Upgrade of print/ghostscript-gnu ended at: Wed, 04 Aug 2004 05:37:03 +0100 (consumed 00:00:00)
+--->  Upgrade of www/mod_php4 started at: Wed, 04 Aug 2004 05:37:03 +0100
+--->  Upgrade of www/mod_php4 ended at: Wed, 04 Aug 2004 05:37:03 +0100 (consumed 00:00:00)
+--->  Listing the results (+:done / -:ignored / *:skipped / !:failed)
+	+ lang/python (python-2.3.4)
+	+ graphics/png (png-1.2.5_5)
+	+ devel/m4 (m4-1.4_1)
+	+ converters/libiconv (libiconv-1.9.1_3)
+	+ devel/libtool15 (libtool-1.5.6)
+	+ devel/popt (popt-1.6.4_2)
+	+ print/pdflib (pdflib-5.0.3_1)
+	+ textproc/sablotron (Sablot-1.0_2)
+	+ security/nmap (nmap-3.51.t3)
+	+ lang/ezm3 (ezm3-1.1_2)
+	+ lang/ruby18 (ruby-1.8.1.2004.05.02)
+	+ sysutils/webmin (webmin-1.150_3)
+	+ www/apache13 (apache-1.3.31_2)
+	+ textproc/libxml2 (libxml2-2.6.9)
+	+ x11-fonts/fontconfig (fontconfig-2.2.2,1)
+	+ editors/vim (vim-6.3.0)
+	+ print/ghostscript-gnu (ghostscript-gnu-7.07_8)
+	+ www/mod_php4 (mod_php4-4.3.7_1,1)
+--->  Session ended at: Wed, 04 Aug 2004 05:37:03 +0100 (consumed 00:00:11)
+
+-- End of daily output --

@@ -1,0 +1,20 @@
+--- cosine.schema.default	Thu Sep  9 19:55:38 2004
++++ cosine.schema	Tue Mar 30 15:02:09 2004
+@@ -628,7 +615,7 @@
+ #    ::= {pilotAttributeType 41}
+ #
+ attributetype ( 0.9.2342.19200300.100.1.41
+-	NAME ( 'mobile' 'mobileTelephoneNumber' )
++	NAME ( 'mobile' 'mobileTelephoneNumber' 'cellPhone' )
+ 	DESC 'RFC1274: mobile telephone number'
+ 	EQUALITY telephoneNumberMatch
+ 	SUBSTR telephoneNumberSubstringsMatch
+@@ -646,7 +633,7 @@
+ #    ::= {pilotAttributeType 42}
+ #
+ attributetype ( 0.9.2342.19200300.100.1.42
+-	NAME ( 'pager' 'pagerTelephoneNumber' )
++	NAME ( 'pager' 'pagerTelephoneNumber' 'pagerPhone' )
+ 	DESC 'RFC1274: pager telephone number'
+ 	EQUALITY telephoneNumberMatch
+ 	SUBSTR telephoneNumberSubstringsMatch

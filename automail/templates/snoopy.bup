@@ -1,0 +1,37 @@
+*Received: (qmail 13251 invoked by uid 98); 21 Jun 2004 03:26:51 -0000
+Received: from anonymous@snoopy.party.lu by zinc.ion.lu by uid 82 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.72. spamassassin: 2.63.  Clear:RC:0(80.90.47.180):SA:0(0.0/5.0):. 
+ Processed in 10.183007 secs); 21 Jun 2004 03:26:51 -0000
+X-Spam-Status: No, hits=0.0 required=5.0
+X-Antivirus-ion.lu-Mail-From: anonymous@snoopy.party.lu via zinc.ion.lu
+X-Antivirus-ion.lu: 1.22-st-qms (Clear:RC:0(80.90.47.180):SA:0(0.0/5.0):. Processed in 10.183007 secs Process 13243)
+Received: from snoopy.party.lu (80.90.47.180)
+  by zinc.ion.lu with SMTP; 21 Jun 2004 03:26:41 -0000
+Received: (qmail 48528 invoked by alias); 21 Jun 2004 03:26:42 -0000
+Delivered-To: root@snoopy.party.lu
+Received: (qmail 48525 invoked by uid 0); 21 Jun 2004 03:26:41 -0000
+Date: 21 Jun 2004 03:17:28 -0000
+Message-ID: <20040621031728.48455.qmail@snoopy.party.lu>
+From: root@snoopy.party.lu (Cron Daemon)
+To: root@snoopy.party.lu
+Subject: Cron <root@snoopy> /usr/local/sbin/mysql-bup.sh
+X-Cron-Env: <SHELL=/bin/sh>
+X-Cron-Env: <HOME=/root>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=root>
+X-Cron-Env: <USER=root>
+
+dbcommon-snoopy-210604.sql
+dbcrew_party_lu-snoopy-210604.sql
+dbeldo-snoopy-210604.sql
+dbhomepage-snoopy-210604.sql
+dbmarathon-snoopy-210604.sql
+dbparty-snoopy-210604.sql
+dbpartyid-snoopy-210604.sql
+dbphotorama-snoopy-210604.sql
+dbschroederv2-snoopy-210604.sql
+eldobup-snoopy-210604.sql
+eldoradio-snoopy-210604.sql
+mysql-snoopy-210604.sql
+partylu-snoopy-210604.sql
+test-snoopy-210604.sql

@@ -1,0 +1,120 @@
+*Received: (qmail 77039 invoked by uid 89); 3 Sep 2007 03:01:46 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 03:01:46 +0200
+Received: (qmail 29501 invoked by uid 98); 3 Sep 2007 02:45:00 +0200
+Received: from 80.90.52.103 by radium.ion.lu (envelope-from <root@equilam.ion.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(80.90.52.103):SA:0(0.8/7.0):. 
+ Processed in 3.888784 secs); 03 Sep 2007 00:45:00 -0000
+X-Spam-Status: No, score=0.8 required=7.0
+X-Spam-Level: 
+Received: from vodsl-3687.vo.lu (HELO equilam.ion.lu) (80.90.52.103)
+  by radium.ion.lu with SMTP; 3 Sep 2007 02:44:56 +0200
+Received-SPF: none (radium.ion.lu: domain at equilam.ion.lu does not designate permitted sender hosts)
+Received: (qmail 80406 invoked by alias); 3 Sep 2007 01:01:11 -0000
+Delivered-To: root@equilam.ion.lu
+Received: (qmail 80387 invoked by uid 0); 3 Sep 2007 01:01:11 -0000
+Date: 3 Sep 2007 01:01:11 -0000
+Message-ID: <20070903010111.80385.qmail@equilam.ion.lu>
+From: root@equilam.ion.lu
+To: root@equilam.ion.lu
+Subject: equilam.ion.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+equilam.ion.lu login failures:
+Sep  2 01:51:54 equilam sshd[76927]: Failed password for root from 82.144.168.216 port 3734 ssh2
+Sep  2 01:52:35 equilam sshd[76957]: Failed password for root from 82.144.168.216 port 1165 ssh2
+Sep  2 01:52:50 equilam sshd[76967]: Failed password for root from 82.144.168.216 port 1695 ssh2
+Sep  2 01:52:56 equilam sshd[76969]: Failed password for root from 82.144.168.216 port 1771 ssh2
+Sep  2 01:53:01 equilam sshd[76971]: Failed password for root from 82.144.168.216 port 1958 ssh2
+Sep  2 01:53:06 equilam sshd[76973]: Failed password for root from 82.144.168.216 port 2152 ssh2
+Sep  2 01:53:12 equilam sshd[76975]: Failed password for root from 82.144.168.216 port 2311 ssh2
+Sep  2 01:53:14 equilam sshd[76977]: Failed password for root from 82.144.168.216 port 2476 ssh2
+Sep  2 01:53:17 equilam sshd[76979]: Failed password for root from 82.144.168.216 port 2542 ssh2
+Sep  2 01:53:29 equilam sshd[76989]: Failed password for root from 82.144.168.216 port 2941 ssh2
+Sep  2 01:53:32 equilam sshd[76991]: Failed password for root from 82.144.168.216 port 3021 ssh2
+Sep  2 08:30:36 equilam sshd[78738]: Failed password for root from 203.148.15.59 port 52125 ssh2
+Sep  2 08:30:44 equilam sshd[78740]: Failed password for root from 203.148.15.59 port 53157 ssh2
+Sep  2 08:30:47 equilam sshd[78742]: Failed password for root from 203.148.15.59 port 54738 ssh2
+Sep  2 08:30:53 equilam sshd[78744]: Failed password for root from 203.148.15.59 port 56332 ssh2
+Sep  2 08:30:56 equilam sshd[78746]: Failed password for root from 203.148.15.59 port 57652 ssh2
+Sep  2 08:31:00 equilam sshd[78748]: Failed password for root from 203.148.15.59 port 58825 ssh2
+Sep  2 08:31:04 equilam sshd[78750]: Failed password for root from 203.148.15.59 port 59379 ssh2
+Sep  2 08:31:08 equilam sshd[78752]: Failed password for root from 203.148.15.59 port 60475 ssh2
+Sep  2 16:35:25 equilam sshd[79094]: Failed password for root from 190.2.37.241 port 3532 ssh2
+Sep  2 16:35:27 equilam sshd[79096]: Failed password for root from 190.2.37.241 port 3879 ssh2
+Sep  2 16:35:29 equilam sshd[79098]: Failed password for root from 190.2.37.241 port 4295 ssh2
+Sep  2 16:36:02 equilam sshd[79128]: Failed password for root from 190.2.37.241 port 1805 ssh2
+Sep  2 16:36:13 equilam sshd[79138]: Failed password for root from 190.2.37.241 port 3599 ssh2
+Sep  2 16:36:15 equilam sshd[79140]: Failed password for root from 190.2.37.241 port 3966 ssh2
+Sep  2 16:36:22 equilam sshd[79146]: Failed password for root from 190.2.37.241 port 1102 ssh2
+Sep  2 16:36:24 equilam sshd[79148]: Failed password for root from 190.2.37.241 port 1506 ssh2
+Sep  2 16:36:26 equilam sshd[79150]: Failed password for root from 190.2.37.241 port 1804 ssh2
+Sep  2 16:36:28 equilam sshd[79152]: Failed password for root from 190.2.37.241 port 2150 ssh2
+Sep  2 16:36:31 equilam sshd[79154]: Failed password for root from 190.2.37.241 port 2569 ssh2
+Sep  2 16:36:33 equilam sshd[79156]: Failed password for root from 190.2.37.241 port 2912 ssh2
+Sep  2 16:36:35 equilam sshd[79158]: Failed password for root from 190.2.37.241 port 3257 ssh2
+Sep  2 16:36:37 equilam sshd[79160]: Failed password for root from 190.2.37.241 port 3605 ssh2
+Sep  2 16:36:48 equilam sshd[79170]: Failed password for root from 190.2.37.241 port 1451 ssh2
+Sep  2 16:36:50 equilam sshd[79172]: Failed password for root from 190.2.37.241 port 1863 ssh2
+Sep  2 16:36:53 equilam sshd[79174]: Failed password for root from 190.2.37.241 port 2282 ssh2
+Sep  2 16:36:55 equilam sshd[79176]: Failed password for root from 190.2.37.241 port 2634 ssh2
+Sep  2 16:36:57 equilam sshd[79178]: Failed password for root from 190.2.37.241 port 2985 ssh2
+Sep  2 16:36:59 equilam sshd[79180]: Failed password for root from 190.2.37.241 port 3357 ssh2
+Sep  2 16:37:10 equilam sshd[79190]: Failed password for root from 190.2.37.241 port 1167 ssh2
+Sep  2 16:37:13 equilam sshd[79192]: Failed password for root from 190.2.37.241 port 1523 ssh2
+Sep  2 16:37:33 equilam sshd[79208]: Failed password for root from 190.2.37.241 port 4923 ssh2
+Sep  2 16:37:40 equilam sshd[79214]: Failed password for root from 190.2.37.241 port 2079 ssh2
+Sep  2 16:37:42 equilam sshd[79216]: Failed password for root from 190.2.37.241 port 2435 ssh2
+Sep  2 16:37:44 equilam sshd[79218]: Failed password for root from 190.2.37.241 port 2811 ssh2
+Sep  2 16:37:46 equilam sshd[79220]: Failed password for root from 190.2.37.241 port 3149 ssh2
+Sep  2 16:38:13 equilam sshd[79244]: Failed password for nobody from 190.2.37.241 port 3536 ssh2
+Sep  2 16:38:15 equilam sshd[79246]: Failed password for root from 190.2.37.241 port 3902 ssh2
+Sep  2 16:38:28 equilam sshd[79258]: Failed password for www from 190.2.37.241 port 2064 ssh2
+Sep  2 16:38:50 equilam sshd[79278]: Failed password for news from 190.2.37.241 port 1736 ssh2
+Sep  2 16:38:54 equilam sshd[79282]: Failed password for games from 190.2.37.241 port 2459 ssh2
+Sep  2 16:39:38 equilam sshd[79322]: Failed password for root from 190.2.37.241 port 1642 ssh2
+Sep  2 16:40:09 equilam sshd[79354]: Failed password for operator from 190.2.37.241 port 1930 ssh2
+Sep  2 16:40:24 equilam sshd[79368]: Failed password for sshd from 190.2.37.241 port 4403 ssh2
+Sep  2 16:40:35 equilam sshd[79378]: Failed password for root from 190.2.37.241 port 2201 ssh2
+Sep  2 17:06:34 equilam sshd[79430]: Failed password for root from 202.70.32.106 port 40343 ssh2
+Sep  2 17:06:37 equilam sshd[79432]: Failed password for root from 202.70.32.106 port 40576 ssh2
+Sep  2 17:06:39 equilam sshd[79434]: Failed password for root from 202.70.32.106 port 40688 ssh2
+Sep  2 17:06:42 equilam sshd[79436]: Failed password for root from 202.70.32.106 port 40791 ssh2
+Sep  2 17:06:47 equilam sshd[79438]: Failed password for root from 202.70.32.106 port 40894 ssh2
+Sep  2 17:06:50 equilam sshd[79440]: Failed password for root from 202.70.32.106 port 41061 ssh2
+Sep  2 17:06:56 equilam sshd[79442]: Failed password for root from 202.70.32.106 port 41184 ssh2
+Sep  2 17:06:58 equilam sshd[79444]: Failed password for root from 202.70.32.106 port 41396 ssh2
+Sep  2 17:07:01 equilam sshd[79446]: Failed password for root from 202.70.32.106 port 41496 ssh2
+Sep  2 17:07:05 equilam sshd[79448]: Failed password for root from 202.70.32.106 port 41607 ssh2
+Sep  2 17:07:07 equilam sshd[79450]: Failed password for root from 202.70.32.106 port 41743 ssh2
+Sep  2 17:07:10 equilam sshd[79452]: Failed password for root from 202.70.32.106 port 41846 ssh2
+Sep  2 17:07:13 equilam sshd[79454]: Failed password for root from 202.70.32.106 port 41963 ssh2
+Sep  2 17:07:16 equilam sshd[79456]: Failed password for root from 202.70.32.106 port 42079 ssh2
+Sep  2 17:07:19 equilam sshd[79458]: Failed password for root from 202.70.32.106 port 42182 ssh2
+Sep  2 17:07:23 equilam sshd[79460]: Failed password for root from 202.70.32.106 port 42282 ssh2
+Sep  2 17:07:26 equilam sshd[79462]: Failed password for root from 202.70.32.106 port 42429 ssh2
+Sep  2 17:07:29 equilam sshd[79464]: Failed password for root from 202.70.32.106 port 42557 ssh2
+Sep  2 17:07:32 equilam sshd[79466]: Failed password for root from 202.70.32.106 port 42673 ssh2
+Sep  2 17:07:35 equilam sshd[79468]: Failed password for root from 202.70.32.106 port 42796 ssh2
+Sep  2 17:07:38 equilam sshd[79470]: Failed password for root from 202.70.32.106 port 42900 ssh2
+Sep  2 17:07:43 equilam sshd[79472]: Failed password for root from 202.70.32.106 port 43012 ssh2
+Sep  2 17:07:46 equilam sshd[79474]: Failed password for root from 202.70.32.106 port 43231 ssh2
+Sep  2 17:07:49 equilam sshd[79476]: Failed password for root from 202.70.32.106 port 43325 ssh2
+Sep  2 17:07:55 equilam sshd[79478]: Failed password for root from 202.70.32.106 port 43444 ssh2
+Sep  2 17:07:57 equilam sshd[79480]: Failed password for root from 202.70.32.106 port 43652 ssh2
+Sep  2 17:08:00 equilam sshd[79482]: Failed password for root from 202.70.32.106 port 43764 ssh2
+Sep  2 17:12:22 equilam sshd[79652]: Failed password for daemon from 202.70.32.106 port 53732 ssh2
+Sep  2 17:12:25 equilam sshd[79654]: Failed password for daemon from 202.70.32.106 port 53826 ssh2
+
+equilam.ion.lu refused connections:
+
+-- End of security output --

@@ -1,0 +1,5 @@
+this contains any services the hosts runs: netstat -an 
+
+VNC
+HTTP
+

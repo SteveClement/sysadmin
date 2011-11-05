@@ -1,0 +1,16 @@
+Printing under bsd:
+
+Needed:
+
+cups
+cups-lpr
+foomaticdb
+
+Recommended:
+
+CUPS_OVERWRITE_BASE=yes
+NO_LPR=yes
+
+so we use cups instead of the base LPR.
+
+

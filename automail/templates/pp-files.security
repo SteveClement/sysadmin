@@ -1,0 +1,78 @@
+*Received: (qmail 76914 invoked by uid 89); 3 Sep 2007 03:01:06 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 03:01:06 +0200
+Received: (qmail 29374 invoked by uid 98); 3 Sep 2007 02:44:20 +0200
+Received: from 80.90.40.162 by radium.ion.lu (envelope-from <root@pp-files.propertypartners.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(80.90.40.162):SA:0(-0.6/7.0):. 
+ Processed in 3.998546 secs); 03 Sep 2007 00:44:20 -0000
+X-Spam-Status: No, score=-0.6 required=7.0
+X-Spam-Level: 
+Received: from vodsl-2210.vo.lu (HELO pp-files.propertypartners.lu) (80.90.40.162)
+  by radium.ion.lu with SMTP; 3 Sep 2007 02:44:16 +0200
+Received-SPF: none (radium.ion.lu: domain at pp-files.propertypartners.lu does not designate permitted sender hosts)
+Received: (qmail 16420 invoked by alias); 3 Sep 2007 03:01:44 +0200
+Delivered-To: root@pp-files.propertypartners.lu
+Received: (qmail 16387 invoked by uid 0); 3 Sep 2007 03:01:44 +0200
+Date: 3 Sep 2007 03:01:44 +0200
+Message-ID: <20070903010144.16383.qmail@pp-files.propertypartners.lu>
+From: root@pp-files.propertypartners.lu
+To: root@pp-files.propertypartners.lu
+Subject: pp-files.propertypartners.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+pp-files.propertypartners.lu login failures:
+
+pp-files.propertypartners.lu refused connections:
+
+Checking for a current audit database:
+
+Database created: Sun Sep  2 02:40:01 CEST 2007
+
+Checking for packages with security vulnerabilities:
+
+Affected package: rsync-2.6.9
+Type of problem: rsync -- off by one stack overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/af8e3a0c-5009-11dc-8a43-003048705d5a.html>
+
+Affected package: cups-base-1.2.10
+Type of problem: xpdf -- stack based buffer overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/0e43a14d-3f3f-11dc-a79a-0016179b2dd5.html>
+
+Affected package: vim-7.0.224
+Type of problem: vim -- Command Format String Vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/1ed03222-3c65-11dc-b3d3-0016179b2dd5.html>
+
+Affected package: gd-2.0.34,1
+Type of problem: gd -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/6e099997-25d8-11dc-878b-000c29c5647f.html>
+
+Affected package: cups-base-1.2.10
+Type of problem: cups -- Incomplete SSL Negotiation Denial of Service.
+Reference: <http://www.FreeBSD.org/ports/portaudit/39988ee8-1918-11dc-b6bd-0016179b2dd5.html>
+
+Affected package: freetype2-2.2.1_1
+Type of problem: FreeType 2 -- Heap overflow vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/de2fab2d-0a37-11dc-aae2-00304881ac9a.html>
+
+Affected package: png-1.2.14
+Type of problem: png -- DoS crash vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/4cb9c513-03ef-11dc-a51d-0019b95d4f14.html>
+
+Affected package: samba-3.0.24,1
+Type of problem: samba -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/3546a833-03ea-11dc-a51d-0019b95d4f14.html>
+
+8 problem(s) in your installed packages found.
+
+You are advised to update or deinstall the affected package(s) immediately.
+
+-- End of security output --

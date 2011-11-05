@@ -1,0 +1,233 @@
+Foreword:
+
+I just wanted to make clear that there are two different ways of configuring apache:
+
+The new-style ./configure --(switch), which then creates a convenient config.status
+The old-style src/Configuration file where you set your parameters accordingly
+
+DO NOT MIX BOTH CONFIG STYLES AS SOMETIMES IT DOESNT WORK e.g: mod_perl & php4
+
+{I addedd this because up till now I didnt exactly know the plot with the configs... DELETE ME}
+
+Installing Apache, w/OpenSSL and Mod_perl, (PHP4 and SuExec)
+============================================================
+
+First things first:
+pw useradd apache -c "Apache tree" -s /nonexistent
+pw useradd webserv -s /nonexistent -c "The webserv user" -d /
+mkdir /home/apache
+chmod g+ws ~apache/
+
+!add people, that have to be able to write to ~apache, into the apache group, which are all the sysadmins for starters.!
+
+
+
+
+Installing OpenSSL 0.9.6c
+-------------------------
+
+cd ~software/archives/
+wget http://www.openssl.org/source/openssl-0.9.6c.tar.gz
+cd ~software/unpacked/
+tar -xzvf ../archives/openssl-0.9.6c.tar.gz
+cd openssl-0.9.6c/
+sh config
+make
+rootdo make install
+rootdo rm -f /usr/local/bin/openssl
+rootdo ln -s /usr/local/ssl/bin/openssl /usr/local/bin/openssl
+
+Compiling Apache w/SSL support
+------------------------------
+
+cd ~software/unpacked
+tar xfvz ../archives/apache_1.3.xy.tar.gz
+cd apache_1.3.xy
+tar xfvz ../../archives/apache_1.3.xy+ssl_1.47.tar.gz
+(it could well be that the apache-ssl patch isn't in sync with apache, if it isn't, bugggg ben to release one :) )
+./FixPatch
+Now you get told this:
+
+OpenSSL needs updating to include a function to read a specified number of
+bytes from EGD - if you haven't applied the patch already and are using
+OpenSSL 0.9.5a, then it needs applying
+
+OpenSSL 0.9.6c doesn't need this patch! So say no!
+
+If that is the case, that is if and only if you install openssl 0.9.5a, answer the question with yes and re-install OpenSSL and re-run ./FixPatch afterwards!
+so after having re-{compiled,installed} OpenSSL:
+./FixPatch
+You get asked again to patch openssl say no this time, then you get asked to patch the apache source say yes there.
+
+Now you have to compile and Install any modules you might want to add on top of apache+SSL, after having done that come back here and continue the apache install...
+
+cd src
+./Configure
+make
+cd support
+make
+
+note: apache-1.3.19+ssl has a bug in crypto/rand/rand_egd.c
+      rand_egd_bytes () is defined twice
+
+note: apache ssl patch for apache 1.3.22 patched cleanly but does
+      not compile for 1.3.23. =/ 
+
+Note from Ben: Whoever wrote this (Kim) was on crack because
+Apache-SSL _never_ patches cleanly against the wrong version of
+Apache. Its impossible for it to do so. After doing FixPatch check for
+*.reject files, and read them to guess whether its going to work.
+
+log in as luser
+cd ~apache
+mkdir hosts logs bin conf gcache auth
+cd ~software/unpacked/apache_*/src/
+cp httpsd ~apache/bin
+cp support/htpasswd support/rotatelogs ~apache/bin
+cp modules/ssl/gcache ~apache/bin
+cp ../conf/mime.types ~apache/conf
+
+
+To make apache start on boot under FreeBSD
+------------------------------------------
+
+vi /etc/rc.local and add this...
+
+echo Starting Apache.....
+/home/apache/bin/httpsd -d /home/apache -f /home/apache/conf/httpsd.conf
+
+
+Installing PHP4 "Note that this is optional if you dont want PHP4 installed"
+---------------
+
+To install PHP with MySql support compile MySql now, to get instructions edit the file mysql.txt in this directory...
+
+cd ~software/unpacked
+tar xfvz ../archives/php-4.x.y.tar.gz
+cd php-4.x.y
+./configure --with-apache=/home/software/unpacked/apache_1.2.xy --with-mysql=/usr/local/mysql/ --enable-track-vars
+make
+rootdo make install
+
+Now add this line to you src/Configuration file in the apache-source dir:
+## PHP4 Support
+AddModule modules/php4/libphp4.a
+
+
+Adding PAM support
+------------------
+
+make the module (to see if you can), and copy .c to apache/src/modules/extras
+
+add Module pam_auth_module modules/extra/mod_auth_pam.o
+to Configuration.
+
+add -lpam to libs in Makefile on this line:
+EXTRA_LIBS=`perl /home/software/unpacked/mod_perl-1.25/src/modules/perl/ldopts  ` -lpam
+
+
+Adding SuExec support
+---------------------
+
+Well now it becomes a bit more complicated as we have to bugger about with header files.
+The way SuExec works is:
+If http(s)d is pointing to a valid Suexec wrapper it gets enabled if not it is disabled.
+So we have to point it to a sensitive place which usually with our config is:
+~apache/bin/suexec.
+
+But back to the header mods.
+go to: src/support
+Edit the suexec.h file and change the following macros to match your local Apache installation. 
+#define HTTPD_USER "www" /* In our case ususally webserv */
+#define LOG_EXEC "/home/apache/logs/suexec.log" /* Need me? */
+#define DOC_ROOT "/home/apache/hosts/{somewhere}/htdocs" 
+#define SAFE_PATH "/usr/local/bin:/usr/bin:/bin" /* The path passed to CGI's */
+
+
+You now need to compile the suEXEC wrapper. At the shell command prompt, type:  make suexec
+
+COMPILING APACHE FOR USE WITH SUEXEC
+By default, Apache is compiled to look for the suEXEC wrapper in the following location. 
+
+From src/include/httpd.h 
+
+     /* The path to the suExec wrapper, can be overridden in Configuration */
+     #ifndef SUEXEC_BIN
+     #define SUEXEC_BIN  HTTPD_ROOT "/sbin/suexec" /* This should be in our case ~apache/bin/  {or is it ~apache/sbin????} */
+     #endif
+
+If your installation requires location of the wrapper program in a different directory, either add -DSUEXEC_BIN=\"</your/path/to/suexec>\" t
+your CFLAGS (or edit src/include/httpd.h)
+
+
+Copy the suexec executable created in the exercise above to the defined location for SUEXEC_BIN. 
+
+cp suexec ~apache/bin/suexec
+
+In order for the wrapper to set the user ID, it must be installed as owner root and must have the setuserid execution bit set for file modes.
+If you are not running a root user shell, do so now and execute the following commands. 
+
+chown root ~apache/bin/suexec
+chmod 4711 ~apache/bin/suexec
+
+Bare in mind that you have to recompile apache in order for it to work, if you have more modules to install continue if not compile now.
+
+Testing the installation, after compilation of Apache:
+
+do a: httpsd -l 
+and see if it gives a positive report about the suexec wrapper.
+
+
+Adding Mod_Perl
+---------------
+
+unpack
+perl Makefile.PL [options]
+{At this stage you get asked two questions: The first one is to confirm the location of Apache, the second one if you want IT to compile apache for you, say yes to the latter (though I think it only compiles Apache later, when you say
+"make").}
+{You will probably want some options. EVERYTHING=1 will enable, er, everything,
+which might be more than you want; you can use the APACHE_SRC option to
+point to your apache src (typically ~software/unpacked/apache*/src) rather
+than being prompted. For more on options see http://perl.apache.org/guide/install.html#Configuration_parameters }
+
+make
+make install
+
+SSL CERTS
+---------
+
+temporary certs can be made like this:
+
+Step one - create the key and request:
+
+  openssl req -new > new.cert.csr
+
+Step two - remove the passphrase from the key (optional):
+
+  openssl rsa -in privkey.pem -out new.cert.key
+
+Step three - convert request into signed cert:
+
+   openssl x509 -in new.cert.csr -out new.cert.cert -req -signkey new.cert.key -days 3650
+
+The Apache-SSL directives that you need to use the resulting cert are:
+
+  SSLCertificateFile /path/to/certs/new.cert.cert
+  SSLCertificateKeyFile /path/to/certs/new.cert.key
+
+taken from the apache-ssl faq.
+
+our standard is to rename the cert to the fqdn, e.g.
+
+  www.alovelywebserver.com.cert
+  www.alovelywebserver.com.key
+  www.alovelywebserver.com.csr
+
+the key file should be owner readable only (doesn't matter who the owner is cos only root tries to read it when apache gets started anyway). and all files should be read only.
+
+the .csr file gets used to request an official cert (from thawte or whoever) and when that cert is issued you simple replace the .cert file and restart apache.
+Notes
+-----
+Expat - Apache comes with expat-lite, which can conflict with real, big expat
+if you need that. If you compile via mod_perl, mod_perl will turn expat-lite
+off for you automatically.

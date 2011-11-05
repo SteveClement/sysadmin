@@ -1,0 +1,38 @@
+to set up a message for mail autoresponder, look at the example in qmail/mailgate/home/aldigit/.qmail-holiday 
+and set up a text file with the outgoing message. this needs to be in the form of an email - i.e. complete
+with headers. e.g.
+
+  From: Dominic Hawken <dominic@aldigital.co.uk>
+  Subject: I am on holiday
+  Precedence: bulk
+
+  I will be away from the office until September 7th.
+
+  If you are emailing regarding AL Digital, Volume, Federation or Digital
+  Tables and require an immediate response, please call the office on +44
+  (20) 8742 0755, or email Alison at alison@aldigital.co.uk.
+
+  Cheers,
+  Dominic.
+  --
+  Dominic Hawken        Tel: +44 (20) 8742 0755
+  Director              Fax: +44 (20) 8742 5995
+  A.L. Digital Ltd.
+  The Stores            http://www.aldigital.co.uk/
+  2 Bath Road           http://www.thebunker.net/
+  London W4 1LT         mailto:dominic@aldigital.co.uk
+  UNITED KINGDOM        PGP key on keyservers
+
+make a sub directory in /var/tmp that corresponds to last argument in the .qmail file - e.g., in this case, 
+/var/tmp/dominic. make sure that the directory is owned by the domain that receives the mail for that
+user - in this case "aldigital".
+
+create a .qmail file for the user (.qmail-dominic) in the home directory for the mail domain (aldigital):
+
+  dominic@male.aldigital.co.uk
+  |qmail-autoresponder -t 460800 /var/tmp/domhols.txt /var/tmp/dominic
+
+send him a mail from your pc to test that you get the message.
+
+to switch off the service, simply delete the .qmail-<user> file. (unless it's fowarding to somewhere other than our
+default (male), in which case delete the qmail-autoresponder line instead).

@@ -1,0 +1,25 @@
+user_pref("network.protocol-handler.app.mailto","/usr/bin/thunderbird");
+
+user_pref("print.printer_PostScript/xerox8400n.print_bgcolor", false);
+user_pref("print.printer_PostScript/xerox8400n.print_bgimages", false);
+user_pref("print.printer_PostScript/xerox8400n.print_command", "lpr ${MOZ_PRINTER_NAME:+'-P'}${MOZ_PRINTER_NAME}");
+user_pref("print.printer_PostScript/xerox8400n.print_evenpages", true);
+user_pref("print.printer_PostScript/xerox8400n.print_footercenter", "");
+user_pref("print.printer_PostScript/xerox8400n.print_footerleft", "&PT");
+user_pref("print.printer_PostScript/xerox8400n.print_footerright", "&D");
+user_pref("print.printer_PostScript/xerox8400n.print_headercenter", "");
+user_pref("print.printer_PostScript/xerox8400n.print_headerleft", "&T");
+user_pref("print.printer_PostScript/xerox8400n.print_headerright", "&U");
+user_pref("print.printer_PostScript/xerox8400n.print_in_color", true);
+user_pref("print.printer_PostScript/xerox8400n.print_margin_bottom", "0.5");
+user_pref("print.printer_PostScript/xerox8400n.print_margin_left", "0.5");
+user_pref("print.printer_PostScript/xerox8400n.print_margin_right", "0.5");
+user_pref("print.printer_PostScript/xerox8400n.print_margin_top", "0.5");
+user_pref("print.printer_PostScript/xerox8400n.print_oddpages", true);
+user_pref("print.printer_PostScript/xerox8400n.print_orientation", 0);
+user_pref("print.printer_PostScript/xerox8400n.print_paper_height", "279.40");
+user_pref("print.printer_PostScript/xerox8400n.print_paper_name", "A4");
+user_pref("print.printer_PostScript/xerox8400n.print_paper_size_type", 1);
+user_pref("print.printer_PostScript/xerox8400n.print_paper_size_unit", 0);
+user_pref("print.printer_PostScript/xerox8400n.print_paper_width", "215.90");
+user_pref("print.printer_PostScript/xerox8400n.print_reversed", false);

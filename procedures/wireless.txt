@@ -1,0 +1,9 @@
+Target[me102.wireless]: `/usr/bin/ap-mrtg -i 192.168.0.1 -c public -t w`
+MaxBytes[me102.wireless]: 1375000
+Title[me102.wireless]: Wireless Stats
+ShortLegend[me102.wireless]: pkt/min
+PageTop[me102.wireless]: <H1>Wireless Stats</H1>
+Options[me102.wireless]: growright, bits
+WithPeak[me102.wireless]: dmwy
+
+http://www.it-academy.cc/content/article_browse.php?ID=635

@@ -1,0 +1,120 @@
+This gives you a short summary to use FreeTDS/PHP/unixODBC
+http://www.unixodbc.org/doc/FreeTDS.html
+
+portinstall unixODBC
+portinstall php5-odbc
+portinstall freetds
+
+odbc.ini:
+
+;
+;  odbc.ini
+;
+[ODBC Data Sources]
+ FreeNET = Mickesoft  SQL server
+
+[FreeNET]
+Driver          = /usr/local/lib/libtdsodbc.so
+Description     = Mickeysoft SQL server
+Trace           = No
+Servername      = FreeNET
+Database        = freenet
+UID             = party
+PWD             = gnd48uh*
+
+[Default]
+Driver          = /usr/local/lib/libtdsodbc.so
+
+
+
+freetds.conf:
+[global]
+	tds version = 4.2
+
+	initial block size = 512
+
+	swap broken dates = no
+
+	swap broken money = no
+
+	try server login = yes
+	try domain login = no
+
+
+	cross domain login = no
+
+
+	
+	text size = 64512
+
+[JDBC]
+	host = 192.138.151.39
+	port = 4444
+	tds version = 5.0
+
+[JDBC_42]
+	host = 192.138.151.39
+	port = 4444
+	tds version = 4.2
+
+[mypool]
+	host = 127.0.0.1
+	port = 5000
+	tds version = 4.2
+
+
+
+[FreeNET]
+	host = mail.freenet.lu
+	port = 1433
+	tds version = 7.0
+	
+
+
+
+### Info about the destination interface
+vi /usr/local/etc/freetds/interfaces
+
+FreeNET
+	query tcp ether 80.90.45.12 1433
+        master tcp ether 80.90.45.12 1433
+
+
+### unixodbc FreeTDS datasource template
+vi /usr/local/etc/unixodbc.freetds.datasource.template
+
+[FreeNET]
+Driver		= FreeTDS
+Description	= Party.lu FreeNET FreeTDS Server
+Trace		= No
+Servername	= FreeNET
+Database	= party
+
+### unixodbc FreeTDS driver template
+vi /usr/local/etc/unixodbc.freetds.driver.template
+
+Description	= FreeTDS unixODBC Driver
+Driver		= /usr/local/lib/libtdsodbc.so
+
+
+## Register both files with unixodbc
+odbcinst -i -d -f /usr/local/etc/unixodbc.freetds.driver.template
+odbcinst -i -s -f /usr/local/etc/unixodbc.freetds.datasource.template
+
+## Test the installation
+isql -v FreeNET party party
+
+<SQL PROMPT>
+
+If all this is done and the test was successful you can test it with php:
+
+<?php
+
+$conn = odbc_connect("FreeNET", "party", "party");
+$tablelist = odbc_tables($conn);
+while (odbc_fetch_row($tablelist)) {
+echo odbc_result_all($tablelist);
+}
+
+?>
+

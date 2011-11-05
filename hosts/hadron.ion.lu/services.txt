@@ -1,0 +1,8 @@
+this contains any services the hosts runs: netstat -an 
+
+So this file should contain any service related stuff both internet visible and back end visible.
+One firther idea would be to include an lsof or similar to know what process runs what port...
+
+Rsync 
+Ssh
+

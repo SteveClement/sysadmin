@@ -1,0 +1,441 @@
+This outlines how to configurea a Standard Apache2+PHP5+MySQL+SSL Server
+
+First of all you have to do [[Standard ION FreeBSD Install]]
+
+Once done, follow this guide.
+
+We will make heavy use of the /usr/ports structure to make the install as easy
+as possible, but let's create the apache "convenience" user first:
+
+pw useradd apache -s /sbin/nologin -c "convenience user"
+mkdir /home/apache
+chown apache:apache /home/apache
+
+Tweak make.conf:
+
+echo "APACHE_DATADIR=/home/apache" >> /etc/make.conf
+echo "APACHE_DOCUMENT_ROOT=/home/apache/hosts/`hostname |cut -f 2- -d.`/`hostname -s`" >> /etc/make.conf
+
+
+cd /home/apache
+ln -s /usr/local/etc etc
+ln -s /usr/local/etc/apache22/ conf
+ln -s /usr/local/libexec libexec
+
+mkdir logs
+mkdir var
+mkdir auth
+mkdir certs
+chmod 770 certs auth
+rm -rf proxy
+echo hosts/`hostname |cut -f 2- -d.`
+mkdir -p hosts/`hostname |cut -f 2- -d.`
+mkdir -p logs/`hostname |cut -f 2- -d.`/`hostname -s`
+cd hosts/`hostname |cut -f 2- -d.`
+ln -s /usr/local/www/data `hostname -s`
+cd /usr/ports/www/apache13-modssl
+make all certificate
+## Answer questions accordingly USE DSA INSTEAD OF RSA
+cd /usr/ports/www/apache13-modssl/work/apache_1.3.39/conf
+mv ssl.crt/server.crt ~apache/certs/star.`hostname |cut -f 2- -d.`.crt
+mv ssl.key/server.key ~apache/certs/star.`hostname |cut -f 2- -d.`.key
+cd /usr/ports/www/apache13-modssl
+make clean
+cd ~apache/certs
+chmod 700 .
+chmod 600 *
+openssl rsa -in star.`hostname |cut -f 2- -d.`.key -out star.`hostname |cut -f 2- -d.`.key
+
+egon apache13-modssl # make certificate
+===>  Creating Test Certificate for Server
+SSL Certificate Generation Utility (mkcert.sh)
+Copyright (c) 1998-2000 Ralf S. Engelschall, All Rights Reserved.
+
+Generating test certificate signed by Snake Oil CA [TEST]
+WARNING: Do not use this for real-life/production systems
+______________________________________________________________________
+
+STEP 0: Decide the signature algorithm used for certificate
+The generated X.509 CA certificate can contain either
+RSA or DSA based ingredients. Select the one you want to use.
+Signature Algorithm ((R)SA or (D)SA) [R]:D
+
+WARNING! You're generating a DSA based certificate/key pair.
+         This implies that RSA based ciphers won't be available later,
+         which for your web server currently still means that mostly all
+         popular web browsers cannot connect to it. At least not until
+         you also generate an additional RSA based certificate/key pair
+         and configure them in parallel.
+______________________________________________________________________
+
+STEP 1: Generating DSA private key (1024 bit) [server.key]
+Generating DSA private key via SnakeOil CA DSA parameters
+64878 semi-random bytes loaded
+Generating DSA key, 1024 bits
+______________________________________________________________________
+
+STEP 2: Generating X.509 certificate signing request [server.csr]
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+1. Country Name             (2 letter code) [XY]:LU
+2. State or Province Name   (full name)     [Snake Desert]:Luxembourg
+3. Locality Name            (eg, city)      [Snake Town]:Luxembourg
+4. Organization Name        (eg, company)   [Snake Oil, Ltd]:LX s.à r.l
+5. Organizational Unit Name (eg, section)   [Webserver Team]:
+6. Common Name              (eg, FQDN)      [www.snakeoil.dom]:*.lxcdm.lu
+7. Email Address            (eg, name@FQDN)
+[www@snakeoil.dom]:webmaster@lxcdm.lu
+8. Certificate Validity     (days)          [365]:3650
+______________________________________________________________________
+
+STEP 3: Generating X.509 certificate signed by Snake Oil CA [server.crt]
+Certificate Version (1 or 3) [3]:
+Signature ok
+subject=/C=LU/ST=Luxembourg/L=Luxembourg/O=LX s.\xE0 r.l/OU=Webserver
+Team/CN=*.lxcdm.lu/emailAddress=webmaster@lxcdm.lu
+Getting CA Private Key
+Verify: matching certificate & key modulus
+read DSA key
+Verify: matching certificate signature
+../conf/ssl.crt/server.crt: /C=XY/ST=Snake Desert/L=Snake Town/O=Snake Oil,
+Ltd/OU=Certificate Authority (DSA)/CN=Snake Oil
+CA/emailAddress=ca@snakeoil.dom
+error 10 at 1 depth lookup:certificate has expired
+OK
+______________________________________________________________________
+
+STEP 4: Enrypting DSA private key with a pass phrase for security [server.key]
+The contents of the server.key file (the generated private key) has to be
+kept secret. So we strongly recommend you to encrypt the server.key file
+with a Triple-DES cipher and a Pass Phrase.
+Encrypt the private key now? [Y/n]:
+read DSA key
+writing DSA key
+Enter PEM pass phrase:
+Verifying - Enter PEM pass phrase:
+Fine, you're using an encrypted DSA private key.
+______________________________________________________________________
+
+RESULT: Server Certification Files
+
+o  conf/ssl.key/server.key
+   The PEM-encoded DSA private key file which you configure
+   with the 'SSLCertificateKeyFile' directive (automatically done
+   when you install via APACI). KEEP THIS FILE PRIVATE!
+
+o  conf/ssl.crt/server.crt
+   The PEM-encoded X.509 certificate file which you configure
+   with the 'SSLCertificateFile' directive (automatically done
+   when you install via APACI).
+
+o  conf/ssl.csr/server.csr
+   The PEM-encoded X.509 certificate signing request file which
+   you can send to an official Certificate Authority (CA) in order
+   to request a real server certificate (signed by this CA instead
+   of our demonstration-only Snake Oil CA) which later can replace
+   the conf/ssl.crt/server.crt file.
+
+WARNING: Do not use this for real-life/production systems
+
+
+
+Let's install Software.
+
+See:
+[[ FreeBSD MySQL Install ]]
+
+echo "www/apache22: WITHOUT_IPV6|WITH_SSL_MODULES" >> /usr/local/etc/ports.conf
+
+portinstall www/apache22 sysutils/cronolog
+ 
+mkdir /usr/local/www/data/
+cd /usr/local/www/data/
+mv ../data-dist/* .
+cd /usr/local/www/apache22
+mv cgi-bin/ ~apache/
+mv -i data/* /usr/local/www/data/
+rmdir data/
+mv -i error/ icons/ ~apache/
+touch .NOT_USED
+ln -s ~apache/icons icons
+ln -s ~apache/data data
+ln -s ~apache/cgi-bin cgi-bin
+ln -s ~apache/error error
+
+echo 'apache22_enable="YES"' >> /etc/rc.conf
+
+cd /usr/ports/lang/php5
+make config
+
+     lqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqk
+     x                      Options for php5 5.2.0                        x
+     x lqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqk x
+     x x  [X] CLI        Build CLI version                              x x
+     x x  [ ] CGI        Build CGI version                              x x
+     x x  [X] APACHE     Build Apache module                            x x
+     x x  [ ] DEBUG      Enable debug                                   x x
+     x x  [X] SUHOSIN    Enable Suhosin protection system               x x
+     x x  [ ] MULTIBYTE  Enable zend multibyte support                  x x
+     x x  [ ] IPV6       Enable ipv6 support                            x x
+     x x  [ ] MAILHEAD   Enable mail header patch                       x x
+     x x  [ ] REDIRECT   Enable force-cgi-redirect support (CGI only)   x x
+     x x  [ ] DISCARD    Enable discard-path support (CGI only)         x x
+     x x  [ ] FASTCGI    Enable fastcgi support (CGI only)              x x
+     x x  [ ] PATHINFO   Enable path-info-check support (CGI only)      x x
+     x x                                                                x x
+     x x                                                                x x
+     x x                                                                x x
+     tqmqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjqu
+     x                       [  OK  ]       Cancel                        x
+     mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj
+
+
+cd /usr/ports/lang/php5-extensions
+make config
+
+Select what's Needed, for egoCMS you need:
+php5-5.1.4          PHP Scripting Language (Apache Module and CLI)
+php5-bz2-5.1.4      The bz2 shared extension for php
+php5-dom-5.1.4      The dom shared extension for php
+php5-gd-5.1.4       The gd shared extension for php
+php5-iconv-5.1.4    The iconv shared extension for php
+php5-mbstring-5.1.4 The mbstring shared extension for php
+php5-mcrypt-5.1.4   The mcrypt shared extension for php
+php5-mysql-5.1.4    The mysql shared extension for php
+php5-mysqli-5.1.4   The mysqli shared extension for php
+php5-openssl-5.1.4  The openssl shared extension for php
+php5-pcre-5.1.4     The pcre shared extension for php
+php5-pspell-5.1.4   The pspell shared extension for php
+php5-session-5.1.4  The session shared extension for php
+php5-soap-5.1.4     The soap shared extension for php
+php5-sockets-5.1.4  The sockets shared extension for php
+php5-tidy-5.1.4     The tidy shared extension for php
+php5-tokenizer-5.1.4 The tokenizer shared extension for php
+php5-wddx-5.1.4     The wddx shared extension for php
+php5-xml-5.1.4      The xml shared extension for php
+php5-xsl-5.1.4      The xsl shared extension for php
+php5-zlib-5.1.4     The zlib shared extension for php
+pecl-fileinfo-1.0.4 A PECL extension to retrieve info about files
+phpMyAdmin-2.8.0.3  A set of PHP-scripts to manage MySQL over the web
+
+For egoCMS you need mime support (pecl-fileinfo)
+Modify php.ini to include:
+
+mime_magic.magicfile = "/usr/share/misc/magic.mime"
+
+but be carefull Linux has another file that might look and feel differenet
+
+
+Install php5
+
+portinstall lang/php5 lang/php5-extensions
+
+In httpd.conf: (only apache 2.x)
+
+<IfModule php5_module>
+ AddType application/x-httpd-php .php
+ AddType application/x-httpd-php-source .phps
+</IfModule>
+
+/usr/local/etc/rc.d/apache.sh start
+
+:s/\~apache\/conf/\/tmp\/apache-conf/
+
+Apache httpd.conf Builder:
+
+mkdir /tmp/apache-conf
+
+The following sed statement will search and replace the following source
+items in the same order:
+
+#ServerName www.example.com:80
+ServerAdmin you@example.com
+ErrorLog /var/log/httpd-error.log
+CustomLog /var/log/httpd-access.log combined
+DocumentRoot "/usr/local/www/apache22/data"
+<Directory "/usr/local/www/apache22/data">
+ServerRoot "/usr/local"
+ScriptAlias /cgi-bin/ "/usr/local/www/apache22/cgi-bin/"
+# "/usr/local/www/apache22/cgi-bin" should be changed to whatever your ScriptAliased
+<Directory "/usr/local/www/apache22/cgi-bin">
+#Include etc/apache22/extra/httpd-autoindex.conf
+#Include etc/apache22/extra/httpd-vhosts.conf
+#Include etc/apache22/extra/httpd-dav.conf
+#Include etc/apache22/extra/httpd-default.conf
+#Include etc/apache22/extra/httpd-ssl.conf 
+
+
+
+TransferLog "|/usr/local/sbin/cronolog /home/apache/logs/ion.lu/potion/transfer.log-%Y%m%d"
+ErrorLog "|/usr/local/sbin/cronolog /home/apache/logs/ion.lu/potion/error.log-%Y%m%d"
+
+
+
+echo "1,/^END/{" > /tmp/apache-conf/httpd.sed
+echo "s/#ServerName\ www.example.com:80/ServerName\ "`hostname`":80/g" >> /tmp/apache-conf/httpd.sed
+echo "s/ServerAdmin\ you@example.com/ServerAdmin\ webmaster@"`hostname |cut -f 2- -d.`"/g" >> /tmp/apache-conf/httpd.sed
+echo "s/ErrorLog\ \/var\/log\/httpd-error.log/ErrorLog\ \"|\/usr\/local\/sbin\/cronolog\ \/home\/apache\/logs\/"`hostname |cut -f 2- -d.`"\/"`hostname -s`"\/httpd-error.log-%Y%m%d\"/g" >> /tmp/apache-conf/httpd.sed
+echo "s/CustomLog\ \/var\/log\/httpd-access.log\ combined/TransferLog\ \"|\/usr\/local\/sbin\/cronolog\ \/home\/apache\/logs\/"`hostname |cut -f 2- -d.`"\/"`hostname -s`"\/httpd-access.log-%Y%m%d\"/g" >> /tmp/apache-conf/httpd.sed
+echo "s/DocumentRoot\ \"\/usr\/local\/www\/apache22\/data\"/DocumentRoot\ \"\/home\/apache\/hosts\/"`hostname |cut -f 2- -d.`"\/"`hostname -s`\""/g" >> /tmp/apache-conf/httpd.sed
+echo "s/ory\ \"\/usr\/local\/www\/apache22\/data\"/ory\ \"\/home\/apache\/hosts\/"`hostname |cut -f 2- -d.`"\/"`hostname -s`"\"/g" >> /tmp/apache-conf/httpd.sed
+cat << EOF >> /tmp/apache-conf/httpd.sed
+s/ServerRoot\ "\/usr\/local"/ServerRoot\ "\/home\/apache""/g
+s/bin\/\ "\/usr\/local\/www\/apache22\/cgi-bin\/"/bin\/\ "\/home\/apache\/cgi-bin\/"/g
+s/#\ "\/usr\/local\/www\/apache22\/cgi-bin"/#\ "\/home\/apache\/cgi-bin\/"/g
+s/Directory\ "\/usr\/local\/www\/apache22\/cgi-bin"/Directory\ "\/home\/apache\/cgi-bin"/g
+s/#Include\ etc\/apache22\/extra\/httpd-autoindex.conf/Include\ etc\/apache22\/extra\/httpd-autoindex.conf/g
+s/#Include\ etc\/apache22\/extra\/httpd-vhosts.conf/Include\ etc\/apache22\/extra\/httpd-vhosts.conf/g
+s/#Include\ etc\/apache22\/extra\/httpd-dav.conf/Include\ etc\/apache22\/extra\/httpd-dav.conf/g
+s/#Include\ etc\/apache22\/extra\/httpd-default.conf/Include\ etc\/apache22\/extra\/httpd-default.conf/g
+s/#Include\ etc\/apache22\/extra\/httpd-ssl.conf/Include\ etc\/apache22\/extra\/httpd-ssl.conf/g
+}
+EOF
+
+
+
+
+#Include etc/apache22/extra/httpd-autoindex.conf
+sed -e 's/\/usr\/local\/www\/apache22\/icons/\/home\/apache\/icons/g' > /tmp/apache-conf/autoindex.tmp
+Alias /icons/ "/usr/local/www/apache22/icons/"
+<Directory "/usr/local/www/apache22/icons">
+
+
+#Include etc/apache22/extra/httpd-vhosts.conf
+
+
+
+#Include etc/apache22/extra/httpd-dav.conf
+DavLockDB "/usr/local/var/DavLock"
+Alias /uploads "/usr/local/uploads"
+<Directory "/usr/local/uploads">
+#   htdigest -c "/usr/local/user.passwd" DAV-upload admin
+AuthUserFile "/usr/local/user.passwd"
+
+
+#Include etc/apache22/extra/httpd-default.conf
+
+
+EXTRA FILES GET BLOWN AWAY ON UPDATE NOT ssl_vhost
+
+
+#Include etc/apache22/extra/httpd-ssl.conf 
+
+SSLRandomSeed startup file:/dev/urandom 512
+SSLRandomSeed connect file:/dev/urandom 512
+
+
+vi ~apache/etc/apache22/extra/httpd-ssl.conf
+sed -e 's/DocumentRoot\ "\/usr\/local\/www\/apache22\/data"/DocumentRoot\ "\/home\/apache\/hosts\/localhost.lu\/laptop-steve"/g' /tmp/apache-conf/httpd.conf > /tmp/apache-conf/httpd.conf
+DocumentRoot "/usr/local/www/apache22/data"
+
+ServerName www.example.com:443
+sed -e 's/ServerName\ www.example.com:443/ServerName\ 127.0.0.1:443/g' /tmp/apache-conf/httpd.conf > /tmp/apache-conf/httpd.conf
+
+ServerAdmin you@example.com
+sed -e 's/ServerAdmin\ you@example.com/ServerAdmin\ postmaster@localhost.lu/g' /tmp/apache-conf/httpd.conf > /tmp/apache-conf/httpd.conf
+
+ErrorLog /var/log/httpd-error.log
+sed -e 's/ErrorLog\ \/var\/log\/httpd-error.log/ErrorLog\ \/home\/apache\/logs\/localhost.lu\/laptop-steve\/httpd-ssl_error.log/g' /tmp/apache-conf/httpd.conf > /tmp/apache-conf/httpd.conf
+
+TransferLog /var/log/httpd-access.log
+sed -e 's/TransferLog\ \/var\/log\/httpd-access.log/TransferLog\ \/home\/apache\/logs\/localhost.lu\/laptop-steve\/httpd-ssl_access.log/g' /tmp/apache-conf/httpd.conf > /tmp/apache-conf/httpd.conf
+
+SSLCertificateFile /usr/local/etc/apache22/server.crt
+sed -e 's/SSLCertificateFile\ \/usr\/local\/etc\/apache22\/server.crt/SSLCertificateFile\ \/home\/apache\/certs\/star.localhost.lu.crt/g' /tmp/apache-conf/httpd.conf > /tmp/apache-conf/httpd.conf
+
+SSLCertificateKeyFile /usr/local/etc/apache22/server.key
+sed -e 's/SSLCertificateKeyFile\ \/usr\/local\/etc\/apache22\/server.key/SSLCertificateKeyFile\ \/home\/apache\/certs\/star.localhost.lu.key/g' /tmp/apache-conf/httpd.conf > /tmp/apache-conf/httpd.conf
+
+sed -e 's/Directory\ "\/usr\/local\/www\/apache22\/cgi-bin"/Directory\ "\/home\/apache\/cgi-bin"/g' /tmp/apache-conf/httpd.conf > /tmp/apache-conf/httpd.conf
+<Directory "/usr/local/www/apache22/cgi-bin">
+
+CustomLog /var/log/httpd-ssl_request.log
+sed -e 's/CustomLog\ \/var\/log\/httpd-ssl_request.log/CustomLog\ \/home\/apache\/logs\/localhost.lu\/laptop-steve\/httpd-ssl_request.log/g' /tmp/apache-conf/httpd.conf > /tmp/apache-conf/httpd.conf
+
+
+NOW YOU CAN START APACHE...
+
+vi ~apache/etc/apache22/extra/httpd-dav.conf
+DavLockDB "/usr/local/var/DavLock"
+Alias /uploads "/usr/local/uploads"
+<Directory "/usr/local/uploads">
+#   htdigest -c "/usr/local/user.passwd" DAV-upload admin
+AuthUserFile "/usr/local/user.passwd"
+
+
+vi ~apache/etc/apache22/extra/httpd-default.conf
+ServerTokens Full
+sed -e '/ServerTokens\ Full/ServerTokens\ Prod/g
+
+
+
+vi ~apache/etc/apache22/extra/httpd-autoindex.conf
+Alias /icons/ "/usr/local/www/apache22/icons/"
+<Directory "/usr/local/www/apache22/icons">
+
+
+
+vi ~apache/etc/apache22/extra/httpd-vhosts.conf
+Hash 2 vhosts out and add:
+
+<VirtualHost *:80>
+    ServerAdmin webmaster@lxcdm.lu
+    DocumentRoot /home/apache/hosts/ion.lu/egon
+    ServerName egon.ion.lu
+    ServerAlias egon-alias.ion.lu
+    ErrorLog /home/apache/logs/ion.lu/egon/vhost-error_log
+    CustomLog /home/apache/logs/ion.lu/egon/vhost-access_log common
+</VirtualHost>
+
+
+
+vi ~apache/etc/apache22/extra/httpd-info.conf
+Allow from .example.com
+Allow from .example.com
+
+Cronolog:
+
+TransferLog "|/usr/local/sbin/cronolog /home/apache/logs/ion.lu/ce/transfer.log-%Y%m%d"
+ErrorLog "|/usr/local/sbin/cronolog /home/apache/logs/ion.lu/ce/error.log-%Y%m%d"
+
+
+Mediawiki install:
+
+php5-mbstring required...
+php5-mysql required
+
+To redirect all from http to https:
+
+## This gets hit first and redirects all http:// to https://
+<VirtualHost 80.90.47.168:80>
+        DirectoryIndex index.php index.html
+        ServerName linion.ion.lu
+        DocumentRoot /home/apache/hosts/ion.lu/linion
+        TransferLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/linion/transfer-%Y%m%d.log"
+        ErrorLog "|/usr/local/sbin/cronolog
+/home/apache/logs/ion.lu/linion/error-%Y%m%d.log"
+</VirtualHost>
+
+index.php:
+<?php
+if ( $_SERVER[HTTP_HOST] != 'linion.ion.lu' || $_SERVER[SERVER_PORT] != '443' ||  $_SERVER[HTTP_HOST] != 'webmail.ion.lu') header("Location: https://$_SERVER[HTTP_HOST]");
+?>
+
+php parser:
+
+    <IfModule mod_php5.c>
+        AddType application/x-httpd-php .php
+        AddType application/x-httpd-php-source .phps
+    </IfModule>
+
+<IfModule mod_dir.c>
+        <IfModule mod_php5.c>
+            DirectoryIndex index.php index.php3 index.html
+        </IfModule>
+</IfModule>

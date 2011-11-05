@@ -1,0 +1,79 @@
+mrxvt*greektoggle_key: VoidSymbol
+mrxvt*initTermNumber:  5
+mrxvt*vt0.saveLines: 65535
+mrxvt*bellCommand: VoidSymbol
+
+mrxvt*multichar_encoding: UTF-8
+mrxvt*mfont:		AR PL New Sung
+mrxvt*mfontn:		AR PL New Sung
+mrxvt*textShadow:		black
+mrxvt*opacity:          50
+mrxvt*OpacityDegree:    1
+mrxvt*vt0*saveLines:    1000
+mrxvt*initTermNumber:   7
+mrxvt*protectSecondary: true
+mrxvt*loginShell:       true
+mrxvt*scrollBar:        false
+mrxvt*transparent:      false
+mrxvt*transparentScrollbar: false
+mrxvt*transparentTabbar:    false
+mrxvt*transparentMenubar:   false
+!mrxvt*foreground:      darkgray
+!mrxvt*background:      white
+mrxvt*foreground:       white
+mrxvt*background:       gray19
+mrxvt*backgroundFade:   60
+mrxvt*fading:           0
+!mrxvt*tintColor:       darkblue
+mrxvt*textShadow:       black
+mrxvt*textShadowMode:   botright
+!mrxvt*tabForeground:   black
+!mrxvt*tabBackground:   white
+!mrxvt*itabForeground:  black
+!mrxvt*itabBackground:  white
+mrxvt*tabForeground:    white
+mrxvt*tabBackground:    black
+mrxvt*itabForeground:   white
+mrxvt*itabBackground:   darkblue
+mrxvt*tabPixmap:        false
+mrxvt*syncTabTitle:     true
+mrxvt*hideTabbar:       false
+mrxvt*bottomTabbar:     true
+mrxvt*windowsSwitch:    false
+mrxvt*showMenu:         false
+mrxvt*hideButtons:      true
+mrxvt*xft:              true
+mrxvt*xftFont:          Bitstream Vera Sans Mono
+mrxvt*xftmFont:         Bitstream Vera Sans Mono
+mrxvt*xftAntialias:     true
+mrxvt*xftWeight:        normal
+mrxvt*xftSlant:         roman
+mrxvt*xftHinting:       true
+mrxvt*xftAutoHint:      true
+mrxvt*xftGlobalAdvance: true
+mrxvt*xftWidth:         normal
+mrxvt*xftRGBA:          rgb
+mrxvt*xftSize:          10
+mrxvt*cursorBlink:      false
+!mrxvt*cursorBlinkInterval:500
+mrxvt*geometry:         80x25
+mrxvt*inputMethod:      fcitx
+!mrxvt*cursorColor:     white
+mrxvt*cursorColor:      lightblue
+mrxvt*color0:           black
+mrxvt*color1:           #40e0d0
+mrxvt*color2:           #87cefa
+mrxvt*color3:           #ffff00
+mrxvt*color4:           #d1eeee
+mrxvt*color5:           #eed8ae
+mrxvt*color6:           #b4eeb4
+mrxvt*color7:           gray
+mrxvt*color8:           gray40
+mrxvt*color9:           #ee6363
+mrxvt*color10:          #c5f779
+mrxvt*color11:          #fff796
+mrxvt*color12:          #00b2ee
+mrxvt*color13:          #cf9ebe
+mrxvt*color14:          #71bebe
+mrxvt*color15:          white
+

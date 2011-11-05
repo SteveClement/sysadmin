@@ -1,0 +1,57 @@
+Jaja we even need a Windows Hack-FAQ nowadays:
+
+Numlock not on upon login:
+
+Der Zahlenblock auf der rechten Seite der Tastatur wird aktiviert, sobald man
+auf den Knopf “Num” drückt. Um den Zahlenblock dauerhaft aktivieren, ändern
+Sie in der Registry den Schlüssel:
+
+HKEY_CURRENT_USER\Control Panel\Keyboard.
+Auf der rechten Seite Fenster klicken Sie hier auf den Wert
+'InitialKeyboardIndicators' und tragen in das Feld eine "2" ein. Mit dem Wert
+"0" wird die Einstellung wieder rückgängig gemacht.
+
+Wenn Sie schon bei der Anmeldung die NumLock-Taste aktivieren wollen, müssen
+Sie den Wert "InitialKeyboardIndicators" auch unter
+
+HKEY_USERS\.DEFAULT\Control Panel\Keyboard auf 2 setzen, da zu diesem
+Zeitpunkt noch kein Anwender angemeldet ist und der Wert unter
+HKEY_CURRENT_USER\ Control Panel\ Keyboard noch nicht ausgewertet wird.
+
+
+
+
+
+NFS On XP:
+
+Download
+http://www.microsoft.com/downloads/details.aspx?FamilyID=896C9688-601B-44F1-81A4-02878FF11778&displaylang=en
+http://www.microsoft.com/downloads/details.aspx?familyid=A55B6B43-E24F-4EA3-A93E-40C0EC4F68E5&displaylang=en
+Unselect all but Windows Installer SDK
+
+Note, sfusetup.msi may be read-only! You will have to make it writable (by
+right-clicking on it and selecting Properties) before trying to remove the
+version check. Otherwise the OK button in MsiDB will remain mysteriously
+greyed out.
+
+Then in the installed Microsoft Platform SDK\bin directory, you will find
+msidb.exe. Another, friendlier, tool to use is Orca - click on the icon to
+install it. After installation, you will find Orca in the Programs menu. Run
+it and open the sfusetup.msi database. Click on the LaunchCondition table,
+then select and cut the row reading "NOT (VersionNT = 501 AND
+MsiNTSuitePersonal), Microsoft Windows Services for UNIX cannot be installed
+on Windows XP Personal." Save. SFU should now install.
+
+Even Easier way
+2006-08-30 01:48:35  quandary [Reply | View]
+
+- Take a hexeditor.
+- Go to the directory where SFU has been extracted.
+- Take file "SfuSetup.msi".
+- Make a backup copy of it, just in case you commit an error...
+- Open the file "SfuSetup.msi" in a hexeditor.
+- Search for string "NOT (VersionNT = 501 AND MsiNTSuitePersonal)"
+- Change 501 to 510
+- Do not forget to click safe.
+
+Finish. It works on my XP home. 

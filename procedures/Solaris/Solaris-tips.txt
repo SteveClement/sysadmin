@@ -1,0 +1,39 @@
+A few useful things on solaris:
+
+To boot a solaris install cdrom into single user mode after something went horribly wrong do this on the go prompt:
+
+boot cdrom -s
+
+where cdrom is the device and -s the single usermode switch.
+
+To copy a partition layout, or do other funky dangerous stuff to your solaris box you can use the utility "fmthard" it is rather self explaining.
+
+If you want to restore a partition table or similar use the utility called prtvtoc.
+
+Install instructions on Suns:
+software(dir) drwxrwsr-x
+Following tar balls should be installed on a standard 2.6 solaris box
+
+archives directory:
+2.6_Recommened.tar
+make 377
+tar 113
+bash 2.04
+ssh 1.27
+binaries:
+gcc 2952
+gzip 1_2.4
+libstdc 281
+
+Following directories have to be in the path in order to install the above packages.
+
+Path:
+/usr/local/sbin
+/usr/local/bin
+/opt/FSFgzip/bin
+/usr/openwin/bin
+/usr/ccs/bin
+
+Dont forget to check suid bit on ssh1 and sshd_config password authentication
+umask 002 for LUSERS
+umask 022 for ROOT

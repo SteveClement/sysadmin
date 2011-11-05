@@ -1,0 +1,34 @@
+$TTL  86400 
+@ IN SOA ns4.ion.lu. steve.ion.lu. (52 43200 3600 900000 86400)
+@ IN NS ns4.ion.lu.
+ns4.ion.lu. IN A 80.90.47.163
+@ IN NS ns1.ion.lu.
+ns1.ion.lu. IN A 213.129.72.10
+
+
+localhost IN A 127.0.0.1
+
+@ IN A 80.90.47.180
+www IN CNAME @
+new IN CNAME @
+webmail IN CNAME @
+
+marcie IN A 212.24.195.40
+streaming IN A 194.154.192.106
+live IN A 212.24.194.9
+radiostar IN A 80.90.47.180
+
+schroeder IN A 80.90.47.180
+
+smtp IN A 80.90.45.21
+pop  IN A 80.90.45.21
+
+muesli IN A 212.24.195.40
+musli  IN A 212.24.195.40
+
+camera   IN A 192.168.1.28
+llawodle IN A 192.168.2.1
+eldowall IN A 192.168.1.1
+eldo-0   IN A 192.168.1.2
+
+eldoradio.lu. IN MX 10 luna5.vo.lu.

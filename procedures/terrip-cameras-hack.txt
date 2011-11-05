@@ -1,0 +1,9 @@
+In the ZI Contern they installed weird crappy cams that are wireless, to ertrieve their admin passwords do thiz:
+
+telnet IP_CAM
+User: user
+NOPASSWORD :)
+
+cd /etc/
+
+and in there you will find the main config file with the plaintext password in it, I couldnt figure out how to permanently remove the user account.

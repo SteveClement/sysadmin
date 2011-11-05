@@ -1,0 +1,260 @@
+*Received: (qmail 76115 invoked by uid 89); 3 Sep 2007 02:50:46 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 02:50:46 +0200
+Received: (qmail 28667 invoked by uid 98); 3 Sep 2007 02:34:00 +0200
+Received: from 80.90.47.173 by radium.ion.lu (envelope-from <root@plumbum.ion.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(80.90.47.173):SA:0(0.6/7.0):. 
+ Processed in 6.769082 secs); 03 Sep 2007 00:34:00 -0000
+X-Spam-Status: No, score=0.6 required=7.0
+X-Spam-Level: 
+Received: from unknown (HELO plumbum.ion.lu) (80.90.47.173)
+  by radium.ion.lu with SMTP; 3 Sep 2007 02:33:53 +0200
+Received-SPF: pass (radium.ion.lu: local policy designates 80.90.47.173 as permitted sender)
+Received: (qmail 35043 invoked by alias); 3 Sep 2007 03:31:41 +0200
+Delivered-To: root@plumbum.ion.lu
+Received: (qmail 35027 invoked by uid 0); 3 Sep 2007 03:31:41 +0200
+Date: 3 Sep 2007 03:31:41 +0200
+Message-ID: <20070903013141.35024.qmail@plumbum.ion.lu>
+From: root@plumbum.ion.lu
+To: root@plumbum.ion.lu
+Subject: plumbum.ion.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+plumbum.ion.lu login failures:
+Sep  2 09:12:41 plumbum sshd[77811]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 09:12:44 plumbum sshd[77813]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 09:12:50 plumbum sshd[77815]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 09:12:54 plumbum sshd[77817]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 09:12:58 plumbum sshd[77819]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 09:13:06 plumbum sshd[77821]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 09:13:11 plumbum sshd[77823]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 09:13:16 plumbum sshd[77825]: reverse mapping checking getaddrinfo for static-ip-59-15-148-203.anlai.com failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:07 plumbum sshd[31766]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:09 plumbum sshd[31768]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:11 plumbum sshd[31770]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:13 plumbum sshd[31772]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:15 plumbum sshd[31774]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:17 plumbum sshd[31776]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:19 plumbum sshd[31778]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:21 plumbum sshd[31780]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:23 plumbum sshd[31782]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:25 plumbum sshd[31784]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:27 plumbum sshd[31786]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:29 plumbum sshd[31788]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:32 plumbum sshd[31790]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:34 plumbum sshd[31792]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:36 plumbum sshd[31794]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:38 plumbum sshd[31796]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:40 plumbum sshd[31798]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:42 plumbum sshd[31800]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:44 plumbum sshd[31802]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:46 plumbum sshd[31804]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:48 plumbum sshd[31806]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:50 plumbum sshd[31808]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:52 plumbum sshd[31816]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:54 plumbum sshd[31818]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:56 plumbum sshd[31820]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:15:59 plumbum sshd[31822]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:01 plumbum sshd[31824]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:03 plumbum sshd[31826]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:05 plumbum sshd[31828]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:07 plumbum sshd[31830]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:09 plumbum sshd[31832]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:11 plumbum sshd[31834]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:13 plumbum sshd[31836]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:15 plumbum sshd[31838]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:17 plumbum sshd[31840]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:19 plumbum sshd[31842]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:22 plumbum sshd[31844]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:24 plumbum sshd[31846]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:25 plumbum sshd[31848]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:28 plumbum sshd[31850]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:30 plumbum sshd[31852]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:32 plumbum sshd[31854]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:34 plumbum sshd[31856]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:36 plumbum sshd[31858]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:38 plumbum sshd[31860]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:40 plumbum sshd[31862]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:42 plumbum sshd[31864]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:44 plumbum sshd[31866]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:46 plumbum sshd[31868]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:48 plumbum sshd[31870]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:51 plumbum sshd[31872]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:53 plumbum sshd[31874]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:55 plumbum sshd[31876]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:57 plumbum sshd[31878]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:16:59 plumbum sshd[31880]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:01 plumbum sshd[31882]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:03 plumbum sshd[31884]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:05 plumbum sshd[31886]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:07 plumbum sshd[31888]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:09 plumbum sshd[31890]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:11 plumbum sshd[31892]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:13 plumbum sshd[31894]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:15 plumbum sshd[31896]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:17 plumbum sshd[31898]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:20 plumbum sshd[31900]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:22 plumbum sshd[31902]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:24 plumbum sshd[31904]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:26 plumbum sshd[31906]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:28 plumbum sshd[31908]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:30 plumbum sshd[31910]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:32 plumbum sshd[31912]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:34 plumbum sshd[31914]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:36 plumbum sshd[31916]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:38 plumbum sshd[31918]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:40 plumbum sshd[31920]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:42 plumbum sshd[31922]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:44 plumbum sshd[31924]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:46 plumbum sshd[31926]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:48 plumbum sshd[31928]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:51 plumbum sshd[31930]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:53 plumbum sshd[31932]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:55 plumbum sshd[31934]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:57 plumbum sshd[31936]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:17:59 plumbum sshd[31938]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:01 plumbum sshd[31940]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:03 plumbum sshd[31942]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:05 plumbum sshd[31944]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:07 plumbum sshd[31946]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:09 plumbum sshd[31948]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:11 plumbum sshd[31950]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:13 plumbum sshd[31952]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:15 plumbum sshd[31954]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:17 plumbum sshd[31956]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:19 plumbum sshd[31958]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:22 plumbum sshd[31960]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:24 plumbum sshd[31962]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:26 plumbum sshd[31964]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:28 plumbum sshd[31966]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:30 plumbum sshd[31968]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:32 plumbum sshd[31970]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:34 plumbum sshd[31972]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:36 plumbum sshd[31974]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:38 plumbum sshd[31976]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:40 plumbum sshd[31978]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:42 plumbum sshd[31980]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:44 plumbum sshd[31982]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:46 plumbum sshd[31984]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:48 plumbum sshd[31986]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:50 plumbum sshd[31988]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:53 plumbum sshd[31990]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:55 plumbum sshd[31992]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:57 plumbum sshd[31994]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:18:59 plumbum sshd[31996]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:01 plumbum sshd[31998]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:03 plumbum sshd[32000]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:05 plumbum sshd[32002]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:07 plumbum sshd[32004]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:10 plumbum sshd[32006]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:12 plumbum sshd[32008]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:14 plumbum sshd[32010]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:16 plumbum sshd[32012]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:18 plumbum sshd[32014]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:20 plumbum sshd[32016]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:22 plumbum sshd[32018]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:24 plumbum sshd[32020]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:26 plumbum sshd[32022]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:28 plumbum sshd[32024]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:30 plumbum sshd[32026]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:32 plumbum sshd[32028]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:34 plumbum sshd[32030]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:36 plumbum sshd[32032]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:39 plumbum sshd[32034]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:41 plumbum sshd[32036]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:43 plumbum sshd[32038]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:45 plumbum sshd[32040]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:47 plumbum sshd[32042]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:49 plumbum sshd[32044]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:51 plumbum sshd[32046]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:53 plumbum sshd[32048]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:55 plumbum sshd[32050]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:57 plumbum sshd[32052]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:19:59 plumbum sshd[32054]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:01 plumbum sshd[32056]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:03 plumbum sshd[32061]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:05 plumbum sshd[32063]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:07 plumbum sshd[32065]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:10 plumbum sshd[32067]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:12 plumbum sshd[32069]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:14 plumbum sshd[32071]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:16 plumbum sshd[32073]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:18 plumbum sshd[32075]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:20 plumbum sshd[32077]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:22 plumbum sshd[32079]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:24 plumbum sshd[32081]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:26 plumbum sshd[32083]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:28 plumbum sshd[32085]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:30 plumbum sshd[32087]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:32 plumbum sshd[32089]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:34 plumbum sshd[32091]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:37 plumbum sshd[32093]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:39 plumbum sshd[32095]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:41 plumbum sshd[32097]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:43 plumbum sshd[32099]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:45 plumbum sshd[32101]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:47 plumbum sshd[32103]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 17:20:49 plumbum sshd[32105]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+
+plumbum.ion.lu refused connections:
+
+Checking for a current audit database:
+
+Database created: Sun Sep  2 02:40:01 CEST 2007
+
+Checking for packages with security vulnerabilities:
+
+Affected package: rsync-2.6.9
+Type of problem: rsync -- off by one stack overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/af8e3a0c-5009-11dc-8a43-003048705d5a.html>
+
+Affected package: mutt-1.4.2.2
+Type of problem: mutt -- buffer overflow vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/863f95d3-3df1-11dc-b3d3-0016179b2dd5.html>
+
+Affected package: vim-7.0.214
+Type of problem: vim -- Command Format String Vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/1ed03222-3c65-11dc-b3d3-0016179b2dd5.html>
+
+Affected package: gd-2.0.33_4,1
+Type of problem: gd -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/6e099997-25d8-11dc-878b-000c29c5647f.html>
+
+Affected package: freetype2-2.2.1_1
+Type of problem: FreeType 2 -- Heap overflow vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/de2fab2d-0a37-11dc-aae2-00304881ac9a.html>
+
+Affected package: png-1.2.14
+Type of problem: png -- DoS crash vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/4cb9c513-03ef-11dc-a51d-0019b95d4f14.html>
+
+Affected package: samba-3.0.23c_2,1
+Type of problem: samba -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/3546a833-03ea-11dc-a51d-0019b95d4f14.html>
+
+Affected package: samba-3.0.23c_2,1
+Type of problem: samba -- potential Denial of Service bug in smbd.
+Reference: <http://www.FreeBSD.org/ports/portaudit/f235fe7a-b9ca-11db-bf0f-0013720b182d.html>
+
+Affected package: samba-3.0.23c_2,1
+Type of problem: samba -- format string bug in afsacl.so VFS plugin.
+Reference: <http://www.FreeBSD.org/ports/portaudit/57ae52f7-b9cc-11db-bf0f-0013720b182d.html>
+
+Affected package: mysql-server-4.0.27
+Type of problem: mysql -- database "case-sensitive" privilege escalation.
+Reference: <http://www.FreeBSD.org/ports/portaudit/a0e92718-6603-11db-ab90-000e35fd8194.html>
+
+10 problem(s) in your installed packages found.
+
+You are advised to update or deinstall the affected package(s) immediately.
+
+-- End of security output --

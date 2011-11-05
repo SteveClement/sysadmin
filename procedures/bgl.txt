@@ -1,0 +1,8 @@
+BGL code card gotchas.
+----------------------
+
+Help Desk: +800 352 4242 1 (Free of charge from Landline)
+           +352 4242 8400 (From a mobile)
+
+Go to the control panel and Locate your PRIMARY Java Plugin Icon.
+Dbl Click it and Click on Browser and Unset the tick from iExplore so that the Microsoft VM is used.

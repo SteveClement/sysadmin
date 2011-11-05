@@ -1,0 +1,95 @@
+*Received: (qmail 66379 invoked by uid 0); 4 Aug 2004 00:44:38 -0000
+Received: from root@laparcklin.laparcklin by linion.ion.lu by uid 89 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.73. spamassassin: 2.63.  Clear:RC:0(80.90.32.251):SA:0(1.4/5.0):. 
+ Processed in 8.113642 secs); 04 Aug 2004 00:44:38 -0000
+X-Spam-Status: No, hits=1.4 required=5.0
+X-Spam-Level: +
+X-Antivirus-ION.LU-Mail-From: root@laparcklin.laparcklin via linion.ion.lu
+X-Antivirus-ION.LU: 1.22-st-qms (Clear:RC:0(80.90.32.251):SA:0(1.4/5.0):. Processed in 8.113642 secs Process 66367)
+Received: from vodsl-251.vo.lu (HELO laparcklin) (80.90.32.251)
+  by linion.ion.lu with SMTP; 4 Aug 2004 00:44:30 -0000
+Received: (qmail 22207 invoked by uid 0); 4 Aug 2004 02:18:42 +0200
+Date: 4 Aug 2004 02:18:42 +0200
+Message-ID: <20040804001842.22204.qmail@laparcklin>
+From: root@laparcklin.laparcklin
+To: rootmails@ion.lu
+Subject: laparcklin emerge world report
+
+
+These are the packages that I would merge, in order:
+
+Calculating world dependencies    ...done!
+[blocks B     ] gnome-extra/gnome-vfs-extras (from pkg gnome-base/gnome-vfs-2.6.1.1)
+[blocks B     ] x11-themes/gtk-engines-thinice (from pkg x11-themes/gnome-themes-2.6.2)
+[blocks B     ] gnome-extra/acme (from pkg gnome-base/control-center-2.6.1)
+[ebuild  N    ] sys-apps/lm-sensors-2.8.7  
+[ebuild     U ] gnome-base/libbonoboui-2.6.1 [2.6.0] 
+[ebuild     U ] gnome-base/gnome-applets-2.6.2 [2.6.0-r1] 
+[ebuild     U ] gnome-base/gnome-session-2.6.2 [2.6.0] 
+[ebuild     U ] app-arch/file-roller-2.6.1 [2.6.0] 
+[ebuild     U ] x11-libs/libwnck-2.6.2.1 [2.6.0.1] 
+[ebuild     U ] gnome-base/libgnomecanvas-2.6.1.1 [2.6.0] 
+[ebuild     U ] media-gfx/eog-2.6.1 [2.6.0] 
+[ebuild  N    ] net-www/mozilla-launcher-1.15  
+[ebuild  N    ] net-www/mozilla-1.7  
+[ebuild     U ] net-www/epiphany-1.2.6 [1.2.2] 
+[ebuild     U ] app-text/ggv-2.6.1 [2.6.0] 
+[ebuild     U ] x11-libs/gtk+-2.4.4 [2.4.1] 
+[ebuild     U ] dev-libs/libxml2-2.6.11 [2.6.7] 
+[ebuild     U ] dev-libs/libxslt-1.1.8 [1.1.4] 
+[ebuild     U ] gnome-base/libglade-2.4.0 [2.3.6] 
+[ebuild     U ] x11-terms/gnome-terminal-2.6.1 [2.6.0] 
+[ebuild     U ] app-editors/gedit-2.6.2 [2.6.0] 
+[ebuild     U ] gnome-base/eel-2.6.2 [2.6.0] 
+[ebuild     U ] gnome-base/libgnomeprint-2.6.2 [2.6.0] 
+[ebuild     U ] gnome-base/libgnomeprintui-2.6.2 [2.6.0] 
+[ebuild     U ] x11-wm/metacity-2.8.1 [2.8.0] 
+[ebuild     U ] gnome-extra/gnome-media-2.6.2 [2.6.0] 
+[ebuild     U ] app-text/gpdf-0.132 [0.131] 
+[ebuild     U ] x11-themes/gnome-icon-theme-1.2.3 [1.2.1] 
+[ebuild     U ] gnome-extra/nautilus-cd-burner-2.6.1 [2.6.0] 
+[ebuild     U ] gnome-base/nautilus-2.6.3 [2.6.0] 
+[ebuild     U ] media-libs/gstreamer-0.8.3-r1 [0.8.1] 
+[ebuild     U ] gnome-base/libgnomeui-2.6.1.1 [2.6.0] 
+[ebuild     U ] gnome-extra/gconf-editor-2.6.2 [2.6.1] 
+[ebuild     U ] net-analyzer/gnome-netstatus-2.6.2 [2.6.0.1] 
+[ebuild     U ] gnome-base/librsvg-2.6.5 [2.6.4] 
+[ebuild     U ] gnome-base/gconf-2.6.2 [2.6.0] 
+[ebuild     U ] gnome-base/gnome-panel-2.6.2 [2.6.0] 
+[ebuild     U ] x11-libs/vte-0.11.11 [0.11.10-r1] 
+[ebuild     U ] x11-libs/gtksourceview-1.0.1 [1.0.0] 
+[ebuild     U ] gnome-extra/yelp-2.6.1 [2.6.0] 
+[ebuild     U ] media-libs/gst-plugins-0.8.2 [0.8.1] 
+[ebuild     U ] media-plugins/gst-plugins-oss-0.8.2 [0.8.1] 
+[ebuild     U ] media-plugins/gst-plugins-esd-0.8.2 [0.8.1] 
+[ebuild     U ] gnome-base/gnome-vfs-2.6.1.1 [2.6.0] 
+[ebuild     U ] gnome-base/libgnome-2.6.1.1-r1 [2.6.0] 
+[ebuild     U ] gnome-extra/bug-buddy-2.6.1 [2.6.0] 
+[ebuild     U ] gnome-extra/zenity-2.6.2 [2.6.0] 
+[ebuild     U ] gnome-base/gnome-keyring-0.2.1 [0.2.0] 
+[ebuild     U ] gnome-extra/gnome-utils-2.6.2-r1 [2.6.0] 
+[ebuild     U ] gnome-base/gnome-desktop-2.6.2 [2.6.0.1] 
+[ebuild     U ] gnome-base/libbonobo-2.6.2 [2.6.0] 
+[ebuild     U ] x11-libs/startup-notification-0.6 [0.5] 
+[ebuild     U ] x11-themes/gnome-themes-2.6.2 [2.6.0] 
+[ebuild     U ] gnome-base/control-center-2.6.1 [2.6.0.3] 
+[ebuild     U ] gnome-extra/gnome-games-2.6.2 [2.6.0.1] 
+[ebuild     U ] dev-libs/glib-2.4.4 [2.4.1] 
+[ebuild     U ] gnome-base/ORBit2-2.10.3 [2.10.0] 
+[ebuild     U ] gnome-base/gnome-2.6.2-r1 [2.6] 
+[ebuild     U ] net-misc/neon-0.24.7 [0.24.6] 
+[ebuild     UD] dev-java/java-config-1.2.6 [1.2.8] 
+[ebuild     UD] media-video/mplayer-1.0_pre4-r7 [1.0_pre5] 
+[ebuild     UD] sys-libs/readline-4.3-r4 [4.3-r5] 
+[ebuild     U ] sys-apps/file-4.09 [4.08] 
+[ebuild     U ] net-im/gaim-0.80 [0.79-r1] 
+[ebuild     U ] x11-plugins/gaim-encryption-2.28 [2.27] 
+[ebuild     U ] sys-devel/libperl-5.8.4 [5.8.2] 
+[ebuild     U ] dev-lang/perl-5.8.4 [5.8.2-r1] 
+[ebuild     U ] kde-base/arts-1.2.3 [1.2.2] 
+[ebuild     UD] dev-lang/python-2.3.3-r1 [2.3.4] 
+[ebuild     U ] kde-base/kdelibs-3.2.3 [3.2.2-r1] 
+[ebuild     U ] kde-base/kdeaccessibility-3.2.3 [3.2.2] 
+[ebuild     UD] sys-libs/ncurses-5.4-r1 [5.4-r2] 
+[ebuild     U ] sys-devel/autoconf-2.59-r4 [2.59-r3] 
+

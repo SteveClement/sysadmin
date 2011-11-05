@@ -1,0 +1,16 @@
+http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/network-bridging.html
+
+Good read, covers all in only a few pages, short:
+
+echo "bridge_load=\"YES\"" >> /boot/loader.conf
+echo "net.link.ether.bridge.enable=1" >> /etc/sysctl.conf
+echo "net.link.ether.bridge.config=if1,if2" >> /etc/sysctl.conf
+
+Tools of the trade:
+
+ntop
+banwidthd
+ipa
+mrtg
+net-snmp
+

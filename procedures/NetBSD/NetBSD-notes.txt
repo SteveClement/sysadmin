@@ -1,0 +1,17 @@
+To install NetBSD on a Newish laptop with USB2.0 Support if the install CD fails to boot you can:
+
+Grab boot-tiny.fs and bang it on a Floppy.
+
+Boot from it.
+Install NetBSD.
+Burn syssrc.tgz
+Extract/Build/Install New Kernel. (Be carefull to take out all of the USB stuff)
+As soon as the ehci drivers works you can compile it back in.
+I haven't tested good old usb 1.1
+
+This will work for my asus w5 and probably for some newer Dell's aswell.
+NetBSD booted no problem on my sony vaio t2xp/t1xp (european model numbers)
+
+Keywords: NetBSD install disc usb problems, usb 2.0 netbsd install, boot netbsd usb problem
+
+g4u install, on Asus w5 build.sh took: 19:50-22:16 ??? 20:16 :) time changed durin compile...

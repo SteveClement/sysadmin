@@ -1,0 +1,382 @@
+MANUAL INSTALL INSTRUCTIONS:
+==============================
+
+To complete the installation of print/cups-samba, do in order:
+
+CUPS-BASE
+-----------
+
+1) Uncomment application/octet-stream line in mime.types
+2) Uncomment application/octet-stream line in mime.convs
+3) Restart cupsd
+
+SAMBA
+-------
+
+1) edit the [global] section of smb.conf and make sure it has these
+   lines (see 'man cupsaddsmb' for more info):
+
+[global]
+	load printers = yes
+	printing = cups
+	printcap name = cups
+
+2) edit the [printers] section of smb.conf and make sure it has these
+   lines:
+
+[printers]
+	comment = All Printers
+	path = /var/spool/samba
+	browseable = no
+	public = yes
+	guest ok = yes
+	writable = no
+	printable = yes
+	printer admin = root
+
+3) edit the [print$] section of smb.conf and make sure it has these
+   lines:
+
+[print$]
+	comment = Printer Drivers
+	path = /usr/local/share/cups/drivers
+	browseable = yes
+	# guest ok = yes works too
+	guest ok = no
+	read only = yes
+	write list = root
+
+4) restart Samba
+
+____________
+NOTE:  Samba needs to know about the passwords for printer admin and
+write list or authentication will fail.
+
+
+CUPS-LPR
+----------
+
+1) Run cupsaddsmb
+
+If only a subset of your printers will be installed as exportable to
+MS Windows NT/XP/2000/2003 clients:
+
+#cupsaddsmb -U root cups_printer_1 cups_printer_2 ...
+
+To export all printers to MS Windows NT/XP/2000/2003 clients:
+
+#cupsaddsmb -U root -a
+
+In either case, you will be prompted for the root password.
+
+WINDOWS
+---------
+
+1) Browse and install for a network printer as usual.  The drivers
+will be automagically installed.
+
+____________
+NOTE:  Other settings in smb.conf may work, but your REALLY need to
+know what your are doing.  :)
+
+/usr/local/share/doc/samba/Samba-HOWTO-Collection.pdf has some
+valuable information on this topic, especially chapters 17 and 18.
+
+**********************************************************************
+**********************************************************************
+===>   Registering installation for cups-samba-5.0.r3
+[global]
+   workgroup = MYWORKGROUP
+   netbios name = SERVER1
+   server string = %h server (Samba, Ubuntu)
+
+   
+   passdb backend = tdbsam
+   security = user
+   username map = /etc/samba/smbusers
+   name resolve order = wins bcast hosts
+   domain logons = yes
+   preferred master = yes
+   wins support = yes
+   
+   # Set CUPS for printing
+   printcap name = CUPS
+   printing = CUPS
+   
+   # Default logon
+   logon drive = H:
+   logon script = scripts/logon.bat
+   logon path = \\server1\profile\%U
+
+
+   # Useradd scripts
+   add user script = /usr/sbin/useradd -m %u
+   delete user script = /usr/sbin/userdel -r %u
+   add group script = /usr/sbin/groupadd %g
+   delete group script = /usr/sbin/groupdel %g
+   add user to group script = /usr/sbin/usermod -G %g %u
+   add machine script = /usr/sbin/useradd -s /bin/false/ -d /var/lib/nobody %u
+   idmap uid = 15000-20000
+   idmap gid = 15000-20000
+
+
+   # sync smb passwords woth linux passwords
+   passwd program = /usr/bin/passwd %u
+   passwd chat = *Enter\snew\sUNIX\spassword:* %n\n
+*Retype\snew\sUNIX\spassword:* %n\n .
+   passwd chat debug = yes
+   unix password sync = yes
+   
+   # set the loglevel
+   log level = 3
+
+
+[homes]
+   comment = Home
+   valid users = %S
+   read only = no
+   browsable = no
+
+
+[printers]
+   comment = All Printers
+   path = /var/spool/samba
+   printable = yes
+   guest ok = yes
+   browsable = no
+
+
+[netlogon]
+   comment = Network Logon Service
+   path = /home/samba/netlogon
+   admin users = Administrator
+   valid users = %U
+   read only = no
+
+
+[profile]
+   comment = User profiles
+   path = /home/samba/profiles
+   valid users = %U
+   create mode = 0600
+   directory mode = 0700
+   writable = yes
+   browsable = no
+
+
+
+
+
+
+Remark: The "netbios name" in the smb.conf must be the same then the hostname
+of your server.
+
+workgroup = MYWORKGROUP specifies the Windows domain that the Windows
+workstations use.
+
+logon drive = H: is the drive letter under which the SAMBA share will appear
+in the Windows Explorer.
+
+With logon script = scripts/logon.bat you can specify a Windows batch script
+that is executed as soon as a Windows workstation logs in. If the script does
+not exist, you can comment out that line.
+
+Create the directories for domain logons and profiles:
+
+mkdir /home/samba
+mkdir /home/samba/netlogon
+mkdir /home/samba/profiles
+mkdir /var/spool/samba
+chmod 777 /var/spool/samba/
+chown -R root:users /home/samba/
+chmod -R 771 /home/samba/
+
+Now we restart Samba:
+
+/etc/init.d/samba restart
+
+Edit /etc/nsswitch.conf. Change the line:
+
+hosts: files dns
+
+to:
+
+hosts: files wins dns
+
+Add all computers of your workgroup in the /etc/hosts file on the server.
+
+192.168.0.100 server1
+192.168.0.110 workstation1
+192.168.0.111 workstation2
+192.168.0.112 workstation3
+192.168.0.113 workstation4
+
+Add the root user to the SAMBA password database. The root user (alias:
+Administrator) will be our domain administrator. This account is needed to add
+new computers to the SAMBA domain.
+
+smbpasswd -a root
+
+Create the file /etc/samba/smbusers and add the line by executing:
+
+echo "root = Administrator" > /etc/samba/smbusers
+
+This will allow us to use the common windows username "Administrator" as alias
+for the Linux root user.
+
+Now I will test if the setup is correct:
+
+smbclient -L localhost -U%
+
+The output should look similar to this:
+
+
+Domain=[MYWORKGROUP] OS=[Unix] Server=[Samba 3.0.14a-Ubuntu]
+
+        Sharename       Type      Comment
+        ---------       ----      -------
+        netlogon        Disk      Network Logon Service
+        print$          Disk      Printer Drivers
+        IPC$            IPC       IPC Service (server1 server (Samba, Ubuntu))
+        ADMIN$          IPC       IPC Service (server1 server (Samba, Ubuntu))
+Domain=[MYWORKGROUP] OS=[Unix] Server=[Samba 3.0.14a-Ubuntu]
+
+        Server               Comment
+        ---------            -------
+        SERVER1              server1 server (Samba, Ubuntu)
+
+        Workgroup            Master
+        ---------            -------
+        MDKGROUP             IPRG
+        MYWORKGROUP          SERVER1
+
+
+Setup the default domain groups for windows:
+
+net groupmap modify ntgroup="Domain Admins" unixgroup=root
+net groupmap modify ntgroup="Domain Users" unixgroup=users
+net groupmap modify ntgroup="Domain Guests" unixgroup=nogroup
+
+Adding Users To Our SAMBA Domain
+
+Now we will add a user, e.g. tom, to our Samba domain. You will have to add a
+user like this for each user account you want to connect to this SAMBA domain
+server.
+
+1) Add a linux user tom:
+
+useradd tom -m -G users
+
+2) Add the linux user tom to the SAMBA password database:
+
+smbpasswd -a tom
+
+
+Adding Shares
+
+Now I will add a share that is accessible by all users.
+
+mkdir -p /home/shares/allusers
+chown -R root:users /home/shares/allusers/
+chmod -R ug+rwx,o+rx-w /home/shares/allusers/
+
+At the end of the file /etc/samba/smb.conf add the following lines:
+
+[allusers]
+  comment = All Users
+  path = /home/shares/allusers
+  valid users = @users
+  force group = users 
+  create mask = 0660
+  directory mask = 0771
+  writable = yes
+
+Now we restart Samba:
+/etc/init.d/samba restart
+
+
+Installing CUPS
+
+If you want your SAMBA server to act as a print server also, you have to
+install and configure CUPS: 
+
+To get access to the web interface from my workstation, I will change cups to
+listen on the Server IP.
+Edit /etc/cups/cupsd.conf in the section Network Options:
+
+Listen 127.0.0.1:631
+Listen 192.168.0.100:631
+
+Set AuthGroupName to shadow in the section Security Options:
+
+AuthGroupName shadow
+
+To allow access only from my admin workstation (IP: 192.168.0.70), I add Allow
+From 192.168.0.70 the security options and set AuthClass to Group:
+
+<Location /admin>
+#
+# You definitely will want to limit access to the administration functions.
+# The default configuration requires a local connection from a user who
+# is a member of the system group to do any admin tasks.  You can change
+# the group name using the SystemGroup directive.
+#
+
+AuthType Basic
+AuthClass Group
+
+## Restrict access to local domain
+Order Deny,Allow
+Deny From All
+Allow From 127.0.0.1
+Allow From 192.168.0.70
+
+#Encryption Required
+</Location>
+
+Add the cupsys user to the shadow group:
+
+adduser cupsys shadow
+
+and restart the cups daemon:
+
+/etc/init.d/cupsys restart
+
+The cups webinterface is now accessible with any webbrowser from my
+workstation:
+
+http://192.168.0.100:631/
+
+Now I can login to the cups interface with username root and my root password.
+
+Hint: If there is no linux driver available for your printer and you want to
+use this printer only from your windows workstations trough SAMBA, you can use
+the printer manufacturer RAW and install the correct driver on your windows
+workstation.
+
+If you created a new printer in cups, you will have to add it to samba with
+the command:
+
+cupsaddsmb -a
+
+Have fun!
+
+
+
+
+mounting samba share:
+
+ /root/.nsmbrc
+[REMY:CLYDE]
+# use persistent password cache for user 'joe'
+password=LCBM13
+[SBLAN2:ROOT]
+password=""
+
+ls -la /root/.nsmbrc
+-rw-------  1 root  wheel  102 Feb 19 09:18 /root/.nsmbrc
+
+fstab:
+
+//root@sblan2/share /mnt/sblan2         smbfs   rw              0       0
+

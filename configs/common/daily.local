@@ -1,0 +1,3 @@
+/usr/sbin/portsnap cron update
+/usr/sbin/freebsd-update cron
+/usr/local/sbin/portversion -vl "<" > /tmp/portversion.txt

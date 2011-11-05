@@ -1,0 +1,30 @@
+this contains any services the hosts runs: netstat -an 
+
+tcp4       0      0  *.3306                 *.*                    LISTEN
+tcp4       0      0  *.80                   *.*                    LISTEN
+tcp4       0      0  127.0.0.1.222          *.*                    LISTEN
+tcp6       0      0  ::1.222                *.*                    LISTEN
+tcp4       0      0  *.587                  *.*                    LISTEN
+tcp4       0      0  *.25                   *.*                    LISTEN
+tcp4       0      0  *.22                   *.*                    LISTEN
+tcp46      0      0  *.22                   *.*                    LISTEN
+udp4       0      0  127.0.0.1.123          *.*
+udp4       0      0  80.90.47.179.123       *.*
+udp4       0      0  80.90.47.162.123       *.*
+udp4       0      0  *.123                  *.*
+Active UNIX domain sockets
+Address  Type   Recv-Q Send-Q    Inode     Conn     Refs  Nextref Addr
+e3bf0640 stream      0      0 e50c2bc0        0        0        0 /tmp/ssh-Ek4svY7A/agent.71768
+e3bf0780 stream      0      0        0 e3bf0820        0        0
+e3bf0820 stream      0      0        0 e3bf0780        0        0
+e3bf0960 stream      0      0 e4386440        0        0        0 /tmp/ssh-uFg3sZ9x/agent.609
+e3bf0aa0 stream      0      0        0 e3bf08c0        0        0
+e3bf08c0 stream      0      0        0 e3bf0aa0        0        0
+e3bf0b40 stream      0      0 e4367900        0        0        0 /tmp/mysql.sock
+e3bf0be0 stream      0      0 e4368ec0        0        0        0 /tmp/ssh-6N9nHPLF/agent.516
+e3bf0c80 stream      0      0        0 e3bf0d20        0        0
+e3bf0d20 stream      0      0        0 e3bf0c80        0        0
+e3bf0dc0 dgram       0      0        0 e3bd1f00        0 e3bf0e60
+e3bf0e60 dgram       0      0        0 e3bd1f00        0 e3bf0f00
+e3bf0f00 dgram       0      0        0 e3bd1f00        0        0
+e3bd1f00 dgram       0      0 e3bcc240        0 e3bf0dc0        0 /var/run/log

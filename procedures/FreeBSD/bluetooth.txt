@@ -1,0 +1,33 @@
+echo ng_ubt_load=\"YES\" >> /boot/loader.conf
+vi /etc/bluetooth/hcsecd.conf
+cp -p /usr/share/examples/netgraph/bluetooth/rc.bluetooth /etc/
+chmod +x /etc/rc.bluetooth
+/etc/rc.bluetooth start ubt0
+
+add to /etc/ppp/ppp.conf
+pppserver:
+ set timeout 0
+ set lqrperiod 10
+ set ifaddr 192.168.0.254 192.168.0.45 255.255.255.0
+ accept dns
+ enable proxy
+ enable lqr
+ accept lqr
+ enable pap
+ enable chap
+
+default:
+ # This is useful for debug.
+ # set log Phase Chat LCP IPCP CCP tun command
+
+add to /etc/ppp/ppp.secret
+# Authname    Authkey       Peer's IP address      Label      Callback
+
+bluesurf      Some_kewlPass 192.168.0.45           jedi_palm
+
+
+add this to rc.local:
+
+hcsecd
+sdpd
+rfcomm_pppd -C 1 -s -l pppserver

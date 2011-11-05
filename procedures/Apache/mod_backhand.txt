@@ -1,0 +1,46 @@
+Unpack mod_backhand
+
+run:
+
+cd /path/to/backhand
+./precompile /path/to/apache
+cd /path/to/apache
+LIBS=-lm ./configure --enable-module=backhand
+make
+
+N.B. it is not currently possible to build mod_backhand using the
+traditional Configuration method.
+
+Allocate a multicast group.
+Create /var/backhand, writable by the webserv user (note security risk
+here).
+
+Put something like this in your httpd.conf:
+
+# for backhand status page, and perhaps other stuff?
+# note that these need copying from the distribution
+Alias /icons /home/apache/hosts/test/icons
+
+# backhand stuff
+UnixSocketDir /var/backhand
+MulticastStats <multicast address>:10000,1
+
+# addresses of all machines in the cluster
+AcceptStats 213.129.65.176
+AcceptStats 213.129.65.177
+AcceptStats 213.129.65.178
+AcceptStats 213.129.65.179
+AcceptStats 213.129.65.180
+AcceptStats 213.129.65.181
+
+# Backhand status monitor (protect with auth)
+<Location /backhand>
+	SetHandler backhand-handler
+</Location>
+
+# stuff to load balance
+<Location />
+	  Backhand byAge
+	  Backhand byLoad
+</Location>
+

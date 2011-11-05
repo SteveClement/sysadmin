@@ -1,0 +1,18 @@
+freebsd netmasks are slightly weird when installing ip aliases.
+The example in /etc/defaults/rc.conf doesn't tell the whole story:
+
+  ifconfig_lo0_alias0="inet 127.0.0.254 netmask 0xffffffff" # Sample alias entry.
+
+this is correct because it's being bound to an interface that already has a valid netmask for it's network,
+and is on the same network. it wouldn't be if it was introducing a brand new network.
+
+here is a better example:
+
+  ifconfig_xl0="inet 213.129.65.44 netmask 0xffffe000"
+  ifconfig_xl0_alias0="inet 213.129.65.71 netmask 0xffffffff alias"
+  ifconfig_xl0_alias1="inet 193.115.128.4 netmask 0xffffff00 alias"
+  ifconfig_xl0_alias2="inet 193.115.128.5 netmask 0xffffffff alias"
+  ifconfig_xl0_alias3="inet 193.115.128.6 netmask 0xffffffff alias"
+
+alias0 has all 'ff' for it's netmask as it's on the same network and interface as 213.129.65.44, which already has a valid
+netmask. however, alias1 needs to specify a new netmask as it's the first one on that network. 2 & 3 go back to all 'ff' again.

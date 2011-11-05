@@ -1,0 +1,121 @@
+This document describes how to install e17 (dev. ver. of Enlightenment) on Gentoo
+
+http://www.get-e.org/User_Guide/English/_pages/2.2.html
+
+add the following to: /etc/portage/package.keywords
+
+x11-wm/e -*
+x11-plugins/e_modules -*
+x11-misc/engage -*
+x11-libs/ewl -*
+x11-libs/evas -*
+media-libs/imlib2 -*
+dev-libs/eet -*
+dev-db/edb -*
+x11-libs/ecore -*
+media-libs/etox -*
+media-libs/edje -*
+dev-libs/embryo -*
+x11-libs/esmart -*
+media-libs/epsilon -*
+media-libs/epeg -*
+app-misc/examine -*
+net-news/erss -*
+x11-misc/entrance -*
+app-misc/evidence -*
+media-libs/emotion -*
+media-gfx/elicit -*
+media-gfx/entice -*
+dev-util/e_utils -*
+dev-libs/engrave -*
+media-video/eclair -*
+dev-libs/exml-*
+
+emerge the stuff:
+
+emerge eet dev-db/edb imlib2 evas ecore epeg embryo edje media-libs/epsilon esmart \
+emotion ewl e engrave e_utils e_modules \
+entice engage entrance evidence eclair etox erss elicit exml -av
+
+some USE flags that are going to be used: mmx mmx2 sse sse2 curl bzip2 xine
+
+
+Setting up entrance:
+
+vi /etc/X11/Sessions/e17
+#!/bin/sh
+
+ startup=$HOME/.xsession
+
+ userresources=$HOME/.Xresources
+ usermodmap=$HOME/.Xmodmap
+ userxkbmap=$HOME/.Xkbmap
+
+ sysresources=/etc/X11/Xresources
+ sysmodmap=/etc/X11/Xmodmap
+ sysxkbmap=/etc/X11/Xkbmap
+
+
+ # merge in defaults
+ if [ -f "$sysresources" ]; then
+     xrdb -merge "$sysresources"
+ fi
+
+ if [ -f "$userresources" ]; then
+     xrdb -merge "$userresources"
+ fi
+
+ # merge in keymaps
+ if [ -f "$sysxkbmap" ]; then
+     setxkbmap `cat "$sysxkbmap"`
+     XKB_IN_USE=yes
+ fi
+
+ if [ -f "$userxkbmap" ]; then
+     setxkbmap `cat "$userxkbmap"`
+     XKB_IN_USE=yes
+ fi
+
+ # xkb and xmodmap don't play nice together
+ if [ -z "$XKB_IN_USE" ]; then
+     if [ -f "$sysmodmap" ]; then
+        xmodmap "$sysmodmap"
+     fi
+
+     if [ -f "$usermodmap" ]; then
+        xmodmap "$usermodmap"
+     fi
+ fi
+
+ unset XKB_IN_USE
+
+ if [ -x "$startup" ]; then
+         exec "$startup"
+ fi
+
+ exec /usr/bin/enlightenment-0.17 
+
+chmod +x /etc/X11/Sessions/e17
+cd /etc
+ecore_config -c /etc/entrance_config.cfg -k /entrance/session/1/session -s /etc/X11/Sessions/e17
+/usr/share/entrance/build_config.sh
+
+
+Entrance only: 
+
+NO CVS VERSIONS INVOLVED HERE!!!
+
+echo "# Entrance keywords" >> /etc/portage/package.keywords
+echo "x11-misc/entrance ~x86" >> /etc/portage/package.keywords
+echo "x11-libs/evas ~x86" >> /etc/portage/package.keywords
+echo "dev-libs/eet ~x86" >> /etc/portage/package.keywords
+echo "media-libs/edje ~x86" >> /etc/portage/package.keywords
+echo "dev-libs/embryo ~x86" >> /etc/portage/package.keywords
+echo "x11-libs/ecore ~x86" >> /etc/portage/package.keywords
+echo "x11-libs/esmart ~x86" >> /etc/portage/package.keywords
+echo "media-libs/epsilon ~x86" >> /etc/portage/package.keywords
+echo "media-libs/epeg ~x86" >> /etc/portage/package.keywords
+
+emerge -av entrance
+
+Jump back to complete entrance config

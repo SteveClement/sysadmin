@@ -1,0 +1,103 @@
+This documents the installation and maintenance of the ION Spam Filter:
+
+
+THIS NEEDS TO BE REVISED!!!!
+
+CROSS REFERENCES NEED TO BE MADE!
+
+This document assumes a Stock FreeBSD ION Install with all the needed quirks
+(make.conf etc...)
+See [[ Install ION Mailserver ]]
+for pre-liminary mail server setup.
+
+cd /usr/ports/mail/qmail-scanner
+make
+## Make sure make.conf has:
+APACHE_DATADIR=/home/apache
+APACHE_DOCUMENT_ROOT=/home/apache/hosts/ion.lu/fucker
+portinstall www/apache13
+portinstall databases/mysql41-server
+portinstall p5-Mail-SpamAssassin
+portinstall clamav
+portinstall lang/php5 www/php5-session databases/php5-mysql
+portinstall adodb
+portinstall cronolog
+
+cd /home/apache ; ln -s /usr/local/etc etc ; ln -s /usr/local/etc/apache/ conf ; ln -s /usr/local/libexec libexec ; mkdir logs ; rm -rf proxy ; pw useradd apache
+
+cd /usr/local/etc/mail/spamassassin/
+cp local.cf.sample local.cf
+vi local.cf
+add:
+bayes_store_module                 Mail::SpamAssassin::BayesStore::SQL
+
+auto_whitelist_factory Mail::SpamAssassin::SQLBasedAddrList
+
+user_scores_dsn                 DBI:mysql:dbmail:localhost
+user_scores_sql_username        spamass
+user_scores_sql_password        4pass76spammers
+
+bayes_sql_dsn                   DBI:mysql:dbmail:localhost
+bayes_sql_username              spamass
+bayes_sql_password              4pass76spammers
+
+user_awl_dsn                    DBI:mysql:dbmail:localhost
+user_awl_sql_username           spamass
+user_awl_sql_password           4pass76spammers
+user_awl_sql_table              awl
+
+Add the user spamass:
+mysql
+grant select,update,insert,delete on dbmail.* to 'spamass'@'localhost' identified by '4pass76spammers';
+
+cat ~steve/work/kierbischt-ion-spam/configs/rc.conf >> /etc/rc.conf
+
+svscan should be installed so let's get clamd and spamd to use daemontools:
+
+mkdir -p /usr/local/spamd/supervise/spamd/log
+mkdir -p /usr/local/spamd/supervise/clamd/log
+mkdir -p /var/log/spamd/
+mkdir -p /var/log/clamav/
+
+cp ~steve/work/kierbiischt-ion-sysadmin/configs/project-specific/spamfilter/usr/local/clamd/supervise/clamd/log/run /usr/local/clamd/supervise/clamd/log/
+cp ~steve/work/kierbiischt-ion-sysadmin/configs/project-specific/spamfilter/usr/local/clamd/supervise/clamd/run /usr/local/clamd/supervise/clamd/
+cp ~steve/work/kierbiischt-ion-sysadmin/configs/project-specific/spamfilter/usr/local/spamd/supervise/spamd/log/run /usr/local/spamd/supervise/spamd/log/
+cp ~steve/work/kierbiischt-ion-sysadmin/configs/project-specific/spamfilter/usr/local/spamd/supervise/spamd/run /usr/local/spamd/supervise/spamd/
+
+cd /usr/local/spamd/supervise/spamd/
+chown qscand run log/run
+chmod 550  run log/run
+cd /usr/local/clamd/supervise/clamd/
+chown qscand run log/run
+chmod 550  run log/run
+
+edit clamd.conf:
+Foreground
+LogFile /dev/stdout
+TCPAddr 127.0.0.1
+User root
+
+
+ln -s /usr/local/spamd/supervise/spamd /var/service/spamd
+ln -s /usr/local/clamd/supervise/clamd /var/service/clamd
+
+Mysql-DATA:
+
+cd ~steve/work && cvs co kierbiischt-ion-spam
+cd kierbiischt-ion-spam/sql && rootdo mysql dbmail < dbmail.sql
+
+grant select,update,delete,insert on tblqtrap to 'qtrap'@'localhost' identified by 'dsef53g65';
+
+Qmail now needs the smtpd service added:
+
+mkdir -p ~apache/logs/ion.lu/spam
+
+mkdir /var/log/qmail/qmail-smtpd
+mkdir -p /var/qmail/supervise/qmail-smtpd/log
+mkdir /var/log/qmail/qmail-smtpd
+chown qmaill /var/log/qmail/qmail-smtpd
+
+echo '127.:allow,RELAYCLIENT=""' >> /etc/tcp.smtp 
+
+qmailctl cdb
+

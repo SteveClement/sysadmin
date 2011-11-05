@@ -1,0 +1,113 @@
+To get stunnel under FreeBSD going:
+
+portinstall stunnel
+
+Default opts. ar OK.
+
+stunnel is a "pseudo" client server model, I wanted to SSL-Wrap  3 services:
+
+pop3 qmqpd smtp
+
+on my mail server I had the following stunnel.conf:
+
+
+; Certificate/key is needed in server mode and optional in client mode
+cert = /usr/local/etc/stunnel/stunnel.pem
+;key = /usr/local/etc/stunnel/mail.pem
+
+; Some security enhancements for UNIX systems - comment them out on Win32
+chroot = /var/tmp/stunnel/
+setuid = stunnel
+setgid = stunnel
+; PID is created inside chroot jail
+pid = /stunnel.pid
+
+; Some performance tunings
+socket = l:TCP_NODELAY=1
+socket = r:TCP_NODELAY=1
+;compression = rle
+
+; Some debugging stuff useful for troubleshooting
+;debug = 7
+;output = stunnel.log
+
+foreground = yes
+
+; Service-level configuration
+
+[pop3s]
+accept  = 995
+connect = 110
+
+[ssmtp]
+accept  = 465
+connect = 25
+
+[628]
+accept  = 495
+connect = 628
+
+
+
+
+I had to: 
+	mkdir -p /var/tmp/stunnel /var/log/stunnel /usr/local/stunnel/supervise/stunnel/log
+	chown stunnel:stunnel /var/log/stunnel /var/tmp/stunnel
+
+I decided to use daemontools to supervise the tunnel because under a chroot
+the standard FreeBSD scripts are a pain in the bum.
+
+vi /usr/local/stunnel/supervise/stunnel/run
+#!/bin/sh
+exec 2>&1
+exec /usr/local/sbin/stunnel /usr/local/etc/stunnel/stunnel.conf
+
+vi /usr/local/stunnel/supervise/stunnel/log/run
+#!/bin/sh
+exec /usr/local/bin/multilog t s100000 n20 /var/log/stunnel
+
+chmod 550 /usr/local/stunnel/supervise/stunnel/run /usr/local/stunnel/supervise/stunnel/log/run
+
+
+cd /var/service && ln -s /usr/local/stunnel/supervise/stunnel stunnel
+
+
+on the "client" side for qmqp(s)d:
+; Some security enhancements for UNIX systems - comment them out on Win32
+chroot = /usr/local/var/stunnel/
+setuid = stunnel
+setgid = stunnel
+; PID is created inside chroot jail
+pid = /stunnel.pid
+
+; Some performance tunings
+socket = l:TCP_NODELAY=1
+socket = r:TCP_NODELAY=1
+;compression = rle
+
+; Some debugging stuff useful for troubleshooting
+;debug = 7
+;output = stunnel.log
+
+foreground = yes
+
+; Use it for client mode
+client = yes
+
+[495]
+accept =  628
+connect = linion.ion.lu:495
+
+
+vi /usr/local/stunnel/supervise/stunnel/run
+#!/bin/sh
+exec 2>&1
+exec /usr/local/sbin/stunnel /usr/local/etc/stunnel/qmqpsd.conf
+
+vi /usr/local/stunnel/supervise/stunnel/log/run
+#!/bin/sh
+exec /usr/local/bin/multilog t s100000 n20 /var/log/stunnel
+
+chmod 550 /usr/local/stunnel/supervise/stunnel/run /usr/local/stunnel/supervise/stunnel/log/run
+
+cd /var/service && ln -s /usr/local/stunnel/supervise/stunnel stunnel

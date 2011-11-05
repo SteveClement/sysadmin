@@ -1,0 +1,47 @@
+# Things to check before deploying new iron.
+
+1. Physical:
+
+	a. All components seated correctly, and secured correctly.
+	b. All fans working, with no bearing problems, or airflow.
+	c. General check - (like reset button prob. on bb boxes)
+	d. Check if there is an PCI Raiser for future easy upgrade.
+	
+2. Power:
+
+	a. Check that the machine powers on again after an outage.
+	b. All power connectors are firm.
+	c. See 5. BIOS, n.b.
+
+3. CRT & kbd:
+	(give up now if your machine is a sparc)
+
+	a. Check that the crt is still enabled if the machine is
+	   booted without a monitor.
+	b. Check the machine will boot without a keyboard.
+	c. Check that the keyboard is still enabled if the machine is
+	   booted without a keyboard.
+
+4. Nic:
+	
+	a. The network card must do full-duplex. 
+	b. Auto-negotiation is not an option.
+
+5. Bios
+
+	a. Disable Chipaway virus detect (if present)
+	b. Other bios features may need tweekin:
+		- cas latancy time (as advised on boot)
+		- ide auto detect off.
+		- APM Power Managment
+	c. Enable the USB Keyboard support option (if present)
+	   in case a PS/2 port breaks we can still use USB
+
+n.b. -	with old style broadberry boxes, the reset switch is prone
+	to jamming. make such the power failure setting in bios is
+	set to "on" rather than "last state". really this should be
+	the case anyway, but last-state is usually ok - just not
+	with these particular cases.
+
+Award BIOS error codes page:
+http://www.phoenix.com/pcuser/awardbios/award_error_codes.html

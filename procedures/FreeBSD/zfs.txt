@@ -1,0 +1,51 @@
+To apply the patch you need to have recent FreeBSD source (be sure you
+have rev. 1.284 of src/sys/kern/kern_synch.c).
+Recent means 7.0 to see what kern_synch.c you have:
+
+cat  /usr/src/sys/kern/kern_synch.c |grep c,v
+
+To try it out you need i386 machine (this is what I tested) and kernel
+without WITNESS compiled in (there are probably some warnings still).
+
+Currently it can only be compiled as a kernel module.
+
+To apply the patch you need the following steps:
+
+cd /usr/src
+mkdir -p cddl/lib/lib{avl,nvpair,umem,uutil,zfs,zpool}
+mkdir -p cddl/usr.bin/ztest
+mkdir -p cddl/usr.sbin/{zdb,zfs,zpool}
+mkdir -p compat/opensolaris/{include,misc}
+mkdir -p contrib/opensolaris/cmd/{zdb,zfs,zpool,ztest}
+mkdir -p contrib/opensolaris/common/{acl,avl,nvpair,zfs}
+mkdir -p contrib/opensolaris/head
+mkdir -p contrib/opensolaris/lib/libnvpair
+mkdir -p contrib/opensolaris/lib/lib{uutil,zfs}/common
+mkdir -p contrib/opensolaris/lib/libzpool/common/sys
+mkdir -p sys/compat/opensolaris/{kern,machine,rpc,sys}
+mkdir -p sys/contrib/opensolaris/uts/common/fs/zfs/sys
+mkdir -p sys/contrib/opensolaris/uts/common/{os,rpc}
+mkdir -p sys/contrib/opensolaris/uts/common/sys/fm/fs
+mkdir -p sys/contrib/opensolaris/uts/common/sys/fs
+mkdir -p sys/modules/zfs
+fetch http://people.freebsd.org/~pjd/patches/zfs_20061117.patch.bz2
+bzip2 -d zfs_20061117.patch.bz2
+patch < zfs_20061117.patch
+## IF Makefile.inc1 is failing ? Well then you have a 6.x tree, fetch HEAD
+make buildworld
+make kernel
+make installworld
+kldload zfs.ko
+#(zfs and zpool command should work now)
+
+#Before reboot:
+ zfs export <your_pool>
+
+#After reboot:
+ kldload zfs.ko
+ zfs import <your_pool>
+
+#After a panic:
+ kldload zfs.ko
+ zfs mount -a
+ zfs volinit

@@ -1,0 +1,1 @@
+Symbolic link to /var/qmail/supervise/qmail-send

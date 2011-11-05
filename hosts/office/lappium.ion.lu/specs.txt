@@ -1,0 +1,8 @@
+<server>
+ <name>xenon</name>
+ <cpu>Intel Pentium 3 1000Mhz </cpu>
+</server>
+
+Laptop, 512Mb RAM
+
+

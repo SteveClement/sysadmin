@@ -1,0 +1,18 @@
+--- rc	Thu Apr  3 10:55:40 2003
++++ rc-ion	Sun Jun 27 12:50:47 2004
+@@ -540,6 +540,15 @@
+ 	;;
+ esac
+ 
++case ${sshd_localhost_enable} in
++[Yy][Ee][Ss])
++	if [ -x ${sshd_program:-/usr/sbin/sshd} ]; then
++		echo -n ' sshd_localhost';
++		${sshd_program:-/usr/sbin/sshd} ${sshd_localhost_flags}
++	fi
++	;;
++esac
++
+ case ${usbd_enable} in
+ [Yy][Ee][Ss])
+ 	echo -n ' usbd';	/usr/sbin/usbd ${usbd_flags}

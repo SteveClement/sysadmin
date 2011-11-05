@@ -1,0 +1,210 @@
+*Received: (qmail 29192 invoked by uid 98); 18 Jun 2004 10:00:58 -0000
+Received: from rootmails@ion.lu by zinc.ion.lu by uid 82 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.72. spamassassin: 2.63.  Clear:RC:0(80.90.45.45):SA:0(0.3/5.0):. 
+ Processed in 10.524763 secs); 18 Jun 2004 10:00:58 -0000
+X-Spam-Status: No, hits=0.3 required=5.0
+X-Antivirus-ion.lu-Mail-From: rootmails@ion.lu via zinc.ion.lu
+X-Antivirus-ion.lu: 1.22-st-qms (Clear:RC:0(80.90.45.45):SA:0(0.3/5.0):. Processed in 10.524763 secs Process 29184)
+Received: from drlost.vo.lu (80.90.45.45)
+  by zinc.ion.lu with SMTP; 18 Jun 2004 10:00:47 -0000
+Received: from ion.lu (unverified [80.90.32.59]) 
+	by drlost.vo.lu (Visual Online SMTP gateway) with ESMTP id 30705862 
+	for <rootmails@ion.lu>; Fri, 18 Jun 2004 12:00:43 +0200
+Return-Path: <rootmails@ion.lu>
+Date: Fri, 18 Jun 2004 11:00:41 +0100
+From: rootmails@ion.lu
+To: rootmails@ion.lu
+Subject: PM Zyxell Router
+Content-Type: text/plain; charset=us-ascii
+Message-ID: <1087552843_13212@drlost.vo.lu>
+X-Antivirus-ion.lu-1.22-st-qms: added fake MIME-Version header
+MIME-Version: 1.0
+
+No. Time       Packet Information                       Reason           Action 
+  1|Jun 18 04 |From:80.90.165.43    To:80.90.32.59     |default policy  |block  
+   | 11:10:50 |TCP     src port:04199 dest port:00445  |<2,00>          |       
+  2|Jun 18 04 |From:80.90.47.163    To:192.168.33.23   |default policy  |block  
+   | 11:10:52 |UDP     src port:00053 dest port:49260  |<2,00>          |       
+  3|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:10:53 |UDP     src port:49262 dest port:00053  |<1,00>          |       
+  4|Jun 18 04 |From:24.2.190.52     To:80.90.32.59     |default policy  |block  
+   | 11:11:32 |TCP     src port:01393 dest port:06346  |<2,00>          |       
+  5|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:11:56 |UDP     src port:49278 dest port:00053  |<1,00>          |       
+  6|Jun 18 04 |From:218.159.229.131 To:80.90.32.59     |default policy  |block  
+   | 11:12:29 |TCP     src port:01793 dest port:04899  |<2,00>          |       
+  7|Jun 18 04 |From:192.168.33.23   To:80.90.47.162    |default policy  |forward
+   | 11:12:37 |TCP     src port:49436 dest port:00443  |<1,00>          |       
+  8|Jun 18 04 |From:80.88.141.6     To:80.90.32.59     |default policy  |block  
+   | 11:12:39 |TCP     src port:03126 dest port:00135  |<2,00>          |       
+  9|Jun 18 04 |From:80.90.69.31     To:80.90.32.59     |default policy  |block  
+   | 11:13:29 |TCP     src port:04298 dest port:00135  |<2,00>          |       
+ 10|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:16:02 |UDP     src port:49283 dest port:00053  |<1,00>          |       
+ 11|Jun 18 04 |From:80.36.104.227   To:80.90.32.59     |default policy  |block  
+   | 11:16:14 |TCP     src port:04124 dest port:00135  |<2,00>          |       
+ 12|Jun 18 04 |From:83.34.77.9      To:80.90.32.59     |default policy  |block  
+   | 11:17:18 |UDP     src port:04672 dest port:05701  |<2,00>          |       
+ 13|Jun 18 04 |From:80.90.69.25     To:80.90.32.59     |default policy  |block  
+   | 11:17:29 |TCP     src port:04584 dest port:00445  |<2,00>          |       
+ 14|Jun 18 04 |From:193.41.142.148  To:80.90.32.59     |default policy  |block  
+   | 11:17:36 |TCP     src port:48848 dest port:00080  |<2,00>          |       
+ 15|Jun 18 04 |From:24.2.190.52     To:80.90.32.59     |default policy  |block  
+   | 11:17:46 |TCP     src port:03180 dest port:06346  |<2,00>          |       
+ 16|Jun 18 04 |From:193.41.142.148  To:80.90.32.59     |default policy  |block  
+   | 11:17:49 |TCP     src port:48848 dest port:00080  |<2,00>          |       
+ 17|Jun 18 04 |From:24.2.190.52     To:80.90.32.59     |default policy  |block  
+   | 11:17:49 |TCP     src port:03180 dest port:06346  |<2,00>          |       
+ 18|Jun 18 04 |From:193.41.142.148  To:80.90.32.59     |default policy  |block  
+   | 11:17:52 |TCP     src port:48848 dest port:00080  |<2,00>          |       
+ 19|Jun 18 04 |From:24.2.190.52     To:80.90.32.59     |default policy  |block  
+   | 11:17:55 |TCP     src port:03180 dest port:06346  |<2,00>          |       
+ 20|Jun 18 04 |From:193.41.142.148  To:80.90.32.59     |default policy  |block  
+   | 11:17:58 |TCP     src port:48848 dest port:00080  |<2,00>          |       
+ 21|Jun 18 04 |From:80.82.172.138   To:80.90.32.59     |default policy  |block  
+   | 11:18:09 |ICMP        type:00008      code:00000  |<2,00>          |       
+ 22|Jun 18 04 |From:193.41.142.148  To:80.90.32.59     |default policy  |block  
+   | 11:18:11 |TCP     src port:48848 dest port:00080  |<2,00>          |       
+ 23|Jun 18 04 |From:80.90.68.63     To:80.90.32.59     |default policy  |block  
+   | 11:20:26 |TCP     src port:01671 dest port:00445  |<2,00>          |       
+ 24|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:21:02 |UDP     src port:49298 dest port:00053  |<1,00>          |       
+ 25|Jun 18 04 |From:80.90.68.115    To:80.90.32.59     |default policy  |block  
+   | 11:23:23 |UDP     src port:01132 dest port:00137  |<2,00>          |       
+ 26|Jun 18 04 |From:24.2.190.52     To:80.90.32.59     |default policy  |block  
+   | 11:24:02 |TCP     src port:01109 dest port:06346  |<2,00>          |       
+ 27|Jun 18 04 |From:80.90.41.253    To:80.90.32.59     |default policy  |block  
+   | 11:24:30 |TCP     src port:01469 dest port:00135  |<2,00>          |       
+ 28|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:26:02 |UDP     src port:49334 dest port:00053  |<1,00>          |       
+ 29|Jun 18 04 |From:209.152.181.251 To:80.90.32.59     |default policy  |block  
+   | 11:26:03 |UDP     src port:01062 dest port:01434  |<2,00>          |       
+ 30|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:26:04 |UDP     src port:49336 dest port:00053  |<1,00>          |       
+ 31|Jun 18 04 |From:80.90.68.109    To:80.90.32.59     |default policy  |block  
+   | 11:26:46 |TCP     src port:01817 dest port:00135  |<2,00>          |       
+ 32|Jun 18 04 |From:80.90.69.117    To:80.90.32.59     |default policy  |block  
+   | 11:27:12 |TCP     src port:04823 dest port:00135  |<2,00>          |       
+ 33|Jun 18 04 |From:80.41.134.115   To:80.90.32.59     |default policy  |block  
+   | 11:27:21 |TCP     src port:04280 dest port:00135  |<2,00>          |       
+ 34|Jun 18 04 |From:213.122.62.187  To:80.90.32.59     |default policy  |block  
+   | 11:28:03 |TCP     src port:03085 dest port:00135  |<2,00>          |       
+ 35|Jun 18 04 |From:61.236.27.44    To:80.90.32.59     |default policy  |block  
+   | 11:29:51 |TCP     src port:04287 dest port:24531  |<2,00>          |       
+ 36|Jun 18 04 |From:24.2.190.52     To:80.90.32.59     |default policy  |block  
+   | 11:30:15 |TCP     src port:02937 dest port:06346  |<2,00>          |       
+ 37|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:31:02 |UDP     src port:49350 dest port:00053  |<1,00>          |       
+ 38|Jun 18 04 |From:80.90.69.221    To:80.90.32.59     |default policy  |block  
+   | 11:32:10 |TCP     src port:01512 dest port:00445  |<2,00>          |       
+ 39|Jun 18 04 |From:80.9.35.143     To:80.90.32.59     |default policy  |block  
+   | 11:32:57 |ICMP        type:00008      code:00000  |<2,00>          |       
+ 40|Jun 18 04 |From:80.90.68.204    To:80.90.32.59     |default policy  |block  
+   | 11:34:15 |ICMP        type:00008      code:00000  |<2,00>          |       
+ 41|Jun 18 04 |From:61.42.85.177    To:80.90.32.59     |default policy  |block  
+   | 11:34:56 |TCP     src port:03501 dest port:01025  |<2,00>          |       
+ 42|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:36:02 |UDP     src port:49365 dest port:00053  |<1,00>          |       
+ 43|Jun 18 04 |From:24.2.190.52     To:80.90.32.59     |default policy  |block  
+   | 11:36:29 |TCP     src port:04669 dest port:06346  |<2,00>          |       
+ 44|Jun 18 04 |From:203.217.199.86  To:80.90.32.59     |default policy  |block  
+   | 11:37:06 |TCP     src port:01475 dest port:00445  |<2,00>          |       
+ 45|Jun 18 04 |From:218.97.255.67   To:80.90.32.59     |default policy  |block  
+   | 11:37:52 |TCP     src port:59607 dest port:09898  |<2,00>          |       
+ 46|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:38:42 |UDP     src port:49380 dest port:00053  |<1,00>          |       
+ 47|Jun 18 04 |From:68.124.16.37    To:80.90.32.59     |default policy  |block  
+   | 11:39:10 |TCP     src port:03995 dest port:00080  |<2,00>          |       
+ 48|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:39:14 |UDP     src port:49419 dest port:00053  |<1,00>          |       
+ 49|Jun 18 04 |From:63.226.105.130  To:80.90.32.59     |default policy  |block  
+   | 11:39:15 |TCP     src port:02981 dest port:00113  |<2,00>          |       
+ 50|Jun 18 04 |From:68.124.16.37    To:80.90.32.59     |default policy  |block  
+   | 11:39:19 |TCP     src port:03995 dest port:00080  |<2,00>          |       
+ 51|Jun 18 04 |From:63.226.105.130  To:80.90.32.59     |default policy  |block  
+   | 11:39:24 |TCP     src port:02981 dest port:00113  |<2,00>          |       
+ 52|Jun 18 04 |From:192.168.33.23   To:63.226.105.130  |default policy  |forward
+   | 11:39:26 |TCP     src port:49519 dest port:00021  |<1,00>          |       
+ 53|Jun 18 04 |From:63.226.105.130  To:80.90.32.59     |default policy  |block  
+   | 11:39:26 |TCP     src port:02982 dest port:00113  |<2,00>          |       
+ 54|Jun 18 04 |From:218.88.221.77   To:80.90.32.59     |default policy  |block  
+   | 11:39:53 |TCP     src port:04208 dest port:24531  |<2,00>          |       
+ 55|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:39:59 |UDP     src port:49433 dest port:00053  |<1,00>          |       
+ 56|Jun 18 04 |From:218.88.221.77   To:80.90.32.59     |default policy  |block  
+   | 11:40:01 |TCP     src port:04208 dest port:24531  |<2,00>          |       
+ 57|Jun 18 04 |From:192.168.33.23   To:63.226.105.130  |default policy  |forward
+   | 11:40:05 |TCP     src port:49528 dest port:00080  |<1,00>          |       
+ 58|Jun 18 04 |From:80.88.153.170   To:80.90.32.59     |default policy  |block  
+   | 11:41:11 |TCP     src port:04060 dest port:00135  |<2,00>          |       
+ 59|Jun 18 04 |From:217.224.211.229 To:80.90.32.59     |default policy  |block  
+   | 11:41:14 |TCP     src port:41217 dest port:04662  |<2,00>          |       
+ 60|Jun 18 04 |From:80.88.153.170   To:80.90.32.59     |default policy  |block  
+   | 11:41:14 |TCP     src port:04060 dest port:00135  |<2,00>          |       
+ 61|Jun 18 04 |From:217.224.211.229 To:80.90.32.59     |default policy  |block  
+   | 11:41:17 |TCP     src port:41217 dest port:04662  |<2,00>          |       
+ 62|Jun 18 04 |From:217.255.69.186  To:80.90.32.59     |default policy  |block  
+   | 11:41:36 |TCP     src port:03276 dest port:00080  |<2,00>          |       
+ 63|Jun 18 04 |From:218.22.9.247    To:80.90.32.59     |default policy  |block  
+   | 11:42:03 |TCP     src port:55348 dest port:24531  |<2,00>          |       
+ 64|Jun 18 04 |From:217.255.69.186  To:80.90.32.59     |default policy  |block  
+   | 11:42:19 |TCP     src port:03582 dest port:00080  |<2,00>          |       
+ 65|Jun 18 04 |From:24.2.190.52     To:80.90.32.59     |default policy  |block  
+   | 11:42:46 |TCP     src port:02543 dest port:06346  |<2,00>          |       
+ 66|Jun 18 04 |From:80.88.129.101   To:80.90.32.59     |default policy  |block  
+   | 11:42:51 |TCP     src port:02538 dest port:00135  |<2,00>          |       
+ 67|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:42:52 |UDP     src port:49459 dest port:00053  |<1,00>          |       
+ 68|Jun 18 04 |From:80.88.129.101   To:80.90.32.59     |default policy  |block  
+   | 11:42:54 |TCP     src port:02538 dest port:00135  |<2,00>          |       
+ 69|Jun 18 04 |From:24.2.190.52     To:80.90.32.59     |default policy  |block  
+   | 11:42:55 |TCP     src port:02543 dest port:06346  |<2,00>          |       
+ 70|Jun 18 04 |From:217.255.69.186  To:80.90.32.59     |default policy  |block  
+   | 11:43:01 |TCP     src port:03902 dest port:00080  |<2,00>          |       
+ 71|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:43:34 |UDP     src port:49460 dest port:00053  |<1,00>          |       
+ 72|Jun 18 04 |From:80.88.135.179   To:80.90.32.59     |default policy  |block  
+   | 11:43:54 |TCP     src port:38354 dest port:00135  |<2,00>          |       
+ 73|Jun 18 04 |From:64.18.109.15    To:80.90.32.59     |default policy  |block  
+   | 11:44:36 |TCP     src port:04939 dest port:20168  |<2,00>          |       
+ 74|Jun 18 04 |From:195.220.94.163  To:192.168.33.1    |s               |forward
+   | 11:45:26 |TCP     src port:00123 dest port:00123  |time initialize |       
+ 75|Jun 18 04 |From:217.224.211.229 To:80.90.32.59     |default policy  |block  
+   | 11:45:32 |TCP     src port:42257 dest port:04662  |<2,00>          |       
+ 76|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:46:01 |UDP     src port:49468 dest port:00053  |<1,00>          |       
+ 77|Jun 18 04 |From:61.32.2.142     To:80.90.32.59     |default policy  |block  
+   | 11:46:41 |TCP     src port:03201 dest port:00445  |<2,00>          |       
+ 78|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:48:27 |UDP     src port:49477 dest port:00053  |<1,00>          |       
+ 79|Jun 18 04 |From:24.2.190.52     To:80.90.32.59     |default policy  |block  
+   | 11:48:58 |TCP     src port:04458 dest port:06346  |<2,00>          |       
+ 80|Jun 18 04 |From:192.168.33.23   To:80.90.47.163    |default policy  |forward
+   | 11:50:09 |UDP     src port:49491 dest port:00053  |<1,00>          |       
+ 81|Jun 18 04 |From:80.64.32.180    To:80.90.32.59     |default policy  |block  
+   | 11:51:20 |UDP     src port:01031 dest port:00137  |<2,00>          |       
+ 82|Jun 18 04 |From:80.90.69.5      To:80.90.32.59     |default policy  |block  
+   | 11:53:42 |ICMP        type:00008      code:00000  |<2,00>          |       
+ 83|Jun 18 04 |From:24.2.190.52     To:80.90.32.59     |default policy  |block  
+   | 11:55:13 |TCP     src port:02349 dest port:06346  |<2,00>          |       
+ 84|Jun 18 04 |From:194.249.30.19   To:80.90.32.59     |default policy  |block  
+   | 11:56:43 |TCP     src port:01033 dest port:24531  |<2,00>          |       
+ 85|Jun 18 04 |From:218.73.118.220  To:80.90.32.59     |default policy  |block  
+   | 11:56:45 |TCP     src port:03922 dest port:00445  |<2,00>          |       
+ 86|Jun 18 04 |From:194.249.30.19   To:80.90.32.59     |default policy  |block  
+   | 11:56:46 |TCP     src port:01033 dest port:24531  |<2,00>          |       
+ 87|Jun 18 04 |From:218.73.118.220  To:80.90.32.59     |default policy  |block  
+   | 11:56:51 |TCP     src port:03922 dest port:00445  |<2,00>          |       
+ 88|Jun 18 04 |From:194.249.30.19   To:80.90.32.59     |default policy  |block  
+   | 11:56:52 |TCP     src port:01033 dest port:24531  |<2,00>          |       
+ 89|Jun 18 04 |From:218.43.105.118  To:80.90.32.59     |default policy  |block  
+   | 11:58:13 |UDP     src port:01951 dest port:00137  |<2,00>          |       
+ 90|Jun 18 04 |From:80.90.68.246    To:80.90.32.59     |default policy  |block  
+   | 11:58:18 |TCP     src port:01753 dest port:00445  |<2,00>          |       
+ 91|Jun 18 04 |From:80.59.37.74     To:80.90.32.59     |default policy  |block  
+   | 12:00:09 |TCP     src port:04474 dest port:02745  |<2,00>          |       
+ 92|Jun 18 04 |From:217.88.180.2    To:80.90.32.59     |default policy  |block  
+   | 12:00:34 |TCP     src port:03196 dest port:00080  |<2,00>          |       
+End of Firewall Log
+
+

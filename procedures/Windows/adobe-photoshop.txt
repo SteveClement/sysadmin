@@ -1,0 +1,20 @@
+Adobe Photoshop 7.0 Weirdnessess...
+
+Ok some notes on how to salvage stuff:
+
+If on 7.0 Make sure you upgrade to 7.0.1
+
+If pallettes dissapear from the screen and all else fails (Pallette reset and
+so on)
+
+Click on whatever makes the pallette (or dialog box) appear and press:
+Alt-Space
+
+Select move and the Cursor should jump to the location where it is situated
+but you can still see it now just navigate with the CURSOR KEYS so that the
+window reappears.
+
+Another option, (untested though), there is a safe-mode/recovery-mode in
+Photoshop, but I can^t remember the Key-Combo during startup...
+
+http://www.adobe.com/support/techdocs/326146.html

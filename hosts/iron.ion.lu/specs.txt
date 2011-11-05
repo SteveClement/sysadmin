@@ -1,0 +1,16 @@
+Jedi to ADD specs....
+
+	if specs change CHANGE HERE
+
+Detected Pentium II 266Mhz
+RAM 128Mb
+2nd Level Cache 512k
+Sound ESS Maestro 2
+Modem Lucent winmodem compliant
+hda: IBM-DKLA-24320, 4126MB w/460kB Cache, CHS=559/240/63, (U)DMA
+hdc: ATAPI 24X CD-ROM drive, 128kB Cache
+eth0: Xircom: port 0x300, irq 3, hwaddr 00:80:C7:AB:E9:70
+eth0: MII link partner: 0081
+eth0: MII selected
+eth0: media 100BaseT, silicon revision 4
+xirc2ps_cs.c 1.31 1998/12/09 19:32:55 (dd9jn+kvh)

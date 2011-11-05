@@ -1,0 +1,32 @@
+this contains any services the hosts runs: netstat -an 
+
+So this file should contain any service related stuff both internet visible and back end visible.
+One firther idea would be to include an lsof or similar to know what process runs what port...
+Active Internet connections (including servers)
+Proto Recv-Q Send-Q  Local Address          Foreign Address        (state)
+tcp4       0      0  *.111                  *.*                    LISTEN
+tcp4       0      0  *.3306                 *.*                    LISTEN
+tcp4       0      0  *.587                  *.*                    LISTEN
+tcp4       0      0  *.25                   *.*                    LISTEN
+tcp4       0      0  *.22                   *.*                    LISTEN
+tcp46      0      0  *.22                   *.*                    LISTEN
+udp4       0      0  *.111                  *.*                    
+udp4       0      0  10.0.0.243.123         *.*                    
+udp4       0      0  127.0.0.1.123          *.*                    
+udp4       0      0  192.168.0.254.123      *.*                    
+udp4       0      0  *.123                  *.*                    
+div4       0      0  *.8668                 *.*                    
+icm4       0      0  *.*                    *.*                    
+Active UNIX domain sockets
+Address  Type   Recv-Q Send-Q    Inode     Conn     Refs  Nextref Addr
+c5102be0 stream      0      0 c5124c80        0        0        0 /tmp/mysql.sock
+c51028c0 dgram       0      0        0 c5102e60        0 c5102a00
+c5102a00 dgram       0      0        0 c5102e60        0 c5102b40
+c5102b40 dgram       0      0        0 c5102e60        0 c5102960
+c5102960 dgram       0      0        0 c5102e60        0 c5102aa0
+c5102aa0 dgram       0      0        0 c5102e60        0 c5102c80
+c5102c80 dgram       0      0        0 c5102e60        0 c5102d20
+c5102d20 dgram       0      0        0 c5102e60        0 c5102dc0
+c5102dc0 dgram       0      0        0 c5102e60        0        0
+c5102e60 dgram       0      0 c510a700        0 c51028c0        0 /var/run/log
+c5102f00 dgram       0      0 c4ff5440        0        0        0 /var/tmp/.pccardd

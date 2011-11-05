@@ -1,0 +1,22 @@
+# Copy this file to /etc/rc2.d/S99hme_config and ensure that it's executable
+# Force hme0 NIC to 100/Full-duplex
+
+see http://www.unixadm.net/howto/100FullHowto.html
+
+get available params with:
+ndd /dev/hme \?
+
+/usr/sbin/ndd -set /dev/hme instance 0
+/usr/sbin/ndd -set /dev/hme adv_100T4_cap 0
+/usr/sbin/ndd -set /dev/hme adv_100fdx_cap 1
+/usr/sbin/ndd -set /dev/hme adv_100hdx_cap 0
+/usr/sbin/ndd -set /dev/hme adv_10fdx_cap 0
+/usr/sbin/ndd -set /dev/hme adv_10hdx_cap 0
+/usr/sbin/ndd -set /dev/hme adv_autoneg_cap 0
+
+test  with
+
+ndd -get /dev/hme link_status 
+ndd -get /dev/hme link_speed 
+ndd -get /dev/hme link_mode
+

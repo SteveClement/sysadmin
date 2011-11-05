@@ -1,0 +1,5 @@
+To install the ion-vpn gui:
+
+chmod +s /usr/local/sbin/openvpn
+
+To update the interface the same is needed!

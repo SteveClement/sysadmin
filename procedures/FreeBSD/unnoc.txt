@@ -1,0 +1,35 @@
+=== Installing unnoc ===
+
+Grab the source package and install the following perl modules:
+
+p5-DBI
+p5-Convert-BER
+p5-Net-SNMP
+p5-DBD-mysql41
+
+        * * * * root /var/www/unnoc/bin/unnoc-cron.pl /var/www/unnoc
+*/1 * * * * /usr/local/www/data/unnoc/bin/unnoc-cron.pl  /usr/local/www/data/unnoc
+
+
+b. Perl modules
+
+        Net::SMTP
+        Net::Ping
+        DBI
+        BER.pm
+        SNMP_Session.pm
+
+1. Install
+
+        # tar xzf unnoc-1.0.7.tar.gz
+        # mv unnoc-1.0.7/noc /var/www/unnoc/
+
+2. MySQL
+
+        # mysqladmin -p create unnoc
+        # mysql unnoc -p < unnoc-1.0.7/mysql_table
+
+
+to test:
+
+https://sysadmin.ivb.victor-buck.com/unnoc/display.php?host=gateway-1

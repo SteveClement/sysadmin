@@ -1,0 +1,36 @@
+*Received: (qmail 14203 invoked by uid 98); 18 Jun 2004 02:07:10 -0000
+Received: from root@headquarter.ion.lu by zinc.ion.lu by uid 82 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.72. spamassassin: 2.63.  Clear:RC:0(80.90.33.250):SA:0(0.0/5.0):. 
+ Processed in 10.214873 secs); 18 Jun 2004 02:07:10 -0000
+X-Spam-Status: No, hits=0.0 required=5.0
+X-Antivirus-ion.lu-Mail-From: root@headquarter.ion.lu via zinc.ion.lu
+X-Antivirus-ion.lu: 1.22-st-qms (Clear:RC:0(80.90.33.250):SA:0(0.0/5.0):. Processed in 10.214873 secs Process 14195)
+Received: from vodsl-506.vo.lu (HELO headquarter.ion.lu) (80.90.33.250)
+  by zinc.ion.lu with SMTP; 18 Jun 2004 02:07:00 -0000
+Received: from headquarter.ion.lu (localhost.ion.lu [127.0.0.1])
+	by headquarter.ion.lu (8.12.8p1/8.12.8) with ESMTP id i5I14OMK009662
+	for <root@headquarter.ion.lu>; Fri, 18 Jun 2004 03:04:25 +0200 (CEST)
+	(envelope-from root@headquarter.ion.lu)
+Received: (from root@localhost)
+	by headquarter.ion.lu (8.12.8p1/8.12.8/Submit) id i5I14Ox2009624
+	for root; Fri, 18 Jun 2004 03:04:24 +0200 (CEST)
+Date: Fri, 18 Jun 2004 03:04:24 +0200 (CEST)
+From: Charlie Root <root@headquarter.ion.lu>
+Message-Id: <200406180104.i5I14Ox2009624@headquarter.ion.lu>
+To: root@headquarter.ion.lu
+Subject: headquarter.ion.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+headquarter.ion.lu login failures:
+
+headquarter.ion.lu refused connections:
+
+-- End of security output --

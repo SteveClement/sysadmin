@@ -1,0 +1,16 @@
+$ORIGIN .
+$TTL 3600	; 1 hour
+47.90.80.in-addr.arpa	IN SOA	ns4.ion.lu. root.ion.lu. (
+				1          ; serial
+				3600       ; refresh (1 hour)
+				1800       ; retry (30 minutes)
+				604800     ; expire (1 week)
+				3600       ; minimum (1 hour)
+				)
+			NS	ns1.ion.lu.
+			NS	ns4.ion.lu.
+$ORIGIN 47.90.80.in-addr.arpa.
+1			PTR	ns4.ion.lu.
+2			PTR	ns1.ion.lu.
+3			PTR	www.ion.lu.
+4			PTR	www.ion-i.net.

@@ -1,0 +1,73 @@
+edit /chroot/named/etc/named.conf
+add:
+
+zone "luxgrain.lu" {
+    type master;
+    file "db.luxgrain.lu";
+    allow-transfer { 213.129.72.10; };
+};
+
+$TTL  86400
+@ IN SOA ns4.ion.lu. steve.ion.lu. (52 43200 3600 900000 86400)
+@ IN NS ns4.ion.lu.
+ns4.ion.lu. IN A 80.90.47.163
+@ IN NS ns1.ion.lu.
+ns1.ion.lu. IN A 213.129.72.10
+localhost IN A 127.0.0.1
+@ IN A 80.90.47.165
+www IN CNAME @
+luxgrain.lu. IN MX 30 mail.ion.lu.
+
+add a virtualhost:
+
+# Dasbourg site start
+<VirtualHost 80.90.47.165:80>
+Alias /DAV_dasbourg /home/apache/hosts/www.dasbourg.lu/
+        DirectoryIndex index.html index.php index.htm
+        ServerName www.dasbourg.lu
+        ServerAlias dasbourg.lu
+        DocumentRoot /home/apache/hosts/www.dasbourg.lu
+        TransferLog "|/usr/sbin/rotatelogs /home/apache/logs/www.dasbourg.lu/transfer.log 86400"
+        ErrorLog "|/usr/sbin/rotatelogs /home/apache/logs/www.dasbourg.lu/error.log 86400"
+<Location /DAV_dasbourg>
+                RemoveType .phtml .php .php3
+                DAV On
+                AllowOverride none
+                Options -ExecCGI
+                AuthUserFile /home/apache/auth/DAVdasbourg
+                AuthType Basic
+                AuthName "dasbourg DAV Area"
+                require valid-user
+</Location>
+
+<Location /_stats>
+                AllowOverride none
+                AuthUserFile /home/apache/auth/DAVdasbourg
+                AuthType Basic
+                AuthName "Web Stats for: www.dasbourg.lu"
+                require valid-user
+</Location>
+
+</VirtualHost>
+# Dasbourg site stop
+
+create dirs:
+mkdir ~apache/hosts/www.domain.lu
+chown webserv:apache acoordingly
+mkdir ~apache/logs/www.domain.lu
+
+Webmail Has moved to zinc.
+
+# Dasbourg webmail start
+<VirtualHost 80.90.47.162:80>
+DirectoryIndex index.php
+ServerName webmail.dasbourg.lu
+DocumentRoot /home/apache/hosts/webmails/webmail.dasbourg.lu
+TransferLog "|/usr/sbin/rotatelogs /home/apache/logs/webmails/webmail.dasbourg.lu/transfer.log 86400"
+ErrorLog "|/usr/sbin/rotatelogs /home/apache/logs/webmails/webmail.dasbourg.lu/error.log 86400"
+</VirtualHost>
+# Dasbourg webmail stop
+
+mkdir ~apache/hosts/webmails/webmail.domain.lu
+chown webserv:apache acoordingly
+mkdir ~apache/logs/webmails/webmail.domain.lu

@@ -1,0 +1,31 @@
+----- Created september 6th 2004
+Location: Garage Roger&Diego - problem appeared after september 2nd 2004 blackout (PC not shut down properly)
+
+A Windows XP doesn't boot up anymore, right after BIOS recap it says
+
+"NTLDR fehlt. Ctrl+Alt+Del zum Neustarten"
+
+
+After googling I found a M$ Article: 318728
+
+One of the following files are probably missing or corrupted:
+- ntldr
+- ntdetect.com
+- boot.ini
+all located in the root directory of the windows installation (C:\)
+
+
+Solution:
+- Boot Windows in Recovery Console Mode using an Installation CD-ROM
+- Copy the missing files (in the 1st case it was just ntldr and ntdetect.com) from a working computer to a floppy disk
+- Copy content of floppy disk into root directory (C:\)
+
+Reboot, and done
+
+May want to do a scandisk just to be sure.
+
+
+
+Note:
+According to M$ the BIOS may be out of date when having this problem, but I consider that a rather improbable problem.
+

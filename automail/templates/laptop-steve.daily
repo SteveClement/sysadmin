@@ -1,0 +1,458 @@
+*Received: (qmail 79235 invoked by uid 89); 3 Sep 2007 03:22:18 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 03:22:18 +0200
+Received: (qmail 31779 invoked by uid 98); 3 Sep 2007 03:05:32 +0200
+Received: from 90.129.18.166 by radium.ion.lu (envelope-from <root@laptop-steve.ion.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(90.129.18.166):SA:0(2.0/7.0):. 
+ Processed in 5.220581 secs); 03 Sep 2007 01:05:32 -0000
+X-Spam-Status: No, score=2.0 required=7.0
+X-Spam-Level: ++
+Received: from d90-129-18-166.cust.tele2.lu (HELO laptop-steve.ion.lu) (90.129.18.166)
+  by radium.ion.lu with SMTP; 3 Sep 2007 03:05:26 +0200
+Received-SPF: none (radium.ion.lu: domain at laptop-steve.ion.lu does not designate permitted sender hosts)
+Received: (qmail 12069 invoked by alias); 3 Sep 2007 03:22:28 +0200
+Delivered-To: root@laptop-steve.ion.lu
+Received: (qmail 12066 invoked by uid 0); 3 Sep 2007 03:22:27 +0200
+Date: 3 Sep 2007 03:22:27 +0200
+Message-ID: <20070903012227.12064.qmail@laptop-steve.ion.lu>
+From: root@laptop-steve.ion.lu
+To: root@laptop-steve.ion.lu
+Subject: laptop-steve.ion.lu daily run output
+
+
+Removing stale files from /var/preserve:
+
+Cleaning out old system announcements:
+
+Removing stale files from /var/rwho:
+
+Backup passwd and group files:
+
+Verifying group file syntax:
+/etc/group is fine
+
+Backing up mail aliases:
+
+Disk status:
+Filesystem  1K-blocks     Used    Avail Capacity  Mounted on
+/dev/ad4s1a   2026030    96350  1767598     5%    /
+devfs               1        1        0   100%    /dev
+/dev/ad4s1d   2026030     5420  1858528     0%    /var
+/dev/ad4s1g  30462636 25840660  2184966    92%    /usr
+/dev/ad4s1h  72901192 54007482 13061616    81%    /usr/home
+/dev/ad4s1d   2026030     5420  1858528     0%    /var
+/dev/ad4s1e   2026030   174310  1689638     9%    /var/db
+/dev/da0s1c  56757962 31965208 20252118    61%    /mn
+
+Last dump(s) done (Dump '>' file systems):
+
+Network interface status:
+Name    Mtu Network       Address              Ipkts Ierrs    Opkts Oerrs  Coll
+fwe0*  1500 <Link#1>      02:e0:18:69:63:d9        0     0        0     0     0 
+rl0    1500 <Link#2>      00:18:f3:54:87:0e  2091940     0  1600799     0 65559 
+rl0    1500 192.168.1     laptop-steve.lan   1602258     -  1210836     -     - 
+lo0   16384 <Link#3>                          104665     0   104665     0     0 
+lo0   16384 fe80:3::1     fe80:3::1                0     -        0     -     - 
+lo0   16384 ::1           ::1                      0     -        0     -     - 
+lo0   16384 your-net      localhost             3697     -     3697     -     - 
+wpi0*  1500 <Link#4>      00:18:de:30:ef:30  4597108  3697  4263614 34187     0 
+
+Local system status:
+ 3:01AM  up 3 days, 16:12, 1 user, load averages: 0.00, 0.00, 0.00
+
+Mail in local queue:
+
+Mail in submit queue:
+
+Security check:
+    (output mailed separately)
+
+Checking for rejected mail hosts:
+
+Checking for denied zone transfers (AXFR and IXFR):
+
+Running /etc/daily.local:
+Removing old files and directories... done.
+Extracting new files:
+/usr/ports/MOVED
+/usr/ports/Mk/bsd.qt.mk
+/usr/ports/accessibility/qt4-accessible/
+/usr/ports/audio/boodler/
+/usr/ports/biology/pymol/
+/usr/ports/chinese/qt4-codecs-cn/
+/usr/ports/chinese/qt4-codecs-tw/
+/usr/ports/databases/qt-ibase-plugin/
+/usr/ports/databases/qt-mysql-plugin/
+/usr/ports/databases/qt-odbc-plugin/
+/usr/ports/databases/qt-pgsql-plugin/
+/usr/ports/databases/qt-sqlite-plugin/
+/usr/ports/databases/qt4-ibase-plugin/
+/usr/ports/databases/qt4-mysql-plugin/
+/usr/ports/databases/qt4-odbc-plugin/
+/usr/ports/databases/qt4-pgsql-plugin/
+/usr/ports/databases/qt4-sql/
+/usr/ports/databases/qt4-sqlite-plugin/
+/usr/ports/databases/qt4-sqlite3-plugin/
+/usr/ports/devel/acpicatools/
+/usr/ports/devel/bouml/
+/usr/ports/devel/dbus-qt4/
+/usr/ports/devel/noweb/
+/usr/ports/devel/pypersrc/
+/usr/ports/devel/qmake4/
+/usr/ports/devel/qt4-assistant/
+/usr/ports/devel/qt4-corelib/
+/usr/ports/devel/qt4-designer/
+/usr/ports/devel/qt4-libqtassistantclient/
+/usr/ports/devel/qt4-linguist/
+/usr/ports/devel/qt4-makeqpf/
+/usr/ports/devel/qt4-moc/
+/usr/ports/devel/qt4-porting/
+/usr/ports/devel/qt4-qdbusviewer/
+/usr/ports/devel/qt4-qt3support/
+/usr/ports/devel/qt4-qtestlib/
+/usr/ports/devel/qt4-qvfb/
+/usr/ports/devel/qt4-rcc/
+/usr/ports/devel/qt4-script/
+/usr/ports/devel/qt4-uic/
+/usr/ports/devel/qt4-uic3/
+/usr/ports/devel/qt4/
+/usr/ports/dns/bind84/
+/usr/ports/editors/Makefile
+/usr/ports/editors/nxml-emacs21/
+/usr/ports/editors/nxml/
+/usr/ports/editors/psgml/
+/usr/ports/finance/quantlib/
+/usr/ports/french/eficas/
+/usr/ports/games/brutalchess/
+/usr/ports/games/ptkei/
+/usr/ports/games/xroach/
+/usr/ports/graphics/ogre312/
+/usr/ports/graphics/qt4-iconengines/
+/usr/ports/graphics/qt4-imageformats/
+/usr/ports/graphics/qt4-pixeltool/
+/usr/ports/graphics/qt4-svg/
+/usr/ports/graphics/xmfract/
+/usr/ports/graphics/xpdf/
+/usr/ports/japanese/ptex/
+/usr/ports/japanese/qt4-codecs-jp/
+/usr/ports/japanese/scim-canna/
+/usr/ports/japanese/scim-uim/
+/usr/ports/japanese/vlgothic/
+/usr/ports/java/jdk14/
+/usr/ports/java/jdk16/
+/usr/ports/korean/qt4-codecs-kr/
+/usr/ports/lang/munger/
+/usr/ports/lang/sml-nj-devel/
+/usr/ports/lang/sml-nj/
+/usr/ports/lang/vala/
+/usr/ports/mail/Makefile
+/usr/ports/mail/ilohamail-devel/
+/usr/ports/mail/ovs/
+/usr/ports/mail/qmail-scanner1/
+/usr/ports/math/asir2000/
+/usr/ports/math/py-numpy/
+/usr/ports/misc/cuecat/
+/usr/ports/misc/qt4-doc/
+/usr/ports/misc/qt4-qtconfig/
+/usr/ports/misc/qt4-qtdemo/
+/usr/ports/net-im/fugu/
+/usr/ports/net-mgmt/aguri/
+/usr/ports/net/forg/
+/usr/ports/net/grsync/
+/usr/ports/net/qt4-network/
+/usr/ports/science/py-scipy/
+/usr/ports/security/gnupg/
+/usr/ports/security/ipsec-tools/
+/usr/ports/security/tor/
+/usr/ports/security/vuxml/
+/usr/ports/sysutils/conky/
+/usr/ports/sysutils/lcdproc/
+/usr/ports/sysutils/tw_cli/
+/usr/ports/textproc/qt4-xml/
+/usr/ports/textproc/xmlroff/
+/usr/ports/www/mod_musicindex/
+/usr/ports/www/p5-Catalyst-Action-RenderView/
+/usr/ports/x11-fonts/p5-type1inst/
+/usr/ports/x11-toolkits/Makefile
+/usr/ports/x11-toolkits/py-Pmw/
+/usr/ports/x11-toolkits/py-tktreectrl/
+/usr/ports/x11-toolkits/qt4-gui/
+/usr/ports/x11/qt4-inputmethods/
+/usr/ports/x11/qt4-opengl/
+Building new INDEX files... done.
+freebsd-update fetch should not be run non-interactively.
+Run freebsd-update cron instead.
+>>> WARNING
+>>> Executing updatedb as root.  This WILL reveal all filenames
+>>> on your machine to all login users, which is a security risk.
+--->  Fetching the distfile(s) for 'xpdf-3.02_3' (graphics/xpdf)
+--->  Fetching '/usr/ports/graphics/xpdf'
+===> Fetching and checking checksums for xpdf-3.02_3 and dependencies
+=> MD5 Checksum OK for xpdf-3.02.tar.gz.
+=> SHA256 Checksum OK for xpdf-3.02.tar.gz.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for autoconf-2.59.tar.bz2.
+=> SHA256 Checksum OK for autoconf-2.59.tar.bz2.
+=> MD5 Checksum OK for t1lib-5.1.1.tar.gz.
+=> SHA256 Checksum OK for t1lib-5.1.1.tar.gz.
+=> MD5 Checksum OK for openmotif/openMotif-2.2.3.tar.gz.
+=> SHA256 Checksum OK for openmotif/openMotif-2.2.3.tar.gz.
+=> MD5 Checksum OK for xorg/lib/libXpm-3.5.6.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXpm-3.5.6.tar.bz2.
+=> MD5 Checksum OK for ghostscript/ghostscript-fonts-std-8.11.tar.gz.
+=> SHA256 Checksum OK for ghostscript/ghostscript-fonts-std-8.11.tar.gz.
+=> MD5 Checksum OK for ghostscript/ghostscript-fonts-other-6.0.tar.gz.
+=> SHA256 Checksum OK for ghostscript/ghostscript-fonts-other-6.0.tar.gz.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for m4-1.4.9.tar.bz2.
+=> SHA256 Checksum OK for m4-1.4.9.tar.bz2.
+=> MD5 Checksum OK for help2man-1.36.4.tar.gz.
+=> SHA256 Checksum OK for help2man-1.36.4.tar.gz.
+=> MD5 Checksum OK for xorg/lib/libX11-1.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libX11-1.1.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXfont-1.2.8.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXfontcache-1.0.4.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXfontcache-1.0.4.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libICE-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libICE-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libSM-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libSM-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXres-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXres-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXTrap-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXTrap-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXau-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXau-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXaw-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXaw-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXcomposite-0.3.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXcomposite-0.3.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXcursor-1.1.8.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXcursor-1.1.8.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXdamage-1.1.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXdamage-1.1.1.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXdmcp-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXdmcp-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXevie-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXevie-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXext-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXext-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXfixes-4.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXfixes-4.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXi-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXi-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXinerama-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXinerama-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXmu-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXmu-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXp-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXp-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXrandr-1.2.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXrandr-1.2.1.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXrender-0.9.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXrender-0.9.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXScrnSaver-1.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXScrnSaver-1.1.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXt-1.0.5.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXt-1.0.5.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXtst-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXtst-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXv-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXv-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXvMC-1.0.4.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXvMC-1.0.4.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXxf86dga-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXxf86dga-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXxf86misc-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXxf86misc-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXxf86vm-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXxf86vm-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libxkbfile-1.0.4.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libxkbfile-1.0.4.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libxkbui-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libxkbui-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXft-2.1.12.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXft-2.1.12.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXprintUtil-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXprintUtil-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libXprintAppUtil-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libXprintAppUtil-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libdmx-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libdmx-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/xtrans-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libFS-1.0.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libFS-1.0.0.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/liboldX-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/liboldX-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/data/xbitmaps-1.0.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/data/xbitmaps-1.0.1.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/xextproto-7.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xextproto-7.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+=> MD5 Checksum OK for gettext-1.05.tar.gz.
+=> SHA256 Checksum OK for gettext-1.05.tar.gz.
+=> MD5 Checksum OK for xorg/proto/bigreqsproto-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/bigreqsproto-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/xcmiscproto-1.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xcmiscproto-1.1.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/kbproto-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/kbproto-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/inputproto-1.3.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/inputproto-1.3.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/xf86bigfontproto-1.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xf86bigfontproto-1.1.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontcacheproto-0.1.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fontsproto-2.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/resourceproto-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/resourceproto-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/trapproto-3.4.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/trapproto-3.4.3.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/printproto-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/printproto-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/compositeproto-0.3.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/compositeproto-0.3.1.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/fixesproto-4.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/fixesproto-4.0.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/renderproto-0.9.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/renderproto-0.9.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/damageproto-1.1.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/damageproto-1.1.0.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/evieext-1.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/evieext-1.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/xineramaproto-1.1.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xineramaproto-1.1.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/randrproto-1.2.1.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/randrproto-1.2.1.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/scrnsaverproto-1.1.0.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/scrnsaverproto-1.1.0.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/recordproto-1.13.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/recordproto-1.13.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/videoproto-2.2.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/videoproto-2.2.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/xf86dgaproto-2.0.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xf86dgaproto-2.0.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/xf86miscproto-0.9.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xf86miscproto-0.9.2.tar.bz2.
+=> MD5 Checksum OK for xorg/proto/xf86vidmodeproto-2.2.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xf86vidmodeproto-2.2.2.tar.bz2.
+=> MD5 Checksum OK for fontconfig-2.4.2.tar.gz.
+=> SHA256 Checksum OK for fontconfig-2.4.2.tar.gz.
+=> MD5 Checksum OK for xorg/proto/dmxproto-2.2.2.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/dmxproto-2.2.2.tar.bz2.
+=> MD5 Checksum OK for expat-2.0.0.tar.gz.
+=> SHA256 Checksum OK for expat-2.0.0.tar.gz.
+--->  Fetching the distfile(s) for 'p5-type1inst-0.6.1_4' (x11-fonts/p5-type1inst)
+--->  Fetching '/usr/ports/x11-fonts/p5-type1inst'
+===> Fetching and checking checksums for p5-type1inst-0.6.1_4 and dependencies
+=> type1inst-0.6.1.tar.gz doesn't seem to exist in /usr/ports/distfiles/.
+=> Attempting to fetch from http://www.ibiblio.org/pub/Linux/X11/xutils/.
+=> MD5 Checksum OK for type1inst-0.6.1.tar.gz.
+=> SHA256 Checksum OK for type1inst-0.6.1.tar.gz.
+
+You may use the following build options:
+
+	WITH_DEBUGGING=yes	  Build perl with debugging support.
+	WITH_GDBM=yes		  Build GDBM_File extension.
+	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc
+				  (uses less memory, but slower).
+	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers
+				  (affects only 32-bit platforms).
+	WITH_THREADS=yes	  Build threaded perl.
+	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary.
+      WITHOUT_USE_PERL=yes      Do not rewrite links in /usr/bin
+
+=> MD5 Checksum OK for perl-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for perl-5.8.8.tar.bz2.
+=> MD5 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> SHA256 Checksum OK for BSDPAN-5.8.8.tar.bz2.
+=> MD5 Checksum OK for defined-or-5.8.8.bz2.
+=> SHA256 Checksum OK for defined-or-5.8.8.bz2.
+=> MD5 Checksum OK for xorg/app/mkfontdir-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/mkfontdir-1.0.3.tar.bz2.
+=> MD5 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> SHA256 Checksum OK for xorg/app/mkfontscale-1.0.3.tar.bz2.
+=> MD5 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> SHA256 Checksum OK for gnome2/pkg-config-0.22.tar.gz.
+=> MD5 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> SHA256 Checksum OK for xorg/proto/xproto-7.0.10.tar.bz2.
+=> MD5 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+=> SHA256 Checksum OK for xorg/lib/libfontenc-1.0.4.tar.bz2.
+
+You may want not to compile a bytecode interpreter into the
+TrueType driver. Without this you will only compile the code
+necessary to load TrueType glyphs without hinting.
+
+Hit Ctrl-C now and use "make WITHOUT_TTF_BYTECODE_ENABLED=yes"
+
+Note that there are important patent issues related to the
+use of the interpreter.
+
+=> MD5 Checksum OK for freetype-2.2.1.tar.bz2.
+=> SHA256 Checksum OK for freetype-2.2.1.tar.bz2.
+=> MD5 Checksum OK for make-3.81.tar.bz2.
+=> SHA256 Checksum OK for make-3.81.tar.bz2.
+=> MD5 Checksum OK for libtool-1.5.22.tar.gz.
+=> SHA256 Checksum OK for libtool-1.5.22.tar.gz.
+=> MD5 Checksum OK for gettext-0.16.1.tar.gz.
+=> SHA256 Checksum OK for gettext-0.16.1.tar.gz.
+
+libiconv has the following tunable option(s):
+	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets
+	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)
+
+=> MD5 Checksum OK for libiconv-1.9.2.tar.gz.
+=> SHA256 Checksum OK for libiconv-1.9.2.tar.gz.
+
+-- End of daily output --

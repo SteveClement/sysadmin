@@ -1,0 +1,15 @@
+cat lucky-contacts.ldif |grep -v modifytimestamp |sed 's/mozillaAbPersonAlpha/mozillaAbPersonObsolete/g' 
+
+#!/usr/bin/perl -pi
+# myldapfixer.pl; a space-age script for polishing up Mozilla LDIF export for
+# OpenLDAP use
+s/mail=.*/ou=shared,ou=contacts,dc=ion,dc=lu/;
+s/modifytimestamp.*\n//;
+s/xmozillanickname.*\n//;
+s/objectclass: mozillaAbPersonObsolete/objectclass: mozillaOrgPerson/;
+s/(cn=.*?),(.*?ou=)/$1$2/;
+
+## Add the cn=bla, bla,dc=.... / sn=bla, bla FIX
+## Add the dn empty fix
+## Add the sn/cn missing / empty fix
+## This guy uses mozillaOrgPerson instead of Obsolete - check where that is...

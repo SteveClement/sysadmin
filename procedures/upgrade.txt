@@ -1,0 +1,1054 @@
+= General update notes on FreeBSD via ports the ION way =
+
+It is common to start daemons in /etc/rc.conf
+
+For ssh add:
+
+ sshd_enable="YES"
+
+into the rc.conf. (That is the new rcNG scipting)
+More and more ports adopt that nomenclature. So even if you
+install or upgrade something put it into the rc.conf if it is to be started
+automatically. This will prevent failures once the port adopts to rcNG.
+
+So do check wether you port that you're upgrading is in rc.conf.
+
+= Backups =
+
+Throughout the document we tried to apply all the necessary precautions to do
+a full roll-back if it fails.
+But even the biggest caution sometimes ends in a mess.
+Please don't blame US for your lack of Backups.
+The documentation assumes /home/bup to be the place for update-backups, this
+might grow enormous after some time.
+
+= Todo =
+
+The To-Do list of this document is fairly short but then again the few things
+that need to be done are more of an ongoing house keeping thing.
+Adding more clever Backup Syntax, using excludes for large data.
+Removing, declaring obsolete certain ports, so to speak introducing a
+life-time for the different Sections.
+
+= apache = 
+
+To upgrade apache 1.3.x from ports:
+
+ mkdir -p /home/bup/update/apache13
+ tar cfvpj /home/bup/update/apache13/apache-`date +%d%m%y`.tbz /home/apache
+ tar cfvpj /home/bup/update/apache13/apache-etc-`date +%d%m%y`.tbz /usr/local/etc/apache/
+ pkg_create -v -x -b apache+mod_ssl /home/bup/update/apache13/pkg-`date +%d%m%y`.tbz 
+
+Check /etc/make.conf for:
+
+ APACHE_DATADIR=/home/apache
+ APACHE_DOCUMENT_ROOT=/home/apache/hosts/ion.lu/$HOSTNAME
+
+( Obsolete!!!!
+Once you start the upgrade you will see a list of: WITH_APACHE options if you
+require one of them PLEASE put it in: /etc/make.conf
+)
+
+Please put all the APACHE_ variables in /etc/make.conf
+and all the WITH_APACHE tuneables into ports.conf (if used)
+
+All that needs to be done now is update the port in question and it's
+dependencies:
+
+portupgrade -Rri www/apache13
+
+A quick clean-up, this is only needed in an ION Install, it makes sure Apache
+resides in /home/apache and the necessary links are made to /usr/local/etc and
+removes the proxy directory.
+
+
+cd /home/apache ; ln -s /us r/local/etc etc ; ln -s /usr/local/etc/apache/ conf ; ln -s /usr/local/libexec libexec ; mkdir logs ; rm -rvf proxy
+
+Depending on your mod_* setup (php or dav for instance) you need to re-compile them.
+
+
+= Apache13 to Apache13-modssl =
+
+This is a bit trickier, and the php modules need to be rebuilt aswell.
+
+In brief:
+
+Deinstall apache13 reinstall apache13-modssl
+
+ cd /usr/ports/www/apache13 && make deinstall
+ cd /usr/ports/www/apache13-modssl && make WITH_APACHE_MODACCEL=yes WITH_APACHE_MODDEFLATE=yes WITH_APACHE_PERF_TUNING=no reinstall
+
+Bare in mind that we strongly recommend putting WITH_APACHE's into portsconf
+(portinstall ports-mgmt/portconf if not installed yet)
+
+Attention:
+
+ For MODACCEL to work you need some specific config.
+ uncomment: mod_freeze and mod_ranban
+
+Update php, please follow the procedure http://php-link
+Update mod_dav, please follow the procedure http://mod_dav-link
+Update mod_*, please follow the procedure http://mod_*-link
+
+
+= qmail-scanner-queue.sh =
+
+This might be obsolete
+
+Files to be aware of: /var/qmail/bin/qmail-scanner-queue.sh /var/spool/qmailscan/
+
+Backup files:
+
+cp /var/qmail/bin/qmail-scanner-queue.pl /var/qmail/bin/qmail-scanner-queue.pl-`date +%d%m%y`
+cd /var/spool && cp -rp qmailscan qmailscan-`date +%d%m%y`
+cd ~software/unpacked && mv qmail-scanner-1.24 qmail-scanner-1.24-`date +%d%m%y` 
+
+cd ~software/archives && wget http://dl.sourceforge.net/sourceforge/qms-analog/qms-analog-0.4.4.tar.gz
+cd ~software/archives && wget http://dl.sourceforge.net/sourceforge/qmail-scanner/qmail-scanner-1.25.tgz
+cd ~software/unpacked && tar xfvz ../archives/qms-analog-0.4.4.tar.gz && tar xfvz ../archives/qmail-scanner-1.25.tgz
+
+cd qms-analog-0.4.4/
+gmake all
+cp qmail-scanner-1.25-st-qms-20050618.patch ../qmail-scanner-1.25/
+cd ../qmail-scanner-1.25/
+patch -p1 < qmail-scanner-1.25-st-qms-20050618.patch
+diff -u qms-config ../qmail-scanner-1.24-`date +%d%m%y`/qms-config
+cp ../qmail-scanner-1.24-`date +%d%m%y`/qms-config .
+chmod 755 qms-config
+./qms-config
+./qms-config install
+diff -u /var/spool/qmailscan-`date +%d%m%y`/quarantine-attachments.txt /var/spool/qmailscan/quarantine-attachments.txt |grep -v \# |less
+cp /var/spool/qmailscan-`date +%d%m%y`/quarantine-attachments.txt /var/spool/qmailscan/quarantine-attachments.txt
+vi /var/spool/qmailscan/quarantine-attachments.txt 
+setuidgid qscand /var/qmail/bin/qmail-scanner-queue.pl -z
+setuidgid qscand /var/qmail/bin/qmail-scanner-queue.pl -g
+##chown -R qscand:qscand /var/spool/qmailscan
+
+diff -u /var/qmail/bin/qmail-scanner-queue.pl /var/qmail/bin/qmail-scanner-queue.pl-`date +%d%m%y` |grep -v \# |less
+vi /var/qmail/bin/qmail-scanner-queue.pl
+
+sa_alt for sql support!!!
+
+  Alter: $sa_delete='6';
+         $spamc_subject="{SPAM?}";
+	 $sa_alt='0';
+	 
+	 
+  qmailctl restart
+
+HURRAY ON 07022005 THIS ACTUALLY WORKED SEAMLESSLY :) ON LINION
+HURRAY ON 28062005 THIS ACTUALLY WORKED SEAMLESSLY :) ON REDX
+
+= clamav =
+
+ mkdir -p /home/bup/update/clamav
+ cp -p /usr/local/etc/rc.d/clamav-clamd.sh /home/bup/update/clamav/clamav-clamd.sh-`date +%d%m%y`
+ cp -p /usr/local/etc/rc.d/clamav-freshclam.sh /home/bup/update/clamav/clamav-freshclam.sh-`date +%d%m%y`
+ cp -p /usr/local/etc/clamd.conf /home/bup/update/clamav/clamd.conf-`date +%d%m%y`
+ cp -p /usr/local/etc/freshclam.conf /home/bup/update/clamav/freshclam.conf-`date +%d%m%y`
+ portupgrade -Rri clamav
+ diff -u /usr/local/etc/rc.d/clamav-clamd.sh /home/bup/update/clamav/clamav-clamd.sh-`date +%d%m%y`
+ diff -u /usr/local/etc/rc.d/clamav-freshclam.sh /home/bup/update/clamav/clamav-freshclam.sh-`date +%d%m%y`
+ diff -u /usr/local/etc/clamd.conf /home/bup/update/clamav/clamd.conf-`date +%d%m%y`
+ nohup clamd 2>&1 | /usr/local/bin/multilog t s100000 n20 /var/log/clamav &
+
+AND AGAIN LOGGING TO STDOUT FAILS!!! 0.9 is a show stopper
+AT THIS POINT IT STILL DOESNT WORK :((( set User=root in clamd.conf
+
+
+= Squirrelmail =
+
+Backup your Squirreldir:
+
+ mkdir -p /home/bup/update/squirrelmail
+ tar cfvpj /home/bup/update/squirrelmail/squirrelmail-`date +%d%m%y`.tbz /home/apache/hosts/croix-rouge.lu/webmail-lite
+ tar cfvpj /home/bup/update/squirrelmail/squirrelmail-`date +%d%m%y`.tbz /home/apache/hosts/ion.lu/webmail-lite
+
+ cd /usr/ports/mail/squirrelmail/
+ WITH_DATABASE=YES WITH_LDAP=YES SQUIRRELDIR=/home/apache/hosts/ion.lu/webmail-lite make
+ make install clean
+ SQUIRRELDIR=/home/apache/hosts/healthnet.lu/webmail-lite make install
+
+
+CLEANUP NEEDED
+
+ php.ini FileUploads=on
+An older version of default_pref exists in
+/var/spool/squirrelmail/pref, you may want to
+compare it with the one in /home/apache/hosts/ion.lu/webmail-lite/data
+
+If you have problems with SquirrelMail saying "you must login" after
+you just have, the following php.ini option may help:
+session.auto_start = 1
+
+In order to do your administrative configuration you need to 
+cd /home/apache/hosts/ion.lu/webmail-lite && ./configure
+SquirrelMail will not work until this has been done.
+
+
+CLEANUP 
+
+Change default version of ruby to 1.8 on i386
+
+pkg_delete portupgrade-\* && cd /usr/ports/sysutils/portupgrade && make install clean
+
+portupgrade -fr lang/ruby16
+portupgrade -f lang/ruby18
+pkg_deinstall -ri lang/ruby16 ##### This will deinstall ruby 1.6 Stuff handle with care
+
+
+
+Change default version of perl to 5.8 on i386
+
+portupgrade -o lang/perl5.8 -f perl-5.6.1_15
+portupgrade -f p5-\*   ### Will upgrade all p5-* modules
+
+
+Change default version of X_WINDOW_SYSTEM to xorg on i386
+echo X_WINDOW_SYSTEM=xorg >> /etc/make.conf ### IF NOT ALREADY THERE. CHK FIRST
+pkg_delete -f /var/db/pkg/imake-4* /var/db/pkg/XFree86-*
+cd /usr/ports/x11/wrapper && make deinstall 
+cd /usr/ports/x11/xorg && make install clean
+pkgdb -F
+=======
+
+
+= Usermin =
+
+ mkdir -p /home/bup/update
+ tar cfvpj /home/bup/update/usermin-`date +%d%m%y`.tbz /usr/local/etc/usermin
+ portupgrade -Rri usermin
+
+= Virtualmin =
+
+ mkdir -p /home/bup/update
+ tar cfvpj /home/bup/update/usermin-`date +%d%m%y`.tbz /usr/local/etc/webmin/virtual-server
+ portupgrade -Rri virtualmin
+
+= Webmin =
+
+ mkdir -p /home/bup/update/webmin
+ tar cfvpj /home/bup/update/webmin/webmin-`date +%d%m%y`.tbz /usr/local/etc/webmin
+ cp -p /usr/local/etc/rc.d/webmin.sh /home/bup/update/webmin
+ portupgrade -Rri webmin
+
+= Nagios/-plugins =
+
+ mkdir -p /home/bup/update
+ tar cfvpj /home/bup/update/nagios-`date +%d%m%y`.tbz /usr/local/etc/nagios
+ tar cfvpj /home/bup/update/nagios-plugins-`date +%d%m%y`.tbz /usr/local/libexec/nagios
+ portupgrade -Rr nagios
+
+
+= phpMyAdmin =
+
+mkdir -p /home/bup/update/phpMy
+tar cfvpj /home/bup/update/phpMy/phpMy-`date +%d%m%y`.tbz /home/apache/hosts/ion.lu/question/phpMy
+
+
+phpMyAdmin-2.6.1.r1 has been installed into:
+
+    /usr/local/www/phpMyAdmin
+
+    Please edit config.inc.php to suit your needs.
+
+    To make phpMyAdmin available through your web site, I suggest
+    that you add the following to httpd.conf:
+
+        Alias /phpmyadmin/ "/usr/local/www/phpMyAdmin/"
+
+cp config.inc.php into new blabla
+
+= phpicalendar =
+
+ mkdir -p /home/bup/update/phpicalendar
+ tar cfvpj /home/bup/phpicalendar/phpicalendar-`date +%d%m%y`.tbz /home/apache/hosts/ion.lu/question/phpicalendar
+
+
+= Squid and Dansg =
+
+ mkdir -p /home/bup/update/squid
+ tar cfvpj /home/bup/update/squid/squid-`date +%d%m%y`.tbz /usr/local/etc/squid
+ cp /usr/local/etc/rc.d/squid.sh /home/bup/update/squid/squid.sh-`date +%d%m%y`
+ portupgrade -Rri squid
+
+
+ mkdir -p /home/bup/update/dansguardian
+ tar cfvpj /home/bup/update/dansguardian/dansguardian-`date +%d%m%y`.tbz /usr/local/etc/dansguardian
+ cp /usr/local/etc/rc.d/start-dg.sh /home/bup/update/dansguardian/start-dg.sh-`date +%d%m%y`
+FETCH DANSG: 
+
+
+= proftpd =
+
+mkdir -p /home/bup/update/proftpd
+# Following step is only required on some installs
+#tar cfvpj /home/bup/update/proftpd/proftpd-`date +%d%m%y`.tbz /usr/local/etc/proftpd.conf /usr/local/proftpd
+cp /usr/local/etc/proftpd.conf /home/bup/update/proftpd/proftpd.conf-`date +%d%m%y`
+portupgrade -Rri proftpd
+
+
+= openldap =
+
+mkdir -p /home/bup/update/openldap
+tar cfvpj /home/bup/update/openldap/openldap-`date +%d%m%y`.tbz /usr/local/etc/openldap
+tar cfvpj /home/bup/update/openldap/openldap-data-`date +%d%m%y`.tbz /var/db/openldap-data
+/usr/local/sbin/slapcat -l /home/bup/update/openldap/ldap-`date +%d%m%y`.ldif && tar cfvpj /home/bup/update/openldap/ldap-`date +%Y%m%d`.tbz /home/bup/update/openldap/ldap-`date +%d%m%y`.ldif && rm /home/bup/update/openldap/ldap-`date +%d%m%y`.ldif
+pkg_info |grep openldap > /home/bup/update/openldap/openldap-version.info-`date +%d%m%y`
+pkg_info |grep db4 >> /home/bup/update/openldap/openldap-version.info-`date +%d%m%y`
+ pkg_create -v -x -b openldap-server /home/bup/update/openldap/pkg-`date +%d%m%y`.tbz 
+
+/usr/local/libexec/openldap
+/usr/local/libexec/slapd
+/usr/local/libexec/slurpd
+
+portupgrade -Rri net/openldap23-client net/openldap23-server
+
+
+= cfs =
+
+mkdir -p /home/bup/update/cfs
+cp -p /usr/local/etc/rc.d/cfsd.sh /home/bup/update/cfs/cfsd.sh-`date +%d%m%y` 
+portupgrade -Rri cfs
+diff -u /usr/local/etc/rc.d/cfsd.sh /home/bup/update/cfs/cfsd.sh-`date +%d%m%y`
+cp -p /home/bup/update/cfs/cfsd.sh-`date +%d%m%y` /usr/local/etc/rc.d/cfsd.sh
+ pkg_create -v -x -b cfs /home/bup/update/cfs/pkg-`date +%d%m%y`.tbz 
+
+mount -o port=3049,noinet6 -i -2 localhost:/var/tmp /crypt
+
+
+= pdflib =
+
+mkdir -p /home/bup/update/pdflib
+cp /usr/local/share/pdflib/fonts/pdflib.upr /home/bup/update/pdflib/pdflib.upr
+ pkg_create -v -x -b pdflib /home/bup/update/pdflib/pkg-`date +%d%m%y`.tbz 
+portupgrade -Rri pdflib
+diff -u /home/bup/update/pdflib/pdflib.upr /usr/local/share/pdflib/fonts/pdflib.upr
+echo -n "Smack da enter key " ; read
+cp /home/bup/update/pdflib/pdflib.upr /usr/local/share/pdflib/fonts/pdflib.upr
+
+
+= amavisd-new =
+
+cp /usr/local/etc/rc.d/amavis* /home/bup/update/
+cp /usr/local/etc/amavis* /home/bup/update/
+
+
+
+= dcc-dccd update =
+
+mkdir -p /home/bup/update/dcc-dccd
+tar cfvpj /home/bup/update/dcc-dccd/dcc-`date +%d%m%y`.tbz /usr/local/dcc
+portupgrade -Rri dcc-dccd
+
+= spamass update =
+
+files of interest: /usr/local/etc/rc.d/spamd.sh /usr/local/etc/mail/spamassassin /usr/local/share/doc/
+
+mkdir -p /home/bup/update/spamassassin
+cp -p /usr/local/etc/rc.d/sa-spamd.sh /home/bup/update/spamassassin/sa-spamd.sh-`date +%d%m%y`
+tar cfvpj /home/bup/update/spamassassin/spamassassin-`date +%d%m%y`.tbz /usr/local/etc/mail
+portupgrade -Rri p5-Mail-SpamAssassin
+tail -F /var/log/spamd/current &
+svc -d /var/service/spamd
+svc -u /var/service/spamd
+
+
+
+CYRUS 3 modules:
+
+cyrus-imapd2 - cyrus-sasl2 - cyrus-sasl2-saslauthd:
+
+mkdir -p /home/bup/update/cyrus
+cp /usr/local/etc/cyrus.conf /home/bup/update/cyrus/cyrus.conf-`date +%d%m%y`
+cp /usr/local/etc/imapd.conf /home/bup/update/cyrus/imapd.conf-`date +%d%m%y`
+cp /usr/local/etc/rc.d/imapd.sh /home/bup/update/cyrus/imapd.sh-`date +%d%m%y`
+cp /usr/local/etc/rc.d/saslauthd.sh /home/bup/update/cyrus/saslauthd.sh-`date +%d%m%y`
+cp /usr/local/etc/sasldb2 /home/bup/update/cyrus/sasldb2-`date +%d%m%y`
+cp /usr/local/etc/sasldb2.db /home/bup/update/cyrus/sasldb2.db-`date +%d%m%y`
+tar cfvpj /home/bup/update/cyrus/cyrus-`date +%d%m%y`.tbz /usr/local/cyrus
+
+
+
+= netatalk =
+
+mkdir -p /home/bup/update
+tar cfvpj /home/bup/update/NetAtalk-`date +%d%m%y`.tbz /usr/local/etc/AppleVolumes.default /usr/local/etc/AppleVolumes.system /usr/local/etc/afpd.conf /usr/local/etc/afppasswd /usr/local/etc/atalkd.conf /usr/local/etc/papd.conf
+cp /usr/local/etc/rc.d/netatalk.sh /home/bup/update
+portupgrade -Rri net/netatalk
+
+= cups =
+
+mkdir -p /home/bup/update/cups
+tar cfvpj /home/bup/update/cups/cups-`date +%d%m%y`.tbz /usr/local/etc/cups
+cp -p /usr/local/etc/rc.d/cupsd /home/bup/update/cups/cupsd-`date +%d%m%y`
+cp -p /etc/printcap /home/bup/update/cups/printcap-`date +%d%m%y`
+
+portupgrade -Rri print/cups-base
+
+
+= openssl =
+
+update openssl.cnf
+
+
+= gnupg =
+
+
+= maildrop =
+
+mkdir -p /home/bup/update/maildrop
+cp -p /usr/local/etc/maildroprc /home/bup/update/maildrop/maildroprc-`date +%d%m%y`
+cp /etc/mailfilter /home/bup/update/maildrop/mailfilter-`date +%d%m%y`
+(user file: .mailfilter )
+
+tar cfpj /home/bup/update/maildrop/maildrop-`date +%d%m%y`.tbz \
+/usr/local/bin/deliverquota \
+/usr/local/bin/lockmail \
+/usr/local/bin/mailbot \
+/usr/local/bin/maildirmake \
+/usr/local/bin/maildrop \
+/usr/local/bin/makemime \
+/usr/local/bin/reformail \
+/usr/local/bin/reformime
+
+
+Amavisd-new update
+
+FreeTDS update
+
+Dansguardian. Squid update ...
+
+p5-XML-Parser Problems
+
+some programs fail to recognize perl dependencies correctly including perl5.8
+itself do this:
+
+cd /usr/ports/lang/perl5.8 && make deinstall && portupgrade defunct/module
+Sorted same for p5-XML-Parser problems (make sure perl is ok)
+
+
+= courier-imap =
+
+Changelog: http://www.courier-mta.org/imap/changelog.html
+
+ mkdir -p /home/bup/update/courier-imap
+ tar cfvpj  /home/bup/update/courier-imap/courier-imap-etc-`date +%d%m%y`.tbz /usr/local/etc/courier-imap/
+ tar cfvpj  /home/bup/update/courier-imap/libexec-courier-imap-`date +%d%m%y`.tbz /usr/local/libexec/courier-imap/
+ tar cfvpj  /home/bup/update/courier-imap/courier-rcd-`date +%d%m%y`.tbz /usr/local/etc/rc.d/courier* /usr/local/etc/rc.d/imap*
+ pkg_create -v -x -b courier-imap /home/bup/update/courier-imap/pkg-`date +%d%m%y`.tbz 
+
+ /usr/local/etc/rc.d/courier-imap-imapd-ssl.sh restart
+ /usr/local/etc/rc.d/courier-imap-pop3d-ssl.sh restart
+ /usr/local/etc/rc.d/courier-imap-imapd.sh restart
+ /usr/local/etc/rc.d/courier-imap-pop3d.sh restart
+ 
+
+
+= courier-authlib-base =
+
+Changelog: http://www.courier-mta.org/authlib/changelog.html
+
+ Do not delete the user as you update the package.
+
+ mkdir -p /home/bup/update/courier-authlib
+ tar cfvpj  /home/bup/update/courier-authlib/courier-authlib-etc-`date +%d%m%y`.tbz /usr/local/etc/authlib/
+ tar cfvpj  /home/bup/update/courier-authlib/courier-rcd-`date +%d%m%y`.tbz /usr/local/etc/rc.d/courier* /usr/local/etc/rc.d/imap*
+ tar cfvpj  /home/bup/update/courier-authlib/libexec-courier-authlib-`date +%d%m%y`.tbz /usr/local/libexec/courier-authlib/
+ tar cfvpj  /home/bup/update/courier-authlib/lib-courier-authlib-`date +%d%m%y`.tbz /usr/local/lib/courier-authlib/
+ pkg_create -v -x -b courier-authlib /home/bup/update/courier-authlib/pkg-`date +%d%m%y`.tbz 
+
+ /usr/local/etc/rc.d/courier-authdaemond restart
+
+
+= courier-authlib-vchkpw =
+
+ This get's backed up by -base and can be update without worries.
+
+
+= vpopmail =
+
+Changelog: http://www.inter7.com/vpopmail/ChangeLog
+
+Upgrading to vpopmail-5.4.18
+----------------------------
+
+For all SQL back ends you must change the length of the domain or
+pw_domain field from 64 to 96 characters to reflect the maximum size
+allowed in vpopmail.
+
+If you are storing limits in mysql you must add the following items to
+the limits table:
+
+  disable_spamassassasin  tinyint(1) NOT NULL DEFAULT 0
+  delete_spam             tinyint(1) NOT NULL DEFAULT 0
+
+
+
+    The following assumes --enable-many-domains (the default) is used.  If you
+    use --disable-many-domains then you need to replace the alter command for
+    the 'vpopmail' table with one for each of your domain tables.  Also, the
+    ip_alias_map, vlog and limits tables only exist if various configuration
+    options are enabled, so they may or may not be relevant on your system.
+
+    ALTER TABLE `dir_control` CHANGE `domain` `domain` CHAR(96) NOT NULL;
+    ALTER TABLE `ip_alias_map` CHANGE domain domain CHAR(96) NOT NULL;
+    ALTER TABLE `lastauth` CHANGE domain domain CHAR(96) NOT NULL;
+    ALTER TABLE `valias` CHANGE domain domain CHAR(96) NOT NULL;
+    ALTER TABLE `vlog` CHANGE domain domain CHAR(96) NOT NULL;
+    ALTER TABLE `vpopmail` CHANGE domain domain CHAR(96) NOT NULL;
+
+    ALTER TABLE `limits` CHANGE domain domain CHAR(96) NOT NULL,
+        ADD `disable_spamassassin` TINYINT(1) DEFAULT '0' NOT NULL AFTER `disable_smtp`,
+        ADD `delete_spam` TINYINT(1) DEFAULT '0' NOT NULL AFTER `disable_spamassassin`;
+
+
+ VERY CAREFULL WITH THE OPTIONS (SQL/NON-SQL etc)
+
+Do a Backup first:
+
+ mkdir -p /home/bup/update/vpopmail
+ #tar cfvpj /home/bup/update/vpopmail/vpopmail-domains-`date +%d%m%y`.bz2 /usr/local/vpopmail/domains
+ /usr/local/bin/rdiff-backup -v5 --print-statistics ~vpopmail/ malium-backup@plumbum.ion.lu::bup/home-vpopmail-rdiff
+ tar --exclude /usr/local/vpopmail/domains -c -v -p -j -f /home/bup/update/vpopmail/vpopmail-`date +%d%m%y`.bz2 /usr/local/vpopmail
+ pkg_create -v -x -b vpopmail /home/bup/update/vpopmail/pkg-`date +%d%m%y`.tbz 
+cd /usr/ports/mail/vpopmail
+WITH_QMAIL_EXT=yes WITH_SINGLE_DOMAIN=YES WITHOUT_ROAMING_USERS=YES WITH_CLEAR_PASSWD=YES WITH_AUTH_LOG=YES WITH_VALIAS=YES WITH_MYSQL=NO WITH_SQL_LOG=NO WITH_DOMAIN_QUOTAS=YES WITHOUT_PASSWD=YES RELAYCLEAR=30 LOGLEVEL=p make
+
+
+= horde =
+
+ mkdir -p /home/bup/update/horde
+ tar cfvpj /home/bup/update/horde/horde-`date +%d%m%y`.tbz /usr/local/etc/horde /home/apache/hosts /usr/local/www/horde
+
+:%s/usr\/local\/www/home\/apache\/hosts\/croix-rouge.lu\/webmail/g
+:%s/usr\/local\/www\/horde/home\/apache\/hosts\/ion.lu\/webmail/g
+
+horde update and so on (imp/turba/kronolith/etc...)
+
+= horde 3.0.x =
+
+WITH_PHP5=YES make 
+
+Information for horde-3.0.4_1:
+
+Install notice:
+************************************************************************
+Horde has been installed in /usr/local/www/horde with your blank
+configuration files.
+
+If you want Horde to access a database, you have to run the
+appropriate scripts located in /usr/local/www/horde/scripts/sql.
+It is recommended that you change the password of the 'hordemgr'
+user used to connect to the horde database.
+Horde is setup by default to access MySQL.
+
+WARNING! if you are upgrading from Horde v. 2.2.x, you have to alter your
+******** database schemas. Please read the doc UPGRADING.
+
+You can now access Horde without a password at <http://localhost/horde/>,
+and you will be logged in as an administrator. You should first configure
+a real authentication backend.  Click on "Setup" in the "Administration"
+menu and configure Horde. Start in the "Authentication" tab.
+See the doc in /usr/local/share/doc/horde for details.
+(tip: if you plan to install IMP, just keep "Automatic authentication as
+a certain user", add your login to be treated as administrator, and once
+IMP will be installed, switch to "Let a Horde application handle auth").
+Select a log driver; if you keep 'file', do not forget to add a line
+in /etc/newsyslog.conf.
+Then select and configure a preferences driver.
+
+Your /usr/local/etc/apache/httpd.conf has been updated,
+you have to restart Apache.
+
+When everything is OK, you should be able to access Horde from
+<http://localhost/horde/>.
+(If <http://localhost/horde/> does not run, but
+ <http://localhost/horde/index.php> is OK, then you have
+  to define index.php as a DirectoryIndex in
+  /usr/local/etc/apache/httpd.conf.)
+
+  There is a testing script at <http://localhost/horde/test.php>.
+  ************************************************************************
+
+
+= imp =
+
+linion imp # make WITH_HTML=yes WITH_COURIER-IMAP=yes reinstall
+===>  Installing for imp-4.0.3
+===>   imp-4.0.3 depends on file: /usr/local/share/pear/Auth/SASL.php - found
+===>   imp-4.0.3 depends on file: /usr/local/www/horde/turba/minisearch.php -
+not found
+===>    Verifying reinstall for /usr/local/www/horde/turba/minisearch.php in
+/usr/ports/mail/turba
+===>  Installing for turba-2.0.2
+===>   turba-2.0.2 depends on file: /usr/local/www/horde/rpc.php - found
+===>   Generating temporary packing list
+===> Documentation installed in /usr/local/share/doc/turba.
+
+************************************************************************
+Turba has been installed in /usr/local/www/horde/turba with your blank
+configuration files.
+
+Horde must be configured; if not, see `pkg_info -D -x horde'.
+
+Then, you might have to tune the configuration files located in
+/usr/local/www/horde/turba/config/, specially the file sources.php.
+
+Then, you must login to Horde as a Horde Administrator to finish the
+configuration.
+
+You have to create a table in your database; please see
+/usr/local/www/horde/turba/scripts/.
+You might create a LDAP schema: please see the doc LDAP.
+
+WARNING! if you are upgrading from Turba v. 1.2.x, you have to alter your
+******** schemas. Please read the doc UPGRADING.
+
+To protect your configuration files, you have to restart Apache.
+************************************************************************
+
+===>   Registering installation for turba-2.0.2
+===>   Returning to build of imp-4.0.3
+===>   imp-4.0.3 depends on file: /usr/local/www/horde/ingo/filters.php - not
+found
+===>    Verifying reinstall for /usr/local/www/horde/ingo/filters.php in
+/usr/ports/mail/ingo
+===>  Extracting for ingo-1.0.1
+=> Checksum OK for ingo-h3-1.0.1.tar.gz.
+===>  Patching for ingo-1.0.1
+===>  Configuring for ingo-1.0.1
+===>  Installing for ingo-1.0.1
+===>   ingo-1.0.1 depends on file: /usr/local/www/horde/rpc.php - found
+===>   ingo-1.0.1 depends on file: /usr/local/include/php/main/php.h - found
+===>   ingo-1.0.1 depends on file: /usr/local/lib/php/20020429/imap.so - found
+===>   Generating temporary packing list
+===> Documentation installed in /usr/local/share/doc/ingo.
+
+************************************************************************
+Ingo has been installed in /usr/local/www/horde/ingo with your blank
+configuration files.
+
+Horde must be configured; if not, see `pkg_info -D -x horde'.
+
+Finally, you must login to Horde as a Horde Administrator to finish the
+configuration.
+
+To protect your configuration files, you have to restart Apache.
+************************************************************************
+
+===>   Registering installation for ingo-1.0.1
+===>   Returning to build of imp-4.0.3
+===>   imp-4.0.3 depends on file: /usr/local/www/horde/nag/data.php - not found
+===>    Verifying reinstall for /usr/local/www/horde/nag/data.php in
+/usr/ports/deskutils/nag
+===>  Extracting for nag-2.0
+=> Checksum OK for nag-h3-2.0.tar.gz.
+===>  Patching for nag-2.0
+===>  Configuring for nag-2.0
+===>  Installing for nag-2.0
+===>   nag-2.0 depends on file: /usr/local/www/horde/rpc.php - found
+===>   Generating temporary packing list
+===> Documentation installed in /usr/local/share/doc/nag.
+
+************************************************************************
+Nag has been installed in /usr/local/www/horde/nag with your blank
+configuration files.
+
+Horde must be configured; if not, see `pkg_info -D -x horde'.
+
+Then, you have to create the table nag_tasks, from the SQL script
+/usr/local/www/horde/nag/scripts/sql/nag.sql.
+For example, if your database is MySQL, you may run
+mysql --user=root --password=yourpass horde < nag.sql
+
+WARNING! if you are upgrading from Nag v. 1.1.x, you have to alter your
+******** schemas. Please read the doc /usr/local/share/doc/nag/UPGRADING.
+
+Finally, you must login to Horde as a Horde Administrator to finish the
+configuration.
+
+To protect your configuration files, you have to restart Apache.
+************************************************************************
+
+===>   Registering installation for nag-2.0
+===>   Returning to build of imp-4.0.3
+===>   imp-4.0.3 depends on file: /usr/local/bin/gpg - found
+===>   imp-4.0.3 depends on file: /usr/local/bin/aspell - found
+===>   imp-4.0.3 depends on file: /usr/local/share/pear/HTTP/Request.php -
+found
+===>   imp-4.0.3 depends on file: /usr/local/include/php/main/php.h - found
+===>   imp-4.0.3 depends on file: /usr/local/lib/php/20020429/imap.so - found
+===>   imp-4.0.3 depends on file: /usr/local/bin/deliverquota - found
+===>   Generating temporary packing list
+===>  Checking if mail/imp already installed
+pkg_info: package bsdpan-MailTools-1.62 has no origin recorded
+pkg_info: package bsdpan-Term-ReadLine-Perl-1.0203 has no origin recorded
+pkg_info: package bsdpan-TermReadKey-2.21 has no origin recorded
+pkg_info: package bsdpan-libnet-1.19 has no origin recorded
+===> Documentation installed in /usr/local/share/doc/imp.
+
+************************************************************************
+IMP has been installed in /usr/local/www/horde/imp with your blank
+configuration files.
+
+Horde must be configured and the tables created; if not, see
+`pkg_info -D -x horde'.
+
+Then, you might have to tune the configuration files located in
+/usr/local/www/horde/imp/config/, specially the file servers.php.
+
+Then, you must login to Horde as a Horde Administrator to finish the
+configuration. Please read /usr/local/share/doc/imp/INSTALL.
+
+Warning: the filter system of IMP 3.x has been replaced by a separate
+******** application => check the port mail/ingo. Ingo provides a script
+         to migrate the existing filter rules from IMP 3.x, see Ingo's
+         documentation.
+
+To protect your configuration files, you have to restart Apache.
+
+To secure your installation, it is at least recommended that you change
+the default database password used by horde and imp.
+Then, you might change the 'session.save_path' setting in php.ini to a
+directory only readable and writeable by your webserver.
+************************************************************************
+
+===>   Registering installation for imp-4.0.3
+
+backup /usr/local/etc/horde and the webroot.
+
+mkdir -p /home/bup/update/horde
+tar cfvpj /home/bup/update/horde/horde-etc-`date +%d%m%y`.tbz /usr/local/etc/horde
+
+cclient update
+just update no config needed
+
+= php =
+
+The main thing to backup is the extension.ini and php.ini in case you made any
+tunings and in case the ports maintainer decided to blatt your config.
+At the end we diff' the config files to see if anything changed or rather
+something erased our custom conf. Please note that php.ini-dist and
+php.ini-recommended will be rewritten to, for convenience we copied and diffed
+them too, so you see if anything new has been added.
+
+ mkdir -p /home/bup/update/php
+ tar cfvpj /home/bup/update/php/etc-php-`date +%d%m%y`.tbz /usr/local/etc/php
+ cp /usr/local/etc/php.ini /home/bup/update/php/php.ini-`date +%d%m%y`
+ cp /usr/local/etc/php.ini-* /home/bup/update/php/
+ cp /usr/local/etc/php/extensions.ini /home/bup/update/php/php.ini-`date +%d%m%y`
+ cp /usr/local/etc/php.conf /home/bup/update/php/php.conf-`date +%d%m%y`
+ portupgrade -Rri php5-\*
+ diff -u /usr/local/etc/php.ini /home/bup/update/php/php.ini-`date +%d%m%y`
+ diff -u /usr/local/etc/php/extensions.ini /home/bup/update/php/php.ini-`date +%d%m%y`
+ diff -u /usr/local/etc/php.conf /home/bup/update/php/php.conf-`date +%d%m%y`
+ diff -u /usr/local/etc/php.ini-dist /home/bup/update/php/php.ini-dist
+ diff -u /usr/local/etc/php.ini-recommended /home/bup/update/php/php.ini-recommended
+
+Apache x.y updaters:
+
+As you need to reinstall php follow this simple step:
+
+ cd /usr/ports/lang/php5 && make deinstall && make reinstall
+
+some php5* modules might need a recompile, check wether functionality is still
+given, if not procede with the -f (force) flag.
+
+ portupgrade -fi php5-\* pecl-pdflib
+
+= sudo =
+
+= qpopper =
+
+wu-ftpd =
+
+powerdns update
+files to bup: pdns.conf
+mkdir -p /home/bup/update/powerdns
+cp -p /usr/local/etc/pdns.conf /home/bup/update/powerdns/
+
+bind9 =:
+mkdir -p /home/bup/update/bind9
+tar cfvpj /home/bup/update/bind9/var-named-`date +%d%m%y`.tbz /var/named
+tar cfvpj /home/bup/update/bind9/etc-namedb-`date +%d%m%y`.tbz /etc/namedb
+upgrade
+
+
+= mysql =
+
+mkdir -p /home/bup/update/sql/
+
+for a in `/usr/local/bin/mysqlshow |/usr/bin/cut -f2 -d\| |/usr/bin/grep -v "\-\-\-\-\-\-\-"|/usr/bin/grep -v Databases |/usr/bin/grep -v dblogging`; do /usr/local/bin/mysqldump -e -q -a $a > /home/bup/update/sql/$a-UPDATE-`date +%d%m%y`.sql ; done
+cd /home/bup/update/sql/ && tar cfvz db-`date +%d%m%y`.tgz *.sql && rm *.sql
+cp -p /usr/local/etc/rc.d/mysql-server /home/bup/update/sql/mysql-server-`date +%d%m%y`
+portupgrade -Rri databases/mysql50-server
+/usr/local/etc/rc.d/mysql-server restart
+diff -u /usr/local/etc/rc.d/mysql-server /home/bup/update/sql/mysql-server-`date +%d%m%y`
+
+************************************************************************
+
+Remember to run mysql_upgrade (with the optional --datadir=<dbdir> flag)
+the first time you start the MySQL server after an upgrade from an
+earlier version.
+
+************************************************************************
+
+
+OBSOLETE: cp -p /usr/local/etc/rc.d/mysql-server.sh /home/bup/update/sql/mysql-server-`date +%d%m%y`.sh
+		/usr/local/etc/rc.d/mysql-server.sh restart
+
+= samba =
+
+mkdir -p /home/bup/update/samba
+smbstatus
+cp -p /usr/local/etc/smb.conf /home/bup/update/samba/smb.conf-`date +%d%m%y`
+cp -p /usr/local/etc/rc.d/samba /home/bup/update/samba/samba-`date +%d%m%y`
+tar cfvpj /home/bup/update/samba/etc-samba-`date +%d%m%y`.tbz /usr/local/etc/samba
+portupgrade -Rri net/samba3
+/usr/local/etc/rc.d/samba restart
+/usr/local/etc/rc.d/samba status
+
+Obsolete:
+(
+cp -p /usr/local/etc/rc.d/samba.sh /home/bup/update/samba/samba.sh-`date +%d%m%y`
+cp -p /usr/local/etc/recycle.conf /home/bup/update/samba/recycle.conf-`date +%d%m%y`
+cp -rp /usr/local/private /home/bup/update/samba/private-`date +%d%m%y`
+)
+
+
+= phpgroupware =
+
+Backup htdocs and maybe any Databases.
+
+
+= moregroupware =
+
+Backup htdocs and maybe any Databases.
+
+= imap-uw =
+
+Just Update
+
+
+= enigmail =
+
+You have to manually delete the components database (compreg.dat), located in
+your profile directory in order to use enigmail.
+
+If you upgraded Mozilla/Thunderbird from a previous release you have to
+remove also the XUL.mfasl file and the content of the chrome subdirectory.
+
+
+= php4-php5 =
+
+Check what is running on that box and assure youself that the switch will be
+flawless.
+
+ pkg_delete php4-ctype-4.3.11  php4-domxml-4.3.11 php4-ftp-4.3.11
+ php4-gd-4.3.11 php4-gettext-4.3.11 php4-iconv-4.3.11 php4-imap-4.3.11
+ php4-ldap-4.3.11  php4-mbstring-4.3.11 php4-mcal-4.3.11 php4-mcrypt-4.3.11
+ php4-mhash-4.3.11 php4-mysql-4.3.11 php4-openssl-4.3.11  php4-pcre-4.3.11
+ php4-pear-4.3.11 php4-session-4.3.11  php4-xml-4.3.11 php4-zlib-4.3.11
+
+pkg_create -v -x -b apache-2.2 /home/bup/update/apache22/pkg-`date +%d%m%y`.tbz 
+portupgrade -Rri www/apache22
+
+
+qmrtg upgrade:
+
+dspam upgarde:
+
+mkdir -p /home/bup/update/dspam
+
+tar cfvpj /home/bup/update/dspam/dspam-3.6.6-`date +%d%m%y`.tbz \
+/usr/local/bin/dspam \
+/usr/local/bin/dspamc \
+/usr/local/bin/dspam_2sql \
+/usr/local/bin/dspam_admin \
+/usr/local/bin/dspam_train \
+/usr/local/bin/dspam_clean \
+/usr/local/bin/dspam_corpus \
+/usr/local/bin/dspam_crc \
+/usr/local/bin/dspam_dump \
+/usr/local/bin/dspam_genaliases \
+/usr/local/bin/dspam_logrotate \
+/usr/local/bin/dspam_merge \
+/usr/local/bin/dspam_stats \
+/usr/local/etc/dspam.conf \
+/usr/local/include/dspam/buffer.h \
+/usr/local/include/dspam/config.h \
+/usr/local/include/dspam/config_shared.h \
+/usr/local/include/dspam/decode.h \
+/usr/local/include/dspam/diction.h \
+/usr/local/include/dspam/error.h \
+/usr/local/include/dspam/heap.h \
+/usr/local/include/dspam/libdspam.h \
+/usr/local/include/dspam/libdspam_objects.h \
+/usr/local/include/dspam/nodetree.h \
+/usr/local/include/dspam/storage_driver.h \
+/usr/local/include/dspam/tokenizer.h \
+/usr/local/lib/libdspam.a \
+/usr/local/lib/libdspam.so \
+/usr/local/lib/libdspam.so.6 \
+/usr/local/lib/libdspam.la \
+/usr/local/lib/libdspam.so.7 \
+/usr/local/www/vhosts \
+/usr/local/libdata/pkgconfig/dspam.pc
+
+
+%%HASH%%bin/cssstat
+%%HASH%%bin/csscompress
+%%HASH%%bin/cssclean
+%%HASH%%bin/cssconvert
+%%DYNAMIC%%%%MYSQL%%lib/libmysql_drv.a
+%%DYNAMIC%%%%MYSQL%%lib/libmysql_drv.la
+%%DYNAMIC%%%%MYSQL%%lib/libmysql_drv.so
+%%DYNAMIC%%%%MYSQL%%lib/libmysql_drv.so.7
+
+chmod o+rx /var/db/dspam/
+chown vpopmail:vchkpw /usr/local/etc/dspam.conf
+chown -R vpopmail:vchkpq ~apache/hosts/ion.lu/dspa
+
+ezmlm-idx update:
+
+mkdir /home/bup/update/ezmlm-idx
+tar cfvpj /home/bup/update/ezmlm-idx/ezmlm-idx-`date +%d%m%y`.tbz \
+/usr/local/bin/ezmlm-accept \
+/usr/local/bin/ezmlm-archive \
+/usr/local/bin/ezmlm-cgi \
+/usr/local/bin/ezmlm-check \
+/usr/local/bin/ezmlm-clean \
+/usr/local/bin/ezmlm-cron \
+/usr/local/bin/ezmlm-gate \
+/usr/local/bin/ezmlm-get \
+/usr/local/bin/ezmlm-glconf \
+/usr/local/bin/ezmlm-idx \
+/usr/local/bin/ezmlm-issubn \
+/usr/local/bin/ezmlm-limit \
+/usr/local/bin/ezmlm-list \
+/usr/local/bin/ezmlm-make \
+/usr/local/bin/ezmlm-manage \
+/usr/local/bin/ezmlm-mktab \
+/usr/local/bin/ezmlm-moderate \
+/usr/local/bin/ezmlm-reject \
+/usr/local/bin/ezmlm-request \
+/usr/local/bin/ezmlm-return \
+/usr/local/bin/ezmlm-send \
+/usr/local/bin/ezmlm-split \
+/usr/local/bin/ezmlm-store \
+/usr/local/bin/ezmlm-sub \
+/usr/local/bin/ezmlm-test \
+/usr/local/bin/ezmlm-tstdig \
+/usr/local/bin/ezmlm-unsub \
+/usr/local/bin/ezmlm-warn \
+/usr/local/bin/ezmlm-weed \
+/usr/local/etc/ezmlm
+WITH_MYSQL=YES portupgrade ezmlm-idx
+
+update qmail-autoresponder:
+
+mkdir -p /home/bup/update/qmail-autoresponder
+cp /usr/local/bin/qmail-autoresponder /home/bup/update/qmail-autoresponder
+
+        + mail/qmail (qmail-1.03_4)
+        + security/courier-authlib-base (courier-authlib-base-0.57)
+        + databases/courier-authlib-userdb (courier-authlib-userdb-0.57)
+        + mail/vpopmail (vpopmail-5.4.10_3)
+        + mail/vqadmin (vqadmin-2.3.6)
+        + mail/courier-authlib-vchkpw (courier-authlib-vchkpw-0.58)
+        + graphics/dri (dri-6.2.1,2)
+        + textproc/wv (wv-1.0.0_4)
+        + www/horde (horde-php5-3.0.9)
+        + deskutils/kronolith (kronolith-2.0.6)
+        + ftp/gollem (gollem-1.0.1)
+        + deskutils/mnemo (mnemo-2.0.3)
+        + mail/ingo (ingo-1.0.2)
+        + mail/turba (turba-2.0.5)
+        + deskutils/nag (nag-2.0.4)
+        + mail/imp (imp-4.0.4_1)
+
+
+
+
+Buggy mofo:
+
+cd /usr/ports/databases/ruby-bdb && make deinstall && cd ../../port-mgmt/portupgrade && make deinstall reinstall clean
+
+stunnel update:
+
+mkdir -p /home/bup/update/stunnel
+tar cfvpj /home/bup/update/stunnel/stunnel-`date +%d%m%y`.tbz /usr/local/etc/stunnel /usr/local/etc/rc.d/stunnel.sh
+tail -F /var/log/smtps/current &
+svc -d /service/smtps
+svc -u /service/smtps
+
+
+joomla update:
+
+backup www dir
+
+cacti update:
+
+mkdir -p /home/bup/update/cacti
+tar cfvpj /home/bup/update/cacti/cacti-`date +%d%m%y`.tbz /usr/local/share/cacti
+
+= roundcube =
+
+mkdir -p /home/bup/update/roundcube
+tar cfvpj /home/bup/update/roundcube/roundcube-`date +%d%m%y`.tbz /usr/local/www/roundcube/config /usr/local/www/roundcube/sqlite.db /usr/local/www/roundcube/logs
+
+
+= jabberd =
+
+mkdir -p /home/bup/update/jabberd
+tar cfvpj /home/bup/update/jabberd/jabberd-usr-local-etc-`date +%d%m%y`.tbz /usr/local/etc/jabberd
+mysqldump dbjabberd > /home/bup/update/jabberd/dbjabberd.sql
+pkg_create -v -x -b jabberd /home/bup/update/jabberd/pkg-`date +%d%m%y`.tbz 
+
+= qmail =
+
+mkdir -p /home/bup/update/qmail
+tar cfvpj /home/bup/update/qmail/var-qmail-`date +%d%m%y`-etc.tbz /var/qmail
+pkg_create -v -x -b qmail /home/bup/update/qmail/pkg-`date +%d%m%y`.tbz 
+
+= lighttpd =
+
+mkdir -p /home/bup/update/lighttpd
+pkg_create -v -x -b lighttpd /home/bup/update/lighttpd/pkg-`date +%d%m%y`.tbz 
+cp /usr/local/etc/lighttpd.conf /home/bup/update/lighttpd/lighttpd.conf-`date +%d%m%y`
+portupgrade -Rri lighttpd
+/usr/local/etc/rc.d/lighttpd restart
+diff -u /usr/local/etc/lighttpd.conf /home/bup/update/lighttpd/lighttpd.conf-`date +%d%m%y`
+
+= asterisk =
+
+mkdir -p /home/bup/update/asterisk
+pkg_create -v -x -b asterisk-1.4 /home/bup/update/asterisk/pkg-`date +%d%m%y`.tbz 
+tar cfvpj /home/bup/update/asterisk/etc-asterisk-`date +%d%m%y`.tbz /usr/local/etc/asterisk
+
+= asterisk-addons =
+
+mkdir -p /home/bup/update/asterisk/addons
+pkg_create -v -x -b asterisk-addons /home/bup/update/asterisk/addons/pkg-`date +%d%m%y`.tbz 
+tar cfvpj /home/bup/update/asterisk/addons/etc-asterisk-`date +%d%m%y`.tbz /usr/local/etc/asterisk
+
+
+= trac =
+
+mkdir -p /home/bup/update/trac
+pkg_create -v -x -b trac /home/bup/update/trac/pkg-`date +%d%m%y`.tbz 
+tar cfvpj /home/bup/update/trac/home-trac-`date +%d%m%y`.tbz /home/trac
+
+= gallery2 =
+
+mkdir -p /home/bup/update/gallery2
+pkg_create -v -x -b gallery2 /home/bup/update/gallery2/pkg-`date +%d%m%y`.tbz 
+tar cfpj /home/bup/update/gallery2/main-dir.tbz /usr/local/www/gallery2
+
+= dhcpd =
+
+mkdir -p /home/bup/update/isc-dhcp3
+pkg_create -v -x -b isc-dhcp3 /home/bup/update/isc-dhcp3/pkg-`date +%d%m%y`.tbz
+tar cfpj /home/bup/update/isc-dhcp3/dhcpd-files.tbz /usr/local/etc/dhcpd.conf /var/db/dhcpd
+

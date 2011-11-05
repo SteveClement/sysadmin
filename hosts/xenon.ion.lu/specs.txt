@@ -1,0 +1,4 @@
+<server>
+ <name>xenon</name>
+ <cpu>Intel Pentium 4 2400Mhz FSB 800</cpu>
+</server>

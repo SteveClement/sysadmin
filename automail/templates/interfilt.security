@@ -1,0 +1,36 @@
+*Received: (qmail 74288 invoked by uid 89); 3 Sep 2007 02:23:07 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 02:23:07 +0200
+Received: (qmail 26772 invoked by uid 98); 3 Sep 2007 02:06:22 +0200
+Received: from 83.99.61.173 by radium.ion.lu (envelope-from <root@interfilt.ion.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(83.99.61.173):SA:0(3.4/7.0):. 
+ Processed in 3.542787 secs); 03 Sep 2007 00:06:22 -0000
+X-Spam-Status: No, score=3.4 required=7.0
+X-Spam-Level: +++
+Received: from ip-83-99-61-173.dyn.luxdsl.pt.lu (HELO interfilt.ion.lu) (83.99.61.173)
+  by radium.ion.lu with SMTP; 3 Sep 2007 02:06:18 +0200
+Received-SPF: none (radium.ion.lu: domain at interfilt.ion.lu does not designate permitted sender hosts)
+Received: (qmail 12622 invoked by alias); 3 Sep 2007 03:01:09 +0200
+Delivered-To: root@interfilt.ion.lu
+Received: (qmail 12604 invoked by uid 0); 3 Sep 2007 03:01:09 +0200
+Date: 3 Sep 2007 03:01:09 +0200
+Message-ID: <20070903010109.12602.qmail@interfilt.ion.lu>
+From: root@interfilt.ion.lu
+To: root@interfilt.ion.lu
+Subject: interfilt.ion.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+interfilt.ion.lu login failures:
+
+interfilt.ion.lu refused connections:
+
+-- End of security output --

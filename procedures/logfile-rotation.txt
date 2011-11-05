@@ -1,0 +1,12 @@
+The FreeBSD log rotation process.
+
+newsyslog runs from cron every hour.
+/etc/newsyslog.conf 
+
+i changed count to 6 - as there was already messages.5.gz
+i then changed size to 50 temporally. (messages was 54kB)
+ran newsyslog manually. then put it back to 100. (kB)
+
+# logfilename          [owner.group]    mode count size when [ZB]
+/var/log/messages                       664  6     100  *     Z
+

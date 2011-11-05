@@ -1,0 +1,28 @@
+To get WinCVS talking to putty you need to do the following:
+
+Create maybe a batch file so this stuff gets included by default in WinCVS
+
+set CVS_RSH="\Program Files\putty\plink.exe"
+set PLINK_PROTOCOL=ssh
+"c:\Program Files\GNU\WinCvs 1.2\wincvs.exe"
+
+Now create a session in Putty to your CVS "Server"
+We'll call it: ioncvs
+
+now in WinCVS go:
+
+Admin->Preferences
+In general enter CVSROOT:
+:ext:ioncvs:/home/cvs
+Authentication:
+SSH Server
+
+-> Ports
+Alternate rsh name:
+C:\Program Files\putty\plink.exe
+Click OK
+
+Admin->Command line
+cvs co MYREPOOOO
+
+DONE!

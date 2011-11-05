@@ -1,0 +1,14 @@
+#!/usr/local/bin/bash
+
+if [ "$2" == "" ]; then
+  echo -e "\nUsage: $0 dir loguser\n";
+  exit 100
+ fi
+
+mkdir -p $1/log/main
+chown $2 $1/log/main
+
+echo -e "#!/bin/sh\nexec 2>&1" > $1/run
+echo -e "#!/bin/sh\nexec setuidgid $2 multilog t ./main" > $1/log/run
+
+chmod 0755 $1/run $1/log/run

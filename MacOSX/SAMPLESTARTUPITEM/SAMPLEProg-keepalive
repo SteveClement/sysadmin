@@ -1,0 +1,21 @@
+#!/bin/sh 
+#
+# Start SSHKeychain-keepalive Version 0.1
+# This little script, as you might imagine, will relaunch SSHKeychain
+# when a user logs out and the OS kills the process (because it's running an event loop)
+# 
+
+RESULT=15
+
+# OS X will send a SIGINT or SIGTERM to shutdown SSHKeychain
+# On a SIGHUP we'll stop properly (this is what the server returns internally when an error occurs) - should change
+while [ "$RESULT" != "1" ]
+do
+	echo "SSHKeychain: Starting SSHKeychain Agent Manager"
+	$@
+	RESULT=$?
+	sleep 8
+done
+
+echo "SSHKeychain Shutdown with exit status" $RESULT
+

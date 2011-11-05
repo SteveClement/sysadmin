@@ -1,0 +1,41 @@
+qmail setup from ports
+----------------------
+
+All done by the port, for a basic, forward only, qmail install install from
+ports.
+For more complex setups, install from ports first and then hack into the ports
+dir and make the appropriate patch to qmail after the native patches step.
+Note that these are correct for version 1.03 of qmail.
+
+After having built a default ION Box go to:
+
+cd /usr/ports/mail/qmail-smtp_auth+tls && make deinstall install
+/var/qmail/scripts/enable-qmail
+rm /usr/local/etc/rc.d/qmail.sh
+mkdir -p /var/log/qmail/qmail-send
+mkdir -p /var/log/qmail/qmail-smtpd
+chown -R qmaill:wheel /var/log/qmail
+chmod -R 750 /var/log/qmail
+
+mkdir -p /var/qmail/supervise/qmail-send/log
+mkdir -p /var/qmail/supervise/qmail-smtpd/log
+mkdir /var/service
+chmod +t /var/qmail/supervise/qmail-send
+chmod +t /var/qmail/supervise/qmail-smtpd
+cp -i /home/steve/work/kierbiischt-ion-sysadmin/configs/common/var/qmail/alias/.qmail* /var/qmail/alias/
+cp -i /home/steve/work/kierbiischt-ion-sysadmin/configs/common/var/qmail/control/* /var/qmail/control/
+cp /home/steve/work/kierbiischt-ion-sysadmin/configs/common/var/qmail/rc /var/qmail/
+cp /home/steve/work/kierbiischt-ion-sysadmin/configs/common/var/qmail/supervise/qmail-send/run /var/qmail/supervise/qmail-send
+cp /home/steve/work/kierbiischt-ion-sysadmin/configs/common/var/qmail/supervise/qmail-send/log/run /var/qmail/supervise/qmail-send/log
+cp /home/steve/work/kierbiischt-ion-sysadmin/configs/common/var/qmail/supervise/qmail-smtpd/run /var/qmail/supervise/qmail-smtpd
+cp /home/steve/work/kierbiischt-ion-sysadmin/configs/common/var/qmail/supervise/qmail-smtpd/log/run /var/qmail/supervise/qmail-smtpd/log
+cp /home/steve/work/kierbiischt-ion-sysadmin/configs/common/var/qmail/bin/qmailctl-smtpd /var/qmail/bin/qmailctl
+ln -s /var/qmail/alias/.qmail-root /var/qmail/alias/.qmail-anonymous
+chmod 644 /var/qmail/alias/.qmail*
+chmod 755 /var/qmail/rc
+chmod 751 /var/qmail/supervise/qmail-smtpd/run /var/qmail/supervise/qmail-smtpd/log/run
+chmod 751 /var/qmail/supervise/qmail-smtpd/run /var/qmail/supervise/qmail-smtpd/log/run
+ln -s /var/qmail/bin/qmailctl /usr/bin
+echo 192.168.0.:allow,RELAYCLIENT=\"\",RBLSMTPD=\"\" >> /etc/tcp.smtp
+ln -s /var/qmail/supervise/qmail-send /var/service
+ln -s /var/qmail/supervise/qmail-smtpd /var/service

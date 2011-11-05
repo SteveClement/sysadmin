@@ -1,0 +1,9 @@
+To activate that protocol:
+
+vi /var/qmail/control/qmqpserver
+ADD 127.0.0.1 if have configured Stunnel OR
+ADD 80.90.47.168 (YOU HAVE TO SPECIFY THE IP FQDN DOES NOT WORK!!!)
+
+cd /var/qmail/bin
+mv qmail-queue qmail-queue-`date +%d%m%y`
+ln -s qmail-qmqpc qmail-queue

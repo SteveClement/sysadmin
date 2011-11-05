@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
+<plist version="0.9">
+<dict>
+        <key>Description</key>
+        <string>SSHKeychain Agent Manager</string>
+        <key>Messages</key>
+        <dict>
+                <key>start</key>
+                <string>Starting SSHKeychain Agent Manager</string>
+                <key>stop</key>
+                <string>Stopping SSHKeychain Agent Manager</string>
+        </dict>
+        <key>OrderPreference</key>
+        <string>None</string>
+        <key>Provides</key>
+        <array>
+                <string>SSHKeychain</string>
+        </array>
+        <key>Requires</key>
+        <array>
+                <string>Network</string>
+                <string>System Log</string>
+        </array>
+</dict>
+</plist>

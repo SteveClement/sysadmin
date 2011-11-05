@@ -1,0 +1,315 @@
+Asterisk sources first:
+
+http://www.linuxjournal.com/article/6769
+http://www.linuxjournal.com/article/8591
+
+ISDN configurations:   The form of ISDN of most interest to broadcasters and
+audio professionals is Basic Rate Interface, or BRI. (In Europe, this service
+is called S0.) On a single pair of ordinary phone wires, BRI offers two
+"bearer" channels at a 64kbps transmission rate and one "data" channel at
+16kbps. This configuration is often referred to as 2B+D. When ISDN BRI is
+installed in your facility, each line is brought in on only one pair of wires.
+
+http://www.linuxjournal.com/article/9399
+
+http://www.linuxjournal.com/article/8592
+http://www.linuxjournal.com/article/9104
+
+reload - soft-restarts Asterisk and updates internal configs 
+    with changes you've made to /etc/asterisk/* - does not hang up calls
+
+show dialplan - shows the full dialplan of how your calls will be handled
+
+sip show peers - shows all registered SIP clients
+
+sip show channels - shows current "live" channels that are in 
+    use by SIP clients (off-hook)
+
+stop gracefully - shuts down Asterisk after all calls have hung up
+
+stop now - shuts down Asterisk, hanging up any current calls
+
+
+
+New files:
+
+sip.conf
+
+[general]
+
+port = 5060           ; Port to bind to (SIP is 5060)
+bindaddr = 0.0.0.0    ; Address to bind to (all addresses on machine)
+allow=all             ; Allow all codecs
+context = bogon-calls ; Send SIP callers that we don't know about here
+
+[2000]
+
+type=friend           ; This device takes and makes calls
+username=2000         ; Username on device
+secret=9overthruster7 ; Password for device
+host=dynamic          ; This host is not on the same IP addr every time
+context=from-sip      ; Inbound calls from this host go here
+mailbox=100           ; Activate the message waiting light if this
+                      ; voicemailbox has messages in it
+
+[2001]                ; Duplicate of 2000, except with different auth data
+
+type=friend
+username=2001
+secret=11bbanzai9
+host=dynamic
+context=from-sip
+mailbox=101
+
+
+
+extensions.conf
+
+[general]
+
+static=yes       ; These two lines prevent the command-line interface
+writeprotect=yes ; from overwriting the config file. Leave them here.
+
+[bogon-calls]
+
+;
+; Take unknown callers that may have found
+; our system, and send them to a re-order tone.
+; The string "_." matches any dialed sequence, so all
+; calls will result in the Congestion tone application
+; being called. They'll get bored and hang up eventually.
+;
+
+exten => _.,1,Congestion 
+
+[from-sip]
+
+;
+; If the number dialed by the calling party was "2000", then
+; Dial the user "2000" via the SIP channel driver. Let the number
+; ring for 20 seconds, and if no answer, proceed to priority 2.
+; If the number gives a "busy" result, then jump to priority 102
+;
+
+exten => 2000,1,Dial(SIP/2000,20)
+
+;
+; Priority 2 send the caller to voicemail, and gives the "u"navailable
+; message for user 2000, as recorded previously. The only way out
+; of voicemail in this instance is to hang up, so we have reached
+; the end of our priority list.
+;
+
+exten => 2000,2,Voicemail(u2000)
+
+;
+; If the Dialed number in priority 1 above results in
+; a "busy" code, then Dial will jump to 101 + (current priority)
+; which in our case will be 101+1=102. This +101 jump is built
+; into Asterisk and does not need to be defined.
+;
+
+exten => 2000,102,Voicemail(b2000)
+exten => 2000,103,Hangup
+
+;
+; Now, what if the number dialed was "2001"?
+;
+
+exten => 2001,1,Dial(SIP/2001,20)
+exten => 2001,2,Voicemail(u2001)
+exten => 2001,102,Voicemail(b2001)
+exten => 2001,103,Hangup
+
+;
+; Define a way so that users can dial a number to reach
+; voicemail. Call the VoicemailMain application with the
+; number of the caller already passed as a variable, so
+; all the user needs to do is type in the password.
+;
+
+exten => 2999,1,VoicemailMain(${CALLERIDNUM})
+
+Now, we're almost ready to go. Actually, we've completed everything that is
+required for two phones to call each other, but we still need to assemble the
+configuration files that will know how to save messages in case a line is busy
+or "unavailable." Note that Asterisk treats phones that are turned off or are
+otherwise not registered as "Busy" and not "Unavailable" -- the status of
+"Unavailable" usually refers to a situation where nobody has answered the
+phone in the given number of seconds.
+
+Before we can use our voicemail system, we need to create empty voicemail
+boxes for each user. This is done using the script located at
+/usr/src/asterisk/addmailbox, which is simply a small shell script that
+creates a directory and puts some default greetings into place. Run addmailbox
+twice, specifying "2000" and "2001" as the mailboxes that you wish to create.
+voicemail.conf
+
+[general]
+
+format=wav
+
+[local]
+
+;
+; format: password, name, email address for attached voicemail msgs
+;
+
+2000 => 4321,John Whorfin,jwhorfin@planet10.com
+2001 => 8383,Sidney Zweibel,newjersey@banzaiinstitute.com
+
+
+
+If you go immediately to the "Busy" message, it's probably because your phone
+client hasn't registered with the Asterisk server -- make sure it's sending
+server registry statements, as these are the "heartbeats" that Asterisk uses
+to ensure that a remote client is available for inbound calls. If you have
+your registry interval set to more than 15 seconds, you'll need to wait at
+least that long for the SIP client to register (once Asterisk is started)
+before calls can be sent to that phone.
+
+
+
+Try leaving voicemail for extension 2000. From extension 2000, dial 2999 and
+you should hear a prompt for the password -- you won't need to type in the
+extension for which you are trying to retrieve mail, as it is automatically
+entered with the addition of the ${CALLERIDNUM} variable as an argument to the
+VoiceMailMain line -- this types in the correct extension automatically.
+Extension 2999 has a password of 4321, so type in "4321#" -- the # sign is
+equivalent to "enter." Then follow the prompts to retrieve the mail. You can
+also change the greetings on the line -- experiment a bit with the different
+options within voicemail.
+
+Hopefully this all worked for you. Often, getting the first implementation up
+and running is a process of trial-and-error, and the added complexity of the
+SIP clients can make this an exhaustive reduction in variables. Feel free to
+ask the asterisk-users mailing list any specific questions you might have
+after reviewing the archives -- both resources are very useful to the
+beginner.
+Debugging
+
+SIP is a bit tricky to start out with. I would strongly suggest that your
+Asterisk server and both phones are on the same network segment when you begin
+your testing; having one or more devices processed through a firewall or NAT
+will cause you quite a few ulcers, and will almost certainly not work during
+your testing.
+
+Make sure your SIP phones are sending correct REGISTER statements to the
+server -- without valid registration, the Asterisk process will not know where
+to send a call destined for that extension. Try sip show peers to see if the
+IP address of your phone shows up and is valid.
+
+If SIP registration seems to be the problem, you can try removing the secret=
+lines and specifying an IP address of the phone in the host= line. This will
+lock the phones onto specific addresses and remove any registration issues you
+might be having.
+
+I have found the tethereal tool (part of the ethereal network sniffer toolset)
+to be immensely valuable. tethereal -n ip and port 5060 will debug SIP packets
+in a human-readable form, and should show you what is happening on the wire
+when testing.
+
+Another important debugging technique is to run asterisk in "full debug mode."
+This is done with asterisk -vvvvvgcd and puts all possible debugging
+information on your console. Also make sure that your SIP client is using the
+G.711 codec (either alaw or ulaw) as that is a codec that is known to work
+with Asterisk.
+Additional Features
+To list Asterisk's full feature set would take quite a while, as it is just as
+much a toolkit as a set of applications. Some things I've implemented for
+myself and other customers include:
+
+    * Telemarketer block: Forces callers without caller ID to enter valid
+    * info, or hangs up.
+    * Zapateller: Used with telemarketer block -- plays three-tone
+    * "disconnected number" for callers with no caller ID, which auto-removes
+    * from many phone spam networks.
+    * Dual ring: Phones at the office and at home ring at the same time,
+    * during certain hours.
+    * PBX long distance gateway: PRI interface to Asterisk box, then
+    * low-priced ITSP to get better LD rates using existing PBX.
+    * IVR interface: Use as an inbound call center pre-processor.
+    * International toll avoidance: One in the HQ in each continent allows for
+    * centrex-style dialing over the Internet.
+    * Voicemail: Stand-alone voicemail server interfaces with existing PBX --
+    * low-cost solution to otherwise expensive upgrade.
+    * Monitoring system: Intelligent dial-out platform that can verbalize
+    * network problems and take actions based on IVR.
+    * NAT traversal: Asterisk can work with SIP clients behind NATs with no
+    * additional software (see nat=1 in sip.conf).
+
+Digium makes a low-cost ($100) analog FXO (Foreign Exchange Office -- meaning,
+it accepts a wire that has dialtone on it) PCI card that can be used to
+connect your home or office phone line into Asterisk. Add to this a Cisco
+ATA-186 (~$150) for two lines of FXS (handsets) use, and you can have a
+mini-PBX in your house with extremely powerful features for about $250, plus
+the cost of a reasonably decent old PC that you may have laying around. I've
+had acceptable experiences running with a 400mhz PIII with two lines. I've
+found that putting one of these systems together with an FXO card is a fast
+way to convince others that OSS VoIP platforms are ready to be examined as a
+serious possibility for the office environment, since one can attach the
+machine directly to the existing PBX (assuming you can get an analog line off
+of your PBX system).
+
+Related Reading
+Practical VoIP Using VOCAL
+
+Practical VoIP Using VOCAL
+By David G. Kelly, Cullen Jennings, Luan Dang
+Table of Contents
+Index
+Sample Chapter
+
+Read Online--Safari Search this book on Safari:
+ 
+
+Code Fragments only
+
+More complex Asterisk configurations and some other SIP-related examples can
+be found on my web site.
+Other Projects and Resources
+Servers/Software
+
+There are several SIP implementations that are OSS, but they are primarily
+what are known as "call proxies" instead of more full-featured PBX
+applications. This means that they function only to connect two endpoints
+together, and are basically just large, fast, directory servers. Examples of
+SIP Proxies are ser and Vocal. There are also other open source PBX projects
+like Bayonne and OpenPBX, which have slightly different feature sets than
+Asterisk.
+Long Distance/Free Services
+
+There are also now retail vendors of SIP long distance service, which are
+called Internet Telephony Service Providers (ITSPs.) Vendors such as
+iconnecthere (formerly Deltathree) have rates in the $.01-per-minute category
+anywhere in the U.S., and I expect that some searching will find similar
+vendors in Europe and Asia. There are also no-cost solutions like Free World
+Dialup that are limited to calling users via IP only, but you can mix/match
+dialplans so you can reach all destinations from the same phone, if that phone
+is routed through Asterisk. There are other SIP long distance providers, but
+to my knowledge all of the others (Vonage, Packet8) require you to use their
+equipment, thus making use with Asterisk impossible.
+SIP Hardware
+
+Cisco ATA-186 	(About $150 new) 	Supplies two FXS ports (standard
+phones plug into FXS ports)
+Cisco 7960/7940 	(About $300 used) 	Deskset with XML-programmable
+six-line LCD
+Digium 	($100-$500 new) 	Variety of PCI cards for direct telephony
+connections to Asterisk servers
+Pingtel 	(About $550 new) 	Deskset with LCD
+SNOM 200 	(About $290 new) 	Deskset with LCD
+Grandstream 	(About $85 new) 	Deskset with small LCD
+
+SIP Software/Hardware
+
+SIP Product List: Lists of hardphones, softphones, and other servers
+
+IPTel.org: Lists of hardphones, softphones, and other servers
+
+John Todd is the CTO of TalkPlus, Inc. which is a next-generation mobile
+identity management and enhanced call services provider. 
+
+config files:
+
+http://www.loligo.com/asterisk/current/

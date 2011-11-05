@@ -1,0 +1,9 @@
+#!/bin/sh
+# Process the -t flag - this allows interactive commands to be run via root/rootdo
+if [ X$1 = X-t ]
+then
+        flags=-t
+        shift
+fi
+
+ssh $flags -l root -p 222 localhost "$@"

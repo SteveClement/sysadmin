@@ -1,0 +1,51 @@
+slowlaris vx disk management 
+
+for cellnet we use this stuff. from time to time you need to add
+partitions for informix...
+
+to see what the current partitions look like:
+
+  vxprint | grep ^v
+
+should produce something like:
+
+  v  blobs1l      fsgen        ENABLED  4096000  -        ACTIVE   -       -
+  v  blobs1m      fsgen        ENABLED  4096000  -        ACTIVE   -       -
+  v  dbs1         fsgen        ENABLED  4096000  -        ACTIVE   -       -
+  v  dbs1a        fsgen        ENABLED  4096000  -        ACTIVE   -       -
+  v  dbs1b        fsgen        ENABLED  4096000  -        ACTIVE   -       -
+  v  dbs1c        fsgen        ENABLED  4096000  -        ACTIVE   -       -
+  v  dbs1d        fsgen        ENABLED  4096000  -        ACTIVE   -       -
+  v  dbs1e        fsgen        ENABLED  4096000  -        ACTIVE   -       -
+  v  dbs1f        fsgen        ENABLED  4096000  -        ACTIVE   -       -
+  v  dbs1g        fsgen        ENABLED  4096000  -        ACTIVE   -       -
+  v  dropoffs     fsgen        ENABLED  4096000  -        ACTIVE   -       -
+  v  home         fsgen        ENABLED  16384000 -        ACTIVE   -       -
+  v  qcache       fsgen        ENABLED  4096000  -        ACTIVE   -       -
+  v  qmail        fsgen        ENABLED  4096000  -        ACTIVE   -       -
+  v  rootdbs      fsgen        ENABLED  4096000  -        ACTIVE   -       -
+  v  swapvol2     fsgen        ENABLED  25165824 -        ACTIVE   -       -
+  v  swapvol3     fsgen        ENABLED  25165824 -        ACTIVE   -       -
+  v  tempdbs      fsgen        ENABLED  4096000  -        ACTIVE   -       -
+  v  tmp          fsgen        ENABLED  8192000  -        ACTIVE   -       -
+  v  varlog       fsgen        ENABLED  16384000 -        ACTIVE   -       -
+  v  www          fsgen        ENABLED  8096000  -        ACTIVE   -       -
+  v  logdbs       fsgen        ENABLED  4096000  -        ACTIVE   -       -
+
+the main thing is to get the size right - in this example we're creating 
+another dbchunk, so we want to use 4096000 and the next sequence is dbs1h...
+
+  vxassist make dbs1h 4096000 layout=mirror,stripe
+
+then we point tim's device aliases...
+
+  cd /dev/dbdev/
+  ln -s /dev/vx/rdsk/rootdg/dbs1h
+  chown -R informix:informix dbs1h
+  chmod -R g+rw dbs1h 
+
+and check your handywork
+
+  ls -lL
+
+tim then needs to do some informix majik.

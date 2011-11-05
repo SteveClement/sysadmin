@@ -1,0 +1,120 @@
+Automail Procedure file initially written by Steve Clement
+<steve@aldigital.co.uk>:
+
+Automail lives in the suppose-aldigital-tools repo. So check it out NOW!
+
+How to template machines?
+-------------------------
+
+Fairly easy, you need to know the hostname of the box and the "kind"
+of mail your getting for instance we have george.inv.thebunker.net's
+security output this would be the template: george.security. So you go
+into suppose-aldigital-tools/automail and say:
+
+./grab.pl george.security
+
+If you get:
+
+ls: /home/automail/store/2001.07.31/*george*security*: No such file or
+directory
+
+The mail is probably dated earlier than todays date, then you need to
+use the --offset switch: ./grab --offset=5 georger.security That puts
+you 5 days into the past, just take the newest dated mail output and
+adjust "offset" accordingly.
+
+Finally if you've found the right template you get asked: Copy
+/home/automail/store/2001.07.26/george.inv.thebunker.net-2001.07.26.01.00.59-george.inv.thebunker.net_security_check_output
+to templates/george.security?
+
+Say y here, then it tries to open the editor with whatever is in the EDITOR
+variable. Now you need to put a star as the first character of the first line - this is because some mailers recognise
+lines in this format as breaks between mails. Do the appropriate
+changes in the different sections to sensible values and save the
+file. Commit your changes back to the repo and hand it off by typing
+"make" in the top directory.
+
+Do those steps for all mail outputs to be templated - only if automail
+says "missing template", of course. Usually the function of a mail
+output is highlighted in the mail subject line. And according to that
+the templates in the repo. are named e.g: Daily output, <host>.daily |
+Backup output, <host>.backup Take a look in templates to see wots wot.
+
+Note that if you tell grab to get x.y, then it looks for a file called
+*x*y. Amazingly, this is almost always right!
+
+Also, if the file subject is not one automail automatically recognizes
+(all it knows about are daily, weekly, monthly and security mails),
+then you must specify the type of mail by adding headers. See below
+for options.
+
+Next read on how to do a handoff.
+
+How to adjust templates?
+------------------------
+
+Very easy again, you go into
+suppose-aldigital-tools/automail/templates/ , and edit the mail
+outputs file e.g: <host>.<mail_output_function> Add or remove the
+different parts you want to template and save the file commit it back
+in, and hand it off.
+
+Mandatory: insert an asterix at the start of the From: line, generally
+the first line of the mail, viz:
+
+From: root@foo.thebunker.net
+	becomes
+*From: root@foo.thebunker.net
+
+(no whitespace between asterix and From)
+
+How to handoff Automails?
+-------------------------
+
+Is the easiest of all, go to suppose-aldigital-tools/automail and
+type: make Make sure that you have commited all your changes back to
+the repo. and that you have access to male...
+
+
+Automail Headers
+----------------
+
+These headers can be added to the end of the mail headers to tell
+automail how to process the mail.
+
+X-Automail-Type: <type>
+-----------------------
+
+<type> is one of:
+
+monolith		expect the mail to look exactly the same
+
+monolith-pattern	compare the mail line-by-line using regular
+			expressions
+
+monolith-backup		expect a backup mail (note that comparison is
+			still using regular expressions)
+
+monolith-pattern-optional
+			expect each line in the mail to be matched by
+			a line in the template
+
+Every non-standard mail must have a type.
+
+X-Automail-Frequency: <frequency>
+---------------------------------
+
+<frequency> is one of:
+
+daily
+weekly
+monthly
+random
+
+Every non-standard mail MUST have a frequency.
+
+X-Automail-Backup-Days-Off: <day list>
+--------------------------------------
+
+<day list> is a space separated list of days (three letter versions)
+that the backup is expected to fail on.

@@ -1,0 +1,11 @@
+--- nis.schema.default	Thu Sep  9 19:55:38 2004
++++ nis.schema	Tue Mar 30 15:25:46 2004
+@@ -34,7 +21,7 @@
+ 
+ # Attribute Type Definitions
+ 
+-attributetype ( 1.3.6.1.1.1.1.0 NAME 'uidNumber'
++attributetype ( 1.3.6.1.1.1.1.0 NAME ( 'uidNumber' 'rid' )
+ 	DESC 'An integer uniquely identifying a user in an administrative domain'
+ 	EQUALITY integerMatch
+ 	SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE )

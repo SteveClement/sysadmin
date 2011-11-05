@@ -1,0 +1,1 @@
+This file contains any descriptions that go with that host, like GeoGraphical locations for home routers or any other relevant notes and maybe a little bit of a history about any issues with that host.

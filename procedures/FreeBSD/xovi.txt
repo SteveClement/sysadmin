@@ -1,0 +1,8 @@
+xovi compile:
+
+libglut
+sdl12
+boost
+
+Some Distros like to split up boost into sub-packages so if you get include errors about boost/graph make sure you have that package (Happened to me on Ubuntu)
+

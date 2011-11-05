@@ -1,0 +1,14 @@
+--- chg-chio-nopicker   Thu Feb  8 14:05:38 2001
++++ chg-chio    Thu Feb  8 13:59:57 2001
+@@ -229,9 +229,10 @@
+                $max_slot       = $1 if $line =~ m/(\d+) slot/i;
+                $max_drive      = $1 if $line =~ m/(\d+) drive/i;
+                $max_picker     = $1 if $line =~ m/(\d+) picker/i;
+-
+        }
+        close(FH);
++       # some drives don't report the picker!
++       $max_picker=1 if $max_picker == 0;
+        if ( $max_drive == 0 or $max_picker == 0 ) {
+                print "$progname: No drive or picker ? ($max_drive/$max_picker)\n";
+                exit(2);

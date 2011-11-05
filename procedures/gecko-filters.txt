@@ -1,0 +1,26 @@
+This is a guid to locate and manually edit the Message filters of Mozila Like Mail clients.
+
+Locate you profile directory in your home dir, to give you an approximate idea mine is:
+
+/Users/steve/Library/Thunderbird/Profiles/default/yvgtmnc9.slt/ImapMail/imap.ion.lu
+
+the Imap stuff is my MAIN mail server (incoming) adapt the directory to your setup.
+
+In that directory there should be a file called msgFilterRules.dat or similar it looks like this:
+
+version="8"
+logging="no"
+name="Virus Filter"
+enabled="yes"
+type="1"
+action="Move to folder"
+actionValue="imap://steve@imap.ion.lu/INBOX/Qmail-scanned"
+condition="OR (subject,contains,Disallowed Attachment)"
+
+
+For the spam filters Mozilla creates a BINARY file called training.dat so no joy here....
+BREAKING 3months old news: http://bayesjunktool.mozdev.org/index.html
+
+so we can take a look into da training.dat file...
+
+Regular filters take precedence over spam filters, but as soon as you access a mail folder where theres filtered mail the Spam Filtering takes place

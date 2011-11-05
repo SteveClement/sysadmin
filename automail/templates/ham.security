@@ -1,0 +1,321 @@
+*Received: (qmail 77257 invoked by uid 89); 3 Sep 2007 03:04:26 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 03:04:26 +0200
+Received: (qmail 29814 invoked by uid 98); 3 Sep 2007 02:47:41 +0200
+Received: from 80.90.58.102 by radium.ion.lu (envelope-from <root@ham.ion.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(80.90.58.102):SA:0(2.1/7.0):. 
+ Processed in 6.988498 secs); 03 Sep 2007 00:47:41 -0000
+X-Spam-Status: No, score=2.1 required=7.0
+X-Spam-Level: ++
+Received: from vodsl-5222.vo.lu (HELO ham.ion.lu) (80.90.58.102)
+  by radium.ion.lu with SMTP; 3 Sep 2007 02:47:33 +0200
+Received-SPF: none (radium.ion.lu: domain at ham.ion.lu does not designate permitted sender hosts)
+Received: (qmail 16450 invoked by alias); 3 Sep 2007 03:03:49 +0200
+Delivered-To: root@ham.ion.lu
+Received: (qmail 16399 invoked by uid 0); 3 Sep 2007 03:03:48 +0200
+Date: 3 Sep 2007 03:03:48 +0200
+Message-ID: <20070903010348.16383.qmail@ham.ion.lu>
+From: root@ham.ion.lu
+To: root@ham.ion.lu
+Subject: ham.ion.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+ham.ion.lu login failures:
+Sep  2 16:36:10 ham sshd[13591]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:12 ham sshd[13593]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:14 ham sshd[13595]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:17 ham sshd[13597]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:22 ham sshd[13599]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:24 ham sshd[13601]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:27 ham sshd[13603]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:29 ham sshd[13605]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:31 ham sshd[13607]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:33 ham sshd[13609]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:36 ham sshd[13611]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:38 ham sshd[13613]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:40 ham sshd[13615]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:43 ham sshd[13617]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:45 ham sshd[13619]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:48 ham sshd[13621]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:50 ham sshd[13623]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:52 ham sshd[13625]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:55 ham sshd[13627]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:57 ham sshd[13629]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:36:59 ham sshd[13631]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:02 ham sshd[13633]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:04 ham sshd[13635]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:06 ham sshd[13637]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:08 ham sshd[13639]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:11 ham sshd[13641]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:13 ham sshd[13643]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:15 ham sshd[13645]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:18 ham sshd[13647]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:20 ham sshd[13649]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:22 ham sshd[13651]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:25 ham sshd[13653]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:27 ham sshd[13655]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:29 ham sshd[13657]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:32 ham sshd[13659]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:34 ham sshd[13661]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:36 ham sshd[13663]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:39 ham sshd[13665]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:41 ham sshd[13667]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:43 ham sshd[13669]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:45 ham sshd[13671]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:48 ham sshd[13673]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:50 ham sshd[13675]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:52 ham sshd[13677]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:55 ham sshd[13679]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:57 ham sshd[13681]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:37:59 ham sshd[13683]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:02 ham sshd[13685]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:04 ham sshd[13687]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:06 ham sshd[13689]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:09 ham sshd[13691]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:11 ham sshd[13693]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:13 ham sshd[13695]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:16 ham sshd[13697]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:18 ham sshd[13699]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:20 ham sshd[13701]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:23 ham sshd[13703]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:25 ham sshd[13705]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:27 ham sshd[13707]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:30 ham sshd[13709]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:32 ham sshd[13711]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:34 ham sshd[13713]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:37 ham sshd[13715]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:39 ham sshd[13717]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:42 ham sshd[13719]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:44 ham sshd[13721]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:46 ham sshd[13723]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:48 ham sshd[13725]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:51 ham sshd[13727]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:53 ham sshd[13729]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:55 ham sshd[13731]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:38:58 ham sshd[13733]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:00 ham sshd[13735]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:02 ham sshd[13737]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:04 ham sshd[13739]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:07 ham sshd[13741]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:09 ham sshd[13743]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:11 ham sshd[13745]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:14 ham sshd[13747]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:16 ham sshd[13749]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:18 ham sshd[13751]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:21 ham sshd[13753]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:23 ham sshd[13755]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:25 ham sshd[13757]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:27 ham sshd[13759]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:30 ham sshd[13761]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:32 ham sshd[13763]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:34 ham sshd[13765]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:37 ham sshd[13767]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:39 ham sshd[13769]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:41 ham sshd[13771]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:43 ham sshd[13773]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:46 ham sshd[13775]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:48 ham sshd[13777]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:50 ham sshd[13779]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:53 ham sshd[13781]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:55 ham sshd[13783]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:39:58 ham sshd[13785]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:00 ham sshd[13787]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:02 ham sshd[13789]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:04 ham sshd[13797]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:07 ham sshd[13800]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:09 ham sshd[13802]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:11 ham sshd[13804]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:14 ham sshd[13806]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:16 ham sshd[13808]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:18 ham sshd[13810]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:20 ham sshd[13812]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:23 ham sshd[13814]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:25 ham sshd[13816]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:27 ham sshd[13818]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:30 ham sshd[13820]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:32 ham sshd[13822]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:34 ham sshd[13824]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:37 ham sshd[13826]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:39 ham sshd[13828]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:41 ham sshd[13830]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:43 ham sshd[13832]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:46 ham sshd[13834]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:48 ham sshd[13836]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:50 ham sshd[13838]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:53 ham sshd[13840]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:55 ham sshd[13842]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:57 ham sshd[13844]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:40:59 ham sshd[13846]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:02 ham sshd[13848]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:04 ham sshd[13850]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:06 ham sshd[13852]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:09 ham sshd[13854]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:11 ham sshd[13856]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:13 ham sshd[13858]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:16 ham sshd[13860]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:18 ham sshd[13862]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:23 ham sshd[13864]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:25 ham sshd[13866]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:31 ham sshd[13868]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:33 ham sshd[13870]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:35 ham sshd[13872]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:38 ham sshd[13874]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:40 ham sshd[13876]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:42 ham sshd[13878]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:45 ham sshd[13880]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:47 ham sshd[13882]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:49 ham sshd[13884]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:51 ham sshd[13886]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:54 ham sshd[13888]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:41:59 ham sshd[13890]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:01 ham sshd[13892]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:04 ham sshd[13894]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:06 ham sshd[13896]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:08 ham sshd[13898]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:13 ham sshd[13900]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:16 ham sshd[13902]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:18 ham sshd[13904]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:20 ham sshd[13906]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:23 ham sshd[13908]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:25 ham sshd[13910]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:27 ham sshd[13912]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:30 ham sshd[13914]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:32 ham sshd[13916]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:34 ham sshd[13918]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:37 ham sshd[13920]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:39 ham sshd[13922]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:41 ham sshd[13924]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:44 ham sshd[13926]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:46 ham sshd[13928]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:48 ham sshd[13930]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+Sep  2 16:42:50 ham sshd[13932]: reverse mapping checking getaddrinfo for customer2-37-241.iplannetworks.net failed - POSSIBLE BREAKIN ATTEMPT!
+
+ham.ion.lu refused connections:
+
+Checking for a current audit database:
+
+Downloading fresh database.
+auditfile.tbz                                           43 kB   32 kBps
+New database installed.
+Database created: Mon Sep  3 02:40:01 CEST 2007
+
+Checking for packages with security vulnerabilities:
+
+Affected package: rsync-2.6.8_2
+Type of problem: rsync -- off by one stack overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/af8e3a0c-5009-11dc-8a43-003048705d5a.html>
+
+Affected package: cups-base-1.2.0_2
+Type of problem: xpdf -- stack based buffer overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/0e43a14d-3f3f-11dc-a79a-0016179b2dd5.html>
+
+Affected package: vim-7.0.35
+Type of problem: vim -- Command Format String Vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/1ed03222-3c65-11dc-b3d3-0016179b2dd5.html>
+
+Affected package: gd-2.0.33_4,1
+Type of problem: gd -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/6e099997-25d8-11dc-878b-000c29c5647f.html>
+
+Affected package: cups-base-1.2.0_2
+Type of problem: cups -- Incomplete SSL Negotiation Denial of Service.
+Reference: <http://www.FreeBSD.org/ports/portaudit/39988ee8-1918-11dc-b6bd-0016179b2dd5.html>
+
+Affected package: freetype2-2.1.10_3
+Type of problem: FreeType 2 -- Heap overflow vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/de2fab2d-0a37-11dc-aae2-00304881ac9a.html>
+
+Affected package: png-1.2.12_1
+Type of problem: png -- DoS crash vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/4cb9c513-03ef-11dc-a51d-0019b95d4f14.html>
+
+Affected package: samba-3.0.22,1
+Type of problem: samba -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/3546a833-03ea-11dc-a51d-0019b95d4f14.html>
+
+Affected package: php5-session-5.1.4
+Type of problem: php -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/f5e52bf5-fc77-11db-8163-000e0c2e438a.html>
+
+Affected package: php5-5.1.4
+Type of problem: php -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/f5e52bf5-fc77-11db-8163-000e0c2e438a.html>
+
+Affected package: samba-3.0.22,1
+Type of problem: samba -- potential Denial of Service bug in smbd.
+Reference: <http://www.FreeBSD.org/ports/portaudit/f235fe7a-b9ca-11db-bf0f-0013720b182d.html>
+
+Affected package: samba-3.0.22,1
+Type of problem: samba -- format string bug in afsacl.so VFS plugin.
+Reference: <http://www.FreeBSD.org/ports/portaudit/57ae52f7-b9cc-11db-bf0f-0013720b182d.html>
+
+Affected package: php5-session-5.1.4
+Type of problem: php -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/7fcf1727-be71-11db-b2ec-000c6ec775d9.html>
+
+Affected package: php5-5.1.4
+Type of problem: php -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/7fcf1727-be71-11db-b2ec-000c6ec775d9.html>
+
+Affected package: bind9-9.3.2
+Type of problem: bind9 -- Denial of Service in named(8).
+Reference: <http://www.FreeBSD.org/ports/portaudit/ef3306fc-8f9b-11db-ab33-000e0c2e438a.html>
+
+Affected package: gnupg-1.4.5_1
+Type of problem: gnupg -- remotely controllable function pointer.
+Reference: <http://www.FreeBSD.org/ports/portaudit/4db1669c-8589-11db-ac4f-02e081235dab.html>
+
+Affected package: ruby-1.8.5_3,1
+Type of problem: ruby -- cgi.rb library Denial of Service.
+Reference: <http://www.FreeBSD.org/ports/portaudit/a8674c14-83d7-11db-88d5-0012f06707f0.html>
+
+Affected package: ruby-1.8.5_3,1
+Type of problem: ruby -- cgi.rb library Denial of Service.
+Reference: <http://www.FreeBSD.org/ports/portaudit/ab8dbe98-6be4-11db-ae91-0012f06707f0.html>
+
+Affected package: php5-5.1.4
+Type of problem: php -- _ecalloc Integer Overflow Vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/e329550b-54f7-11db-a5ae-00508d6a62df.html>
+
+Affected package: openldap-server-2.2.30
+Type of problem: openldap -- slapd acl selfwrite Security Issue.
+Reference: <http://www.FreeBSD.org/ports/portaudit/ae7124ff-547c-11db-8f1a-000a48049292.html>
+
+Affected package: php5-5.1.4
+Type of problem: php -- open_basedir Race Condition Vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/edabe438-542f-11db-a5ae-00508d6a62df.html>
+
+Affected package: freetype2-2.1.10_3
+Type of problem: freetype -- LWFN Files Buffer Overflow Vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/b975763f-5210-11db-8f1a-000a48049292.html>
+
+Affected package: gnutls-1.2.11
+Type of problem: gnutls -- RSA Signature Forgery Vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/64bf6234-520d-11db-8f1a-000a48049292.html>
+
+Affected package: php5-5.1.4
+Type of problem: php -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/ea09c5df-4362-11db-81e1-000e0c2e438a.html>
+
+Affected package: apache-1.3.36
+Type of problem: apache -- mod_rewrite buffer overflow vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/dc8c08c7-1e7c-11db-88cf-000c6ec775d9.html>
+
+Affected package: samba-3.0.22,1
+Type of problem: samba -- memory exhaustion DoS in smbd.
+Reference: <http://www.FreeBSD.org/ports/portaudit/b168ddea-105a-11db-ac96-000c6ec775d9.html>
+
+26 problem(s) in your installed packages found.
+
+You are advised to update or deinstall the affected package(s) immediately.
+
+-- End of security output --

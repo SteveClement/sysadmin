@@ -1,0 +1,14 @@
+this contains any services the hosts runs: netstat -an 
+
+So a out of da box gentoo 1.4 looks like this:
+
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 192.168.0.14:34051      205.217.153.53:80       ESTABLISHED 
+tcp        0      0 192.168.0.14:34050      80.90.47.163:22         TIME_WAIT   
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node Path
+unix  2      [ ACC ]     STREAM     LISTENING     2269   /dev/log
+unix  3      [ ]         STREAM     CONNECTED     2328   /dev/log
+unix  3      [ ]         STREAM     CONNECTED     2327   

@@ -1,0 +1,45 @@
+This document is intended to describe the updating of:
+OpenSSH and OpenSSL on FreeBSD.
+
+To start of with let me explain the 3 Different ways of installing Open-SSH/SSL:
+
+ - You can install the packages from ports and keep them up to date with portupgrade for instance.
+ - You can download and build it manually with your custumized options.
+ - You can CVS up your source tree and build it there.
+
+The recommended way of doing it is the latter because BY DEFAULT we have it installed that way on a fresh FreeBSD box, so thats why I am ONLY explaining that way to be sure everyone uses it.
+
+If you haven't CVS checked out your source yet do it now! If you need help with FreeBSD CVS Tags read the FreeBSD-CVS-Tags.txt file in this repo.
+
+Step 1, MOVING the old source out of the way
+
+ root@jserver:/usr# mv src src-
+
+Step 2, Setting CVSROOT to your fastest mirror and logging in
+
+ root@jserver:/usr# export CVSROOT=:pserver:anoncvs@anoncvs.de.freebsd.org:/home/ncvs
+ root@jserver:/usr# cvs login
+ Logging in to :pserver:anoncvs@anoncvs.de.freebsd.org:2401/home/ncvs
+ CVS password: 
+ cvs login: warning: failed to open /root/.cvspass for reading: No such file or directory
+
+#You can ignore the error, the .cvspass file should have been created by now, if not, touch it.
+
+Step 3, Checkout the Version you want with the specific tag
+
+root@jserver:/usr# cvs co -rRELENG_5_0 src
+
+#Go grab a coffe if your on a slow line, its gonna take a while.
+
+Step 4, go into the source tree and diff your old Kernel Config with the new GENERIC one and merge eventual needs. (FreeBSD-kernel.txt for instructions of standards and other issues)
+
+root@jserver:/usr# cd src/sys/i386/conf && mv /usr/src-/sys/i386/conf/JSERVER .
+root@jserver conf# diff -u JSERVER GENERIC |more
+
+Step 5, build a new kernel and reboot
+
+root@jserver conf# cd /usr/src && make buildkernel KERNCONF=JSERVER && make installkernel KERNCONF=JSERVER
+
+Step 6, build a new world for your FreeBSD and install it. (Carefull with updates e.g: 4.x -> 5.x)
+
+

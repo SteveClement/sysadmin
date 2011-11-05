@@ -1,0 +1,114 @@
+*Received: (qmail 77287 invoked by uid 89); 3 Sep 2007 03:04:38 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 03:04:38 +0200
+Received: (qmail 29838 invoked by uid 98); 3 Sep 2007 02:47:52 +0200
+Received: from 158.64.129.246 by radium.ion.lu (envelope-from <root@becky.kannerschlass.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(158.64.129.246):SA:0(2.8/7.0):. 
+ Processed in 4.853244 secs); 03 Sep 2007 00:47:52 -0000
+X-Spam-Status: No, score=2.8 required=7.0
+X-Spam-Level: ++
+Received: from ppp-129-246.adsl.restena.lu (HELO becky.kannerschlass.lu) (158.64.129.246)
+  by radium.ion.lu with SMTP; 3 Sep 2007 02:47:47 +0200
+Received-SPF: none (radium.ion.lu: domain at becky.kannerschlass.lu does not designate permitted sender hosts)
+Received: (qmail 14366 invoked by alias); 3 Sep 2007 03:03:47 +0200
+Delivered-To: root@becky.kannerschlass.lu
+Received: (qmail 14351 invoked by uid 0); 3 Sep 2007 03:03:47 +0200
+Date: 3 Sep 2007 03:03:47 +0200
+Message-ID: <20070903010347.14333.qmail@becky.kannerschlass.lu>
+From: root@becky.kannerschlass.lu
+To: root@becky.kannerschlass.lu
+Subject: becky.kannerschlass.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+becky.kannerschlass.lu login failures:
+
+becky.kannerschlass.lu refused connections:
+
+Checking for a current audit database:
+
+Database created: Sun Sep  2 02:40:01 CEST 2007
+
+Checking for packages with security vulnerabilities:
+
+Affected package: rsync-2.6.8_2
+Type of problem: rsync -- off by one stack overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/af8e3a0c-5009-11dc-8a43-003048705d5a.html>
+
+Affected package: vim-6.4.9
+Type of problem: vim -- Command Format String Vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/1ed03222-3c65-11dc-b3d3-0016179b2dd5.html>
+
+Affected package: gd-2.0.33_4,1
+Type of problem: gd -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/6e099997-25d8-11dc-878b-000c29c5647f.html>
+
+Affected package: freetype2-2.1.10_3
+Type of problem: FreeType 2 -- Heap overflow vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/de2fab2d-0a37-11dc-aae2-00304881ac9a.html>
+
+Affected package: png-1.2.8_3
+Type of problem: png -- DoS crash vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/4cb9c513-03ef-11dc-a51d-0019b95d4f14.html>
+
+Affected package: samba-3.0.22,1
+Type of problem: samba -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/3546a833-03ea-11dc-a51d-0019b95d4f14.html>
+
+Affected package: samba-3.0.22,1
+Type of problem: samba -- potential Denial of Service bug in smbd.
+Reference: <http://www.FreeBSD.org/ports/portaudit/f235fe7a-b9ca-11db-bf0f-0013720b182d.html>
+
+Affected package: samba-3.0.22,1
+Type of problem: samba -- format string bug in afsacl.so VFS plugin.
+Reference: <http://www.FreeBSD.org/ports/portaudit/57ae52f7-b9cc-11db-bf0f-0013720b182d.html>
+
+Affected package: gnupg-1.4.3
+Type of problem: gnupg -- remotely controllable function pointer.
+Reference: <http://www.FreeBSD.org/ports/portaudit/4db1669c-8589-11db-ac4f-02e081235dab.html>
+
+Affected package: ruby-1.8.4_8,1
+Type of problem: ruby -- cgi.rb library Denial of Service.
+Reference: <http://www.FreeBSD.org/ports/portaudit/a8674c14-83d7-11db-88d5-0012f06707f0.html>
+
+Affected package: gnupg-1.4.3
+Type of problem: gnupg -- buffer overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/34c93ae8-7e6f-11db-bf00-02e081235dab.html>
+
+Affected package: ruby-1.8.4_8,1
+Type of problem: ruby -- cgi.rb library Denial of Service.
+Reference: <http://www.FreeBSD.org/ports/portaudit/ab8dbe98-6be4-11db-ae91-0012f06707f0.html>
+
+Affected package: freetype2-2.1.10_3
+Type of problem: freetype -- LWFN Files Buffer Overflow Vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/b975763f-5210-11db-8f1a-000a48049292.html>
+
+Affected package: gnupg-1.4.3
+Type of problem: gnupg -- 2 more possible memory allocation attacks.
+Reference: <http://www.FreeBSD.org/ports/portaudit/ed529baa-21c6-11db-b625-02e081235dab.html>
+
+Affected package: ruby-1.8.4_8,1
+Type of problem: ruby - multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/76562594-1f19-11db-b7d4-0008743bf21a.html>
+
+Affected package: samba-3.0.22,1
+Type of problem: samba -- memory exhaustion DoS in smbd.
+Reference: <http://www.FreeBSD.org/ports/portaudit/b168ddea-105a-11db-ac96-000c6ec775d9.html>
+
+Affected package: gnupg-1.4.3
+Type of problem: gnupg -- user id integer overflow vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/f900bda8-0472-11db-bbf7-000c6ec775d9.html>
+
+17 problem(s) in your installed packages found.
+
+You are advised to update or deinstall the affected package(s) immediately.
+
+-- End of security output --

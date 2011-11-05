@@ -1,0 +1,11 @@
+This explains the Smartcard driver install for:
+
+SPR 532 (Firmware needs to be at least 5.07 5.09beta does not work as of 13042006)
+SCR 335 (this one has no Firmware)
+
+portinstall pcsc-lite gpg libccid
+ echo pcscd_enable=\"YES\" >> /etc/rc.conf
+
+ /usr/local/etc/rc.d/pcscd start
+
+and you should be done!

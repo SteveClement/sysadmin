@@ -1,0 +1,47 @@
+#!/bin/sh
+# file /usr/local/bin/dnsctl
+# Daemontools control script for DJBDNS services.
+#-----
+
+SERVICES="/var/service/dnscache /var/service/dnscache/log \
+/var/service/tinydns1 /var/service/tinydns1/log \
+/var/service/tinydns2 /var/service/tinydns2/log"
+
+case "$1" in
+start)
+echo "Starting djbdns services"
+svc -u ${SERVICES}
+;;
+stop)
+echo "Stopping djbdns services"
+svc -d ${SERVICES}
+;;
+restart)
+echo "Restarting djbdns services"
+svc -t ${SERVICES}
+;;
+status)
+svstat ${SERVICES}
+;;
+cdb)
+echo "Updating tinydns data"
+cd /var/service/tinydns1/root; tinydns-data
+;;
+help)
+cat << HELP
+start -- start up djbdns services
+stop -- stop djbdns services
+restart -- restart djbdns services
+status -- view current status of djbdns services
+help -- this screen
+HELP
+;;
+*)
+echo "Usage: $0 [start|stop|restart|status|help]"
+exit 1
+;;
+esac
+
+exit 0
+
+#-----

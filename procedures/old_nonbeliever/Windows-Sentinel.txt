@@ -1,0 +1,45 @@
+The intend of this document is to teach you how to setup a VPN connection to a Zyxell 650 Series with VPN configured.
+
+1st Install the sentinel and reboot your machine when asked to.
+
+2nd Right click on the new sentinel icon in your taskbar, its a blue square with 3 small white squares.
+	Select: Run Policy editor.
+	A new window opens, click on the Key Managment Tab and click on Add Key, nb: Add key under My Keys NOT: Host Keys.
+
+	Select Create Pre-Shared key
+
+	Enter a description and the shared secret. (the sha hash gives indication on corectness of the first key)
+
+4 Click on security policy tab
+	Expand VPN Connections, dbl click Add...
+	Gateway ip address is the routers ip address.
+	Click on the remote network ... Remote 
+	Select your key.
+
+Click on propterties... 
+
+Settings...
+
+NOTE: This was the good old early days, now we know we HAVE to use 3DES
+(alltough not the best alg.)
+
+NOT Aes, DES
+NOT MD5, SHA
+IKE Group 1
+
+DES
+
+SHA
+
+PFS None
+
+Ok,Ok
+
+On Windows XP SP2 you have to apply some patch for Sentinel (which has been
+bought out btw.)
+
+Got me thinking :)
+
+ION Doesn't use this solution anymore use the force: openvpn.org
+
+	

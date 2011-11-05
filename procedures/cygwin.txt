@@ -1,0 +1,70 @@
+10/* * * * * /usr/local/bin/lynx -source -auth=dnsadmin:dyndns http://dns.ion.lu/dynamic.php?headquarter > /dev/null 2> /dev/null
+
+To get ION-DynIP working under windows:
+
+get cygwin with the following options: cron, cygrunsrv, email, lynx, ssmtp, vim
+
+
+Full blown Install:
+
+bc
+cvs
+clear
+cron
+cygrunsrv
+email
+fetchmail
+gnupg
+lynx
+lftp
+mutt
+netcat
+naim
+openssh
+rsync
+subversion
+stunnel
+ssmtp
+vim
+
+To get cron working:
+
+email: has to be configured just type: email-config
+ssmtp: has to be configured in order to use cron just type: ssmtp-config (main thing is to say: y to the symlink question)
+then add the cron service: 
+ cygrunsrv -I cron -p /usr/sbin/cron -a -D
+  cygrunsrv -S cron
+  cygrunsrv -E cron
+
+-S(tart) will start the cron service 
+-E(xit) will stop the cron service
+
+To test this config just add this: crontab -e
+
+*/5 * * * * echo "Test cron job"
+
+NAG if it behaves unexpecedly do this:
+
+cygrunsrv -E cron
+cygrunsrv -R cron
+cygrunsrv -I cron -p /usr/sbin/cron -a -D -e "CYGWIN=tty ntsec"
+cygrunsrv -S cron
+
+This might have been needed on WinXP_SP2_Latest_PatchLevel-29062005
+Cygwin failed to open shell...
+
+To test the email connectivity:
+
+echo "Email Test" |email -q -s "Test_MAil" steve@ion.lu
+
+will send the text Email Test to steve@ion.lu with quiet output and Test_MAil
+as the subject.
+
+
+To get sshd working:
+
+ssh-host-config
+ssh-user-config
+
+And run it:
+cygrunsrv -S sshd

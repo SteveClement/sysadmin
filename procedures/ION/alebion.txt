@@ -1,0 +1,21 @@
+= Alebion Install =
+
+The alebion framework needs the following components
+
+- Standard ION Install
+- Webserver (lighttpd preferably)
+- PHP5, modules: mcrypt mysql gd session xml libxml SimpleXML   Optional: gettext pdf posix
+- Database (Developped on MySQL)
+
+svn co svn+ssh://pubdev.ion.lu/home/svn/alebion-base/
+cd alebion-base
+svn export trunk /usr/local/www/data/trunk/
+
+point browser to localhost/trunk
+
+Create db:
+
+mysqladmin create dbalebion
+mysql -uroot -e"GRANT ALL ON dbalebion.* TO alebion@localhost IDENTIFIED BY 'alebion'" dbalebion
+
+

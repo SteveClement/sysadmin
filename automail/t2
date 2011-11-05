@@ -1,0 +1,6 @@
+#!/bin/sh
+
+PERL5LIB=perl
+export PERL5LIB
+FLAGS="--nomail --nofile --trace-stdout"
+./perl/automail.pl $FLAGS conf/ben.conf < $1

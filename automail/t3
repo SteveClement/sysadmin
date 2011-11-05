@@ -1,0 +1,6 @@
+#!/bin/sh
+
+PERL5LIB=perl
+export PERL5LIB
+FLAGS="--nomail --trace-stdout --daily"
+./perl/automail.pl $FLAGS conf/ben-daily.conf

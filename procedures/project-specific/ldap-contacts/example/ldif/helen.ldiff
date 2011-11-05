@@ -1,0 +1,19 @@
+dn: ou=helen, ou=contacts, dc=dakinibooks, dc=com
+ou: contacts
+ou: helen
+objectclass: organizationalUnit
+objectclass: domainRelatedObject
+associatedDomain: dakinibooks.com
+
+dn: cn=Steve Clement,ou=helen,ou=contacts,dc=dakinibooks,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: mozillaAbPersonObsolete
+givenName: Steve
+sn: Clement In Helen
+cn: Steve Clement
+xmozillanickname: Steve
+mail: steve@ion.lu
+mozillaSecondEmail: steve@localhost.lu

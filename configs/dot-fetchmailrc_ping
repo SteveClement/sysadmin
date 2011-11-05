@@ -1,0 +1,2 @@
+poll linion.ion.lu protocol POP3 user pong@localhost.lu password pong_3 mda "cat > /tmp/remote_delivery"
+poll webmail protocol POP3 user pong password pong_3 mda "cat > /tmp/local_delivery"

@@ -1,0 +1,44 @@
+for 4.x/5.x
+
+First enable linux emulation in /etc/rc.conf:
+linux_enable="YES"
+
+Reboot and see if module is loaded:
+ bonnie bexec_agnt # kldstat |grep linux
+  7    1 0xc3a7a000 19000    linux.ko
+
+If not already done add the Software user
+ # pw useradd software -s /sbin/nologin -c "Software User"
+ # mkdir -m0770 -p /home/software/archives 
+ # mkdir -m0770 -p /home/software/unpacked
+ # chmod g+wt /home/software/unpacked
+
+add the users to the sofware group:
+
+vi /etc/group
+
+cd ~software/unpacked
+mkdir bexec_agnt && cd bexec_agnt
+mv ~steve/nls_agnt_262592.tar ../../archives/
+tar xfv ../../archives/nls_agnt*
+
+make sure linux_base-8 is installed.
+ bonnie bexec_agnt # pkg_info |grep linux
+ linux_base-8-8.0_6  Base set of packages needed in Linux mode (only for i386)
+
+./INSTALL
+Select Language
+Next question say NO
+Select 6 (RHAT k2.2)
+Answer the logical questions and make sure your export exists otherwise it
+won't appear in the config.
+
+add the media server to /etc/hosts
+
+copy the startup script and add it to /etc/rc.conf
+
+cp ~steve/work/kierbiischt-ion-sysadmin/tools/agent.sh /usr/local/etc/rc.d/
+chmod -w /usr/local/etc/rc.d/agent.sh
+
+echo agent_enable=\"YES\" >> /etc/rc.conf
+

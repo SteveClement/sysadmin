@@ -1,0 +1,58 @@
+*From: root@plumbum.ion.lu (Cron Daemon)
+To: root@plumbum.ion.lu
+Subject: Cron <root@plumbum> /usr/local/sbin/bup-trac.sh
+X-Cron-Env: <SHELL=/bin/sh>
+X-Cron-Env: <HOME=/root>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=root>
+X-Cron-Env: <USER=root>
+
+Unable to import module xattr.
+Extended attributes not supported on filesystem at /var/trac
+Unable to import module posix1e from pylibacl package.
+ACLs not supported on filesystem at /var/trac
+-----------------------------------------------------------------
+Detected abilities for source (read only) file system:
+  Access control lists                         Off
+  Extended attributes                          Off
+  Mac OS X style resource forks                Off
+  Mac OS X Finder information                  Off
+-----------------------------------------------------------------
+Unable to import module xattr.
+Extended attributes not supported on filesystem at /home/bup/plumbum-backup/bup/var-trac-rdiff/rdiff-backup-data/rdiff-backup.tmp.0
+Unable to import module posix1e from pylibacl package.
+ACLs not supported on filesystem at /home/bup/plumbum-backup/bup/var-trac-rdiff/rdiff-backup-data/rdiff-backup.tmp.0
+-----------------------------------------------------------------
+Detected abilities for destination (read/write) file system:
+  Characters needing quoting                   ''
+  Ownership changing                           On
+  Hard linking                                 On
+  fsync() directories                          On
+  Directory inc permissions                    On
+  High-bit permissions                         On
+  Access control lists                         Off
+  Extended attributes                          Off
+  Mac OS X style resource forks                Off
+  Mac OS X Finder information                  Off
+-----------------------------------------------------------------
+Starting increment operation /var/trac to /home/bup/plumbum-backup/bup/var-trac-rdiff
+--------------[ Session statistics ]--------------
+StartTime 1188729000.00 (Sun Sep  2 12:30:00 2007)
+EndTime 1188729037.02 (Sun Sep  2 12:30:37 2007)
+ElapsedTime 37.02 (37.02 seconds)
+SourceFiles 183
+SourceFileSize 6177063 (5.89 MB)
+MirrorFiles 183
+MirrorFileSize 6177063 (5.89 MB)
+NewFiles 0
+NewFileSize 0 (0 bytes)
+DeletedFiles 0
+DeletedFileSize 0 (0 bytes)
+ChangedFiles 0
+ChangedSourceSize 0 (0 bytes)
+ChangedMirrorSize 0 (0 bytes)
+IncrementFiles 0
+IncrementFileSize 0 (0 bytes)
+TotalDestinationSizeChange 0 (0 bytes)
+Errors 0
+--------------------------------------------------

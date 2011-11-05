@@ -1,0 +1,17 @@
+Starting Xming with Swiss French Keyboard, Windows Clipboard transfer, and 3 button emulation (left-right simultaneous emulates 3rd):
+
+"C:\Program Files\Xming\Xming.exe" :0 -clipboard -multiwindow -emulate3buttons -xkblayout ch -xkbvariant fr
+
+Starting Xming, ssh'ing to a remote host and starting a remote application via Xlaunch.
+note that xlaunch XML-files are 2 liners
+
+
+"mrxvt on bsd-steve.xlaunch"
+<?xml version="1.0"?>
+<XLaunch xmlns="http://www.straightrunning.com/XmingNotes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.straightrunning.com/XmingNotes XLaunch.xsd" WindowMode="MultiWindow" ClientMode="StartProgram" Program="mrxvt" ClientStart="PuTTY" PathToProtocol="C:\\Program Files\\PuTTY\\" Compress="true" RemoteHost="bsd-steve" RemoteUser="steve" Display="0" Clipboard="true" ExtraParams="-emulate3buttons -xkblayout ch -xkbvariant fr"/>
+
+
+opening XDCMP connection on remote host on screen 1
+"damzprod-X.xlaunch"
+<?xml version="1.0"?>
+<XLaunch xmlns="http://www.straightrunning.com/XmingNotes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.straightrunning.com/XmingNotes XLaunch.xsd" WindowMode="Windowed" ClientMode="XDMCP" XDMCPHost="damzprod" Display="1" Clipboard="true" ExtraParams="-emulate3buttons -xkblayout ch -xkbvariant fr"/>

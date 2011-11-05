@@ -1,0 +1,8 @@
+GentOOO is WeirddOOOO
+dunno how to get the portage status yet of all the installed packages
+
+
+Any other version updates could be included aswell but that would probably be a next step towards perfection, most probably best thing is to include rules to list the most vital and important pieces of soft that concern security notably:
+ssh
+openssl
+ANY INTERNET VISIBLE THINGSA

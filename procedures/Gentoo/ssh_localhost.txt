@@ -1,0 +1,17 @@
+export HOST="192.168.0.4"
+scp ~steve/work/kierbiischt-ion-sysadmin/configs/common/gentoo/etc/conf.d/sshd-localhost $HOST:/tmp
+mv -i /tmp/sshd-localhost /etc/conf.d/
+
+scp ~steve/work/kierbiischt-ion-sysadmin/tools/sshd-localhost $HOST:/tmp/init-sshd-localhost 
+mv -i /tmp/init-sshd-localhost /etc/init.d/sshd-localhost
+
+cd /etc/ssh
+cp sshd_config sshd_config.localhost
+Tweak PID ann esou...
+
+/etc/init.d/sshd-localhost start
+rc-update add sshd-localhost default
+
+scp ~steve/work/kierbiischt-ion-sysadmin/tools/root* $HOST:/tmp
+mv -vi /tmp/root* /usr/local/bin/
+chmod +x /usr/local/bin/root*

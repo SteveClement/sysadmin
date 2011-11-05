@@ -1,0 +1,41 @@
+*Received: (qmail 77069 invoked by uid 89); 3 Sep 2007 03:01:59 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 03:01:59 +0200
+Received: (qmail 29562 invoked by uid 98); 3 Sep 2007 02:45:14 +0200
+Received: from 213.166.40.170 by radium.ion.lu (envelope-from <root@biisen-cf.ion.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(213.166.40.170):SA:0(3.3/7.0):. 
+ Processed in 3.162092 secs); 03 Sep 2007 00:45:14 -0000
+X-Spam-Status: No, score=3.3 required=7.0
+X-Spam-Level: +++
+Received: from ip-213-166-40-170.tvsurf.pt.lu (HELO biisen-cf.ion.lu) (213.166.40.170)
+  by radium.ion.lu with SMTP; 3 Sep 2007 02:45:09 +0200
+Received-SPF: none (radium.ion.lu: domain at biisen-cf.ion.lu does not designate permitted sender hosts)
+Received: (qmail 71501 invoked by alias); 3 Sep 2007 01:01:05 -0000
+Delivered-To: root@biisen-cf.ion.lu
+Received: (qmail 71456 invoked by uid 0); 3 Sep 2007 01:01:05 -0000
+Date: 3 Sep 2007 01:01:05 -0000
+Message-ID: <20070903010105.71454.qmail@biisen-cf.ion.lu>
+From: root@biisen-cf.ion.lu
+To: root@biisen-cf.ion.lu
+Subject: bissen-cf.ion.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+bissen-cf.ion.lu kernel log messages:
+> arp: 192.168.100.1 is on em0 but got reply from 00:0b:06:dd:90:7d on fxp0
+> arp: 192.168.100.1 is on em0 but got reply from 00:0b:06:dd:90:7d on fxp0
+> arp: 192.168.100.1 is on em0 but got reply from 00:0b:06:dd:90:7d on fxp0
+
+bissen-cf.ion.lu login failures:
+
+bissen-cf.ion.lu refused connections:
+
+-- End of security output --

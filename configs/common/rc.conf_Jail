@@ -1,0 +1,25 @@
+## ION Specific rc.conf For Jails
+
+font8x8="iso15-8x8"
+font8x14="iso15-8x14"
+font8x16="iso15-8x16"
+scrnmap="NO"
+
+## NEEDED, bind syslogd to to localhost
+syslogd_flags="-ss"
+
+sshd_localhost_enable="YES"
+sshd_localhost_program="/usr/sbin/sshd"
+sshd_localhost_flags="-f /etc/ssh/sshd_config.localhost"
+
+firewall_enable="YES"
+firewall_type="OPEN"
+firewall_script="/etc/rc.firewall-ion"
+
+rand_irqs="1 3 5 7 6 8 9 10 11"
+
+qmail_enable="YES"
+
+svscan_enable="YES"
+
+smartd_enable="YES"

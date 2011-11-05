@@ -1,0 +1,93 @@
+== Tips and Tricks worth knowing ==
+
+
+= MBR Issues =
+
+If other operating systems have damaged your Master Boot Record, you can
+reinstall it either with /stand/sysinstall or with boot0cfg(8). See
+"man boot0cfg" for details.
+
+An example:
+
+ split -b 1440k file.tar.gz file_
+ cat file_* > newfile.tar.gz 
+
+
+= Duplicate ports check =
+
+If you want to quickly check for duplicate package/port installations,
+try the following pkg_info command.
+
+	pkg_info | sort | sed -e 's/-[0-9].*$//' | \
+		uniq -c | grep -v '^[[:space:]]*1'
+
+= Ports history =
+
+CVS is the answer:
+
+ cvs -d :pserver:anoncvs@anoncvs.at.freebsd.org:/home/ncvs login
+ CVS password: anoncvs
+ cvs -d :pserver:anoncvs@anoncvs.at.freebsd.org:/home/ncvs co -D "5 months 3 weeks ago" imake-4
+
+
+= cd - =
+
+A more general bash/unix tip imagine this:
+
+cd /usr/ports/somewhere/long/and/painfull
+
+Even with tab completion it's a pain, once there, you notice that you HAVE TO
+do somethind somewhere else:
+
+cd /somewhere
+ls
+rm
+diff
+ls
+<NOW TO GET BACK TO THE LAST DIR YOU CD'ED INTO>
+cd -
+will get you right back where you left, it's a sort of "back-button" for chdir's
+
+
+= sed =
+
+Want to use sed(1) to edit a file in place?  Well, to replace every 'e' with
+an 'o', in a file named 'foo', you can do:
+
+	sed -i.bak s/e/o/g foo
+
+	And you'll get a backup of the original in a file named 'foo.bak', but
+	if you
+	want no backup:
+
+		sed -i '' s/e/o/g foo
+		steve@lapplion steve $ 
+
+
+= mkcert =
+
+locate mkcert
+
+will yield a nice little helper to create a test certificate dig around it and
+brew your own...
+
+
+= ISO Image Mount =
+
+Mounting an iso or a raw image:
+
+    mdconfig -a -t vnode -f /path/to/image.iso -u 1
+    mount -t cd9660 /dev/md1 /mnt/cdrom
+
+To reverse the process:
+
+    mount -u /mnt/cdrom
+    mdconfig -d -u 1
+
+
+= Turning off Keyboard Beep =
+
+Any user can do that for his current login.
+Especially hand when working in a VMWARE or similar circumstance.
+
+kbdcontrol -b off

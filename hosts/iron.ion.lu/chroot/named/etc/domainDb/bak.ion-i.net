@@ -1,0 +1,17 @@
+$ORIGIN .
+$TTL 86400	; 1 day
+ion-i.net		IN SOA	ns4.ion.lu. steve.ion.lu. (
+				52         ; serial
+				43200      ; refresh (12 hours)
+				3600       ; retry (1 hour)
+				900000     ; expire (1 week 3 days 10 hours)
+				86400      ; minimum (1 day)
+				)
+			NS	ns1.ion.lu.
+			NS	ns4.ion.lu.
+			A	80.90.47.162
+			MX	5 mail.ion.lu.
+$ORIGIN ion-i.net.
+iron			CNAME	ion-i.net.
+localhost		A	127.0.0.1
+www			CNAME	ion-i.net.

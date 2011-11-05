@@ -1,0 +1,13 @@
+If cups-lpr command line printing fails, then the cups client conf misses the
+server name of the cups server.
+
+cups recently updated to a much cooler version 1.2 unfourtenatly hell broke
+lose during the update...
+
+so we have to deinstall cups and then reinstall and reconfigure it, careful as
+a PDF printer is installed too..
+
+cups-pstroaster and cups-samba are installed as dependencies so probably they
+are the base problem...
+
+

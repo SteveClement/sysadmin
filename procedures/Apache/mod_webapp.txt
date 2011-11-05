@@ -1,0 +1,38 @@
+How to build mod_webapp, tested with Apache 1.3.22+SSL 1.45 and
+ebapp-module-1.0.1-tc401.
+
+Building Apache
+---------------
+
+First, Apache has to be built and installed for this to work at all,
+as far as I (Ben) can tell. Corrections welcome!
+
+If Apache is 1.3.23 or earlier, apply the patch
+suppose-aldigital-sysadmin/patches/apxs.pl.patch to apxs.pl:
+
+cd ~software/unpacked/apache-1.3.22/src/support
+patch < .../apxs.pl.patch
+
+in ~software/unpacked/apache-1.3.22 (after SSL applied):
+
+./configure --enable-shared=cern_meta
+
+cern_meta is a module chosen that a) isn't enabled, b) we don't
+use. This is simply to get sharing enabled, which mod_webapp requires.
+
+Then install (required to get a usable version of apxs):
+
+rootdo make install
+
+Building mod_webapp
+-------------------
+
+In /home/software/unpacked/webapp-module-1.0.1-tc401:
+
+./configure --with-apxs=/usr/local/apache/bin/apxs
+
+(for this is where apxs will land by default). Then:
+
+make
+
+<AT THIS POINT I HANDED BACK TO ANOTHER SYSADMIN - Ben>

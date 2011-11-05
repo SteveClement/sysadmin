@@ -1,0 +1,2 @@
+_OPTIONS_READ=openvpn-2.0_3
+WITHOUT_PW_SAVE=true

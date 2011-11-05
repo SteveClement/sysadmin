@@ -1,0 +1,19 @@
+Become root.
+
+To add users us: pw
+
+NAME
+     pw - create, remove, modify & display system users and groups
+
+Very powerfull tool for user admin in short:
+
+pw useradd steve
+pw groupadd steve
+
+Many options for pw man pw tells more.
+
+If appropriate add authorized_keys for SSH
+
+Don't forget to Bang out the password hash once all the keys are on.
+
+Run vipw to put just a '!' in the paswword field unless it's for ftp other luser type login.

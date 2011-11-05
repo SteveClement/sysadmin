@@ -1,0 +1,9 @@
+Some general FreeBSD php notes.
+
+/usr/local/etc/php/extensions.ini
+	Enable/Disable extensions (session, imap, mcrypt etc...)
+
+/usr/local/etc/php.conf
+	FreeBSD ports conf file (don't touch)
+/usr/local/etc/php.ini
+	The standard place for the php.ini file

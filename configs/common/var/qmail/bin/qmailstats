@@ -1,0 +1,98 @@
+#!/bin/sh
+## qms-analog and qmailanalog invocation script
+##
+## Note: For better readability of the nightly stats email, set your email
+## client font to a fixed width font - then all the columns line up
+## very nicely.
+##
+
+PATH=/usr/local/qmailanalog/bin:/var/qmail/bin:/bin:/usr/bin:/usr/local/bin
+QMAILSTATS="/tmp/q.$$"
+EMAILMSG="/tmp/qms.$$"
+umask 077
+DATE=`date +'%D'`
+
+## prepare qmail log entries for qmailanalog routines
+cat /var/log/qmail/qmail-send/* /var/log/qmail/qmail-pop3d/* /var/log/qmail/qmail-smtpd/* | tai64n2tai | awk '{$1=substr($1,1,index($1,".")+6);print}' | matchup > $QMAILSTATS 5>/dev/null
+
+## build the email message header
+echo "To: postmaster@localhost.lu" > $EMAILMSG
+echo "From: postmaster@localhost.lu" >> $EMAILMSG
+echo "Subject: Nightly Qmail Stats Report for $DATE" >> $EMAILMSG
+echo "" >> $EMAILMSG
+echo "" >> $EMAILMSG
+
+## qms-analog invocation
+#
+# USAGE: qms-analog hours-of-history <sort-key>
+#
+# hours-of-history (0 - n) hours of history to collect
+# 0 => all records
+# sort-key (optional) sort key for account statistics
+# msgbw (default) msg bandwidth - successful msgs
+# alpha alphanumeric by account name
+# virus number of viruses received
+# saavg Spamassassin avg score
+# sadet Spamassassin msgs detected
+#
+# Examples:
+# "qms-analog 24" - use only records within the last 24 hours,
+# sort by msg bandwidth
+# "qms-analog 168" - use only records within the last 7 days,
+# sort by msg bandwidth
+# "qms-analog 0" - use all records, sort by msg bandwidth
+# "qms-analog 0 alpha" - use all records, sort alphabetically
+# "qms-analog 0 saavg" - use all records, sort by Spam average score
+#
+# Note: Add or remove statistical time frames to suit your preference -
+# "last 24 hours" and "all records" are uncommented below by default.
+##
+
+#### Last 24 hours
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> $EMAILMSG
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~ L a s t 2 4 H o u r s ~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> $EMAILMSG
+cat /var/spool/qmailscan/qms-events.log | qms-analog 24 >> $EMAILMSG
+####
+
+#### Last 7 days
+#echo "" >> $EMAILMSG
+#echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> $EMAILMSG
+#echo "~~~~~~~~~~~~~~~~~~~~~~~~~~ L a s t 7 D a y s ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> $EMAILMSG
+#cat /var/spool/qmailscan/qms-events.log | qms-analog 168 >> $EMAILMSG
+####
+
+#### Last 30 days
+#echo "" >> $EMAILMSG
+#echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> $EMAILMSG
+#echo "~~~~~~~~~~~~~~~~~~~~~~~~~~ L a s t 3 0 D a y s ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> $EMAILMSG
+#cat /var/spool/qmailscan/qms-events.log | qms-analog 5040 >> $EMAILMSG
+####
+
+#### All records in qms-events.log
+echo "" >> $EMAILMSG
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> $EMAILMSG
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~ A l l R e c o r d s ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> $EMAILMSG
+cat /var/spool/qmailscan/qms-events.log | qms-analog 0 >> $EMAILMSG
+####
+
+## qmailanalog invocation
+echo "" >> $EMAILMSG
+echo "" >> $EMAILMSG
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> $EMAILMSG
+zoverall < $QMAILSTATS >> $EMAILMSG
+echo "" >> $EMAILMSG
+echo "" >> $EMAILMSG
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> $EMAILMSG
+zfailures < $QMAILSTATS >> $EMAILMSG
+echo "" >> $EMAILMSG
+echo "" >> $EMAILMSG
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" >> $EMAILMSG
+zdeferrals < $QMAILSTATS >> $EMAILMSG
+echo "" >> $EMAILMSG
+
+## pipe the message into qmail-inject
+cat $EMAILMSG | qmail-inject
+
+## delete temp files
+rm -f $QMAILSTATS
+rm -f $EMAILMSG

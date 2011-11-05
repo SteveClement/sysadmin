@@ -1,0 +1,380 @@
+                           ****
+              Fun With Automounting on FreeBSD 
+                           
+          by Renaud Waldura <renaud+amd@waldura.com>
+                      June 11th 2000
+                           ****
+
+
+$Id: FreeBSD-autmount.txt,v 1.1 2005/10/17 15:19:54 steve Exp $
+
+
+Tired of having to login as root and type
+	# mount -t cd9660 /dev/cd0c /mnt 
+everytime you want to read a CD-ROM? Automounting is for you! Once
+properly configured (the goal of this document), you will only have
+to insert the CD into your drive, cd to /cdrom and *wham* everything
+happens automagically!
+
+My foray into the wonderful world of automounting started the day I
+got my hands on a big, noisy hard drive: I wanted the disk space for
+backup files and stuff, but couldn't bear the awful, high-pitched noise 
+it generated day & night. So I configured my FreeBSD box to automount 
+the drive whenever needed, then unmount it and spin the drive down when 
+it wasn't used anymore. 
+
+
+DISCLAIMER
+
+I am by no means an amd/NFS guru, only a user of those technologies.
+While I believe this document to be correct and helpful, I cannot take 
+responsability for any prejudice that might occur following the instructions 
+included herein. Quite the contrary, I am so unsure of myself that I will 
+wholeheartedly welcome any correction/addition sent to me (interested
+parties can find my address at the top of this document).
+
+This document is about automounting local filesystems only; network mounts 
+are not covered by this document.
+
+
+0. PRE-REQUISITES
+
+A partition or single-partition device candidate for automounting (e.g. 
+a CD-ROM drive, a floppy drive). 
+
+A computer running FreeBSD 4.0 or greater.
+
+
+1. KERNEL CONFIGURATION
+
+The automounter needs the NFS code to be present in your kernel. With 
+FreeBSD 4.0 the corresponding kernel module can and will be autoloaded 
+on demand, but if you're running an earlier version or wish to compile 
+it statically anyway, you can do so by adding:
+
+	options		NFS
+
+to your kernel configuration file (/sys/i386/conf/KERNEL). Personally
+I don't bother and just use the autoloading feature.
+
+Autoloading works just fine with the GENERIC kernel shipped with FreeBSD 
+4.0. In other words, if you are running a stock FreeBSD 4.0 or greater
+installation, you're in luck, there's nothing to do.
+
+Now for the various devices: as you probably know, at boot-time FreeBSD 
+detects your hardware and initializes it. You can re-access the list of
+detected hardware after boot with the "dmesg" command. IT MUST SHOW YOUR 
+CD-ROM/FLOPPY/ETC. 
+
+For example:
+
+fdc0: <NEC 72065B or clone> at port 0x3f0-0x3f5,0x3f7 irq 6 drq 2 on isa0
+fdc0: FIFO enabled, 8 bytes threshold
+fd0: <1440-KB 3.5" drive> on fdc0 drive 0
+
+is a floppy drive, and:
+
+cd0 at ahc0 bus 0 target 4 lun 0
+cd0: <SONY CD-R   CDU924S 1.1d> Removable CD-ROM SCSI-2 device 
+cd0: 4.032MB/s transfers (4.032MHz, offset 15)
+cd0: Attempt to query device size failed: NOT READY, Medium not present
+
+is a SCSI CD-R (rewritable CD) device. The device names, here fd0 and cd0,
+are important, we will use them very soon -- remember them.
+
+
+2. CONFIGURING MOUNT
+
+Before automounting your devices, we need to make sure they can be
+mounted manually. Insert a CD into your drive, and try as root:
+
+# mount -v -t cd9660 /dev/cd0c /mnt
+
+``cd0'' above should be replaced with whatever your actual device is 
+(that's what we found out above). The mount point ``/mnt'' is a temporary 
+mountpoint perfect for the kind of testing we're doing now. We mount the 
+``c'' partition, aka the whole disk.
+
+The filesystem type (here ``cd9660'') must match whatever format your data
+is in on the disk. For CDs it's almost always cd9660, but for floppies
+you should use "msdos" instead:
+
+# mount -v -t msdos /dev/fd0c /mnt
+
+At this point your disk should be mounted; cd to /mnt and poke around
+to make sure your data is there. Then unmount the disk with:
+
+# umount -v /mnt
+
+Now you can edit /etc/fstab to make this mount semi-permanent. I added
+the following lines to mine:
+
+/dev/cd0c       /mnt/cdrom      cd9660  ro,noauto,nodev,nosuid  0       0
+/dev/fd0c       /mnt/floppy     msdos   rw,noauto               0       0
+
+Make sure you specify the "noauto" option in the fourth column. Noauto 
+in /etc/fstab means that the partition won't be mounted automatically
+at boot-time, definitely what you want since most of the time your
+CD/floppy won't be present. This flag is unrelated to the kind of
+on-demand automounting we're trying to do here.
+
+Also note how the CD-ROM is mounted read-only (``ro'') without devices
+or setuid binaries. It's not strictly necessary but cleaner.
+The last columns are left to zero, since you will never backup those
+partitions, and they don't need to be checked with fsck(8).
+
+This change made, create the two directories /mnt/cdrom and /mnt/floppy.
+Now you can merely issue:
+
+# mount /mnt/cdrom
+
+and your CD-ROM should be mounted just as before. Poke around /mnt/cdrom,
+and unmount it:
+
+# umount /mnt/cdrom
+
+You're ready for the next step, the automounter itself.
+
+
+3. CONFIGURING THE AUTOMOUNTER
+
+The default configuration on FreeBSD 4.0 includes provisions for the
+automounter. Edit your /etc/rc.conf file to include these:
+
+portmap_enable=YES
+amd_enable=YES
+amd_flags="-a /.amd_mnt -l syslog /host /etc/amd.map"
+
+The timeout value (after which the drive is automatically unmounted),
+can be specified with "-c <seconds>"; the default value is 5 minutes.
+
+Create the /.amd_mnt directory as root, although I'm not very clear on what 
+it is used for. DO NOT create a /host directory.
+
+Now edit the amd.map file to reflect this:
+
+/defaults		type:=host;fs:=${autodir}/${rhost};rhost:=${key}
+
+*			opts:=rw,grpid,resvport,nfsv2
+
+localhost		type:=auto;fs:=${map};pref:=${key}/
+
+localhost/cdrom		type:=program;fs:=/mnt/cdrom;\
+			mount:="/sbin/mount mount /mnt/cdrom";\
+			unmount:="/sbin/umount umount /mnt/cdrom"
+
+localhost/floppy	type:=program;fs:=/mnt/floppy;\
+			mount:="/sbin/mount mount /mnt/floppy";\
+			unmount:="/sbin/umount umount /mnt/floppy"
+
+As you can see, your CD-ROM drive will be mounted at /host/localhost/cdrom,
+not a very convenient location. Create a symbolic link /cdrom pointing to
+/host/localhost/cdrom:
+
+# ln -s /host/localhost/cdrom  /
+
+At this point, we have implemented the following: 
+
+                symlink
+       /cdrom ---------> /host/localhost/cdrom 
+                                  |
+                                  | amd.map
+                     fstab        V
+       /dev/cd0c <--------- /mnt/cdrom 
+
+When you first access /cdrom, amd will detect that you are really trying
+to access /host/localhost/cdrom and mount /mnt/cdrom. Wzap! your CD will
+be mounted.
+
+
+4. TESTING
+
+Reboot your box (or start the daemons by hand) to test your modifications
+to the startup files (purists can shutdown to single-user mode and restart
+from there).
+
+Upon reboot, the output of mount should be similar to this:
+
+$ mount
+/dev/da0s1a on / (ufs, local, ...)
+procfs on /proc (procfs, local)
+mfs:22 on /tmp (mfs, asynchronous, local, nodev, nosuid)
+pid102@myhost:/host on /host (nfs)
+
+Also try ``amq'' it's fun:
+
+$ amq
+/                      root     "root"            dengue:(pid102)
+/host                  toplvl   /etc/amd.map      /host
+/host/localhost        auto     /etc/amd.map      /host/localhost
+
+Amd has attached itself as a NFS server to the /host branch. Insert a CD 
+in the drive and cd to /cdrom, it should be mounted automatically:
+
+$ mount
+/dev/da0s1a on / (ufs, local, ...)
+procfs on /proc (procfs, local)
+mfs:22 on /tmp (mfs, asynchronous, local, nodev, nosuid)
+pid102@dengue:/host on /host (nfs)
+/dev/cd0c on /mnt/cdrom (cd9660, local, nodev, nosuid, read-only)
+
+$ amq
+/                      root     "root"            dengue:(pid102)
+/host                  toplvl   /etc/amd.map      /host
+/host/localhost        auto     /etc/amd.map      /host/localhost
+/host/localhost/cdrom  program  mount /mnt/cdrom  /mnt/cdrom
+
+Note that cd'ing to /host/localhost or /mnt/cdrom won't do it; you have
+to touch /host/localhost/cdrom, either directly or through a symlink
+like we did, for the automounter to kick in and mount the drive.
+
+
+5. SECURITY CONSIDERATIONS
+
+Unfortunately neither portmapper nor amd, both based on RPC, enjoy a 
+particularly good reputation in security circles. Yes, this means
+that configuring your system for automounting can open some potentially
+serious security holes.
+
+The FreeBSD version of the portmapper tries to limit the damage by using
+libwrap and its configuration file /etc/hosts.allow: there you can
+specify what hosts are allowed to connect to the portmapper service,
+and thus hopefully lower the risk level.
+
+Note that the portmap service should be denied access to explicitely;
+the ``twist'' command of TCP Wrappers (see hosts_options(1)) cannot
+be used. See
+http://www.freebsd.org/cgi/getmsg.cgi?fetch=1925442+1933253+/usr/local/www/db/text/2000/freebsd-questions/20000402.freebsd-questions
+to learn why. Hence a typical /etc/hosts.allow file would be like:
+
+# limit access to the portmapper
+portmap: localhost : allow
+portmap: ALL : severity auth.warning : deny
+
+But as a rule of thumb do not use any NFS-related stuff (such as amd)
+on a sensitive system. RPC (on top of which NFS is implemented) is a
+very powerful technology indeed, but its security status is, mmh,  
+considered quite low at this time. A quick search for "portmap
+exploits" on any search engine should find more than enough hits to
+convince you.
+
+
+6. FUN HACKS
+
+Now you have almost all of the info to duplicate my solution to that
+big noisy hard drive mentioned in the introduction.
+
+The drive is a SCSI device detected as da1. I disklabelled it as one
+big partition, newfs'ed it and moved all of /var/spool to it (see the
+FreeBSD handbook for more information about those operations).
+
+In /etc/fstab I have:
+
+# Device	Mountpoint	FStype	Options			Dump	Pass#
+/dev/da1e	/mnt/spool	ufs	rw,noauto		1	2
+
+and in /etc/amd.map:
+
+localhost/spool		type:=program;fs:=/mnt/spool;\
+			mount:="/sbin/mount mount /mnt/spool";\
+			unmount:="/usr/local/etc/spin-down spin-down"
+
+/var/spool is symlinked to /host/localhost/spool.
+``spin-down'' is a small shell script I wrote. 
+
+#!/bin/sh
+# 
+# Spin down hard disk drive da1 if no processes are using it.
+# da1 is a SCSI drive with a single partition mounted on /var/spool.
+# The drive will be re-mounted by the amd, which will make it spin
+# back up.
+#
+# (c) Renaud Waldura June 2000
+#
+
+if umount /mnt/spool 
+then
+   camcontrol stop da1 -E
+   logger -t $0 "Disk da1 spun down"
+fi
+
+That's all folks!
+
+
+8. COMMENTS I'VE RECEIVED ABOUT THIS ARTICLE
+
+A couple of net folks were kind enough to point that the procedure described
+in this article isn't the simplest. Shame on me for inflicting 
+un-necessary difficulty upon FreeBSD users!
+
+It turns out editing /etc/fstab can be skipped entirely, since amd already
+has provisions for both cd9660 and DOS filesystems built in.
+
+In the amd.map file, the following lines are sufficient:
+
+floppy          type:=pcfs;dev:=/dev/fd0;opts:=rw 
+cdrom           type:=cdfs;dev:=/dev/cdrom;opts:=ro
+
+# for a SmartMedia card mounted via pcmcia
+pics            type:=pcfs;dev:=/dev/ad8s1;opts:=ro
+
+# for the memory stick slot on my laptop
+memstick        type:=pcfs;dev:=/dev/ad2s1;opts:=rw
+
+Thanks to Jan Stocker, Dane Foster and Marc Falesse for their comments!
+
+Reader Paul Beard says his amd won't run without a configuration file
+/etc/amd.conf. I didn't have that problem, but here is one sent by Paul in 
+case you need it.
+
+# GLOBAL OPTIONS SECTION
+[ global ]
+normalize_hostnames =    no
+print_pid =              no
+restart_mounts =         yes
+auto_dir =               /n
+log_file =               /var/log/amd
+log_options =            all
+#debug_options =         all
+plock =                  no
+selectors_on_default =   yes
+# config.guess picks up "sunos5" and I don't want to edit my maps yet
+os =                     sos5
+# if you print_version after setting up "os", it will show it.
+print_version =          no
+map_type =               file
+search_path =            /etc/amd.map:/usr/lib/amd:/usr/local/AMD/lib
+browsable_dirs =         yes
+
+# DEFINE AN AMD MOUNT POINT
+[ /cdrom ]
+map_name =               amd.cdrom
+
+
+A. ERRORS
+
+Operation not permitted when mouting: one cannot mount a regular
+partition on top of another. Unmount the first partition before
+attempting to mount.
+
+
+B. RESOURCES
+
+"How to automount CD Rom and Floppies when needed..."
+http://www.freebsd.at/article.php?sid=19
+
+The mount(8) and fstab(5) manpages.
+
+The amd(8) and amq(8) manpages.
+
+/etc/defaults/rc.conf for more amd options.
+
+The FreeBSD Handbook at http://www.freebsd.org/handbook/.
+
+
+C. ABOUT THE AUTHOR
+
+Renaud Waldura is software engineer hacking FreeBSD since 1996. 
+See http://renaud.waldura.com/doc/freebsd/ for more FreeBSD articles.
+
+

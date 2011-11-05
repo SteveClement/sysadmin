@@ -1,0 +1,71 @@
+*Received: (qmail 9393 invoked by uid 98); 20 Jun 2004 22:54:42 -0000
+Received: from anonymous@linion.ion.lu by zinc.ion.lu by uid 82 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.72. spamassassin: 2.63.  Clear:RC:0(80.90.47.168):SA:0(0.0/5.0):. 
+ Processed in 9.721964 secs); 20 Jun 2004 22:54:42 -0000
+X-Spam-Status: No, hits=0.0 required=5.0
+X-Antivirus-ion.lu-Mail-From: anonymous@linion.ion.lu via zinc.ion.lu
+X-Antivirus-ion.lu: 1.22-st-qms (Clear:RC:0(80.90.47.168):SA:0(0.0/5.0):. Processed in 9.721964 secs Process 9385)
+Received: from unknown (HELO linion.ion.lu) (80.90.47.168)
+  by zinc.ion.lu with SMTP; 20 Jun 2004 22:54:33 -0000
+Received: (qmail 55371 invoked by alias); 20 Jun 2004 22:01:01 -0000
+Delivered-To: root@linion.ion.lu
+Received: (qmail 55368 invoked by uid 0); 20 Jun 2004 22:01:01 -0000
+Date: 20 Jun 2004 22:01:00 -0000
+Message-ID: <20040620220100.55346.qmail@linion.ion.lu>
+From: root@linion.ion.lu (Cron Daemon)
+To: root@linion.ion.lu
+Subject: Cron <root@linion> /var/qmail/qmailstats
+X-Cron-Env: <SHELL=/bin/sh>
+X-Cron-Env: <HOME=/root>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=root>
+X-Cron-Env: <USER=root>
+
+To: rootmails@ion.lu
+From: postmaster@ion.lu
+Subject: Nightly Qmail Stats Report for 06/21/04
+
+Basic statistics
+
+qtime is the time spent by a message in the queue.
+
+ddelay is the latency for a successful delivery to one recipient---the
+end of successful delivery, minus the time when the message was queued.
+
+xdelay is the latency for a delivery attempt---the time when the attempt
+finished, minus the time when it started. The average concurrency is the
+total xdelay for all deliveries divided by the time span; this is a good
+measure of how busy the mailer is.
+
+Completed messages: 1077
+Recipients for completed messages: 4215
+Total delivery attempts for completed messages: 4217
+Average delivery attempts per completed message: 3.91551
+Bytes in completed messages: 69691295
+Bytes weighted by success: 82044464
+Average message qtime (s): 0
+
+Total delivery attempts: 4259
+  success: 4209
+  failure: 15
+  deferral: 35
+Total ddelay (s): 0.000000
+Average ddelay per success (s): 0.000000
+Total xdelay (s): 0.000000
+Average xdelay per delivery attempt (s): 0.000000
+Time span (days): 0
+awk: cmd. line:61: (FILENAME=- FNR=61198) fatal: division by zero attempted
+Reasons for failure
+
+One line per reason for delivery failure. Information on each line:
+* del is the number of deliveries that ended for this reason.
+* xdelay is the total xdelay on those deliveries.
+
+del  xdelay  reason
+  1    0.00  205.158.62.134 does not like recipient./Remote host said: 550 <SummerSpringer@nergal.org>: User unknown/Giving up on 205.158.62.134./
+  1    0.00  65.54.190.230 does not like recipient./Remote host said: 550 Requested action not taken: mailbox unavailable/Giving up on 65.54.190.230./
+  4    0.00  Connected to 194.154.192.92 but sender was rejected./Remote host said: 500 5.1.7 Spoofing denied/
+  2    0.00  Connected to 194.154.192.93 but sender was rejected./Remote host said: 500 5.1.7 Spoofing denied/
+  1    0.00  Connected to 217.160.203.201 but connection died. (#4.4.2)/I'm not going to try again; this message has been in the queue too long./
+  1    0.00  Sorry, I couldn't find any host named bitchion.bitchion. (#5.1.2)/
+  5    0.00  Sorry, no mailbox here by that name. vpopmail (#5.1.1)/

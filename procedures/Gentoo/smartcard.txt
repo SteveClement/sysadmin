@@ -1,0 +1,36 @@
+This explains the Smartcard driver install for:
+
+Two routes to go: udev style OR pcscd style
+Difference, drivers presumably, security: root daemon etc...
+Difference noticed: None
+
+SPR 532 (Firmware needs to be at least 5.07 5.09beta does not work as of 13042006)
+SCR 335 (this one has no Firmware)
+
+USE flags needed: pcsc-lite smartcard
+
+echo "app-crypt/ccid ~x86" >> /etc/portage/package.keywords
+echo "sys-apps/pcsc-lite ~x86" >> /etc/portage/package.keywords
+
+emerge -av --newuse gnupg openssh ccid
+
+rc-update add pcscd default
+/etc/init.d/pcscd start
+
+and you should be done!
+
+the other route:
+
+groupadd scard
+
+Add the users that need to have access to the Smartcard reader to scard!
+
+vi /etc/udev/rules.d/10-gnupg-ccid.rules
+
+# GPG SmartCard Reader Support
+#
+
+ACTION=="add", SUBSYSTEM=="usb_device", SYSFS{idVendor}=="04e6", SYSFS{idProduct}=="e003", GROUP="scard", MODE="0660"
+ACTION=="add", SUBSYSTEM=="usb_device", SYSFS{idVendor}=="04e6", SYSFS{idProduct}=="5115", GROUP="scard", MODE="0660"
+
+And your done!

@@ -1,0 +1,32 @@
+Brightness of the screen
+
+The Vaio has an excellent screen, also usable outdoors. However, indoors its
+brightness is rather high. In order to dim the screen, I first did the
+following:
+
+1. modprobe sonypi
+2. add a line with 'sonypi' in /etc/modules
+3. apt-get install spicctrl
+4. Enter 'spicctrl' to see the options
+
+However, the brightness of the screen could not be modified with this
+software. The solution, which worked, was as follows:
+
+1.  Download the driver sony_acpi, available on http://popies.net/sonypi/
+    on a link at the bottom of the web-page
+2.  Download sony_acpi.tar.gz
+3.  gunzip sony_acpi.tar.gz
+4.  tar xvf sony_acpi.tar
+5.  cd sony_acpi
+6.  make (ignore the warning messages)
+7.  as root do: cp sony_acpi.ko /lib/modules/2.6.11-1-686/kernel/drivers/acpi/
+    (where you have to use your kernel-version, if yours is not 2.6.11-1-686)
+8.  depmod -a
+9.  modprobe sony_acpi
+10. Now you find an entry in /proc:  /proc/acpi/sony/brt
+11. The value of /proc/acpi/sony/brt may be between 1 (relatively dark) and 8
+(bright)
+12. The brightness of the screen may now be dimmed a bit with the command:
+    echo "4" > /proc/acpi/sony/brt
+13. My thanks to Stelian Pop, who wrote this driver!
+

@@ -1,0 +1,13 @@
+### This should not be taken serious :))) the main SSL on FreeBSD update file is in FreeBSD-OpenSSh.txt GO THERE NOW ###
+
+To update openssl on FreeBSD 4.x with Native /usr openssl do the following:
+
+./config --prefix=/usr --openssldir=/etc/ssl
+
+Then edit the resulting Makefile and change:
+
+MANDIR=$(OPENSSLDIR)/man
+
+to:
+
+MANDIR=/usr/share/man/man

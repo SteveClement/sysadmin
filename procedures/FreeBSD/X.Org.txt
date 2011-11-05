@@ -1,0 +1,16 @@
+I installed a Fresh 6.2 with a Gnome 2.20 Desktop and couldn't run the X.org
+Server. Upon start I got:
+
+Could not open default font 'fixed' 
+
+So I had to install x11/xorg
+
+The quick and dirty fix is to reinstall the fixed-font and cursor:
+
+pkg_delete xorg-fonts-miscbitmaps\* font-misc-misc\* font-cursor-misc\*
+
+portinstall xorg-fonts-miscbitmaps font-misc-misc font-cursor-misc xorg-fonts-type1 
+
+/usr/local/lib/X11/fonts/misc/fonts.alias is missing
+
+Et voila, sorted

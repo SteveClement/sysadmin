@@ -1,0 +1,2 @@
+PPC G4 876Mhz
+640Mb RAM

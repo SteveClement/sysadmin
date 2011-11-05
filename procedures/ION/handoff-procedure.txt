@@ -1,0 +1,11 @@
+This procedure tells me the steps needed to hand a website off from a
+development server.
+
+
+First off all we need to known if anything has changed in the httpd.conf file,
+e.g: rewrites/restrictions/auths/davs...
+
+Then we need to make sure that everything is checked into the repository.
+If all is committed ssh to target machine.
+cvs up the Website tree
+backup copy the old website tree (beware off excludes_has to live in repo)

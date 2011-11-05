@@ -1,0 +1,50 @@
+dn: dc=dakinibooks,dc=com
+objectclass: dcObject
+objectclass: organization
+o: Dakini Books Ltd.
+dc: dakinibooks
+
+dn: cn=Manager,dc=dakinibooks,dc=com
+objectclass: organizationalRole
+cn: Manager
+
+dn: ou=contacts, dc=dakinibooks, dc=com
+ou: contacts
+objectclass: organizationalUnit
+objectclass: domainRelatedObject
+associatedDomain: dakinibooks.com
+
+dn: ou=shared, ou=contacts, dc=dakinibooks, dc=com
+ou: contacts
+ou: shared
+objectclass: organizationalUnit
+objectclass: domainRelatedObject
+associatedDomain: dakinibooks.com
+
+dn: ou=ruth, ou=contacts, dc=dakinibooks, dc=com
+ou: contacts
+ou: ruth
+objectclass: organizationalUnit
+objectclass: domainRelatedObject
+associatedDomain: dakinibooks.com
+
+dn: ou=emmal, ou=contacts, dc=dakinibooks, dc=com
+ou: contacts
+ou: emmal
+objectclass: organizationalUnit
+objectclass: domainRelatedObject
+associatedDomain: dakinibooks.com
+
+dn: ou=emmam, ou=contacts, dc=dakinibooks, dc=com
+ou: contacts
+ou: emmam
+objectclass: organizationalUnit
+objectclass: domainRelatedObject
+associatedDomain: dakinibooks.com
+
+dn: ou=lucky, ou=contacts, dc=dakinibooks, dc=com
+ou: contacts
+ou: lucky
+objectclass: organizationalUnit
+objectclass: domainRelatedObject
+associatedDomain: dakinibooks.com

@@ -1,0 +1,40 @@
+a nasty gotcha in plug-gw... this is from an email explaining the 
+problem. if we ever figure out the real answer i guess we need to 
+update this file:
+
+the load balancers connect to a port forwarding proxy called "plug-gw"
+(which is part of "fwtk") on the firewalls, which then pass on port 80
+and port 443 to the backend web servers. the load balancers periodically
+check that the web servers are running by sending a "HEAD" request to
+port 80 and checking that they get a valid return from apache. this is
+called "http keepalive". we need to do this rather than simply checking
+that port 80 is listening as plug-gw will always be listening regardless
+of whether the web server at the other end is going to respond. for some
+reason, sometime last week, this all stopped working. it appears that
+plug-gw was correctly passing on the HEAD request, and apache was
+correctly responding, but plug-gw then didn't pass the response back to
+the load balancer, so after 5 seconds it would decide the server was
+down and stop forwarding requests to it. the reason plug-gw refused to
+pass the reply back was that it could not resolve the ip addresses of
+the loadbalancer to a name. we know that nothing has changed - plug-gw,
+apache, the l/b config and the l/b firmware have not been touched, so
+the mystery is now why it ever worked in the first place...
+
+we have two possible explanations:
+
+1. it is a dns thing. someone on the internet was helpfully reverse
+resolving the 192.168.1.0 network (or possibly just 192.168.1.16 & 17)
+and have now stopped.
+
+2. it is a timing thing. there is some subtle interaction between dns
+lookup timing and packet passing which has changed, causing it to toggle
+to fail instead of pass.
+
+unfortunately the system logs do not go back far enough for us to be
+able to see what plug-gw was logging before the failure so we can't be
+sure what was really happening, and these systems are not backed up so
+we can't go to backups to find out.
+
+we have fixed it by putting static entries for the loadbalancers in
+/etc/hosts. this work will not be charged as it is a failure in our
+infrastructure.

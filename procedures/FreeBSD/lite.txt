@@ -1,0 +1,101 @@
+== Lite install of FreeBSD v6.2 ==
+
+This is based on a FreeBSD User Install and a VMWARE Image.
+
+pkg_add -r will be used for packages.
+
+Binary installs will be prefered over source installs.
+
+Only the bare minimum will be installed to keep the machine as clean as possible.
+
+configure your machine:
+
+sysinstall
+
+Configure -> User Management
+		-> Group . Add a group according to your username
+		-> User . Configure the username to use, include yourself in wheel to su to root afterwards
+ -> Console
+	-> Keymap configure your keymap (Swiss French IsoAccent)
+ -> Time Zone . Configure your timezone
+ -> Networking 
+	-> Interfaces (configure your Network interface)
+
+In vmware if the network interface doe not work disable it and re-enable it by simply clicking on it twice, but slowly...
+Also make sure the Interface is in bridged mode
+
+Once installed run as root:
+
+freebsd-update fetch install
+
+output:
+
+<pre>
+liteapp# freebsd-update fetch
+Looking up update.FreeBSD.org mirrors... 1 mirrors found.
+Fetching public key from update1.FreeBSD.org... done.
+Fetching metadata signature from update1.FreeBSD.org... done.
+Fetching metadata index... done.
+Fetching 2 metadata files... done.
+Inspecting system... done.
+Preparing to download files... done.
+Fetching 12 patches.....10. done.
+Applying patches... done.
+
+The following files will be updated as part of updating to 6.2-RELEASE-p4:
+/boot/kernel/kernel
+/etc/rc.d/jail
+/usr/bin/dig
+/usr/bin/host
+/usr/bin/nslookup
+/usr/bin/nsupdate
+/usr/include/netinet6/in6.h
+/usr/sbin/dnssec-signzone
+/usr/sbin/freebsd-update
+/usr/sbin/lwresd
+/usr/sbin/named
+/usr/sbin/named-checkconf
+/usr/sbin/named-checkzone
+liteapp# freebsd-update install
+Installing updates... done.
+</pre>
+
+pkg_add -r bash
+
+pw usermod root -s /usr/local/bin/bash
+pw usermod steve -s /usr/local/bin/bash
+
+Install VMWARE Tools:
+
+portinstall vmware-tools
+
+make sure you have perl:
+
+perl -v
+
+if not
+
+pkg_add -r perl
+
+
+
+You need vmware-freebsd-tools.tar.gz on disk
+
+   1. Extract VMware Tools to /tmp/
+
+      tar -C /tmp -zxvf vmware-freebsd-tools.tar.gz
+
+   2. Now run the installer
+
+      cd /tmp/vmware-tools-distrib
+      ./vmware-install.pl
+
+   3. When asked Do you want to run vmware-config-tools.pl?, answer "Yes".
+
+# Start X and your graphical environment if they are not started yet.
+# In an X terminal, launch the VMware Tools background application.
+
+vmware-toolbox & 
+
+
+

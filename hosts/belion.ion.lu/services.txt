@@ -1,0 +1,22 @@
+this contains any services the hosts runs: netstat -an 
+
+So this file should contain any service related stuff both internet visible and back end visible.
+One firther idea would be to include an lsof or similar to know what process runs what port...
+Active Internet connections (including servers)
+Proto Recv-Q Send-Q  Local Address          Foreign Address        (state)
+tcp4       0      0  127.0.0.1.222          *.*                    LISTEN
+tcp6       0      0  ::1.222                *.*                    LISTEN
+tcp4       0     48  80.90.47.167.22        80.90.33.95.24243      ESTABLISHED
+tcp4       0      0  *.587                  *.*                    LISTEN
+tcp4       0      0  *.25                   *.*                    LISTEN
+tcp4       0      0  *.22                   *.*                    LISTEN
+tcp46      0      0  *.22                   *.*                    LISTEN
+udp4       0      0  127.0.0.1.514          *.*                    
+Active UNIX domain sockets
+Address  Type   Recv-Q Send-Q    Inode     Conn     Refs  Nextref Addr
+d1456c80 stream      0      0 d1af1b40        0        0        0 /tmp/ssh-zUyTxkGq/agent.24412
+d1456d20 stream      0      0        0 d1456dc0        0        0
+d1456dc0 stream      0      0        0 d1456d20        0        0
+d1456e60 dgram       0      0        0 d1425f00        0 d1456f00
+d1456f00 dgram       0      0        0 d1425f00        0        0
+d1425f00 dgram       0      0 d1420300        0 d1456e60        0 /var/run/log

@@ -1,0 +1,6 @@
+Syslogd is the standard log daemon on FreeBSD
+
+in order to add logging for say: console and local0 you have to do the
+following:
+
+

@@ -1,0 +1,62 @@
+this file contains software details initially ls ~software/archives unpacked pkg_info included
+
+
+total 3592
+drwxrwsr-x    2 software software     4096 Aug 13 10:38 .
+drwxrwsr-x    5 software software     4096 Jan  3  2003 ..
+-rw-r--r--    1 steve    steve      875851 Aug 13 09:54 openssh-3.6p1.tar.gz
+-rw-rw-r--    1 steve    software  2784331 Apr 10 22:00 openssl-0.9.7b.tar.gz
+total 165056
+drwxrwsr-x    5 software software     4096 Aug 13 12:14 .
+drwxrwsr-x    5 software software     4096 Jan  3  2003 ..
+-rw-r--r--    1 root     software  2712762 Jan 21  2003 apache_1.3.27.tgz
+-rw-r--r--    1 root     software  6795971 Jan 21  2003 aspell-.33.7.1.tgz
+-rw-r--r--    1 root     software  5159881 Jan 21  2003 bash-2.05.tgz
+-rw-r--r--    1 root     software 23961802 Jan 21  2003 bind-9.2.2rc1.tgz
+-rw-r--r--    1 root     software  5136149 Jan 21  2003 cvs-1.11.2.tgz
+-rw-r--r--    1 root     software 15317367 Jan 21  2003 cyrus-imapd-2.1.11.tgz
+-rw-r--r--    1 root     software  2785717 Jan 21  2003 cyrus-sasl-2.1.10.tgz
+-rw-r--r--    1 root     software  3970985 Jan 21  2003 db-4.0.14.tgz
+-rw-r--r--    1 root     software     9862 Jan 21  2003 fullizer-0.1.tgz
+-rw-r--r--    1 root     software 36925085 Jan 21  2003 gcc-2.95.3.tgz
+-rw-r--r--    1 root     software  6560113 Jan 21  2003 gettext-0.11.2.tgz
+-rw-r--r--    1 root     software   349475 Jan 21  2003 horde-2.1.tgz
+-rw-r--r--    1 root     software  5591578 Jan 21  2003 imap-2001a.tgz
+-rw-r--r--    1 root     software  1028634 Jan 21  2003 imp-3.1.tgz
+-rw-r--r--    1 root     software  1932308 Jan 21  2003 libmcrypt-2.5.2.tgz
+-rw-r--r--    1 root     software  3986203 Jan 21  2003 lynx2-8-4.tgz
+-rw-r--r--    1 root     software  2810276 Jan 21  2003 maildrop-1.3.8.tgz
+-rw-r--r--    1 root     software     3934 Jan 21  2003 mcal.tgz
+-rw-r--r--    1 root     software   732144 Jan 21  2003 mcrypt-2.6.2.tgz
+-rw-r--r--    1 root     software   876691 Jan 21  2003 mhash-0.8.16.tgz
+-rw-r--r--    1 root     software   813378 Jan 21  2003 mod_dav-1.0.3-1.3.6.tgz
+-rw-r--r--    1 root     software    84644 Jan 21  2003 nc.tgz
+-rw-r--r--    1 root     software  4370416 Jan 21  2003 ntp-4.1.0.tgz
+drwxrwsr-x    7 steve    software     8192 Aug 13 12:19 openssh-3.5p1
+-rw-r--r--    1 root     software  8005883 Jan 21  2003 openssh-3.5p1.tgz
+drwxrwsr-x    7 steve    software     8192 Aug 13 12:29 openssh-3.6p1
+-rw-r--r--    1 root     software  4896118 Jan 21  2003 openssl-0.9.6h.tgz
+drwxrwsr-x   20 steve    software     4096 Aug 13 12:03 openssl-0.9.7b
+-rw-r--r--    1 root     software      552 Jan 21  2003 pack.sh.tgz
+-rw-r--r--    1 root     software   183665 Jan 21  2003 package.tgz
+-rw-r--r--    1 root     software  1644564 Oct 28  2002 pcmcia-cs-3.1.26.tar.gz
+-rw-r--r--    1 root     software  8814097 Oct 28  2002 perl-5.6.1.tar.gz
+-rw-r--r--    1 root     software  3447356 Jan 21  2003 php-4.2.3.tgz
+-rw-r--r--    1 root     software   651454 Jan 21  2003 qmail-1.03.tgz
+-rw-r--r--    1 root     software   111236 Jan 21  2003 qmail-scanner-1.10.tgz
+-rw-r--r--    1 root     software     1078 Jan 21  2003 qmtpd.tgz
+-rw-r--r--    1 root     software      120 Jan 21  2003 scripts.tgz
+-rw-r--r--    1 root     software   188117 Jan 21  2003 streamer.tgz
+-rw-r--r--    1 root     software   787107 Jan 21  2003 stunnel-3.22.tgz
+-rw-r--r--    1 root     software   950422 Jan 21  2003 stunnel-4.03.tgz
+-rw-r--r--    1 root     software    33534 Jan 21  2003 swallow-0.4.0.tgz
+-rw-r--r--    1 root     software  1713314 Jan 21  2003 tar-1.13.tgz
+-rw-r--r--    1 root     software   202754 Jan 21  2003 tardy.1.2.tgz
+-rw-r--r--    1 root     software   273333 Jan 21  2003 tnef-1.1.1.tgz
+-rw-r--r--    1 root     software   260562 Jan 21  2003 turba-1.1.tgz
+-rw-r--r--    1 root     software   648440 Jan 21  2003 vnc_x86_linux_2.0.tgz
+-rw-r--r--    1 root     software   580817 Jan 21  2003 webalizer-2.01-10.tgz
+-rw-r--r--    1 root     software  1537365 Jan 21  2003 wget-1.7.tgz
+-rw-r--r--    1 root     software   107488 Jan 21  2003 wireless_tools.21.tgz
+-rw-r--r--    1 root     software  1297222 Jan 21  2003 xinetd-2.3.9.tgz
+-rw-r--r--    1 root     software   300652 Jan 21  2003 zlib-1.1.4.tgz

@@ -1,0 +1,296 @@
+NOTE:  Cyrus-imapd-2.0.16 no longer uses (x)inetd, so you have to put "/usr/cyrus/bin/master &" in rc.local.. Any entries for imap or pop3 in xinetd.conf will cause it to fail.
+
+if you're going to do sasl client authentication (which you probably are), get the latest cyrus-sasl-1.x.x version, *NOT* cyrus-sasl-2.x.x like the docco implies! if you fail to do this, cyrus-imapd will fail to find the sasl libraries at compile time.
+
+Cyrus imap.
+===========
+
+if you get:
+
+  In file included from comparator.h:34,
+                 from ./sieve.y:33:
+  /usr/include/regex.h:46: syntax error before `regoff_t'
+  /usr/include/regex.h:46: warning: data definition has no type or storage class
+  /usr/include/regex.h:56: syntax error before `regoff_t'
+  *** Error code 1
+
+  Stop in /home/software/unpacked/cyrus-imapd-1.6.24-drac/sieve.
+  *** Error code 1
+
+when building cyrus-imap, apply the sieve.patch provided here.
+
+or if you get:
+
+### Making all in /home/software/unpacked/cyrus-imapd-1.6.24-drac/imap
+gcc -L/usr/local/lib -R/usr/local/lib  -g -O2 -o collectnews collectnews.o libimap.a ../lib/libcyrus.a  -L/usr/local//lib -lsasl -lfl  -lutil  -lssl -lcrypto ../et/libcom_err.a
+/usr/libexec/elf/ld: cannot open -lssl: No such file or directory
+*** Error code 1
+
+Stop.
+*** Error code 1
+
+Stop.
+
+then add in front of your ./configure line this: LIBS=-L/usr/local/ssl/lib
+so that you line looks like:
+LIBS=-L/usr/local/ssl/lib ./configure --bla.....
+
+this applies to version 1.6.24 of cyrus.
+
+In RHlinux if you get:
+
+imapd.c:58:21: com_err.h: No such file or directory
+make[1]: *** [imapd.o] Error 1
+make[1]: Leaving directory `/home/software/unpacked/cyrus-imapd-2.0.16/imap'
+
+or:
+
+timsieved.c:62:21: com_err.h: No such file or directory
+make[1]: *** [timsieved.o] Error 1
+make[1]: Leaving directory `/home/software/unpacked/cyrus-imapd-2.0.16/timsieved
+
+add -I/usr/include/et to the CFLAGS line in the Makefile in the respective directory.
+
+compiling on RH7.2 --with-auth=unix was needed during the configure.
+
+Cyrus Drac support
+==================
+
+Ok, after loads of buggering about I actually firgured out how to compile it properly.
+This is the line I used on mail and it worked, meaning it compiled allright with drac support:
+
+CPPFLAGS=-DDRAC_AUTH LIBS=-L/usr/local/ssl/lib ./configure  --without-gssapi --with-openssl=/usr/local/ssl/ --without-krb --with-sasldir=/usr/local --with-dbdir=/usr/local/BerkeleyDB.3.2
+
+now to check if the drac stuff really is compiled in you can do something scary like this:
+in ~software/unpacked/cyrus-imapd-1.6.24-drac/imap
+
+gdb -q imapd
+on the gdb prompt type:
+print dracdisc
+
+dracdisc is a drac function which is only compiled in if DRAC_AUTH is defined, so if its not compiled in you get:
+No symbol "dracdisc" in current context.
+
+
+insert into /etc/pam.conf:
+
+  # cyrus imap
+  imap    auth    sufficient      pam_unix.so      try_first_pass
+
+create an admin user:
+
+  saslpasswd addyadmin
+
+then make sure sasl db is readable by the daemons:
+
+  root@lemon doc# ls -l /etc/sa*
+  -rw-------  1 root  wheel  16384 Jul 10 16:49 /etc/sasldb.db
+  root@lemon doc# chown cyrus:staff /etc/sasldb.db 
+  root@lemon doc# chmod g+wr /etc/sasldb.db 
+
+make sure user cyrus' primary group is "mail" in /etc/passwd.
+add users you want to be able to admin cyrus to group "staff" in /etc/group
+
+make sure daemon is in group mail in /etc/group:
+
+  mail:*:6:daemon
+
+put saslpasswd on local path:
+
+  ln -s /usr/local/sbin/saslpasswd /usr/local/bin/saslpasswd
+
+look at /etc/postfix/main.cf.default for lots of useful extras
+and make sure at the very least you uncomment one of the "mydestination" 
+lines in /etc/postfix/main.cf, and set myhostname and mydomain... e.g.
+
+  myhostname = travelator.9feet.com
+  mydomain = 9feet.com
+  mydestination = $myhostname, localhost.$mydomain, $mydomain
+
+and uncomment the line:
+
+  mailbox_transport = cyrus 
+
+since cyrus installs itself in /usr/cyrus, but postfix expects it to be in /cyrus, do:
+
+  ln -s /usr/cyrus /cyrus
+
+to allow mobile users to relay mail: http://www.yoyo.org/postfix/faq.html#mobile
+
+to ssl wrap:
+
+install stunnel.
+create local cert/keypair in /usr/local/ssl/certs/stunnel.pem
+make sure ownership & perms are correct:
+
+  -r--r-----  1 root  mail   1921 Apr 26  2000 stunnel.pem
+
+replace inetd with xinetd. put this in /etc/xinetd.conf:
+
+# The defaults section sets some information for all services
+defaults
+{
+        #The maximum number of requests a particular service may handle
+        # at once.
+        instances   = 250
+
+        # The type of logging.  This logs to a file that is specified.
+        # Another option is: SYSLOG syslog_facility [syslog_level]
+        log_type    = FILE /var/log/servicelog
+
+        # What to log when the connection succeeds.
+        # PID logs the pid of the server processing the request.
+        # HOST logs the remote host's ip address.
+        # USERID logs the remote user (using RFC 1413)
+        # EXIT logs the exit status of the server.
+        # DURATION logs the duration of the session.
+        log_on_success = HOST PID
+
+        # What to log when the connection fails.  Same options as above
+        log_on_failure = HOST RECORD
+
+        # The maximum number of connections a specific IP address can
+        # have to a specific service.  
+        per_source  = 250
+}
+
+service imaps
+{
+        flags       = REUSE NAMEINARGS
+        socket_type = stream
+        protocol    = tcp
+        wait        = no
+        user        = cyrus
+        server      = /usr/local/sbin/stunnel
+        server_args = stunnel -r imap -p /usr/local/ssl/certs/stunnel.pem
+}
+
+you should have already done this as part of the imap install, but since it seems to get missed:
+
+   cd /var/spool
+   mkdir imap
+   chown cyrus imap
+   chgrp mail imap
+   chmod 750 imap
+   su -m cyrus
+   ~software/unpacked/<cyrus>/tools/mkimap
+   exit
+
+
+and create /etc/imapd.conf, with something like:
+
+  configdirectory: /var/imap
+  partition-default: /var/imap
+  admins: addyadmin benadmin honkadmin woodyadmin dougadmin paulgadmin
+  sasl_pwcheck_method: sasldb
+
+and /etc/cyrus.conf, with:
+
+  # standard standalone server implementation
+
+  START {
+    # do not delete these entries!
+    mboxlist      cmd="ctl_mboxlist -r"
+    deliver       cmd="ctl_deliver -r"
+
+    # this is only necessary if using idled for IMAP IDLE
+    #  idled                cmd="idled"
+  }
+
+  # UNIX sockets start with a slash and are put into /var/imap/socket
+  SERVICES {
+    # add or remove based on preferences
+    imap         cmd="imapd" listen="localhost:imap" prefork=1
+  #  imap          cmd="imapd" listen="imap" prefork=0
+  #  imaps         cmd="imapd -s" listen="imaps" prefork=0
+  #  pop3          cmd="pop3d" listen="pop3" prefork=0
+  #  pop3s         cmd="pop3d -s" listen="pop3s" prefork=0
+  #  sieve         cmd="timsieved" listen="sieve" prefork=0
+
+    # at least one LMTP is required for delivery
+  #  lmtp         cmd="lmtpd" listen="lmtp" prefork=0
+    lmtpunix      cmd="lmtpd" listen="/var/imap/socket/lmtp" prefork=0
+  }
+
+  EVENTS {
+    # this is required
+    checkpoint    cmd="ctl_mboxlist -c" period=30
+
+    # this is only necessary if using duplicate delivery suppression
+  #  delprune      cmd="ctl_deliver -E 3" period=1440
+  }
+
+make sure things get started at startup - add to /etc/rc.local
+
+  echo starting xinetd
+  /usr/local/sbin/xinetd
+
+  echo starting cyrus imap
+  /usr/cyrus/bin/master &
+
+you may also need to add an alias in /etc/profile to overcome a weird perl/library problem:
+
+  alias cyradm='LD_PRELOAD=/usr/local/lib/libsasl.so cyradm'
+
+Compile Errors
+--------------
+
+If your getting strange compile errors try compiling without gssapi which is a Kerberos thing...
+
+blow config.cache away first...
+
+./configure --without-gssapi
+
+I was getting a compile error like this:-
+
+   In file included from IMAP.xs:51:
+   ../../lib/imclient.h:56: sasl.h: No such file or directory
+   *** Error code 1
+
+So, try using these options:-
+
+./configure --with-dbdir=/usr/local/BerkeleyDB.3.3 --with-sasldir=/usr/local
+
+you may have to change the '--with-dbdir=' option depending on your version of BerkeleyDB, but '--with-sasl=/usr/local' is the important bit, cos if it can't find sasl, it will die during 'make'
+
+Creating users (i.e. mailboxes)
+-------------------------------
+
+First:
+
+saslpasswd2 <new user name>
+
+add a password for the user, then:
+
+cyradm -user <admin user> <host>
+
+Note that if you do -user=fred instead of -user fred, then you get a
+very obscure error:
+
+application-specific initialization failed: unknown host
+
+At the prompt:
+
+hostname> cm user.<new user name>
+
+Err, that's it.
+
+Deleting mailboxes
+------------------
+
+Useful when you screwed up!
+
+At the cyradm prompt (see above):
+
+hostname> sam <mailbox> <admin user> all
+hostname> dm <mailbox>
+
+Clearing the deliver databases
+------------------------------
+
+In root's crontab (or /etc/periodic/daily?) run this daily, to clear
+the delivery database, which otherwise grows forever:
+
+su cyrus -s /bin/bash -c '/usr/cyrus/bin/deliver -E 3
+
+<NOTE: NOT YET CONFIRMED TO WORK - DELETE THIS LINE WHEN IT IS>

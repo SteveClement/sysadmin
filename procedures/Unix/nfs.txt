@@ -1,0 +1,5 @@
+If /etc/exports is edited you can reload it with:
+kill -s HUP `cat /var/run/mountd.pid`
+
+To mount an NFS Exported fs:
+mount hostname:/export-item /mountpoint

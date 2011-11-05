@@ -1,0 +1,27 @@
+*Received: (qmail 9580 invoked by uid 98); 20 Jun 2004 23:08:27 -0000
+Received: from anonymous@iron.ion-i.net by zinc.ion.lu by uid 82 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.72. spamassassin: 2.63.  Clear:RC:0(213.129.72.10):SA:0(0.0/5.0):. 
+ Processed in 10.462383 secs); 20 Jun 2004 23:08:27 -0000
+X-Spam-Status: No, hits=0.0 required=5.0
+X-Antivirus-ion.lu-Mail-From: anonymous@iron.ion-i.net via zinc.ion.lu
+X-Antivirus-ion.lu: 1.22-st-qms (Clear:RC:0(213.129.72.10):SA:0(0.0/5.0):. Processed in 10.462383 secs Process 9572)
+Received: from unknown (HELO iron.ion-i.net) (213.129.72.10)
+  by zinc.ion.lu with SMTP; 20 Jun 2004 23:08:17 -0000
+Received: (qmail 27551 invoked by alias); 20 Jun 2004 23:07:20 -0000
+Delivered-To: root@iron.ion-i.net
+Received: (qmail 27544 invoked by uid 0); 20 Jun 2004 23:07:19 -0000
+Date: 20 Jun 2004 23:00:00 -0000
+Message-ID: <20040620230000.26259.qmail@iron.ion-i.net>
+From: root@iron.ion-i.net (Cron Daemon)
+To: root@iron.ion-i.net
+Subject: Cron <root@iron>  /usr/local/sbin/bup.sh
+X-Cron-Env: <SHELL=/bin/sh>
+X-Cron-Env: <HOME=/root>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=root>
+
+/bin/tar: Removing leading `/' from member names
+/bin/tar: Removing leading `/' from member names
+/bin/tar: Removing leading `/' from member names
+/bin/tar: Removing leading `/' from link names
+/bin/tar: Removing leading `/' from member names

@@ -1,0 +1,88 @@
+*Received: (qmail 77207 invoked by uid 89); 3 Sep 2007 03:03:51 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 03:03:51 +0200
+Received: (qmail 29744 invoked by uid 98); 3 Sep 2007 02:47:05 +0200
+Received: from 85.93.202.223 by radium.ion.lu (envelope-from <root@curion.ion.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(85.93.202.223):SA:0(0.1/7.0):. 
+ Processed in 3.603347 secs); 03 Sep 2007 00:47:05 -0000
+X-Spam-Status: No, score=0.1 required=7.0
+X-Spam-Level: 
+Received: from vodsl-9183.vo.lu (HELO curion.ion.lu) (85.93.202.223)
+  by radium.ion.lu with SMTP; 3 Sep 2007 02:47:01 +0200
+Received-SPF: none (radium.ion.lu: domain at curion.ion.lu does not designate permitted sender hosts)
+Received: (qmail 91362 invoked by alias); 3 Sep 2007 03:03:41 +0200
+Delivered-To: root@curion.ion.lu
+Received: (qmail 91341 invoked by uid 0); 3 Sep 2007 03:03:41 +0200
+Date: 3 Sep 2007 03:03:41 +0200
+Message-ID: <20070903010341.91325.qmail@curion.ion.lu>
+From: root@curion.ion.lu
+To: root@curion.ion.lu
+Subject: curion.ion.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+curion.ion.lu login failures:
+
+curion.ion.lu refused connections:
+
+Checking for a current audit database:
+
+Database created: Sun Sep  2 02:40:01 CEST 2007
+
+Checking for packages with security vulnerabilities:
+
+Affected package: rsync-2.6.9
+Type of problem: rsync -- off by one stack overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/af8e3a0c-5009-11dc-8a43-003048705d5a.html>
+
+Affected package: cups-base-1.2.11_2
+Type of problem: xpdf -- stack based buffer overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/0e43a14d-3f3f-11dc-a79a-0016179b2dd5.html>
+
+Affected package: vim-7.1.18
+Type of problem: vim -- Command Format String Vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/1ed03222-3c65-11dc-b3d3-0016179b2dd5.html>
+
+Affected package: lighttpd-1.4.15
+Type of problem: lighttpd -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/fc9c217e-3791-11dc-bb1a-000fea449b8a.html>
+
+4 problem(s) in your installed packages found.
+
+You are advised to update or deinstall the affected package(s) immediately.
+
+Checking for a current audit database:
+
+Database created: Sun Sep  2 02:40:01 CEST 2007
+
+Checking for packages with security vulnerabilities:
+
+Affected package: rsync-2.6.9
+Type of problem: rsync -- off by one stack overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/af8e3a0c-5009-11dc-8a43-003048705d5a.html>
+
+Affected package: cups-base-1.2.11_2
+Type of problem: xpdf -- stack based buffer overflow.
+Reference: <http://www.FreeBSD.org/ports/portaudit/0e43a14d-3f3f-11dc-a79a-0016179b2dd5.html>
+
+Affected package: vim-7.1.18
+Type of problem: vim -- Command Format String Vulnerability.
+Reference: <http://www.FreeBSD.org/ports/portaudit/1ed03222-3c65-11dc-b3d3-0016179b2dd5.html>
+
+Affected package: lighttpd-1.4.15
+Type of problem: lighttpd -- multiple vulnerabilities.
+Reference: <http://www.FreeBSD.org/ports/portaudit/fc9c217e-3791-11dc-bb1a-000fea449b8a.html>
+
+4 problem(s) in your installed packages found.
+
+You are advised to update or deinstall the affected package(s) immediately.
+
+-- End of security output --

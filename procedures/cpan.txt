@@ -1,0 +1,52 @@
+CPAN
+----
+
+CPAN is the Comprehensive Perl Archive Network, a large & vaguely organised
+collection of FTP archives containing Perl libraries and stuff.
+
+It has a highly automated shell to help download things, known as cpan
+(see perldoc CPAN).
+
+1. Configuring CPAN shell
+
+CPAN should put its build stuff in ~software/CPAN, not the default.
+Cache size should be set to 100MB.
+
+If you're behind a firewall, you may need to make FTP_PASSIVE true in the
+environment. (You may also need FTP_PASSIVE_MODE=yes - sigh). Net::FTP
+uses the former, and straight commandline ftp the latter (probably).
+Net::FTP also has its own configuration which may get stored in lots of obscure
+places. The most recent ftp clients use passive mode anyway.
+
+You can fix this more permanently by answering as follows:
+
+Where is your lynx program? [/usr/local/bin/lynx] /usr/bin/false
+Where is your wget program? [/usr/local/bin/wget] /usr/local/bin/wget --passive 
+Where is your ftp program? [/usr/bin/ftp] /usr/bin/pftp  
+
+Set the dependencies to "ASK".
+
+[more needed here]
+
+2. Downloading stuff
+
+Run the cpan shell as root (cpan, or perl -m CPAN -s shell).
+"i Goose" will tell you about the goose module, what version you have, and
+what the latest version is on cpan. "install Goose" will download and install
+it.
+
+GOTCHAS
+-------
+If your CPAN mirror site is configured to something silly or broken, you can
+change this by saying things like "o conf urllist" to view the list of
+URLS, then "o conf urllist shift [new url]" to give it new URLs to try.
+"o conf commit" will make changes permanent.
+
+Be careful about the prerequisites_policy - if it is set to "follow",
+CPAN will download & install *everything* it needs to make your requested
+module work. This may include new versions of perl itself.
+
+LOOK OUT FOR warnings about that cpan mirror being out of date.
+
+
+

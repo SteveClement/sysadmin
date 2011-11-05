@@ -1,0 +1,11 @@
+Start off with a blank Database.
+
+Then:
+
+ldapadd -x -D "cn=Manager,dc=dakinibooks,dc=com" -W -f init.ldif
+ldapadd -x -D "cn=Manager,dc=dakinibooks,dc=com" -W -f examples.ldif
+ldapadd -x -D "cn=Manager,dc=dakinibooks,dc=com" -W -f helen.ldiff 
+
+init.ldif initialized the structure.
+exmples.ldif populated some containers.
+helen.ldif added a container helen to the contacts structure and added an exampe into it.  

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+PERL5LIB=perl
+export PERL5LIB
+FLAGS="--nomail --trace-stdout"
+./perl/automail.pl $FLAGS conf/ben.conf < samples/shrink.1 
+./perl/automail.pl $FLAGS conf/ben.conf < samples/shrink.2
+./perl/automail.pl $FLAGS conf/ben.conf < samples/shrink.3
+./perl/automail.pl $FLAGS conf/ben.conf < samples/shrink.4
+./perl/automail.pl $FLAGS conf/ben.conf < samples/shrink.5

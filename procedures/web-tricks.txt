@@ -1,0 +1,28 @@
+Google-Hilite...
+
+1. Save 'google_hilite.php' somewhere on your server.
+
+2. Add a style to your CSS:
+
+        .hilite { background-color: #FF9; }
+        
+(By all means change the colour, but the class must be called .hilite)
+
+3. Place this at the top of your pages or template:
+
+        <?php 
+        $dr = $_SERVER[DOCUMENT_ROOT];
+        include_once($dr.'/PATH/TO/google_hilite.php');
+        ob_start("google_hilite"); 
+        ?>
+
+Place the following wherever you'd like to welcome the google visitor:
+
+        <? google_welcome(); ?>
+
+Hit google with sumfink you know your site's gonna be in the top 10...
+
+See the results...
+
+This can obviously be pushed further if you have more than one keyword you
+want to hilite.

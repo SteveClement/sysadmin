@@ -1,0 +1,1 @@
+poll pop.gmail.com protocol POP3 user midpoo@gmail.com password pong_3 mda "cat > /tmp/remoteG_delivery" ssl

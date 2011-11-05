@@ -1,0 +1,7 @@
+Copy sshd-localhost init script to /etc/init.d
+Edit sshd_config.localhost accordingly and adjust the pid line:
+
+/var/run/sshd-localhost.pid
+
+cp /home/steve/work/plumbum-ion-sysadmin/trunk/configs/common/gentoo/etc/init.d/sshd-localhost /etc/init.d/
+cp /home/steve/work/plumbum-ion-sysadmin/trunk/configs/common/gentoo/etc/conf.d/sshd-localhost /etc/conf.d/

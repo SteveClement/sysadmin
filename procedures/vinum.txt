@@ -1,0 +1,101 @@
+How to build a Software-RAID with vinum under FreeBSD:
+
+Add to /etc/rc.conf:
+
+start_vinum="YES"
+
+reboot.
+
+If you have virgin disks which are to be completely used for vinum,
+then do this, otherwise partition as appropriate:
+
+Use /stand/sysinstall (note: there may be ways that are better/more
+obvious to sysadmins than this, if so please inform me! Ben):
+
+Configure
+Fdisk
+
+for each disk in the RAID, select it and do a "Use Entire Disk" and
+"Write Changes" ignoring the dire warning (I found it was impossible
+to partition the disk without doing this first).
+
+then get back to the command line.
+
+For each disk, do:
+
+disklabel -e <diskname>
+
+and add a partition (I used "e") with the same parameters as "c" only
+the fstype is vinum, e.g.:
+
+  c: 156296322        0    unused        0     0        # (Cyl.    0 - 9728*)
+  e: 156296322        0     vinum                       # (Cyl.    0 - 9728*)
+
+then create a /etc/vinum.conf as appropriate - for RAID 0:
+
+# Drives
+drive d1 device /dev/ad1e
+drive d2 device /dev/ad2e
+drive d3 device /dev/ad3e
+# Volumes
+volume raid
+ plex org striped 300k
+  sd length 0 drive d1
+  sd length 0 drive d2
+  sd length 0 drive d3
+
+Some features to note: "length 0" means use the lot. "striped 300k"
+means each stripe is 300k long - this should not be a power of two,
+because then the superblocks all end up on one disk. "volume raid"
+determines the name of the device created (in this case
+/dev/vinum/raid).
+
+Note that this file is NOT used except once when initialising, but its
+a good idea to keep it in case of problems.
+
+Then create it:
+
+root@liberty:~# vinum create /etc/vinum.conf 
+3 drives:
+D d1                    State: up       Device /dev/ad1e        Avail: 0/76316 MB (0%)
+D d2                    State: up       Device /dev/ad2e        Avail: 0/76316 MB (0%)
+D d3                    State: up       Device /dev/ad3e        Avail: 0/76316 MB (0%)
+
+1 volumes:
+V raid                  State: up       Plexes:       1 Size:        223 GB
+
+1 plexes:
+P raid.p0             S State: up       Subdisks:     3 Size:        223 GB
+
+3 subdisks:
+S raid.p0.s0            State: up       PO:        0  B Size:         74 GB
+S raid.p0.s1            State: up       PO:      300 kB Size:         74 GB
+S raid.p0.s2            State: up       PO:      600 kB Size:         74 GB
+
+if you screw up the config or disks, then this will fail, and its
+somewhat hard to get vinum to recover. The best way I found was to do:
+
+vinum resetconfig
+vinum stop
+vinum start
+
+BUT NEVER DO THIS UNLESS YOU ARE READY TO LOSE EVERYTHING!
+
+then do a newfs on the new disk:
+
+newfs -v /dev/vinum/raid
+
+(-v is required coz the disk is NOT partitioned).
+
+create a mount point:
+
+mkdir /raid
+mount /dev/vinum/raid /raid
+
+add it to /etc/fstab:
+
+/dev/vinum/raid         /raid           ufs     rw              2       2
+
+for example.
+
+Reboot to check it comes back.

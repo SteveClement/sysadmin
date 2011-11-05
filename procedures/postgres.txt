@@ -1,0 +1,81 @@
+Installing postgres on a fresh system:
+
+Create a postgres user account on the box your installing postgress on, this is the account which will be used later to run and administer postgres, I'll take postgres to make it easy...
+
+./configure --with-perl
+
+that option builds the perl interface and plperl extension language
+
+gmake
+
+rootdo gmake install
+
+cd doc
+
+rootdo gmake install
+
+
+Put this in your rc.conf:
+
+ldconfig_paths="/usr/lib/compat /usr/X11R6/lib /usr/local/lib /usr/local/pgsql/lib"
+
+Then reboot...
+
+After the reboot do as root:
+
+mkdir /usr/local/pgsql/data
+chown postgres /usr/local/pgsql/data
+su -m postgres
+/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data
+
+
+     The -D option specifies the location where the data will be stored. You
+     can use any path you want, it does not have to be under the
+     installation directory. Just make sure that the superuser account can
+     write to the directory (or create it, if it doesn't already exist)
+     before starting initdb. (If you have already been doing the
+     installation up to now as the PostgreSQL superuser, you may have to log
+     in as root temporarily to create the data directory underneath a
+     root-owned directory.)
+
+add postgres to /etc/rc.local to start it automagically at boot:
+
+echo Starting Postgres SQL
+nohup su -m postgres /usr/local/bin/start_postgress &
+
+where start_postgress is this shell script:
+
+#!/bin/sh
+# Written by Ben to avoid having to figure out how to escape all the redirection!
+
+exec /usr/local/pgsql/bin/postmaster -D /usr/local/pgsql/data >> /var/log/postgresql.log 2>&1
+
+
+be carefull in what order you start the different services otherwise something requests a Dbase serever and its not started yet...
+
+also add those directories to your PATH and MANPATH respectively:
+PATH=$PATH:/usr/local/pgsql/bin
+MANPATH=$MANPATH:/usr/local/pgsql/man
+export PATH MANPATH
+
+Adding users and changing passwords:
+====================================
+
+#su postgres - 
+#whoami 
+postgres 
+#psql template1 
+Welcome to psql, the PostgreSQL interactive terminal. 
+
+Type: \copyright for distribution terms 
+\h for help with SQL commands 
+\? for help on internal slash commands 
+\g or terminate with semicolon to execute query 
+\q to quit 
+template1=# create user <username>; 
+CREATE USER 
+template1=# update pg_shadow set usecreatedb='t' where usename='<username>'; 
+UPDATE 1 
+template1=# select * from pg_shadow; 
+
+

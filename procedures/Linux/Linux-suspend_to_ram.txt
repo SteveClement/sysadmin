@@ -1,0 +1,29 @@
+Suspend to RAM / Suspend to disk
+
+Suspend to RAM works fine with kernel 2.6.11 - first enter in the file
+/boot/grub/menu.lst the line
+# kopt=root=/dev/hda7 ro resume=/dev/hda6 ro root=/dev/hda7 ro
+# resume=/dev/hda6vga=normal acpi_sleep=s3_bios
+where in my case hda7 is the partition with the root-directory and hda6 is the
+partition with the swap partition (see in your file /etc/fstab).
+Now, as user=root just enter the command:
+echo mem >/sys/power/state
+In order to wake-up the machine, press the power-button (now blinking every
+couple of seconds in orange color). The button will then light in green color
+and after about 1 minute and 43 seconds the machine will be up again -
+including the network!
+Now I could speed-up things: Having entered the following in the file
+/etc/X11/XF86Config-4:
+
+Section "Device"
+        Identifier      "Generic Video Card"
+        Driver          "i810"
+#next line for suspend-to-RAM working properly:
+        Option          "VBERestore"    "true"
+EndSection
+
+With this, the laptop now resumes operation after about 40 seconds! Well, it
+works most of the time, but not always... And: Be prepared, that the
+system-load will be very high during the first few seconds after the resume...
+
+

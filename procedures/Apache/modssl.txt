@@ -1,0 +1,6 @@
+CFLAGS='-DEAPI' has to be specified to PHP in order to make it work with
+modssl.
+
+cd /usr/ports/www/apache13-modssl
+make WITH_APACHE_MODSNMP=yes WITH_APACHE_MODACCEL=yes WITH_APACHE_MODDEFLATE=yes
+

@@ -1,0 +1,26 @@
+*Received: (qmail 47911 invoked by uid 98); 21 Jun 2004 21:42:38 -0000
+Received: from anonymous@spack.lxcom.lu by linion.ion.lu by uid 89 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.73. spamassassin: 2.63.  Clear:RC:0(212.24.214.35):SA:0(0.1/5.0):. 
+ Processed in 14.820623 secs); 21 Jun 2004 21:42:38 -0000
+X-Spam-Status: No, hits=0.1 required=5.0
+X-Antivirus-ION.LU-Mail-From: anonymous@spack.lxcom.lu via linion.ion.lu
+X-Antivirus-ION.LU: 1.22-st-qms (Clear:RC:0(212.24.214.35):SA:0(0.1/5.0):. Processed in 14.820623 secs Process 47900)
+Received: from unknown (HELO spack.lxcom.lu) (212.24.214.35)
+  by linion.ion.lu with SMTP; 21 Jun 2004 21:42:23 -0000
+Received: (qmail 21600 invoked by alias); 21 Jun 2004 22:35:49 -0000
+Delivered-To: root@spack.lxcom.lu
+Received: (qmail 21593 invoked by uid 0); 21 Jun 2004 22:35:49 -0000
+Date: 21 Jun 2004 22:00:19 -0000
+Message-ID: <20040621220019.21457.qmail@spack.lxcom.lu>
+From: root@spack.lxcom.lu (Cron Daemon)
+To: root@spack.lxcom.lu
+Subject: Cron <root@spack>  sh /usr/local/sbin/bup.sh
+X-Cron-Env: <SHELL=/bin/sh>
+X-Cron-Env: <HOME=/root>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=root>
+
+/bin/tar: Removing leading `/' from member names
+/bin/tar: Removing leading `/' from member names
+/bin/tar: Removing leading `/' from member names
+/bin/tar: Removing leading `/' from member names

@@ -1,0 +1,45 @@
+To add pseudo SQL support to syslog-ng do the following:
+
+portinstall syslog-ng
+cp /usr/local/etc/syslog-ng/syslog-ng.conf.sample /usr/local/etc/syslog-ng/syslog-ng.conf
+vi !$
+at the bottom add:
+## Log syslog-ng to mysql database
+destination d_mysql {
+file("/var/log/syslog-ng.sql"
+template("USE syslog; INSERT INTO logs (host, facility, priority, level, tag, date, time, program, msg) VALUES ( '$HOST', '$FACILITY', '$PRIORITY', '$LEVEL', '$TAG', '$YEAR-$MONTH-$DAY', '$HOUR:$MIN:$SEC', '$PROGRAM', '$MSG');\n") template-escape(yes));
+};
+
+log { source(src); filter(f_mail); filter(f_info); destination(d_mysql); };
+
+vi /usr/local/sbin/mysqllog.sh
+#!/bin/sh
+/usr/local/bin/mysql < /var/log/syslog-ng.sql
+echo "" > /var/log/syslog-ng.sql
+chmod +x !$
+
+mysqladmin create syslog
+CREATE TABLE logs (
+  host varchar(32) default NULL,
+  facility varchar(10) default NULL,
+  priority varchar(10) default NULL,
+  level varchar(10) default NULL,
+  tag varchar(10) default NULL,
+  date date default NULL,
+  time time default NULL,
+  program varchar(15) default NULL,
+  msg text,
+  seq int(10) unsigned NOT NULL auto_increment,
+  PRIMARY KEY  (seq),
+  KEY host (host),
+  KEY seq (seq),
+  KEY program (program),
+  KEY time (time),
+  KEY date (date),
+  KEY priority (priority),
+  KEY facility (facility)
+) TYPE=MyISAM;
+
+crontab -e
+5 * * * * /usr/local/sbin/mysqllog.sh
+

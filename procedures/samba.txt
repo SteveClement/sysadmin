@@ -1,0 +1,29 @@
+mapping samba shares from windows.
+
+to do this, you need to enable plain text passwords. being microsoft, this
+is different on very version of winows...
+
+on all versions, you need to run regedit.
+
+add a DWORD called EnablePlainTextPassword with a value of 1, to the following locations:
+
+on windows2000:
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\lanmanworkstation\parameters
+
+on windows Millenium and windows98:
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\VxD\VNSETUP
+
+Win NT:
+HKLM\CurrentControlSet\Services\Rdr\Parameters\EnablePlainTextPassword DWORD to 1
+
+Win 98:
+HKLM\System\CurrentControlSet\Services\VxD\VNETSUP\EnablePlainTextPassword DWORD to 1
+
+Win2000:
+HKLM\SYSTEM\CurrentControlSet\Services\LanmanWorkStation\Parameters\EnablePlainTextPassword DWORD to 1
+
+for a in `echo akaichinger asouty ctyl csorio cganachaud frosenbaum ggrippo jjacqmard msantos mschoendorf pmathes ppirrotte sterver vbechet ylippens teggen `; do pw useradd $a; mkdir /home/$a ; chown $a:$a /home/$a ; chmod 700 /home/$a ; done
+
+:;
+

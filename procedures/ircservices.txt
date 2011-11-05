@@ -1,0 +1,79 @@
+# ircservices.txt
+# lemon 20020514
+
+# getting going with ircservices
+
+overview:
+  ircservices provides stuff like nick reservation, channel control
+  and auto-op'ing of nicks.
+
+  you interact with them by talking to various pseudo users, eg:
+  /msg NickServ identify <password>
+
+  for extended interaction it's often easier to use a dialog, eg:
+  /dialog NickServ
+    help
+    set email foo@them.org
+
+   all the *Serv's will give you help if you ask for it
+
+privilege:
+  ircservices has a super-user, a set of admins, and a set of operators
+  (in order of descending godness)
+  admins can make ircservices restart, shutdown etc, whilst operators can
+  do more day-to-day actions like kicking users, tweaking channel modes etc
+
+  within a managed channel there's also a heirarchy of channel operators
+  which is completely separate from the serverwide stuff (see below)
+
+initial - setting up the superuser:
+  logon to irc with the nick you've put in ServicesRoot
+  become irc operator (more debug, access to ChanServ)
+  using NickServ, reserve the supernick you're using (root):
+
+    /oper lemon <ircpassword>
+    /nick root
+    /dialog NickServ
+      register <superpassword> sysadmin@aldigital.co.uk
+
+  and then identify yourself:
+      identify <superpassword>
+
+  and set the su password the same (allowing admins to become superuser):
+    /msg OperServ set supass <superpassword>
+
+initial - setting up an admin:
+    /nick lemon
+    /dialog NickServ
+      register <password> lemon@aldigital.co.uk
+      identify <password>
+
+    /msg OperServ su <superpassword>
+    /dialog OperServ
+      admin add lemon
+      oper add lemon
+
+reserving a channel:
+  this allows you to then do stuff like auto-op nicks and enforce modes etc
+    /nick lemon
+    /join #citrus
+    /dialog ChanServ
+      register #citrus <chanpassword> all things citrus, and more
+      info #citrus
+      set #citrus entrymsg you have arrived in the grove
+
+sorting out auto-op on a channel (as the nick that created it):
+  there are three lists associated with a channel:
+  super-ops (SOP), auto-ops (AOP), voice-ops (VOP)
+  a SOP nick can administer the AOP list; AOPs can add VOPs.
+  all nicks must be registered with NickServ
+
+    /dialog ChanServ
+      identify #citrus <chanpassword>
+      sop #citrus add lemon 
+      aop #citrus add zestboy 
+
+everything else:
+  most of the help is informative, especially ChanServ's. just /msg the
+  appropriate *Serv with 'help'.
+  remember to speak to ChanServ you must be an irc op.

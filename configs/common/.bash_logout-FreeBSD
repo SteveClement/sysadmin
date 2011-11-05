@@ -1,0 +1,2 @@
+/usr/local/bin/cdetach mycryptedarea
+/usr/bin/ssh-add -D

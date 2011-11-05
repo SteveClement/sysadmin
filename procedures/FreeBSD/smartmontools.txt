@@ -1,0 +1,24 @@
+portinstall sysutils/smartmontools
+echo "smartd_enable=\"YES\"" >> /etc/rc.conf
+cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
+vi !$
+
+make sure outgoing mail works
+
+EMAIL=steve@ion.lu
+export EMAIL
+
+echo "test" | mail -s Testmail $EMAIL
+
+remove devicescan from smartd.conf and add the disk/Email
+
+sed 's/^DEVICESCAN//' smartd.conf > smart.conf
+
+DISK=/dev/ad0
+export DISK
+
+echo "$DISK -S on -o on -a -I 194 -m $EMAIL" >> /usr/local/etc/smart.conf
+mv /usr/local/etc/smart.conf /usr/local/etc/smartd.conf
+
+/usr/local/etc/rc.d/smartd start
+

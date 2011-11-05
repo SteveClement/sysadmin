@@ -1,0 +1,384 @@
+This documents the installation and maintenance of the ION Spam Filter:
+
+THIS NEEDS TO BE REVISED AND CROSS REFERENCED!
+
+This document assumes a Stock FreeBSD ION Install with all the needed quirks
+(make.conf etc...)
+
+Pyzor / rules_du_jour
+
+First get: 
+mkdir /downloads && cd /downloads
+wget http://qmailrocks.org/downloads/qmailrocks.tar.gz
+tar xfvpz qmailrocks.tar.gz && rm qmailrocks.tar.gz
+
+pw groupadd nofiles
+#(mkdir /var/log/qmail no needed in Std ION)
+mkdir /var/log/clamd
+mkdir /var/log/spamd
+cd /var/log/qmail
+chown -R qmaill:wheel /var/log/qmail
+chmod -R 750 /var/log/qmail/
+
+mkdir qmail-smtpd qmail-pop3d
+#(mkdir qmail-send not needed in std ion install)
+#(mkdir /var/qmail/supervise no need)
+
+cd /var/qmail/supervise
+
+mkdir -p qmail-smtpd/log qmail-pop3d/log
+#(mkdir -p qmail-send/log no need)
+
+chmod +t qmail-smtpd qmail-send qmail-pop3d
+
+
+portinstall ucspi-tcp && portinstall sysutils/daemontools
+cd /usr/ports/mail/qmail && make config
+#(echo 211 > work/qmail-*/conf-split do not mess \w me)
+#(echo 255 > work/qmail-*/conf-spawn do not mess \w me)
+
+cd work/qmail-*
+
+patch < /downloads/qmailrocks/patches/qmail-1.03-jms1.5.patch
+patch < /downloads/qmailrocks/patches/qmail-1.03-forcetls-20040703.patch
+
+cd ../ && rm .build* && cd .. && make && make install
+make enable-qmail
+
+portinstall ezmlm-idx
+portinstall qmail-autoresponder
+portinstall autorespond
+
+
+echo "localhost|0|vpopmail|vpiepmiel2s|dbvpopmail" > ~vpopmail/etc/vpopmail.mysql
+chown vpopmail:vchkpw ~vpopmail/etc/vpopmail.mysql
+chmod 640 ~vpopmail/etc/vpopmail.mysql
+
+ mkdir ~vpopmail/etc
+
+ chown vpopmail:vchkpw ~vpopmail/etc
+
+Now create the mysql db:
+
+mysql 
+CREATE DATABASE dbvpopmail;
+
+GRANT select,insert,update,delete,create,drop ON dbvpopmail.* TO vpopmailuser@localhost IDENTIFIED BY 'vpiepmiel2s';
+
+cd /usr/ports/mail/vpopmail && WITH_CLEAR_PASSWD=YES WITH_SINGLE_DOMAIN=YES WITH_AUTH_LOG=YES WITHOUT_MYSQL_LIMITS=YES WITHOUT_PASSWD=YES WITH_MYSQL=YES WITH_VALIAS=YES RELAYCLEAR=30 SPAM_THRESHOLD=12 LOGLEVEL=y WITH_MYSQL_LOG=YES WITH_SPAMASSASSIN=YES LOGLEVEL=p make
+
+## $PREFIX Incident fix:
+cd /home/apache ; rm -rf share etc include lib libexec sbin info libdata man
+
+cd /usr/ports/devel/autoconf259 ; make install
+cd /usr/ports/www/apache13/ ; APACHE_DATADIR=/home/apache APACHE_DOCUMENT_ROOT=/home/apache/hosts/healthnet.lu/redx make install
+cd /home/apache ; ln -s /usr/local/etc etc ; ln -s /usr/local/etc/apache/ conf ; ln -s /usr/local/libexec libexec ; mkdir logs ; rm -rf proxy
+pw useradd apache
+portinstall lang/php5
+
+cd /home/apache ; mv bin/vqadmin /usr/local/bin/ ; rmdir bin
+
+echo apache_enable=YES >> /etc/rc.conf
+/usr/local/etc/rc.d/apache.sh start
+
+
+Maildrop:
+echo "mail/maildrop MAILDROP_TRUSTED_USER=vpopmail|MAILDROP_SUID=root|MAILDROP_SGID=vchkpw|WITH_AUTHLIB" >> /usr/local/etc/ports.conf
+cd /usr/ports/mail/maildrop make install clean
+Select vchkpw...
+
+
+DSPAM Support:
+mkdir ~apache/hosts/ion.lu/dspam
+echo "mail/dspam: DSPAM_GROUP=vchkpw|DSPAM_OWNER=vpopmail|DSPAM_HOME_GROUP=vchkpw|DSPAM_HOME_OWNER=vpopmail|CGI_PATH=/home/apache/hosts/ion.lu/dspam" >> /usr/local/etc/ports.conf
+make install
+
+/usr/local/www/vhosts
+
+Finalize:
+
+cp /downloads/qmailrocks/scripts/finalize/freebsd/pop3d_run /var/qmail/supervise/qmail-pop3d/run
+
+cp /downloads/qmailrocks/scripts/finalize/freebsd/pop3d_log /var/qmail/supervise/qmail-pop3d/log/run
+
+cp /downloads/qmailrocks/scripts/finalize/freebsd/smtpd_run /var/qmail/supervise/qmail-smtpd/run
+
+cp /downloads/qmailrocks/scripts/finalize/freebsd/smtpd_log /var/qmail/supervise/qmail-smtpd/log/run
+
+cp /downloads/qmailrocks/scripts/finalize/freebsd/send_run /var/qmail/supervise/qmail-send/run
+
+cp /downloads/qmailrocks/scripts/finalize/freebsd/send_log /var/qmail/supervise/qmail-send/log/run
+
+
+cp /downloads/qmailrocks/scripts/finalize/rc /var/qmail/
+
+cp /downloads/qmailrocks/scripts/finalize/qmailctl /var/qmail/bin/
+
+
+chmod 755 /var/qmail/rc /var/qmail/bin/qmailctl
+
+chmod 751 /var/qmail/supervise/qmail-pop3d/run
+chmod 751 /var/qmail/supervise/qmail-pop3d/log/run
+
+chmod 751 /var/qmail/supervise/qmail-smtpd/run
+chmod 751 /var/qmail/supervise/qmail-smtpd/log/run
+
+chmod 751 /var/qmail/supervise/qmail-send/run
+chmod 751 /var/qmail/supervise/qmail-send/log/run
+
+echo ./Maildir > /var/qmail/control/defaultdelivery
+
+echo 255 > /var/qmail/control/concurrencyremote
+
+chmod 644 /var/qmail/control/concurrencyremote
+
+echo 30 > /var/qmail/control/concurrencyincoming
+
+chmod 644 /var/qmail/control/concurrencyincoming
+
+ln -s /var/qmail/bin/qmailctl /usr/bin
+
+ln -s /var/qmail/supervise/qmail-send /var/qmail/supervise/qmail-smtpd /var/qmail/supervise/qmail-pop3d /var/service
+
+echo '127.:allow,RELAYCLIENT=""' >> /etc/tcp.smtp
+
+qmailctl cdb
+
+echo steve@ion.lu > /var/qmail/alias/.qmail-root
+echo steve@ion.lu > /var/qmail/alias/.qmail-postmaster
+echo steve@ion.lu > /var/qmail/alias/.qmail-mailer-daemon
+ln -s /var/qmail/alias/.qmail-root /var/qmail/alias/.qmail-anonymous
+chmod 644 /var/qmail/alias/.qmail*
+
+killall sendmail && mv /usr/sbin/sendmail /usr/sbin/sendmail.old && chmod 0 /usr/sbin/sendmail.old
+
+ln -s /var/qmail/bin/sendmail /usr/lib/sendmail
+
+ln -s /var/qmail/bin/sendmail /usr/sbin/sendmail
+
+
+
+
+
+Courierimap:
+
+WITHOUT_FAM=yes WITH_CRAM=yes WITH_VPOPMAIL=yes WITHOUT_LDAP=yes make install 
+
+Squirrelmail:
+
+
+## THIS WILL FLAG AN ERRROR!!! WITH_LDAP=YES WITH_DATABASE=YES SQUIRRELDIR=/home/apache/hosts/healthnet.lu/webmail-lite make install
+WITH_LDAP=YES WITH_DATABASE=YES SQUIRRELDIR=/home/apache/hosts/healthnet.lu/webmail-lite make install
+SQUIRRELDIR=/home/apache/hosts/healthnet.lu/webmail-lite make install
+php.ini FileUploads=on
+
+If you have problems with SquirrelMail saying "you must login" after
+you just have, the following php.ini option may help:
+session.auto_start = 1
+
+In order to do your administrative configuration you need to
+cd /home/apache/hosts/ion.lu/webmail-lite && ./configure
+SquirrelMail will not work until this has been done.
+
+
+Horde:
+
+cd /usr/ports/www/horde && WITH_PHP5=YES make install
+
+Now install da IMP:
+
+cd /usr/ports/mail/imp
+make WITH_HTML=yes WITH_COURIER-IMAP=yes
+
+OR DEPENDING ON YOUR CONF: WITH_CYRUS-IMAPD=yes || WITH_IMAP-UW=yes
+
+************************************************************************
+Horde has been installed in /usr/local/www/horde with your blank
+configuration files.
+
+If you want Horde to access a database, you have to run the
+appropriate scripts located in /usr/local/www/horde/scripts/sql.
+It is recommended that you change the password of the 'hordemgr'
+user used to connect to the horde database.
+Horde is setup by default to access MySQL.
+
+WARNING! if you are upgrading from Horde v. 2.2.x, you have to alter your
+******** database schemas. Please read the doc UPGRADING.
+
+You can now access Horde without a password at <http://localhost/horde/>,
+and you will be logged in as an administrator. You should first configure
+a real authentication backend.  Click on "Setup" in the "Administration"
+menu and configure Horde. Start in the "Authentication" tab.
+See the doc in /usr/local/share/doc/horde for details.
+(tip: if you plan to install IMP, just keep "Automatic authentication as
+a certain user", add your login to be treated as administrator, and once
+IMP will be installed, switch to "Let a Horde application handle auth").
+Select a log driver; if you keep 'file', do not forget to add a line
+in /etc/newsyslog.conf.
+Then select and configure a preferences driver.
+
+Your /usr/local/etc/apache/httpd.conf has been updated,
+you have to restart Apache.
+
+When everything is OK, you should be able to access Horde from
+<http://localhost/horde/>.
+(If <http://localhost/horde/> does not run, but
+<http://localhost/horde/index.php> is OK, then you have
+to define index.php as a DirectoryIndex in
+/usr/local/etc/apache/httpd.conf.)
+
+There is a testing script at <http://localhost/horde/test.php>.
+************************************************************************
+
+===>   Registering installation for horde-3.0
+
+===> Documentation installed in /usr/local/share/doc/imp.
+
+************************************************************************
+IMP has been installed in /usr/local/www/horde/imp with your blank
+configuration files.
+
+Horde must be configured and the tables created; if not, see
+`pkg_info -D -x horde'.
+
+Then, you might have to tune the configuration files located in
+/usr/local/www/horde/imp/config/, specially the file servers.php.
+
+Then, you must login to Horde as a Horde Administrator to finish the
+configuration. Please read /usr/local/share/doc/imp/INSTALL.
+
+Warning: the filter system of IMP 3.x has been replaced by a separate
+******** application => check the port mail/ingo. Ingo provides a script
+         to migrate the existing filter rules from IMP 3.x, see Ingo's
+         documentation.
+
+To protect your configuration files, you have to restart Apache.
+
+To secure your installation, it is at least recommended that you change
+the default database password used by horde and imp.
+Then, you might change the 'session.save_path' setting in php.ini to a
+directory only readable and writeable by your webserver.
+************************************************************************
+
+===>   Registering installation for imp-4.0
+
+
+cd /usr/local/www/horde && mv * /home/apache/hosts/ion.lu/webmail/
+
+Now edit: /home/apache/etc/horde/httpd.conf.horde adjust paths
+
+If it doesnt work out of da box and you get this in you errorlog:
+[Mon Dec 27 10:46:57 2004] [error] [client 80.90.53.226] File does not exist:
+/home/apache/hosts/ion.lu/webmail/hordeindex.php
+
+You missed a slash somewhere.
+Most likely in httpd.conf.horde
+<IfModule mod_alias.c>
+   Alias /horde/ "/home/apache/hosts/ion.lu/webmail/horde/"
+</IfModule>
+    
+
+
+clamav:
+
+
+portinstall clamav
+
+OLD AND OBSOLETE WILL DISSAPEAR SOON: {
+##mv /usr/local/bin/clamdscan /usr/local/bin/clamdscan.orig
+##ln -s /usr/local/bin/clamscan /usr/local/bin/clamdscan
+##touch /var/log/clamd/clam-update.log
+##chmod 600 /var/log/clamd/clam-update.log
+##chown clamav:clamav /var/log/clamd/clam-update.log
+##/usr/local/bin/freshclam -l /var/log/clamd/clam-update.log }
+
+
+
+
+Spamass:
+
+portinstall spamassassin
+cd /usr/local/etc/mail/spamassassin
+
+cp local.cf.sample local.cf && vi local.cf
+
+qmail-scanner w/qms-analog:
+
+portinstall analog qmailanalog qlogtools
+
+cd /downloads/qmailrocks/ && tar xfvz qms* && cd qms* && gmake all
+cd /usr/ports/mail/qmail-scanner && make && cd work/qmail-sc*
+cp /downloads/qmailrocks/qms-analog-0.3.4/qmail-scanner-1.22-st-qms-20040530.patch .
+cp /downloads/qmailrocks/qms-analog-0.3.4/qms-config-script .
+chmod 755 qms-config-script
+./qms-config-script [install]
+setuidgid qscand /var/qmail/bin/qmail-scanner-queue.pl -z
+setuidgid qscand /var/qmail/bin/qmail-scanner-queue.pl -g
+chown -R qscand:qscand /var/spool/qmailscan
+
+vi /var/qmail/supervise/qmail-smtpd/run
+
+
+redx qmail-scanner-1.22 # ls -la *.rej
+-rw-r--r--  1 root  wheel  35394 Sep  6 22:38 configure.rej
+-rw-r--r--  1 root  wheel   3870 Sep  6 22:38 qmail-scanner-queue.template.rej
+-rw-r--r--  1 root  wheel   4411 Sep  6 22:38 sub-spamassassin.pl.rej
+
+
+portinstall qmailanalog qlogtools mrtg
+
+cd ´~vpopmail ; mkdir -p qtrap/logs ; cd qtrap ; cp /downloads/qmailrocks/scripts/qtrap/qtrap-freebsd-2.0.0 ./qtrap.sh
+
+touch ~vpopmail/qtrap/logs/qtrap.log
+
+chown -R vpopmail:vchkpw ~vpopmail/qtrap
+
+chmod -R 755 ~vpopmail/qtrap
+
+
+Quick and dirty scribble before I forget
+
+to test functinality and read one debug output:
+
+-D 2> deb.bug &
+
+tail deb.bug 
+
+until satisfied and run
+
+cat deb.bug |mail -s spamd_deb-UG steve@ion.lu
+
+c.f qmailscanner.txt for spamd startup to use SQL
+c.f upgrade.txt for qmail-scanner-queue.pl SQL changes
+
+/usr/local/etc/mail/spamassassin/local.cf on SA-3.0:
+
+# This is the right place to customize your installation of SpamAssassin.
+#
+# See 'perldoc Mail::SpamAssassin::Conf' for details of what can be
+# tweaked.
+#
+###########################################################################
+#
+# report_safe 1
+# trusted_networks 212.17.35.
+
+bayes_store_module                 Mail::SpamAssassin::BayesStore::SQL
+
+auto_whitelist_factory Mail::SpamAssassin::SQLBasedAddrList
+
+required_hits 5
+
+bayes_sql_dsn                   DBI:mysql:dbmail:localhost
+bayes_sql_username              spamass
+bayes_sql_password              pass4spammers65
+
+user_scores_dsn			DBI:mysql:dbmail:localhost
+user_scores_sql_username	spamass
+user_scores_sql_password	pass4spammers65
+
+user_awl_dsn			DBI:mysql:dbmail:localhost
+user_awl_sql_username		spamass
+user_awl_sql_password		pass4spammers65
+user_awl_sql_table		awl
+

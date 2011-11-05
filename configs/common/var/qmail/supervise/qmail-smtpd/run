@@ -1,0 +1,12 @@
+#!/bin/sh
+QMAILDUID=`id -u qmaild`
+NOFILESGID=`id -g qmaild`
+QMAILLUID=`id -u qmaill`
+
+MAXSMTPD=`cat /var/qmail/control/concurrencyincoming`
+LOCAL=`head -1 /var/qmail/control/me`
+
+exec /usr/local/bin/softlimit -m 16000000 \
+/usr/local/bin/tcpserver -v -R -l "$LOCAL" -x /etc/tcp.smtp.cdb -c "$MAXSMTPD" \
+-u "$QMAILDUID" -g "$NOFILESGID" 0 smtp \
+/var/qmail/bin/qmail-smtpd beekini.dakinibooks.com 2>&1

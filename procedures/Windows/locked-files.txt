@@ -1,0 +1,70 @@
+How To Clear Locked Files
+How To Clear Locked Files Such As IE temp files and the Offline cache=
+
+Subjects > ... > Computers > Software > Operating Systems > Windows XP
+
+This works on any version of NT, 2000 or XP
+
+    * Close all applications
+    * Open a command prompt
+    * Click Start, and then Shut Down
+    * Simultaneously press CTRL+SHIFT+ALT.
+    * While you keep these keys pressed, click Cancel in the Shut Down Windows
+    * dialog box.
+    * In the command prompt window, navigate to the cache location, and delete
+    * all files from the folder (DEL /s)
+    * At the command prompt, type explorer, and then press ENTER. 
+
+
+
+Cleanmgr.exe is a Windows XP program that does automated cleanup of temporary
+files, Internet files, downloaded files, recycle bin, and recompresses files.
+
+syntax
+CLEANMGR [option]
+
+options
+Use only one of the following options at a time:
+
+       /d driveletter: - Select the drive for Disk Cleanup to clean.
+
+       /sageset:n      - Show dialog box for Disk Cleanup Settings and store
+                         selected settings in registry.
+                         The n value can be used n the future to run this
+specific
+                         Disk Cleanup task.
+                         n can be any integer from 0 to 65535.
+                         Specify the %systemroot% drive to see all the
+available options.
+
+      /sagerun:n       - Run task 'n'
+                         Enumerate all drives in computer, and run 
+                         selected profile for each drive. 
+
+Examples
+
+    * CLEANMGR /sageset:1
+          o Will save a group of settings 
+
+    * CLEANMGR /sagerun:1
+          o runs previously defined Disk Cleanup settings. 
+
+Options that can be chosen for cleanup:
+
+    * Temporary Internet Files
+    * Temporary Setup Files
+    * Downloaded Program Files
+    * Old Chkdsk Files
+    * Recycle Bin
+    * Temporary Files
+    * Temporary Offline Files
+    * Offline Files
+    * Compress Old Files
+    * Catalog Files for the Content Indexer 
+
+Items in bold may appear in more than one drive i.e not just in
+%SystemRoot?Create% 
+
+
+
+

@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# For Red Hat chkconfig
+# chkconfig: - 80 30
+# description: the spamd spamd daemon
+
+PATH=/usr/local/spamd/bin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin
+export PATH
+
+case "$1" in
+  start)
+    echo "Starting spamd"
+    if svok /service/spamd ; then
+      svc -u /service/spamd
+    else
+      echo spamd supervise not running
+    fi  
+    if [ -d /var/lock/subsys ]; then
+      touch /var/lock/subsys/spamd
+    fi
+    ;;
+  stop)
+    echo "Stopping spamd..."
+    echo "  spamd"
+    svc -d /service/spamd
+    if [ -f /var/lock/subsys/spamd ]; then
+      rm /var/lock/subsys/spamd
+    fi
+    ;;
+  stat)
+    svstat /service/spamd
+    svstat /service/spamd/log
+    ;;
+  restart)
+    echo "Restarting spamd:"
+    echo "* Stopping spamd."
+    svc -d /service/spamd
+    echo "* Sending spamd SIGTERM and restarting."
+    svc -t /service/spamd
+    echo "* Restarting spamd."
+    svc -u /service/spamd
+    ;;
+  hup)
+    echo "Sending HUP signal to spamd."
+    svc -h /service/spamd
+    ;;
+  help)
+    cat <<HELP
+   stop -- stops spamd service (smtp connections refused, nothing goes out)
+  start -- starts spamd service (smtp connection accepted, mail can go out)
+   stat -- displays status of spamd service
+restart -- stops and restarts the spamd service
+    hup -- same as reload
+HELP
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|stat|restart|hup|help}"
+    exit 1
+    ;;
+esac
+
+exit 0

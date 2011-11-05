@@ -1,0 +1,4 @@
+# Config file for /etc/init.d/sshd-localhost
+# 09052005: Nasty hack to get -f /etc/ssh/sshd_config.localhost in boot script
+
+SSHD_OPTS="-f /etc/ssh/sshd_config.localhost"

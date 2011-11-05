@@ -1,0 +1,13 @@
+Dec 27 17:37:36 linion vpopmail[50998]: vchkpw-smtp: password fail
+steve@ion.lu:80.90.53.226
+Dec 27 17:37:41 linion vpopmail[51001]: vchkpw-smtp: (PLAIN) login success
+steve@ion.lu:80.90.53.226
+
+this is due to the fact that it FIRST tries CRAM-MD5 and it IS NOT supported
+by vchkpw.
+
+undefine authcram in qmail-smtpd.c and it will work...
+
+
+if vchkpw fails with core dumps check: ~vpopmail/etc/open-smtp*
+if too many exist it dumps core

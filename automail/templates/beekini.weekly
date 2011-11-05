@@ -1,0 +1,29 @@
+*Received: (qmail 60842 invoked by uid 98); 19 Jun 2004 07:57:33 -0000
+Received: from root@beekini.dakinibooks.com by zinc.ion.lu by uid 82 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.72. spamassassin: 2.63.  Clear:RC:0(213.166.78.220):SA:0(2.1/5.0):. 
+ Processed in 7.392043 secs); 19 Jun 2004 07:57:33 -0000
+X-Spam-Status: No, hits=2.1 required=5.0
+X-Spam-Level: ++
+X-Antivirus-ion.lu-Mail-From: root@beekini.dakinibooks.com via zinc.ion.lu
+X-Antivirus-ion.lu: 1.22-st-qms (Clear:RC:0(213.166.78.220):SA:0(2.1/5.0):. Processed in 7.392043 secs Process 60834)
+Received: from unknown (HELO beekini.dakinibooks.com) (213.166.78.220)
+  by zinc.ion.lu with SMTP; 19 Jun 2004 07:57:26 -0000
+Received: (qmail 32947 invoked by alias); 19 Jun 2004 07:57:26 -0000
+Delivered-To: root@beekini.dakinibooks.com
+Received: (qmail 32217 invoked by uid 0); 19 Jun 2004 03:15:45 -0000
+Date: 19 Jun 2004 03:15:45 -0000
+Message-ID: <20040619031545.32215.qmail@beekini.dakinibooks.com>
+From: root@beekini.dakinibooks.com
+To: root@beekini.dakinibooks.com
+Subject: beekini.dakinibooks.com weekly run output
+
+
+Cleaning up kernel database files:
+
+Rebuilding locate database:
+
+Rebuilding whatis database:
+makewhatis: /usr/local/man/man1/eview.1: No such file or directory
+makewhatis: /usr/local/man/man1/gvimdiff.1.gz: No such file or directory
+
+-- End of weekly output --

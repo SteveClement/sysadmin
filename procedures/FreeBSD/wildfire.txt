@@ -1,0 +1,11 @@
+This outline a wildfire install withsecurity:
+
+download jdk plus platchset first!
+
+http://javashoplm.sun.com/ECom/docs/Welcome.jsp?StoreId=22&PartDetailId=j2sdk-1.4.2_13-oth-JPR&SiteId=JSC&TransactionId=noreg
+ mv j2sdk-1_4_2_13-linux-i586.bin\&File\=j2sdk-1_4_2_13-linux-i586.bin j2sdk-1_4_2_13-linux-i586.bin
+
+ go drink coffee now it takes ages to compile...
+
+ 
+

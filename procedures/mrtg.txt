@@ -1,0 +1,17 @@
+
+
+building index:
+
+/usr/bin/indexmaker --output=/var/www/localhost/htdocs/mrtg/index.html \
+--title="Vaion Control Center" \
+--sort=name \
+--enumerate \
+/etc/mrtg/traffic.cfg \
+/etc/mrtg/cpu.cfg \
+/etc/mrtg/mem.cfg \
+/etc/mrtg/swap.cfg \
+/etc/mrtg/hda-temp.cfg \
+/etc/mrtg/temp.cfg \
+/etc/mrtg/uptime.cfg \
+/etc/mrtg/battery.cfg \
+/etc/mrtg/ping.cfg

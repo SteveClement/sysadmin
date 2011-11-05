@@ -1,0 +1,29 @@
+To add a new repository to CVS on suppose.
+-----------------------------------------
+
+Make sure you are in group cvsroot on cvs.ion.lu (kierbiischt)
+
+In your local ~/work or wherever you normally keep your local copies
+
+mkdir new-repo-name
+cd  new-repo-name
+cvs -d kierbiischt.ion.lu:/home/cvs import new-repo-name ion R20050129
+
+!!! This actually imports ANYTHING from ./ onwards. So make sure you are in
+the right place, being in / results in havoc !!!
+If you import an existing structure, be aware that EMPTY directories will not
+get imported.
+
+where "ion" is the vendor tag and "R20050129" is the release tag, actually based on today's date.
+
+Then cd.. , remove the new-repo-name directory and check it out in the usual
+manner. Otherwise any operations WILL fail due to ./CVS/ directory lackage...
+
+cvs -d kierbiischt.ion.lu:/home/cvs co new-repo-name
+
+Go onto kierbiischt and adjust ownership and permissions as appropriate.
+
+To add mail notification to CVS
+-------------------------------
+
+Follow the directions in .../suppose-aldigital-sysadmin/cvs-mail/README

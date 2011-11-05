@@ -1,0 +1,144 @@
+*Received: (qmail 86230 invoked by uid 89); 3 Sep 2007 04:19:27 +0200
+Received: from radium.ion.lu (80.90.47.164)
+  by linion.ion.lu with SMTP; 3 Sep 2007 04:19:27 +0200
+Received: (qmail 9106 invoked by uid 98); 3 Sep 2007 04:02:41 +0200
+Received: from 80.90.58.102 by radium.ion.lu (envelope-from <root@ham.ion.lu>, uid 98) with qmail-scanner-2.01 
+ (clamdscan: 0.88.3/1600. spamassassin: 3.1.3.  
+ Clear:RC:0(80.90.58.102):SA:0(1.2/7.0):. 
+ Processed in 3.727494 secs); 03 Sep 2007 02:02:41 -0000
+X-Spam-Status: No, score=1.2 required=7.0
+X-Spam-Level: +
+Received: from vodsl-5222.vo.lu (HELO ham.ion.lu) (80.90.58.102)
+  by radium.ion.lu with SMTP; 3 Sep 2007 04:02:37 +0200
+Received-SPF: none (radium.ion.lu: domain at ham.ion.lu does not designate permitted sender hosts)
+Received: (qmail 16828 invoked by alias); 3 Sep 2007 04:18:53 +0200
+Delivered-To: root@ham.ion.lu
+Received: (qmail 16825 invoked by uid 0); 3 Sep 2007 04:18:53 +0200
+Date: 3 Sep 2007 04:18:53 +0200
+Message-ID: <20070903021853.16823.qmail@ham.ion.lu>
+From: root@ham.ion.lu
+To: root@ham.ion.lu
+Subject: ham.ion.lu daily run output
+
+
+Removing stale files from /var/preserve:
+
+Cleaning out old system announcements:
+
+Removing stale files from /var/rwho:
+
+Backup passwd and group files:
+
+Verifying group file syntax:
+/etc/group is fine
+
+Backing up mail aliases:
+
+Disk status:
+Filesystem  1K-blocks     Used     Avail Capacity  Mounted on
+/dev/ad4s1a 149336674 16344948 121044794    12%    /
+devfs               1        1         0   100%    /dev
+devfs               1        1         0   100%    /var/db/dhcpd/dev
+/dev/ad6s1c 151368706  8165186 131094024     6%    /usr/home/bup
+
+Last dump(s) done (Dump '>' file systems):
+
+Network interface status:
+Name    Mtu Network       Address              Ipkts Ierrs    Opkts Oerrs  Coll
+fxp0   1500 <Link#1>      00:13:20:63:b0:a5 40052246     0 39762338     0     0 
+fxp0   1500 fe80:1::213:2 fe80:1::213:20ff:        0     -        0     -     - 
+fxp0   1500 192.168.37    ham                3879913     - 39744657     -     - 
+plip0  1500 <Link#2>                               0     0        0     0     0 
+lo0   16384 <Link#3>                           36474     0    36474     0     0 
+lo0   16384 localhost     ::1                      0     -        0     -     - 
+lo0   16384 fe80:3::1     fe80:3::1                0     -        0     -     - 
+lo0   16384 your-net      localhost            36474     -    36474     -     - 
+tun0   1500 <Link#4>                               0     0    12916     0     0 
+tun0   1500 fe80:4::213:2 fe80:4::213:20ff:        0     -        2     -     - 
+tun0   1500 10.0.20.2/32  10.0.20.2                0     -        4     -     - 
+tun1   1500 <Link#5>                               0     0       11     0     0 
+tun1   1500 fe80:5::213:2 fe80:5::213:20ff:        0     -        1     -     - 
+tun1   1500 10.0.0.2/32   10.0.0.2                 0     -        0     -     - 
+tun3   1500 <Link#6>                               0     0        2     0     0 
+tun3   1500 fe80:6::213:2 fe80:6::213:20ff:        0     -        1     -     - 
+tun3   1500 10.0.2.2/32   10.0.2.2                 0     -        0     -     - 
+tun2   1500 <Link#7>                               0     0        2     0     0 
+tun2   1500 fe80:7::213:2 fe80:7::213:20ff:        0     -        1     -     - 
+tun2   1500 10.0.1.2/32   10.0.1.2                 0     -        0     -     - 
+tun4   1500 <Link#8>                               0     0        2     0     0 
+tun4   1500 fe80:8::213:2 fe80:8::213:20ff:        0     -        1     -     - 
+tun4   1500 10.0.3.2/32   10.0.3.2                 0     -        0     -     - 
+
+Local system status:
+ 3:01AM  up 85 days, 10:24, 0 users, load averages: 0.00, 0.00, 0.00
+
+Mail in local queue:
+
+Mail in submit queue:
+
+Security check:
+    (output mailed separately)
+
+Checking for rejected mail hosts:
+
+Checking for denied zone transfers (AXFR and IXFR):
+
+Running /etc/daily.local:
+fetch: http://portsnap3.FreeBSD.org./latest.ssl: Not Found
+Looking up portsnap.FreeBSD.org mirrors... using portsnap3.FreeBSD.org.
+Fetching snapshot tag... failed.
+Parsing supfile "/etc/cvsupfile-6_1"
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Rejected by server: Access limit exceeded; try again later
+Will retry at 04:08:38
+Retrying
+Connecting to cvsup.nl.FreeBSD.org
+Connected to cvsup.nl.FreeBSD.org
+Server software version: SNAP_16_1h
+Negotiating file attribute support
+Exchanging collection information
+Establishing multiplexed-mode data connection
+Running
+Updating collection src-all/cvs
+Shutting down connection to server
+Finished successfully
+>>> WARNING
+>>> Executing updatedb as root.  This WILL reveal all filenames
+>>> on your machine to all login users, which is a security risk.
+cd: can't cd to /usr/ports/sysutils/portupgrade
+[missing key: categories] [Updating the portsdb <format:bdb_btree> in /usr/ports ... - 17571 port entries found .........1000.........2000.........3000.........4000.........5000.........6000.........7000.........8000.........9000.........10000.........11000.........12000.........13000.........14000.........15000.........16000.........17000..... ..... done]
+missing key: categories: Cannot read the portsdb!
+/usr/local/lib/ruby/site_ruby/1.8/portsdb.rb:567:in `open_db': database file error (PortsDB::DBError)
+	from /usr/local/lib/ruby/site_ruby/1.8/portsdb.rb:736:in `port'
+	from /usr/local/lib/ruby/site_ruby/1.8/portsdb.rb:924:in `all_depends_list'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:915:in `tsort_build'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:907:in `each'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:907:in `tsort_build'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:929:in `sort_build'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:933:in `sort_build!'
+	from /usr/local/sbin/portupgrade:694:in `main'
+	from /usr/local/lib/ruby/1.8/optparse.rb:755:in `initialize'
+	from /usr/local/sbin/portupgrade:210:in `new'
+	from /usr/local/sbin/portupgrade:210:in `main'
+	from /usr/local/sbin/portupgrade:1981
+cd: can't cd to /usr/ports/sysutils/portupgrade
+[missing key: categories] [Updating the portsdb <format:bdb_btree> in /usr/ports ... - 17571 port entries found .........1000.........2000.........3000.........4000.........5000.........6000.........7000.........8000.........9000.........10000.........11000.........12000.........13000.........14000.........15000.........16000.........17000..... ..... done]
+missing key: categories: Cannot read the portsdb!
+/usr/local/lib/ruby/site_ruby/1.8/portsdb.rb:567:in `open_db': database file error (PortsDB::DBError)
+	from /usr/local/lib/ruby/site_ruby/1.8/portsdb.rb:736:in `port'
+	from /usr/local/lib/ruby/site_ruby/1.8/portsdb.rb:924:in `all_depends_list'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:915:in `tsort_build'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:907:in `each'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:907:in `tsort_build'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:929:in `sort_build'
+	from /usr/local/lib/ruby/site_ruby/1.8/pkgdb.rb:933:in `sort_build!'
+	from /usr/local/sbin/portupgrade:694:in `main'
+	from /usr/local/lib/ruby/1.8/optparse.rb:755:in `initialize'
+	from /usr/local/sbin/portupgrade:210:in `new'
+	from /usr/local/sbin/portupgrade:210:in `main'
+	from /usr/local/sbin/portupgrade:1981
+--->  Session started at: Mon, 03 Sep 2007 04:18:46 +0200
+--->  Session ended at: Mon, 03 Sep 2007 04:18:53 +0200 (consumed 00:00:07)
+
+-- End of daily output --

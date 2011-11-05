@@ -1,0 +1,48 @@
+Stuff to do/check:
+
+Hardware:
+
+Floppy Drive test.
+Harddrive test (second partition format)
+
+ControlPanel->AddRemoveProgs->WindowsComp and Remove (from SP2 ONLY!!!):
+
+MSN Explorer
+Outlook Express
+Networking Services
+Messenger
+Games
+
+
+Check the main Program List for obsolete things like OLD Adobe 4.0/5.0/6.0
+installs or other unnecessary software that might have been bundled with the PC.
+
+ION Install this soft:
+
+MotherBoard CD/Drivers
+Firefox-latest-Localized (1.0.6)
+Thunderbird-latest-localized (1.0.6)
+Acroread-Latest (7.0) <- do web update to (7.0.1) Carefull to not install image software and download manager.
+  Remove yahoo toolbar...
+Videolan-latest (0.82) (Associate with all media)
+VNC-latest (4.1)
+SpyBot Search and destroy
+free.grisoft.com (If NO Licence available)
+Nero (631250)
+WindowsUpdate (Officeupdate)
+Macromedia Flash
+Sun Java JRE
+iTunes (carefull to uncheck Quicktime association, keep it as default audio player)
+
+
+Config Firefox to be default, add blue.lu as home-page
+Config Thunderbird to be default.
+Rename Ffox/Tbird to: E-Mail/Internet
+Add the quicklaunch area, remove auto-hide of right hand bottom icons.
+
+Do Start/Run
+iexplore officeupdate.microsoft.com
+
+If OpenOffice.org is Installed make sur it write M$-Orifice files per default!!!
+
+All Users -> Start Menu doublecheck

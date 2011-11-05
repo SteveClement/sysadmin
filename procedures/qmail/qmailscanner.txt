@@ -1,0 +1,34 @@
+Whoes with qmailscanner.
+
+Well where to start :)
+
+Quick and nasty hack to get clamd/spamass to work with multilog....
+
+either:
+clamd | /usr/local/bin/setuidgid qscand /usr/local/bin/multilog t s100000 n20 /var/log/clamav &
+or:
+clamd 2>&1 | /usr/local/bin/setuidgid qscand /usr/local/bin/multilog t s100000 n20 /var/log/clamav &
+
+
+This line start spamd with SQL Support!!! 
+
+spamd -x -q -u qscand -r /var/run/spamd/spamd.pid --syslog=stderr 2>&1 | /usr/local/bin/setuidgid qscand /usr/local/bin/multilog t s1000000 n20 /var/log/spamd  &
+
+-v for vpopmail FS Support
+-c create userprefs on FS
+
+-Q sql and setuid to USER if  -a  is needed and -H
+OR
+-q sql
+-x no-userconfig files on FS
+
+make sure perms are aok on the log dirs.
+
+rm files/patch-local.c
+BARRIER_BIG_TODO_PATCH=yes BARRIER_RFC2821_PATCH=yes BARRIER_QMAILQUEUE_PATCH=yes BARRIER_SENDMAIL_F_PATCH=yes make reinstall
+
+QMAILQUEUE_PATCH
+BIG_CONCURRENCY_PATCH
+DISC_BOUNCES_PATCH
+
+wget http://www.jms1.net/qmail/patches/qmail-1.03-jms1.6b.patch

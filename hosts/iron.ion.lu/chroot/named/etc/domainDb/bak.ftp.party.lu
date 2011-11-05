@@ -1,0 +1,19 @@
+$ORIGIN .
+$TTL 86400	; 1 day
+ftp.party.lu		IN SOA	ns4.ion.lu. steve.ion.lu. (
+				52         ; serial
+				43200      ; refresh (12 hours)
+				3600       ; retry (1 hour)
+				900000     ; expire (1 week 3 days 10 hours)
+				86400      ; minimum (1 day)
+				)
+			NS	ns1.ion.lu.
+			NS	ns4.ion.lu.
+			A	80.90.47.181
+			MX	10 redplanet.vo.lu.
+$ORIGIN ftp.party.lu.
+gods			CNAME	ftp.party.lu.
+kino			A	80.90.47.182
+localhost		A	127.0.0.1
+photo			CNAME	ftp.party.lu.
+snooop			CNAME	ftp.party.lu.

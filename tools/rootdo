@@ -1,0 +1,10 @@
+#!/bin/sh
+  # Process the -t flag - this allows interactive commands to be run via rootdo
+  if [ "X$1" = "X-t" ]
+  then
+          flags=-t
+          shift
+  fi
+
+  D=`pwd`
+  root $flags cd $D\;"$@"

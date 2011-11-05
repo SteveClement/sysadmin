@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# Using splogger to send the log through syslog.
+# Using dot-forward to support sendmail-style ~/.forward files.
+# Using qmail-local to deliver messages to ~/Mailbox by default.
+
+#### MASSIVE CHANGES NEEDED ####
+##    Logging to be done      ##
+##    with multilog.          ##
+##    delivery method? it IS  ##
+##    always remote for std   ##
+################################
+
+case "$1" in
+start)
+	exec env - PATH="/var/qmail/bin:$PATH" \
+qmail-start '|dot-forward .forward
+./Mailbox' splogger qmail&
+	exit 0
+	;;
+stop)
+	exec killall qmail-send
+	;;
+*)
+	echo "Usage: `basename $0` {start|stop}" >&2
+	exit 64
+	;;
+esac
+
+
+##GENTOO LAPTOP rc :
+#!/bin/sh
+
+exec env - PATH="/var/qmail/bin:$PATH" \
+	qmail-start "`grep -v '^#' /var/qmail/control/defaultdelivery`"

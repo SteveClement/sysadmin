@@ -1,0 +1,6 @@
+= Needed =
+
+ghostscript-gnu-nox11
+
+and the script himself with a properly configure cups behind...
+

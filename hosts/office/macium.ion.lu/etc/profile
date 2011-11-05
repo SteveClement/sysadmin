@@ -1,0 +1,22 @@
+# System-wide .profile for sh(1)
+
+PATH="/bin:/sbin:/usr/bin:/usr/sbin"
+
+export PATH
+export CVSROOT=cvs.ion.lu:/home/cvs
+export FTP_PASSIVE_MODE=1
+alias hg='history |grep '
+alias pg='ps -wwuax |grep '
+umask 002
+# # set prompt: ``username@hostname$ ''
+if [ $TERM = "xterm" ]; then
+  PS1='\[\033]0;\u@\h: \w\007\]\u@\h:\w'
+  export PS1
+ else
+  PS1='\u@\h:\w'
+fi
+ case `id -u` in
+        0) PS1="${PS1}# "
+        umask 022;;
+        *) PS1="${PS1}$ ";;
+ esac

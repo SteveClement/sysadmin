@@ -1,0 +1,154 @@
+qmail setup from ports
+----------------------
+
+All done by the port, for a basic, forward only, qmail install install from
+ports.
+For more complex setups, install from ports first and then hack into the ports
+dir and make the appropriate patch to qmail after the native patches step.
+Note that these are correct for version 1.03 of qmail.
+
+After having built a default ION Box go to:
+
+cd /usr/ports/mail/qmail && make deinstall install
+/var/qmail/scripts/enable-qmail
+rm /usr/local/etc/rc.d/qmail.sh
+mkdir -p /var/log/qmail/qmail-send
+chown -R qmaill:wheel /var/log/qmail
+chmod -R 750 /var/log/qmail
+
+mkdir -p /var/qmail/supervise/qmail-send/log
+mkdir /var/service
+chmod +t /var/qmail/supervise/qmail-send
+cp -i /home/steve/work/plumbum-ion-sysadmin/trunk/configs/common/var/qmail/alias/.qmail* /var/qmail/alias/
+cp -i /home/steve/work/plumbum-ion-sysadmin/trunk/configs/common/var/qmail/control/* /var/qmail/control/
+cp /home/steve/work/plumbum-ion-sysadmin/trunk/configs/common/var/qmail/rc /var/qmail/
+cp /home/steve/work/plumbum-ion-sysadmin/trunk/configs/common/var/qmail/supervise/qmail-send/run /var/qmail/supervise/qmail-send
+cp /home/steve/work/plumbum-ion-sysadmin/trunk/configs/common/var/qmail/supervise/qmail-send/log/run /var/qmail/supervise/qmail-send/log
+cp /home/steve/work/plumbum-ion-sysadmin/trunk/configs/common/var/qmail/bin/qmailctl /var/qmail/bin
+ln -s /var/qmail/alias/.qmail-root /var/qmail/alias/.qmail-anonymous
+chmod 644 /var/qmail/alias/.qmail*
+chmod 755 /var/qmail/rc
+chmod 751 /var/qmail/supervise/qmail-send/run /var/qmail/supervise/qmail-send/log/run
+ln -s /var/qmail/bin/qmailctl /usr/bin
+ln -s /var/qmail/supervise/qmail-send /var/service
+
+
+CONTROL FILES:
+--------------
+
+cp -i /home/steve/work/kierbiischt-ion-sysadmin/configs/common/var/qmail/control/* /var/qmail/control
+vi /var/qmail/control/*
+
+ADJUST ACCORDINGLY
+
+mailwrapper:
+
+vi /etc/mail/mailer.conf
+
+---8<----
+sendmail        /var/qmail/bin/sendmail
+send-mail       /var/qmail/bin/sendmail
+mailq           /var/qmail/bin/qmail-qread
+newaliases      /var/qmail/bin/newaliases
+hoststat        /var/qmail/bin/qmail-tcpto
+purgestat       /var/qmail/bin/qmail-tcpok
+---8<----
+
+
+Installing Qmail by Hand
+------------------------
+
+mkdir /var/qmail
+
+add the different users needed for qmail:
+
+pw groupadd nofiles
+pw useradd alias -g nofiles -d /var/qmail/alias -s /nonexistent
+pw useradd qmaild -g nofiles -d /var/qmail -s /nonexistent
+pw useradd qmaill -g nofiles -d /var/qmail -s /nonexistent
+pw useradd qmailp -g nofiles -d /var/qmail -s /nonexistent
+pw groupadd qmail
+pw useradd qmailq -g nofiles -d /var/qmail -s /nonexistent
+pw useradd qmailr -g nofiles -d /var/qmail -s /nonexistent
+pw useradd qmails -g nofiles -d /var/qmail -s /nonexistent
+
+make
+
+do as root:
+
+make setup check
+./config
+
+Copy the correct rc script to /var/qmail depending on your needs.
+/var/qmail/boot has them all...
+
+To start qmail, put a symlink to /var/qmail/rc in /usr/local/etc/rc.d
+Preferably make it start/stoppable on the command line.
+
+!This is not ideal, if qmail dies, well it IS dead and stays dead us
+daemontools or the like!
+
+add the man-page dir to: MANPATH=$MANPATH:/var/qmail/man
+
+Forwarding root email
+---------------------
+
+Root emails are _not_ forwarded via .qmail[-blah] files in ~root,
+unlike other logins. They are, instead, controlled via
+/var/qmail/alias/.qmail-root. The instructions tell you to touch this
+file. Don't. Put this in it:
+
+|forward rootmails@aldigital.co.uk
+OR
+&rootmails@ion.lu
+OR
+rootmails@ion.lu
+
+USE &email.addy@mem.com
+
+also, in .qmail-postmaster:
+
+|forward mib@aldigital.co.uk
+OR
+&postmaster@ion.lu
+
+There is also .qmail-mailer-daemon, this should be left empty, but is
+used as the source address for bounces. If you need to be able to
+reply to bounces, this should be set to the reply address. Not yet
+tested!
+
+TYPICALL: YOU ALWAYS NEED TO BE ABLE TO REPLY TO BOUNCES, OTHERWISE YOU DONT
+NOTICE MISCONFIGURED STUFF...
+
+Dont forget to do a chmod 644 ~alias/.qmail-*
+
+Forwarding other users
+----------------------
+
+In their home directory, add .qmail-default, the contents being the
+address to forward to. Home directory must belong to the user (which is the default if created with adduser).
+
+Setting up mailing lists
+------------------------
+
+install ezmlm funk and qmail-admin web interface go from there
+
+Gotchas
+-------
+
+If the maillog says:
+
+Mar 18 15:42:18 mailgate qmail: 984930138.194541 delivery 25190: deferral: Sorry,_I_wasn't_able_to_establish_an_SMTP_connection._(#4.4.1)/
+
+but you believe it is actually possible to connect (because you've
+checked with telnet), then this could be because it is temporarily
+locked - qmail has an undocumented file, /var/qmail/queue/lock/tcpto,
+which logs connection failures and prevents retries for a while
+after. However, there appears to be something wrong with the timeout
+mechanism - it shouldn't delay for more than 30 minutes or so,
+according to my reading, but it does - I can't find the bug, though -
+the file is managed by tcpto.c, if anyone wants to look.
+
+A simple way around this is to overwrite the file with zeros. It may
+well get zeroed on startup, too, but I'm not sure.
+

@@ -1,0 +1,6 @@
+To merge from rotatelogs to cronolog
+
+portinstall cronolog
+
+:%s/log 86400/log-%Y%m%d/g
+:%s/\/rotatelogs/\/cronolog/g

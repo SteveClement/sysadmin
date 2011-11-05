@@ -1,0 +1,76 @@
+This documents the installation and maintenance of the ION Content Filter:
+
+This document assumes a Stock FreeBSD ION Install with all the needed quirks
+(make.conf, qmail-send installed etc...)
+
+First get: 
+
+Install Apache+lang/php5
+Make sure make.conf has:
+APACHE_DATADIR=/home/apache
+APACHE_DOCUMENT_ROOT=/home/apache/hosts/ion.lu/fucker
+
+Then do: portinstall www/apache13 lang/php5 www/php5-session databases/php5-mysql adodb databases/mysql41-client databases/mysql41-server www/dansguardian squid
+
+	"Commercial source download is restricted.  Please visit and read http://dansguardian.org/index.php?page=copyright2 and download dansguardian-2.8.0.4.source.tar.gz into /usr/ports/distfiles before running make"
+http://dansguardian.org/?page=download2
+http://usmirror.dansguardian.org/downloads/2/Stable/dansguardian-2.8.0.4.source.tar.gz
+
+cd /home/apache ; ln -s /usr/local/etc etc ; ln -s /usr/local/etc/apache/ conf ; ln -s /usr/local/libexec libexec ; mkdir logs ; rm -rf proxy ; pw useradd apache
+
+If your had a problem with $PREFIX do:
+## $PREFIX Incident fix:
+cd /home/apache ; rm -rf share etc include lib libexec sbin info libdata man
+
+echo 'apache_enable="YES"' >> /etc/rc.conf
+echo 'mysql_enable="YES"' >> /etc/rc.conf
+echo 'dansguardian_enable="YES"' >> /etc/rc.conf
+echo 'squid_enable="YES"' >> /etc/rc.conf
+
+vi /usr/local/etc/squid/squid.conf
+<Search for visible_hostname and set it: visible_hostname $hostname>
+
+squid -z
+chmod +s /bin/kill
+
+tweak squid/dansguardian
+
+cd /usr/local/etc/squid
+vi squid.conf
+cd /usr/local/etc/dansguardian
+cp samples/* .
+
+touch /var/log/dansguardian.log
+chown nobody !$
+
+/usr/local/etc/rc.d/mysql-server.sh start
+/usr/local/etc/rc.d/apache.sh start
+/usr/local/etc/rc.d/squid.sh start
+/usr/local/etc/rc.d/start-dg.sh start
+
+
+Installing dgbi:
+
+cvs co kierbiischt-ion-dgbi
+
+reulie root # mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 1 to server version: 4.1.9
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+
+mysql> create database dbdgbi;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> Bye
+reulie root # mysql dbdgbi < ~steve/work/kierbiischt-ion-dgbi/sql/dbdgbi.sql 
+
+
+cd /home/apache/hosts/ion.lu/reulie/
+cp -r ~steve/work/kierbiischt-ion-dgbi/web/*
+
+configure dgbi interface:
+
+vi config.inc.php
+
+Fine tune the conf file.

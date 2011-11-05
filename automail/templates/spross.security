@@ -1,0 +1,54 @@
+*Received: (qmail 50813 invoked by uid 98); 19 Jun 2004 01:01:15 -0000
+Received: from root@spross.lxcdm.lu by zinc.ion.lu by uid 82 with qmail-scanner-1.22-st-qms 
+ (clamdscan: 0.72. spamassassin: 2.63.  Clear:RC:0(212.24.214.36):SA:0(0.3/5.0):. 
+ Processed in 6.270328 secs); 19 Jun 2004 01:01:15 -0000
+X-Spam-Status: No, hits=0.3 required=5.0
+X-Antivirus-ion.lu-Mail-From: root@spross.lxcdm.lu via zinc.ion.lu
+X-Antivirus-ion.lu: 1.22-st-qms (Clear:RC:0(212.24.214.36):SA:0(0.3/5.0):. Processed in 6.270328 secs Process 50805)
+Received: from unknown (HELO spross.lxcdm.lu) (212.24.214.36)
+  by zinc.ion.lu with SMTP; 19 Jun 2004 01:01:08 -0000
+Received: (qmail 51307 invoked by alias); 19 Jun 2004 01:01:05 -0000
+Delivered-To: root@spross.lxcdm.lu
+Received: (qmail 51290 invoked by uid 0); 19 Jun 2004 01:01:05 -0000
+Date: 19 Jun 2004 01:01:05 -0000
+Message-ID: <20040619010105.51288.qmail@spross.lxcdm.lu>
+From: root@spross.lxcdm.lu
+To: root@spross.lxcdm.lu
+Subject: spross.lxcdm.lu security run output
+
+
+Checking setuid files and devices:
+
+Checking for uids of 0:
+root 0
+toor 0
+
+Checking for passwordless accounts:
+
+spross.lxcdm.lu kernel log messages:
+> s on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+> arp: 212.24.214.34 is on fxp0 but got reply from 00:30:05:19:06:e8 on em0
+
+spross.lxcdm.lu login failures:
+
+spross.lxcdm.lu refused connections:
+
+-- End of security output --

@@ -1,0 +1,11 @@
+# WebStatistics
+0 0 * * * ~apache/bin/webalizer_ion.sh
+1 0 * * * ~apache/bin/webalizer_traders.sh
+2 0 * * * ~apache/bin/webalizer_strawberries.sh
+3 0 * * * ~apache/bin/webalizer_orpheus.sh
+4 0 * * * ~apache/bin/webalizer_tapishertz.sh
+5 0 * * * ~apache/bin/webalizer_trispeed.sh
+6 0 * * * ~apache/bin/webalizer_photo.sh
+7 0 * * * ~apache/bin/webalizer_propertypartners.sh
+8 0 * * * ~apache/bin/webalizer_datasworld.sh
+8 0 * * * /usr/local/bin/mirror-putty.sh

@@ -1,0 +1,33 @@
+$ORIGIN .
+$TTL 86400	; 1 day
+eldoradio.lu		IN SOA	ns4.ion.lu. steve.ion.lu. (
+				52         ; serial
+				43200      ; refresh (12 hours)
+				3600       ; retry (1 hour)
+				900000     ; expire (1 week 3 days 10 hours)
+				86400      ; minimum (1 day)
+				)
+			NS	ns1.ion.lu.
+			NS	ns4.ion.lu.
+			A	80.90.47.180
+			MX	10 luna5.vo.lu.
+$ORIGIN eldoradio.lu.
+camera			A	192.168.1.28
+eldo-0			A	192.168.1.2
+eldowall		A	192.168.1.1
+ftp			NS	ns1.ion.lu.
+			NS	ns4.ion.lu.
+live			A	212.24.194.9
+llawodle		A	192.168.2.1
+localhost		A	127.0.0.1
+marcie			A	212.24.195.40
+muesli			A	212.24.195.40
+musli			A	212.24.195.40
+new			CNAME	eldoradio.lu.
+pop			A	80.90.45.21
+radiostar		A	80.90.47.180
+schroeder		A	80.90.47.180
+smtp			A	80.90.45.21
+streaming		A	194.154.192.106
+webmail			CNAME	eldoradio.lu.
+www			CNAME	eldoradio.lu.

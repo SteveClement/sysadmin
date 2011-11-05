@@ -1,0 +1,95 @@
+This explains a fresh Automail install on a server with FreeBSD 6.2-Release, Perl 5.8.8
+
+Short:
+pw groupadd automail
+mkdir /home/automail
+cd !$
+
+tar xfvz /path/to/automail.tar.gz
+mkdir store
+chown -R bla:bla *
+p5-FreezeThaw (FreezeThaw.pm)
+p5-DB_File-Lock (DB_File::Lock.pm)
+p5-MIME-Tools (MIME/Entity.pm)
+p5-Time-modules (Time/ParseDate.pm)
+p5-IO-stringy (IO::Scalar)
+
+That was the short version, the crucial bit is the chown, here you need to
+make sure that the automail process can write to it's files, in my case it is:
+alias:qmail
+Also the store directory needs to be accessible to the sysadmins that are
+going to work on templating automail.
+
+Now once that is done you need to create the corresponding entry in the .qmail
+or .forward file for the email address/user that is going to process
+automails, in my case: /var/qmail/alias/.qmail-rootmails should contain:
+
+| /home/automail/run_automail-debug
+
+That script looks like this:
+#!/bin/sh
+
+PERL5LIB=/home/automail/automail/perl
+export PERL5LIB
+FLAGS=""
+/home/automail/automail/perl/automail.pl --nofatal
+/home/automail/automail/conf/automail.conf > /tmp/am.trace.$$ 2>&1
+
+if [ $? -gt 0 ]
+  then
+   mv /tmp/am.trace.$$ /tmp/am.fail.$$
+    elif [ ! -s /tmp/am.trace.$$ ]; then
+     rm /tmp/am.trace.$$
+fi
+# for now...
+exit 0
+EOF
+
+Other configs to do:
+
+/homa/automail/automail/conf
+
+contains some (or rather ONE main) conf file.
+take a look at automail.conf and tweak it accordingly, I have the strong
+suspicion that not all is used in that file.
+
+Debug:
+/tmp/am.*
+There you will find all the logs about automail and they are really helpful.
+
+
+Thats the server side covered, over to the client side:
+
+cd /home/steve/work/my-wild-repo/
+mkdir automail
+tar xfvz /path/to/the/very/same/tarball/automail.tar.gz
+cd automail
+vi grab.pl
+Tweak the necessary host entries
+vi Makefile
+Tweak the necessary host entries
+commit all the files to your repo.
+Read automail.txt for usage.
+
+grab.pl modify
+
+Automail add-ons:
+
+Lots, and lots, you could make this thing really cool with some spare coder
+time... One main thing that bothers me is the fact that you cant selectively
+tell it to accept mails from a certain host. That is nowadays with all the
+crap and spam a necessity. Even if you obfuscate the automail e-mail address.
+
+Biach...
+
+If you up your system to perl 5.8 it breaks automail horribly...
+but luckily we can do:
+
+vi /home/automail/automail/perl/automail.pl
+
+first line: !#/usr/bin/perl
+
+If you upped it properly that points to /usr/local/bin/perl
+just replace it with: !#/usr/bin/perl5.00503 
+
+and it will work again...

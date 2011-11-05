@@ -1,0 +1,10 @@
+How to add a manpath under FreeBSD.
+-----------------------------------
+
+If you want to add a manpath which is not in the usual place add an appropriate entry to: /etc/manpath.config
+such an entry could look like:
+
+MANDATORY_MANPATH       /home/apache/man
+
+in /etc/manpath.config you can also do PATH to MANPATH mappings and add MANLOCALES...
+

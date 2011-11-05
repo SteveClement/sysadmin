@@ -1,0 +1,27 @@
+$TTL  86400 
+@ IN SOA ns4.ion.lu. steve.ion.lu. (171 43200 3600 900000 86400)
+@ IN NS ns4.ion.lu.
+ns4.ion.lu. IN A 80.90.47.163
+@ IN NS ns1.ion.lu.
+ns1.ion.lu. IN A 213.129.72.10
+
+
+localhost IN A 127.0.0.1
+
+jedi IN CNAME www.netforce.lu.
+cia IN CNAME www.netforce.lu.
+spooky IN CNAME www.netforce.lu.
+inquisitor IN CNAME www.netforce.lu.
+enouwe IN CNAME www.netforce.lu.
+bulco IN CNAME www.netforce.lu.
+bluepixel IN CNAME www.netforce.lu.
+horus IN CNAME www.netforce.lu.
+lost-lord IN CNAME www.netforce.lu.
+viper IN CNAME www.netforce.lu.
+thc IN CNAME www.netforce.lu.
+mail IN CNAME www.netforce.lu.
+support IN CNAME www.netforce.lu.
+ftp IN CNAME www.netforce.lu.
+www IN A 80.90.47.162
+
+netforce.lu. IN MX 30 mail.ion.lu.

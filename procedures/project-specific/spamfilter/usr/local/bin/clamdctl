@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# For Red Hat chkconfig
+# chkconfig: - 80 30
+# description: the ClamAV clamd daemon
+
+PATH=/usr/local/clamav/bin:/bin:/usr/bin:/usr/local/bin:/usr/local/sbin
+export PATH
+
+case "$1" in
+  start)
+    echo "Starting clamd"
+    if svok /service/clamd ; then
+      svc -u /service/clamd
+    else
+      echo clamd supervise not running
+    fi  
+    if [ -d /var/lock/subsys ]; then
+      touch /var/lock/subsys/clamd
+    fi
+    ;;
+  stop)
+    echo "Stopping clamd..."
+    echo "  clamd"
+    svc -d /service/clamd
+    if [ -f /var/lock/subsys/clamd ]; then
+      rm /var/lock/subsys/clamd
+    fi
+    ;;
+  stat)
+    svstat /service/clamd
+    svstat /service/clamd/log
+    ;;
+  restart)
+    echo "Restarting clamd:"
+    echo "* Stopping clamd."
+    svc -d /service/clamd
+    echo "* Sending clamd SIGTERM and restarting."
+    svc -t /service/clamd
+    echo "* Restarting clamd."
+    svc -u /service/clamd
+    ;;
+  hup)
+    echo "Sending HUP signal to clamd."
+    svc -h /service/clamd
+    ;;
+  help)
+    cat <<HELP
+   stop -- stops clamd service (smtp connections refused, nothing goes out)
+  start -- starts clamd service (smtp connection accepted, mail can go out)
+   stat -- displays status of clamd service
+restart -- stops and restarts the clamd service
+    hup -- same as reload
+HELP
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|stat|restart|hup|help}"
+    exit 1
+    ;;
+esac
+
+exit 0

@@ -1,0 +1,9 @@
+On Opensuse 10.2;
+
+first remove Python2.5:
+
+rpm -e python-xml-2.5-19 python-2.5-19 rrdtool-1.2.15-25.i586 hplip-1.6.10-23.i586 sensors-2.10.1-5.i586 net-snmp-5.4.rc2-4.i586 hplip-hpijs-1.6.10-23.i586 ghostscript-library-8.15.3-24.i586 gutenprint-5.0.0-1.i586 cups-1.2.7-3.i586  gutenprint-5.0.0-1.i586 cups-drivers-1.2.7-7.i586 yast2-printer-2.14.15-3.i586 yast2-samba-server-2.14.3-10.noarch
+
+wget ftp://fr2.rpmfind.net/linux/SuSE-Linux/i386/9.3/suse/i586/python-2.4-14.i586.rpm
+
+rpm --nodeps -i python-2.4-14.i586.rpm

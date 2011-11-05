@@ -1,0 +1,320 @@
+this file contains software details initially ls ~software/archives unpacked pkg_info included
+
+Any other version updates could be included aswell but that would probably be a next step towards perfection, most probably best thing is to include rules to list the most vital and important pieces of soft that concern security notably:
+ssh
+openssl
+ANY INTERNET VISIBLE THINGSA
+XFree86                     <
+XFree86-FontServer          <
+XFree86-Server              <
+XFree86-clients             <
+XFree86-documents           <
+XFree86-font100dpi          <
+XFree86-font75dpi           <
+XFree86-fontCyrillic        <
+XFree86-fontDefaultBitmaps  <
+XFree86-fontEncodings       <
+XFree86-fontScalable        <
+XFree86-libraries           <
+apache                      <
+autoconf213                 =
+automake14                  =
+awstats                     <
+bash                        <
+bsdpan-ANSIColor            #
+bsdpan-Algorithm-PageRank   #
+bsdpan-Apache-DBI           =
+bsdpan-Apache-Session       <
+bsdpan-Apache-Session-Generate-ModUniqueId  #
+bsdpan-Apache-Session-Generate-ModUsertrack  #
+bsdpan-Apache-Test          =
+bsdpan-Archive-Tar          <
+bsdpan-Archive-Tar          =
+bsdpan-CGI-Lite-2.001       #
+bsdpan-CGI.pm               <
+bsdpan-CPAN                 #
+bsdpan-CPAN                 #
+bsdpan-CPAN                 #
+bsdpan-CPAN-WAIT            #
+bsdpan-Compress-Zlib        <
+bsdpan-Compress-Zlib        =
+bsdpan-DBD-mysql            >
+bsdpan-DBI                  =
+bsdpan-DBI-Shell            #
+bsdpan-DB_File              #
+bsdpan-Digest-MD5           <
+bsdpan-Digest-MD5           <
+bsdpan-Digest-MD5           <
+bsdpan-Digest-Nilsimsa      =
+bsdpan-ExtUtils-F77         =
+bsdpan-File-Slurp           =
+bsdpan-Filter               =
+bsdpan-Getopt-Long          >
+bsdpan-HTML-Parser          <
+bsdpan-HTML-Parser          =
+bsdpan-HTML-Tagset          =
+bsdpan-IO-Tee               #
+bsdpan-IO-Tty               =
+bsdpan-Inline               =
+bsdpan-Logfile-Rotate       #
+bsdpan-MD5                  =
+bsdpan-MIME-Base64          <
+bsdpan-MIME-Base64          =
+bsdpan-Math-BigInt          =
+bsdpan-Math-BigInt          >
+bsdpan-Memoize              =
+bsdpan-Net-Daemon           >
+bsdpan-Net-Ping             #
+bsdpan-Net-Telnet           =
+bsdpan-Net_SSLeay.pm        #
+bsdpan-Net_SSLeay.pm        #
+bsdpan-PDL                  #
+bsdpan-PDL-NiceSlice        #
+bsdpan-POE                  <
+bsdpan-POE                  >
+bsdpan-POE                  =
+bsdpan-POE-Component-Client-HTTP  <
+bsdpan-POE-Component-Client-HTTP  <
+bsdpan-POE-Component-Client-HTTP  <
+bsdpan-Parse-RecDescent     =
+bsdpan-PlRPC                >
+bsdpan-Pod-LaTeX            #
+bsdpan-PodParser            =
+bsdpan-Safe                 #
+bsdpan-Scalar-List-Utils    <
+bsdpan-Socket6              >
+bsdpan-Term-Cap             #
+bsdpan-Term-ReadLine-Perl   #
+bsdpan-TermReadKey          #
+bsdpan-Test                 #
+bsdpan-Test-Harness         =
+bsdpan-Text-Balanced        =
+bsdpan-Text-Reform          =
+bsdpan-Text-Soundex         #
+bsdpan-Text-Tabs+Wrap       =
+bsdpan-Text-Unaccent        #
+bsdpan-Text-Unaccent        #
+bsdpan-Time-HiRes           <
+bsdpan-Time-HiRes           <
+bsdpan-Time-Local           =
+bsdpan-URI                  =
+bsdpan-libnet               #
+bsdpan-libnet               #
+bsdpan-libnet               #
+bsdpan-libwww-perl          #
+bsdpan-mod_perl             #
+bsdpan-podlators            =
+cvsup                       <
+cvsupit                     ?
+expat                       <
+ezm3                        <
+freetype2                   <
+gd                          >
+gdbm                        =
+gdchart                     >
+gettext                     =
+gmake                       =
+imake                       <
+jpeg                        =
+libiconv                    <
+libtool                     <
+libtool                     <
+logrotate                   =
+lynx-ssl                    <
+m4                          =
+mod_perl2                   <
+mrtg                        >
+mysql++                     =
+mysql-client                <
+mysql-client                <
+mysql-server                <
+mysql-server                <
+openssl                     =
+p5-CGI.pm                   <
+p5-Compress-Zlib            <
+p5-Crypt-TripleDES          =
+p5-Curses                   <
+p5-DBI                      <
+p5-Data-ShowTable           =
+p5-File-Spec                =
+p5-FreezeThaw               =
+p5-HTML-Template            =
+p5-MLDBM                    =
+p5-Mysql-modules            <
+p5-Net-Daemon               =
+p5-PlRPC                    =
+p5-SNMP_Session             =
+p5-Storable                 <
+p5-Test-Harness             <
+p5-Test-Simple              =
+p5-Time-HiRes               <
+perl                        <
+png                         =
+popt                        =
+portscanner                 =
+portupgrade                 =
+qmail                       =
+rpm                         <
+ruby                        =
+ruby-bdb1                   =
+ruby-rdoc                   =
+ruby-shim-ruby18            =
+screen                      <
+trafshow                    =
+unix2dos                    =
+wget                        <
+wrapper                     <
+XFree86-4.2.0_1,1   X11/XFree86 core distribution (complete, using mini/meta-po
+XFree86-FontServer-4.2.0_1 XFree86-4 Font Server
+XFree86-Server-4.2.1_6 XFree86-4 X server and related programs
+XFree86-clients-4.2.1_2 XFree86-4 Client environments
+XFree86-documents-4.2.0 XFree86-4 Document Files
+XFree86-font100dpi-4.2.0 XFree86-4 bitmap 100 dpi fonts
+XFree86-font75dpi-4.2.0 XFree86-4 bitmap 75 dpi fonts
+XFree86-fontCyrillic-4.2.0_4 XFree86-4 Cyrillic Fonts
+XFree86-fontDefaultBitmaps-4.2.0 XFree86-4 default bitmap fonts
+XFree86-fontEncodings-4.2.0 XFree86-4 font encoding files
+XFree86-fontScalable-4.2.0 XFree86-4 Scalable font files
+XFree86-libraries-4.2.1_5 XFree86-4 include/(shared) library kit
+apache-2.0.44       Version 2 of the extremely popular Apache http server
+autoconf213-2.13.000227_5 Automatically configure source code on many Un*x platforms 
+automake14-1.4.5_9  GNU Standards-compliant Makefile generator (legacy version 
+awstats-5.3_1       Free real-time logfile analyzer to get advanced web statist
+bash-2.05b.004      The GNU Bourne Again Shell
+bsdpan-ANSIColor-1.07 Term::ANSIColor - Color screen output using ANSI escape seq
+bsdpan-Algorithm-PageRank-0.02 Algorithm::PageRank - Calculating PageRank
+bsdpan-Apache-DBI-0.91 Apache::DBI - Initiate a persistent database connection
+bsdpan-Apache-Session-1.54 Apache::Session - A persistence framework for session data
+bsdpan-Apache-Session-Generate-ModUniqueId-0.02 Apache::Session::Generate::ModUniqueId - use mod_unique_id 
+bsdpan-Apache-Session-Generate-ModUsertrack-0.02 Apache::Session::Generate::ModUsertrack - uses mod_usertrac
+bsdpan-Apache-Test-1.03 Apache::Test - Test.pm wrapper with helpers for testing Apa
+bsdpan-Archive-Tar-0.23 Tar - module for manipulation of tar archives.
+bsdpan-Archive-Tar-1.03 Archive::Tar - module for manipulations of tar archives
+bsdpan-CGI-Lite-2.001-emergencyrelease CGI::Lite - Perl module to process and decode WWW forms and
+bsdpan-CGI.pm-2.97  CGI - Simple Common Gateway Interface Class
+bsdpan-CPAN-1.65    CPAN - query, download and build perl modules from CPAN sit
+bsdpan-CPAN-1.70    CPAN - query, download and build perl modules from CPAN sit
+bsdpan-CPAN-1.71    CPAN - query, download and build perl modules from CPAN sit
+bsdpan-CPAN-WAIT-0.27 CPAN::WAIT - adds commands to search a WAIT4CPAN server to 
+bsdpan-Compress-Zlib-1.19 Compress::Zlib - Interface to zlib compression library
+bsdpan-Compress-Zlib-1.22 Compress::Zlib - Interface to zlib compression library
+bsdpan-DBD-mysql-2.9002 DBD::mysql - MySQL driver for the Perl5 Database Interface 
+bsdpan-DBI-1.37     DBI - Database independent interface for Perl
+bsdpan-DBI-Shell-11.91 DBI::Shell - Interactive command shell for the DBI
+bsdpan-DB_File-1.806 DB_File - Perl5 access to Berkeley DB version 1.x
+bsdpan-Digest-MD5-2.23 Digest::MD5 - Perl interface to the MD5 Algorithm
+bsdpan-Digest-MD5-2.24 Digest::MD5 - Perl interface to the MD5 Algorithm
+bsdpan-Digest-MD5-2.25 Digest::MD5 - Perl interface to the MD5 Algorithm
+bsdpan-Digest-Nilsimsa-0.06 Digest::Nilsimsa - Perl version of Nilsimsa code
+bsdpan-ExtUtils-F77-1.14 ExtUtils::F77 - Simple interface to F77 libs
+bsdpan-File-Slurp-2002.1031 	File::Slurp -- single call read & write file routines; rea
+bsdpan-Filter-1.29  Filter::sh - sh source filter
+bsdpan-Getopt-Long-2.33 Getopt::Long - Extended processing of command line options
+bsdpan-HTML-Parser-3.27 HTML::Parser - HTML parser class
+bsdpan-HTML-Parser-3.28 HTML::Parser - HTML parser class
+bsdpan-HTML-Tagset-3.03 HTML::Tagset - data tables useful in parsing HTML
+bsdpan-IO-Tee-0.64  IO::Tee - Multiplex output to multiple output handles
+bsdpan-IO-Tty-1.02  IO::Tty - Low-level allocate a pseudo-Tty, import constants
+bsdpan-Inline-0.44  Unknown perl modulebsdpan-Logfile-Rotate-1.05 Logfile::Rotate - Perl module to rotate logfiles.
+bsdpan-MD5-2.02     MD5 - Perl interface to the MD5 Message-Digest Algorithm
+bsdpan-MIME-Base64-2.16 MIME::Base64 - Encoding and decoding of base64 strings
+bsdpan-MIME-Base64-2.20 MIME::Base64 - Encoding and decoding of base64 strings
+bsdpan-Math-BigInt-1.63 Math::BigInt - Arbitrary size integer math package
+bsdpan-Math-BigInt-1.64 Math::BigInt - Arbitrary size integer math package
+bsdpan-Memoize-1.01 Memoize - Make functions faster by trading space for time
+bsdpan-Net-Daemon-0.37 Net::Daemon - Perl extension for portable daemons
+bsdpan-Net-Ping-2.31 Net::Ping - check a remote host for reachability
+bsdpan-Net-Telnet-3.03 Net::Telnet - interact with TELNET port or other TCP ports
+bsdpan-Net_SSLeay.pm-1.22 Net::SSLeay - Perl extension for using OpenSSL or SSLeay
+bsdpan-Net_SSLeay.pm-1.23 Net::SSLeay - Perl extension for using OpenSSL or SSLeay
+bsdpan-PDL-2.4.0    Unknown perl modulebsdpan-PDL-NiceSlice-0.991 PDL::NiceSlice - toward a nicer slicing syntax for PDL
+bsdpan-POE-0.25     POE - multitasking and networking framework for perl
+bsdpan-POE-0.2502   POE - multitasking and networking framework for perl
+bsdpan-POE-0.26     POE - multitasking and networking framework for perl
+bsdpan-POE-Component-Client-HTTP-0.51 POE::Component::Client::HTTP - a HTTP user-agent component
+bsdpan-POE-Component-Client-HTTP-0.53 POE::Component::Client::HTTP - a HTTP user-agent component
+bsdpan-POE-Component-Client-HTTP-0.54 POE::Component::Client::HTTP - a HTTP user-agent component
+bsdpan-Parse-RecDescent-1.94 Unknown perl modulebsdpan-PlRPC-0.2017 RPC::PlServer - Perl extension for writing PlRPC servers
+bsdpan-Pod-LaTeX-0.55 Pod::LaTeX - Convert Pod data to formatted Latex
+bsdpan-PodParser-1.23 Pod::Find - find POD documents in directory trees
+bsdpan-Safe-2.09    Safe - Compile and execute code in restricted compartments
+bsdpan-Scalar-List-Utils-1.11 List::Util - A selection of general-utility list subroutine
+bsdpan-Socket6-0.11 Socket6 - IPv6 related part of the C socket.h defines and s
+bsdpan-Term-Cap-1.08 Term::Cap - Perl termcap interface
+bsdpan-Term-ReadLine-Perl-1.0203 Unknown perl modulebsdpan-TermReadKey-2.21 Term::ReadKey - A perl module for simple terminal control
+bsdpan-Test-1.24    Test - provides a simple framework for writing test scripts
+bsdpan-Test-Harness-2.28 Test::Harness - run perl standard test scripts with statist
+bsdpan-Text-Balanced-1.95 Text::Balanced - Extract delimited text sequences from stri
+bsdpan-Text-Reform-1.11 Text::Reform - Manual text wrapping and reformatting
+bsdpan-Text-Soundex-3.02 Text::Soundex - Implementation of the Soundex Algorithm as 
+bsdpan-Text-Tabs+Wrap-2001.0929 Text::Wrap - line wrapping to form simple paragraphs
+bsdpan-Text-Unaccent-1.01 Text::Unaccent - Remove accents from a string
+bsdpan-Text-Unaccent-1.07 Text::Unaccent - Remove accents from a string
+bsdpan-Time-HiRes-1.42 Time::HiRes - High resolution alarm, sleep, gettimeofday, i
+bsdpan-Time-HiRes-1.49 Time::HiRes - High resolution alarm, sleep, gettimeofday, i
+bsdpan-Time-Local-1.07 Time::Local - efficiently compute time from local and GMT t
+bsdpan-URI-1.23     URI - Uniform Resource Identifiers (absolute and relative)
+bsdpan-libnet-1.12  Net::Cmd - Network Command class (as used by FTP, SMTP etc)
+bsdpan-libnet-1.13  Net::Cmd - Network Command class (as used by FTP, SMTP etc)
+bsdpan-libnet-1.16  Net::Cmd - Network Command class (as used by FTP, SMTP etc)
+bsdpan-libwww-perl-5.69 LWP - The World-Wide Web library for Perl
+bsdpan-mod_perl-1.99_08 Unknown perl modulebsdpan-podlators-1.27 Unknown perl modulecvsup-16.1f         General network file distribution system optimized for CVS 
+cvsupit-3.1         CVSup installation and setup front-end package (16.1 / GUI 
+expat-1.95.5        XML 1.0 parser written in C
+ezm3-1.0            Easier, more portable Modula-3 distribution for building CV
+freetype2-2.1.2_1   A free and portable TrueType font rendering engine
+gd-2.0.15_1,1       A graphics library for fast creation of images
+gdbm-1.8.3          The GNU database manager
+gdchart-0.11.2_1    Easy to use, fast C API for creating charts and graphs
+gettext-0.11.5_1    GNU gettext package
+gmake-3.80          GNU version of 'make' utility
+imake-4.2.0_1       Imake and other utilities from XFree86
+jpeg-6b_1           IJG's jpeg compression utilities
+libiconv-1.8_2      A character set conversion library
+libtool-1.3.4_4     Generic shared library support script
+libtool-1.3.5       Generic shared library support script
+logrotate-3.5.2     Daemon to rotate, compress, remove and mail system log file
+lynx-ssl-2.8.4.1c   A non-graphical, text-based World-Wide Web client
+m4-1.4_1            GNU m4
+mod_perl2-1.99r08   Embeds a Perl interpreter in the Apache2 server
+mrtg-2.9.29_3,1     The multi-router traffic grapher
+mysql++-1.7.9       Complex C++ API for MySQL
+mysql-client-3.23.54 Multithreaded SQL database (client)
+mysql-client-4.0.13 Multithreaded SQL database (client)
+mysql-server-3.23.54 Multithreaded SQL database (server)
+mysql-server-4.0.13_1 Multithreaded SQL database (server)
+openssl-0.9.7b_1    SSL and crypto library
+p5-CGI.pm-2.89,1    CGI.pm - Simple Common Gateway Interface Class
+p5-Compress-Zlib-1.16 Perl5 interface to zlib compression library
+p5-Crypt-TripleDES-0.24 Perl module implementing the Triple-DES cipher
+p5-Curses-1.05      Perl5 module for terminal screen handling and optimization
+p5-DBI-1.28         The perl5 Database Interface.  Required for DBD::* modules
+p5-Data-ShowTable-3.3 Perl5 module to pretty-print arrays of data
+p5-File-Spec-0.82   A Perl module for portably manipulating file specifications
+p5-FreezeThaw-0.43  A module for converting Perl structures to strings and back
+p5-HTML-Template-2.6 Perl module to use HTML Templates from CGI scripts
+p5-MLDBM-2.01       Store multi-level hash structure in single level tied hash
+p5-Mysql-modules-1.2216 Perl5 modules for accessing MySQL databases
+p5-Net-Daemon-0.36  Perl5 extension for portable daemons
+p5-PlRPC-0.2016     Perl module for writing RPC servers and clients
+p5-SNMP_Session-0.95 A perl5 module providing rudimentary access to SNMPv1 and v
+p5-Storable-2.05    Persistency for perl data structures
+p5-Test-Harness-2.26 Run perl standard test scripts with statistics
+p5-Test-Simple-0.47_1 Basic utilities for writing tests in perl
+p5-Time-HiRes-1.38,1 A perl5 module implementing High resolution time, sleep, an
+perl-5.6.1_11       Practical Extraction and Report Language
+png-1.2.5_2         Library for manipulating PNG images
+popt-1.6.4          A getopt(3) like library with a number of enhancements, fro
+portscanner-1.2     A simple and easy to use TCP port scanner
+portupgrade-20030723 FreeBSD ports/packages administration and management tool s
+qmail-1.03_1        A SECURE, reliable, efficient, simple, and FAST MTA for UNI
+rpm-3.0.6_6         The Red Hat Package Manager
+ruby-1.6.8.2003.04.19 An object-oriented interpreted scripting language
+ruby-bdb1-0.2.1     Ruby interface to Berkeley DB revision 1.8x with full featu
+ruby-rdoc-0.0.0.b2  Documentation from Ruby source files
+ruby-shim-ruby18-1.8.0.p2.2003.04.19_1 A set of Ruby modules to provide Ruby 1.8 functionalities
+screen-3.9.15       A multi-screen window manager
+trafshow-3.1_3      Full screen visualization of network traffic
+unix2dos-1.3        Translate ASCII files from DOS (cr/lf) to UNIX (lf)
+wget-1.8.2_2        Retrieve files from the 'net via HTTP and FTP
+wrapper-1.0_2       Wrapper for XFree86-4 server

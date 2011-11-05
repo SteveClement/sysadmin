@@ -1,0 +1,59 @@
+#!/bin/sh 
+. /etc/rc.common
+
+#
+# Start SSHKeychain Version 0.1
+# 
+# 
+
+SSHKPATH=/Applications/SSHKeychain.app
+SSHKARGS=ARGSGOHEREBUTNOTUSEDYET
+
+#
+# Modification Log:
+#
+# 0.1
+# Initial Attempt to make the Agent come up on boot
+#
+#
+##
+
+if [ ${1:-noset} = "stop" ]; then
+  ConsoleMessage "Stopping SSHKeychain Agent Manager"
+
+  SSHKPID=`/bin/ps -auxwwww | grep SSHKeychain-keepalive | grep -v grep | awk 'NF > 2 {print $2}'`
+  if [ "${SSHKPID:=""}" ]; then
+    kill $SSHKPID
+  fi
+
+  SSHKPID=`/bin/ps -auxwwww | grep SSHKeychain-keepalive | grep -v grep | awk 'NF > 2 {print $2}'`
+  if [ "${SSHKPID:=""}" != "" ]; then
+	echo "SSHKeychain stop: problem stopping SSHKeychain-keepalive"
+  else
+#   Now Kill SSHKeychain
+    SSHKPID=`/bin/ps -auxwwww | grep SSHKeychain | grep -v grep | awk 'NF > 2 {print $2}'`
+    if [ "${SSHKPID:=""}" ]; then
+      kill $SSHKPID
+    fi
+    SSHKPID=`/bin/ps -auxwwww | grep SSHKeychain | grep -v grep | awk 'NF > 2 {print $2}'`
+    if [ "${SSHKPID:=""}" != "" ]; then
+        echo "SSHKeychain stop: problem stopping SSHKeychain"
+    fi
+  fi
+  exit
+fi
+
+if [ -x "$SSHKPATH" ]; then
+  ConsoleMessage "Starting SSHKeychain Agent Manager"
+
+  if [ -e /var/log/sshkeychain.log ] ; then
+    /bin/mv /var/log/sshkeychain.log /var/log/sshkeychain.log.1
+  fi
+
+##  $0-keepalive $SSHKPATH/Contents/MacOS/SSHKeychain $SSHKARGS > /var/log/sshkeychain.log 2>&1 &
+  $0-keepalive $SSHKPATH/Contents/MacOS/SSHKeychain > /var/log/sshkeychain.log 2>&1 &
+  exit 0
+else
+  ConsoleMessage "Unable to find SSHKeychain"
+  exit -1
+fi

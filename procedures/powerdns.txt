@@ -1,0 +1,14 @@
+Installing:
+
+cd /usr/ports/dns/powerdns/ ; make WITH_MYSQL_DRIVER=yes POWERDNS_WITH_RECURSOR=no
+YOU CANT BUILD WITH A RECURSOR ON FreeBSD 4.8...
+
+upgrading should be easy aswell, just keep a copy of your conf files.
+
+Poweradmin interface:
+
+apache
+php4
+php4-session
+pear-DB
+
