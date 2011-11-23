@@ -1,10 +1,8 @@
 #!/bin/sh
 
-## configs for openvpn, sqlite3, tcl
+# This will build a PC server system on FreeBSD 8.2 with all the necessary Hackery Funk
 
-# This will build a PC server system on FreeBSD 8.0 with all the necessary Hackery Funk
-
-#cvsup /etc/cvsupfile-8_0
+#cvsup /etc/cvsupfile-8_2
 #cd /usr/src
 #make buildworld
 #make buildkernel
@@ -15,38 +13,10 @@
 #make installworld
 #mergemaster
 
-
 ### Todo: portupgrade ruby options (onigurama) perl-5.10.1_3 apr-ipv6-devrandom-gdbm-db42 sqlite3 tcl
-## ===>  License not correctly defined: multiple licenses in LICENSE, but LICENSE_COMB is set to single (or undefined)
+## configs for openvpn, sqlite3, tcl, curl, p5-IO-Socket-SSL gdbm gmp neon29, curl, wget, gnupg, de-freebsd-doc-20110110, en-freebsd-doc-20110110, fr-freebsd-doc-20110110
 
-# da-freebsd-doc
-# el-freebsd-doc
-# zh_cn-freebsd-doc
-# en-freebsd-doc
-# nl-freebsd-doc
-# pl-freebsd-doc
-# tr-freebsd-doc
-# fr-freebsd-doc
-# mn-freebsd-doc
-# sr-freebsd-doc
-# zh_tw-freebsd-doc
-# hu-freebsd-doc
-# it-freebsd-doc
-# ja-freebsd-doc
-# bn-freebsd-doc
-# de-freebsd-doc
-# es-freebsd-doc
-# ru-freebsd-doc
-# pt-freebsd-doc
-
-## ===>   Registering installation for da-freebsd-doc-20100926
-# this pulls in a lot of X shit!
-
-
-# da-freebsd-doc
-# da-freebsd-doc
-
-
+## smartmontool break
 
 export ARCH="i386"
 ##export RAID_CHK=`dmesg |grep ^ar |wc -l`
@@ -106,7 +76,7 @@ if [ -z $SYSADMIN ]; then
   read SYSADMIN
 fi
 
-export REPO="/home/${ADMIN}/work/sysadmin"
+export REPO="/home/${ADMIN}/sysadmin"
 
 if [ $JAIL_CHECK != $FSTAB_SUM ]; then
 
@@ -128,11 +98,11 @@ if [ -f ${TMP}/${VERSION} ]
   echo "What FreeBSD Version are you Installing? 8_0 or Higher TYPE IT NOW:"
   read VERSION
   touch ${TMP}/${VERSION}
- fi
+fi
 
 NO_X="true"
 
-	if [ "$1" = "finish" ] 
+	if [ "$1" = "finish" ]
 	then
 		if [ "$NO_X" = "false" ]
 		then
@@ -153,7 +123,7 @@ NO_X="true"
 cd $DISTFILES_LOC
 $FETCH http://www.localhost.lu/software/analog-6.0.tar.gz > $NULL
 
-if [ $? = 0 ] 
+if [ $? = 0 ]
  then
   $ECHO "Internet Detected :=)"
  else
@@ -169,7 +139,7 @@ if [ -f /usr/local/bin/bash ]
   $ECHO "We have bash and can proceed with the final steps..."
   $SLEEP 3
 
-   if [ $1 = "finish" ] 
+   if [ $1 = "finish" ]
 	then
 
 	$ECHO "Installing Ports: $PORTS"
@@ -193,9 +163,9 @@ if [ "$JAIL" = "false" ]; then
 	 cp $REPO$CONFIGS_COMMON/ntp.conf .
 	fi
 	/usr/sbin/ntpdate chronos.cru.fr
-	cat $REPO$CONFIGS_COMMON/rc.conf >> rc.conf 
+	cat $REPO$CONFIGS_COMMON/rc.conf >> rc.conf
 else
-	cat $REPO$CONFIGS_COMMON/rc.conf_Jail >> rc.conf 
+	cat $REPO$CONFIGS_COMMON/rc.conf_Jail >> rc.conf
 fi
 
 	### UPDATE profile
@@ -204,7 +174,7 @@ fi
 
 	cp $REPO$CONFIGS_COMMON/sshd_localhost /etc/rc.d/
 	ln -s /usr/sbin/sshd /usr/sbin/sshd_localhost
-	
+
 	### UPDATE rc.firewall-custom
 	cp $REPO$CONFIGS_COMMON/rc.firewall-custom .
 	### UPDATE vimrc
@@ -247,7 +217,7 @@ fi
 	##echo "Copying Standard isoqlog conf file"
 	##cp /usr/local/etc/isoqlog.conf-dist /usr/local/etc/isoqlog.conf
 	##cp /usr/local/etc/isoqlog.domains-dist /usr/local/etc/isoqlog.domains
-	
+
 	pkgdb -F && $PORTUPGRADE -Rra
 
 
@@ -267,7 +237,7 @@ echo ""
 echo "If the above file seems fairly recent e.g: this month or 3 weeks ago you are up to date..."
 echo "Otherwise update you system with cvsup"
 sleep 5
-	
+
  echo "Compiling new kernel with config: $HOSTNAME"
  cd /usr/src && make kernel KERNCONF=$HOSTNAME && echo "COMPILED KERNEL AND INSTALLED WITH SUCCESS REBOOT NOW"
  /usr/sbin/freebsd-update fetch && echo "To install the updates: /usr/sbin/freebsd-update install"
@@ -275,7 +245,7 @@ fi
 
 ##function adduser-ion()
 ##{
-## $PW useradd $1 -s $BASH -G wheel
+## $PW useradd $2 -s $BASH -G wheel
 ## $MD -p -m 700 $HOME_BASE/$1/.ssh
 ## $MD -m 700 $HOME_BASE/$1/$WORK
 ## $CHOWN $1:$1 $HOME_BASE/$1/$WORK
@@ -302,7 +272,7 @@ $TOUCH $TMP/initial
 $SLEEP 3
 
 
-if [ -f $TMP/initial ] 
+if [ -f $TMP/initial ]
  then
   $ECHO "Initial Install, due to bash lackage $TMP/initial has been touched"
   cat $REPO$CONFIGS_COMMON/manpath.config >> /etc/manpath.config
@@ -381,7 +351,7 @@ fi
 ## cat ${REPO}/ssh-pub-keys/${USERS}.pub2 >> /root/.ssh/authorized_keys2
 ## cat ${REPO}/ssh-pub-keys/${SYSADMIN}.pub2 >> /root/.ssh/authorized_keys2
  chmod 600 ${HOME_BASE}/${ADMIN}/.ssh/authorized_keys2 && chown $ADMIN ${HOME_BASE}/${ADMIN}/.ssh/authorized_keys2
- 
+
  cd /usr/ports/ports-mgmt/portupgrade && make clean install clean
 
  $PORTINSTALL shells/bash && \
