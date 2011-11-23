@@ -1,7 +1,7 @@
 #!/bin/sh
 # run as root - ports tree needed
 cd /usr/ports/ports-mgmt/portconf && make install clean
-pkg_add -r git python gmake automake libtool
+pkg_add -r git python gmake automake14 libtool
 pkg_delete git-\*
 pkg_delete \*-freebsd-doc-\*
 pkg_add -r en-freebsd-doc fr-freebsd-doc de-freebsd-doc

@@ -13,14 +13,11 @@
 #make installworld
 #mergemaster
 
-### Todo: portupgrade ruby options (onigurama) perl-5.10.1_3 apr-ipv6-devrandom-gdbm-db42 sqlite3 tcl
-## configs for openvpn, sqlite3, tcl, curl, p5-IO-Socket-SSL gdbm gmp neon29, curl, wget, gnupg, de-freebsd-doc-20110110, en-freebsd-doc-20110110, fr-freebsd-doc-20110110
+## configs for openvpn, sqlite3, tcl85, curl, p5-IO-Socket-SSL, gdbm, gmp, neon29, curl, wget, gnupg, freebsd-doc-de, freebsd-doc-en, freebsd-doc-fr ruby19 perl5.14
 
 ## smartmontool break
 
 export ARCH="i386"
-##export RAID_CHK=`dmesg |grep ^ar |wc -l`
-##export RAID_DISKS=`dmesg |grep ^ar |grep disk |cut -d\  -f 6`
 export CONFIGS_COMMON="/configs/common"
 export PORTS_OPTIONS="/var/db/ports"
 export PORTSNAP="/usr/sbin/portsnap"
@@ -110,7 +107,7 @@ NO_X="true"
 			cd /usr/ports/net/cvsup && make install clean
 		fi
 	else
-	for PORT in `echo glib20 lynx wget libiconv screen gd daemontools gettext qmail portupgrade ucspi-tcp openvpn mrtg bash-completion rsync curl gnupg docbook ruby pth smartmontools m4 ca_root_nss png gsed pixman`; do
+	for PORT in `echo glib20 lynx wget libiconv screen gd daemontools gettext qmail portupgrade ucspi-tcp openvpn mrtg bash-completion rsync curl gnupg docbook ruby pth smartmontools m4 ca_root_nss png gsed pixman de-freebsd-doc en-freebsd-doc fr-freebsd-doc gdbm git gmp neon29 p5-IO-Socket-SSL perl python26 sqlite3 tcl85`; do
 		mkdir -p ${PORTS_OPTIONS}/${PORT}
  		cp ${REPO}${CONFIGS_COMMON}${PORTS_OPTIONS}/${PORT}/options ${PORTS_OPTIONS}/${PORT}
 	done
