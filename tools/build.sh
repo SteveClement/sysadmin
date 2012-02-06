@@ -15,20 +15,22 @@
 
 ## configs for openvpn, sqlite3, tcl85, curl, p5-IO-Socket-SSL, gdbm, gmp, neon29, curl, wget, gnupg, freebsd-doc-de, freebsd-doc-en, freebsd-doc-fr ruby19 perl5.14
 
+## ruby portupgrade configs pre-install ca_root_nss pcre
+
 ## smartmontool break
 
-export ARCH="i386"
+export ARCHI="i386"
 export CONFIGS_COMMON="/configs/common"
 export PORTS_OPTIONS="/var/db/ports"
 export PORTSNAP="/usr/sbin/portsnap"
 export HOSTNAME=`hostname -s |tr [a-z] [A-Z]`
-export PW="/usr/sbin/pw"
+export PWW="/usr/sbin/pw"
 export FETCH="/usr/bin/fetch"
 export DISTFILES_LOC="/usr/ports/distfiles"
 export CP="/bin/cp"
 export RMM="/bin/rm"
-export MV="/bin/mv"
-export MD="/bin/mkdir"
+#export MVV="/bin/mv"
+export MDD="/bin/mkdir"
 export CVSUP="/usr/local/bin/cvsup"
 export CUT="/usr/bin/cut"
 export SED="/usr/bin/sed"
@@ -39,7 +41,7 @@ export CHOWN="/usr/sbin/chown"
 export CHGRP="/usr/bin/chgrp"
 export CHMOD="/bin/chmod"
 export HOME_BASE="/home"
-export USERS=""
+#export USERS=""
 export TMP="/tmp"
 export WGET="/usr/local/bin/wget"
 export CURL="/usr/local/bin/curl"
@@ -52,7 +54,7 @@ export ECHO="/bin/echo"
 export TOUCH="/usr/bin/touch"
 export WORK="work"
 export SLEEP="/bin/sleep"
-export NULL="/dev/null"
+export NULLL="/dev/null"
 export CPU_TYPE=`dmesg |grep CPU: |head -1 |sed 's/(R)//g' |sed 's/CPU: Intel //g' |awk  '{print $1$2 }' |sed 's/P/p/g' |sed 's/III/3/g'`
 export PORTS="editors/vim sysutils/daemontools security/fwanalog net-mgmt/mrtg ftp/curl ftp/wget www/lynx mail/qmail ucspi-tcp unix2dos unzip zip rsync nmap security/gnupg bash-completion portaudit screen smartmontools sysutils/cmdwatch"
 export PORTS_MAIL="mutt mail/qmHandle qmailanalog isoqlog qlogtools mail/qmqtool"
@@ -118,7 +120,7 @@ NO_X="true"
 
 
 cd $DISTFILES_LOC
-$FETCH http://www.localhost.lu/software/analog-6.0.tar.gz > $NULL
+$FETCH http://www.localhost.lu/software/analog-6.0.tar.gz > $NULLL
 
 if [ $? = 0 ]
  then
@@ -222,11 +224,11 @@ if [ "$JAIL" = "false" ]; then
 	echo "Compiling NEW Kernel..."
 
 
-if [ -f /usr/src/sys/$ARCH/conf/$HOSTNAME ]; then
+if [ -f /usr/src/sys/$ARCHI/conf/$HOSTNAME ]; then
  echo "Kernel config present..."
 else
  echo "NO KERNEL CONFIG COPYING DEFAULT..."
- cp /usr/src/sys/$ARCH/conf/GENERIC /usr/src/sys/$ARCH/conf/$HOSTNAME
+ cp /usr/src/sys/$ARCHI/conf/GENERIC /usr/src/sys/$ARCHI/conf/$HOSTNAME
 fi
 
 ls -la /usr/src/UPDATING
@@ -242,9 +244,9 @@ fi
 
 ##function adduser-ion()
 ##{
-## $PW useradd $2 -s $BASH -G wheel
-## $MD -p -m 700 $HOME_BASE/$1/.ssh
-## $MD -m 700 $HOME_BASE/$1/$WORK
+## $PWW useradd $2 -s $BASH -G wheel
+## $MDD -p -m 700 $HOME_BASE/$1/.ssh
+## $MDD -m 700 $HOME_BASE/$1/$WORK
 ## $CHOWN $1:$1 $HOME_BASE/$1/$WORK
 ## $CHOWN $1:$1 $HOME_BASE/$1/.ssh
 ## $CHOWN $1:$1 $HOME_BASE/$1
@@ -334,27 +336,27 @@ fi
  $ECHO "PidFile /var/run/sshd_localhost.pid" >> /etc/ssh/sshd_config.localhost
 
 
- $MD -p -m 700 $HOME_BASE/$ADMIN/.ssh
- $MD -p -m 700 /root/.ssh
- ##$MD -m 700 $HOME_BASE/$ADMIN/$WORK
- $CHOWN $ADMIN:$ADMIN $HOME_BASE/$ADMIN/$WORK
+ $MDD -p -m 700 $HOME_BASE/$ADMIN/.ssh
+ $MDD -p -m 700 /root/.ssh
+ ##$MDD -m 700 $HOME_BASE/$ADMIN/$WORK
+ ##$CHOWN $ADMIN:$ADMIN $HOME_BASE/$ADMIN/$WORK
  $CHOWN $ADMIN:$ADMIN $HOME_BASE/$ADMIN/.ssh
  $CHOWN $ADMIN:$ADMIN $HOME_BASE/$ADMIN
  $CHMOD 700 $HOME_BASE/$ADMIN
 
- cp ${REPO}/ssh-pub-keys/${ADMIN}.pub2 ${HOME_BASE}/${ADMIN}/.ssh/authorized_keys2
- chmod 600 ${HOME_BASE}/${ADMIN}/.ssh/authorized_keys2 && chown ${ADMIN} ${HOME_BASE}/${ADMIN}/.ssh/authorized_keys2
- cp ${REPO}/ssh-pub-keys/${ADMIN}.pub2 /root/.ssh/authorized_keys2
-## cat ${REPO}/ssh-pub-keys/${USERS}.pub2 >> /root/.ssh/authorized_keys2
-## cat ${REPO}/ssh-pub-keys/${SYSADMIN}.pub2 >> /root/.ssh/authorized_keys2
- chmod 600 ${HOME_BASE}/${ADMIN}/.ssh/authorized_keys2 && chown $ADMIN ${HOME_BASE}/${ADMIN}/.ssh/authorized_keys2
+ cp ${REPO}/ssh-pub-keys/${ADMIN}.pub2 ${HOME_BASE}/${ADMIN}/.ssh/authorized_keys
+ chmod 600 ${HOME_BASE}/${ADMIN}/.ssh/authorized_keys && chown ${ADMIN} ${HOME_BASE}/${ADMIN}/.ssh/authorized_keys
+ cp ${REPO}/ssh-pub-keys/${ADMIN}.pub2 /root/.ssh/authorized_keys
+## cat ${REPO}/ssh-pub-keys/${USERS}.pub2 >> /root/.ssh/authorized_keys
+## cat ${REPO}/ssh-pub-keys/${SYSADMIN}.pub2 >> /root/.ssh/authorized_keys
+ chmod 600 ${HOME_BASE}/${ADMIN}/.ssh/authorized_keys && chown $ADMIN ${HOME_BASE}/${ADMIN}/.ssh/authorized_keys
 
  cd /usr/ports/ports-mgmt/portupgrade && make clean install clean
 
  $PORTINSTALL shells/bash && \
-   ##$PW useradd $USERS -s $BASH -G wheel && mkdir -p -m 700 /home/${USERS}/.ssh && chown -R ${USERS}:${USERS} /home/${USERS}/ && chmod -R 700 /home/${USERS}/ && \
-   $PW usermod root -s $BASH && $PW usermod $ADMIN -s $BASH
-   ##$PW useradd $SYSADMIN -s $BASH -G wheel && mkdir -p -m 700 /home/${SYSADMIN}/.ssh && chown -R ${SYSADMIN}:${SYSADMIN} /home/${SYSADMIN}/ && chmod -R 700 /home/${SYSADMIN}/
+   ##$PWW useradd $USERS -s $BASH -G wheel && mkdir -p -m 700 /home/${USERS}/.ssh && chown -R ${USERS}:${USERS} /home/${USERS}/ && chmod -R 700 /home/${USERS}/ && \
+   $PWW usermod root -s $BASH && $PWW usermod $ADMIN -s $BASH
+   ##$PWW useradd $SYSADMIN -s $BASH -G wheel && mkdir -p -m 700 /home/${SYSADMIN}/.ssh && chown -R ${SYSADMIN}:${SYSADMIN} /home/${SYSADMIN}/ && chmod -R 700 /home/${SYSADMIN}/
 
  ##cp $REPO/ssh-pub-keys/$USERS.pub2 $HOME_BASE/$USERS/.ssh/authorized_keys2
  ##cp $REPO/ssh-pub-keys/${SYSADMIN}.pub2 $HOME_BASE/${SYSADMIN}/.ssh/authorized_keys2
