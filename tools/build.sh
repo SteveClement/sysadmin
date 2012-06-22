@@ -56,7 +56,7 @@ export WORK="work"
 export SLEEP="/bin/sleep"
 export NULLL="/dev/null"
 export CPU_TYPE=`dmesg |grep CPU: |head -1 |sed 's/(R)//g' |sed 's/CPU: Intel //g' |awk  '{print $1$2 }' |sed 's/P/p/g' |sed 's/III/3/g'`
-export PORTS="editors/vim sysutils/daemontools security/fwanalog net-mgmt/mrtg ftp/curl ftp/wget www/lynx mail/qmail ucspi-tcp unix2dos unzip zip rsync nmap security/gnupg bash-completion portaudit screen smartmontools sysutils/cmdwatch"
+export PORTS="sysutils/munin-node editors/vim sysutils/daemontools security/fwanalog net-mgmt/mrtg ftp/curl ftp/wget www/lynx mail/qmail ucspi-tcp unix2dos unzip zip rsync nmap security/gnupg bash-completion portaudit screen smartmontools sysutils/cmdwatch"
 export PORTS_MAIL="mutt mail/qmHandle qmailanalog isoqlog qlogtools mail/qmqtool"
 export PORTS_CLISERVER="security/openvpn"
 export PORTS_OPTS="queue-repair qmailmrtg7 qmrtg"
@@ -94,7 +94,7 @@ if [ -f ${TMP}/${VERSION} ]
  then
   echo "Using version $VERSION"
  else
-  echo "What FreeBSD Version are you Installing? 8_0 or Higher TYPE IT NOW:"
+  echo "What FreeBSD Version are you Installing? 9_0 or Higher TYPE IT NOW:"
   read VERSION
   touch ${TMP}/${VERSION}
 fi
@@ -143,7 +143,7 @@ if [ -f /usr/local/bin/bash ]
 
 	$ECHO "Installing Ports: $PORTS"
 	$ECHO .
-	echo "editors/vim: WITHOUT_X11 ">>/usr/local/etc/ports.conf
+	echo "editors/vim: WITHOUT_X11 ">> /usr/local/etc/ports.conf
 	echo "devel/t1lib: WITHOUT_X11" >> /usr/local/etc/ports.conf
  	$PORTINSTALL $PORTS
 	cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
@@ -151,21 +151,21 @@ if [ -f /usr/local/bin/bash ]
 
 	cd /etc/
 
-if [ "$JAIL" = "false" ]; then
-	if [ -f /etc/ntp.conf ]; then
- 	 echo ntp.conf there, backing up and installing new one...
-	 mv ntp.conf ntp.conf-`date +%d%m%y`
+##if [ "$JAIL" = "false" ]; then
+##	if [ -f /etc/ntp.conf ]; then
+## 	 echo ntp.conf there, backing up and installing new one...
+##	 mv ntp.conf ntp.conf-`date +%d%m%y`
 	 ### UPDATE ntp.conf
-	 cp $REPO$CONFIGS_COMMON/ntp.conf .
-	else
-	 echo ntp.conf DOES NOT Exist, copying now, check rc.conf for ntpdate, xntpd
-	 cp $REPO$CONFIGS_COMMON/ntp.conf .
-	fi
-	/usr/sbin/ntpdate chronos.cru.fr
-	cat $REPO$CONFIGS_COMMON/rc.conf >> rc.conf
-else
-	cat $REPO$CONFIGS_COMMON/rc.conf_Jail >> rc.conf
-fi
+##	 cp $REPO$CONFIGS_COMMON/ntp.conf .
+##	else
+##	 echo ntp.conf DOES NOT Exist, copying now, check rc.conf for ntpdate, xntpd
+##	 cp $REPO$CONFIGS_COMMON/ntp.conf .
+##	fi
+##	/usr/sbin/ntpdate chronos.cru.fr
+##	cat $REPO$CONFIGS_COMMON/rc.conf >> rc.conf
+##else
+##	cat $REPO$CONFIGS_COMMON/rc.conf_Jail >> rc.conf
+##fi
 
 	### UPDATE profile
 	mv profile profile-`date +%d%m%y`
@@ -197,7 +197,7 @@ fi
 	hostname |cut -f 2- -d. > /var/qmail/control/defaultdomain
 	hostname |cut -f 2- -d. > /var/qmail/control/plusdomain
 	hostname -s > /var/qmail/control/defaulthost
-	###Â UPDATE qmail rc
+	### UPDATE qmail rc
 	cp -i $REPO$CONFIGS_COMMON/var/qmail/rc /var/qmail/
 	cp -i $REPO$CONFIGS_COMMON/var/qmail/supervise/qmail-send/run /var/qmail/supervise/qmail-send
 	cp -i $REPO$CONFIGS_COMMON/var/qmail/supervise/qmail-send/log/run /var/qmail/supervise/qmail-send/log
@@ -238,8 +238,8 @@ echo "Otherwise update you system with cvsup"
 sleep 5
 
  echo "Compiling new kernel with config: $HOSTNAME"
- cd /usr/src && make kernel KERNCONF=$HOSTNAME && echo "COMPILED KERNEL AND INSTALLED WITH SUCCESS REBOOT NOW"
  /usr/sbin/freebsd-update fetch && echo "To install the updates: /usr/sbin/freebsd-update install"
+ cd /usr/src && make kernel KERNCONF=$HOSTNAME && echo "COMPILED KERNEL AND INSTALLED WITH SUCCESS REBOOT NOW"
 fi
 
 ##function adduser-ion()
