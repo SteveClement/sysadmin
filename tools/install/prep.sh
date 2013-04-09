@@ -10,6 +10,10 @@ pkg_delete git-\*
 mkdir /var/db/ports/python27
 mkdir /var/db/ports/libiconv
 mkdir /var/db/ports/git
+mkdir /var/db/ports/perl
+mkdir /var/db/ports/curl
+mkdir /var/db/ports/ca_root_nss
+mkdir /var/db/ports/pcre
 
 cat << EOF > /var/db/ports/python27/options
 _OPTIONS_READ=python27-2.7.3_6
@@ -51,7 +55,7 @@ OPTIONS_FILE_UNSET+=SVN
 EOF
 
 cat << EOF > /var/db/ports/perl/options
-_OPTIONS_READ=perl-5.14.2_2
+_OPTIONS_READ=perl-5.12.4_4
 _FILE_COMPLETE_OPTIONS_LIST= DEBUGGING GDBM PERL_MALLOC PERL_64BITINT THREADS PTHREAD MULTIPLICITY SITECUSTOMIZE USE_PERL
 OPTIONS_FILE_UNSET+=DEBUGGING
 OPTIONS_FILE_UNSET+=GDBM
@@ -65,7 +69,7 @@ OPTIONS_FILE_SET+=USE_PERL
 EOF
 
 cat << EOF > /var/db/ports/curl/options
-_OPTIONS_READ=curl-7.24.0_1
+_OPTIONS_READ=curl-7.24.0
 _FILE_COMPLETE_OPTIONS_LIST= CARES CURL_DEBUG GNUTLS IPV6 KERBEROS4 LDAP LDAPS LIBIDN LIBSSH2 NTLM OPENSSL CA_BUNDLE PROXY RTMP TRACKMEMORY
 OPTIONS_FILE_UNSET+=CARES
 OPTIONS_FILE_UNSET+=CURL_DEBUG
@@ -74,7 +78,7 @@ OPTIONS_FILE_SET+=IPV6
 OPTIONS_FILE_UNSET+=KERBEROS4
 OPTIONS_FILE_UNSET+=LDAP
 OPTIONS_FILE_UNSET+=LDAPS
-OPTIONS_FILE_UNSET+=LIBIDN
+OPTIONS_FILE_SET+=LIBIDN
 OPTIONS_FILE_UNSET+=LIBSSH2
 OPTIONS_FILE_UNSET+=NTLM
 OPTIONS_FILE_SET+=OPENSSL
@@ -90,7 +94,14 @@ _FILE_COMPLETE_OPTIONS_LIST=ETCSYMLINK
 OPTIONS_FILE_UNSET+=ETCSYMLINK
 EOF
 
+cat << EOF > /var/db/ports/pcre/options
+_OPTIONS_READ=pcre-8.31
+_FILE_COMPLETE_OPTIONS_LIST=JIT
+OPTIONS_FILE_SET+=JIT
+EOF
+
 
 echo "devel/subversion: WITHOUT_MOD_DAV_SVN|WITHOUT_APACHE2_APR" >> /usr/local/etc/ports.conf
 echo "devel/apr-svn: APR_UTIL_WITH_BERKELEY_DB=yes" >> /usr/local/etc/ports.conf
+
 cd /usr/ports/devel/git && make install clean 

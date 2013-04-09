@@ -13,14 +13,6 @@
 #make installworld
 #mergemaster
 
-## configs for openvpn, sqlite3, tcl85, curl, p5-IO-Socket-SSL, gdbm, gmp, neon29, curl, wget, gnupg, freebsd-doc-de, freebsd-doc-en, freebsd-doc-fr ruby19 perl5.14, p5-Net-Server
-
-## p5-datetime
-
-## ruby portupgrade configs pre-install ca_root_nss pcre
-
-## smartmontool break
-
 export ARCHI="i386"
 export CONFIGS_COMMON="/configs/common"
 export PORTS_OPTIONS="/var/db/ports"
@@ -56,9 +48,9 @@ export ECHO="/bin/echo"
 export TOUCH="/usr/bin/touch"
 export WORK="work"
 export SLEEP="/bin/sleep"
-export NULLL="/dev/null"
+export NULL_DEV="/dev/null"
 export CPU_TYPE=`dmesg |grep CPU: |head -1 |sed 's/(R)//g' |sed 's/CPU: Intel //g' |awk  '{print $1$2 }' |sed 's/P/p/g' |sed 's/III/3/g'`
-export PORTS="sysutils/munin-node editors/vim sysutils/daemontools security/fwanalog net-mgmt/mrtg ftp/curl ftp/wget www/lynx mail/qmail ucspi-tcp unix2dos unzip zip rsync nmap security/gnupg bash-completion portaudit screen smartmontools sysutils/cmdwatch"
+export PORTS="sysutils/munin-node editors/vim sysutils/daemontools security/fwanalog net-mgmt/mrtg ftp/curl ftp/wget www/lynx mail/qmail ucspi-tcp unix2dos unzip zip rsync nmap security/gnupg bash-completion portaudit screen smartmontools sysutils/cmdwatch cvsup-without-gui"
 export PORTS_MAIL="mutt mail/qmHandle qmailanalog isoqlog qlogtools mail/qmqtool"
 export PORTS_CLISERVER="security/openvpn"
 export PORTS_OPTS="queue-repair qmailmrtg7 qmrtg"
@@ -66,7 +58,6 @@ export JAIL_CHECK=`/sbin/md5 /etc/fstab | cut -f 4 -d\ `
 export FSTAB_SUM="2cfe202ba5d7cdad78af2bf76b340c6d"
 export VER=`uname -r |cut -f 1 -d- |sed 's/\./_/'`
   touch $TMP/$VER
-NO_X="true"
 
 if [ -z $ADMIN ]; then
   echo "Please enter YOUR username"
@@ -102,13 +93,13 @@ if [ -f ${TMP}/${VERSION} ]
   touch ${TMP}/${VERSION}
 fi
 
-for PORT in `echo pcre python27 help2man glib20 lynx wget libiconv screen gd daemontools gettext qmail portupgrade ucspi-tcp openvpn mrtg bash-completion rsync curl gnupg docbook ruby pth smartmontools m4 ca_root_nss png gsed pixman de-freebsd-doc en-freebsd-doc fr-freebsd-doc gdbm git gmp neon29 p5-IO-Socket-SSL perl sqlite3 tcl85 p5-Net-Server`; do
+for PORT in `echo help2man glib20 lynx wget screen gd daemontools gettext qmail portupgrade ucspi-tcp openvpn mrtg bash-completion rsync gnupg docbook ruby pth smartmontools m4 png gsed pixman de-freebsd-doc en-freebsd-doc fr-freebsd-doc gdbm gmp neon29 p5-IO-Socket-SSL sqlite3 tcl85 p5-Net-Server p5-DateTime p5-Module-Build freetype2 vim cscope`; do
 	mkdir -p ${PORTS_OPTIONS}/${PORT}
 	cp ${REPO}${CONFIGS_COMMON}${PORTS_OPTIONS}/${PORT}/options ${PORTS_OPTIONS}/${PORT}
 done
 
 cd $DISTFILES_LOC
-$FETCH http://www.localhost.lu/software/analog-6.0.tar.gz > $NULLL
+$FETCH http://www.localhost.lu/software/analog-6.0.tar.gz > $NULL_DEV
 
 if [ $? = 0 ]
  then
@@ -139,33 +130,21 @@ if [ -f /usr/local/bin/bash ]
 
 	cd /etc/
 
-##if [ "$JAIL" = "false" ]; then
-##	if [ -f /etc/ntp.conf ]; then
-## 	 echo ntp.conf there, backing up and installing new one...
-##	 mv ntp.conf ntp.conf-`date +%d%m%y`
-	 ### UPDATE ntp.conf
-##	 cp $REPO$CONFIGS_COMMON/ntp.conf .
-##	else
-##	 echo ntp.conf DOES NOT Exist, copying now, check rc.conf for ntpdate, xntpd
-##	 cp $REPO$CONFIGS_COMMON/ntp.conf .
-##	fi
-/usr/sbin/ntpdate chronos.cru.fr
-cat $REPO$CONFIGS_COMMON/rc.conf >> rc.conf
-##else
-##	cat $REPO$CONFIGS_COMMON/rc.conf_Jail >> rc.conf
-##fi
+    /usr/sbin/ntpdate chronos.cru.fr
+    cat $REPO$CONFIGS_COMMON/rc.conf >> rc.conf
 
-	### UPDATE profile
 	mv profile profile-`date +%d%m%y`
 	cp $REPO$CONFIGS_COMMON/profile .
 
 	cp $REPO$CONFIGS_COMMON/sshd_localhost /etc/rc.d/
 	ln -s /usr/sbin/sshd /usr/sbin/sshd_localhost
 
-	### UPDATE rc.firewall-custom
-	cp $REPO$CONFIGS_COMMON/rc.firewall-custom .
-	### UPDATE vimrc
-	cp $REPO$CONFIGS_COMMON/vimrc /usr/local/share/vim/
+	cp $REPO$CONFIGS_COMMON/cvsupfile-* /etc/cvsupfile
+    mkdir /usr/local/etc/cvsup
+
+    cp -p $REPO$CONFIGS_COMMON/pf.conf pf.conf
+
+	##cp $REPO$CONFIGS_COMMON/vimrc /usr/local/share/vim/
 	mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
 	ln -s /usr/local/bin/vim /usr/bin/vi
 

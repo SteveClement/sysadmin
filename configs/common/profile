@@ -1,8 +1,8 @@
-# $FreeBSD: src/etc/profile,v 1.12.2.1 2000/07/31 20:13:26 rwatson Exp $
+# $FreeBSD: release/9.1.0/etc/profile 208116 2010-05-15 17:49:56Z jilles $
 #
 # System-wide .profile file for sh(1).
 #
-# Uncomment this to give you the default 4.2 behavior, where disk 
+# Uncomment this to give you the default 4.2 behavior, where disk
 # information is shown in K-Blocks
 # BLOCKSIZE=K; export BLOCKSIZE
 #
@@ -12,22 +12,22 @@
 # You should also read the setlocale(3) man page for information
 # on how to achieve more precise control of locale settings.
 #
-# Read system messages
-# msgs -f
+# Check system messages
+# msgs -q
 # Allow terminal messages
 # mesg y
-export CUSTOM_VERSION="1.1-v8_0"
+export CUSTOM_VERSION="1.2-v9_1"
 export PATH=$PATH:/usr/local/mysql/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin
 export FTP_PASSIVE_MODE=1
 export EDITOR=vim
-alias hg='history |grep '
+alias hist='history |grep '
 alias psg='ps wwuax |grep '
 alias ls="ls -G"
 alias dir="echo !!!GAY!!! ; ls -G"
 alias ll="ls -G -l -a"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
-                                                                                
+
 umask 002
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
