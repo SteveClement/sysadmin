@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# This will build a PC server system on FreeBSD 8.2 with all the necessary Hackery Funk
+# This will build a PC server system on FreeBSD 9.1 with all the necessary Hackery Funk
 
-#cvsup /etc/cvsupfile-8_2
+#cvsup /etc/cvsupfile-9_1 OR freebsd-update fetch
 #cd /usr/src
 #make buildworld
 #make buildkernel
@@ -13,7 +13,9 @@
 #make installworld
 #mergemaster
 
-## configs for openvpn, sqlite3, tcl85, curl, p5-IO-Socket-SSL, gdbm, gmp, neon29, curl, wget, gnupg, freebsd-doc-de, freebsd-doc-en, freebsd-doc-fr ruby19 perl5.14
+## configs for openvpn, sqlite3, tcl85, curl, p5-IO-Socket-SSL, gdbm, gmp, neon29, curl, wget, gnupg, freebsd-doc-de, freebsd-doc-en, freebsd-doc-fr ruby19 perl5.14, p5-Net-Server
+
+## p5-datetime
 
 ## ruby portupgrade configs pre-install ca_root_nss pcre
 
@@ -27,7 +29,7 @@ export HOSTNAME=`hostname -s |tr [a-z] [A-Z]`
 export PWW="/usr/sbin/pw"
 export FETCH="/usr/bin/fetch"
 export DISTFILES_LOC="/usr/ports/distfiles"
-export CP="/bin/cp"
+export CPY="/bin/cp"
 export RMM="/bin/rm"
 #export MVV="/bin/mv"
 export MDD="/bin/mkdir"
@@ -64,6 +66,7 @@ export JAIL_CHECK=`/sbin/md5 /etc/fstab | cut -f 4 -d\ `
 export FSTAB_SUM="2cfe202ba5d7cdad78af2bf76b340c6d"
 export VER=`uname -r |cut -f 1 -d- |sed 's/\./_/'`
   touch $TMP/$VER
+NO_X="true"
 
 if [ -z $ADMIN ]; then
   echo "Please enter YOUR username"
@@ -94,30 +97,15 @@ if [ -f ${TMP}/${VERSION} ]
  then
   echo "Using version $VERSION"
  else
-  echo "What FreeBSD Version are you Installing? 9_0 or Higher TYPE IT NOW:"
+  echo "What FreeBSD Version are you Installing? 9_1 or Higher TYPE IT NOW:"
   read VERSION
   touch ${TMP}/${VERSION}
 fi
 
-NO_X="true"
-
-	if [ "$1" = "finish" ]
-	then
-		if [ "$NO_X" = "false" ]
-		then
-			cd /usr/ports/net/cvsup-without-gui && make deinstall
-			cd /usr/ports/net/cvsup && make install clean
-		fi
-	else
-	for PORT in `echo glib20 lynx wget libiconv screen gd daemontools gettext qmail portupgrade ucspi-tcp openvpn mrtg bash-completion rsync curl gnupg docbook ruby pth smartmontools m4 ca_root_nss png gsed pixman de-freebsd-doc en-freebsd-doc fr-freebsd-doc gdbm git gmp neon29 p5-IO-Socket-SSL perl python26 sqlite3 tcl85`; do
-		mkdir -p ${PORTS_OPTIONS}/${PORT}
- 		cp ${REPO}${CONFIGS_COMMON}${PORTS_OPTIONS}/${PORT}/options ${PORTS_OPTIONS}/${PORT}
-	done
-
-	cp ${REPO}${CONFIGS_COMMON}/cvsupfile-${VERSION} /etc/
-	mkdir /usr/local/etc/cvsup
-        fi
-
+for PORT in `echo pcre python27 help2man glib20 lynx wget libiconv screen gd daemontools gettext qmail portupgrade ucspi-tcp openvpn mrtg bash-completion rsync curl gnupg docbook ruby pth smartmontools m4 ca_root_nss png gsed pixman de-freebsd-doc en-freebsd-doc fr-freebsd-doc gdbm git gmp neon29 p5-IO-Socket-SSL perl sqlite3 tcl85 p5-Net-Server`; do
+	mkdir -p ${PORTS_OPTIONS}/${PORT}
+	cp ${REPO}${CONFIGS_COMMON}${PORTS_OPTIONS}/${PORT}/options ${PORTS_OPTIONS}/${PORT}
+done
 
 cd $DISTFILES_LOC
 $FETCH http://www.localhost.lu/software/analog-6.0.tar.gz > $NULLL
@@ -161,8 +149,8 @@ if [ -f /usr/local/bin/bash ]
 ##	 echo ntp.conf DOES NOT Exist, copying now, check rc.conf for ntpdate, xntpd
 ##	 cp $REPO$CONFIGS_COMMON/ntp.conf .
 ##	fi
-##	/usr/sbin/ntpdate chronos.cru.fr
-##	cat $REPO$CONFIGS_COMMON/rc.conf >> rc.conf
+/usr/sbin/ntpdate chronos.cru.fr
+cat $REPO$CONFIGS_COMMON/rc.conf >> rc.conf
 ##else
 ##	cat $REPO$CONFIGS_COMMON/rc.conf_Jail >> rc.conf
 ##fi
@@ -209,8 +197,8 @@ if [ -f /usr/local/bin/bash ]
 	ln -s /var/qmail/bin/qmailctl /usr/bin
 	ln -s /var/qmail/supervise/qmail-send /var/service
 	echo "Cat'ting /var/qmail/control/ files sleeping 15"
-	sleep 15
 	cat /var/qmail/control/*
+	sleep 15
 
 
 	##echo "Copying Standard isoqlog conf file"
@@ -308,30 +296,30 @@ fi
 
 ## ssh_config tweak
  $SED 's/#   ForwardAgent no/ForwardAgent yes/g' /etc/ssh/ssh_config > $TMP/ssh_config
- $CP $TMP/ssh_config /etc/ssh
+ $CPY $TMP/ssh_config /etc/ssh
 ## $SED 's/#   ForwardX11 no/ForwardX11 yes/g' /etc/ssh/ssh_config > $TMP/ssh_config
-## $CP $TMP/ssh_config /etc/ssh
+## $CPY $TMP/ssh_config /etc/ssh
  $RMM $TMP/ssh_config
 
 # sshd_config tweak no passwords allowed ere
  $SED 's/#PassworAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config > $TMP/sshd_config
- $CP $TMP/sshd_config /etc/ssh
+ $CPY $TMP/sshd_config /etc/ssh
  $RMM $TMP/sshd_config
 
 # sshd_config tweak to disable ChallengeResponse which disables PAM auth
  $SED 's/#ChallengeResponseAuthentication yes/ChallengeResponseAuthentication no/g' /etc/ssh/sshd_config > $TMP/sshd_config
- $CP $TMP/sshd_config /etc/ssh
+ $CPY $TMP/sshd_config /etc/ssh
  $RMM $TMP/sshd_config
 
 # sshd_config.localhost builder
  $SED 's/#Port 22/Port 222/g' /etc/ssh/sshd_config > $TMP/sshd_config.localhost
- $CP $TMP/sshd_config.localhost /etc/ssh
+ $CPY $TMP/sshd_config.localhost /etc/ssh
  $RMM $TMP/sshd_config.localhost
  $SED 's/#ListenAddress 0.0.0.0/ListenAddress 127.0.0.1/g' /etc/ssh/sshd_config.localhost > $TMP/sshd_config.localhost
- $CP $TMP/sshd_config.localhost /etc/ssh
+ $CPY $TMP/sshd_config.localhost /etc/ssh
  $RMM $TMP/sshd_config.localhost
  $SED 's/#PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config.localhost > $TMP/sshd_config.localhost
- $CP $TMP/sshd_config.localhost /etc/ssh
+ $CPY $TMP/sshd_config.localhost /etc/ssh
  $RMM $TMP/sshd_config.localhost
  $ECHO "PidFile /var/run/sshd_localhost.pid" >> /etc/ssh/sshd_config.localhost
 
@@ -353,7 +341,7 @@ fi
 
  cd /usr/ports/ports-mgmt/portupgrade && make clean install clean
 
- $PORTINSTALL shells/bash && \
+ # $PORTINSTALL shells/bash && \
    ##$PWW useradd $USERS -s $BASH -G wheel && mkdir -p -m 700 /home/${USERS}/.ssh && chown -R ${USERS}:${USERS} /home/${USERS}/ && chmod -R 700 /home/${USERS}/ && \
    $PWW usermod root -s $BASH && $PWW usermod $ADMIN -s $BASH
    ##$PWW useradd $SYSADMIN -s $BASH -G wheel && mkdir -p -m 700 /home/${SYSADMIN}/.ssh && chown -R ${SYSADMIN}:${SYSADMIN} /home/${SYSADMIN}/ && chmod -R 700 /home/${SYSADMIN}/
