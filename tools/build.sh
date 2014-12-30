@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# This will build a PC server system on FreeBSD 9.1 with all the necessary Hackery Funk
+# This will build a PC server system on FreeBSD 10.0 with all the necessary Hackery Funk
 
-#cvsup /etc/cvsupfile-9_1 OR freebsd-update fetch
+#cvsup /etc/cvsupfile-10_0 OR freebsd-update fetch
 #cd /usr/src
 #make buildworld
 #make buildkernel
@@ -25,7 +25,6 @@ export CPY="/bin/cp"
 export RMM="/bin/rm"
 #export MVV="/bin/mv"
 export MDD="/bin/mkdir"
-export CVSUP="/usr/local/bin/cvsup"
 export CUT="/usr/bin/cut"
 export SED="/usr/bin/sed"
 export PING="/sbin/ping"
@@ -50,7 +49,8 @@ export WORK="work"
 export SLEEP="/bin/sleep"
 export NULL_DEV="/dev/null"
 export CPU_TYPE=`dmesg |grep CPU: |head -1 |sed 's/(R)//g' |sed 's/CPU: Intel //g' |awk  '{print $1$2 }' |sed 's/P/p/g' |sed 's/III/3/g'`
-export PORTS="sysutils/munin-node editors/vim sysutils/daemontools security/fwanalog net-mgmt/mrtg ftp/curl ftp/wget www/lynx mail/qmail ucspi-tcp unix2dos unzip zip rsync nmap security/gnupg bash-completion portaudit screen smartmontools sysutils/cmdwatch cvsup-without-gui"
+##export PORTS="sysutils/munin-node editors/vim sysutils/daemontools security/fwanalog net-mgmt/mrtg ftp/curl ftp/wget www/lynx mail/qmail ucspi-tcp unix2dos unzip zip rsync nmap security/gnupg bash-completion screen smartmontools sysutils/cmdwatch"
+export PORTS="sysutils/munin-node editors/vim sysutils/daemontools ftp/curl ftp/wget www/lynx mail/qmail ucspi-tcp unix2dos unzip zip rsync nmap security/gnupg bash-completion sysutils/cmdwatch tmux devel/subversion"
 export PORTS_MAIL="mutt mail/qmHandle qmailanalog isoqlog qlogtools mail/qmqtool"
 export PORTS_CLISERVER="security/openvpn"
 export PORTS_OPTS="queue-repair qmailmrtg7 qmrtg"
@@ -93,7 +93,7 @@ if [ -f ${TMP}/${VERSION} ]
   touch ${TMP}/${VERSION}
 fi
 
-for PORT in `echo help2man glib20 lynx wget screen gd daemontools gettext qmail portupgrade ucspi-tcp openvpn mrtg bash-completion rsync gnupg docbook ruby pth smartmontools m4 png gsed pixman de-freebsd-doc en-freebsd-doc fr-freebsd-doc gdbm gmp neon29 p5-IO-Socket-SSL sqlite3 tcl85 p5-Net-Server p5-DateTime p5-Module-Build freetype2 vim cscope`; do
+for PORT in `echo help2man glib20 lynx ftp_wget screen gd daemontools gettext qmail portupgrade ucspi-tcp openvpn mrtg bash-completion net_rsync security_gnupg docbook ruby pth smartmontools m4 png gsed pixman de-freebsd-doc en-freebsd-doc fr-freebsd-doc databases_gdbm gmp neon29 p5-IO-Socket-SSL databases_sqlite3 tcl85 p5-Net-Server p5-DateTime p5-Module-Build freetype2 vim cscope devel_libffi databases_ruby-bdb databases_db41 sysutils_tmux devel_pcre archivers_unzip archivers_zip devel_p5-DateTime-Locale devel_p5-DateTime-TimeZone security_nmap dns_libidn www_serf devel_subversion`; do
 	mkdir -p ${PORTS_OPTIONS}/${PORT}
 	cp ${REPO}${CONFIGS_COMMON}${PORTS_OPTIONS}/${PORT}/options ${PORTS_OPTIONS}/${PORT}
 done
@@ -111,6 +111,7 @@ if [ $? = 0 ]
 fi
 
 
+### BROKEN bash gets pulled in by GIT
 if [ -f /usr/local/bin/bash ]
  then
 
@@ -125,12 +126,11 @@ if [ -f /usr/local/bin/bash ]
 	echo "editors/vim: WITHOUT_X11 ">> /usr/local/etc/ports.conf
 	echo "devel/t1lib: WITHOUT_X11" >> /usr/local/etc/ports.conf
  	$PORTINSTALL $PORTS
-	cp /usr/local/etc/smartd.conf.sample /usr/local/etc/smartd.conf
 	/var/qmail/scripts/enable-qmail
 
 	cd /etc/
 
-    /usr/sbin/ntpdate chronos.cru.fr
+    /etc/rc.d/ntpd stop ; /usr/sbin/ntpdate chronos.cru.fr ; /etc/rc.d/ntpd start
     cat $REPO$CONFIGS_COMMON/rc.conf >> rc.conf
 
 	mv profile profile-`date +%d%m%y`
@@ -138,9 +138,6 @@ if [ -f /usr/local/bin/bash ]
 
 	cp $REPO$CONFIGS_COMMON/sshd_localhost /etc/rc.d/
 	ln -s /usr/sbin/sshd /usr/sbin/sshd_localhost
-
-	cp $REPO$CONFIGS_COMMON/cvsupfile-* /etc/cvsupfile
-    mkdir /usr/local/etc/cvsup
 
     cp -p $REPO$CONFIGS_COMMON/pf.conf pf.conf
 
@@ -183,10 +180,8 @@ if [ -f /usr/local/bin/bash ]
 	##echo "Copying Standard isoqlog conf file"
 	##cp /usr/local/etc/isoqlog.conf-dist /usr/local/etc/isoqlog.conf
 	##cp /usr/local/etc/isoqlog.domains-dist /usr/local/etc/isoqlog.domains
-
-	pkgdb -F && $PORTUPGRADE -Rra
-
-
+    svn co svn://svn.freebsd.org/base/releng/10.0 /usr/src
+    
 if [ "$JAIL" = "false" ]; then
 	echo "Compiling NEW Kernel..."
 
@@ -233,6 +228,7 @@ else
 
 else
 
+# BROKEN
 $ECHO "there aint any bash, argh fighting with sh and getting system up-to-date"
 $TOUCH $TMP/initial
 $SLEEP 3
@@ -330,7 +326,7 @@ fi
  ##chmod 600 $HOME_BASE/$USERS/.ssh/authorized_keys2 && chown $USERS $HOME_BASE/$USERS/.ssh/authorized_keys2
  ##chown ${SYSADMIN} $HOME_BASE/${SYSADMIN}/.ssh/authorized_keys2
 
-	pkgdb -F && $PORTUPGRADE -Rra
+	$PORTUPGRADE -Rra
 
 
  $RMM $TMP/initial
