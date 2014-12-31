@@ -49,7 +49,6 @@ export WORK="work"
 export SLEEP="/bin/sleep"
 export NULL_DEV="/dev/null"
 export CPU_TYPE=`dmesg |grep CPU: |head -1 |sed 's/(R)//g' |sed 's/CPU: Intel //g' |awk  '{print $1$2 }' |sed 's/P/p/g' |sed 's/III/3/g'`
-##export PORTS="sysutils/munin-node editors/vim sysutils/daemontools security/fwanalog net-mgmt/mrtg ftp/curl ftp/wget www/lynx mail/qmail ucspi-tcp unix2dos unzip zip rsync nmap security/gnupg bash-completion screen smartmontools sysutils/cmdwatch"
 export PORTS="sysutils/munin-node editors/vim sysutils/daemontools ftp/curl ftp/wget www/lynx mail/qmail ucspi-tcp unix2dos unzip zip rsync nmap security/gnupg bash-completion sysutils/cmdwatch tmux devel/subversion"
 export PORTS_MAIL="mutt mail/qmHandle qmailanalog isoqlog qlogtools mail/qmqtool"
 export PORTS_CLISERVER="security/openvpn"
@@ -93,7 +92,7 @@ if [ -f ${TMP}/${VERSION} ]
   touch ${TMP}/${VERSION}
 fi
 
-for PORT in `echo misc_help2man glib20 lynx ftp_wget screen gd sysutils_daemontools gettext mail_qmail ports-mgmt_portupgrade ucspi-tcp openvpn mrtg bash-completion net_rsync security_gnupg docbook lang_ruby20 databases_p5-DBI graphics_jbigkit graphics_jpeg devel_readline databases_db5 graphics_tiff pth smartmontools m4 png gsed pixman de-freebsd-doc en-freebsd-doc fr-freebsd-doc databases_gdbm gmp neon29 p5-IO-Socket-SSL databases_sqlite3 tcl85 net_p5-Net-Server p5-DateTime devel_p5-Module-Build freetype2 vim devel_cscope devel_libffi databases_ruby-bdb databases_db41 sysutils_tmux devel_pcre archivers_unzip archivers_zip devel_p5-DateTime-Locale devel_p5-DateTime-TimeZone security_nmap dns_libidn www_serf devel_subversion`; do
+for PORT in `echo misc_help2man ftp_wget sysutils_daemontools devel_gettext-tools mail_qmail ports-mgmt_portupgrade sysutils_ucspi-tcp shells_bash-completion net_rsync security_gnupg textproc_docbook-xsl lang_ruby20 databases_p5-DBI graphics_jbigkit graphics_jpeg devel_readline databases_db5 graphics_tiff devel_m4 graphics_png databases_gdbm math_gmp security_p5-IO-Socket-SSL databases_sqlite3 net_p5-Net-Server p5-DateTime devel_p5-Module-Build freetype2 vim devel_cscope devel_libffi databases_ruby-bdb databases_db41 sysutils_tmux devel_pcre archivers_unzip archivers_zip devel_p5-DateTime-Locale security_nmap dns_libidn www_serf devel_subversion lang_tcl86 graphics_jasper dns_p5-Net-DNS www_p5-libwww devel_p5-DateTime-TimeZone devel_libevent2 print_cups-client databases_postgresql93-client security_libtasn1 textproc_py-pygments textproc_py-docutils x11-fonts_fontconfig x11-fonts_dejavu security_nettle devel_libcheck x11_libxcb devel_py-babel devel_icu devel_py-Jinja2 security_pinentry security_trousers security_gnutls devel_cmake graphics_cairo graphics_gdk-pixbuf2 devel_apr1`; do
 	mkdir -p ${PORTS_OPTIONS}/${PORT}
 	cp ${REPO}${CONFIGS_COMMON}${PORTS_OPTIONS}/${PORT}/options ${PORTS_OPTIONS}/${PORT}
 done
