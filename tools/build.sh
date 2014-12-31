@@ -93,7 +93,7 @@ if [ -f ${TMP}/${VERSION} ]
   touch ${TMP}/${VERSION}
 fi
 
-for PORT in `echo misc_help2man glib20 lynx ftp_wget screen gd daemontools gettext qmail ports-mgmt_portupgrade ucspi-tcp openvpn mrtg bash-completion net_rsync security_gnupg docbook lang_ruby20 devel_readline databases_db5 pth smartmontools m4 png gsed pixman de-freebsd-doc en-freebsd-doc fr-freebsd-doc databases_gdbm gmp neon29 p5-IO-Socket-SSL databases_sqlite3 tcl85 p5-Net-Server p5-DateTime p5-Module-Build freetype2 vim cscope devel_libffi databases_ruby-bdb databases_db41 sysutils_tmux devel_pcre archivers_unzip archivers_zip devel_p5-DateTime-Locale devel_p5-DateTime-TimeZone security_nmap dns_libidn www_serf devel_subversion`; do
+for PORT in `echo misc_help2man glib20 lynx ftp_wget screen gd sysutils_daemontools gettext mail_qmail ports-mgmt_portupgrade ucspi-tcp openvpn mrtg bash-completion net_rsync security_gnupg docbook lang_ruby20 databases_p5-DBI graphics_jbigkit graphics_jpeg devel_readline databases_db5 graphics_tiff pth smartmontools m4 png gsed pixman de-freebsd-doc en-freebsd-doc fr-freebsd-doc databases_gdbm gmp neon29 p5-IO-Socket-SSL databases_sqlite3 tcl85 net_p5-Net-Server p5-DateTime devel_p5-Module-Build freetype2 vim devel_cscope devel_libffi databases_ruby-bdb databases_db41 sysutils_tmux devel_pcre archivers_unzip archivers_zip devel_p5-DateTime-Locale devel_p5-DateTime-TimeZone security_nmap dns_libidn www_serf devel_subversion`; do
 	mkdir -p ${PORTS_OPTIONS}/${PORT}
 	cp ${REPO}${CONFIGS_COMMON}${PORTS_OPTIONS}/${PORT}/options ${PORTS_OPTIONS}/${PORT}
 done
