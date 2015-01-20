@@ -92,7 +92,7 @@ if [ -f ${TMP}/${VERSION} ]
   touch ${TMP}/${VERSION}
 fi
 
-for PORT in `echo misc_help2man ftp_wget sysutils_daemontools devel_gettext-tools mail_qmail ports-mgmt_portupgrade sysutils_ucspi-tcp shells_bash-completion net_rsync security_gnupg textproc_docbook-xsl lang_ruby20 databases_p5-DBI graphics_jbigkit graphics_jpeg devel_readline databases_db5 graphics_tiff devel_m4 graphics_png databases_gdbm math_gmp security_p5-IO-Socket-SSL databases_sqlite3 net_p5-Net-Server devel_p5-Module-Build print_freetype2 editors_vim devel_cscope devel_libffi databases_ruby-bdb databases_db41 sysutils_tmux devel_pcre archivers_unzip archivers_zip devel_p5-DateTime devel_p5-DateTime-Locale security_nmap dns_libidn www_serf devel_subversion lang_tcl86 dns_p5-Net-DNS www_p5-libwww devel_p5-DateTime-TimeZone security_libtasn1 textproc_py-pygments textproc_py-docutils security_nettle devel_libcheck devel_py-babel devel_icu devel_py-Jinja2 security_pinentry security_trousers security_gnutls devel_cmake  devel_apr1`; do
+for PORT in `echo misc_help2man ftp_wget sysutils_daemontools devel_gettext-tools mail_qmail ports-mgmt_portupgrade sysutils_ucspi-tcp shells_bash-completion net_rsync security_gnupg textproc_docbook-xsl lang_ruby20 databases_p5-DBI graphics_jbigkit graphics_jpeg devel_readline databases_db5 graphics_tiff devel_m4 graphics_png databases_gdbm math_gmp security_p5-IO-Socket-SSL databases_sqlite3 net_p5-Net-Server devel_p5-Module-Build print_freetype2 editors_vim devel_cscope devel_libffi databases_ruby-bdb databases_db41 sysutils_tmux devel_pcre archivers_unzip archivers_zip devel_p5-DateTime devel_p5-DateTime-Locale security_nmap dns_libidn www_serf devel_subversion lang_tcl86 dns_p5-Net-DNS www_p5-libwww devel_p5-DateTime-TimeZone security_libtasn1 textproc_py-pygments textproc_py-docutils security_nettle devel_libcheck devel_py-babel devel_icu devel_py-Jinja2 security_pinentry security_trousers security_gnutls devel_cmake www_lynx devel_apr1`; do
   mkdir -p ${PORTS_OPTIONS}/${PORT}
   cp ${REPO}${CONFIGS_COMMON}${PORTS_OPTIONS}/${PORT}/options ${PORTS_OPTIONS}/${PORT}
 done
@@ -118,69 +118,70 @@ if [ -f /usr/local/bin/bash ]
   $SLEEP 3
 
    if [ $1 = "finish" ]
-	then
+  then
 
-	$ECHO "Installing Ports: $PORTS"
-	$ECHO .
- 	$PORTINSTALL $PORTS
-	/var/qmail/scripts/enable-qmail
+  $ECHO "Installing Ports: $PORTS"
+  $ECHO .
+  $PORTINSTALL $PORTS
+  /var/qmail/scripts/enable-qmail
+  /usr/local/sbin/munin-node-configure --shell | sh -x
 
-	cd /etc/
+  cd /etc/
 
     /etc/rc.d/ntpd stop ; /usr/sbin/ntpdate chronos.cru.fr ; /etc/rc.d/ntpd start
     cat $REPO$CONFIGS_COMMON/rc.conf >> rc.conf
 
-	mv profile profile-`date +%d%m%y`
-	cp $REPO$CONFIGS_COMMON/profile .
+  mv profile profile-`date +%d%m%y`
+  cp $REPO$CONFIGS_COMMON/profile .
 
-	cp $REPO$CONFIGS_COMMON/sshd_localhost /etc/rc.d/
-	ln -s /usr/sbin/sshd /usr/sbin/sshd_localhost
+  cp $REPO$CONFIGS_COMMON/sshd_localhost /etc/rc.d/
+  ln -s /usr/sbin/sshd /usr/sbin/sshd_localhost
 
     cp -p $REPO$CONFIGS_COMMON/pf.conf pf.conf
 
-	##cp $REPO$CONFIGS_COMMON/vimrc /usr/local/share/vim/
-	mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
-	ln -s /usr/local/bin/vim /usr/bin/vi
+  ##cp $REPO$CONFIGS_COMMON/vimrc /usr/local/share/vim/
+  mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
+  ln -s /usr/local/bin/vim /usr/bin/vi
 
-	echo "Configuring QMAIL FORWARD ONLY!!!"
-	mkdir -p /var/log/qmail/qmail-send
-	chown -R qmaill:wheel /var/log/qmail
-	chmod -R 750 /var/log/qmail
+  echo "Configuring QMAIL FORWARD ONLY!!!"
+  mkdir -p /var/log/qmail/qmail-send
+  chown -R qmaill:wheel /var/log/qmail
+  chmod -R 750 /var/log/qmail
 
-	mkdir -p /var/qmail/supervise/qmail-send/log
-	mkdir /var/service
-	chmod +t /var/qmail/supervise/qmail-send
-	cp $REPO$CONFIGS_COMMON/var/qmail/alias/.qmail* /var/qmail/alias/
-	cp -i $REPO$CONFIGS_COMMON/var/qmail/control/* /var/qmail/control/
-	hostname > /var/qmail/control/me
-	hostname > /var/qmail/control/rcpthosts
-	hostname |cut -f 2- -d. >> /var/qmail/control/rcpthosts
-	hostname |cut -f 2- -d. > /var/qmail/control/defaultdomain
-	hostname |cut -f 2- -d. > /var/qmail/control/plusdomain
-	hostname -s > /var/qmail/control/defaulthost
-	### UPDATE qmail rc
-	cp -i $REPO$CONFIGS_COMMON/var/qmail/rc /var/qmail/
-	cp -i $REPO$CONFIGS_COMMON/var/qmail/supervise/qmail-send/run /var/qmail/supervise/qmail-send
-	cp -i $REPO$CONFIGS_COMMON/var/qmail/supervise/qmail-send/log/run /var/qmail/supervise/qmail-send/log
-	cp -i $REPO$CONFIGS_COMMON/var/qmail/bin/qmailctl /var/qmail/bin
-	ln -s /var/qmail/alias/.qmail-root /var/qmail/alias/.qmail-anonymous
-	chmod 644 /var/qmail/alias/.qmail*
-	chmod 755 /var/qmail/rc
-	chmod 751 /var/qmail/supervise/qmail-send/run /var/qmail/supervise/qmail-send/log/run
-	ln -s /var/qmail/bin/qmailctl /usr/bin
-	ln -s /var/qmail/supervise/qmail-send /var/service
-	echo "Cat'ting /var/qmail/control/ files sleeping 15"
-	cat /var/qmail/control/*
-	sleep 15
+  mkdir -p /var/qmail/supervise/qmail-send/log
+  mkdir /var/service
+  chmod +t /var/qmail/supervise/qmail-send
+  cp $REPO$CONFIGS_COMMON/var/qmail/alias/.qmail* /var/qmail/alias/
+  cp -i $REPO$CONFIGS_COMMON/var/qmail/control/* /var/qmail/control/
+  hostname > /var/qmail/control/me
+  hostname > /var/qmail/control/rcpthosts
+  hostname |cut -f 2- -d. >> /var/qmail/control/rcpthosts
+  hostname |cut -f 2- -d. > /var/qmail/control/defaultdomain
+  hostname |cut -f 2- -d. > /var/qmail/control/plusdomain
+  hostname -s > /var/qmail/control/defaulthost
+  ### UPDATE qmail rc
+  cp -i $REPO$CONFIGS_COMMON/var/qmail/rc /var/qmail/
+  cp -i $REPO$CONFIGS_COMMON/var/qmail/supervise/qmail-send/run /var/qmail/supervise/qmail-send
+  cp -i $REPO$CONFIGS_COMMON/var/qmail/supervise/qmail-send/log/run /var/qmail/supervise/qmail-send/log
+  cp -i $REPO$CONFIGS_COMMON/var/qmail/bin/qmailctl /var/qmail/bin
+  ln -s /var/qmail/alias/.qmail-root /var/qmail/alias/.qmail-anonymous
+  chmod 644 /var/qmail/alias/.qmail*
+  chmod 755 /var/qmail/rc
+  chmod 751 /var/qmail/supervise/qmail-send/run /var/qmail/supervise/qmail-send/log/run
+  ln -s /var/qmail/bin/qmailctl /usr/bin
+  ln -s /var/qmail/supervise/qmail-send /var/service
+  echo "Cat'ting /var/qmail/control/ files sleeping 15"
+  cat /var/qmail/control/*
+  sleep 15
 
 
-	##echo "Copying Standard isoqlog conf file"
-	##cp /usr/local/etc/isoqlog.conf-dist /usr/local/etc/isoqlog.conf
-	##cp /usr/local/etc/isoqlog.domains-dist /usr/local/etc/isoqlog.domains
+  ##echo "Copying Standard isoqlog conf file"
+  ##cp /usr/local/etc/isoqlog.conf-dist /usr/local/etc/isoqlog.conf
+  ##cp /usr/local/etc/isoqlog.domains-dist /usr/local/etc/isoqlog.domains
   svn co svn://svn.freebsd.org/base/releng/10.1 /usr/src
 
 if [ "$JAIL" = "false" ]; then
-	echo "Compiling NEW Kernel..."
+  echo "Compiling NEW Kernel..."
 
 
 if [ -f /usr/src/sys/$ARCHI/conf/$HOSTNAME ]; then
@@ -324,7 +325,7 @@ fi
  ##chmod 600 $HOME_BASE/$USERS/.ssh/authorized_keys2 && chown $USERS $HOME_BASE/$USERS/.ssh/authorized_keys2
  ##chown ${SYSADMIN} $HOME_BASE/${SYSADMIN}/.ssh/authorized_keys2
 
-	$PORTUPGRADE -Rra
+  $PORTUPGRADE -Rra
 
 
  $RMM $TMP/initial
