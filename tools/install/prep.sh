@@ -1,13 +1,13 @@
 #!/bin/sh
 # run as root - ports tree needed
+portsnap fetch extract
 cd /usr/ports/ports-mgmt/portconf && make install clean
 pkg install git python gmake automake14 libtool
 pkg delete git-\*
-# if this fails: portsnap fetch extract
 
 mkdir /var/db/ports/lang_python27
 mkdir /var/db/ports/devel_git
-mkdir /var/db/ports/lang_perl5.16
+mkdir /var/db/ports/lang_perl5.18
 mkdir /var/db/ports/ftp_curl
 mkdir /var/db/ports/security_ca_root_nss
 mkdir /var/db/ports/textproc_xmlto
@@ -31,7 +31,13 @@ mkdir /var/db/ports/textproc_docbook-xsl
 mkdir /var/db/ports/textproc_xmlcatmgr
 mkdir /var/db/ports/security_libgpg-error
 mkdir /var/db/ports/www_w3m
+mkdir /var/db/ports/devel_libatomic_ops
 
+
+cat << EOF >_OPTIONS_READ=libatomic_ops-7.4.0_1
+_FILE_COMPLETE_OPTIONS_LIST=DOCS
+OPTIONS_FILE_SET+=DOCS
+EOF
 
 cat << EOF > /var/db/ports/devel_m4/options
 _OPTIONS_READ=m4-1.4.17_1,1
@@ -198,7 +204,7 @@ OPTIONS_FILE_UNSET+=FOP
 OPTIONS_FILE_UNSET+=PASSIVETEX
 EOF
 
-cat << EOF > /var/db/ports/python27/options
+cat << EOF > /var/db/ports/lang_python27/options
 _OPTIONS_READ=python27-2.7.9
 _FILE_COMPLETE_OPTIONS_LIST=DEBUG IPV6 LIBFFI NLS PYMALLOC SEM THREADS UCS2 UCS4
 OPTIONS_FILE_UNSET+=DEBUG
@@ -273,11 +279,11 @@ OPTIONS_FILE_SET+=OPENSSL
 OPTIONS_FILE_UNSET+=POLARSSL
 EOF
 
-cat << EOF > /var/db/ports/ca_root_nss/options
+cat << EOF > /var/db/ports/security_ca_root_nss/options
 _OPTIONS_READ=ca_root_nss-3.17.3_1
 _FILE_COMPLETE_OPTIONS_LIST=ETCSYMLINK
 OPTIONS_FILE_UNSET+=ETCSYMLINK
 EOF
 
 
-cd /usr/ports/devel/git && make install clean 
+cd /usr/ports/devel/git && make install clean
