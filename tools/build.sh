@@ -137,7 +137,7 @@ if [ -f /usr/local/bin/bash ]
   cp $REPO$CONFIGS_COMMON/sshd_localhost /etc/rc.d/
   ln -s /usr/sbin/sshd /usr/sbin/sshd_localhost
 
-    cp -p $REPO$CONFIGS_COMMON/pf.conf pf.conf
+  cp -p $REPO$CONFIGS_COMMON/pf.conf pf.conf
 
   ##cp $REPO$CONFIGS_COMMON/vimrc /usr/local/share/vim/
   mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
