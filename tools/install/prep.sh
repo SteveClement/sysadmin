@@ -285,5 +285,20 @@ _FILE_COMPLETE_OPTIONS_LIST=ETCSYMLINK
 OPTIONS_FILE_UNSET+=ETCSYMLINK
 EOF
 
+cat << EOF > /var/db/ports/p5-IO-Socket-SSL/options
+_OPTIONS_READ=p5-IO-Socket-SSL-1.81
+_FILE_COMPLETE_OPTIONS_LIST=EXAMPLES IDN IPV6
+OPTIONS_FILE_SET+=EXAMPLES
+OPTIONS_FILE_UNSET+=IDN
+OPTIONS_FILE_SET+=IPV6
+
+cat << EOF > /var/db/ports/pcre/options
+_OPTIONS_READ=pcre-8.31
+_FILE_COMPLETE_OPTIONS_LIST=JIT
+OPTIONS_FILE_SET+=JIT
+EOF
+
+echo "devel/subversion: WITHOUT_MOD_DAV_SVN|WITHOUT_APACHE2_APR" >> /usr/local/etc/ports.conf
+echo "devel/apr-svn: APR_UTIL_WITH_BERKELEY_DB=yes" >> /usr/local/etc/ports.conf
 
 cd /usr/ports/devel/git && make install clean
