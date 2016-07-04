@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# This will build a PC server system on FreeBSD 10.1 with all the necessary Hackery Funk
+# This will build a PC server system on FreeBSD 10.3 with all the necessary Hackery Funk
 
-#cvsup /etc/cvsupfile-10_1 OR freebsd-update fetch
+#cvsup /etc/cvsupfile-10_3 OR freebsd-update fetch
 #cd /usr/src
 #make buildworld
 #make buildkernel
