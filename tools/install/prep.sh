@@ -2,8 +2,7 @@
 # run as root - ports tree needed
 portsnap fetch extract
 cd /usr/ports/ports-mgmt/portconf && make install clean
-# automake14 and libtool temporarily removed
-pkg install git python gmake
+pkg install git python gmake automake15 libtool
 pkg delete git-\*
 
 mkdir /var/db/ports/devel_git
