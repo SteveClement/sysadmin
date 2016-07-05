@@ -2,16 +2,22 @@
 
 # This will build a PC server system on FreeBSD 10.3 with all the necessary Hackery Funk
 
-#cvsup /etc/cvsupfile-10_3 OR freebsd-update fetch
-#cd /usr/src
-#make buildworld
-#make buildkernel
-#make installkernel
-#reboot -s
-#cd /usr/src
-#mergemaster -p
-#make installworld
-#mergemaster
+# cd /usr/src && svn up -Pd OR cvsup /etc/cvsupfile-10_3 OR freebsd-update fetch install
+# script /var/tmp/mw.out
+# chflags -R noschg /usr/obj/*
+# rm -rf /usr/obj
+# cd /usr/src
+# make buildworld
+# make buildkernel
+# make installkernel
+# reboot -s
+# cd /usr/src
+# mergemaster -p
+# make installworld
+# mergemaster -iF
+# make delete-old
+# reboot
+# make delete-old-libs
 
 export ARCHI="i386"
 export CONFIGS_COMMON="/configs/common"
@@ -49,10 +55,33 @@ export WORK="work"
 export SLEEP="/bin/sleep"
 export NULL_DEV="/dev/null"
 export CPU_TYPE=`dmesg |grep CPU: |head -1 |sed 's/(R)//g' |sed 's/CPU: Intel //g' |awk  '{print $1$2 }' |sed 's/P/p/g' |sed 's/III/3/g'`
-export PORTS="sysutils/munin-node editors/vim sysutils/daemontools ftp/curl ftp/wget www/lynx mail/qmail ucspi-tcp unix2dos unzip zip rsync nmap security/gnupg bash-completion sysutils/cmdwatch tmux devel/subversion"
-export PORTS_MAIL="mutt mail/qmHandle qmailanalog isoqlog qlogtools mail/qmqtool"
+export PORTS="sysutils/munin-node \
+              sysutils/cmdwatch \
+              sysutils/tmux \
+              sysutils/daemontools \
+              sysutils/ucspi-tcp \
+              editors/vim \
+              ftp/curl \
+              ftp/wget \
+              www/lynx \
+              mail/qmail \
+              converters/unix2dos \
+              archivers/unzip \
+              net/rsync \
+              security/nmap \
+              security/gnupg \
+              shells/bash-completion \
+              shells/zsh \
+              shells/zsh-navigation-tools \
+              devel/subversion"
+export PORTS_MAIL="mail/mutt \
+                   mail/qmHandle \
+                   mail/qmailanalog \
+                   mail/isoqlog \
+                   mail/qmqtool \
+                   sysutils/qlogtools"
 export PORTS_CLISERVER="security/openvpn"
-export PORTS_OPTS="queue-repair qmailmrtg7 qmrtg"
+export PORTS_OPTS="mail/queue-repair mail/qmailmrtg7"
 export JAIL_CHECK=`/sbin/md5 /etc/fstab | cut -f 4 -d\ `
 export FSTAB_SUM="2cfe202ba5d7cdad78af2bf76b340c6d"
 export VER=`uname -r |cut -f 1 -d- |sed 's/\./_/'`
@@ -71,14 +100,13 @@ fi
 export REPO="/home/${ADMIN}/sysadmin"
 
 if [ $JAIL_CHECK != $FSTAB_SUM ]; then
+  export JAIL=false
 
-export JAIL=false
-
- if [ -f /usr/ports/.portsnap.INDEX ]; then
-  $PORTSNAP fetch update
- else
-  $PORTSNAP fetch extract
- fi
+  if [ -f /usr/ports/.portsnap.INDEX ]; then
+    $PORTSNAP fetch update
+   else
+    $PORTSNAP fetch extract
+  fi
 fi
 
 VER=`ls ${TMP}/*_* 2> /dev/null` ; export VERSION=`${ECHO} ${VER} | ${CUT} -f3 -d\/`
@@ -110,11 +138,10 @@ if [ $? = 0 ]
 fi
 
 
-### BROKEN bash gets pulled in by GIT
-if [ -f /usr/local/bin/bash ]
+if [ -f /usr/local/bin/zip ]
  then
 
-  $ECHO "We have bash and can proceed with the final steps..."
+  $ECHO "We have the zip package and can proceed with the final steps..."
   $SLEEP 3
 
    if [ $1 = "finish" ]
@@ -174,7 +201,9 @@ if [ -f /usr/local/bin/bash ]
   cat /var/qmail/control/*
   sleep 15
 
-  svn co svn://svn.freebsd.org/base/releng/10.1 /usr/src
+  svn co svn://svn.freebsd.org/base/releng/10.3 /usr/src
+  # htop pulls in lsof, which needs a source tree
+  $PORTINSTALL sysutils/htop
 
 if [ "$JAIL" = "false" ]; then
   echo "Compiling NEW Kernel..."
@@ -194,7 +223,7 @@ echo "Otherwise update you system with cvsup"
 sleep 5
 
  echo "Compiling new kernel with config: $HOSTNAME"
- /usr/sbin/freebsd-update fetch && echo "To install the updates: /usr/sbin/freebsd-update install"
+ /usr/sbin/freebsd-update fetch install
  cd /usr/src && make kernel KERNCONF=$HOSTNAME && echo "COMPILED KERNEL AND INSTALLED WITH SUCCESS REBOOT NOW"
 fi
 
@@ -207,7 +236,7 @@ fi
 ## $CHOWN $1:$1 $HOME_BASE/$1/.ssh
 ## $CHOWN $1:$1 $HOME_BASE/$1
 ## $CHMOD 700 $HOME_BASE/$1
-## cp /home/$ADMIN/work/kierbiischt-ion-sysadmin/ssh-pub-keys/$1.pub2 $HOME_BASE/$1/.ssh/authorized_keys2
+## cp /home/$ADMIN/work/kierbiischt-ion-sysadmin/ssh-pub-keys/$1.pub2 $HOME_BASE/$1/.ssh/authorized_keys
 ## $ECHO "Now would be a good time to log out and in again to finish install with:"
 ## $ECHO "build.sh finish"
 ##}
@@ -222,8 +251,7 @@ else
 
 else
 
-# BROKEN
-$ECHO "there aint any bash, argh fighting with sh and getting system up-to-date"
+$ECHO "there is no zip package, argh fighting with sh and getting system up-to-date"
 $TOUCH $TMP/initial
 $SLEEP 3
 
@@ -235,7 +263,7 @@ if [ -f $TMP/initial ]
   $MAKEWHATIS &
 
 
-## Make.conf needs to be Jail adapted
+  ## Make.conf needs to be Jail adapted
   ## make.conf Generator, this can't generate Xenon spec. stuff (nocona)
   cat $REPO$CONFIGS_COMMON/make.conf |$SED 's/$VERSION/'${VERSION}'/g' > /tmp/ma.conf
   cat /tmp/ma.conf |$SED 's/$HOSTNAME/'${HOSTNAME}'/g' > /tmp/mak.conf
@@ -312,14 +340,15 @@ fi
  cd /usr/ports/ports-mgmt/portupgrade && make clean install clean
 
  # $PORTINSTALL shells/bash && \
+ $PORTINSTALL archivers/zip
    ##$PWW useradd $USERS -s $BASH -G wheel && mkdir -p -m 700 /home/${USERS}/.ssh && chown -R ${USERS}:${USERS} /home/${USERS}/ && chmod -R 700 /home/${USERS}/ && \
    $PWW usermod root -s $BASH && $PWW usermod $ADMIN -s $BASH
    ##$PWW useradd $SYSADMIN -s $BASH -G wheel && mkdir -p -m 700 /home/${SYSADMIN}/.ssh && chown -R ${SYSADMIN}:${SYSADMIN} /home/${SYSADMIN}/ && chmod -R 700 /home/${SYSADMIN}/
 
- ##cp $REPO/ssh-pub-keys/$USERS.pub2 $HOME_BASE/$USERS/.ssh/authorized_keys2
- ##cp $REPO/ssh-pub-keys/${SYSADMIN}.pub2 $HOME_BASE/${SYSADMIN}/.ssh/authorized_keys2
- ##chmod 600 $HOME_BASE/$USERS/.ssh/authorized_keys2 && chown $USERS $HOME_BASE/$USERS/.ssh/authorized_keys2
- ##chown ${SYSADMIN} $HOME_BASE/${SYSADMIN}/.ssh/authorized_keys2
+ ##cp $REPO/ssh-pub-keys/$USERS.pub2 $HOME_BASE/$USERS/.ssh/authorized_keys
+ ##cp $REPO/ssh-pub-keys/${SYSADMIN}.pub2 $HOME_BASE/${SYSADMIN}/.ssh/authorized_keys
+ ##chmod 600 $HOME_BASE/$USERS/.ssh/authorized_keys && chown $USERS $HOME_BASE/$USERS/.ssh/authorized_keys
+ ##chown ${SYSADMIN} $HOME_BASE/${SYSADMIN}/.ssh/authorized_keys
 
   $PORTUPGRADE -Rra
 
