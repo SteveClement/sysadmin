@@ -1,4 +1,4 @@
-# $FreeBSD: release/9.1.0/etc/profile 208116 2010-05-15 17:49:56Z jilles $
+# $FreeBSD: releng/10.3/etc/profile 208116 2010-05-15 17:49:56Z jilles $
 #
 # System-wide .profile file for sh(1).
 #
@@ -16,14 +16,14 @@
 # msgs -q
 # Allow terminal messages
 # mesg y
-export CUSTOM_VERSION="1.2-v9_1"
+export CUSTOM_VERSION="1.2-v10_3"
 export PATH=$PATH:/usr/local/mysql/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin
 export FTP_PASSIVE_MODE=1
 export EDITOR=vim
 alias hist='history |grep '
 alias psg='ps wwuax |grep '
 alias ls="ls -G"
-alias dir="echo !!!GAY!!! ; ls -G"
+alias dir="echo !!!NOT_DOS!!! ; ls -G"
 alias ll="ls -G -l -a"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
