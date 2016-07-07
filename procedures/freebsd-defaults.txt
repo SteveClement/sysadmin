@@ -1,0 +1,757 @@
+Src: https://vez.mrsk.me/freebsd-defaults.txt
+#########################################################################
+# FreeBSD - a lesson in poor defaults                                   #
+# Last updated 6/16/2016                                                #
+# https://twitter.com/blakkheim                                         #
+#########################################################################
+
+
+00) Intro
+01) OpenSSH Modifications
+02) Mailer Daemon
+03) Firewall
+04) Ports and Packages
+05) NTP
+06) sysctl.conf
+07) Periodic
+08) SSL Library
+09) Swap
+10) Permissions
+11) rc.conf
+12) Closing
+
+
+#########################################################################
+# Intro                                                                 #
+#########################################################################
+
+This page is intended to list the major changes I make to a vanilla install
+of FreeBSD. Some are just preferences, but the majority are for security.
+It shouldn't be considered any sort of comprehensive "locking down FreeBSD"
+guide; it's really just a collection of notes for myself that I thought
+might be useful to others too.
+
+My use case is for a server, but a lot of the changes would be useful for
+a desktop user as well. Each section will have an explanation of why I'm
+suggesting the change, or at least some background information about it.
+
+
+#########################################################################
+# OpenSSH Modifications               ("but we know better than them!") #
+#########################################################################
+
+FreeBSD has a history of making "interesting" choices with regard to the
+version of OpenSSH they bundle in the base system, often deliberately going
+against upstream in the name of retaining backward compatibility or to gain
+perceived performance improvements. Disabling or ignoring security features
+in favor of performance seems to be a recurring theme with them.
+
+It is my belief that quite a few poor decisions have been made in this area.
+
+As a primary example, they insisted on maintaining the HPN-SSH patchset and
+enabling it by default until just recently.
+
+You might say "well ok, but what's actually *wrong* with those patches?"
+
+A few years ago, OpenSSH increased the channel limits enough to support
+a cross-country gigabit connection without slowdown. For most users, this
+means that the HPN patches are an unnecessary complexity with little to no
+benefit. In addition to that, they would frequently hold FreeBSD back from
+updating their version of OpenSSH because of HPN backporting and manual
+refactoring of the patchset.
+
+Support for tcp_wrappers was abandoned long ago in OpenSSH upstream, but
+FreeBSD still patches it back in and enables it for everyone.
+
+https://svnweb.freebsd.org/base?view=revision&revision=294328
+
+The same is true for weak DSA host keys, which they switch back on for
+compatibility with older clients.
+
+https://svnweb.freebsd.org/base?view=revision&revision=294495
+
+FreeBSD also re-enables insecure encryption ciphers in their build after
+they've been disabled upstream, with backward compatibility apparently
+being more important to them than the security of their users.
+
+https://svnweb.freebsd.org/base?view=revision&revision=296634
+
+If we don't deprecate insecure options bit by bit somewhere in the ecosystem,
+we end up with a situation like OpenSSL. Pressure has to be applied somewhere.
+One can be part of that team, or one can play against them.
+
+FreeBSD is the team trying to increase the risk.
+
+They've made local changes to their build and/or its default config files
+that left their users vulnerable when other platforms were unaffected.
+Here's a (possibly incomplete) list of examples:
+
+https://www.freebsd.org/security/advisories/FreeBSD-SA-00:21.ssh.asc
+https://www.freebsd.org/security/advisories/FreeBSD-SA-03:15.openssh.asc
+https://www.freebsd.org/security/advisories/FreeBSD-SA-06:09.openssh.asc
+https://www.freebsd.org/security/advisories/FreeBSD-SA-08:05.openssh.asc
+https://www.freebsd.org/security/advisories/FreeBSD-SA-14:24.sshd.asc
+https://www.freebsd.org/security/advisories/FreeBSD-SA-16:14.openssh.asc
+
+And just the PAM issues in these two:
+
+https://www.freebsd.org/security/advisories/FreeBSD-SA-15:16.openssh.asc
+https://www.freebsd.org/security/advisories/FreeBSD-SA-15:22.openssh.asc
+
+A list of FreeBSD's modifications to both the code and config files can be
+seen here:
+
+(for the base system, has some outdated info)
+https://svnweb.freebsd.org/base/head/crypto/openssh/FREEBSD-upgrade?view=markup#l93
+
+(for ports)
+https://svnweb.freebsd.org/ports/head/security/openssh-portable/files
+
+Thankfully, as hinted above, it's fairly easy to install OpenSSH from ports
+with all the FreeBSDisms removed. The "security/openssh-portable" port has
+a convenient set of options you can toggle. As of the time I'm writing this,
+the current list is as follows:
+
+###############################################################################
+[ ] BSM             OpenBSM Auditing
+[X] HPN             HPN-SSH patch
+[ ] KERB_GSSAPI     Kerberos/GSSAPI patch (req: GSSAPI)
+[X] LDNS            SSHFP/LDNS support
+[X] LIBEDIT         Command line editing via libedit
+[ ] NONECIPHER      NONE Cipher support
+[ ] OVERWRITE_BASE  EOL, No longer supported
+[X] PAM             Pluggable authentication module support
+[ ] SCTP            SCTP support
+[X] TCP_WRAPPERS    tcp_wrappers support
+[ ] X509            x509 certificate patch
+( ) MIT             MIT Kerberos (security/krb5)
+( ) HEIMDAL         Heimdal Kerberos (security/heimdal)
+( ) HEIMDAL_BASE    Heimdal Kerberos (base)
+###############################################################################
+
+An [X] means it's on by default for users of the project's binary pkg repo
+and ports/poudriere users that don't explicitly change their build options.
+More on all of those later.
+
+Besides the modifications mentioned above, two other patches in particular
+have been popular with FreeBSD users:
+
+- Threaded AES-CTR (an option in the port until semi-recently)
+- The NONE cipher  (still an option in the port)
+
+Threaded AES-CTR, as the name might imply, introduces threads to the code.
+OpenSSH devs have publicly said threads are too risky and won't be added.
+What's more, it's largely obsoleted by AES-NI in modern CPUs and the fact
+that ChaCha20-Poly1305 (the current default cipher) is even faster when
+taking the MAC (Message Authentication Code) into consideration.
+
+The NONE cipher is somewhat of a misfeature, removing the encryption bits
+and only keeping the data integrity. It allows users to accidentally shoot
+themselves in the foot pretty easily. The trade-off in performance isn't
+really worth it either, as the bottlenecks one might experience have a lot
+more to do with the MAC than the actual encryption.
+
+I have all of the port options disabled. The majority of users don't need
+the extra risk that any of these non-standard patches introduce.
+
+As for the (/usr/local/etc/ssh/)sshd_config file, I would recommend enabling
+only modern crypto. However, cryptography is a very complicated and important
+topic, so you would be better served to research each algorithm and come to
+your own conclusions instead of just taking my word for it. This isn't meant
+to be an entire ssh tutorial, but consider changing your default port to
+something other than 22 if you want less spam in your logs, set up public
+keys and disable password authentication... the usual stuff.
+
+The following config lines are just to revert FreeBSD's local changes that
+introduce new risks:
+
+###############################################################################
+ChallengeResponseAuthentication no         
+X11Forwarding                   no        
+UsePAM                          no 
+VersionAddendum                 none  # Prevent some OS information from being
+                                      # leaked by your sshd, another one of
+                                      # FreeBSD's "enhancements" in both the
+                                      # base system and ports version.
+###############################################################################
+
+In addition to improved security, using the port of OpenSSH allows you to
+upgrade to newer versions much faster than waiting for a new release of the
+base system. Note that you may need further configuration changes if using
+the bundled OpenSSH, as its compile-time options aren't as easily fixable.
+
+
+#########################################################################
+# Mailer Daemon                                  (everyone disables it) #
+#########################################################################
+
+FreeBSD includes Sendmail in the base system and enables it by default.
+I think most users will agree that Sendmail is mostly just a bother, and it
+shouldn't be in the base system at all if you ask me. I stop all the related
+services because it makes startup slower and I'd like as few things running
+in the background as possible. The lines to disable Sendmail will be in the
+rc.conf section towards the end.
+
+If you actually run a mail server, there are better options like Postfix or
+OpenSMTPD. If you only need to send mail through a third party provider like
+Gmail, ssmtp is a another lightweight alternative. All three are in ports.
+
+
+#########################################################################
+# Firewall                                           (pick your poison) #
+#########################################################################
+
+There are three firewalls included with FreeBSD: IPFW, PF and IPFilter.
+None of them are enabled by default, but I guess it'd be hard to decide
+which one to choose, so that one's understandable.
+
+I don't know anything about IPFilter, nor do I know anyone that uses it,
+so we'll pretend it doesn't exist. IPFW is the native firewall; it was
+written by FreeBSD for FreeBSD. PF is the OpenBSD firewall; it was ported
+from OpenBSD to FreeBSD. Both are fine choices, and it ultimately comes down
+to your preference between the two. Since I'm more familiar with PF, that's
+what I use on my systems. Unfortunately, the version of PF included with
+FreeBSD has not been synced with the upstream code in roughly seven years.
+There's plenty of drama about this already, so feel free to look around if
+you find that kind of thing amusing. Whichever firewall you choose, the
+point here is that you want *one* of them enabled.
+
+A very simple example of a PF config file might look like this:
+
+###############################################################################
+ext_if    = "em0"     # Replace with your interface name.
+trustedip = "1.2.3.4" # Replace with your IP. Could also be a list/table.
+set block-policy drop # Some may prefer "return" instead.
+set skip on lo0
+scrub in all no-df random-id
+block all
+pass out quick on $ext_if inet
+pass in        on $ext_if inet proto tcp from $trustedip to any port ssh
+###############################################################################
+
+Check the documentation for whichever firewall you decide to use.
+
+
+#########################################################################
+# Ports and Package                 (what is this privsep you speak of) #
+#########################################################################
+
+There are three main ways to install software on FreeBSD, other than just
+manually compiling things yourself.
+
+- The "pkg" tool with binary packages built by the project infrastructure
+- The ports system, allowing for custom options in most applications
+- The "poudriere" tool for building binary packages from ports in bulk
+
+There are pros and cons to each.
+
+###############################################################################
+pkg pros:
+- fast installation
+- little effort required
+
+pkg cons:
+- no flexibility with what options things are built with
+- must wait on the project to rebuild/update things
+
+ports pros:
+- very good customization options
+- control dependencies, only install what you need
+- updates are available as soon as they're committed to svn
+- only rebuild what actually needs to be updated
+
+ports cons:
+- it can take a long time to compile things, especially web browsers
+- multiple unrelated tools involved (portsnap/svn, portmaster/portupgrade)
+
+poudriere pros:
+- build packages on one system, distribute them to many others
+- still retains most of the pros of using ports
+- little effort required, easily scriptable
+
+poudriere cons:
+- it still takes a long time to compile things
+- things will get pointlessly rebuilt over and over, wasting a lot of time
+###############################################################################
+
+If you only have one FreeBSD system, I think using ports is the best option.
+If you have multiple systems, poudriere makes the whole process a lot easier.
+If you're a total beginner or don't care what options things are built with,
+using pkg and the prebuilt binaries is the quickest and easiest option.
+
+However, more security concerns arise...
+
+Both the ports system and pkg will do a lot of things as root where it's not
+needed at all. When I brought it up to one member of the ports security team
+a while back, he basically shrugged it off. Simply because portsnap checks
+the snapshots it fetches against a public key, he figured it was nothing to
+worry about... completely missing the point. Perhaps they have the utmost
+confidence in the tools being bug-free. I try to be a bit more realistic.
+
+Similar issues were brought up on their mailing lists a couple years ago,
+though nothing ever came of that discussion either.
+
+https://lists.freebsd.org/pipermail/freebsd-questions/2014-April/257394.html
+
+But there's a lot more risk involved than just letting root go out to the
+internet to download files. Perhaps a short summary of how building ports
+works is needed for clarification here. The steps involved can be condensed
+into the following:
+
+- Fetching and updating the ports tree (a collection of makefiles and patches)
+- Fetching the software's source code
+- Verifying the checksum of the file(s)
+- Extracting the source tarball
+- Configuring, patching and building the application
+- Creating a package from the built files
+- Installing the package to your system (if desired)
+
+So how many of these actually need to be done as root?
+Only the last one.
+
+And how many of these are done as root by default in FreeBSD?
+All of them.
+
+###############################################################################
+  PID USERNAME    THR PRI NICE   SIZE    RES STATE   C   TIME    WCPU COMMAND
+84266 root          1  52    0 36272K  8056K wait    0   0:00   0.68% cc
+84191 root          1  52    0  9116K  1332K wait    0   0:00   0.29% make
+84267 root          1  47    0 36416K 20484K zio->i  1   0:00   0.00% cc
+###############################################################################
+
+Maybe people don't realize the risk of actually building all these third
+party tools with root privileges. Have you read every line of those 25,000
+configure scripts? I've seen some configure scripts running ping to phone
+home and all kinds of weird stuff. All it takes is one malicious command
+tucked away in a build script somewhere to completely compromise the host
+if you use ports in its default configuration.
+
+Surprisingly, FreeBSD does have *some* support for doing package builds
+as a normal user.
+
+https://lists.freebsd.org/pipermail/freebsd-ports/2013-October/086346.html
+
+Though I'm told staging is integrated into all their ports now, the default
+is still to do everything as root. Why?
+
+To work around this issue, I tried manually introducing some privsep in the
+build process on my machine with a "_ports" user. You'd need to chown a few
+directories or make them writable by this user. Many changes were needed in
+the /etc/make.conf file, and it appears that it's really just not designed
+to be done this way, so I'd call it more of an experiment than a solution.
+
+Why is all this needed? It's like things were designed to be as troublesome
+to secure as possible so no one ever tries it. Works as intended if so.
+
+The poudriere tool uses FreeBSD's jail system to do a lot of the compiling,
+so it's better than using regular ports in this regard. Filesystem isolation
+is a big step in the right direction here... or it would be, if the source
+distfiles weren't fetched (as root) on the host system.
+
+The pkg tool itself runs everything as root, from fetching and verifying
+the packages to untarring them and registering their installation. 
+
+###############################################################################
+  PID USERNAME    THR PRI NICE   SIZE    RES STATE   C   TIME    WCPU COMMAND
+84554 root          1  22    0 42996K  7452K select  1   0:00   0.59% pkg
+###############################################################################
+
+Just for comparison, let's look at the history of Debian's pkg equivalent.
+
+https://www.cvedetails.com/product/17236/Debian-APT.html
+
+The "but packages are signed!" defense I've gotten from some users really
+demonstrates a lack of understanding of what's actually going on when you
+run that pkg command.
+
+A side note: OpenBSD's dpb tool (similar to poudriere) really got all this
+privsep stuff right, even going as far as to use separate users to download
+and build the software, and recommending to disallow the build user from
+accessing the internet at all. It's cool stuff, especially when combined
+with pledge.
+
+Would be nice to see some use of FreeBSD's Capsicum here, wouldn't it?
+
+
+#########################################################################
+# NTP                            (just wanna know what time it is guys) #
+#########################################################################
+
+A lot of FreeBSD security advisories have been related to the NTP daemon
+included in the base system, known as the "reference implementation."
+Here's a (possibly incomplete) list:
+
+https://security.freebsd.org/advisories/FreeBSD-SA-01:31.ntpd.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-09:03.ntpd.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-09:11.ntpd.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-10:02.ntpd.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-14:02.ntpd.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-14:31.ntp.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-15:07.ntp.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-15:25.ntp.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-16:02.ntp.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-16:09.ntp.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-16:16.ntp.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-16:24.ntp.asc
+
+I would not be surprised if there are currently more embargoed fixes which
+haven't been made public yet.
+
+It's really shitty code, written mainly by time geeks and scientists instead
+of people who actually run network-facing services. But I want to keep my
+clock synced to the correct time, so what do I do here? Luckily, there are
+a number of alternative NTP daemons to choose from.
+
+One FreeBSD committer is working on an NTP implementation called ntimed.
+I'm told that it's still in development, but you can install it from ports
+if you want an early preview. I haven't tried it myself, but everyone seems
+to have high hopes for it eventually replacing the one currently in base.
+Can't be any worse than what we have now, so I'm all for it.
+
+Another option, the one I use, is called OpenNTPD. Based on the name, see
+if you can guess where it originates. A simple /usr/local/etc/ntp.conf may
+look something like this:
+
+###############################################################################
+servers     pool.ntp.org
+constraints from "https://www.freebsd.org"
+###############################################################################
+
+Much like the firewall section, this is up to your personal preference.
+There are trade-offs for both. OpenNTPD has an excellent security track
+record and a simple config syntax, but ntimed will likely give you better
+microsecond precision. Whichever you choose, just don't use the base one.
+
+
+#########################################################################
+# sysctl.conf                              (aka security-bandaids.conf) #
+#########################################################################
+
+The /etc/sysctl.conf file is a great place to tweak lots of things, but my
+example is mainly to fix poor defaults related to networking and security.
+The documentation isn't great here, so maybe allow a small margin of error
+in this section. These are all non-default settings in the latest release.
+
+###############################################################################
+kern.randompid=1234              # Pick another number. You could also script
+                                 # this to be a random value in /etc/rc.local.
+net.inet.icmp.drop_redirect=1
+net.inet.ip.check_interface=1
+net.inet.ip.process_options=0    # Enable if you need IGMP or multicast.
+net.inet.ip.random_id=1
+net.inet.ip.redirect=0
+net.inet.sctp.blackhole=2
+net.inet.tcp.blackhole=2
+net.inet.tcp.cc.algorithm=htcp   # This one is just a preference.
+                                 # You'd also need to add the line
+                                 # cc_htcp_load="YES"
+                                 # to /boot/loader.conf and kldload
+                                 # the kernel module or reboot.
+net.inet.tcp.drop_synfin=1
+net.inet.tcp.icmp_may_rst=0
+net.inet.udp.blackhole=1         # Note the blackhole options can sometimes
+                                 # make debugging network issues more difficult.
+security.bsd.hardlink_check_gid=1
+security.bsd.hardlink_check_uid=1
+security.bsd.see_other_gids=0
+security.bsd.see_other_uids=0
+security.bsd.stack_guard_page=1
+security.bsd.unprivileged_proc_debug=0
+security.bsd.unprivileged_read_msgbuf=0
+###############################################################################
+
+The following descriptions were taken from "sysctl -d" output with some
+minor grammar fixes.
+
+- kern.randompid:
+Random PID modulus
+
+- net.inet.icmp.drop_redirect:
+Ignore ICMP redirects
+
+- net.inet.ip.check_interface:
+Verify packet arrives on correct interface
+
+- net.inet.ip.process_options:
+Enable IP options processing ([LS]SRR, RR, TS)
+
+- net.inet.ip.random_id:
+Assign random ip_id values
+
+- net.inet.ip.redirect:
+Enable sending IP redirects
+
+- net.inet.sctp.blackhole:
+Enable SCTP blackholing
+
+- net.inet.tcp.blackhole:
+Do not send RST on segments to closed ports
+
+- net.inet.tcp.cc.algorithm:
+Default congestion control algorithm
+
+- net.inet.tcp.drop_synfin:
+Drop TCP packets with SYN+FIN set
+
+- net.inet.tcp.icmp_may_rst:
+Certain ICMP unreachable messages may abort connections in SYN_SENT
+
+- net.inet.udp.blackhole:
+Do not send port unreachables for refused connects
+
+- security.bsd.hardlink_check_gid:
+Unprivileged processes cannot create hard links to files owned by other groups
+
+- security.bsd.hardlink_check_uid:
+Unprivileged processes cannot create hard links to files owned by other users
+
+- security.bsd.see_other_gids:
+Unprivileged processes may see subjects/objects with different real gid
+
+- security.bsd.see_other_uids:
+Unprivileged processes may see subjects/objects with different real uid
+
+- security.bsd.stack_guard_page:
+Insert stack guard page ahead of the growable segments
+
+- security.bsd.unprivileged_proc_debug:
+Unprivileged processes may use process debugging facilities
+
+- security.bsd.unprivileged_read_msgbuf:
+Unprivileged processes may read the kernel message buffer
+
+
+#########################################################################
+# Periodic              (it's like a special snowflake version of cron) #
+#########################################################################
+
+It pains me to say that FreeBSD is very similar to Windows in a way here.
+Many useless things, some even potentially a security risk, will be running
+in the background by default. A lot of them are poorly documented or maybe
+not documented at all. If you configure your system to send email, expect
+some extremely long daily reports (with nothing useful in them) to be sent
+to root's inbox. I don't need my disks being thrashed every night because
+someone thought it was a good idea to enable every check under the sun.
+
+Have a look at the /etc/defaults/periodic.conf file. It shows which scripts
+from the base system are run by default when periodic is called from cron.
+In a standard configuration, all periodic scripts can be seen in either
+/etc/periodic (for base daemons) or /usr/local/etc/periodic (for ports).
+When you install a port or package, it may also add new periodic scripts
+and even enable them by default... something to be aware of.
+
+Since your actual needs will dictate which scripts you want running, I'll
+only suggest one particular script to disable. My real periodic.conf file
+is over thirty lines.
+
+###############################################################################
+daily_status_security_pkgaudit_enable="NO"
+###############################################################################
+
+I most certainly don't want pkg (running as root, remember) going out to
+the internet every night to fetch a list of vulnerable ports.
+
+Who thought this was safe?
+
+Being alerted to vulnerabilities in your installed packages is nice, but
+there's simply no need to be doing this operation as root.
+
+
+#########################################################################
+# SSL Library                        (so many exploits, so little time) #
+#########################################################################
+
+OpenSSL is included with the base system, and there are a number of issues
+related to it. Some supported versions of FreeBSD include an unsupported
+version of OpenSSL, requiring the security team to backport all the fixes
+themselves. OpenSSL itself has many problems you've probably heard about,
+like lack of code review and the need (desire?) to support very arcane
+systems that no one has used in many years. Let's just cut to the chase.
+
+https://security.freebsd.org/advisories/FreeBSD-SA-01:51.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-02:33.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-03:02.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-03:06.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-03:18.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-04:05.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-05:21.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-06:19.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-06:23.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-07:08.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-09:02.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-09:08.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-09:15.ssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-10:10.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-12:01.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-13:03.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-14:03.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-14:06.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-14:09.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-14:10.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-14:14.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-14:18.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-14:23.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-15:01.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-15:06.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-15:10.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-15:12.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-15:26.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-16:11.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-16:12.openssl.asc
+https://security.freebsd.org/advisories/FreeBSD-SA-16:17.openssl.asc
+
+Similar to the NTP list, I would expect many more of these to come out.
+
+So how can we make things better? In FreeBSD, your SSL library choices
+essentially come down to these three:
+
+- Use OpenSSL in base, link all your ports against it, wait for it to be
+  updated when security holes are found. This is made even worse by the
+  fact that FreeBSD re-enables insecure options that upstream disables.
+  https://svnweb.freebsd.org/base?view=revision&revision=296462
+
+- Use (a newer version of) OpenSSL from ports, but all of the base system
+  utilities will still be linked against the base one. At least you can
+  easily disable some insecure options like SSLv2/SSLv3 this way.
+
+- Use an alternative SSL library from ports, but, again, all of the base
+  system utilities will still be linked against the base one.
+
+There is some ongoing work to make this situation a little better, but no
+easy way to solve it at the moment. My current recommendation here is to
+use LibreSSL from ports and avoid base system utilities when interfacing
+with SSL/TLS. The relevant /etc/make.conf lines (or poudriere equivalent)
+to do this are:
+
+###############################################################################
+DEFAULT_VERSIONS+=ssl=libressl
+###############################################################################
+
+Switching to LibreSSL will cut down the number of vulnerabilities you have
+to deal with by a large margin, as well as the average severity of them.
+A somewhat comprehensive comparison can be seen here:
+
+https://en.wikipedia.org/wiki/LibreSSL#Security_and_vulnerabilities
+
+
+#########################################################################
+# Swap                                      (BEGIN OPENSSH PRIVATE KEY) #
+#########################################################################
+
+I think swap should *always* be encrypted. FreeBSD developers disagree.
+It's surprising just how much private data in memory gets written to disk.
+Someone I know has run hexdump on his swap partition and found PGP private
+keys in plain view. Your SSH key might be password-protected on disk, but
+it could end up in swap sooner or later... with no password needed.
+
+Am I the only one who sees a problem here?
+
+It's been said that encrypted swap can't be the default in FreeBSD because
+kernel crash dumps would be unreadable. For the time being, if you need
+crash dumps written to your swap, don't do this part. For the rest of us,
+it's actually very simple to do.
+
+Here's an example /etc/fstab line for a standard swap partition:
+
+###############################################################################
+# Device                Mountpoint      FStype  Options         Dump    Pass#
+/dev/ada0p3             none            swap    sw              0       0
+###############################################################################
+
+Now here's the same thing with the swap automatically encrypted:
+
+###############################################################################
+# Device                Mountpoint      FStype  Options         Dump    Pass#
+/dev/ada0p3.eli         none            swap    sw              0       0
+###############################################################################
+
+All you need to do is add ".eli" to the device name. A one-time key will be
+generated and destroyed when swap is unmounted, so the swap contents should
+be unrecoverable. If you had unencrypted swap previously, consider using dd
+to write random data over it before encrypting.
+
+
+#########################################################################
+# Permissions                                        (no place like ~/) #
+#########################################################################
+
+Standard unix stuff. Run users with umask 077, chmod 700 home directories,
+don't let users read the firewall rules or other important config files.
+This prevents a lot of things from being leaked if a compromised process
+has read access to the filesystem. I think jails and "container culture"
+have made a lot of guys really lazy about this kind of thing, but I still
+do it. Many important files are world-readable by default in FreeBSD...
+
+
+#########################################################################
+# rc.conf                                                 (almost done) #
+#########################################################################
+
+In addition to the items for what I've gone over already, I don't know why
+FreeBSD doesn't clear /tmp on startup, but that's expected behavior for me.
+
+Finally, if we're not going to be doing any remote logging, I'd prefer that
+syslogd doesn't open any sockets.
+
+These are the relevant lines in my /etc/rc.conf file:
+
+###############################################################################
+sshd_enable="NO"
+ntpd_enable="NO"
+sendmail_enable="NO"
+sendmail_outbound_enable="NO"
+sendmail_submit_enable="NO"
+sendmail_msp_queue_enable="NO"
+pf_enable="YES"
+openssh_enable="YES"
+openntpd_enable="YES"
+openntpd_flags="-s"
+clear_tmp_enable="YES"
+syslogd_flags="-ss"
+###############################################################################
+
+And now we come to the end.
+
+
+#########################################################################
+# Closing                                                     (finally) #
+#########################################################################
+
+Some things NOT covered in detail that you might want to look into:
+
+- Testing the experimental ASLR patch in 11-CURRENT
+- Increasing the kernel securelevel
+- Tweaking malloc.conf (which is about as relaxed as a guy chilling on
+  the beach by default)
+- Adding some hardening CFLAGS to make.conf and/or src.conf
+- Asking why FreeBSD still uses the broken RC4 algorithm in its PRNG system
+
+By sharing this page, I hope to start a discussion about changing some of
+the default settings in FreeBSD. I think many were decided on long ago and
+no one thinks about them anymore.
+
+The resistance from the security team to phase out legacy options makes me
+wonder if they should be called a compatibility team instead.
+
+"The FreeBSD Security Officer's mission is to protect the FreeBSD user
+community by keeping the community informed of bugs, exploits, popular
+attacks, and other risks; by acting as a liaison on behalf of the FreeBSD
+Project with external organizations regarding sensitive, non-public security
+issues; and by promoting the distribution of information needed to safely
+run FreeBSD systems, such as system administration and programming tips."
+
+Taken from https://www.freebsd.org/security/charter.html
+
+In my view, the security team of today seems to be doing the exact opposite
+of a number of those tasks. I'd really like to see some things re-evaluated
+for the safety of their userbase. Fix the problems; don't ship poor defaults
+and expect the users to clean them up.
+
+Perhaps the corporate involvement in the project is too strong for this to
+realistically happen, I'm not sure.
+
+In any case, send me any feedback you have, good or bad.
+
+https://twitter.com/blakkheim
+
+A big thanks to bsdx, djm and bdrewery for their review/input.
