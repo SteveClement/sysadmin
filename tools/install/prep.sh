@@ -2,7 +2,7 @@
 # run as root - ports tree needed
 portsnap fetch extract
 cd /usr/ports/ports-mgmt/portconf && make install clean
-pkg install git python gmake automake15 libtool
+pkg install git python gmake automake libtool
 pkg delete git-\*
 
 mkdir /var/db/ports/devel_git
@@ -11,7 +11,7 @@ mkdir /var/db/ports/shells_bash
 mkdir /var/db/ports/devel_bison
 mkdir /var/db/ports/devel_m4
 mkdir /var/db/ports/devel_gettext-tools
-mkdir /var/db/ports/lang_perl5.18
+mkdir /var/db/ports/lang_perl5.20
 mkdir /var/db/ports/misc_getopt
 mkdir /var/db/ports/devel_gmake
 mkdir /var/db/ports/textproc_libxml2
@@ -22,7 +22,7 @@ mkdir /var/db/ports/textproc_docbook-xsl
 mkdir /var/db/ports/textproc_xmlcatmgr
 mkdir /var/db/ports/www_w3m
 mkdir /var/db/ports/devel_boehm-gc
-mkdir /var/db/ports/devel_libatomic_ops
+##mkdir /var/db/ports/devel_libatomic_ops
 mkdir /var/db/ports/lang_python27
 mkdir /var/db/ports/devel_libffi
 mkdir /var/db/ports/ftp_curl
@@ -33,11 +33,12 @@ mkdir /var/db/ports/security_p5-Net-SSLeay
 mkdir /var/db/ports/security_p5-Authen-SASL
 mkdir /var/db/ports/security_p5-GSSAPI
 mkdir /var/db/ports/devel_apr1
-mkdir /var/db/ports/database_gdbm
-mkdir /var/db/ports/database_db5
-mkdir /var/db/ports/database_sqlite3
+mkdir /var/db/ports/databases_gdbm
+mkdir /var/db/ports/databases_db5
+mkdir /var/db/ports/databases_sqlite3
 mkdir /var/db/ports/devel_subversion
 mkdir /var/db/ports/www_serf
+mkdir /var/db/ports/print_texinfo
 
 ## Update 1
 cat << EOF > /var/db/ports/devel_git/options
@@ -422,6 +423,11 @@ OPTIONS_FILE_UNSET+=MIT
 OPTIONS_FILE_UNSET+=HEIMDAL
 OPTIONS_FILE_UNSET+=HEIMDAL_BASE
 EOF
+
+# Update 32
+##mkdir /var/db/ports/print_texinfo
+
+## Add libatomic
 
 echo "devel/subversion: WITHOUT_MOD_DAV_SVN|WITHOUT_APACHE2_APR" >> /usr/local/etc/ports.conf
 echo "devel/apr-svn: APR_UTIL_WITH_BERKELEY_DB=yes" >> /usr/local/etc/ports.conf
