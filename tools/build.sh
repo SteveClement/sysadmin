@@ -178,6 +178,7 @@ for PORT in `echo archivers_libarchive \
                   sysutils_tmux \
                   sysutils_ucspi-tcp \
                   textproc_py-docutils \
+                  textproc_libxml2 \
                   textproc_py-snowballstemmer \
                   www_lynx \
                   www_p5-libwww \
@@ -412,7 +413,7 @@ fi
 
  cd /usr/ports/ports-mgmt/portupgrade && make clean install clean
 
- $PORTINSTALL archivers/zip shells/zsh shells_zsh-navigation-tools
+ $PORTINSTALL archivers/zip shells/zsh shells/zsh-navigation-tools
    ##$PWW useradd $USERS -s $BASH -G wheel && mkdir -p -m 700 /home/${USERS}/.ssh && chown -R ${USERS}:${USERS} /home/${USERS}/ && chmod -R 700 /home/${USERS}/ && \
    $PWW usermod root -s $BASH && $PWW usermod $ADMIN -s $ZSH
    ##$PWW useradd $SYSADMIN -s $BASH -G wheel && mkdir -p -m 700 /home/${SYSADMIN}/.ssh && chown -R ${SYSADMIN}:${SYSADMIN} /home/${SYSADMIN}/ && chmod -R 700 /home/${SYSADMIN}/
