@@ -19,7 +19,7 @@
 # reboot
 # make delete-old-libs
 
-export ARCHI="i386"
+export ARCHI=$(uname -m)
 export CONFIGS_COMMON="/configs/common"
 export PORTS_OPTIONS="/var/db/ports"
 export PORTSNAP="/usr/sbin/portsnap"
@@ -35,6 +35,7 @@ export CUT="/usr/bin/cut"
 export SED="/usr/bin/sed"
 export PING="/sbin/ping"
 export BASH="/usr/local/bin/bash"
+export ZSH="/usr/local/bin/zsh"
 export SCP="/usr/bin/scp"
 export CHOWN="/usr/sbin/chown"
 export CHGRP="/usr/bin/chgrp"
@@ -71,8 +72,6 @@ export PORTS="sysutils/munin-node \
               security/nmap \
               security/gnupg \
               shells/bash-completion \
-              shells/zsh \
-              shells/zsh-navigation-tools \
               devel/subversion"
 export PORTS_MAIL="mail/mutt \
                    mail/qmHandle \
@@ -86,6 +85,9 @@ export JAIL_CHECK=`/sbin/md5 /etc/fstab | cut -f 4 -d\ `
 export FSTAB_SUM="2cfe202ba5d7cdad78af2bf76b340c6d"
 export VER=`uname -r |cut -f 1 -d- |sed 's/\./_/'`
   touch $TMP/$VER
+
+echo 'Setting time and starting ntpd'
+/etc/rc.d/ntpd stop ; /usr/sbin/ntpdate chronos.cru.fr ; /etc/rc.d/ntpd start
 
 if [ -z $ADMIN ]; then
   echo "Please enter YOUR username"
@@ -120,41 +122,69 @@ if [ -f ${TMP}/${VERSION} ]
   touch ${TMP}/${VERSION}
 fi
 
-for PORT in `echo devel_ruby \
-                  databases_ruby22-bdb \
-                  sysutils_daemontools \
-                  sysutils_tmux \
-                  devel_libevent2 \
-                  mail_qmail \
-                  sysutils_ucspi-tcp \
+for PORT in `echo archivers_libarchive \
+                  archivers_lzo2 \
                   archivers_unzip \
-                  net_rsync \
-                  editors_vim \
-                  lang_tcl86 \
+                  converters_libiconv \
+                  databases_db5 \
+                  databases_gdbm \
+                  databases_p5-DBI \
+                  databases_postgresql93-client \
+                  databases_ruby-bdb \
+                  databases_sqlite3 \
+                  devel_apr1 \
+                  devel_binutils \
+                  devel_cmake \
                   devel_cscope \
-                  ftp_wget \
-                  security_nmap \
+                  devel_glib20 \
+                  devel_libcheck \
+                  devel_libdevq \
+                  devel_libevent2 \
+                  devel_llvm37 \
+                  devel_nasm \
+                  devel_p5-Class-C3 \
                   devel_pcre \
+                  devel_py-Jinja2 \
+                  devel_subversion \
+                  devel_swig13 \
+                  dns_p5-Net-DNS \
+                  editors_vim \
+                  ftp_curl \
+                  ftp_wget \
+                  graphics_cairo \
+                  graphics_gdk-pixbuf2 \
+                  graphics_jasper \
+                  graphics_jpeg-turbo \
+                  graphics_libdrm \
+                  graphics_png \
+                  lang_ruby22 \
+                  lang_tcl86 \
+                  mail_qmail \
+                  math_gmp \
+                  net_p5-Net-Server \
+                  net_rsync \
+                  print_freetype2 \
                   security_gnupg \
                   security_gnutls \
                   security_nettle \
-                  math_gmp \
-                  security_trousers \
-                  devel_cmake \
-                  devel_py-Jinja2 \
-                  textproc_py-docutils \
-                  textproc_py-snowballstemmer \
-                  archivers_libarchive \
-                  archivers_lzo2 \
+                  security_nmap \
                   security_pinentry \
                   security_pinentry-curses \
+                  security_trousers \
+                  shells_bash-completion \
+                  shells_zsh \
+                  sysutils_daemontools \
                   sysutils_munin-node \
-                  net_p5-Net-Server \
+                  sysutils_tmux \
+                  sysutils_ucspi-tcp \
+                  textproc_py-docutils \
+                  textproc_py-snowballstemmer \
+                  www_lynx \
                   www_p5-libwww \
-                  databases_p5-DBI \
-                  databases_postgresql93-client \
-                  dns_p5-Net-DNS \
-                  shells_zsh`; do
+                  www_serf \
+                  x11-fonts_dejavu \
+                  x11-fonts_fontconfig \
+                  x11-toolkits_gtk20`; do
   mkdir -p ${PORTS_OPTIONS}/${PORT}
   cp ${REPO}${CONFIGS_COMMON}${PORTS_OPTIONS}/${PORT}/options ${PORTS_OPTIONS}/${PORT}
 done
@@ -184,23 +214,27 @@ if [ -f /usr/local/bin/zip ]
   $ECHO "Installing Ports: $PORTS"
   $ECHO .
   $PORTINSTALL $PORTS
+
+  $ECHO "Enable qmail"
   /var/qmail/scripts/enable-qmail
+
+  $ECHO "Configuring munin-node"
   /usr/local/sbin/munin-node-configure --shell | sh -x
 
   cd /etc/
 
-    /etc/rc.d/ntpd stop ; /usr/sbin/ntpdate chronos.cru.fr ; /etc/rc.d/ntpd start
-    cat $REPO$CONFIGS_COMMON/rc.conf >> rc.conf
+  cat $REPO$CONFIGS_COMMON/rc.conf >> rc.conf
 
   mv profile profile-`date +%d%m%y`
   cp $REPO$CONFIGS_COMMON/profile .
 
   cp $REPO$CONFIGS_COMMON/sshd_localhost /etc/rc.d/
+  chmod 555 /etc/rc.d/sshd_localhost
   ln -s /usr/sbin/sshd /usr/sbin/sshd_localhost
 
   cp -p $REPO$CONFIGS_COMMON/pf.conf pf.conf
 
-  ##cp $REPO$CONFIGS_COMMON/vimrc /usr/local/share/vim/
+  cp $REPO$CONFIGS_COMMON/vimrc /usr/local/share/vim/
   mv /usr/bin/vi /usr/bin/vi-`date +%d%m%y`
   ln -s /usr/local/bin/vim /usr/bin/vi
 
@@ -235,7 +269,12 @@ if [ -f /usr/local/bin/zip ]
   cat /var/qmail/control/*
   sleep 15
 
-  svn co svn://svn.freebsd.org/base/releng/10.3 /usr/src
+  if [ -f /usr/src/UPDATING ]; then
+    echo "We have source"
+  else
+    echo "Checking out source via subversion"
+    svn co svn://svn.freebsd.org/base/releng/`uname -r | cut -f 1 -d\-` /usr/src
+  fi
   # htop pulls in lsof, which needs a source tree
   $PORTINSTALL sysutils/htop
 
@@ -292,7 +331,7 @@ $SLEEP 3
 
 if [ -f $TMP/initial ]
  then
-  $ECHO "Initial Install, due to bash lackage $TMP/initial has been touched"
+  $ECHO "Initial Install, due to zip lackage $TMP/initial has been touched"
   cat $REPO$CONFIGS_COMMON/manpath.config >> /etc/manpath.config
   $MAKEWHATIS &
 
@@ -373,10 +412,10 @@ fi
 
  cd /usr/ports/ports-mgmt/portupgrade && make clean install clean
 
- # $PORTINSTALL shells/bash && \
- $PORTINSTALL archivers/zip
+ $PORTINSTALL archivers/zip shells/zsh shells/zsh-navigation-tools
    ##$PWW useradd $USERS -s $BASH -G wheel && mkdir -p -m 700 /home/${USERS}/.ssh && chown -R ${USERS}:${USERS} /home/${USERS}/ && chmod -R 700 /home/${USERS}/ && \
-   $PWW usermod root -s $BASH && $PWW usermod $ADMIN -s $BASH
+   $PWW usermod root -s $BASH && $PWW usermod $ADMIN -s $ZSH
+   $ECHO "# Created by newuser for 5.3" > /home/${SYSADMIN}/.zshrc && chmod 644 /home/${SYSADMIN}/.zshrc && chown ${SYSADMIN}:${SYSADMIN} /home/${SYSADMIN}/.zshrc
    ##$PWW useradd $SYSADMIN -s $BASH -G wheel && mkdir -p -m 700 /home/${SYSADMIN}/.ssh && chown -R ${SYSADMIN}:${SYSADMIN} /home/${SYSADMIN}/ && chmod -R 700 /home/${SYSADMIN}/
 
  ##cp $REPO/ssh-pub-keys/$USERS.pub2 $HOME_BASE/$USERS/.ssh/authorized_keys
