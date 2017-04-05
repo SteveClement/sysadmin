@@ -139,7 +139,7 @@ for PORT in `echo archivers_libarchive \
                   devel_glib20 \
                   devel_libcheck \
                   devel_libdevq \
-                  devel_libevent2 \
+                  devel_libevent \
                   devel_llvm37 \
                   devel_nasm \
                   devel_p5-Class-C3 \
@@ -157,7 +157,8 @@ for PORT in `echo archivers_libarchive \
                   graphics_jpeg-turbo \
                   graphics_libdrm \
                   graphics_png \
-                  lang_ruby22 \
+                  lang_perl5.24 \
+                  lang_ruby23 \
                   lang_tcl86 \
                   mail_qmail \
                   math_gmp \
@@ -168,6 +169,8 @@ for PORT in `echo archivers_libarchive \
                   security_gnutls \
                   security_nettle \
                   security_nmap \
+                  security_p5-IO-Socket-SSL \
+                  security_p5-Net-SSLeay \
                   security_pinentry \
                   security_pinentry-curses \
                   security_trousers \
