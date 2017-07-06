@@ -129,7 +129,7 @@ for PORT in `echo archivers_libarchive \
                   databases_db5 \
                   databases_gdbm \
                   databases_p5-DBI \
-                  databases_postgresql93-client \
+                  databases_postgresql95-client \
                   databases_ruby-bdb \
                   databases_sqlite3 \
                   devel_apr1 \
@@ -158,6 +158,7 @@ for PORT in `echo archivers_libarchive \
                   graphics_libdrm \
                   graphics_png \
                   lang_perl5.24 \
+                  lang_python27 \
                   lang_ruby23 \
                   lang_tcl86 \
                   mail_qmail \
